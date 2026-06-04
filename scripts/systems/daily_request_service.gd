@@ -3,19 +3,22 @@ class_name DailyRequestService
 
 const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const InventoryServiceScript := preload("res://scripts/systems/inventory_service.gd")
+const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.gd")
 
 const REQUESTS_PATH := "res://data/life/daily_requests.json"
 
 var save_service
 var inventory_service
+var local_day_service
 var request_path: String = REQUESTS_PATH
 var requests_by_id: Dictionary = {}
 var load_errors: Array[String] = []
 
 
-func _init(service = null, inventory = null, path: String = REQUESTS_PATH) -> void:
+func _init(service = null, inventory = null, day_service = null, path: String = REQUESTS_PATH) -> void:
 	save_service = service if service != null else SaveServiceScript.new()
 	inventory_service = inventory if inventory != null else InventoryServiceScript.new(save_service)
+	local_day_service = day_service if day_service != null else LocalDayServiceScript.new()
 	request_path = path
 	_load_requests()
 
@@ -34,7 +37,9 @@ func get_request(request_id: String) -> Dictionary:
 
 
 func get_daily_state() -> Dictionary:
-	return save_service.load_game_state().get("daily_requests", {}).duplicate(true)
+	var game_state: Dictionary = save_service.load_game_state()
+	var all_requests: Dictionary = game_state.get("daily_requests", {})
+	return all_requests.get(local_day_service.get_day_key(), {}).duplicate(true)
 
 
 func interact_for_npc(npc_id: String) -> Dictionary:
@@ -58,7 +63,7 @@ func _start_request(request: Dictionary) -> Dictionary:
 	var state: Dictionary = {
 		"status": "active",
 		"npc_id": request.get("npc_id", ""),
-		"day_key": request.get("day_key", "local_day_001"),
+		"day_key": local_day_service.get_day_key(),
 		"started": true,
 		"completed_today": false,
 		"completed_count": 0,
@@ -80,13 +85,22 @@ func _complete_request(request: Dictionary, state: Dictionary) -> Dictionary:
 	var rewards: Dictionary = request.get("rewards", {})
 	var game_state: Dictionary = save_service.load_game_state()
 	game_state["coins"] = int(game_state.get("coins", 0)) + int(rewards.get("coins", 0))
-	var daily_requests: Dictionary = game_state.get("daily_requests", {})
+	save_service.save_game_state(game_state)
+	for reward_item in rewards.get("items", []):
+		if reward_item is Dictionary:
+			var item_reward: Dictionary = reward_item
+			inventory_service.collect_item(str(item_reward.get("item_id", "")), int(item_reward.get("quantity", 1)))
+	game_state = save_service.load_game_state()
+	var all_requests: Dictionary = game_state.get("daily_requests", {})
+	var day_key := str(state.get("day_key", local_day_service.get_day_key()))
+	var daily_requests: Dictionary = all_requests.get(day_key, {})
 	state["status"] = "completed"
 	state["completed_today"] = true
 	state["completed_count"] = int(state.get("completed_count", 0)) + 1
 	state["rewarded_coins"] = int(rewards.get("coins", 0))
 	daily_requests[str(request.get("request_id", ""))] = state.duplicate(true)
-	game_state["daily_requests"] = daily_requests
+	all_requests[day_key] = daily_requests
+	game_state["daily_requests"] = all_requests
 	save_service.save_game_state(game_state)
 	_update_relationship(str(request.get("npc_id", "")), str(request.get("request_id", "")), int(rewards.get("relationship", 0)))
 	return _format_result(request, state, "complete", true, true)
@@ -113,6 +127,7 @@ func _format_result(request: Dictionary, state: Dictionary, text_key: String, ok
 		"ok": ok,
 		"request_id": request.get("request_id", ""),
 		"npc_id": request.get("npc_id", ""),
+		"day_key": str(state.get("day_key", local_day_service.get_day_key())),
 		"request_status": status,
 		"completed_today": completed,
 		"required_items": request.get("required_items", []).duplicate(true),
@@ -137,9 +152,12 @@ func _get_request_state(request_id: String) -> Dictionary:
 
 func _save_request_state(request_id: String, state: Dictionary) -> bool:
 	var game_state: Dictionary = save_service.load_game_state()
-	var daily_requests: Dictionary = game_state.get("daily_requests", {})
+	var all_requests: Dictionary = game_state.get("daily_requests", {})
+	var day_key := str(state.get("day_key", local_day_service.get_day_key()))
+	var daily_requests: Dictionary = all_requests.get(day_key, {})
 	daily_requests[request_id] = state.duplicate(true)
-	game_state["daily_requests"] = daily_requests
+	all_requests[day_key] = daily_requests
+	game_state["daily_requests"] = all_requests
 	return save_service.save_game_state(game_state)
 
 

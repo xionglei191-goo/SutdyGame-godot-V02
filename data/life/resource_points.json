@@ -1,0 +1,32 @@
+{
+	"schema_version": 1,
+	"resource_points": [
+		{
+			"point_id": "resource_branch_bear_corner",
+			"item_id": "branch",
+			"display_name": "树枝",
+			"quantity": 1,
+			"cell": {"x": 13, "y": 6},
+			"collect_text": "捡到一根小树枝，像故事书里的书签。",
+			"collected_text": "熊角落今天已经整理干净啦。"
+		},
+		{
+			"point_id": "resource_flower_sun_plaza",
+			"item_id": "flower",
+			"display_name": "小花",
+			"quantity": 2,
+			"cell": {"x": 18, "y": 7},
+			"collect_text": "摘到一朵小花，香味轻轻的。",
+			"collected_text": "这片花丛今天已经休息啦。"
+		},
+		{
+			"point_id": "resource_stone_taxi_stop",
+			"item_id": "stone",
+			"display_name": "小石子",
+			"quantity": 1,
+			"cell": {"x": 31, "y": 11},
+			"collect_text": "捡到一颗圆圆的小石子，适合压住故事纸。",
+			"collected_text": "站牌旁今天没有新的小石子。"
+		}
+	]
+}

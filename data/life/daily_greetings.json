@@ -1,0 +1,30 @@
+{
+	"schema_version": 1,
+	"greetings": [
+		{
+			"npc_id": "mina",
+			"first_text": "早呀，今天的广场有一点树叶香。你想散步就慢慢来。",
+			"repeat_text": "我还在这里看书。路过的时候挥挥手就好。"
+		},
+		{
+			"npc_id": "shopkeeper",
+			"first_text": "欢迎来小店门口看看。今天不用急，喜欢什么就多看两眼。",
+			"repeat_text": "货架擦亮啦。你可以继续逛，也可以去找 Sunny 玩。"
+		},
+		{
+			"npc_id": "pet_buddy",
+			"first_text": "Sunny 摇摇尾巴：今天也想和你在小镇上慢慢玩。",
+			"repeat_text": "Sunny 贴过来蹭蹭你，像是在说再走一小段吧。"
+		},
+		{
+			"npc_id": "story_bear",
+			"first_text": "故事熊把书翻到有阳光的一页：今天适合收集小故事。",
+			"repeat_text": "故事熊轻轻点头，书角夹着一片暖暖的光。"
+		},
+		{
+			"npc_id": "bus_helper",
+			"first_text": "巴士哥哥挥挥手：站牌旁边很安静，想去哪边都可以。",
+			"repeat_text": "巴士哥哥看看路牌：今天的小镇路线很舒服。"
+		}
+	]
+}

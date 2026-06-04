@@ -3,7 +3,7 @@
 > 最后更新：2026-06-04  
 > 状态事实来源：本文件  
 > 当前阶段：长期路线规划 - 生活小镇从原型走向长期可玩  
-> 当前里程碑：V02.1 每日小镇，建立每日回访、居民轻委托和资源刷新
+> 当前里程碑：V02.2 我的小屋，家园装饰成为核心留存
 
 ## 维护规则
 
@@ -19,13 +19,13 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 43：长期路线规划 Pass |
-| 本轮目标 | 已完成背包气泡和 HUD 状态分组，准备进入长期生活小镇路线 |
+| 当前轮次 | Round 44：V02.1 每日小镇完成 |
+| 本轮目标 | 每日问候、多 NPC 轻委托、每日资源刷新、今日状态和 V02.1 smoke 已完成 |
 | 进行中 | 无 |
-| Ready | V02-DAILY-001 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复 |
+| Ready | V02-HOME-001 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇 |
 | 阻塞项 | 无 |
-| 待确认决策 | V02.1 首批每日问候和轻委托文本是否先以固定本地数据实现 |
+| 待确认决策 | 无 |
 | 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
 
 ## 方向纠偏：生活 RPG / 小镇养成 MVP
@@ -103,15 +103,15 @@
 
 ### V02.1 每日小镇：回访、居民和资源
 
-- [ ] **V02-DAILY-001 每日问候系统**  
+- [x] **V02-DAILY-001 每日问候系统**  
   Owner：Narrative / Godot Dev / QA Agent；依赖：V02-LIFE-013；交付物：本地每日问候数据、问候状态保存、NPC 互动接入；验收：Mina、店长、Sunny、故事熊、巴士哥哥每天首次互动有中文问候并写入当日状态，同日重复不重复发奖励；孩子端无学习压力文案。
-- [ ] **V02-DAILY-002 多 NPC 每日轻委托扩展**  
+- [x] **V02-DAILY-002 多 NPC 每日轻委托扩展**  
   Owner：Game Design / Narrative / Godot Dev Agent；依赖：V02-DAILY-001、V02-LIFE-004；交付物：至少 3 条新增本地每日轻委托；验收：店长、故事熊、Sunny 至少各有一条轻委托，包含接取、目标、交付、金币/材料/关系奖励、同日去重和保存重载测试。
-- [ ] **V02-DAILY-003 每日资源刷新**  
+- [x] **V02-DAILY-003 每日资源刷新**  
   Owner：Godot Dev / Map / QA Agent；依赖：V02-LIFE-004；交付物：资源刷新服务和首批资源点数据；验收：树枝、花、石子等资源按本地日期刷新，已收集资源当天不重复出现，跨日刷新通过 headless 测试。
-- [ ] **V02-DAILY-004 今日状态与轻日历**  
+- [x] **V02-DAILY-004 今日状态与轻日历**  
   Owner：UX / Godot Dev Agent；依赖：V02-DAILY-001；交付物：顶部 HUD 今日状态、天气/小镇事件本地 stub；验收：HUD 能显示“今天晴天 / 集市日 / Sunny 想玩”等短提示，不遮挡地图，不引入真实时间压力或错过惩罚。
-- [ ] **V02-DAILY-005 V02.1 每日小镇 smoke**  
+- [x] **V02-DAILY-005 V02.1 每日小镇 smoke**  
   Owner：QA Agent；依赖：V02-DAILY-001 至 V02-DAILY-004；交付物：每日小镇端到端 smoke；验收：启动、问候、接委托、收集资源、交付、奖励、背包刷新、同日去重、跨日刷新全链路通过 focused/headless。
 
 ### V02.2 我的小屋：家园装饰成为核心留存
@@ -357,3 +357,4 @@
 | 2026-06-04 | Round 41 验收 | V02-UI-009 | 底部 `TownFooter` 收窄居中并改为柔和暖色底托；四个可见按钮改为圆角胶囊，主操作/选中导航使用暖黄色强调，普通导航使用浅色，normal/hover/pressed/focus 状态齐全；`check-only`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`headless_runner` 通过；MCP 截图与节点属性确认底栏约 647px 居中显示 |
 | 2026-06-04 | Round 42 验收 | V02-UI-010 | 底部 `背包` 按钮打开轻量 `BackpackBubble`，展示金币、Sunny 点心、树枝、木椅、相册和 Letter Snake 入口说明；顶部 HUD 新增独立 `CoinState` 金币 badge，并将 `PetState` 收为点心、饥饿、开心三项，金币和宠物状态视觉分组；`check-only`、`test_life_rpg_scene`、`headless_runner` 通过；MCP 场景树确认 `CoinState` / `PetState` 独立存在 |
 | 2026-06-04 | Round 43 规划 | 长期路线 | 新增“长期路线：生活小镇从原型到长期可玩”章节，确定 V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架四个里程碑，并将 `V02-DAILY-001` 设为下一项 Ready |
+| 2026-06-04 | Round 44 验收 | V02.1 每日小镇 | 新增 `LocalDayService`、每日问候、每日资源刷新、今日状态和多 NPC 轻委托；Mina、店长、Sunny、故事熊、巴士哥哥每日问候按 day_key 保存，树枝/小花/小石子按日刷新，店长/故事熊/Sunny 新增轻委托；`jq`、`test_daily_request_service`、`test_daily_town_services`、`test_v021_daily_town_contract`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`test_life_services`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |

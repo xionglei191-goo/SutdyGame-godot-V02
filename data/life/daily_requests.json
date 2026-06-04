@@ -1,10 +1,51 @@
 {
 	"schema_version": 1,
+	"v02_1_content_drafts": {
+		"daily_greetings": [
+			{
+				"greeting_id": "daily_greeting_mina_001",
+				"npc_id": "mina",
+				"text": "早呀，今天小镇的路边有新影子，我们慢慢逛就好。",
+				"repeat_text": "刚刚已经见过啦，米娜还在这里等风吹过来。"
+			},
+			{
+				"greeting_id": "daily_greeting_shopkeeper_001",
+				"npc_id": "shopkeeper",
+				"text": "欢迎来街角商店，篮子和小花都在等一个舒服的位置。",
+				"repeat_text": "店里的小铃铛已经向你打过招呼啦。"
+			},
+			{
+				"greeting_id": "daily_greeting_pet_buddy_001",
+				"npc_id": "pet_buddy",
+				"text": "汪，Sunny 已经醒啦，门口的风闻起来甜甜的。",
+				"repeat_text": "Sunny 轻轻摇尾巴，像在说我们刚刚抱过早安。"
+			},
+			{
+				"greeting_id": "daily_greeting_bus_helper_001",
+				"npc_id": "bus_helper",
+				"text": "早上好，车站今天很安静，长椅晒得暖暖的。",
+				"repeat_text": "巴士哥哥把手放在帽檐边，又轻轻向你点了一下头。"
+			},
+			{
+				"greeting_id": "daily_greeting_story_bear_001",
+				"npc_id": "story_bear",
+				"text": "书页刚好翻到温柔的一页，要不要在故事角坐一会儿？",
+				"repeat_text": "故事熊把书签放好，故事角还是软软亮亮的。"
+			}
+		],
+		"today_status_lines": [
+			{"status_id": "today_clear_town_001", "text": "今天晴晴的，小镇路面暖暖的。"},
+			{"status_id": "today_shop_basket_001", "text": "街角商店的小篮子摆好了。"},
+			{"status_id": "today_sunny_walk_001", "text": "Sunny 在门口晃尾巴，想慢慢散步。"},
+			{"status_id": "today_flower_path_001", "text": "花丛边有一点亮亮的颜色。"},
+			{"status_id": "today_story_corner_001", "text": "故事角有一页新书在等风。"}
+		]
+	},
 	"requests": [
 		{
 			"request_id": "daily_mina_branch_001",
 			"npc_id": "mina",
-			"title": "Mina's Branch",
+			"title": "米娜的小树枝",
 			"day_key": "local_day_001",
 			"required_items": [
 				{"item_id": "branch", "quantity": 1}
@@ -14,10 +55,10 @@
 				"relationship": 1
 			},
 			"text": {
-				"start": "Mina is looking for a Branch from the Bear corner.",
-				"progress": "Mina smiles. The Branch near the Bear corner would be just right.",
-				"complete": "Mina takes the Branch and shares a few town coins.",
-				"already_completed": "Mina waves. The Branch is already tucked into her tiny bookmark."
+				"start": "米娜想找一根小树枝当书签。路过熊角落时，可以慢慢看看。",
+				"progress": "米娜笑笑：熊角落旁的小树枝应该刚刚好。",
+				"complete": "米娜把小树枝夹进书里，送给你一些小镇金币。",
+				"already_completed": "米娜挥挥手：今天的小树枝书签已经夹好啦。"
 			},
 			"memory_story": {
 				"letter": "B",
@@ -26,6 +67,90 @@
 				"story_memory": "Mina uses a small branch from the Bear corner as a bookmark.",
 				"visual_hook": "a branch beside the Bear book corner",
 				"review_path": "Walk to the Bear anchor, pick up a branch, then return to Mina."
+			}
+		},
+		{
+			"request_id": "daily_shopkeeper_flower_001",
+			"npc_id": "shopkeeper",
+			"title": "柜台上的小花",
+			"day_key": "local_day_001",
+			"required_items": [
+				{"item_id": "flower", "quantity": 1}
+			],
+			"rewards": {
+				"coins": 5,
+				"relationship": 1
+			},
+			"text": {
+				"start": "店长把一个空小瓶放在柜台上：要是路边有一朵小花，它今天会有个很好的位置。",
+				"progress": "柜台的小瓶还空着，不着急，散步时看到 Flower 再带来就好。",
+				"complete": "小花站上柜台，店长眯起眼睛：今天商店也变香啦。",
+				"already_completed": "那朵小花已经在柜台晒太阳了，店长轻轻向你挥手。"
+			},
+			"memory_story": {
+				"letter": "S",
+				"core_anchor_id": "anchor_s_sun",
+				"world_place_id": "place_town_start",
+				"story_memory": "A flower from Sun Plaza makes the shop window shine softly.",
+				"visual_hook": "a flower glowing on the shop window under the Sun anchor",
+				"review_path": "Walk past Sun Plaza, pick a flower, then visit the shopkeeper."
+			}
+		},
+		{
+			"request_id": "daily_story_bear_stone_001",
+			"npc_id": "story_bear",
+			"title": "压住书页的小石子",
+			"day_key": "local_day_001",
+			"required_items": [
+				{"item_id": "stone", "quantity": 1}
+			],
+			"rewards": {
+				"coins": 4,
+				"relationship": 1
+			},
+			"text": {
+				"start": "故事熊翻到一页有风的故事，想给书角找一颗暖暖的小石子压住书页。",
+				"progress": "书页还在轻轻动，看到圆圆的 Stone 再带给故事熊就好。",
+				"complete": "小石子压住书页，故事熊把声音放得很轻：这一页可以慢慢读啦。",
+				"already_completed": "小石子还稳稳躺在书角，故事熊把书页留在今天的阳光里。"
+			},
+			"memory_story": {
+				"letter": "T",
+				"core_anchor_id": "anchor_t_taxi",
+				"world_place_id": "place_town_start",
+				"story_memory": "A round stone from the Taxi stop holds Story Bear's page in place.",
+				"visual_hook": "a stone on top of a story page near the Taxi stop",
+				"review_path": "Walk to the Taxi stop, find a stone, then return to Story Bear."
+			}
+		},
+		{
+			"request_id": "daily_sunny_flower_001",
+			"npc_id": "pet_buddy",
+			"title": "Sunny 闻闻小花",
+			"day_key": "local_day_001",
+			"required_items": [
+				{"item_id": "flower", "quantity": 1}
+			],
+			"rewards": {
+				"coins": 0,
+				"relationship": 1,
+				"items": [
+					{"item_id": "branch", "quantity": 1}
+				]
+			},
+			"text": {
+				"start": "Sunny 想闻一闻今天的小花。看到 Flower 时，可以慢慢带一朵回来。",
+				"progress": "Sunny 摇摇尾巴，好像还在想着那朵香香的小花。",
+				"complete": "Sunny 闻了闻小花，开心地把一根小树枝推给你。",
+				"already_completed": "Sunny 今天已经闻过小花啦，现在想陪你散步。"
+			},
+			"memory_story": {
+				"letter": "S",
+				"core_anchor_id": "anchor_s_sun",
+				"world_place_id": "place_home",
+				"story_memory": "Sunny sniffs a flower from Sun Plaza and leaves a tiny branch gift.",
+				"visual_hook": "Sunny beside a flower under a warm Sun anchor",
+				"review_path": "Walk from home to Sun Plaza, pick a flower, then return to Sunny."
 			}
 		}
 	]

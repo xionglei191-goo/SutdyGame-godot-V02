@@ -1,0 +1,9 @@
+{
+	"schema_version": 1,
+	"statuses": [
+		{"weather": "今天晴天", "event": "广场微风日", "sunny_hint": "Sunny 想散步"},
+		{"weather": "今天有云", "event": "小店擦窗日", "sunny_hint": "Sunny 想闻闻花"},
+		{"weather": "今天暖暖的", "event": "故事角安静日", "sunny_hint": "Sunny 想听故事"},
+		{"weather": "今天亮亮的", "event": "站牌慢游日", "sunny_hint": "Sunny 想去路边看看"}
+	]
+}

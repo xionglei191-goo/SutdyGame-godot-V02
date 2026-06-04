@@ -8,6 +8,10 @@ const InventoryServiceScript := preload("res://scripts/systems/inventory_service
 const LifeShopServiceScript := preload("res://scripts/systems/life_shop_service.gd")
 const HomeDecorationServiceScript := preload("res://scripts/systems/home_decoration_service.gd")
 const DailyRequestServiceScript := preload("res://scripts/systems/daily_request_service.gd")
+const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.gd")
+const DailyGreetingServiceScript := preload("res://scripts/systems/daily_greeting_service.gd")
+const ResourceRefreshServiceScript := preload("res://scripts/systems/resource_refresh_service.gd")
+const TodayStatusServiceScript := preload("res://scripts/systems/today_status_service.gd")
 const NPCMemoryStoreScript := preload("res://scripts/systems/npc_memory_store.gd")
 const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
@@ -68,6 +72,7 @@ var world_map: Dictionary = {}
 var az_core_data: Dictionary = {}
 var map_errors: Array = []
 var save_path_override := ""
+var day_key_override := ""
 var save_service
 var memory_card_service
 var minigame_service
@@ -76,6 +81,10 @@ var inventory_service
 var life_shop_service
 var home_decoration_service
 var daily_request_service
+var local_day_service
+var daily_greeting_service
+var resource_refresh_service
+var today_status_service
 var npc_memory_store
 var llm_client
 var status_label: Label
@@ -106,10 +115,17 @@ func _ready() -> void:
 	_init_services()
 	_build_shell()
 	_update_loop_status("准备好啦")
+	_update_today_status()
 
 
 func configure_for_test(save_path: String) -> void:
 	save_path_override = save_path
+
+
+func set_day_key_for_test(day_key: String) -> void:
+	day_key_override = day_key
+	if local_day_service != null:
+		local_day_service.set_day_key_for_test(day_key)
 
 
 func get_parent_entry_spec() -> Dictionary:
@@ -118,13 +134,17 @@ func get_parent_entry_spec() -> Dictionary:
 
 func _init_services() -> void:
 	save_service = SaveServiceScript.new(save_path_override) if not save_path_override.is_empty() else SaveServiceScript.new()
+	local_day_service = LocalDayServiceScript.new(day_key_override)
 	memory_card_service = MemoryCardServiceScript.new(save_service)
 	minigame_service = MinigameServiceScript.new(save_service, memory_card_service)
 	quest_event_service = QuestEventServiceScript.new(save_service, memory_card_service)
 	inventory_service = InventoryServiceScript.new(save_service)
 	life_shop_service = LifeShopServiceScript.new(save_service, inventory_service)
 	home_decoration_service = HomeDecorationServiceScript.new(save_service, inventory_service)
-	daily_request_service = DailyRequestServiceScript.new(save_service, inventory_service)
+	daily_request_service = DailyRequestServiceScript.new(save_service, inventory_service, local_day_service)
+	daily_greeting_service = DailyGreetingServiceScript.new(save_service, local_day_service)
+	resource_refresh_service = ResourceRefreshServiceScript.new(save_service, inventory_service, local_day_service)
+	today_status_service = TodayStatusServiceScript.new(local_day_service)
 	npc_memory_store = NPCMemoryStoreScript.new(save_service)
 	llm_client = LLMClientScript.new(npc_memory_store)
 
@@ -532,11 +552,13 @@ func interact_nearby() -> Dictionary:
 	if not exact_interaction.is_empty():
 		return _handle_map_interaction(exact_interaction)
 
-	if _manhattan_distance(player_cell, BRANCH_RESOURCE_CELL) <= 1:
-		var branch_result: Dictionary = collect_branch()
-		branch_result["interaction_type"] = "resource"
-		branch_result["target_id"] = "branch"
-		return branch_result
+	var resource_result: Dictionary = resource_refresh_service.collect_nearest(player_cell, 1)
+	if resource_result.get("ok", false):
+		_set_life_status(str(resource_result.get("text", "收进背包啦。")))
+		resource_result["interaction_type"] = "resource"
+		resource_result["target_id"] = resource_result.get("item_id", "")
+		_update_loop_status("背包里多了%s" % str(resource_result.get("display_name", "小材料")))
+		return resource_result
 
 	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
 	if not npc.is_empty():
@@ -862,6 +884,22 @@ func interact_with_npc(npc_id: String) -> Dictionary:
 	if _manhattan_distance(player_cell, npc_cell) > 2:
 		return {"ok": false, "reason": "too_far", "npc_id": npc_id}
 
+	var greeting_result: Dictionary = daily_greeting_service.interact_for_npc(npc_id, false)
+	if bool(greeting_result.get("handled", false)):
+		var greeting_text := str(greeting_result.get("text", ""))
+		var greeting_display_name := _npc_display_name(npc_id)
+		npc_memory_store.record_event(npc_id, {
+			"event_id": "daily_greeting_%s" % str(greeting_result.get("day_key", "")),
+			"title": "%s daily greeting" % greeting_display_name,
+			"summary": greeting_text,
+			"created_at": "",
+		})
+		_set_life_status("%s: %s" % [greeting_display_name, greeting_text])
+		greeting_result["display_name"] = greeting_display_name
+		greeting_result["is_stub"] = true
+		greeting_result["network_used"] = false
+		return greeting_result
+
 	var daily_result: Dictionary = daily_request_service.interact_for_npc(npc_id)
 	if bool(daily_result.get("handled", false)):
 		var daily_text := str(daily_result.get("text", ""))
@@ -877,6 +915,22 @@ func interact_with_npc(npc_id: String) -> Dictionary:
 		daily_result["is_stub"] = true
 		daily_result["network_used"] = false
 		return daily_result
+
+	var repeat_greeting: Dictionary = daily_greeting_service.interact_for_npc(npc_id, true)
+	if bool(repeat_greeting.get("handled", false)):
+		var repeat_text := str(repeat_greeting.get("text", ""))
+		var repeat_display_name := _npc_display_name(npc_id)
+		npc_memory_store.record_event(npc_id, {
+			"event_id": "daily_greeting_repeat_%s" % str(repeat_greeting.get("day_key", "")),
+			"title": "%s daily greeting" % repeat_display_name,
+			"summary": repeat_text,
+			"created_at": "",
+		})
+		_set_life_status("%s: %s" % [repeat_display_name, repeat_text])
+		repeat_greeting["display_name"] = repeat_display_name
+		repeat_greeting["is_stub"] = true
+		repeat_greeting["network_used"] = false
+		return repeat_greeting
 
 	var reply: Dictionary = llm_client.complete_chat(npc_id, "hello", {
 		"event_id": "scene_interact",
@@ -1349,6 +1403,13 @@ func _manhattan_distance(a: Vector2i, b: Vector2i) -> int:
 func _set_life_status(message: String) -> void:
 	if is_instance_valid(life_status_label):
 		life_status_label.text = message
+
+
+func _update_today_status() -> void:
+	if today_status_service == null:
+		return
+	var status: Dictionary = today_status_service.get_today_status()
+	_set_life_status("今天：%s" % str(status.get("hud_text", "适合慢慢散步。")))
 
 
 func _set_optional_activity_status(message: String) -> void:

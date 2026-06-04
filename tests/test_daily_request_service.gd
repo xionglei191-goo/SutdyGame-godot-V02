@@ -3,6 +3,7 @@ extends SceneTree
 const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const InventoryServiceScript := preload("res://scripts/systems/inventory_service.gd")
 const DailyRequestServiceScript := preload("res://scripts/systems/daily_request_service.gd")
+const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.gd")
 
 var failures: Array[String] = []
 
@@ -13,17 +14,21 @@ func _init() -> void:
 	_expect(save_service.reset_for_test(), "daily request save should reset")
 
 	var inventory = InventoryServiceScript.new(save_service)
-	var daily = DailyRequestServiceScript.new(save_service, inventory)
+	var local_day = LocalDayServiceScript.new("2026-06-04")
+	var daily = DailyRequestServiceScript.new(save_service, inventory, local_day)
 	_expect(daily.is_loaded(), "DailyRequestService should load request data: %s" % [daily.load_errors])
 
 	var request: Dictionary = daily.get_request("daily_mina_branch_001")
 	_expect(request.get("ok", false), "Mina branch request should load")
 	_expect(request.get("memory_story", {}).get("core_anchor_id", "") == "anchor_b_bear", "request should bind to Bear memory anchor")
+	_expect(daily.get_request("daily_shopkeeper_flower_001").get("ok", false), "Shopkeeper flower request should load")
+	_expect(daily.get_request("daily_story_bear_stone_001").get("ok", false), "Story Bear stone request should load")
+	_expect(daily.get_request("daily_sunny_flower_001").get("ok", false), "Sunny flower request should load")
 
 	var start: Dictionary = daily.interact_for_npc("mina")
 	_expect(start.get("ok", false), "Mina request should start on first interaction")
 	_expect(start.get("request_status", "") == "active", "started request should be active")
-	_expect(str(start.get("text", "")).contains("Branch"), "start text should mention Branch")
+	_expect(str(start.get("text", "")).contains("树枝"), "start text should mention branch in child-facing Chinese")
 	_expect(int(save_service.load_game_state().get("coins", -1)) == 0, "starting request should not award coins")
 
 	var waiting: Dictionary = daily.interact_for_npc("mina")
@@ -39,7 +44,7 @@ func _init() -> void:
 	var game_state: Dictionary = save_service.load_game_state()
 	_expect(int(game_state.get("inventory", {}).get("branch", -1)) == 0, "completion should consume one branch")
 	_expect(int(game_state.get("coins", -1)) == 6, "completion should award town coins")
-	_expect(bool(game_state.get("daily_requests", {}).get("daily_mina_branch_001", {}).get("completed_today", false)), "completion state should persist")
+	_expect(bool(game_state.get("daily_requests", {}).get("2026-06-04", {}).get("daily_mina_branch_001", {}).get("completed_today", false)), "completion state should persist under day key")
 	var relationship: Dictionary = save_service.load_learning_record().get("npc_relationships", {}).get("mina", {})
 	_expect(int(relationship.get("favor", 0)) == 1, "completion should add Mina favor")
 	_expect(int(relationship.get("daily_request_count", 0)) == 1, "completion should count Mina daily request")
@@ -47,10 +52,10 @@ func _init() -> void:
 	var repeat: Dictionary = daily.interact_for_npc("mina")
 	_expect(repeat.get("ok", false), "repeat completed interaction should stay gentle")
 	_expect(repeat.get("request_status", "") == "completed", "repeat should still report completed")
-	_expect(str(repeat.get("text", "")).contains("already"), "repeat text should avoid another reward")
+	_expect(str(repeat.get("text", "")).contains("今天"), "repeat text should avoid another reward")
 	_expect(int(save_service.load_game_state().get("coins", -1)) == 6, "repeat should not award more coins")
 
-	var reloaded = DailyRequestServiceScript.new(save_service, InventoryServiceScript.new(save_service))
+	var reloaded = DailyRequestServiceScript.new(save_service, InventoryServiceScript.new(save_service), local_day)
 	var reloaded_repeat: Dictionary = reloaded.interact_for_npc("mina")
 	_expect(reloaded_repeat.get("request_status", "") == "completed", "reloaded service should keep completed state")
 

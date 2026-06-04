@@ -9,6 +9,7 @@ var failures: Array[String] = []
 func _init() -> void:
 	var main = MainScene.instantiate()
 	main.configure_for_test("user://test_life_rpg_scene.json")
+	main.set_day_key_for_test("2026-06-04")
 	root.add_child(main)
 	main.call("_ready")
 	main.save_service.clear_for_test()
@@ -70,6 +71,11 @@ func _init() -> void:
 	_expect(no_target.get("reason", "") == "no_target", "empty edge cell should report no target")
 
 	_expect(main.move_player_to_cell(Vector2i(14, 10)).get("ok", false), "player should move near Mina for daily request")
+	var mina_greeting: Dictionary = main.interact_nearby()
+	_expect(mina_greeting.get("ok", false), "Mina should greet on first daily interaction")
+	_expect(mina_greeting.get("interaction_type", "") == "npc", "Mina daily greeting should still be an NPC interaction")
+	_expect(bool(mina_greeting.get("first_today", false)), "Mina greeting should mark first_today")
+	_expect(str(mina_greeting.get("text", "")).contains("散步"), "Mina first greeting should be gentle Chinese town text")
 	var mina_start: Dictionary = main.interact_nearby()
 	_expect(mina_start.get("ok", false), "Mina should start a daily light request")
 	_expect(mina_start.get("interaction_type", "") == "npc", "Mina daily request should still be an NPC interaction")
@@ -80,10 +86,10 @@ func _init() -> void:
 	_expect(int(main.save_service.load_game_state().get("coins", 0)) == 0, "starting Mina request should not award coins")
 
 	var npc_checks := [
-		{"npc_id": "shopkeeper", "display_name": "店长", "cell": Vector2i(24, 10), "text": "The shopkeeper says: Here you are. Thank you."},
-		{"npc_id": "pet_buddy", "display_name": "Sunny", "cell": Vector2i(6, 8), "text": "Pet Buddy says: Sunny is happy. Thank you."},
-		{"npc_id": "bus_helper", "display_name": "巴士哥哥", "cell": Vector2i(32, 12), "text": "Bus Helper says: I go by bus. Let's go."},
-		{"npc_id": "story_bear", "display_name": "故事熊", "cell": Vector2i(12, 7), "text": "Story Bear says: Bear has a book. Story time."},
+		{"npc_id": "shopkeeper", "display_name": "店长", "cell": Vector2i(24, 10), "text_contains": "小店"},
+		{"npc_id": "pet_buddy", "display_name": "Sunny", "cell": Vector2i(6, 8), "text_contains": "Sunny"},
+		{"npc_id": "bus_helper", "display_name": "巴士哥哥", "cell": Vector2i(32, 12), "text_contains": "站牌"},
+		{"npc_id": "story_bear", "display_name": "故事熊", "cell": Vector2i(12, 7), "text_contains": "故事"},
 	]
 	for check in npc_checks:
 		_check_npc_interaction(main, check)
@@ -178,19 +184,19 @@ func _expect(condition: bool, message: String) -> void:
 func _check_npc_interaction(main, check: Dictionary) -> void:
 	var npc_id := str(check.get("npc_id", ""))
 	var display_name := str(check.get("display_name", npc_id))
-	var expected_text := str(check.get("text", ""))
+	var expected_text := str(check.get("text_contains", ""))
 	_expect(main.move_player_to_cell(check.get("cell", Vector2i.ZERO)).get("ok", false), "player should move near %s" % display_name)
 	var result: Dictionary = main.interact_nearby()
 	_expect(result.get("ok", false), "player should interact with %s through unified Interact" % display_name)
 	_expect(result.get("interaction_type", "") == "npc", "%s interaction should be reported as NPC context" % display_name)
 	_expect(bool(result.get("is_stub", false)), "%s interaction should use local stub" % display_name)
 	_expect(not bool(result.get("network_used", true)), "%s interaction should not use network" % display_name)
-	_expect(str(result.get("text", "")) == expected_text, "%s should use fixed fallback reply" % display_name)
+	_expect(str(result.get("text", "")).contains(expected_text), "%s should use daily Chinese greeting text" % display_name)
 
 	var learning_record: Dictionary = main.save_service.load_learning_record()
 	var relationships: Dictionary = learning_record.get("npc_relationships", {})
 	_expect(int(relationships.get(npc_id, {}).get("greeting_count", 0)) >= 1, "%s greeting count should persist" % display_name)
-	_expect(str(relationships.get(npc_id, {}).get("last_line", "")) == expected_text, "%s line should persist" % display_name)
+	_expect(str(relationships.get(npc_id, {}).get("last_line", "")).contains(expected_text), "%s line should persist" % display_name)
 	_expect(str(main.life_status_label.text).find(display_name) != -1, "life status should show %s interaction" % display_name)
 	_expect(main.npc_memory_store.get_recent_events(npc_id).size() >= 1, "%s recent event should persist in NPC memory" % display_name)
 

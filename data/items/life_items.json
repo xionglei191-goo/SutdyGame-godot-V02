@@ -4,9 +4,14 @@
 		{
 			"item_id": "branch",
 			"display_name": "Branch",
+			"localized_display_name": "树枝",
 			"item_type": "material",
 			"stackable": true,
 			"source": "town_resource",
+			"pickup_feedback": {
+				"default": "捡到一根小树枝，像小书签一样轻轻躺进背包。",
+				"near_anchor": "熊熊书角旁的小树枝被风吹到脚边，带回去也很舒服。"
+			},
 			"memory_story": {
 				"letter": "B",
 				"core_anchor_id": "anchor_b_bear",
@@ -14,6 +19,46 @@
 				"story_memory": "Mina finds a branch near the Bear book corner and uses it as a tiny bookmark.",
 				"visual_hook": "a branch beside the Bear book corner",
 				"review_path": "Walk through Town Plaza and look near the Bear anchor."
+			}
+		},
+		{
+			"item_id": "flower",
+			"display_name": "Flower",
+			"localized_display_name": "小花",
+			"item_type": "material",
+			"stackable": true,
+			"source": "town_resource",
+			"pickup_feedback": {
+				"default": "捡到一朵小花，颜色像刚醒来的早晨。",
+				"near_anchor": "Sun 广场边开着一朵 Flower，轻轻放进背包吧。"
+			},
+			"memory_story": {
+				"letter": "S",
+				"core_anchor_id": "anchor_s_sun",
+				"world_place_id": "place_town_start",
+				"story_memory": "A small flower opens near Sun Plaza and makes Sunny sniff the air.",
+				"visual_hook": "a flower glowing under the Sun anchor",
+				"review_path": "Walk past Sun Plaza and notice the flower patch beside the path."
+			}
+		},
+		{
+			"item_id": "stone",
+			"display_name": "Stone",
+			"localized_display_name": "小石子",
+			"item_type": "material",
+			"stackable": true,
+			"source": "town_resource",
+			"pickup_feedback": {
+				"default": "捡到一颗圆圆的小石子，手心里有一点太阳的暖。",
+				"near_anchor": "Taxi 站牌旁的小石子晒得暖暖的，适合放在故事角。"
+			},
+			"memory_story": {
+				"letter": "T",
+				"core_anchor_id": "anchor_t_taxi",
+				"world_place_id": "place_town_start",
+				"story_memory": "A round stone waits near the Taxi stop and keeps a story page from flying away.",
+				"visual_hook": "a stone beside the Taxi stop sign",
+				"review_path": "Walk toward the Taxi stop and look beside the sign for the small stone."
 			}
 		},
 		{
