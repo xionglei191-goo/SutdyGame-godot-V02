@@ -12,8 +12,18 @@ const InventoryServiceScript := preload("res://scripts/systems/inventory_service
 const LifeShopServiceScript := preload("res://scripts/systems/life_shop_service.gd")
 const HomeDecorationServiceScript := preload("res://scripts/systems/home_decoration_service.gd")
 const DailyRequestServiceScript := preload("res://scripts/systems/daily_request_service.gd")
+const AccountAdapterScript := preload("res://scripts/systems/account_adapter.gd")
+const CloudSaveAdapterScript := preload("res://scripts/systems/cloud_save_adapter.gd")
+const ContentPackLoaderScript := preload("res://scripts/systems/content_pack_loader.gd")
+const ThemeSwitchServiceScript := preload("res://scripts/systems/theme_switch_service.gd")
+const ContentReviewPipelineScript := preload("res://scripts/systems/content_review_pipeline.gd")
+const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
+const AINPCProviderAdapterScript := preload("res://scripts/systems/ai_npc_provider_adapter.gd")
+const FriendVisitServiceScript := preload("res://scripts/systems/friend_visit_service.gd")
+const MapEditorSyncServiceScript := preload("res://scripts/editor/map_editor_sync_service.gd")
 const WorldMapContractScript := preload("res://scripts/data/world_map_contract.gd")
 const MainScene := preload("res://scenes/main.tscn")
+const WorldOverviewScene := preload("res://scenes/map_editor/world_overview.tscn")
 
 var failures: Array[String] = []
 
@@ -53,8 +63,14 @@ func _init() -> void:
 	_check_save_service()
 	_check_service_loop_smoke()
 	_check_ai_npc_stubs()
+	_check_voice_ai_social_stubs()
 	_check_life_services()
 	_check_daily_requests()
+	_check_map_editor_round_trip()
+	_check_child_experience_and_mobile_acceptance(main)
+	_check_account_cloud_stubs()
+	_check_content_theme_review_stubs()
+	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
 		print("HEADLESS TESTS PASSED: map contract and runtime loader")
@@ -170,6 +186,149 @@ func _check_daily_requests() -> void:
 	_expect(int(service.load_game_state().get("coins", -1)) == 6, "daily request should award coins")
 	_expect(bool(service.load_game_state().get("daily_requests", {}).get("daily_mina_branch_001", {}).get("completed_today", false)), "daily request completion should persist")
 	_expect(service.clear_for_test(), "daily request save should clean up")
+
+
+func _check_map_editor_round_trip() -> void:
+	var scene: Control = WorldOverviewScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var grid: Dictionary = scene.call("get_grid_summary")
+	_expect(grid.get("canvas_w") == 40 and grid.get("canvas_h") == 24, "Map editor grid should match 40x24 world canvas")
+	_expect(grid.get("logical_cell_w") == 32 and grid.get("logical_cell_h") == 32, "Map editor grid should preserve runtime logical cell size")
+	var road_add: Dictionary = scene.call("toggle_road_cell_for_test", "road_home_to_town", Vector2i(6, 8))
+	_expect(road_add.get("ok", false), "Map editor should add road cell")
+	_expect(bool(scene.call("has_road_cell", "road_home_to_town", Vector2i(6, 8))), "Map editor should read added road cell")
+	var occupied: Dictionary = scene.call("set_occupied_cell_for_test", Vector2i(2, 2), true)
+	_expect(occupied.get("ok", false), "Map editor should set occupied cell")
+	var blocked: Dictionary = scene.call("set_interaction_cell_for_test", "interaction_headless_blocked", "place_home", Vector2i(2, 2))
+	_expect(not blocked.get("ok", true), "Map editor should reject interaction over occupied cell")
+	var moved: Dictionary = scene.call("move_place_marker_for_test", "place_home", Vector2i(8, 9))
+	_expect(moved.get("ok", false), "Map editor should command-track place moves")
+	_expect(scene.call("undo_for_test").get("ok", false), "Map editor should undo place move")
+	_expect(scene.call("redo_for_test").get("ok", false), "Map editor should redo place move")
+	scene.call("undo_for_test")
+	scene.call("undo_for_test")
+	scene.call("undo_for_test")
+	var exported: Dictionary = MapEditorSyncServiceScript.export_to_dictionary(scene.call("get_editor_state"))
+	_expect(exported.get("ok", false), "Map editor state should export as valid world map: %s" % [exported.get("errors", [])])
+	_expect(exported.get("data", {}).get("memory_anchors", []).size() == 26, "Map editor export should preserve all A-Z anchors")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_child_experience_and_mobile_acceptance(main: Control) -> void:
+	var visible_text := _collect_visible_text(main).to_lower()
+	for blocked in ["failed", "wrong", "test", "exam", "report", "dashboard", "parent"]:
+		_expect(not visible_text.contains(blocked), "child flow should not show blocked text: %s" % blocked)
+	var parent_spec: Dictionary = main.call("get_parent_entry_spec")
+	_expect(not bool(parent_spec.get("child_flow_visible", true)), "parent entry should not be visible in child flow")
+	_expect(not bool(parent_spec.get("network_required", true)), "parent entry should not require network")
+	_expect(ProjectSettings.get_setting("display/window/size/viewport_width") == 1280, "mobile baseline viewport width should be 1280")
+	_expect(ProjectSettings.get_setting("display/window/size/viewport_height") == 720, "mobile baseline viewport height should be 720")
+	_expect(str(ProjectSettings.get_setting("rendering/renderer/rendering_method")) == "mobile", "Godot renderer should stay mobile-oriented")
+	var nav := main.find_child("Navigation", true, false)
+	_expect(nav != null and (nav as Control).custom_minimum_size.x >= 220.0, "touch navigation should reserve a usable width")
+	var safe_area := main.find_child("SafeArea", true, false)
+	_expect(safe_area != null, "main scene should include a safe area container")
+
+
+func _collect_visible_text(node: Node) -> String:
+	var parts: Array[String] = []
+	if node is Label:
+		parts.append((node as Label).text)
+	if node is Button:
+		parts.append((node as Button).text)
+	for child in node.get_children():
+		parts.append(_collect_visible_text(child))
+	return " ".join(parts)
+
+
+func _check_account_cloud_stubs() -> void:
+	var account_save := SaveServiceScript.new("user://headless_runner_account_cloud.json")
+	_expect(account_save.clear_for_test(), "account/cloud save should clear")
+	_expect(account_save.reset_for_test(), "account/cloud save should reset")
+	var account = AccountAdapterScript.new()
+	var current: Dictionary = account.get_current_account(account_save)
+	_expect(current.get("account_id", "") == "guest:local_profile", "AccountAdapter should expose local guest id")
+	_expect(account_save.load_profile().get("profile_id", "") == "local_profile", "AccountAdapter should preserve SaveService profile id")
+
+	var cloud = CloudSaveAdapterScript.new()
+	var device_a := SaveServiceScript.new("user://headless_runner_cloud_a.json")
+	var device_b := SaveServiceScript.new("user://headless_runner_cloud_b.json")
+	_expect(device_a.clear_for_test(), "cloud device A should clear")
+	_expect(device_b.clear_for_test(), "cloud device B should clear")
+	_expect(device_a.reset_for_test(), "cloud device A should reset")
+	_expect(device_b.reset_for_test(), "cloud device B should reset")
+	var state_a: Dictionary = device_a.load_game_state()
+	state_a["coins"] = 4
+	_expect(device_a.save_game_state(state_a), "cloud device A should save setup")
+	_expect(cloud.capture_from_save_service(CloudSaveAdapterScript.DEVICE_A, device_a).get("ok", false), "CloudSaveAdapter should capture device A")
+	var sync_a: Dictionary = cloud.sync_device(CloudSaveAdapterScript.DEVICE_A)
+	_expect(sync_a.get("ok", false), "CloudSaveAdapter should sync device A")
+	_expect(not bool(sync_a.get("network_used", true)), "CloudSaveAdapter should not use network in runner")
+	_expect(not bool(sync_a.get("data_uploaded", true)), "CloudSaveAdapter should not upload data in runner")
+	_expect(cloud.sync_device(CloudSaveAdapterScript.DEVICE_B).get("ok", false), "CloudSaveAdapter should sync device B")
+	_expect(cloud.restore_to_save_service(CloudSaveAdapterScript.DEVICE_B, device_b).get("ok", false), "CloudSaveAdapter should restore device B")
+	_expect(int(device_b.load_game_state().get("coins", -1)) == 4, "CloudSaveAdapter should copy coins to second device")
+	_expect(account_save.clear_for_test(), "account/cloud save should clean up")
+	_expect(device_a.clear_for_test(), "cloud device A should clean up")
+	_expect(device_b.clear_for_test(), "cloud device B should clean up")
+
+
+func _check_content_theme_review_stubs() -> void:
+	var loader = ContentPackLoaderScript.new()
+	var pack := {
+		"pack_id": "pack_headless_runner_words_001",
+		"new_words": [
+			{
+				"word_id": "word_ant",
+				"word": "ant",
+				"letter": "A",
+				"core_anchor_id": "anchor_a_apple",
+				"world_place_id": "place_home",
+				"story_memory": "An ant carries a tiny apple crumb beside the Home welcome box.",
+				"visual_hook": "tiny ant trail under the red apple sign",
+				"review_path": "Home welcome box -> Town Start flower path -> Home welcome box"
+			}
+		],
+	}
+	_expect(loader.install_pack(pack).get("ok", false), "ContentPackLoader should install legal local pack")
+	_expect(loader.rollback_pack("pack_headless_runner_words_001").get("ok", false), "ContentPackLoader should rollback local pack")
+	var illegal := pack.duplicate(true)
+	illegal["anchors"] = [{"anchor_id": "anchor_a_apple"}]
+	_expect(not loader.validate_pack(illegal).get("ok", true), "ContentPackLoader should reject A-Z core anchor override")
+
+	var theme = ThemeSwitchServiceScript.new()
+	var switched: Dictionary = theme.switch_theme("theme_rainbow_garden_placeholder", [{"category": "tile_atlas", "asset_id": "world"}])
+	_expect(switched.get("ok", false), "ThemeSwitchService should resolve second placeholder theme")
+
+	var review = ContentReviewPipelineScript.new()
+	_expect(review.submit_candidate({"candidate_id": "candidate_headless_pack", "payload": pack}).get("ok", false), "ContentReviewPipeline should store candidate")
+	_expect(not review.publish_for_runtime("candidate_headless_pack").get("ok", true), "ContentReviewPipeline should block unapproved content")
+	_expect(review.set_manual_status("candidate_headless_pack", "approved").get("ok", false), "ContentReviewPipeline should accept manual approval")
+	_expect(review.publish_for_runtime("candidate_headless_pack").get("ok", false), "ContentReviewPipeline should publish approved content")
+
+
+func _check_voice_ai_social_stubs() -> void:
+	var voice = VoiceProviderAdapterScript.new()
+	var voice_gate: Dictionary = voice.configure_provider(VoiceProviderAdapterScript.REAL_PROVIDER, false)
+	_expect(not voice_gate.get("ok", true), "VoiceProviderAdapter should require privacy approval for real provider")
+	var played: Dictionary = voice.play_line("voice_home_good_morning")
+	_expect(played.get("ok", false), "VoiceProviderAdapter should play local stub line")
+	_expect(not bool(played.get("network_used", true)), "VoiceProviderAdapter should not use network")
+	_expect(not voice.request_recording("voice_home_good_morning").get("ok", true), "VoiceProviderAdapter should keep recording disabled")
+
+	var ai = AINPCProviderAdapterScript.new()
+	_expect(not ai.configure_provider("real_ai_provider_reserved", false).get("ok", true), "AINPCProviderAdapter should require privacy approval")
+	var reply: Dictionary = ai.complete_npc_chat("mina", "hello", {})
+	_expect(reply.get("ok", false), "AINPCProviderAdapter should return local NPC reply")
+	_expect(not bool(reply.get("network_used", true)), "AINPCProviderAdapter should not use network")
+
+	var visits = FriendVisitServiceScript.new()
+	_expect(not visits.start_async_visit("unknown_friend").get("ok", true), "FriendVisitService should block unknown friends")
+	_expect(visits.approve_local_friend({"friend_id": "friend_headless", "display_name": "Headless Friend"}, true).get("ok", false), "FriendVisitService should allow parent-approved local friend")
+	_expect(visits.send_preset_phrase("friend_headless", "Hi!").get("ok", false), "FriendVisitService should allow preset phrase")
+	_expect(not visits.send_preset_phrase("friend_headless", "come to my school").get("ok", true), "FriendVisitService should block free text")
 
 
 func _expect(condition: bool, message: String) -> void:

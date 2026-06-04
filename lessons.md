@@ -45,6 +45,14 @@
 | 2026-06-04 | Round 17 地图编辑层 EditorOnly proxy | 无 | WorldOverviewScene 编辑层通过专门测试与 headless runner；下一轮风险已进入 `todo.md`，不作为已验证教训新增 |
 | 2026-06-04 | Round 18 地点进入与生活动作解耦 | 无 | 地图入口改为中性 place entry；购买、摆放、邻居帮助保留为显式生活动作，未产生新的已验证教训 |
 | 2026-06-04 | Round 19 每日轻委托 MVP | 无 | Mina branch 轻委托通过服务级与主场景测试，保持本地、低压力、无 Letter Snake 条件，未产生新的已验证教训 |
+| 2026-06-04 | Round 20 地图 grid overlay | 无 | 编辑器网格与运行时 cell 合同对齐，未产生新的已验证教训 |
+| 2026-06-04 | Round 21 地图 cell 编辑 | 无 | road、occupied、interaction 编辑通过 focused tests，未产生新的已验证教训 |
+| 2026-06-04 | Round 22 编辑撤销/重做 | 无 | command stack 覆盖地图编辑操作，未产生新的已验证教训 |
+| 2026-06-04 | Round 23 地图 JSON 往返 | 无 | `MapEditorSyncService` 导出继续通过地图合同，未产生新的已验证教训 |
+| 2026-06-04 | Round 24 跨阶段 QA | 无 | 数据合同、运行时 smoke、儿童体验和移动基线纳入 `headless_runner`，未产生新的已验证教训 |
+| 2026-06-04 | Round 25-27 账号/云存档/内容本地 stub | 无 | 账号、云存档、内容包、主题和审核本地 stub 通过 focused tests，未产生新的已验证教训 |
+| 2026-06-04 | Round 28-29 语音/AI/社交本地 stub | LESSON-006 | 并行 worker 关闭前写入了与主实现不一致的 runner 片段，导致重复常量/函数编译失败 |
+| 2026-06-04 | Round 30-33 远期能力与最终集成 | LESSON-006 复用 | 清理重复 runner 注册后，全量回归通过；后续并行 agent 需减少共享测试入口冲突 |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -101,3 +109,17 @@
   - 新增单词必须绑定 `core_anchor_id`、地图地点、故事画面、视觉钩子和回访路径，不能作为孤立词条加入。
   - 新任务若不服务生活 RPG MVP，默认不得进入 Ready。
 - **验证依据：** `docs/01_产品总纲.md`、`docs/06_核心玩法循环.md`、`docs/12_V02开发路线.md`、`AGENTS.md` 和 `todo.md` 已更新为生活 RPG / 小镇养成方向。
+
+## LESSON-006：并行 worker 不应同时修改共享 runner 入口
+
+- **日期：** 2026-06-04
+- **关联任务：** `V02-FUTURE-004`、`V02-FUTURE-005`、`V02-FUTURE-006`、`V02-FUTURE-007`、`V02-QA-002`
+- **现象：** 语音/AI/社交 worker 超时关闭前，曾向 `tests/headless_runner.gd` 写入一组旧接口名的 preload 和 `_check_voice_ai_social_stubs()`。主 Agent 随后实现最终接口并再次注册同名常量和函数，导致 Godot 报 “same name as a previously declared constant/function” 编译错误。
+- **影响：** focused tests 已通过但全量 runner 无法加载，最终集成被阻断一次。
+- **根因：** 多个并行执行者共享修改 `tests/headless_runner.gd`，且关闭中的 worker 产出没有经过最终接口核对；测试入口属于高冲突文件，不适合让多个 worker 同时写。
+- **解决方式：** 保留与最终服务接口一致的 runner 检查，删除旧接口重复常量和重复函数；重新运行全量 headless 通过。
+- **预防规则：**
+  - 并行 worker 可以新增 focused test，但默认不直接修改共享 runner。
+  - 共享 runner 由主 Agent 在集成阶段统一注册，注册前先 `rg` 检查同名 preload 和函数。
+  - 关闭或超时的 worker 结果必须作为待审片段处理，不能默认视为已集成完成。
+- **验证依据：** 清理重复注册后，`godot --headless --path . --script tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过。

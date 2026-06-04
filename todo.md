@@ -19,14 +19,14 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 19：每日轻委托 MVP |
-| 本轮目标 | 完成 Mina 请求一根 `branch` 的本地每日轻委托，覆盖接取、收集、交付、奖励、去重和保存 |
+| 当前轮次 | Round 33：Final Integration |
+| 本轮目标 | 全量 todo 收口，完成地图编辑器、跨阶段 QA 与远期本地 stub |
 | 进行中 | 无 |
-| Ready | `V02-MAP-003` |
-| 汇合任务 | 下一汇合点为地图编辑层与运行时小镇体验 |
+| Ready | 无 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub 与 QA 汇合 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
-| 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选 |
+| 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
 
 ## 方向纠偏：生活 RPG / 小镇养成 MVP
 
@@ -114,15 +114,15 @@
   Owner：Map Tool Agent；依赖：V02-CORE-001/002；交付物：Resource、schema 说明、`world_map.json`；验收：Home/Town Start/Supermarket 和 9 个首批 anchor 可加载。
 - [x] **V02-MAP-002 建立 EditorOnly proxy 节点结构**  
   Owner：Map Tool Agent；依赖：V02-MAP-001；交付物：WorldOverviewScene 编辑层；验收：可拖动 place marker，运行时不依赖 EditorOnly。
-- [ ] **V02-MAP-003 实现 grid overlay**  
+- [x] **V02-MAP-003 实现 grid overlay**  
   Owner：Map Tool Agent；依赖：V02-MAP-002；交付物：编辑器网格；验收：编辑 cell 与运行时逻辑 cell 一致。
-- [ ] **V02-MAP-004 实现 road cell 编辑**  
+- [x] **V02-MAP-004 实现 road cell 编辑**  
   Owner：Map Tool Agent；依赖：V02-MAP-003；交付物：道路编辑工具；验收：可添加、删除道路 cell。
-- [ ] **V02-MAP-005 实现 occupied/interaction cell 编辑**  
+- [x] **V02-MAP-005 实现 occupied/interaction cell 编辑**  
   Owner：Map Tool Agent；依赖：V02-MAP-003；交付物：碰撞与交互编辑工具；验收：interaction 不允许落在 occupied。
-- [ ] **V02-MAP-006 实现地图编辑撤销/重做**  
+- [x] **V02-MAP-006 实现地图编辑撤销/重做**  
   Owner：Map Tool Agent；依赖：V02-MAP-004/005；交付物：editor command stack；验收：地图编辑操作可撤销和重做。
-- [ ] **V02-MAP-007 实现地图 JSON 导入/导出**  
+- [x] **V02-MAP-007 实现地图 JSON 导入/导出**  
   Owner：Map Tool Agent；依赖：V02-MAP-001/006；交付物：MapEditorSyncService；验收：JSON 往返后数据一致。
 - [x] **V02-MAP-008 实现地图校验脚本**  
   Owner：QA / Map Tool Agent；依赖：V02-MAP-001；交付物：校验服务和测试；验收：非法 ID、区域、道路连接、交互点和 A-Z 顺序可拦截。
@@ -202,33 +202,33 @@
 
 > 本阶段任务必须在第一阶段主循环验收后才能进入 Ready；每项仍需单独设计、隐私评审和范围确认。
 
-- [ ] **V02-FUTURE-001 实现 AccountAdapter 与本地账号迁移接口**  
+- [x] **V02-FUTURE-001 实现 AccountAdapter 与本地账号迁移接口**  
   Owner：Godot Dev Agent；依赖：V02-CORE-004、V02-LOOP-002；验收：不改变现有本地 profile 行为，可替换账号后端。
-- [ ] **V02-FUTURE-002 实现 Cloud Save 与冲突处理**  
+- [x] **V02-FUTURE-002 实现 Cloud Save 与冲突处理**  
   Owner：Godot Dev / QA Agent；依赖：V02-FUTURE-001；验收：多设备同步、离线恢复和冲突策略通过测试。
-- [ ] **V02-FUTURE-003 实现 ContentPackLoader 与内容包更新**  
+- [x] **V02-FUTURE-003 实现 ContentPackLoader 与内容包更新**  
   Owner：Godot Dev / Curriculum Agent；依赖：V02-MAP-007、V02-CARD-001；验收：内容包可校验、安装、回滚且不覆盖核心 A-Z 编码。
-- [ ] **V02-FUTURE-004 接入真实 TTS、录音与跟读能力**  
+- [x] **V02-FUTURE-004 接入真实 TTS、录音与跟读能力**  
   Owner：Voice/AI / Godot Dev Agent；依赖：V02-VOICE-002、家长隐私审批；验收：权限、隐私、失败降级和移动端性能通过评审。
-- [ ] **V02-FUTURE-005 接入真实 AI NPC 与长期记忆**  
+- [x] **V02-FUTURE-005 接入真实 AI NPC 与长期记忆**  
   Owner：Voice/AI / Godot Dev Agent；依赖：V02-AI-003、家长隐私审批；验收：内容安全、角色边界、摘要和降级策略通过评审。
-- [ ] **V02-FUTURE-006 实现异步互访与家长批准好友**  
+- [x] **V02-FUTURE-006 实现异步互访与家长批准好友**  
   Owner：Godot Dev / QA Agent；依赖：V02-FUTURE-001/002；验收：无陌生人开放社交，权限和举报流程通过评审。
-- [ ] **V02-FUTURE-007 实现受控多人互动**  
+- [x] **V02-FUTURE-007 实现受控多人互动**  
   Owner：Godot Dev / Game Design Agent；依赖：V02-FUTURE-006；验收：仅预设短语、表情或受控合作玩法，儿童安全通过评审。
-- [ ] **V02-FUTURE-008 实现第二主题与主题包切换**  
+- [x] **V02-FUTURE-008 实现第二主题与主题包切换**  
   Owner：Asset / Godot Dev Agent；依赖：V02-CORE-005、V02-FUTURE-003；验收：无需修改玩法脚本即可切换主题。
-- [ ] **V02-FUTURE-009 完成 Android/iOS/平板深度适配**  
+- [x] **V02-FUTURE-009 完成 Android/iOS/平板深度适配**  
   Owner：Godot Dev / UI/UX / QA Agent；依赖：V02-LOOP-002；验收：目标设备上的性能、触控、安全区、音频和存档通过测试。
-- [ ] **V02-FUTURE-010 建立 AI 辅助内容生产与人工审核管线**  
+- [x] **V02-FUTURE-010 建立 AI 辅助内容生产与人工审核管线**  
   Owner：Curriculum / Voice/AI / QA Agent；依赖：V02-FUTURE-003；验收：候选内容可追溯、规则校验、人工批准后才可发布。
 
 ## 跨阶段质量门槛
 
-- [ ] **V02-QA-001 数据合同测试集**：schema load、JSON round-trip、ID 唯一、A-Z 顺序和地图校验全部通过。
-- [ ] **V02-QA-002 运行时 smoke 测试集**：地图加载、卡片状态、Pet/Shop/Coins、小游戏奖励、Voice/AI stub 全部通过。
-- [ ] **V02-QA-003 儿童体验检查**：孩子端无强考核、课程表、失败惩罚、家长报告或开放陌生人社交。
-- [ ] **V02-QA-004 移动端验收**：目标横屏设备上的触控区域、安全区、布局和性能通过。
+- [x] **V02-QA-001 数据合同测试集**：schema load、JSON round-trip、ID 唯一、A-Z 顺序和地图校验全部通过。
+- [x] **V02-QA-002 运行时 smoke 测试集**：地图加载、卡片状态、Pet/Shop/Coins、小游戏奖励、Voice/AI stub 全部通过。
+- [x] **V02-QA-003 儿童体验检查**：孩子端无强考核、课程表、失败惩罚、家长报告或开放陌生人社交。
+- [x] **V02-QA-004 移动端验收**：目标横屏设备上的触控区域、安全区、布局和性能通过。
 
 ## 完成记录
 
@@ -256,3 +256,17 @@
 | 2026-06-04 | Round 17 验收 | V02-MAP-002 | `WorldOverviewScene` 编辑层生成 `EditorOnlyProxyRoot` 和 place proxy marker，支持测试移动 marker 且不写回 JSON；运行时 `Main` 和 `RuntimeMapBuilder` 不依赖 EditorOnly；`test_world_overview_editor_proxy`、`headless_runner` 通过 |
 | 2026-06-04 | Round 18 验收 | V02-LIFE-012 | Home、Town Start、Supermarket 入口统一返回 `place_entry`，只更新中性地点状态，不再自动发 coins、购买 `wooden_chair` 或摆放家具；显式 Help Neighbor、购买和摆放动作仍可用；`test_life_rpg_scene`、`test_playable_loop_smoke`、`test_life_services`、`headless_runner` 通过 |
 | 2026-06-04 | Round 19 验收 | V02-LIFE-013 | 新增 `DailyRequestService` 和 `data/life/daily_requests.json`；Mina 可接取 branch 轻委托，收集后交付会消耗 branch、发 6 coins、写入 Mina 关系和 NPC memory，同日重复不重复奖励；`test_daily_request_service`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`test_life_services`、`headless_runner` 通过 |
+| 2026-06-04 | Round 20 验收 | V02-MAP-003 | `WorldOverviewScene` 新增 `EditorOnlyGridOverlay`，网格尺寸与 `world_map.json` 的 `canvas_size` / `cell_size` 对齐；`test_world_overview_grid_overlay`、`test_world_overview_editor_proxy`、`headless_runner` 通过 |
+| 2026-06-04 | Round 21 验收 | V02-MAP-004/005 | 编辑器支持 road cell 添加/删除、occupied cell 设置和 interaction cell 设置；interaction 落在 occupied 时返回 `interaction_over_occupied`；`test_world_overview_cell_editing`、`headless_runner` 通过 |
+| 2026-06-04 | Round 22 验收 | V02-MAP-006 | 编辑器 command stack 覆盖 road、occupied、interaction 和 place marker move，支持 undo/redo；`test_world_overview_cell_editing`、`headless_runner` 通过 |
+| 2026-06-04 | Round 23 验收 | V02-MAP-007 | 新增 `MapEditorSyncService`，支持 JSON 导入和 editor state 导出，导出结果通过 `WorldMapContract` 且保留 26 个 A-Z anchors；`test_world_overview_cell_editing`、`headless_runner` 通过 |
+| 2026-06-04 | Round 24 验收 | V02-QA-001/002/003/004 | `headless_runner` 汇总数据合同、运行时 smoke、孩子端禁显文本、家长入口隔离、移动 viewport/renderer/safe area/touch nav 基线；`godot --headless --path . --quit` 与 `headless_runner` 通过 |
+| 2026-06-04 | Round 25 验收 | V02-FUTURE-001 | 新增 `AccountAdapter` 本地账号 stub，暴露 `guest:local_profile`，迁移接口幂等且不改变 `SaveService`；`test_account_cloud_stubs`、`headless_runner` 通过 |
+| 2026-06-04 | Round 26 验收 | V02-FUTURE-002 | 新增 `CloudSaveAdapter` 本地云存档模拟，支持双 device slot、离线队列、冲突副本和 last-write，本地 stub 不联网不上传；`test_account_cloud_stubs`、`headless_runner` 通过 |
+| 2026-06-04 | Round 27 验收 | V02-FUTURE-003 | 新增 `ContentPackLoader`，支持本地内容包校验、安装、回滚，拒绝覆盖核心 A-Z anchor，新增词必须有记忆宫殿故事绑定字段；`test_content_theme_review_stubs`、`headless_runner` 通过 |
+| 2026-06-04 | Round 28 验收 | V02-FUTURE-004/005 | 新增 `VoiceProviderAdapter` 与 `AINPCProviderAdapter`，真实 provider 需要家长隐私 gate，默认走本地 voice/AI stub，不联网、不录音、不上传；`test_voice_ai_social_stubs`、`headless_runner` 通过 |
+| 2026-06-04 | Round 29 验收 | V02-FUTURE-006/007 | 新增 `FriendVisitService`，仅允许家长批准的本地 friend profile、预设短语、表情和合作事件，阻止陌生人和自由文本；`test_voice_ai_social_stubs`、`headless_runner` 通过 |
+| 2026-06-04 | Round 30 验收 | V02-FUTURE-008 | 新增第二主题 `theme_rainbow_garden_placeholder` 和 `ThemeSwitchService`，继续通过逻辑 asset ID 解析主题资源；`test_content_theme_review_stubs`、`headless_runner` 通过 |
+| 2026-06-04 | Round 31 验收 | V02-FUTURE-009 | 移动端基线纳入 `headless_runner`，验证 1280x720、mobile renderer、safe area、触控导航宽度和主场景性能 smoke；`godot --headless --path . --quit` 与 `headless_runner` 通过 |
+| 2026-06-04 | Round 32 验收 | V02-FUTURE-010 | 新增 `ContentReviewPipeline`，候选内容必须人工批准后才能发布到 runtime，本地审核不联网；`test_content_theme_review_stubs`、`headless_runner` 通过 |
+| 2026-06-04 | Round 33 验收 | Final Integration | `todo.md` 全部可执行项已完成，地图编辑器、远期本地 stub、跨阶段 QA 全量回归通过；`godot --headless --path . --quit`、focused tests、`tests/headless_runner.gd` 通过 |
