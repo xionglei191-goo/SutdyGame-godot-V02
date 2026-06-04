@@ -14,14 +14,24 @@ func _init() -> void:
 	main.save_service.clear_for_test()
 	main.call("_ready")
 
-	_expect(main.find_child("HomePetLoopPanel", true, false) != null, "main scene should expose Home/Pet loop panel")
-	_expect(main.find_child("OptionalActivityPanel", true, false) != null, "main scene should expose optional activity panel")
+	_expect(main.find_child("TownHUD", true, false) != null, "main scene should expose top message HUD")
+	_expect(main.find_child("TownFooter", true, false) != null, "main scene should expose bottom action bar")
+	var visible_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
+	_expect(visible_actions != null and visible_actions.get_child_count() == 4, "bottom bar should expose only four child-facing controls")
+	var backpack_bubble := main.find_child("BackpackBubble", true, false) as Control
+	_expect(backpack_bubble != null, "backpack button should have a child-facing content bubble")
+	_expect(backpack_bubble != null and not backpack_bubble.visible, "backpack bubble should stay hidden until opened")
+	_expect(main.find_child("HomePetLoopPanel", true, false) == null, "main scene should not cover the playfield with a pocket panel")
+	_expect(main.find_child("OptionalActivityPanel", true, false) == null, "main scene should not cover the playfield with an optional activity panel")
 	_expect(main.find_child("StartButton", true, false) != null, "main scene should expose Start button")
 	_expect(main.find_child("HelpNeighborButton", true, false) != null, "main scene should expose non-learning coin source")
 	_expect(main.find_child("LetterSnakeButton", true, false) != null, "main scene should keep Letter Snake as optional activity")
 	_expect(main.find_child("MemoryAlbumButton", true, false) != null, "main scene should keep Memory Album as optional activity")
 	_expect(main.find_child("BuyFoodButton", true, false) != null, "main scene should expose Buy Food button")
 	_expect(main.find_child("FeedSunnyButton", true, false) != null, "main scene should expose Feed Sunny button")
+	for hidden_button_name in ["StartButton", "HelpNeighborButton", "BuyFoodButton", "FeedSunnyButton", "MemoryAlbumButton", "LetterSnakeButton"]:
+		var hidden_button := main.find_child(hidden_button_name, true, false) as Button
+		_expect(hidden_button != null and not hidden_button.is_visible_in_tree(), "test shortcut should not be visible in child footer: %s" % hidden_button_name)
 	_expect(main.find_child("ParentButton", true, false) == null, "child loop should not expose Parent navigation button")
 	_expect(main.get_parent_entry_spec().get("child_flow_visible", true) == false, "parent entry spec should stay outside child flow")
 	_expect(main.get_parent_entry_spec().get("available_in_child_nav", true) == false, "parent entry spec should not be in child nav")
@@ -29,7 +39,7 @@ func _init() -> void:
 
 	main._on_start_loop_pressed()
 	_expect(int(main.save_service.load_game_state().get("pet", {}).get("hunger", -1)) == 70, "start loop should make Sunny hungry")
-	_expect(str(main.status_label.text).contains("town errand"), "start loop should not point the child to Letter Snake")
+	_expect(str(main.status_label.text).contains("小差事"), "start loop should not point the child to Letter Snake")
 
 	main._on_help_neighbor_pressed()
 	_expect(int(main.save_service.load_game_state().get("coins", -1)) >= 6, "life errand should add enough coins without a minigame")
@@ -37,6 +47,11 @@ func _init() -> void:
 
 	main._on_buy_food_pressed()
 	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("food_pet_snack", -1)) == 1, "Buy Food should add Sunny Snack")
+	main._on_backpack_pressed()
+	var opened_backpack := main.find_child("BackpackBubble", true, false) as Control
+	var backpack_items := main.find_child("BackpackItems", true, false) as Label
+	_expect(opened_backpack != null and opened_backpack.visible, "Backpack button should open the backpack bubble")
+	_expect(backpack_items != null and str(backpack_items.text).contains("点心 1"), "Backpack bubble should show snack inventory")
 
 	main._on_feed_sunny_pressed()
 	var game_state: Dictionary = main.save_service.load_game_state()
@@ -44,11 +59,11 @@ func _init() -> void:
 	_expect(bool(game_state.get("pet", {}).get("fed_today", false)), "Feed Sunny should update pet state")
 	_expect(int(game_state.get("inventory", {}).get("food_pet_snack", -1)) == 0, "Feed Sunny should consume food")
 	_expect(bool(main.save_service.load_learning_record().get("card_states", {}).get("card_pet_food", {}).get("played", false)), "Feed Sunny should update pet food card")
-	_expect(str(main.status_label.text).contains("happy"), "UI status should show final happy feedback")
+	_expect(str(main.status_label.text).contains("开心"), "UI status should show final happy feedback")
 
 	main._on_optional_letter_snake_pressed()
 	_expect(bool(main.save_service.load_learning_record().get("card_states", {}).get("card_shop_egg", {}).get("played", false)), "optional Letter Snake should still update card state when chosen")
-	_expect(str(main.optional_activity_label.text).contains("optional"), "optional status should describe Letter Snake as optional")
+	_expect(str(main.optional_activity_label.text).contains("可选"), "optional status should describe Letter Snake as optional")
 
 	main.save_service.clear_for_test()
 	_finish()

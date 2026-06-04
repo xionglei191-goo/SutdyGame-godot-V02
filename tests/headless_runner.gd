@@ -55,7 +55,8 @@ func _init() -> void:
 	_expect(main.find_child("anchor_e_elephant", true, false) != null, "main scene must create reserved A-Z anchor markers")
 	_expect(main.find_child("interaction_home_entry", true, false) != null, "main scene must create hotspot markers")
 	_expect(main.find_children("CollisionCell", "", true, false).size() > 0, "main scene must create collision markers")
-	_expect(main.find_child("LifeRPGPanel", true, false) != null, "main scene must expose life RPG panel")
+	_expect(main.find_child("TownHUD", true, false) != null, "main scene must expose top message HUD")
+	_expect(main.find_child("TownFooter", true, false) != null, "main scene must expose bottom action bar")
 	_expect(main.find_child("Player", true, false) != null, "main scene must create player marker")
 	for npc_id in ["mina", "shopkeeper", "pet_buddy", "bus_helper", "story_bear"]:
 		_expect(main.find_child("npc_%s" % npc_id, true, false) != null, "main scene must create NPC marker: %s" % npc_id)
@@ -220,6 +221,9 @@ func _check_child_experience_and_mobile_acceptance(main: Control) -> void:
 	var visible_text := _collect_visible_text(main).to_lower()
 	for blocked in ["failed", "wrong", "test", "exam", "report", "dashboard", "parent"]:
 		_expect(not visible_text.contains(blocked), "child flow should not show blocked text: %s" % blocked)
+	for placeholder in ["studygame v02", "godot", "skeleton", "loaded places", "from json"]:
+		_expect(not visible_text.contains(placeholder), "child flow should not show engineering placeholder text: %s" % placeholder)
+	_expect(visible_text.contains("阳光小镇"), "child flow should present a localized Sunshine Town identity")
 	var parent_spec: Dictionary = main.call("get_parent_entry_spec")
 	_expect(not bool(parent_spec.get("child_flow_visible", true)), "parent entry should not be visible in child flow")
 	_expect(not bool(parent_spec.get("network_required", true)), "parent entry should not require network")
@@ -228,8 +232,67 @@ func _check_child_experience_and_mobile_acceptance(main: Control) -> void:
 	_expect(str(ProjectSettings.get_setting("rendering/renderer/rendering_method")) == "mobile", "Godot renderer should stay mobile-oriented")
 	var nav := main.find_child("Navigation", true, false)
 	_expect(nav != null and (nav as Control).custom_minimum_size.x >= 220.0, "touch navigation should reserve a usable width")
+	_expect(nav != null and not (nav as Control).visible, "legacy left navigation should be hidden behind the playfield HUD")
+	_expect(main.find_child("TownStage", true, false) != null, "main scene should expose a full playfield stage")
+	var hud := main.find_child("TownHUD", true, false)
+	_expect(hud != null, "main scene should keep only lightweight town HUD")
+	_expect(hud != null and hud is Control and (hud as Control).anchor_top <= 0.03 and (hud as Control).anchor_right >= 0.95, "town HUD should be a top message bar, not a side status panel")
+	var coin_state := main.find_child("CoinState", true, false) as Label
+	var pet_state := main.find_child("PetState", true, false) as Label
+	_expect(coin_state != null and coin_state.get_theme_stylebox("normal") != null and str(coin_state.text).contains("币"), "coin HUD state should be a separate icon badge")
+	_expect(pet_state != null and pet_state.get_theme_stylebox("normal") != null and not str(pet_state.text).contains("金币"), "pet HUD state should keep Sunny snack, hunger, and happy separate from coins")
+	_expect(main.find_child("Header", true, false) == null, "town title should be folded into the single-line HUD, not a second top banner")
+	_expect(hud != null and hud is Control and (hud as Control).offset_bottom <= 52.0, "town HUD should stay compact enough to leave the playfield visible")
+	var footer := main.find_child("TownFooter", true, false)
+	_expect(footer != null and footer is Control and (footer as Control).anchor_top == 1.0, "main actions should sit in a bottom button bar")
+	_expect(footer != null and footer is Control and (footer as Control).anchor_left >= 0.2 and (footer as Control).anchor_right <= 0.8, "bottom footer should be compact and centered, not a wide empty strip")
+	var visible_footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
+	_expect(visible_footer_actions != null and visible_footer_actions.get_child_count() == 4, "bottom footer should keep only Interact, Town, Home, and Backpack visible")
+	var backpack_button := main.find_child("BackpackNavButton", true, false) as Button
+	var backpack_bubble := main.find_child("BackpackBubble", true, false) as Control
+	_expect(backpack_button != null and backpack_bubble != null, "backpack navigation should expose a lightweight content bubble")
+	_expect(backpack_bubble != null and not backpack_bubble.visible and backpack_bubble.anchor_left >= 0.5, "backpack bubble should be hidden by default and stay compact on the right")
+	if visible_footer_actions != null:
+		for child in visible_footer_actions.get_children():
+			var footer_button := child as Button
+			_expect(footer_button != null and footer_button.custom_minimum_size.x <= 110.0 and footer_button.custom_minimum_size.y <= 50.0, "footer buttons should stay compact and stable")
+			_expect(footer_button != null and footer_button.get_theme_stylebox("normal") != null and footer_button.get_theme_stylebox("hover") != null and footer_button.get_theme_stylebox("pressed") != null, "footer buttons should expose normal, hover, and pressed visual states")
+	for hidden_button_name in ["StartButton", "HelpNeighborButton", "BuyFoodButton", "FeedSunnyButton", "MemoryAlbumButton", "LetterSnakeButton"]:
+		var hidden_button := main.find_child(hidden_button_name, true, false) as Button
+		_expect(hidden_button != null and not hidden_button.is_visible_in_tree(), "legacy/test shortcut should be hidden from child footer: %s" % hidden_button_name)
+	_expect(main.find_child("LifeRPGPanel", true, false) == null, "life status should not cover the playfield as a large panel")
+	_expect(main.find_child("HomePetLoopPanel", true, false) == null, "pocket state should not cover the playfield as a large panel")
+	_expect(main.find_child("OptionalActivityPanel", true, false) == null, "optional activities should not cover the playfield as a large panel")
+	var runtime_map := main.find_child("RuntimeMap", true, false)
+	_expect(runtime_map != null and runtime_map is Node2D, "RuntimeMap must be a Node2D playfield layer")
+	_expect(runtime_map != null and _count_nodes_of_type(runtime_map, "Sprite2D") >= 30, "RuntimeMap should be built from Sprite2D-style assets")
+	_expect(runtime_map != null and runtime_map.find_child("Ground", true, false) is Sprite2D, "RuntimeMap ground should be a sprite asset")
+	_expect(runtime_map != null and runtime_map.find_child("RoadCell", true, false) is Sprite2D, "RuntimeMap roads should be sprite assets")
+	var player := main.find_child("Player", true, false)
+	_expect(player != null and player is Node2D and not player is Label, "player marker should be a sprite character, not text")
+	_expect(player != null and player.find_child("Body", true, false) is Sprite2D, "player should include sprite body art")
+	for npc_id in ["mina", "shopkeeper", "pet_buddy", "bus_helper", "story_bear"]:
+		var npc := main.find_child("npc_%s" % npc_id, true, false)
+		_expect(npc != null and npc is Node2D and not npc is Label, "NPC should be an animal resident sprite, not a text dot: %s" % npc_id)
+		_expect(npc != null and npc.find_child("Head", true, false) is Sprite2D, "NPC should include sprite head art: %s" % npc_id)
+	for anchor_id in ["anchor_a_apple", "anchor_c_clock", "anchor_d_dog", "anchor_o_orange"]:
+		var anchor := main.find_child(anchor_id, true, false)
+		var object_sprite := anchor.find_child("ObjectSprite", true, false) if anchor != null else null
+		var object_label := anchor.find_child("ObjectLabel", true, false) if anchor != null else null
+		_expect(anchor != null and anchor is Node2D, "anchor should be hidden in a world object: %s" % anchor_id)
+		_expect(object_sprite != null and object_sprite is Sprite2D, "anchor should use a sprite object: %s" % anchor_id)
+		_expect(not (object_label is Label), "anchor should not be represented by a bare text label: %s" % anchor_id)
 	var safe_area := main.find_child("SafeArea", true, false)
 	_expect(safe_area != null, "main scene should include a safe area container")
+
+
+func _count_nodes_of_type(node: Node, type_name: String) -> int:
+	var count := 0
+	if node.get_class() == type_name:
+		count += 1
+	for child in node.get_children():
+		count += _count_nodes_of_type(child, type_name)
+	return count
 
 
 func _collect_visible_text(node: Node) -> String:

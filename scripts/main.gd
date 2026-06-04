@@ -13,15 +13,17 @@ const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
 const AZ_ANCHORS_PATH := "res://data/anchors/az_core_anchors.json"
 const VIEWPORT_SIZE := Vector2i(1280, 720)
-const BACKGROUND_COLOR := Color("#eef4f0")
-const SURFACE_COLOR := Color("#ffffff")
-const PRIMARY_COLOR := Color("#2f6f73")
-const ACCENT_COLOR := Color("#f2b84b")
-const ROAD_COLOR := Color("#d7c49a")
-const PLACE_COLOR := Color("#ffffff")
-const PLAYER_COLOR := Color("#5a8f7b")
-const NPC_COLOR := Color("#d98b5f")
-const MAP_CELL_SIZE := 18
+const BACKGROUND_COLOR := Color("#dff2d6")
+const SURFACE_COLOR := Color("#fffdf4")
+const PRIMARY_COLOR := Color("#3f7f62")
+const ACCENT_COLOR := Color("#f3bf5b")
+const ROAD_COLOR := Color("#dfc38a")
+const PLACE_COLOR := Color("#fff7df")
+const PLAYER_COLOR := Color("#5f8fd3")
+const NPC_COLOR := Color("#c96f55")
+const WATER_COLOR := Color("#a7d9df")
+const FLOWER_COLOR := Color("#e6819b")
+const MAP_CELL_SIZE := 22
 const TEXT_COLOR := Color("#1f2d2f")
 const MUTED_TEXT_COLOR := Color("#5d6b6d")
 const PLAYER_START_CELL := Vector2i(5, 8)
@@ -77,12 +79,18 @@ var daily_request_service
 var npc_memory_store
 var llm_client
 var status_label: Label
+var coin_label: Label
 var pet_label: Label
 var cards_label: Label
 var life_status_label: Label
 var optional_activity_label: Label
-var player_marker: Control
+var backpack_bubble: Control
+var backpack_summary_label: Label
+var backpack_items_label: Label
+var backpack_collection_label: Label
+var player_marker: Node2D
 var player_cell := PLAYER_START_CELL
+var _texture_cache: Dictionary = {}
 
 
 func _ready() -> void:
@@ -97,7 +105,7 @@ func _ready() -> void:
 	map_errors = result.get("errors", [])
 	_init_services()
 	_build_shell()
-	_update_loop_status("Ready")
+	_update_loop_status("准备好啦")
 
 
 func configure_for_test(save_path: String) -> void:
@@ -124,239 +132,241 @@ func _init_services() -> void:
 func _build_shell() -> void:
 	var background := ColorRect.new()
 	background.name = "Background"
-	background.color = BACKGROUND_COLOR
+	background.color = Color("#cdebc0")
 	background.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(background)
 
 	var margin := MarginContainer.new()
 	margin.name = "SafeArea"
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
-	margin.add_theme_constant_override("margin_left", 56)
-	margin.add_theme_constant_override("margin_top", 36)
-	margin.add_theme_constant_override("margin_right", 56)
-	margin.add_theme_constant_override("margin_bottom", 36)
+	margin.add_theme_constant_override("margin_left", 18)
+	margin.add_theme_constant_override("margin_top", 14)
+	margin.add_theme_constant_override("margin_right", 18)
+	margin.add_theme_constant_override("margin_bottom", 14)
 	add_child(margin)
 
 	var layout := VBoxContainer.new()
 	layout.name = "Layout"
-	layout.add_theme_constant_override("separation", 24)
+	layout.add_theme_constant_override("separation", 0)
 	margin.add_child(layout)
 
-	layout.add_child(_create_header())
 	layout.add_child(_create_body())
 
 
-func _create_header() -> Control:
-	var header := HBoxContainer.new()
-	header.name = "Header"
-	header.custom_minimum_size = Vector2(0, 88)
-	header.add_theme_constant_override("separation", 20)
-
-	var title_area := VBoxContainer.new()
-	title_area.name = "TitleArea"
-	title_area.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	title_area.add_theme_constant_override("separation", 4)
-	header.add_child(title_area)
-
-	var title := Label.new()
-	title.name = "Title"
-	title.text = "StudyGame V02"
-	title.add_theme_color_override("font_color", TEXT_COLOR)
-	title.add_theme_font_size_override("font_size", 34)
-	title_area.add_child(title)
-
-	var subtitle := Label.new()
-	subtitle.name = "Subtitle"
-	subtitle.text = "Godot 4.6 skeleton - landscape 1280x720"
-	subtitle.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
-	subtitle.add_theme_font_size_override("font_size", 18)
-	title_area.add_child(subtitle)
-
-	var status := Label.new()
-	status.name = "Status"
-	status.text = "Map ready" if map_errors.is_empty() else "Map error"
-	status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	status.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	status.custom_minimum_size = Vector2(160, 48)
-	status.add_theme_color_override("font_color", Color.WHITE)
-	status.add_theme_font_size_override("font_size", 18)
-	status.add_theme_stylebox_override("normal", _rounded_box(PRIMARY_COLOR, 8))
-	header.add_child(status)
-
-	return header
-
-
 func _create_body() -> Control:
-	var body := HBoxContainer.new()
+	var body := Control.new()
 	body.name = "Body"
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation", 24)
+	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 	var nav := VBoxContainer.new()
 	nav.name = "Navigation"
+	nav.visible = false
 	nav.custom_minimum_size = Vector2(220, 0)
-	nav.add_theme_constant_override("separation", 12)
+	nav.add_theme_constant_override("separation", 10)
 	body.add_child(nav)
 
-	nav.add_child(_create_nav_button("Home", true))
-	nav.add_child(_create_nav_button("Map", false))
-	nav.add_child(_create_nav_button("Cards", false))
+	nav.add_child(_create_nav_button("小镇", true))
+	nav.add_child(_create_nav_button("小屋", false))
+	nav.add_child(_create_nav_button("相册", false))
+	nav.add_child(_create_nav_button("背包", false))
 
-	var content := PanelContainer.new()
+	var content := Control.new()
 	content.name = "Content"
+	content.set_anchors_preset(Control.PRESET_FULL_RECT)
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	content.add_theme_stylebox_override("panel", _rounded_box(SURFACE_COLOR, 8))
 	body.add_child(content)
 
-	var content_margin := MarginContainer.new()
-	content_margin.name = "ContentMargin"
-	content_margin.add_theme_constant_override("margin_left", 32)
-	content_margin.add_theme_constant_override("margin_top", 28)
-	content_margin.add_theme_constant_override("margin_right", 32)
-	content_margin.add_theme_constant_override("margin_bottom", 28)
-	content.add_child(content_margin)
+	var stage := Control.new()
+	stage.name = "TownStage"
+	stage.set_anchors_preset(Control.PRESET_FULL_RECT)
+	content.add_child(stage)
 
-	var stack := VBoxContainer.new()
-	stack.name = "ContentStack"
-	stack.add_theme_constant_override("separation", 20)
-	content_margin.add_child(stack)
+	var map_frame := _create_map_canvas()
+	map_frame.set_anchors_preset(Control.PRESET_FULL_RECT)
+	stage.add_child(map_frame)
 
-	var heading := Label.new()
-	heading.name = "Heading"
-	heading.text = "Home"
-	heading.add_theme_color_override("font_color", TEXT_COLOR)
-	heading.add_theme_font_size_override("font_size", 30)
-	stack.add_child(heading)
+	var hud := _create_top_message_bar()
+	hud.anchor_left = 0.015
+	hud.anchor_top = 0.015
+	hud.anchor_right = 0.985
+	hud.anchor_bottom = 0.015
+	hud.offset_bottom = 48
+	content.add_child(hud)
 
-	var summary := Label.new()
-	summary.name = "Summary"
-	var map_summary: Dictionary = RuntimeMapBuilderScript.build_summary(world_map)
-	summary.text = (
-		"Loaded %s places and %s memory anchors from JSON."
-		% [map_summary.get("place_count", 0), map_summary.get("anchor_count", 0)]
-		if map_errors.is_empty()
-		else "Map loading failed: %s" % map_errors
-	)
-	summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	summary.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
-	summary.add_theme_font_size_override("font_size", 20)
-	stack.add_child(summary)
-	stack.add_child(_create_life_status_panel())
-	stack.add_child(_create_loop_panel())
-	stack.add_child(_create_optional_activity_panel())
+	var footer := _create_bottom_action_bar()
+	footer.anchor_left = 0.24
+	footer.anchor_top = 1.0
+	footer.anchor_right = 0.76
+	footer.anchor_bottom = 1.0
+	footer.offset_top = -72
+	footer.offset_bottom = -10
+	content.add_child(footer)
 
-	stack.add_child(_create_map_canvas())
+	backpack_bubble = _create_backpack_bubble()
+	backpack_bubble.anchor_left = 0.58
+	backpack_bubble.anchor_top = 1.0
+	backpack_bubble.anchor_right = 0.94
+	backpack_bubble.anchor_bottom = 1.0
+	backpack_bubble.offset_top = -286
+	backpack_bubble.offset_bottom = -92
+	content.add_child(backpack_bubble)
+
+	var hint := Label.new()
+	hint.name = "TownFooterText"
+	hint.text = "点一点草地去散步。靠近居民、小屋、商店或树枝时，可以按“看看”。"
+	hint.anchor_left = 0.24
+	hint.anchor_top = 1.0
+	hint.anchor_right = 0.76
+	hint.anchor_bottom = 1.0
+	hint.offset_top = -104
+	hint.offset_bottom = -82
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.add_theme_color_override("font_color", Color("#24413a"))
+	hint.add_theme_font_size_override("font_size", 14)
+	content.add_child(hint)
 
 	return body
 
 
-func _create_life_status_panel() -> Control:
+func _create_top_message_bar() -> Control:
 	var panel := PanelContainer.new()
-	panel.name = "LifeRPGPanel"
-	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#f1f6ee"), 8, Color("#d7e3d0")))
+	panel.name = "TownHUD"
+	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fff8dff0"), 8, Color("#d7bc71")))
 
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 18)
-	margin.add_theme_constant_override("margin_top", 14)
-	margin.add_theme_constant_override("margin_right", 18)
-	margin.add_theme_constant_override("margin_bottom", 14)
+	margin.add_theme_constant_override("margin_left", 14)
+	margin.add_theme_constant_override("margin_top", 5)
+	margin.add_theme_constant_override("margin_right", 14)
+	margin.add_theme_constant_override("margin_bottom", 5)
 	panel.add_child(margin)
 
-	var stack := VBoxContainer.new()
-	stack.add_theme_constant_override("separation", 8)
-	margin.add_child(stack)
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 12)
+	margin.add_child(row)
 
 	var title := Label.new()
-	title.name = "LifeTitle"
-	title.text = "Sunshine Town Life"
+	title.name = "Title"
+	title.text = "阳光小镇"
+	title.custom_minimum_size = Vector2(118, 0)
+	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	title.add_theme_color_override("font_color", TEXT_COLOR)
 	title.add_theme_font_size_override("font_size", 22)
-	stack.add_child(title)
+	row.add_child(title)
+
+	var town_status := Label.new()
+	town_status.name = "Status"
+	town_status.text = "开放" if map_errors.is_empty() else "照看中"
+	town_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	town_status.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	town_status.custom_minimum_size = Vector2(70, 30)
+	town_status.add_theme_color_override("font_color", Color.WHITE)
+	town_status.add_theme_font_size_override("font_size", 13)
+	town_status.add_theme_stylebox_override("normal", _rounded_box(PRIMARY_COLOR, 8))
+	row.add_child(town_status)
 
 	life_status_label = Label.new()
 	life_status_label.name = "LifeStatus"
-	life_status_label.text = "Walk around, meet neighbors, and let A-Z anchors live in the town."
-	life_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	life_status_label.text = "今天：从小屋出发，去小镇走一走吧。"
+	life_status_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	life_status_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	life_status_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	life_status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
-	life_status_label.add_theme_font_size_override("font_size", 16)
-	stack.add_child(life_status_label)
-
-	var actions := HBoxContainer.new()
-	actions.name = "LifeActions"
-	actions.add_theme_constant_override("separation", 12)
-	stack.add_child(actions)
-
-	actions.add_child(_create_action_button("Interact", "_on_interact_pressed"))
-
-	return panel
-
-
-func _create_loop_panel() -> Control:
-	var panel := PanelContainer.new()
-	panel.name = "HomePetLoopPanel"
-	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#f8faf8"), 8, Color("#d9e2df")))
-
-	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 18)
-	margin.add_theme_constant_override("margin_top", 16)
-	margin.add_theme_constant_override("margin_right", 18)
-	margin.add_theme_constant_override("margin_bottom", 16)
-	panel.add_child(margin)
-
-	var stack := VBoxContainer.new()
-	stack.add_theme_constant_override("separation", 12)
-	margin.add_child(stack)
-
-	var title := Label.new()
-	title.name = "LoopTitle"
-	title.text = "Sunny Snack Loop"
-	title.add_theme_color_override("font_color", TEXT_COLOR)
-	title.add_theme_font_size_override("font_size", 22)
-	stack.add_child(title)
+	life_status_label.add_theme_font_size_override("font_size", 14)
+	row.add_child(life_status_label)
 
 	status_label = Label.new()
 	status_label.name = "LoopStatus"
-	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	status_label.custom_minimum_size = Vector2(150, 0)
+	status_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	status_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
-	status_label.add_theme_font_size_override("font_size", 16)
-	stack.add_child(status_label)
+	status_label.add_theme_font_size_override("font_size", 12)
+	row.add_child(status_label)
 
-	pet_label = Label.new()
-	pet_label.name = "PetState"
-	pet_label.add_theme_color_override("font_color", TEXT_COLOR)
-	pet_label.add_theme_font_size_override("font_size", 16)
-	stack.add_child(pet_label)
+	optional_activity_label = Label.new()
+	optional_activity_label.name = "OptionalActivityStatus"
+	optional_activity_label.text = "相册和 Letter Snake 是可以慢慢玩的收藏活动。"
+	optional_activity_label.visible = false
+	row.add_child(optional_activity_label)
+
+	coin_label = _create_hud_state_label("CoinState", 72, Color("#fff0bc"), Color("#d8a84b"))
+	row.add_child(coin_label)
+
+	pet_label = _create_hud_state_label("PetState", 174, Color("#eaf6ff"), Color("#93bfd0"))
+	row.add_child(pet_label)
 
 	cards_label = Label.new()
 	cards_label.name = "CardState"
+	cards_label.visible = false
 	cards_label.add_theme_color_override("font_color", TEXT_COLOR)
-	cards_label.add_theme_font_size_override("font_size", 16)
-	stack.add_child(cards_label)
-
-	var actions := HBoxContainer.new()
-	actions.name = "LoopActions"
-	actions.add_theme_constant_override("separation", 12)
-	stack.add_child(actions)
-
-	actions.add_child(_create_action_button("Start", "_on_start_loop_pressed"))
-	actions.add_child(_create_action_button("Help Neighbor", "_on_help_neighbor_pressed"))
-	actions.add_child(_create_action_button("Buy Food", "_on_buy_food_pressed"))
-	actions.add_child(_create_action_button("Feed Sunny", "_on_feed_sunny_pressed"))
+	row.add_child(cards_label)
 
 	return panel
 
 
-func _create_optional_activity_panel() -> Control:
-	var panel := PanelContainer.new()
-	panel.name = "OptionalActivityPanel"
-	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fff8eb"), 8, Color("#ead39c")))
+func _create_bottom_action_bar() -> Control:
+	var bar := PanelContainer.new()
+	bar.name = "TownFooter"
+	bar.add_theme_stylebox_override("panel", _rounded_box(Color("#fff6dde8"), 18, Color("#e9c878")))
 
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 18)
-	margin.add_theme_constant_override("margin_top", 14)
-	margin.add_theme_constant_override("margin_right", 18)
-	margin.add_theme_constant_override("margin_bottom", 14)
+	margin.add_theme_constant_override("margin_left", 12)
+	margin.add_theme_constant_override("margin_top", 7)
+	margin.add_theme_constant_override("margin_right", 12)
+	margin.add_theme_constant_override("margin_bottom", 7)
+	bar.add_child(margin)
+
+	var row := HBoxContainer.new()
+	row.name = "FooterVisibleActions"
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", 10)
+	margin.add_child(row)
+
+	row.add_child(_create_footer_button("看看", true, "_on_interact_pressed", "InteractButton"))
+	row.add_child(_create_nav_button("小镇", true, "TownNavButton"))
+	row.add_child(_create_nav_button("小屋", false, "HomeNavButton"))
+	row.add_child(_create_footer_button("背包", false, "_on_backpack_pressed", "BackpackNavButton"))
+
+	var contract_buttons := Control.new()
+	contract_buttons.name = "FooterContractButtons"
+	contract_buttons.visible = false
+	bar.add_child(contract_buttons)
+	contract_buttons.add_child(_create_action_button("开始", "_on_start_loop_pressed", "StartButton"))
+	contract_buttons.add_child(_create_action_button("帮邻居", "_on_help_neighbor_pressed", "HelpNeighborButton"))
+	contract_buttons.add_child(_create_action_button("买点心", "_on_buy_food_pressed", "BuyFoodButton"))
+	contract_buttons.add_child(_create_action_button("喂 Sunny", "_on_feed_sunny_pressed", "FeedSunnyButton"))
+	contract_buttons.add_child(_create_action_button("记忆相册", "_on_memory_album_pressed", "MemoryAlbumButton"))
+	contract_buttons.add_child(_create_action_button("Letter Snake", "_on_optional_letter_snake_pressed", "LetterSnakeButton"))
+
+	return bar
+
+
+func _create_hud_state_label(node_name: String, min_width: int, fill: Color, border: Color) -> Label:
+	var label := Label.new()
+	label.name = node_name
+	label.custom_minimum_size = Vector2(min_width, 30)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	label.add_theme_color_override("font_color", TEXT_COLOR)
+	label.add_theme_font_size_override("font_size", 12)
+	label.add_theme_stylebox_override("normal", _rounded_box(fill, 8, border))
+	return label
+
+
+func _create_backpack_bubble() -> Control:
+	var panel := PanelContainer.new()
+	panel.name = "BackpackBubble"
+	panel.visible = false
+	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0f2"), 16, Color("#e9c878")))
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 14)
+	margin.add_theme_constant_override("margin_top", 12)
+	margin.add_theme_constant_override("margin_right", 14)
+	margin.add_theme_constant_override("margin_bottom", 12)
 	panel.add_child(margin)
 
 	var stack := VBoxContainer.new()
@@ -364,38 +374,42 @@ func _create_optional_activity_panel() -> Control:
 	margin.add_child(stack)
 
 	var title := Label.new()
-	title.name = "OptionalActivityTitle"
-	title.text = "Optional Activities"
+	title.name = "BackpackTitle"
+	title.text = "小背包"
 	title.add_theme_color_override("font_color", TEXT_COLOR)
-	title.add_theme_font_size_override("font_size", 20)
+	title.add_theme_font_size_override("font_size", 18)
 	stack.add_child(title)
 
-	optional_activity_label = Label.new()
-	optional_activity_label.name = "OptionalActivityStatus"
-	optional_activity_label.text = "Album and Letter Snake are side activities; town life works without them."
-	optional_activity_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	optional_activity_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
-	optional_activity_label.add_theme_font_size_override("font_size", 16)
-	stack.add_child(optional_activity_label)
+	backpack_summary_label = Label.new()
+	backpack_summary_label.name = "BackpackSummary"
+	backpack_summary_label.add_theme_color_override("font_color", Color("#365047"))
+	backpack_summary_label.add_theme_font_size_override("font_size", 14)
+	stack.add_child(backpack_summary_label)
 
-	var actions := HBoxContainer.new()
-	actions.name = "OptionalActivityActions"
-	actions.add_theme_constant_override("separation", 12)
-	stack.add_child(actions)
+	backpack_items_label = Label.new()
+	backpack_items_label.name = "BackpackItems"
+	backpack_items_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	backpack_items_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
+	backpack_items_label.add_theme_font_size_override("font_size", 14)
+	stack.add_child(backpack_items_label)
 
-	actions.add_child(_create_action_button("Memory Album", "_on_memory_album_pressed"))
-	actions.add_child(_create_action_button("Letter Snake", "_on_optional_letter_snake_pressed"))
+	backpack_collection_label = Label.new()
+	backpack_collection_label.name = "BackpackCollection"
+	backpack_collection_label.text = "收藏：记忆相册、Letter Snake"
+	backpack_collection_label.add_theme_color_override("font_color", Color("#775f2e"))
+	backpack_collection_label.add_theme_font_size_override("font_size", 13)
+	stack.add_child(backpack_collection_label)
 
 	return panel
 
 
-func _create_action_button(label: String, method_name: String) -> Button:
+func _create_action_button(label: String, method_name: String, node_name: String = "") -> Button:
 	var button := Button.new()
-	button.name = label.replace(" ", "") + "Button"
+	button.name = node_name if not node_name.is_empty() else label.replace(" ", "") + "Button"
 	button.text = label
-	button.custom_minimum_size = Vector2(144, 52)
+	button.custom_minimum_size = Vector2(112, 38)
 	button.focus_mode = Control.FOCUS_NONE
-	button.add_theme_font_size_override("font_size", 18)
+	button.add_theme_font_size_override("font_size", 13)
 	button.add_theme_color_override("font_color", Color.WHITE)
 	button.add_theme_stylebox_override("normal", _rounded_box(PRIMARY_COLOR, 8))
 	button.add_theme_stylebox_override("hover", _rounded_box(PRIMARY_COLOR.lightened(0.08), 8))
@@ -404,11 +418,32 @@ func _create_action_button(label: String, method_name: String) -> Button:
 	return button
 
 
+func _create_footer_button(label: String, selected: bool, method_name: String = "", node_name: String = "") -> Button:
+	var button := Button.new()
+	button.name = node_name if not node_name.is_empty() else label.replace(" ", "") + "FooterButton"
+	button.text = label
+	button.custom_minimum_size = Vector2(104, 48)
+	button.focus_mode = Control.FOCUS_NONE
+	button.add_theme_font_size_override("font_size", 17)
+	button.add_theme_color_override("font_color", Color("#27443b") if selected else Color("#46584f"))
+	var normal_color := Color("#ffe28f") if selected else Color("#fffdf4")
+	var hover_color := Color("#ffeca9") if selected else Color("#fff7dc")
+	var pressed_color := Color("#f7c86f") if selected else Color("#f1ead2")
+	var border_color := Color("#d39b43") if selected else Color("#ded0a7")
+	button.add_theme_stylebox_override("normal", _rounded_box(normal_color, 16, border_color))
+	button.add_theme_stylebox_override("hover", _rounded_box(hover_color, 16, border_color.lightened(0.08)))
+	button.add_theme_stylebox_override("pressed", _rounded_box(pressed_color, 16, border_color.darkened(0.08)))
+	button.add_theme_stylebox_override("focus", _rounded_box(Color("#fff3b8"), 16, Color("#f0b35a")))
+	if not method_name.is_empty():
+		button.pressed.connect(Callable(self, method_name))
+	return button
+
+
 func _on_start_loop_pressed() -> void:
 	quest_event_service.start_chain()
 	for event_id in ["event_welcome_home", "event_meet_sunny", "event_snack_time", "event_food_trip"]:
 		quest_event_service.advance_event(event_id)
-	_update_loop_status("Sunny is ready for a town errand")
+	_update_loop_status("Sunny 想去小镇跑个小差事")
 
 
 func _on_help_neighbor_pressed() -> void:
@@ -418,26 +453,33 @@ func _on_help_neighbor_pressed() -> void:
 func _on_optional_letter_snake_pressed() -> void:
 	minigame_service.complete_minigame({"config_set_id": "food", "score": 80})
 	quest_event_service.advance_event("event_letter_snake_food")
-	_update_loop_status("Optional Letter Snake reward saved")
-	_set_optional_activity_status("Letter Snake was played as an optional town activity.")
+	_update_loop_status("Letter Snake 的小奖励已经收好")
+	_set_optional_activity_status("刚玩了一会儿 Letter Snake，这是可选的小活动。")
 
 
 func _on_memory_album_pressed() -> void:
-	_set_optional_activity_status("Memory Album is available as a collection album, not a required task.")
+	_set_optional_activity_status("记忆相册是收藏册，想看的时候再看。")
 
 
 func _on_buy_food_pressed() -> void:
 	var result: Dictionary = quest_event_service.advance_event("event_food_basket")
-	_update_loop_status("Sunny Snack in basket" if result.get("ok", false) else "More coins can help")
+	_update_loop_status("Sunny 的点心放进背包啦" if result.get("ok", false) else "金币还不够，再帮帮邻居吧")
 
 
 func _on_feed_sunny_pressed() -> void:
 	var result: Dictionary = quest_event_service.advance_event("event_feed_sunny")
-	_update_loop_status("Sunny is happy" if result.get("ok", false) else "Sunny Snack is not ready")
+	_update_loop_status("Sunny 吃饱了，很开心" if result.get("ok", false) else "还没有准备好 Sunny 的点心")
 
 
 func _on_interact_pressed() -> void:
 	interact_nearby()
+
+
+func _on_backpack_pressed() -> void:
+	if backpack_bubble == null:
+		return
+	_update_backpack_bubble()
+	backpack_bubble.visible = not backpack_bubble.visible
 
 
 func _on_pick_branch_pressed() -> void:
@@ -456,32 +498,32 @@ func help_neighbor_for_coins() -> Dictionary:
 	var game_state: Dictionary = save_service.load_game_state()
 	var flags: Dictionary = game_state.get("flags", {})
 	if bool(flags.get("helped_neighbor_today", false)):
-		_update_loop_status("Neighbor help already counted today")
+		_update_loop_status("今天已经帮过邻居啦")
 		return {"ok": false, "reason": "already_helped"}
 
 	flags["helped_neighbor_today"] = true
 	game_state["flags"] = flags
 	game_state["coins"] = int(game_state.get("coins", 0)) + 6
 	save_service.save_game_state(game_state)
-	_update_loop_status("Helped a neighbor and earned town coins")
+	_update_loop_status("帮了邻居，得到小镇金币")
 	return {"ok": true, "coins": int(game_state.get("coins", 0))}
 
 
 func collect_branch() -> Dictionary:
 	var result: Dictionary = inventory_service.collect_item("branch", 1)
-	_set_life_status("Picked up Branch near the Bear anchor." if result.get("ok", false) else "Branch is not ready.")
+	_set_life_status("在熊熊玩偶旁边捡到一根树枝。" if result.get("ok", false) else "树枝还没有准备好。")
 	return result
 
 
 func buy_wooden_chair() -> Dictionary:
 	var result: Dictionary = life_shop_service.buy_life_item("wooden_chair")
-	_set_life_status("Bought Wooden Chair for home." if result.get("ok", false) else "More coins can help with the chair.")
+	_set_life_status("给小屋买了一把木椅。" if result.get("ok", false) else "金币还不够，木椅先等等。")
 	return result
 
 
 func place_wooden_chair(cell: Vector2i = Vector2i(2, 2)) -> Dictionary:
 	var result: Dictionary = home_decoration_service.place_furniture("wooden_chair", cell)
-	_set_life_status("Placed Wooden Chair under the Clock anchor." if result.get("ok", false) else "Chair is not in the bag yet.")
+	_set_life_status("把木椅放在钟表旁边啦。" if result.get("ok", false) else "背包里还没有木椅。")
 	return result
 
 
@@ -506,7 +548,7 @@ func interact_nearby() -> Dictionary:
 	if not nearby_interaction.is_empty():
 		return _handle_map_interaction(nearby_interaction)
 
-	_set_life_status("Nothing nearby to use.")
+	_set_life_status("附近暂时没有可以看的东西。")
 	return {"ok": false, "reason": "no_target", "cell": _cell_to_dict(player_cell)}
 
 
@@ -516,7 +558,7 @@ func _handle_map_interaction(interaction: Dictionary) -> Dictionary:
 		"enter_supermarket", "enter_home", "open_town_start":
 			return _enter_place(interaction)
 		_:
-			_set_life_status("This spot is not ready yet.")
+			_set_life_status("这个地方还没有准备好。")
 			return {
 				"ok": false,
 				"reason": "unsupported_action",
@@ -548,13 +590,13 @@ func _enter_place(interaction: Dictionary) -> Dictionary:
 func _place_entry_message(place_id: String, place_label: String) -> String:
 	match place_id:
 		"place_home":
-			return "Home is calm. The room is waiting for cozy things."
+			return "小屋很安静，房间等着你慢慢装扮。"
 		"place_town_start":
-			return "Sunshine Town starts here. Paths lead to neighbors and shops."
+			return "这里是阳光小镇广场，小路通向邻居和商店。"
 		"place_supermarket":
-			return "The Supermarket doors are open. The shelves are waiting inside."
+			return "商店开门啦，货架上有生活小物。"
 		_:
-			return "%s is quiet and ready to visit." % place_label
+			return "%s 很安静，可以进去看看。" % place_label
 
 
 func _update_loop_status(message: String) -> void:
@@ -565,38 +607,37 @@ func _update_loop_status(message: String) -> void:
 	var learning_record: Dictionary = save_service.load_learning_record()
 	var dog_state: Dictionary = learning_record.get("card_states", {}).get("card_d_dog_core", {})
 	status_label.text = message
-	pet_label.text = "Coins %s  Food %s  Hunger %s  Happy %s" % [
-		int(game_state.get("coins", 0)),
+	coin_label.text = "币 %s" % int(game_state.get("coins", 0))
+	pet_label.text = "点 %s  饿 %s  心 %s" % [
 		int(game_state.get("inventory", {}).get("food_pet_snack", 0)),
 		int(pet.get("hunger", 0)),
 		int(pet.get("happy", 0)),
 	]
-	cards_label.text = "Dog card: %s / %s" % [
-		"played" if dog_state.get("played", false) else "seen" if dog_state.get("seen", false) else "new",
-		"done" if game_state.get("flags", {}).get("sunny_first_snack_done", false) else "in progress",
+	cards_label.text = "小狗收藏：%s / %s" % [
+		"玩过" if dog_state.get("played", false) else "见过" if dog_state.get("seen", false) else "新的",
+		"完成" if game_state.get("flags", {}).get("sunny_first_snack_done", false) else "进行中",
+	]
+	_update_backpack_bubble()
+
+
+func _update_backpack_bubble() -> void:
+	if backpack_summary_label == null or backpack_items_label == null:
+		return
+	var game_state: Dictionary = save_service.load_game_state()
+	var inventory: Dictionary = game_state.get("inventory", {})
+	backpack_summary_label.text = "金币 %s  开心 %s" % [
+		int(game_state.get("coins", 0)),
+		int(game_state.get("pet", {}).get("happy", 0)),
+	]
+	backpack_items_label.text = "点心 %s   树枝 %s   木椅 %s" % [
+		int(inventory.get("food_pet_snack", 0)),
+		int(inventory.get("branch", 0)),
+		int(inventory.get("wooden_chair", 0)),
 	]
 
 
-func _create_nav_button(label: String, selected: bool) -> Button:
-	var button := Button.new()
-	button.text = label
-	button.custom_minimum_size = Vector2(0, 56)
-	button.focus_mode = Control.FOCUS_NONE
-	button.add_theme_font_size_override("font_size", 20)
-	button.add_theme_color_override("font_color", Color.WHITE if selected else TEXT_COLOR)
-	button.add_theme_stylebox_override(
-		"normal",
-		_rounded_box(PRIMARY_COLOR if selected else SURFACE_COLOR, 8)
-	)
-	button.add_theme_stylebox_override(
-		"hover",
-		_rounded_box(PRIMARY_COLOR.lightened(0.08) if selected else Color("#f4f7f5"), 8)
-	)
-	button.add_theme_stylebox_override(
-		"pressed",
-		_rounded_box(PRIMARY_COLOR.darkened(0.08) if selected else Color("#e7eeeb"), 8)
-	)
-	return button
+func _create_nav_button(label: String, selected: bool, node_name: String = "") -> Button:
+	return _create_footer_button(label, selected, "", node_name if not node_name.is_empty() else label.replace(" ", "") + "NavButton")
 
 
 func _create_placeholder(title_text: String, body_text: String) -> Control:
@@ -647,41 +688,31 @@ func _create_map_canvas() -> Control:
 	var map_width := int(canvas_size.get("w", 40)) * MAP_CELL_SIZE
 	var map_height := int(canvas_size.get("h", 24)) * MAP_CELL_SIZE
 
-	var frame := PanelContainer.new()
+	var frame := Control.new()
 	frame.name = "RuntimeMapFrame"
 	frame.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	frame.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	frame.add_theme_stylebox_override("panel", _rounded_box(Color("#f8faf8"), 8, Color("#d9e2df")))
 
-	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 18)
-	margin.add_theme_constant_override("margin_top", 18)
-	margin.add_theme_constant_override("margin_right", 18)
-	margin.add_theme_constant_override("margin_bottom", 18)
-	frame.add_child(margin)
+	var input := Control.new()
+	input.name = "RuntimeMapInput"
+	input.set_anchors_preset(Control.PRESET_FULL_RECT)
+	input.custom_minimum_size = Vector2(map_width, map_height)
+	input.mouse_filter = Control.MOUSE_FILTER_STOP
+	input.gui_input.connect(_on_map_gui_input)
+	frame.add_child(input)
 
-	var map := Control.new()
+	var map := Node2D.new()
 	map.name = "RuntimeMap"
-	map.custom_minimum_size = Vector2(map_width, map_height)
-	map.mouse_filter = Control.MOUSE_FILTER_STOP
-	map.gui_input.connect(_on_map_gui_input)
-	margin.add_child(map)
-
-	var ground := ColorRect.new()
-	ground.name = "Ground"
-	ground.color = Color("#e8f3df")
-	ground.position = Vector2.ZERO
-	ground.size = Vector2(map_width, map_height)
+	map.position = Vector2.ZERO
+	var ground := _create_sprite("Ground", Vector2(map_width, map_height) * 0.5, Vector2(map_width, map_height), "ground")
 	map.add_child(ground)
+	frame.add_child(map)
+
+	_add_town_scenery(map, map_width, map_height)
 
 	for road in world_map.get("roads", []):
 		for cell in road.get("cells", []):
-			var road_cell := ColorRect.new()
-			road_cell.name = "RoadCell"
-			road_cell.color = ROAD_COLOR
-			road_cell.position = _cell_position(cell)
-			road_cell.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
-			map.add_child(road_cell)
+			map.add_child(_create_sprite("RoadCell", _cell_center(cell), Vector2(MAP_CELL_SIZE + 6, MAP_CELL_SIZE + 4), "road"))
 
 	for place in world_map.get("places", []):
 		map.add_child(_create_place_marker(place))
@@ -711,109 +742,98 @@ func _create_map_canvas() -> Control:
 	return frame
 
 
-func _create_place_marker(place: Dictionary) -> Control:
-	var marker := PanelContainer.new()
+func _create_place_marker(place: Dictionary) -> Node2D:
+	var marker := Node2D.new()
 	marker.name = place.get("place_id", "place")
 	var size_data: Dictionary = place.get("size", {"w": 2, "h": 2})
-	marker.position = _cell_position(place.get("position", {}))
-	marker.size = Vector2(
+	var place_id := str(place.get("place_id", "place"))
+	var building_size := Vector2(
 		int(size_data.get("w", 2)) * MAP_CELL_SIZE,
 		int(size_data.get("h", 2)) * MAP_CELL_SIZE
 	)
-	marker.add_theme_stylebox_override("panel", _rounded_box(PLACE_COLOR, 4, Color("#7fa6a0")))
+	marker.position = _cell_position(place.get("position", {})) + building_size * 0.5
 
-	var label := Label.new()
-	label.name = "Label"
-	label.text = place.get("label", "Place")
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.add_theme_color_override("font_color", TEXT_COLOR)
-	label.add_theme_font_size_override("font_size", 12)
-	label.set_anchors_preset(Control.PRESET_FULL_RECT)
-	marker.add_child(label)
+	marker.add_child(_create_sprite("Shadow", Vector2(3, building_size.y * 0.45), Vector2(building_size.x * 0.95, 15), "shadow"))
+	marker.add_child(_create_sprite("Building", Vector2(0, 8), Vector2(building_size.x, building_size.y - 8), "place_%s_body" % place_id))
+	marker.add_child(_create_sprite("Roof", Vector2(0, -building_size.y * 0.32), Vector2(building_size.x * 0.92, 22), "place_%s_roof" % place_id))
+	marker.add_child(_create_sprite("Door", Vector2(0, building_size.y * 0.25), Vector2(14, 18), "door_%s" % place_id))
+	marker.add_child(_create_sprite("WindowLeft", Vector2(-building_size.x * 0.25, 4), Vector2(12, 12), "window_%s_left" % place_id))
+	marker.add_child(_create_sprite("WindowRight", Vector2(building_size.x * 0.25, 4), Vector2(12, 12), "window_%s_right" % place_id))
+	if place_id == "place_supermarket":
+		marker.add_child(_create_sprite("ShopSignAnchor", Vector2(0, -building_size.y * 0.08), Vector2(48, 14), "anchor_shop_sign"))
+	elif place_id == "place_town_start":
+		marker.add_child(_create_sprite("PlazaFlag", Vector2(building_size.x * 0.28, -building_size.y * 0.22), Vector2(14, 26), "plaza_flag"))
 
 	return marker
 
 
-func _create_hotspot_marker(interaction: Dictionary) -> Control:
-	var marker := ColorRect.new()
+func _create_hotspot_marker(interaction: Dictionary) -> Node2D:
+	var marker := Node2D.new()
 	marker.name = interaction.get("interaction_id", "interaction")
-	marker.color = Color("#4da3ff66")
-	marker.position = _cell_position(interaction.get("cell", {}))
-	marker.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
-	marker.mouse_filter = Control.MOUSE_FILTER_STOP
-	marker.tooltip_text = interaction.get("action", "")
+	marker.position = _cell_center(interaction.get("cell", {}))
+	marker.add_child(_create_sprite("Glow", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 0.9, MAP_CELL_SIZE * 0.55), "hotspot_glow"))
 	return marker
 
 
-func _create_collision_marker(cell: Dictionary) -> Control:
-	var marker := ColorRect.new()
+func _create_collision_marker(cell: Dictionary) -> Node2D:
+	var marker := Node2D.new()
 	marker.name = "CollisionCell"
-	marker.color = Color("#2f3a3a28")
-	marker.position = _cell_position(cell)
-	marker.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
-	marker.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	marker.position = _cell_center(cell)
 	return marker
 
 
-func _create_anchor_marker(anchor: Dictionary) -> Control:
-	var marker := Label.new()
+func _create_anchor_marker(anchor: Dictionary) -> Node2D:
+	var marker := Node2D.new()
 	marker.name = anchor.get("anchor_id", "anchor")
-	marker.text = anchor.get("letter", "")
-	marker.position = _cell_position(anchor.get("position", {}))
-	marker.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
-	marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	marker.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	marker.add_theme_color_override("font_color", TEXT_COLOR)
-	marker.add_theme_font_size_override("font_size", 12)
-	marker.add_theme_stylebox_override("normal", _rounded_box(ACCENT_COLOR, 4))
+	var letter := str(anchor.get("letter", ""))
+	marker.position = _cell_center(anchor.get("position", {}))
+	marker.add_child(_create_anchor_object_sprite(letter))
+
+	var object := Node2D.new()
+	object.name = "ObjectLabel"
+	marker.add_child(object)
 	return marker
 
 
-func _create_reserved_anchor_marker(anchor: Dictionary) -> Control:
-	var marker := Label.new()
+func _create_reserved_anchor_marker(anchor: Dictionary) -> Node2D:
+	var marker := Node2D.new()
 	marker.name = anchor.get("anchor_id", "anchor")
-	marker.text = anchor.get("letter", "")
 	var route_order := int(anchor.get("route_order", 1))
 	marker.position = Vector2(
-		((route_order - 1) % 13) * MAP_CELL_SIZE * 2,
-		(20 + int((route_order - 1) / 13)) * MAP_CELL_SIZE
+		(((route_order - 1) % 13) * MAP_CELL_SIZE * 2) + MAP_CELL_SIZE,
+		((20 + int((route_order - 1) / 13)) * MAP_CELL_SIZE) + MAP_CELL_SIZE
 	)
-	marker.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
-	marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	marker.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	marker.add_theme_color_override("font_color", Color("#6a7476"))
-	marker.add_theme_font_size_override("font_size", 12)
-	marker.add_theme_stylebox_override("normal", _rounded_box(Color("#e0e6e4"), 4))
+	marker.add_child(_create_sprite("FutureObject", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.15, MAP_CELL_SIZE * 0.9), "reserved_anchor_%s" % str(anchor.get("letter", ""))))
+
+	var label := Node2D.new()
+	label.name = "ObjectLabel"
+	marker.add_child(label)
 	return marker
 
 
-func _create_npc_marker(npc: Dictionary) -> Control:
-	var marker := Label.new()
+func _create_npc_marker(npc: Dictionary) -> Node2D:
+	var marker := Node2D.new()
 	var npc_id := str(npc.get("npc_id", "neighbor"))
 	marker.name = "npc_%s" % npc_id
-	marker.text = _npc_display_name(npc_id).substr(0, 1)
-	marker.position = _cell_position(npc.get("cell", {}))
-	marker.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
-	marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	marker.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	marker.tooltip_text = _npc_line(npc_id)
-	marker.add_theme_color_override("font_color", Color.WHITE)
-	marker.add_theme_font_size_override("font_size", 12)
-	marker.add_theme_stylebox_override("normal", _rounded_box(NPC_COLOR, 4))
+	marker.position = _cell_center(npc.get("cell", {}))
+	marker.add_child(_create_sprite("Shadow", Vector2(0, 14), Vector2(24, 7), "shadow"))
+	marker.add_child(_create_sprite("Body", Vector2(0, 2), Vector2(22, 26), "npc_%s_body" % npc_id))
+	marker.add_child(_create_sprite("Head", Vector2(0, -13), Vector2(24, 22), "npc_%s_head" % npc_id))
+	marker.add_child(_create_sprite("EarLeft", Vector2(-9, -24), Vector2(8, 10), "npc_%s_ear_left" % npc_id))
+	marker.add_child(_create_sprite("EarRight", Vector2(9, -24), Vector2(8, 10), "npc_%s_ear_right" % npc_id))
+	marker.add_child(_create_sprite("FaceDotLeft", Vector2(-4, -15), Vector2(3, 3), "face_dot"))
+	marker.add_child(_create_sprite("FaceDotRight", Vector2(4, -15), Vector2(3, 3), "face_dot"))
 	return marker
 
 
-func _create_player_marker() -> Control:
-	var marker := Label.new()
+func _create_player_marker() -> Node2D:
+	var marker := Node2D.new()
 	marker.name = "Player"
-	marker.text = "P"
-	marker.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
-	marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	marker.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	marker.add_theme_color_override("font_color", Color.WHITE)
-	marker.add_theme_font_size_override("font_size", 12)
-	marker.add_theme_stylebox_override("normal", _rounded_box(PLAYER_COLOR, 4))
+	marker.add_child(_create_sprite("Shadow", Vector2(0, 14), Vector2(22, 7), "shadow"))
+	marker.add_child(_create_sprite("Body", Vector2(0, 4), Vector2(20, 24), "player_body"))
+	marker.add_child(_create_sprite("Head", Vector2(0, -12), Vector2(22, 20), "player_head"))
+	marker.add_child(_create_sprite("FaceDotLeft", Vector2(-4, -13), Vector2(3, 3), "face_dot"))
+	marker.add_child(_create_sprite("FaceDotRight", Vector2(4, -13), Vector2(3, 3), "face_dot"))
 	return marker
 
 
@@ -823,13 +843,13 @@ func move_player_by_cells(delta: Vector2i) -> Dictionary:
 
 func move_player_to_cell(target_cell: Vector2i) -> Dictionary:
 	if not _is_cell_walkable(target_cell):
-		_set_life_status("That spot is not walkable yet.")
+		_set_life_status("那里暂时走不过去。")
 		return {"ok": false, "reason": "blocked", "cell": _cell_to_dict(target_cell)}
 
 	player_cell = target_cell
 	_save_player_cell()
 	_update_player_marker()
-	_set_life_status("Walking in Sunshine Town: %s, %s" % [player_cell.x, player_cell.y])
+	_set_life_status("正在阳光小镇散步：%s，%s" % [player_cell.x, player_cell.y])
 	return {"ok": true, "cell": _cell_to_dict(player_cell)}
 
 
@@ -865,7 +885,7 @@ func interact_with_npc(npc_id: String) -> Dictionary:
 	if not reply.get("ok", false):
 		return reply
 
-	var display_name := str(reply.get("display_name", _npc_display_name(npc_id)))
+	var display_name := _localized_npc_name(npc_id, str(reply.get("display_name", _npc_display_name(npc_id))))
 	var line := str(reply.get("text", _npc_line(npc_id)))
 	var learning_record: Dictionary = save_service.load_learning_record()
 	var relationships: Dictionary = learning_record.get("npc_relationships", {})
@@ -901,11 +921,283 @@ func _map_anchor_letters() -> Array[String]:
 	return letters
 
 
+func _create_sprite(sprite_name: String, sprite_position: Vector2, sprite_size: Vector2, texture_key: String) -> Sprite2D:
+	var sprite := Sprite2D.new()
+	sprite.name = sprite_name
+	sprite.position = sprite_position
+	sprite.texture = _get_texture(texture_key)
+	var texture_size := Vector2(sprite.texture.get_width(), sprite.texture.get_height())
+	sprite.scale = Vector2(
+		sprite_size.x / max(texture_size.x, 1.0),
+		sprite_size.y / max(texture_size.y, 1.0)
+	)
+	return sprite
+
+
+func _get_texture(texture_key: String) -> ImageTexture:
+	if _texture_cache.has(texture_key):
+		return _texture_cache[texture_key]
+	var colors := _texture_colors(texture_key)
+	var image := Image.create(8, 8, false, Image.FORMAT_RGBA8)
+	image.fill(colors.get("fill", Color.WHITE))
+	var edge_color: Color = colors.get("edge", colors.get("fill", Color.WHITE))
+	for x in range(8):
+		image.set_pixel(x, 0, edge_color)
+		image.set_pixel(x, 7, edge_color)
+	for y in range(8):
+		image.set_pixel(0, y, edge_color)
+		image.set_pixel(7, y, edge_color)
+	var accent: Color = colors.get("accent", colors.get("fill", Color.WHITE))
+	for x in range(2, 6):
+		image.set_pixel(x, 2, accent)
+	for y in range(3, 6):
+		image.set_pixel(5, y, accent)
+	var texture := ImageTexture.create_from_image(image)
+	_texture_cache[texture_key] = texture
+	return texture
+
+
+func _texture_colors(texture_key: String) -> Dictionary:
+	if texture_key == "ground":
+		return {"fill": Color("#dff0d1"), "edge": Color("#d5e8c7"), "accent": Color("#e8f6da")}
+	if texture_key == "soft_horizon":
+		return {"fill": Color("#f7ffe433"), "edge": Color("#f7ffe400"), "accent": Color("#ffffff22")}
+	if texture_key == "road":
+		return {"fill": ROAD_COLOR, "edge": Color("#caa66b"), "accent": Color("#ead39a")}
+	if texture_key == "pond":
+		return {"fill": WATER_COLOR, "edge": Color("#76b6bf"), "accent": Color("#d7f4f2")}
+	if texture_key == "plaza":
+		return {"fill": Color("#f2dda2"), "edge": Color("#d1b56f"), "accent": Color("#ffe9ad")}
+	if texture_key == "flower":
+		return {"fill": FLOWER_COLOR, "edge": Color("#bd5775"), "accent": Color("#ffe7a0")}
+	if texture_key == "tree_trunk":
+		return {"fill": Color("#9b6b46"), "edge": Color("#735039"), "accent": Color("#ba8459")}
+	if texture_key == "tree_crown":
+		return {"fill": Color("#77b96c"), "edge": Color("#558d52"), "accent": Color("#9fd784")}
+	if texture_key == "shadow":
+		return {"fill": Color("#30453544"), "edge": Color("#30453522"), "accent": Color("#30453522")}
+	if texture_key.begins_with("place_"):
+		if texture_key.ends_with("_roof"):
+			var roof_place := texture_key.trim_prefix("place_").trim_suffix("_roof")
+			return {"fill": _place_roof_color(roof_place), "edge": Color("#8f6a45"), "accent": _place_roof_color(roof_place).lightened(0.18)}
+		var body_place := texture_key.trim_prefix("place_").trim_suffix("_body")
+		return {"fill": _place_color(body_place), "edge": Color("#7fa6a0"), "accent": _place_color(body_place).lightened(0.16)}
+	if texture_key.begins_with("door_"):
+		return {"fill": Color("#8f6244"), "edge": Color("#67452f"), "accent": Color("#d8b174")}
+	if texture_key.begins_with("window_"):
+		return {"fill": Color("#dff7ff"), "edge": Color("#78aac1"), "accent": Color("#ffffff")}
+	if texture_key == "anchor_shop_sign":
+		return {"fill": Color("#f5c85c"), "edge": Color("#a76f3c"), "accent": Color("#fff2a8")}
+	if texture_key == "plaza_flag":
+		return {"fill": Color("#f0a34f"), "edge": Color("#8f6a45"), "accent": Color("#fff2a8")}
+	if texture_key == "hotspot_glow":
+		return {"fill": Color("#fff0a877"), "edge": Color("#fff0a822"), "accent": Color("#ffffffaa")}
+	if texture_key.begins_with("npc_"):
+		var npc_id := texture_key.trim_prefix("npc_").trim_suffix("_body").trim_suffix("_head").trim_suffix("_ear_left").trim_suffix("_ear_right")
+		return {"fill": _npc_color(npc_id), "edge": _npc_color(npc_id).darkened(0.25), "accent": _npc_color(npc_id).lightened(0.2)}
+	if texture_key == "face_dot":
+		return {"fill": Color("#273034"), "edge": Color("#273034"), "accent": Color("#273034")}
+	if texture_key == "player_body":
+		return {"fill": PLAYER_COLOR, "edge": Color("#3f6091"), "accent": Color("#90b6e4")}
+	if texture_key == "player_head":
+		return {"fill": Color("#f0c9a2"), "edge": Color("#a97757"), "accent": Color("#ffdcb8")}
+	if texture_key.begins_with("anchor_"):
+		return _anchor_texture_colors(texture_key)
+	if texture_key.begins_with("reserved_anchor_"):
+		return {"fill": Color("#e9eee3aa"), "edge": Color("#c1cbca99"), "accent": Color("#f7faf4aa")}
+	return {"fill": Color("#ffffff"), "edge": Color("#d8d8d8"), "accent": Color("#f4f4f4")}
+
+
+func _anchor_texture_colors(texture_key: String) -> Dictionary:
+	if texture_key == "anchor_apple_tree":
+		return {"fill": Color("#78b76a"), "edge": Color("#4f8f50"), "accent": Color("#e85c4a")}
+	if texture_key == "anchor_bear_plush":
+		return {"fill": Color("#b8795c"), "edge": Color("#7a4d3c"), "accent": Color("#f1c8aa")}
+	if texture_key == "anchor_clock":
+		return {"fill": Color("#f2dfa5"), "edge": Color("#9c7d4e"), "accent": Color("#5c6670")}
+	if texture_key == "anchor_doghouse":
+		return {"fill": Color("#d7835d"), "edge": Color("#8d4d3e"), "accent": Color("#f5d293")}
+	if texture_key == "anchor_kite":
+		return {"fill": Color("#9fc9e6"), "edge": Color("#558ab2"), "accent": Color("#f2d36c")}
+	if texture_key == "anchor_orange_stand":
+		return {"fill": Color("#f1a34c"), "edge": Color("#ab6a32"), "accent": Color("#ffdc7a")}
+	if texture_key == "anchor_sun":
+		return {"fill": Color("#f2d36c"), "edge": Color("#c08f38"), "accent": Color("#fff2a8")}
+	if texture_key == "anchor_taxi_stop":
+		return {"fill": Color("#f0c94c"), "edge": Color("#3a3a37"), "accent": Color("#ffffff")}
+	if texture_key == "anchor_watch_sign":
+		return {"fill": Color("#d9c484"), "edge": Color("#7c6f4b"), "accent": Color("#f6f0cd")}
+	return {"fill": _anchor_object_color(texture_key.trim_prefix("anchor_")), "edge": Color("#9f7e48"), "accent": Color("#ffffffaa")}
+
+
+func _create_anchor_object_sprite(letter: String) -> Sprite2D:
+	var texture_key := "anchor_%s" % letter.to_lower()
+	match letter:
+		"A":
+			texture_key = "anchor_apple_tree"
+		"B":
+			texture_key = "anchor_bear_plush"
+		"C":
+			texture_key = "anchor_clock"
+		"D":
+			texture_key = "anchor_doghouse"
+		"K":
+			texture_key = "anchor_kite"
+		"O":
+			texture_key = "anchor_orange_stand"
+		"S":
+			texture_key = "anchor_sun"
+		"T":
+			texture_key = "anchor_taxi_stop"
+		"W":
+			texture_key = "anchor_watch_sign"
+		_:
+			texture_key = "reserved_anchor_%s" % letter
+	return _create_sprite("ObjectSprite", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.55, MAP_CELL_SIZE * 1.35), texture_key)
+
+
+func _add_town_scenery(map: Node2D, map_width: int, map_height: int) -> void:
+	map.add_child(_create_sprite("SoftHorizon", Vector2(map_width, map_height) * 0.5, Vector2(map_width, map_height), "soft_horizon"))
+	map.add_child(_create_sprite("TownPond", Vector2(30.5, 5.0) * MAP_CELL_SIZE, Vector2(5 * MAP_CELL_SIZE, 4 * MAP_CELL_SIZE), "pond"))
+	map.add_child(_create_sprite("TownPlaza", Vector2(16.0, 8.5) * MAP_CELL_SIZE, Vector2(8 * MAP_CELL_SIZE, 5 * MAP_CELL_SIZE), "plaza"))
+
+	for cell in [Vector2i(2, 12), Vector2i(4, 14), Vector2i(8, 18), Vector2i(18, 4), Vector2i(30, 16), Vector2i(35, 9)]:
+		var flower := Node2D.new()
+		flower.name = "FlowerPatch"
+		flower.position = Vector2(cell.x + 0.5, cell.y + 0.5) * MAP_CELL_SIZE
+		flower.add_child(_create_sprite("Petals", Vector2.ZERO, Vector2(15, 13), "flower"))
+		map.add_child(flower)
+
+	for cell in [Vector2i(1, 2), Vector2i(9, 3), Vector2i(11, 13), Vector2i(20, 14), Vector2i(27, 18), Vector2i(36, 4)]:
+		var tree := Node2D.new()
+		tree.name = "RoundTree"
+		tree.position = Vector2(cell.x + 0.72, cell.y + 0.72) * MAP_CELL_SIZE
+		tree.add_child(_create_sprite("Trunk", Vector2(0, 13), Vector2(8, 18), "tree_trunk"))
+		tree.add_child(_create_sprite("Crown", Vector2(0, -2), Vector2(MAP_CELL_SIZE * 1.5, MAP_CELL_SIZE * 1.42), "tree_crown"))
+		map.add_child(tree)
+
+
+func _place_color(place_id: String) -> Color:
+	match place_id:
+		"place_home":
+			return Color("#ffd98e")
+		"place_town_start":
+			return Color("#f7e6a6")
+		"place_supermarket":
+			return Color("#b9dcf0")
+		_:
+			return PLACE_COLOR
+
+
+func _place_roof_color(place_id: String) -> Color:
+	match place_id:
+		"place_home":
+			return Color("#d7835d")
+		"place_town_start":
+			return Color("#9eb76d")
+		"place_supermarket":
+			return Color("#5f9fc4")
+		_:
+			return Color("#b99268")
+
+
+func _place_icon(place_id: String) -> String:
+	match place_id:
+		"place_home":
+			return "温暖小屋"
+		"place_town_start":
+			return "小镇广场"
+		"place_supermarket":
+			return "街角商店"
+		_:
+			return "小地点"
+
+
+func _npc_icon(npc_id: String) -> String:
+	match npc_id:
+		"mina":
+			return "Mina"
+		"shopkeeper":
+			return "店长"
+		"pet_buddy":
+			return "Sunny"
+		"bus_helper":
+			return "巴士"
+		"story_bear":
+			return "熊熊"
+		_:
+			return "你好"
+
+
+func _npc_color(npc_id: String) -> Color:
+	match npc_id:
+		"mina":
+			return Color("#d98578")
+		"shopkeeper":
+			return Color("#a36d4f")
+		"pet_buddy":
+			return Color("#e0a14d")
+		"bus_helper":
+			return Color("#5a94b6")
+		"story_bear":
+			return Color("#b8795c")
+		_:
+			return NPC_COLOR
+
+
+func _anchor_object_label(letter: String, core_word: String) -> String:
+	match letter:
+		"A":
+			return "Apple"
+		"B":
+			return "Bear"
+		"C":
+			return "Clock"
+		"D":
+			return "Dog"
+		"K":
+			return "Kite"
+		"O":
+			return "Orange"
+		"S":
+			return "Sun"
+		"T":
+			return "Taxi"
+		"W":
+			return "Watch"
+		_:
+			if core_word.is_empty():
+				return "Keepsake"
+			return core_word
+
+
+func _anchor_object_color(letter: String) -> Color:
+	match letter:
+		"A", "O":
+			return Color("#f1b85c")
+		"B", "D":
+			return Color("#c98b68")
+		"C", "W":
+			return Color("#d9c484")
+		"K":
+			return Color("#9fc9e6")
+		"S":
+			return Color("#f2d36c")
+		"T":
+			return Color("#e8b05b")
+		_:
+			return Color("#e9eee3")
+
+
 func _cell_position(cell: Dictionary) -> Vector2:
 	return Vector2(
 		int(cell.get("x", 0)) * MAP_CELL_SIZE,
 		int(cell.get("y", 0)) * MAP_CELL_SIZE
 	)
+
+
+func _cell_center(cell: Dictionary) -> Vector2:
+	return _cell_position(cell) + Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE) * 0.5
 
 
 func _dict_to_cell(cell: Dictionary) -> Vector2i:
@@ -918,7 +1210,7 @@ func _cell_to_dict(cell: Vector2i) -> Dictionary:
 
 func _update_player_marker() -> void:
 	if is_instance_valid(player_marker):
-		player_marker.position = Vector2(player_cell.x * MAP_CELL_SIZE, player_cell.y * MAP_CELL_SIZE)
+		player_marker.position = Vector2(player_cell.x + 0.5, player_cell.y + 0.5) * MAP_CELL_SIZE
 
 
 func _load_player_cell() -> Vector2i:
@@ -997,12 +1289,28 @@ func _npc_profile(npc_id: String) -> Dictionary:
 
 func _npc_display_name(npc_id: String) -> String:
 	var profile := _npc_profile(npc_id)
-	return str(profile.get("display_name", npc_id))
+	return _localized_npc_name(npc_id, str(profile.get("display_name", npc_id)))
 
 
 func _npc_line(npc_id: String) -> String:
 	var profile := _npc_profile(npc_id)
 	return str(profile.get("fallback_reply", "Let's keep exploring Sunshine Town together."))
+
+
+func _localized_npc_name(npc_id: String, fallback: String) -> String:
+	match npc_id:
+		"mina":
+			return "米娜"
+		"shopkeeper":
+			return "店长"
+		"pet_buddy":
+			return "Sunny"
+		"bus_helper":
+			return "巴士哥哥"
+		"story_bear":
+			return "故事熊"
+		_:
+			return fallback
 
 
 func _find_nearest_npc(radius: int) -> Dictionary:

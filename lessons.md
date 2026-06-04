@@ -53,6 +53,16 @@
 | 2026-06-04 | Round 25-27 账号/云存档/内容本地 stub | 无 | 账号、云存档、内容包、主题和审核本地 stub 通过 focused tests，未产生新的已验证教训 |
 | 2026-06-04 | Round 28-29 语音/AI/社交本地 stub | LESSON-006 | 并行 worker 关闭前写入了与主实现不一致的 runner 片段，导致重复常量/函数编译失败 |
 | 2026-06-04 | Round 30-33 远期能力与最终集成 | LESSON-006 复用 | 清理重复 runner 注册后，全量回归通过；后续并行 agent 需减少共享测试入口冲突 |
+| 2026-06-04 | Round 34 主界面视觉修正 | LESSON-007 | 生活 RPG 逻辑验收通过但首屏仍显示工程占位，补充视觉验收与占位文案拦截 |
+| 2026-06-04 | Round 35 Playfield 化 | 无 | 首屏从仪表盘式 UI 转为全屏小镇 playfield，MCP 截图与 headless 验证通过，未新增已验证故障 |
+| 2026-06-04 | Round 36 Sprite2D 小镇资产化 | 无 | RuntimeMap 改为 Node2D/Sprite2D 小镇资产层，A-Z anchors 与居民视觉物件化，MCP 截图和 headless 验证通过，未新增已验证故障 |
+| 2026-06-04 | Round 37 孩子端中文界面 | 无 | 主界面与生活反馈改为中文显示，保留英语为环境/系统资产名，focused tests 与 headless 验证通过，未新增已验证故障 |
+| 2026-06-04 | Round 38 HUD 顶底栏收纳 | 无 | 左侧/右侧大面板收纳为顶部消息栏与底部按钮栏，MCP 截图和 focused/headless 验证通过，未新增已验证故障 |
+| 2026-06-04 | Round 39 顶部 HUD 单行压缩 | 无 | 独立标题横幅合并进 48px 单行 TownHUD，MCP 截图和 focused/headless 验证通过，未新增已验证故障 |
+| 2026-06-04 | Round 40 底部操作栏精简 | 无 | 孩子端底部常驻按钮精简为四个，旧快捷按钮隐藏保留 contract，MCP 截图和 focused/headless 验证通过，未新增已验证故障 |
+| 2026-06-04 | Round 41 底部按钮儿童化视觉 | 无 | 底栏收窄居中，按钮改为柔和暖色胶囊并补齐交互状态，MCP 截图和 focused/headless 验证通过，未新增已验证故障 |
+| 2026-06-04 | Round 42 背包与 HUD 状态分组 | 无 | 背包气泡和顶部金币/宠物状态拆分通过 focused/headless 与 MCP 场景树验证，未新增已验证故障 |
+| 2026-06-04 | Round 43 长期路线规划 | 无 | 仅更新 `todo.md` 长期路线和 Ready 队列，未改运行时代码，未新增已验证故障 |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -123,3 +133,18 @@
   - 共享 runner 由主 Agent 在集成阶段统一注册，注册前先 `rg` 检查同名 preload 和函数。
   - 关闭或超时的 worker 结果必须作为待审片段处理，不能默认视为已集成完成。
 - **验证依据：** 清理重复注册后，`godot --headless --path . --script tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过。
+
+## LESSON-007：主循环验收必须包含首屏视觉和玩家感知
+
+- **日期：** 2026-06-04
+- **关联任务：** `V02-LIFE-001` 至 `V02-LIFE-013`、`V02-UI-002`
+- **现象：** 生活 RPG 相关服务、地图节点和 headless 行为测试均已完成，但启动首屏仍显示 `StudyGame V02`、`Godot skeleton`、`Loaded places ... from JSON` 等工程占位文案，玩家看到的风格没有变成 Sunshine Town 生活小镇。
+- **影响：** `todo.md` 显示生活 MVP 已完成，但实际玩家第一感知仍像技术原型，导致产品方向纠偏没有落到主界面体验。
+- **根因：** 早期验收偏向服务、数据合同和节点存在性，没有把首屏身份、视觉层级、占位文案清理和地图主视觉纳入自动验收。
+- **解决方式：** 新增并完成 `V02-UI-002`，将主场景改为 Sunshine Town 标题、地图主舞台、右侧生活 HUD、温暖小镇色彩和更清晰的地点/NPC/anchor 表现；在 `headless_runner` 中拦截工程占位文案并要求首屏包含 Sunshine Town 身份。
+- **预防规则：**
+  - 所有“风格改变”“方向纠偏”“玩家体验”任务必须包含玩家可见首屏验收，不能只验收服务或节点。
+  - 主界面不得保留 skeleton、Loaded from JSON、engine/version/debug summary 等工程占位文案。
+  - Headless 测试需要扫描孩子端可见文本，防止工程占位、学习压力和家长后台文案回流。
+  - 视觉任务完成前，至少运行主场景测试、全量 headless runner，并在 Godot 编辑器可用时做截图检查。
+- **验证依据：** `godot --headless --path . --check-only --script scripts/main.gd`、`tests/test_life_rpg_scene.gd`、`tests/test_playable_loop_smoke.gd`、`tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过；MCP 截图因 Godot 编辑器插件未运行无法执行。

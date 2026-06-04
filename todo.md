@@ -2,8 +2,8 @@
 
 > 最后更新：2026-06-04  
 > 状态事实来源：本文件  
-> 当前阶段：方向纠偏 - 生活 RPG / 小镇养成 MVP  
-> 当前里程碑：从学习闭环原型转为可移动、可探索、可互动、可装饰的小镇生活原型
+> 当前阶段：长期路线规划 - 生活小镇从原型走向长期可玩  
+> 当前里程碑：V02.1 每日小镇，建立每日回访、居民轻委托和资源刷新
 
 ## 维护规则
 
@@ -19,13 +19,13 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 33：Final Integration |
-| 本轮目标 | 全量 todo 收口，完成地图编辑器、跨阶段 QA 与远期本地 stub |
+| 当前轮次 | Round 43：长期路线规划 Pass |
+| 本轮目标 | 已完成背包气泡和 HUD 状态分组，准备进入长期生活小镇路线 |
 | 进行中 | 无 |
-| Ready | 无 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub 与 QA 汇合 |
+| Ready | V02-DAILY-001 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复 |
 | 阻塞项 | 无 |
-| 待确认决策 | 无 |
+| 待确认决策 | V02.1 首批每日问候和轻委托文本是否先以固定本地数据实现 |
 | 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
 
 ## 方向纠偏：生活 RPG / 小镇养成 MVP
@@ -71,6 +71,85 @@
   Owner：Godot Dev / UX Agent；依赖：V02-LIFE-011；交付物：中性的 place entry 互动结果、独立的商店购买/家园摆放/邻居帮助触发路径；验收：进入 Home、Town Start、Supermarket 不自动发 coins、不自动购买、不自动摆放，生活动作仍可通过显式对象或后续轻委托触发并通过测试。
 - [x] **V02-LIFE-013 每日轻委托 MVP**  
   Owner：Game Design / Godot Dev / Narrative Agent；依赖：V02-LIFE-003、V02-LIFE-004、V02-LIFE-012；交付物：首个本地每日轻委托数据与服务、Mina 请求 branch 的 NPC 互动、奖励与关系保存；验收：接取、收集、交付、奖励、当日去重和重载保存通过 headless 测试，孩子端不出现学习压力文案，Letter Snake 不作为完成条件。
+- [x] **V02-UI-002 主界面生活小镇视觉重做**  
+  Owner：Godot Dev / UI Agent；依赖：V02-LIFE-013；交付物：`scenes/main.tscn` / `scripts/main.gd` 首屏布局和视觉；验收：启动首屏不再显示 Godot skeleton / Loaded places 等工程占位文案，地图成为主视觉，HUD 展示生活状态、邻居、背包和温和操作，保留统一 Interact、可选相册/小游戏入口，并通过 headless 与生活场景测试。
+- [x] **V02-UI-003 动森式小镇首屏 Playfield**  
+  Owner：Godot Dev / UI Agent；依赖：V02-UI-002；交付物：`scripts/main.gd` 全屏小镇 playfield、轻 HUD、场景化 A-Z 锚点表现、动物居民/玩家视觉符号；验收：首屏不再是左导航+右状态面板，中间地图不是数据调试网格；A-Z 不以裸字母学习标签为主表现；孩子端只看到小镇、居民、背包、相册和温和互动；通过主场景、playable loop、headless 验证。
+- [x] **V02-UI-004 Sprite2D 小镇首屏资产化**  
+  Owner：Godot Dev / UI / QA Agent；依赖：V02-UI-003；交付物：`scripts/main.gd` Node2D/Sprite2D runtime playfield、物件化 A-Z anchors、动物居民视觉、气泡式 HUD、截图验收记录；验收：RuntimeMap 不再是 Control 方块地图，首屏像孩子进入 Sunshine Town 小镇而不是开发者调试面板；结构测试、生活场景测试、playable loop、headless、Godot quit 和 MCP 截图验收通过。
+- [x] **V02-UI-005 孩子端中文界面**  
+  Owner：Godot Dev / UI / QA Agent；依赖：V02-UI-004；交付物：`scripts/main.gd` 主界面中文标题、按钮、提示、状态反馈与测试断言更新；验收：孩子端首屏和生活操作反馈以中文为主，英文仅保留为环境/系统资产名；现有生活循环和 headless 验证通过。
+- [x] **V02-UI-006 顶部消息栏与底部按钮栏**  
+  Owner：Godot Dev / UI / QA Agent；依赖：V02-UI-005；交付物：`scripts/main.gd` 顶部消息状态栏、底部统一按钮栏、无遮挡小镇 playfield；验收：左侧/右侧大面板不再覆盖地图，消息类信息集中顶部一排，操作与导航按钮集中底部一排，生活循环与 headless 验证通过。
+- [x] **V02-UI-007 顶部 HUD 单行压缩**  
+  Owner：Godot Dev / UI / QA Agent；依赖：V02-UI-006；交付物：`scripts/main.gd` 单行顶部 HUD；验收：首屏不再出现标题横幅加状态横幅的双层顶部 UI，阳光小镇标题、开放状态、今日提示和背包摘要集中到一条紧凑 HUD，地图可视面积增加，focused/headless 验证通过。
+- [x] **V02-UI-008 底部操作栏精简**  
+  Owner：Godot Dev / UI / QA Agent；依赖：V02-UI-007；交付物：`scripts/main.gd` 精简底部按钮栏；验收：孩子端底部常驻按钮只保留 `看看`、`小镇`、`小屋`、`背包`，生活循环、购买、喂养、相册和 Letter Snake 快捷按钮不再可见但保留脚本/测试 contract 节点，focused/headless 与 MCP 截图验证通过。
+- [x] **V02-UI-009 底部按钮儿童化视觉**  
+  Owner：Godot Dev / UI / QA Agent；依赖：V02-UI-008；交付物：`scripts/main.gd` 底部按钮色彩、状态和布局优化；验收：底部按钮不再是沉重深绿色方块，主操作与导航有柔和且可区分的 normal/hover/pressed 状态，底栏居中且不横跨大半屏空白，focused/headless 与 MCP 截图验证通过。
+- [x] **V02-UI-010 背包气泡内容恢复**  
+  Owner：Godot Dev / UI / QA Agent；依赖：V02-UI-009；交付物：`scripts/main.gd` 背包按钮交互与轻量背包气泡；验收：点击底部 `背包` 可打开/关闭包含金币、Sunny 点心、树枝、家具、相册和 Letter Snake 入口说明的中文气泡；气泡不覆盖大半地图，状态随存档背包内容刷新，focused/headless 与 MCP 截图验证通过。
+
+## 长期路线：生活小镇从原型到长期可玩
+
+> 目标版本：孩子每天可以回到 Sunshine Town，照顾 Sunny、拜访居民、收集材料、完成轻委托、装饰小屋、解锁小镇角落，并在环境里自然遇见英语词汇和 A-Z 记忆锚点。英语继续作为环境层、收藏层和记忆宫殿编码，不重新变成测试、课程或主线任务。
+
+| 版本 | 主题 | 目标体验 | 完成标志 |
+|---|---|---|---|
+| V02.1 | 每日小镇 | 每天回来都有居民、资源和今日状态可看 | 多 NPC 每日问候、轻委托、资源刷新和今日状态通过 smoke |
+| V02.2 | 我的小屋 | 小屋成为孩子愿意经营和装饰的归属空间 | 独立小屋视图、家具摆放/收起/保存、Sunny 家内反馈通过 |
+| V02.3 | 小镇记忆宫殿 | A-Z 锚点成为稳定场景物件和回访路线 | 首批 A-Z 场景物件强化、相册收藏和新词故事回访通过 |
+| V02.4 | 内容生产框架 | 后续内容主要写数据而不是改主脚本 | 委托、商品、家具、对白、anchor 内容数据化并有合同测试 |
+
+### V02.1 每日小镇：回访、居民和资源
+
+- [ ] **V02-DAILY-001 每日问候系统**  
+  Owner：Narrative / Godot Dev / QA Agent；依赖：V02-LIFE-013；交付物：本地每日问候数据、问候状态保存、NPC 互动接入；验收：Mina、店长、Sunny、故事熊、巴士哥哥每天首次互动有中文问候并写入当日状态，同日重复不重复发奖励；孩子端无学习压力文案。
+- [ ] **V02-DAILY-002 多 NPC 每日轻委托扩展**  
+  Owner：Game Design / Narrative / Godot Dev Agent；依赖：V02-DAILY-001、V02-LIFE-004；交付物：至少 3 条新增本地每日轻委托；验收：店长、故事熊、Sunny 至少各有一条轻委托，包含接取、目标、交付、金币/材料/关系奖励、同日去重和保存重载测试。
+- [ ] **V02-DAILY-003 每日资源刷新**  
+  Owner：Godot Dev / Map / QA Agent；依赖：V02-LIFE-004；交付物：资源刷新服务和首批资源点数据；验收：树枝、花、石子等资源按本地日期刷新，已收集资源当天不重复出现，跨日刷新通过 headless 测试。
+- [ ] **V02-DAILY-004 今日状态与轻日历**  
+  Owner：UX / Godot Dev Agent；依赖：V02-DAILY-001；交付物：顶部 HUD 今日状态、天气/小镇事件本地 stub；验收：HUD 能显示“今天晴天 / 集市日 / Sunny 想玩”等短提示，不遮挡地图，不引入真实时间压力或错过惩罚。
+- [ ] **V02-DAILY-005 V02.1 每日小镇 smoke**  
+  Owner：QA Agent；依赖：V02-DAILY-001 至 V02-DAILY-004；交付物：每日小镇端到端 smoke；验收：启动、问候、接委托、收集资源、交付、奖励、背包刷新、同日去重、跨日刷新全链路通过 focused/headless。
+
+### V02.2 我的小屋：家园装饰成为核心留存
+
+- [ ] **V02-HOME-001 独立小屋视图**  
+  Owner：Godot Dev / UI Agent；依赖：V02-LIFE-006；交付物：HomeRoom 场景或主场景小屋模式；验收：进入小屋后看到房间、家具、Sunny 和返回小镇入口，底部操作不覆盖房间。
+- [ ] **V02-HOME-002 家具摆放/旋转/收起交互**  
+  Owner：Godot Dev / UX Agent；依赖：V02-HOME-001；交付物：触屏友好的家具操作；验收：家具可选择、摆放、旋转、收起，非法位置有温和反馈，保存后重进位置不丢失。
+- [ ] **V02-HOME-003 家具与宠物用品商品扩展**  
+  Owner：Game Design / Godot Dev Agent；依赖：V02-LIFE-005、V02-HOME-001；交付物：首批家具和宠物用品数据；验收：至少包含小桌、地毯、花盆、宠物碗、小床、墙饰，商店可购买并进入背包或家园库存。
+- [ ] **V02-HOME-004 Sunny 家内反馈**  
+  Owner：Narrative / Godot Dev Agent；依赖：V02-HOME-001、V02-HOME-003；交付物：Sunny 对家具和小屋状态的本地反馈；验收：Sunny 会对宠物碗、小床等物件给出短反馈，提升温暖感但不显示考试式评分。
+- [ ] **V02-HOME-005 V02.2 小屋 smoke**  
+  Owner：QA Agent；依赖：V02-HOME-001 至 V02-HOME-004；交付物：小屋装饰端到端测试；验收：购买、进入小屋、摆放、旋转、收起、Sunny 反馈、保存重载全链路通过。
+
+### V02.3 小镇记忆宫殿：A-Z 场景化与收藏回访
+
+- [ ] **V02-AZ-WORLD-001 首批 A-Z 场景物件强化**  
+  Owner：Memory Palace / Map / Godot Dev Agent；依赖：V02-LIFE-009；交付物：A/B/C/D/K/O/S/T/W 的场景物件表现升级；验收：Apple Tree、Bear Corner、Clock Tower、Dog House、Kite Hill、Orange Stand、Sun Plaza、Taxi Stop、Watch Sign 等在地图中可感知，不以裸字母标签为主表现。
+- [ ] **V02-AZ-WORLD-002 Anchor 互动与相册收藏**  
+  Owner：Godot Dev / Curriculum Agent；依赖：V02-AZ-WORLD-001、V02-CARD-001；交付物：anchor 轻互动和相册记录；验收：孩子靠近场景物件可“看看”，相册记录见过/听过/收藏状态，界面表达为小镇发现而不是单词测验。
+- [ ] **V02-AZ-WORLD-003 新词故事回访路径**  
+  Owner：Curriculum / Memory Palace / Narrative Agent；依赖：V02-AZ-WORLD-001；交付物：首批新词回访数据和短故事；验收：每个新增词具备 `letter`、`core_anchor_id`、`world_place_id`、`story_memory`、`visual_hook`、`review_path`，并能从地图地点触发温和回访。
+- [ ] **V02-AZ-WORLD-004 V02.3 记忆宫殿审计**  
+  Owner：QA / Memory Palace Agent；依赖：V02-AZ-WORLD-001 至 V02-AZ-WORLD-003；交付物：A-Z 场景化审计和自动化检查；验收：核心 anchor 顺序、场景物件、相册绑定、新词故事绑定全部通过测试。
+
+### V02.4 内容生产框架：让扩展主要写数据
+
+- [ ] **V02-CONTENT-001 每日委托数据化合同**  
+  Owner：Godot Dev / Game Design Agent；依赖：V02-DAILY-002；交付物：daily request schema 和 loader；验收：新增委托无需改 `scripts/main.gd` 主流程即可加载，ID、奖励、同日去重和儿童安全文案有测试。
+- [ ] **V02-CONTENT-002 NPC 对话数据化合同**  
+  Owner：Narrative / Godot Dev Agent；依赖：V02-DAILY-001；交付物：NPC greeting/dialogue 数据合同；验收：问候、轻委托对白、关系阶段对白可由数据驱动，默认本地 stub，无网络依赖。
+- [ ] **V02-CONTENT-003 家具和商品数据化合同**  
+  Owner：Godot Dev / Economy Agent；依赖：V02-HOME-003；交付物：商品、家具、分类、价格和摆放 footprint 数据合同；验收：商品轮换和家具摆放读取数据，非法价格、重复 ID、缺失稳定 ID 可被测试拦截。
+- [ ] **V02-CONTENT-004 Anchor 内容包校验增强**  
+  Owner：Curriculum / Memory Palace / QA Agent；依赖：V02-AZ-WORLD-004、V02-FUTURE-003；交付物：内容包校验规则扩展；验收：内容包不能覆盖核心 A-Z 编码，新增词必须绑定记忆宫殿字段，未通过人工审核不得进入 runtime。
+- [ ] **V02-CONTENT-005 V02.4 数据化回归**  
+  Owner：QA Agent；依赖：V02-CONTENT-001 至 V02-CONTENT-004；交付物：内容数据合同和回归测试集；验收：委托、对白、商品、家具、anchor 内容均可通过数据新增并通过 headless runner。
 
 ## 阶段 0：框架与管理基线
 
@@ -270,3 +349,11 @@
 | 2026-06-04 | Round 31 验收 | V02-FUTURE-009 | 移动端基线纳入 `headless_runner`，验证 1280x720、mobile renderer、safe area、触控导航宽度和主场景性能 smoke；`godot --headless --path . --quit` 与 `headless_runner` 通过 |
 | 2026-06-04 | Round 32 验收 | V02-FUTURE-010 | 新增 `ContentReviewPipeline`，候选内容必须人工批准后才能发布到 runtime，本地审核不联网；`test_content_theme_review_stubs`、`headless_runner` 通过 |
 | 2026-06-04 | Round 33 验收 | Final Integration | `todo.md` 全部可执行项已完成，地图编辑器、远期本地 stub、跨阶段 QA 全量回归通过；`godot --headless --path . --quit`、focused tests、`tests/headless_runner.gd` 通过 |
+| 2026-06-04 | Round 36 验收 | V02-UI-004 | `RuntimeMap` 改为 `Node2D`，地面、道路、建筑、物件化 A-Z anchors、动物居民和玩家均由 `Sprite2D` 风格节点组成；右侧状态面板收为左侧小气泡 HUD；`check-only`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`headless_runner`、`godot --headless --path . --quit` 通过；MCP 成功捕获 1280x720 首屏截图并确认小镇 playfield 节点结构可见 |
+| 2026-06-04 | Round 37 验收 | V02-UI-005 | 孩子端主界面标题、导航、HUD 气泡、操作按钮、背包状态、地点进入、移动、收集、购买、喂养和 NPC 显示名改为中文；英文仅保留 `Sunny`、`Letter Snake` 等环境/系统资产名；`check-only`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`headless_runner`、`godot --headless --path . --quit` 通过 |
+| 2026-06-04 | Round 38 验收 | V02-UI-006 | 移除覆盖地图的左侧 `LifeRPGPanel`、`HomePetLoopPanel`、`OptionalActivityPanel` 三块大面板；消息、生活状态和背包摘要集中到顶部 `TownHUD` 一排；所有操作与导航集中到底部 `TownFooter` 一排按钮；`check-only`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`headless_runner`、`godot --headless --path . --quit` 通过；MCP 截图与节点属性确认顶底栏布局生效 |
+| 2026-06-04 | Round 39 验收 | V02-UI-007 | 删除独立 `Header` 顶部横幅，将“阳光小镇”、开放状态、今日提示、循环状态和背包摘要合并到 48px 高的单行 `TownHUD`；底部 `TownFooter` 保持一排操作按钮；`check-only`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`headless_runner` 通过；MCP 截图与节点属性确认首屏顶部只剩一条紧凑 HUD |
+| 2026-06-04 | Round 40 验收 | V02-UI-008 | 底部 `TownFooter` 可见操作精简为 `看看`、`小镇`、`小屋`、`背包` 四个按钮；`StartButton`、`HelpNeighborButton`、`BuyFoodButton`、`FeedSunnyButton`、`MemoryAlbumButton`、`LetterSnakeButton` 移入隐藏 `FooterContractButtons` 保持测试/脚本入口；`check-only`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`headless_runner` 通过；MCP 截图与场景树确认孩子端底栏仅四个可见按钮 |
+| 2026-06-04 | Round 41 验收 | V02-UI-009 | 底部 `TownFooter` 收窄居中并改为柔和暖色底托；四个可见按钮改为圆角胶囊，主操作/选中导航使用暖黄色强调，普通导航使用浅色，normal/hover/pressed/focus 状态齐全；`check-only`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`headless_runner` 通过；MCP 截图与节点属性确认底栏约 647px 居中显示 |
+| 2026-06-04 | Round 42 验收 | V02-UI-010 | 底部 `背包` 按钮打开轻量 `BackpackBubble`，展示金币、Sunny 点心、树枝、木椅、相册和 Letter Snake 入口说明；顶部 HUD 新增独立 `CoinState` 金币 badge，并将 `PetState` 收为点心、饥饿、开心三项，金币和宠物状态视觉分组；`check-only`、`test_life_rpg_scene`、`headless_runner` 通过；MCP 场景树确认 `CoinState` / `PetState` 独立存在 |
+| 2026-06-04 | Round 43 规划 | 长期路线 | 新增“长期路线：生活小镇从原型到长期可玩”章节，确定 V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架四个里程碑，并将 `V02-DAILY-001` 设为下一项 Ready |

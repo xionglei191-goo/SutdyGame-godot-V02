@@ -14,8 +14,24 @@ func _init() -> void:
 	main.save_service.clear_for_test()
 	main.call("_ready")
 
-	_expect(main.find_child("LifeRPGPanel", true, false) != null, "main scene should expose life RPG panel")
-	_expect(main.find_child("OptionalActivityPanel", true, false) != null, "main scene should expose optional activity panel")
+	_expect(main.find_child("TownHUD", true, false) != null, "main scene should expose top message HUD")
+	_expect(main.find_child("TownFooter", true, false) != null, "main scene should expose bottom action bar")
+	var footer := main.find_child("TownFooter", true, false) as Control
+	_expect(footer != null and footer.anchor_left >= 0.2 and footer.anchor_right <= 0.8, "bottom action bar should be compact and centered")
+	var visible_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
+	_expect(visible_actions != null and visible_actions.get_child_count() == 4, "bottom bar should expose only Interact and three navigation buttons")
+	var backpack_button := main.find_child("BackpackNavButton", true, false) as Button
+	var backpack_bubble := main.find_child("BackpackBubble", true, false) as Control
+	_expect(backpack_button != null and backpack_bubble != null and not backpack_bubble.visible, "Backpack button should start with a hidden content bubble")
+	_expect(main.find_child("Header", true, false) == null, "main scene should not keep a second top title banner")
+	var title_label := main.find_child("Title", true, false) as Label
+	_expect(title_label != null and str(title_label.text) == "阳光小镇", "single-line HUD should keep the town title")
+	var coin_state := main.find_child("CoinState", true, false) as Label
+	var pet_state := main.find_child("PetState", true, false) as Label
+	_expect(coin_state != null and str(coin_state.text).contains("币"), "coin status should be separated into its own icon badge")
+	_expect(pet_state != null and not str(pet_state.text).contains("金币"), "pet status should not merge coins with Sunny's needs")
+	_expect(main.find_child("LifeRPGPanel", true, false) == null, "main scene should not cover the map with a left life panel")
+	_expect(main.find_child("OptionalActivityPanel", true, false) == null, "main scene should not cover the map with optional activity panel")
 	_expect(main.find_child("RuntimeMap", true, false) != null, "main scene should expose runtime map")
 	_expect(main.find_child("Player", true, false) != null, "main scene should expose player marker")
 	_expect(main.find_child("npc_mina", true, false) != null, "main scene should expose Mina marker")
@@ -25,11 +41,13 @@ func _init() -> void:
 	_expect(main.find_child("npc_story_bear", true, false) != null, "main scene should expose Story Bear marker")
 	_expect(main.find_child("anchor_a_apple", true, false) != null, "A anchor should remain visible in explorable map")
 	_expect(main.find_child("InteractButton", true, false) != null, "main scene should expose unified Interact button")
+	var help_neighbor_button := main.find_child("HelpNeighborButton", true, false) as Button
+	_expect(help_neighbor_button != null and not help_neighbor_button.is_visible_in_tree(), "life shortcut buttons should stay hidden from the child footer")
 	_expect(main.find_child("PickBranchButton", true, false) == null, "main scene should not expose Pick Branch debug button")
 	_expect(main.find_child("BuyChairButton", true, false) == null, "main scene should not expose Buy Chair debug button")
 	_expect(main.find_child("PlaceChairButton", true, false) == null, "main scene should not expose Place Chair debug button")
 	_expect(main.find_child("HelpNeighborButton", true, false) != null, "main scene should expose life-first coin action")
-	_expect(str(main.optional_activity_label.text).contains("side activities"), "learning systems should be presented as side activities")
+	_expect(str(main.optional_activity_label.text).contains("收藏活动"), "learning systems should be presented as optional collection activities")
 	_expect(main.find_child("ParentButton", true, false) == null, "child main flow should not expose Parent navigation button")
 	_expect(main.get_parent_entry_spec().get("child_flow_visible", true) == false, "parent entry spec should stay outside child flow")
 	_expect(main.get_parent_entry_spec().get("available_in_child_nav", true) == false, "parent entry spec should not be in child nav")
@@ -58,14 +76,14 @@ func _init() -> void:
 	_expect(mina_start.get("request_id", "") == "daily_mina_branch_001", "Mina should offer the branch request")
 	_expect(mina_start.get("request_status", "") == "active", "Mina branch request should become active")
 	_expect(not bool(mina_start.get("network_used", true)), "Mina daily request should not use network")
-	_expect(str(main.life_status_label.text).contains("Mina"), "life status should show Mina request")
+	_expect(str(main.life_status_label.text).contains("米娜"), "life status should show localized Mina request")
 	_expect(int(main.save_service.load_game_state().get("coins", 0)) == 0, "starting Mina request should not award coins")
 
 	var npc_checks := [
-		{"npc_id": "shopkeeper", "display_name": "Shopkeeper", "cell": Vector2i(24, 10), "text": "The shopkeeper says: Here you are. Thank you."},
-		{"npc_id": "pet_buddy", "display_name": "Pet Buddy", "cell": Vector2i(6, 8), "text": "Pet Buddy says: Sunny is happy. Thank you."},
-		{"npc_id": "bus_helper", "display_name": "Bus Helper", "cell": Vector2i(32, 12), "text": "Bus Helper says: I go by bus. Let's go."},
-		{"npc_id": "story_bear", "display_name": "Story Bear", "cell": Vector2i(12, 7), "text": "Story Bear says: Bear has a book. Story time."},
+		{"npc_id": "shopkeeper", "display_name": "店长", "cell": Vector2i(24, 10), "text": "The shopkeeper says: Here you are. Thank you."},
+		{"npc_id": "pet_buddy", "display_name": "Sunny", "cell": Vector2i(6, 8), "text": "Pet Buddy says: Sunny is happy. Thank you."},
+		{"npc_id": "bus_helper", "display_name": "巴士哥哥", "cell": Vector2i(32, 12), "text": "Bus Helper says: I go by bus. Let's go."},
+		{"npc_id": "story_bear", "display_name": "故事熊", "cell": Vector2i(12, 7), "text": "Story Bear says: Bear has a book. Story time."},
 	]
 	for check in npc_checks:
 		_check_npc_interaction(main, check)
@@ -88,6 +106,10 @@ func _init() -> void:
 	var branch_result: Dictionary = main.interact_nearby()
 	_expect(branch_result.get("ok", false), "unified Interact should collect branch near Bear anchor")
 	_expect(branch_result.get("interaction_type", "") == "resource", "branch interaction should be reported as resource context")
+	main._on_backpack_pressed()
+	var backpack_items := main.find_child("BackpackItems", true, false) as Label
+	_expect(backpack_bubble.visible and backpack_items != null and str(backpack_items.text).contains("树枝 1"), "Backpack bubble should show collected branch")
+	main._on_backpack_pressed()
 
 	_expect(main.move_player_to_cell(Vector2i(14, 10)).get("ok", false), "player should return to Mina with branch")
 	var mina_complete: Dictionary = main.interact_nearby()
