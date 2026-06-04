@@ -45,12 +45,17 @@ func _check_stub_reply(memory_store) -> void:
 	_expect(client.is_stub(), "LLMClient should report stub mode")
 	_expect(not client.network_enabled(), "LLMClient should not enable network")
 
-	var reply: Dictionary = client.complete_chat("mina", "hello", {"event_id": "event_welcome_home", "place_id": "home"})
-	_expect(reply.get("ok", false), "known NPC should return ok")
-	_expect(bool(reply.get("is_stub", false)), "reply should be marked as stub")
-	_expect(not bool(reply.get("network_used", true)), "reply should not use network")
-	_expect(str(reply.get("model", "")) == "none", "reply should not name a real model")
-	_expect(str(reply.get("text", "")).find("Good morning") != -1, "Mina reply should use fixed fallback")
+	for npc_id in memory_store.get_required_npc_ids():
+		var profile: Dictionary = memory_store.get_profile(npc_id)
+		var reply: Dictionary = client.complete_chat(npc_id, "hello", {
+			"event_id": "event_welcome_home",
+			"place_id": profile.get("home_place_id", ""),
+		})
+		_expect(reply.get("ok", false), "known NPC should return ok: %s" % npc_id)
+		_expect(bool(reply.get("is_stub", false)), "reply should be marked as stub: %s" % npc_id)
+		_expect(not bool(reply.get("network_used", true)), "reply should not use network: %s" % npc_id)
+		_expect(str(reply.get("model", "")) == "none", "reply should not name a real model: %s" % npc_id)
+		_expect(str(reply.get("text", "")) == str(profile.get("fallback_reply", "")), "reply should use fixed fallback: %s" % npc_id)
 
 	var blocked: Dictionary = client.complete_chat("shopkeeper", "my phone is 123", {})
 	_expect(blocked.get("ok", false), "blocked input should still return a safe stub")

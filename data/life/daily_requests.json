@@ -1,0 +1,32 @@
+{
+	"schema_version": 1,
+	"requests": [
+		{
+			"request_id": "daily_mina_branch_001",
+			"npc_id": "mina",
+			"title": "Mina's Branch",
+			"day_key": "local_day_001",
+			"required_items": [
+				{"item_id": "branch", "quantity": 1}
+			],
+			"rewards": {
+				"coins": 6,
+				"relationship": 1
+			},
+			"text": {
+				"start": "Mina is looking for a Branch from the Bear corner.",
+				"progress": "Mina smiles. The Branch near the Bear corner would be just right.",
+				"complete": "Mina takes the Branch and shares a few town coins.",
+				"already_completed": "Mina waves. The Branch is already tucked into her tiny bookmark."
+			},
+			"memory_story": {
+				"letter": "B",
+				"core_anchor_id": "anchor_b_bear",
+				"world_place_id": "place_town_start",
+				"story_memory": "Mina uses a small branch from the Bear corner as a bookmark.",
+				"visual_hook": "a branch beside the Bear book corner",
+				"review_path": "Walk to the Bear anchor, pick up a branch, then return to Mina."
+			}
+		}
+	]
+}

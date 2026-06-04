@@ -4,6 +4,12 @@ const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const MemoryCardServiceScript := preload("res://scripts/systems/memory_card_service.gd")
 const MinigameServiceScript := preload("res://scripts/systems/minigame_service.gd")
 const QuestEventServiceScript := preload("res://scripts/systems/quest_event_service.gd")
+const InventoryServiceScript := preload("res://scripts/systems/inventory_service.gd")
+const LifeShopServiceScript := preload("res://scripts/systems/life_shop_service.gd")
+const HomeDecorationServiceScript := preload("res://scripts/systems/home_decoration_service.gd")
+const DailyRequestServiceScript := preload("res://scripts/systems/daily_request_service.gd")
+const NPCMemoryStoreScript := preload("res://scripts/systems/npc_memory_store.gd")
+const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
 const AZ_ANCHORS_PATH := "res://data/anchors/az_core_anchors.json"
 const VIEWPORT_SIZE := Vector2i(1280, 720)
@@ -13,9 +19,48 @@ const PRIMARY_COLOR := Color("#2f6f73")
 const ACCENT_COLOR := Color("#f2b84b")
 const ROAD_COLOR := Color("#d7c49a")
 const PLACE_COLOR := Color("#ffffff")
+const PLAYER_COLOR := Color("#5a8f7b")
+const NPC_COLOR := Color("#d98b5f")
 const MAP_CELL_SIZE := 18
 const TEXT_COLOR := Color("#1f2d2f")
 const MUTED_TEXT_COLOR := Color("#5d6b6d")
+const PLAYER_START_CELL := Vector2i(5, 8)
+const INTERACTION_RADIUS := 2
+const BRANCH_RESOURCE_CELL := Vector2i(13, 6)
+const HOME_DECOR_CELL := Vector2i(2, 2)
+const PARENT_ENTRY_SPEC := {
+	"entry_id": "local_parent_gate",
+	"child_flow_visible": false,
+	"trigger": "reserved_settings_long_press",
+	"hold_seconds": 3,
+	"confirmation": "local_adult_confirmation_stub",
+	"opens": "parent_dashboard_local_summary",
+	"available_in_child_nav": false,
+	"network_required": false,
+	"account_required": false,
+}
+const FIRST_NPCS := [
+	{
+		"npc_id": "mina",
+		"cell": {"x": 15, "y": 10},
+	},
+	{
+		"npc_id": "shopkeeper",
+		"cell": {"x": 24, "y": 10},
+	},
+	{
+		"npc_id": "pet_buddy",
+		"cell": {"x": 6, "y": 8},
+	},
+	{
+		"npc_id": "bus_helper",
+		"cell": {"x": 32, "y": 12},
+	},
+	{
+		"npc_id": "story_bear",
+		"cell": {"x": 12, "y": 7},
+	},
+]
 
 var world_map: Dictionary = {}
 var az_core_data: Dictionary = {}
@@ -25,9 +70,19 @@ var save_service
 var memory_card_service
 var minigame_service
 var quest_event_service
+var inventory_service
+var life_shop_service
+var home_decoration_service
+var daily_request_service
+var npc_memory_store
+var llm_client
 var status_label: Label
 var pet_label: Label
 var cards_label: Label
+var life_status_label: Label
+var optional_activity_label: Label
+var player_marker: Control
+var player_cell := PLAYER_START_CELL
 
 
 func _ready() -> void:
@@ -49,11 +104,21 @@ func configure_for_test(save_path: String) -> void:
 	save_path_override = save_path
 
 
+func get_parent_entry_spec() -> Dictionary:
+	return PARENT_ENTRY_SPEC.duplicate(true)
+
+
 func _init_services() -> void:
 	save_service = SaveServiceScript.new(save_path_override) if not save_path_override.is_empty() else SaveServiceScript.new()
 	memory_card_service = MemoryCardServiceScript.new(save_service)
 	minigame_service = MinigameServiceScript.new(save_service, memory_card_service)
 	quest_event_service = QuestEventServiceScript.new(save_service, memory_card_service)
+	inventory_service = InventoryServiceScript.new(save_service)
+	life_shop_service = LifeShopServiceScript.new(save_service, inventory_service)
+	home_decoration_service = HomeDecorationServiceScript.new(save_service, inventory_service)
+	daily_request_service = DailyRequestServiceScript.new(save_service, inventory_service)
+	npc_memory_store = NPCMemoryStoreScript.new(save_service)
+	llm_client = LLMClientScript.new(npc_memory_store)
 
 
 func _build_shell() -> void:
@@ -136,7 +201,6 @@ func _create_body() -> Control:
 	nav.add_child(_create_nav_button("Home", true))
 	nav.add_child(_create_nav_button("Map", false))
 	nav.add_child(_create_nav_button("Cards", false))
-	nav.add_child(_create_nav_button("Parent", false))
 
 	var content := PanelContainer.new()
 	content.name = "Content"
@@ -178,11 +242,54 @@ func _create_body() -> Control:
 	summary.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
 	summary.add_theme_font_size_override("font_size", 20)
 	stack.add_child(summary)
+	stack.add_child(_create_life_status_panel())
 	stack.add_child(_create_loop_panel())
+	stack.add_child(_create_optional_activity_panel())
 
 	stack.add_child(_create_map_canvas())
 
 	return body
+
+
+func _create_life_status_panel() -> Control:
+	var panel := PanelContainer.new()
+	panel.name = "LifeRPGPanel"
+	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#f1f6ee"), 8, Color("#d7e3d0")))
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 18)
+	margin.add_theme_constant_override("margin_top", 14)
+	margin.add_theme_constant_override("margin_right", 18)
+	margin.add_theme_constant_override("margin_bottom", 14)
+	panel.add_child(margin)
+
+	var stack := VBoxContainer.new()
+	stack.add_theme_constant_override("separation", 8)
+	margin.add_child(stack)
+
+	var title := Label.new()
+	title.name = "LifeTitle"
+	title.text = "Sunshine Town Life"
+	title.add_theme_color_override("font_color", TEXT_COLOR)
+	title.add_theme_font_size_override("font_size", 22)
+	stack.add_child(title)
+
+	life_status_label = Label.new()
+	life_status_label.name = "LifeStatus"
+	life_status_label.text = "Walk around, meet neighbors, and let A-Z anchors live in the town."
+	life_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	life_status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
+	life_status_label.add_theme_font_size_override("font_size", 16)
+	stack.add_child(life_status_label)
+
+	var actions := HBoxContainer.new()
+	actions.name = "LifeActions"
+	actions.add_theme_constant_override("separation", 12)
+	stack.add_child(actions)
+
+	actions.add_child(_create_action_button("Interact", "_on_interact_pressed"))
+
+	return panel
 
 
 func _create_loop_panel() -> Control:
@@ -233,9 +340,51 @@ func _create_loop_panel() -> Control:
 	stack.add_child(actions)
 
 	actions.add_child(_create_action_button("Start", "_on_start_loop_pressed"))
-	actions.add_child(_create_action_button("Play Snake", "_on_play_snake_pressed"))
+	actions.add_child(_create_action_button("Help Neighbor", "_on_help_neighbor_pressed"))
 	actions.add_child(_create_action_button("Buy Food", "_on_buy_food_pressed"))
 	actions.add_child(_create_action_button("Feed Sunny", "_on_feed_sunny_pressed"))
+
+	return panel
+
+
+func _create_optional_activity_panel() -> Control:
+	var panel := PanelContainer.new()
+	panel.name = "OptionalActivityPanel"
+	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fff8eb"), 8, Color("#ead39c")))
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 18)
+	margin.add_theme_constant_override("margin_top", 14)
+	margin.add_theme_constant_override("margin_right", 18)
+	margin.add_theme_constant_override("margin_bottom", 14)
+	panel.add_child(margin)
+
+	var stack := VBoxContainer.new()
+	stack.add_theme_constant_override("separation", 8)
+	margin.add_child(stack)
+
+	var title := Label.new()
+	title.name = "OptionalActivityTitle"
+	title.text = "Optional Activities"
+	title.add_theme_color_override("font_color", TEXT_COLOR)
+	title.add_theme_font_size_override("font_size", 20)
+	stack.add_child(title)
+
+	optional_activity_label = Label.new()
+	optional_activity_label.name = "OptionalActivityStatus"
+	optional_activity_label.text = "Album and Letter Snake are side activities; town life works without them."
+	optional_activity_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	optional_activity_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
+	optional_activity_label.add_theme_font_size_override("font_size", 16)
+	stack.add_child(optional_activity_label)
+
+	var actions := HBoxContainer.new()
+	actions.name = "OptionalActivityActions"
+	actions.add_theme_constant_override("separation", 12)
+	stack.add_child(actions)
+
+	actions.add_child(_create_action_button("Memory Album", "_on_memory_album_pressed"))
+	actions.add_child(_create_action_button("Letter Snake", "_on_optional_letter_snake_pressed"))
 
 	return panel
 
@@ -259,13 +408,22 @@ func _on_start_loop_pressed() -> void:
 	quest_event_service.start_chain()
 	for event_id in ["event_welcome_home", "event_meet_sunny", "event_snack_time", "event_food_trip"]:
 		quest_event_service.advance_event(event_id)
-	_update_loop_status("Sunny is ready for Letter Snake")
+	_update_loop_status("Sunny is ready for a town errand")
 
 
-func _on_play_snake_pressed() -> void:
+func _on_help_neighbor_pressed() -> void:
+	help_neighbor_for_coins()
+
+
+func _on_optional_letter_snake_pressed() -> void:
 	minigame_service.complete_minigame({"config_set_id": "food", "score": 80})
 	quest_event_service.advance_event("event_letter_snake_food")
-	_update_loop_status("Coins and card spark saved")
+	_update_loop_status("Optional Letter Snake reward saved")
+	_set_optional_activity_status("Letter Snake was played as an optional town activity.")
+
+
+func _on_memory_album_pressed() -> void:
+	_set_optional_activity_status("Memory Album is available as a collection album, not a required task.")
 
 
 func _on_buy_food_pressed() -> void:
@@ -276,6 +434,127 @@ func _on_buy_food_pressed() -> void:
 func _on_feed_sunny_pressed() -> void:
 	var result: Dictionary = quest_event_service.advance_event("event_feed_sunny")
 	_update_loop_status("Sunny is happy" if result.get("ok", false) else "Sunny Snack is not ready")
+
+
+func _on_interact_pressed() -> void:
+	interact_nearby()
+
+
+func _on_pick_branch_pressed() -> void:
+	collect_branch()
+
+
+func _on_buy_chair_pressed() -> void:
+	buy_wooden_chair()
+
+
+func _on_place_chair_pressed() -> void:
+	place_wooden_chair(Vector2i(2, 2))
+
+
+func help_neighbor_for_coins() -> Dictionary:
+	var game_state: Dictionary = save_service.load_game_state()
+	var flags: Dictionary = game_state.get("flags", {})
+	if bool(flags.get("helped_neighbor_today", false)):
+		_update_loop_status("Neighbor help already counted today")
+		return {"ok": false, "reason": "already_helped"}
+
+	flags["helped_neighbor_today"] = true
+	game_state["flags"] = flags
+	game_state["coins"] = int(game_state.get("coins", 0)) + 6
+	save_service.save_game_state(game_state)
+	_update_loop_status("Helped a neighbor and earned town coins")
+	return {"ok": true, "coins": int(game_state.get("coins", 0))}
+
+
+func collect_branch() -> Dictionary:
+	var result: Dictionary = inventory_service.collect_item("branch", 1)
+	_set_life_status("Picked up Branch near the Bear anchor." if result.get("ok", false) else "Branch is not ready.")
+	return result
+
+
+func buy_wooden_chair() -> Dictionary:
+	var result: Dictionary = life_shop_service.buy_life_item("wooden_chair")
+	_set_life_status("Bought Wooden Chair for home." if result.get("ok", false) else "More coins can help with the chair.")
+	return result
+
+
+func place_wooden_chair(cell: Vector2i = Vector2i(2, 2)) -> Dictionary:
+	var result: Dictionary = home_decoration_service.place_furniture("wooden_chair", cell)
+	_set_life_status("Placed Wooden Chair under the Clock anchor." if result.get("ok", false) else "Chair is not in the bag yet.")
+	return result
+
+
+func interact_nearby() -> Dictionary:
+	var exact_interaction: Dictionary = _find_interaction_at_cell(player_cell)
+	if not exact_interaction.is_empty():
+		return _handle_map_interaction(exact_interaction)
+
+	if _manhattan_distance(player_cell, BRANCH_RESOURCE_CELL) <= 1:
+		var branch_result: Dictionary = collect_branch()
+		branch_result["interaction_type"] = "resource"
+		branch_result["target_id"] = "branch"
+		return branch_result
+
+	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
+	if not npc.is_empty():
+		var npc_result: Dictionary = interact_with_npc(str(npc.get("npc_id", "")))
+		npc_result["interaction_type"] = "npc"
+		return npc_result
+
+	var nearby_interaction: Dictionary = _find_nearest_interaction(1)
+	if not nearby_interaction.is_empty():
+		return _handle_map_interaction(nearby_interaction)
+
+	_set_life_status("Nothing nearby to use.")
+	return {"ok": false, "reason": "no_target", "cell": _cell_to_dict(player_cell)}
+
+
+func _handle_map_interaction(interaction: Dictionary) -> Dictionary:
+	var action := str(interaction.get("action", ""))
+	match action:
+		"enter_supermarket", "enter_home", "open_town_start":
+			return _enter_place(interaction)
+		_:
+			_set_life_status("This spot is not ready yet.")
+			return {
+				"ok": false,
+				"reason": "unsupported_action",
+				"action": action,
+				"interaction_id": interaction.get("interaction_id", ""),
+			}
+
+
+func _enter_place(interaction: Dictionary) -> Dictionary:
+	var place_id := str(interaction.get("place_id", _current_place_for_cell(player_cell)))
+	var place: Dictionary = _find_place(place_id)
+	var place_label := str(place.get("label", place_id))
+	var message := _place_entry_message(place_id, place_label)
+	var game_state: Dictionary = save_service.load_game_state()
+	game_state["current_place_id"] = place_id
+	save_service.save_game_state(game_state)
+	_set_life_status(message)
+	return {
+		"ok": true,
+		"interaction_type": "place_entry",
+		"interaction_id": interaction.get("interaction_id", ""),
+		"place_id": place_id,
+		"place_label": place_label,
+		"action": interaction.get("action", ""),
+		"text": message,
+	}
+
+
+func _place_entry_message(place_id: String, place_label: String) -> String:
+	match place_id:
+		"place_home":
+			return "Home is calm. The room is waiting for cozy things."
+		"place_town_start":
+			return "Sunshine Town starts here. Paths lead to neighbors and shops."
+		"place_supermarket":
+			return "The Supermarket doors are open. The shelves are waiting inside."
+		_:
+			return "%s is quiet and ready to visit." % place_label
 
 
 func _update_loop_status(message: String) -> void:
@@ -384,6 +663,8 @@ func _create_map_canvas() -> Control:
 	var map := Control.new()
 	map.name = "RuntimeMap"
 	map.custom_minimum_size = Vector2(map_width, map_height)
+	map.mouse_filter = Control.MOUSE_FILTER_STOP
+	map.gui_input.connect(_on_map_gui_input)
 	margin.add_child(map)
 
 	var ground := ColorRect.new()
@@ -418,6 +699,14 @@ func _create_map_canvas() -> Control:
 		if _map_anchor_letters().has(anchor.get("letter", "")):
 			continue
 		map.add_child(_create_reserved_anchor_marker(anchor))
+
+	for npc in FIRST_NPCS:
+		map.add_child(_create_npc_marker(npc))
+
+	player_cell = _load_player_cell()
+	player_marker = _create_player_marker()
+	map.add_child(player_marker)
+	_update_player_marker()
 
 	return frame
 
@@ -499,6 +788,112 @@ func _create_reserved_anchor_marker(anchor: Dictionary) -> Control:
 	return marker
 
 
+func _create_npc_marker(npc: Dictionary) -> Control:
+	var marker := Label.new()
+	var npc_id := str(npc.get("npc_id", "neighbor"))
+	marker.name = "npc_%s" % npc_id
+	marker.text = _npc_display_name(npc_id).substr(0, 1)
+	marker.position = _cell_position(npc.get("cell", {}))
+	marker.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
+	marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	marker.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	marker.tooltip_text = _npc_line(npc_id)
+	marker.add_theme_color_override("font_color", Color.WHITE)
+	marker.add_theme_font_size_override("font_size", 12)
+	marker.add_theme_stylebox_override("normal", _rounded_box(NPC_COLOR, 4))
+	return marker
+
+
+func _create_player_marker() -> Control:
+	var marker := Label.new()
+	marker.name = "Player"
+	marker.text = "P"
+	marker.size = Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE)
+	marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	marker.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	marker.add_theme_color_override("font_color", Color.WHITE)
+	marker.add_theme_font_size_override("font_size", 12)
+	marker.add_theme_stylebox_override("normal", _rounded_box(PLAYER_COLOR, 4))
+	return marker
+
+
+func move_player_by_cells(delta: Vector2i) -> Dictionary:
+	return move_player_to_cell(player_cell + delta)
+
+
+func move_player_to_cell(target_cell: Vector2i) -> Dictionary:
+	if not _is_cell_walkable(target_cell):
+		_set_life_status("That spot is not walkable yet.")
+		return {"ok": false, "reason": "blocked", "cell": _cell_to_dict(target_cell)}
+
+	player_cell = target_cell
+	_save_player_cell()
+	_update_player_marker()
+	_set_life_status("Walking in Sunshine Town: %s, %s" % [player_cell.x, player_cell.y])
+	return {"ok": true, "cell": _cell_to_dict(player_cell)}
+
+
+func interact_with_npc(npc_id: String) -> Dictionary:
+	var npc := _find_npc(npc_id)
+	if npc.is_empty():
+		return {"ok": false, "reason": "unknown_npc", "npc_id": npc_id}
+
+	var npc_cell := _dict_to_cell(npc.get("cell", {}))
+	if _manhattan_distance(player_cell, npc_cell) > 2:
+		return {"ok": false, "reason": "too_far", "npc_id": npc_id}
+
+	var daily_result: Dictionary = daily_request_service.interact_for_npc(npc_id)
+	if bool(daily_result.get("handled", false)):
+		var daily_text := str(daily_result.get("text", ""))
+		var daily_display_name := _npc_display_name(npc_id)
+		npc_memory_store.record_event(npc_id, {
+			"event_id": str(daily_result.get("request_id", "daily_request")),
+			"title": "%s daily request" % daily_display_name,
+			"summary": daily_text,
+			"created_at": "",
+		})
+		_set_life_status("%s: %s" % [daily_display_name, daily_text])
+		daily_result["display_name"] = daily_display_name
+		daily_result["is_stub"] = true
+		daily_result["network_used"] = false
+		return daily_result
+
+	var reply: Dictionary = llm_client.complete_chat(npc_id, "hello", {
+		"event_id": "scene_interact",
+		"place_id": _current_place_for_cell(player_cell),
+	})
+	if not reply.get("ok", false):
+		return reply
+
+	var display_name := str(reply.get("display_name", _npc_display_name(npc_id)))
+	var line := str(reply.get("text", _npc_line(npc_id)))
+	var learning_record: Dictionary = save_service.load_learning_record()
+	var relationships: Dictionary = learning_record.get("npc_relationships", {})
+	var state: Dictionary = relationships.get(npc_id, {})
+	state["greeting_count"] = int(state.get("greeting_count", 0)) + 1
+	state["last_line"] = line
+	state["relationship"] = "neighbor"
+	relationships[npc_id] = state
+	learning_record["npc_relationships"] = relationships
+	save_service.save_learning_record(learning_record)
+	npc_memory_store.record_event(npc_id, {
+		"event_id": "scene_interact",
+		"title": "%s greeting" % display_name,
+		"summary": line,
+		"created_at": "",
+	})
+	_set_life_status("%s: %s" % [display_name, line])
+	return {
+		"ok": true,
+		"npc_id": npc_id,
+		"display_name": display_name,
+		"text": line,
+		"is_stub": bool(reply.get("is_stub", false)),
+		"network_used": bool(reply.get("network_used", true)),
+		"state": state.duplicate(true),
+	}
+
+
 func _map_anchor_letters() -> Array[String]:
 	var letters: Array[String] = []
 	for anchor in world_map.get("memory_anchors", []):
@@ -511,6 +906,146 @@ func _cell_position(cell: Dictionary) -> Vector2:
 		int(cell.get("x", 0)) * MAP_CELL_SIZE,
 		int(cell.get("y", 0)) * MAP_CELL_SIZE
 	)
+
+
+func _dict_to_cell(cell: Dictionary) -> Vector2i:
+	return Vector2i(int(cell.get("x", 0)), int(cell.get("y", 0)))
+
+
+func _cell_to_dict(cell: Vector2i) -> Dictionary:
+	return {"x": cell.x, "y": cell.y}
+
+
+func _update_player_marker() -> void:
+	if is_instance_valid(player_marker):
+		player_marker.position = Vector2(player_cell.x * MAP_CELL_SIZE, player_cell.y * MAP_CELL_SIZE)
+
+
+func _load_player_cell() -> Vector2i:
+	var game_state: Dictionary = save_service.load_game_state()
+	if game_state.get("player_cell") is Dictionary:
+		return _dict_to_cell(game_state.get("player_cell", {}))
+	return PLAYER_START_CELL
+
+
+func _save_player_cell() -> void:
+	var game_state: Dictionary = save_service.load_game_state()
+	game_state["player_cell"] = _cell_to_dict(player_cell)
+	game_state["current_place_id"] = _current_place_for_cell(player_cell)
+	save_service.save_game_state(game_state)
+
+
+func _current_place_for_cell(cell: Vector2i) -> String:
+	for place in world_map.get("places", []):
+		var position := _dict_to_cell(place.get("position", {}))
+		var size_data: Dictionary = place.get("size", {"w": 1, "h": 1})
+		var size := Vector2i(int(size_data.get("w", 1)), int(size_data.get("h", 1)))
+		if cell.x >= position.x and cell.x < position.x + size.x and cell.y >= position.y and cell.y < position.y + size.y:
+			return str(place.get("place_id", ""))
+	return "town_walk"
+
+
+func _is_cell_walkable(cell: Vector2i) -> bool:
+	var canvas_size: Dictionary = world_map.get("canvas_size", {"w": 40, "h": 24})
+	if cell.x < 0 or cell.y < 0 or cell.x >= int(canvas_size.get("w", 40)) or cell.y >= int(canvas_size.get("h", 24)):
+		return false
+	for blocked in world_map.get("collision_cells", []):
+		if _dict_to_cell(blocked) == cell:
+			return false
+	return true
+
+
+func _on_map_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouse_event: InputEventMouseButton = event
+		if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:
+			move_player_to_cell(Vector2i(int(mouse_event.position.x / MAP_CELL_SIZE), int(mouse_event.position.y / MAP_CELL_SIZE)))
+
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_UP, KEY_W:
+				move_player_by_cells(Vector2i(0, -1))
+			KEY_DOWN, KEY_S:
+				move_player_by_cells(Vector2i(0, 1))
+			KEY_LEFT, KEY_A:
+				move_player_by_cells(Vector2i(-1, 0))
+			KEY_RIGHT, KEY_D:
+				move_player_by_cells(Vector2i(1, 0))
+
+
+func _find_npc(npc_id: String) -> Dictionary:
+	for npc in FIRST_NPCS:
+		if npc.get("npc_id", "") == npc_id:
+			return npc
+	return {}
+
+
+func _find_place(place_id: String) -> Dictionary:
+	for place in world_map.get("places", []):
+		if str(place.get("place_id", "")) == place_id:
+			return place
+	return {}
+
+
+func _npc_profile(npc_id: String) -> Dictionary:
+	if npc_memory_store == null:
+		return {}
+	return npc_memory_store.get_profile(npc_id)
+
+
+func _npc_display_name(npc_id: String) -> String:
+	var profile := _npc_profile(npc_id)
+	return str(profile.get("display_name", npc_id))
+
+
+func _npc_line(npc_id: String) -> String:
+	var profile := _npc_profile(npc_id)
+	return str(profile.get("fallback_reply", "Let's keep exploring Sunshine Town together."))
+
+
+func _find_nearest_npc(radius: int) -> Dictionary:
+	var nearest: Dictionary = {}
+	var nearest_distance := radius + 1
+	for npc in FIRST_NPCS:
+		var distance := _manhattan_distance(player_cell, _dict_to_cell(npc.get("cell", {})))
+		if distance <= radius and distance < nearest_distance:
+			nearest = npc
+			nearest_distance = distance
+	return nearest
+
+
+func _find_interaction_at_cell(cell: Vector2i) -> Dictionary:
+	for interaction in world_map.get("interaction_cells", []):
+		if _dict_to_cell(interaction.get("cell", {})) == cell:
+			return interaction
+	return {}
+
+
+func _find_nearest_interaction(radius: int) -> Dictionary:
+	var nearest: Dictionary = {}
+	var nearest_distance := radius + 1
+	for interaction in world_map.get("interaction_cells", []):
+		var distance := _manhattan_distance(player_cell, _dict_to_cell(interaction.get("cell", {})))
+		if distance <= radius and distance < nearest_distance:
+			nearest = interaction
+			nearest_distance = distance
+	return nearest
+
+
+func _manhattan_distance(a: Vector2i, b: Vector2i) -> int:
+	return absi(a.x - b.x) + absi(a.y - b.y)
+
+
+func _set_life_status(message: String) -> void:
+	if is_instance_valid(life_status_label):
+		life_status_label.text = message
+
+
+func _set_optional_activity_status(message: String) -> void:
+	if is_instance_valid(optional_activity_label):
+		optional_activity_label.text = message
 
 
 func _load_json(path: String) -> Dictionary:

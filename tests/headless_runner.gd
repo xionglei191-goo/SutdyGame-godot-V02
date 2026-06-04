@@ -8,6 +8,10 @@ const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const NPCMemoryStoreScript := preload("res://scripts/systems/npc_memory_store.gd")
 const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const ConversationSummaryServiceScript := preload("res://scripts/systems/conversation_summary_service.gd")
+const InventoryServiceScript := preload("res://scripts/systems/inventory_service.gd")
+const LifeShopServiceScript := preload("res://scripts/systems/life_shop_service.gd")
+const HomeDecorationServiceScript := preload("res://scripts/systems/home_decoration_service.gd")
+const DailyRequestServiceScript := preload("res://scripts/systems/daily_request_service.gd")
 const WorldMapContractScript := preload("res://scripts/data/world_map_contract.gd")
 const MainScene := preload("res://scenes/main.tscn")
 
@@ -21,8 +25,8 @@ func _init() -> void:
 	var data: Dictionary = result.get("data", {})
 	var summary: Dictionary = RuntimeMapBuilderScript.build_summary(data)
 	_expect(summary.get("place_count") == 3, "minimum map must contain Home, Town Start, and Supermarket")
-	_expect(summary.get("anchor_count") == 9, "minimum map must contain 9 enabled anchors")
-	_expect(_letters(data) == ["A", "B", "C", "D", "K", "O", "S", "T", "W"], "enabled anchors must match the approved list")
+	_expect(summary.get("anchor_count") == 26, "minimum map must contain all 26 A-Z memory palace anchors")
+	_expect(_letters(data) == _az_letters(), "memory anchors must follow A-Z route order")
 
 	var invalid: Dictionary = data.duplicate(true)
 	invalid["places"][0]["interaction_cell"] = invalid["places"][0]["occupied_cells"][0]
@@ -41,10 +45,16 @@ func _init() -> void:
 	_expect(main.find_child("anchor_e_elephant", true, false) != null, "main scene must create reserved A-Z anchor markers")
 	_expect(main.find_child("interaction_home_entry", true, false) != null, "main scene must create hotspot markers")
 	_expect(main.find_children("CollisionCell", "", true, false).size() > 0, "main scene must create collision markers")
+	_expect(main.find_child("LifeRPGPanel", true, false) != null, "main scene must expose life RPG panel")
+	_expect(main.find_child("Player", true, false) != null, "main scene must create player marker")
+	for npc_id in ["mina", "shopkeeper", "pet_buddy", "bus_helper", "story_bear"]:
+		_expect(main.find_child("npc_%s" % npc_id, true, false) != null, "main scene must create NPC marker: %s" % npc_id)
 	_check_asset_resolver()
 	_check_save_service()
 	_check_service_loop_smoke()
 	_check_ai_npc_stubs()
+	_check_life_services()
+	_check_daily_requests()
 
 	if failures.is_empty():
 		print("HEADLESS TESTS PASSED: map contract and runtime loader")
@@ -59,6 +69,13 @@ func _letters(data: Dictionary) -> Array[String]:
 	var letters: Array[String] = []
 	for anchor in data.get("memory_anchors", []):
 		letters.append(anchor.get("letter", ""))
+	return letters
+
+
+func _az_letters() -> Array[String]:
+	var letters: Array[String] = []
+	for code in range(65, 91):
+		letters.append(char(code))
 	return letters
 
 
@@ -119,6 +136,40 @@ func _check_ai_npc_stubs() -> void:
 	_expect(summary.get("ok", false), "ConversationSummaryService should record local summary")
 	_expect(service.load_learning_record().get("npc_summary_refs", []).size() == 1, "NPC summary ref should persist")
 	_expect(service.clear_for_test(), "AI stub save should clean up")
+
+
+func _check_life_services() -> void:
+	var service := SaveServiceScript.new("user://headless_runner_life_services.json")
+	_expect(service.clear_for_test(), "life services save should clear")
+	_expect(service.reset_for_test(), "life services save should reset")
+	var inventory = InventoryServiceScript.new(service)
+	_expect(inventory.is_loaded(), "InventoryService should load life item catalog")
+	_expect(inventory.collect_item("branch", 1).get("ok", false), "InventoryService should collect branch")
+	var game_state: Dictionary = service.load_game_state()
+	game_state["coins"] = 10
+	_expect(service.save_game_state(game_state), "life services should save coins setup")
+	var shop = LifeShopServiceScript.new(service, inventory)
+	_expect(shop.buy_life_item("wooden_chair").get("ok", false), "LifeShopService should buy wooden chair")
+	var home = HomeDecorationServiceScript.new(service, inventory)
+	_expect(home.place_furniture("wooden_chair", Vector2i(2, 2)).get("ok", false), "HomeDecorationService should place wooden chair")
+	_expect(home.get_home_state().get("placed_furniture", []).size() == 1, "HomeDecorationService should persist furniture")
+	_expect(service.clear_for_test(), "life services save should clean up")
+
+
+func _check_daily_requests() -> void:
+	var service := SaveServiceScript.new("user://headless_runner_daily_requests.json")
+	_expect(service.clear_for_test(), "daily request save should clear")
+	_expect(service.reset_for_test(), "daily request save should reset")
+	var inventory = InventoryServiceScript.new(service)
+	var daily = DailyRequestServiceScript.new(service, inventory)
+	_expect(daily.is_loaded(), "DailyRequestService should load request data")
+	_expect(daily.interact_for_npc("mina").get("request_status", "") == "active", "daily request should start with Mina")
+	_expect(inventory.collect_item("branch", 1).get("ok", false), "daily request branch should be collectable")
+	var complete: Dictionary = daily.interact_for_npc("mina")
+	_expect(complete.get("request_status", "") == "completed", "daily request should complete with branch")
+	_expect(int(service.load_game_state().get("coins", -1)) == 6, "daily request should award coins")
+	_expect(bool(service.load_game_state().get("daily_requests", {}).get("daily_mina_branch_001", {}).get("completed_today", false)), "daily request completion should persist")
+	_expect(service.clear_for_test(), "daily request save should clean up")
 
 
 func _expect(condition: bool, message: String) -> void:

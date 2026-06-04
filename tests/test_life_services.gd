@@ -1,0 +1,66 @@
+extends SceneTree
+
+const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
+const InventoryServiceScript := preload("res://scripts/systems/inventory_service.gd")
+const LifeShopServiceScript := preload("res://scripts/systems/life_shop_service.gd")
+const HomeDecorationServiceScript := preload("res://scripts/systems/home_decoration_service.gd")
+
+var failures: Array[String] = []
+
+
+func _init() -> void:
+	var save_service = SaveServiceScript.new("user://test_life_services.json")
+	_expect(save_service.clear_for_test(), "test save should clear")
+	_expect(save_service.reset_for_test(), "test save should reset")
+
+	var inventory = InventoryServiceScript.new(save_service)
+	_expect(inventory.is_loaded(), "life item catalog should load: %s" % [inventory.load_errors])
+
+	var branch: Dictionary = inventory.collect_item("branch", 2)
+	_expect(branch.get("ok", false), "branch collection should succeed")
+	_expect(int(save_service.load_game_state().get("inventory", {}).get("branch", 0)) == 2, "branch quantity should save")
+	_expect(inventory.get_item("branch").get("memory_story", {}).get("core_anchor_id", "") == "anchor_b_bear", "branch story should bind to memory palace anchor")
+
+	var game_state: Dictionary = save_service.load_game_state()
+	game_state["coins"] = 10
+	_expect(save_service.save_game_state(game_state), "coins setup should save")
+
+	var shop = LifeShopServiceScript.new(save_service, inventory)
+	var offer: Dictionary = shop.get_offer("wooden_chair")
+	_expect(offer.get("ok", false), "wooden chair offer should load")
+	_expect(int(offer.get("price", 0)) == 8, "wooden chair price should be configured")
+	_expect(offer.get("memory_story", {}).get("core_anchor_id", "") == "anchor_c_clock", "chair offer should expose memory story anchor")
+
+	var purchase: Dictionary = shop.buy_life_item("wooden_chair")
+	_expect(purchase.get("ok", false), "wooden chair purchase should succeed")
+	_expect(int(save_service.load_game_state().get("coins", -1)) == 2, "chair purchase should deduct coins")
+	_expect(int(save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) == 1, "chair should enter inventory")
+
+	var home = HomeDecorationServiceScript.new(save_service, inventory)
+	var placed: Dictionary = home.place_furniture("wooden_chair", Vector2i(2, 2))
+	_expect(placed.get("ok", false), "chair placement should succeed")
+	_expect(int(save_service.load_game_state().get("inventory", {}).get("wooden_chair", -1)) == 0, "placed chair should leave inventory")
+	var home_state: Dictionary = home.get_home_state()
+	_expect(home_state.get("placed_furniture", []).size() == 1, "home should save placed furniture")
+	_expect(home_state.get("placed_furniture", [])[0].get("memory_story", {}).get("review_path", "") != "", "placed furniture should keep review path")
+
+	var reloaded_home = HomeDecorationServiceScript.new(save_service, InventoryServiceScript.new(save_service))
+	_expect(reloaded_home.get_home_state().get("placed_furniture", []).size() == 1, "home state should reload")
+
+	_expect(save_service.clear_for_test(), "test save should clean up")
+	_finish()
+
+
+func _finish() -> void:
+	if failures.is_empty():
+		print("LIFE SERVICES TESTS PASSED")
+		quit(0)
+	else:
+		for failure in failures:
+			push_error(failure)
+		quit(1)
+
+
+func _expect(condition: bool, message: String) -> void:
+	if not condition:
+		failures.append(message)

@@ -2,8 +2,8 @@
 
 > 最后更新：2026-06-04  
 > 状态事实来源：本文件  
-> 当前阶段：阶段 6/7 - 本地语音、NPC、AI 与家长摘要 stub 收口  
-> 当前里程碑：首个可玩闭环已跑通，下一步接入固定 NPC 对话和家长入口/可见性检查
+> 当前阶段：方向纠偏 - 生活 RPG / 小镇养成 MVP  
+> 当前里程碑：从学习闭环原型转为可移动、可探索、可互动、可装饰的小镇生活原型
 
 ## 维护规则
 
@@ -19,14 +19,58 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 8：语音、NPC 与家长摘要 stub |
-| 本轮目标 | 定义 VoiceLine/NPC 数据，建立 VoiceService、LLMClient、摘要和家长后台数据 stub |
+| 当前轮次 | Round 19：每日轻委托 MVP |
+| 本轮目标 | 完成 Mina 请求一根 `branch` 的本地每日轻委托，覆盖接取、收集、交付、奖励、去重和保存 |
 | 进行中 | 无 |
-| Ready | `V02-NPC-001`、`V02-PARENT-001`、`V02-PARENT-003` |
-| 汇合任务 | 无；下一汇合点为 NPC 固定对白与家长后台入口集成 |
+| Ready | `V02-MAP-003` |
+| 汇合任务 | 下一汇合点为地图编辑层与运行时小镇体验 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
-| 临时默认值 | 首批 9 个 anchor；Sunny/Dog；Home/Town Start/Supermarket |
+| 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选 |
+
+## 方向纠偏：生活 RPG / 小镇养成 MVP
+
+> 旧的学习闭环、Memory Card、Letter Snake、Voice/AI stub 保留为技术资产和可选系统；A-Z 记忆宫殿保留为世界地图底层编码和潜意识学习方法。后续主线改为小镇生活、NPC 关系、收集、商店和家园装饰，但地图必须持续承载字母锚点。
+
+- [x] **V02-RESET-001 重写产品定位**  
+  Owner：PM Agent；交付物：`docs/01_产品总纲.md`；验收：明确生活 RPG / 小镇养成为第一目标，英语降级为环境层。
+- [x] **V02-RESET-002 重写核心玩法循环**  
+  Owner：PM / Game Design Agent；交付物：`docs/06_核心玩法循环.md`；验收：主循环为探索、NPC、收集、商店、家园装饰和长期回访。
+- [x] **V02-RESET-003 重写开发路线与工作规范**  
+  Owner：PM Agent；交付物：`docs/12_V02开发路线.md`、`AGENTS.md`、`todo.md`；验收：Ready 队列指向生活 RPG MVP，不再指向学习闭环扩展。
+- [x] **V02-RESET-004 明确 A-Z 记忆宫殿地图植入原则**  
+  Owner：PM / Memory Palace Agent；交付物：`docs/01_产品总纲.md`、`docs/04_A-Z记忆宫殿与记忆卡系统.md`、`docs/05_世界结构与地图编辑架构.md`；验收：每个字母必须有世界锚点，作为潜意识记忆编码植入，不以考试形式显性推进。
+- [x] **V02-RESET-005 明确新单词故事必须绑定记忆宫殿编码**  
+  Owner：PM / Memory Palace / Curriculum Agent；交付物：`docs/04_A-Z记忆宫殿与记忆卡系统.md`、`docs/14_内容基线整理与首批内容规划.md`；验收：新增单词必须有 `letter`、`core_anchor_id`、`world_place_id`、`story_memory`、`visual_hook`、`review_path`。
+
+## 生活 RPG MVP：角色、小镇、NPC、收集与家园
+
+- [x] **V02-LIFE-001 实现玩家角色移动与触屏控制**  
+  Owner：Godot Dev Agent；依赖：V02-CORE-001、V02-RUNTIME-001；交付物：Player 节点、移动脚本、碰撞和相机跟随；验收：玩家可在 Home/Town Plaza/Shop 间移动，触屏和键盘调试均可用。
+- [x] **V02-LIFE-002 调整运行时地图为可探索小镇**  
+  Owner：Map / Godot Dev Agent；依赖：V02-LIFE-001；交付物：Home、Town Plaza、Shop 的探索布局；验收：地图不是静态信息面板，玩家能在场景中行走和触发热点，首批 A-Z 锚点有固定位置和可感知表现。
+- [x] **V02-LIFE-003 接入动物居民固定互动**  
+  Owner：Narrative / Godot Dev Agent；依赖：V02-AI-001、V02-VOICE-002；交付物：Mina、Shopkeeper、Pet Buddy 的场景互动入口；验收：可对话、可保存一次关系或每日问候状态。
+- [x] **V02-LIFE-004 建立资源与背包最小系统**  
+  Owner：Godot Dev Agent；依赖：V02-CORE-004；交付物：资源点、InventoryService、材料数据；验收：可捡起 `branch` 并保存到背包。
+- [x] **V02-LIFE-005 改造商店为家具/生活物品购买**  
+  Owner：Godot Dev Agent；依赖：V02-LIFE-004、V02-SHOP-001；交付物：家具商品数据和购买流程；验收：可购买 `wooden_chair`，coins 扣减并保存。
+- [x] **V02-LIFE-006 实现家园装饰 MVP**  
+  Owner：Godot Dev / UI Agent；依赖：V02-LIFE-001、V02-LIFE-005；交付物：房间网格、家具摆放/收起、HomeState 保存；验收：购买家具后可在家中摆放，重启后位置保留。
+- [x] **V02-LIFE-007 生活 MVP smoke test**  
+  Owner：QA Agent；依赖：V02-LIFE-001 至 V02-LIFE-006；交付物：headless 或服务级 smoke test；验收：起床、出门、对话、收集、购买、回家摆放、保存全链路通过。
+- [x] **V02-LIFE-008 降级学习系统入口**  
+  Owner：PM / Godot Dev Agent；依赖：V02-LIFE-007；交付物：Memory Album 和 Letter Snake 入口调整说明或实现；验收：孩子端主流程不再被学习任务驱动，Letter Snake 仅作为可选活动。
+- [x] **V02-LIFE-009 A-Z 锚点潜意识植入审计**  
+  Owner：Memory Palace / QA Agent；依赖：V02-LIFE-002；交付物：26 个 anchor 的地图位置、表现物件和路线顺序审计；验收：A-Z 锚点不是 UI 装饰，能在生活地图中形成稳定路径记忆。
+- [x] **V02-LIFE-010 新词故事编码数据审计**  
+  Owner：Curriculum / Memory Palace / QA Agent；依赖：V02-LIFE-009；交付物：首批新词的锚点绑定和故事记忆审计；验收：每个新词都能追溯到字母锚点、地图地点、视觉钩子和生活回访路径。
+- [x] **V02-LIFE-011 地图上下文互动层**  
+  Owner：Godot Dev / UX Agent；依赖：V02-LIFE-008；交付物：统一 `Interact` / `Use` 操作、附近 NPC/资源/商店/家园对象检测、面板调试按钮降级；验收：玩家移动到附近对象后用同一个操作完成对话、收集、购买和摆放，远离对象时返回无目标或距离不足。
+- [x] **V02-LIFE-012 解耦地点进入与生活动作**  
+  Owner：Godot Dev / UX Agent；依赖：V02-LIFE-011；交付物：中性的 place entry 互动结果、独立的商店购买/家园摆放/邻居帮助触发路径；验收：进入 Home、Town Start、Supermarket 不自动发 coins、不自动购买、不自动摆放，生活动作仍可通过显式对象或后续轻委托触发并通过测试。
+- [x] **V02-LIFE-013 每日轻委托 MVP**  
+  Owner：Game Design / Godot Dev / Narrative Agent；依赖：V02-LIFE-003、V02-LIFE-004、V02-LIFE-012；交付物：首个本地每日轻委托数据与服务、Mina 请求 branch 的 NPC 互动、奖励与关系保存；验收：接取、收集、交付、奖励、当日去重和重载保存通过 headless 测试，孩子端不出现学习压力文案，Letter Snake 不作为完成条件。
 
 ## 阶段 0：框架与管理基线
 
@@ -68,7 +112,7 @@
 
 - [x] **V02-MAP-001 定义 WorldMap/Place/Road/District Resource 与最小 JSON**  
   Owner：Map Tool Agent；依赖：V02-CORE-001/002；交付物：Resource、schema 说明、`world_map.json`；验收：Home/Town Start/Supermarket 和 9 个首批 anchor 可加载。
-- [ ] **V02-MAP-002 建立 EditorOnly proxy 节点结构**  
+- [x] **V02-MAP-002 建立 EditorOnly proxy 节点结构**  
   Owner：Map Tool Agent；依赖：V02-MAP-001；交付物：WorldOverviewScene 编辑层；验收：可拖动 place marker，运行时不依赖 EditorOnly。
 - [ ] **V02-MAP-003 实现 grid overlay**  
   Owner：Map Tool Agent；依赖：V02-MAP-002；交付物：编辑器网格；验收：编辑 cell 与运行时逻辑 cell 一致。
@@ -140,18 +184,18 @@
   Owner：Godot Dev Agent；依赖：V02-AI-001；交付物：AI client；验收：返回固定安全占位回复，不连接真实模型。
 - [x] **V02-AI-003 实现 ConversationSummary stub**  
   Owner：Godot Dev Agent；依赖：V02-AI-001/002；交付物：摘要服务；验收：可生成并保存家长端可读的本地摘要。
-- [ ] **V02-NPC-001 接入首批固定 NPC 对话**  
+- [x] **V02-NPC-001 接入首批固定 NPC 对话**  
   Owner：Narrative / Godot Dev Agent；依赖：V02-AI-001、V02-VOICE-002；交付物：Mina、Shopkeeper、Pet Buddy、Bus Helper、Story Bear 对话；验收：无真实 AI 时可完成首期互动。
 
 ## 阶段 7：家长后台与本地摘要
 
-- [ ] **V02-PARENT-001 定义家长入口与触屏流程**  
+- [x] **V02-PARENT-001 定义家长入口与触屏流程**  
   Owner：UI/UX Agent；依赖：V02-BASE-001；交付物：入口和 UI 规格；验收：不进入孩子主流程。
 - [x] **V02-PARENT-002 实现 ParentDashboardStore stub**  
   Owner：Godot Dev Agent；依赖：V02-CORE-004、V02-AI-003、V02-MINI-002；交付物：dashboard 数据服务；验收：可读取 card/minigame/NPC 本地摘要。
-- [ ] **V02-PARENT-003 校验孩子端不显示后台内容**  
+- [x] **V02-PARENT-003 校验孩子端不显示后台内容**  
   Owner：QA Agent；依赖：V02-PARENT-001/002；交付物：可见性测试；验收：主流程无家长报告 UI。
-- [ ] **V02-PARENT-004 实现本地家长摘要界面**  
+- [x] **V02-PARENT-004 实现本地家长摘要界面**  
   Owner：UI/UX / Godot Dev Agent；依赖：V02-PARENT-001/002；交付物：本地 dashboard；验收：家长可查看摘要与设置，孩子端流程不受影响。
 
 ## 阶段 8：远期能力
@@ -201,3 +245,14 @@
 | 2026-06-04 | Round 6 验收 | V02-MINI-003、V02-UI-001、V02-LOOP-002、V02-MINI-004 | Letter Snake 原型、Home/Pet 触屏入口、可玩主循环 smoke、奖励差异与禁用词测试通过 |
 | 2026-06-04 | Round 7 验收 | V02-CARD-002、V02-RUNTIME-003、V02-RUNTIME-004 | Memory Album、运行时 hotspot/collision、完整 26 个 A-Z anchor marker 通过全量回归 |
 | 2026-06-04 | Round 8 验收 | V02-VOICE-001/002、V02-AI-001/002/003、V02-PARENT-002 | VoiceService、NPCMemoryStore、LLMClient、ConversationSummaryService、ParentDashboardStore 本地 stub 测试通过 |
+| 2026-06-04 | Round 9 验收 | V02-LIFE-001/002/003 | 主场景新增 LifeRPGPanel、Player 移动/点击移动、碰撞阻挡、Mina/Shopkeeper/Pet Buddy 标记和 NPC 关系存档；`test_life_rpg_scene`、`headless_runner`、旧 playable loop smoke 通过 |
+| 2026-06-04 | Round 10 验收 | V02-LIFE-004/005/006 | 新增 life item 数据、InventoryService、LifeShopService、HomeDecorationService；主场景可捡 branch、买 wooden_chair、摆放家具并保存；`test_life_services`、`test_life_rpg_scene`、`headless_runner` 通过 |
+| 2026-06-04 | Round 11 验收 | V02-LIFE-007/009/010 | 生活 MVP smoke 已覆盖移动、NPC、收集、购买、摆放、保存；`world_map.memory_anchors` 扩展为 26 个 A-Z 锚点；`test_memory_palace_embedding` 校验锚点顺序和新词故事编码绑定 |
+| 2026-06-04 | Round 12 验收 | V02-LIFE-008 | 主场景新增可选活动面板，Memory Album / Letter Snake 保留为 side activities；Sunny 主流程通过 Help Neighbor 生活动作获得 coins，不再要求 Letter Snake；`test_playable_loop_smoke`、`test_life_rpg_scene`、`headless_runner` 通过 |
+| 2026-06-04 | Round 13 验收 | V02-LIFE-011 | 主场景 LifeRPGPanel 降级 Pick/Buy/Place 调试按钮为统一 `Interact`；`interact_nearby()` 覆盖 NPC 对话、branch 收集、超市购买、家门口摆放和空格无目标反馈；`test_life_rpg_scene` 通过 |
+| 2026-06-04 | Round 14 验收 | V02-NPC-001 | 主场景生成 Mina、Shopkeeper、Pet Buddy、Bus Helper、Story Bear 五个 NPC marker；统一 `interact_nearby()` 使用 profile fallback 本地固定对白，写入 `npc_relationships` 和 `npc_memory.recent_events`，无网络/真实 AI；`test_life_rpg_scene`、`test_ai_npc_stubs`、`headless_runner` 通过 |
+| 2026-06-04 | Round 15 验收 | V02-PARENT-001/003 | 新增家长入口触屏流程合同和 `Main.get_parent_entry_spec()`；孩子端主导航移除 `Parent`，`test_life_rpg_scene` 与 `test_playable_loop_smoke` 扫描可见文本，验证主流程无家长后台/报告 UI |
+| 2026-06-04 | Round 16 验收 | V02-PARENT-004 | 新增独立 `ParentDashboard` 场景和脚本，读取 `ParentDashboardStore` 展示本地概览、卡片、活动、NPC 摘要和隐私设置；`test_parent_dashboard_scene` 验证 parent-only、本地无账号/网络/录音且孩子端未挂载 dashboard |
+| 2026-06-04 | Round 17 验收 | V02-MAP-002 | `WorldOverviewScene` 编辑层生成 `EditorOnlyProxyRoot` 和 place proxy marker，支持测试移动 marker 且不写回 JSON；运行时 `Main` 和 `RuntimeMapBuilder` 不依赖 EditorOnly；`test_world_overview_editor_proxy`、`headless_runner` 通过 |
+| 2026-06-04 | Round 18 验收 | V02-LIFE-012 | Home、Town Start、Supermarket 入口统一返回 `place_entry`，只更新中性地点状态，不再自动发 coins、购买 `wooden_chair` 或摆放家具；显式 Help Neighbor、购买和摆放动作仍可用；`test_life_rpg_scene`、`test_playable_loop_smoke`、`test_life_services`、`headless_runner` 通过 |
+| 2026-06-04 | Round 19 验收 | V02-LIFE-013 | 新增 `DailyRequestService` 和 `data/life/daily_requests.json`；Mina 可接取 branch 轻委托，收集后交付会消耗 branch、发 6 coins、写入 Mina 关系和 NPC memory，同日重复不重复奖励；`test_daily_request_service`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`test_life_services`、`headless_runner` 通过 |

@@ -1,0 +1,37 @@
+{
+	"schema_version": 1,
+	"items": [
+		{
+			"item_id": "branch",
+			"display_name": "Branch",
+			"item_type": "material",
+			"stackable": true,
+			"source": "town_resource",
+			"memory_story": {
+				"letter": "B",
+				"core_anchor_id": "anchor_b_bear",
+				"world_place_id": "place_town_start",
+				"story_memory": "Mina finds a branch near the Bear book corner and uses it as a tiny bookmark.",
+				"visual_hook": "a branch beside the Bear book corner",
+				"review_path": "Walk through Town Plaza and look near the Bear anchor."
+			}
+		},
+		{
+			"item_id": "wooden_chair",
+			"display_name": "Wooden Chair",
+			"item_type": "furniture",
+			"stackable": false,
+			"price": 8,
+			"shop_id": "shop_life_basic",
+			"home_size": {"w": 1, "h": 1},
+			"memory_story": {
+				"letter": "C",
+				"core_anchor_id": "anchor_c_clock",
+				"world_place_id": "place_home",
+				"story_memory": "The wooden chair sits under the Clock wall so Sunny knows when cozy time starts.",
+				"visual_hook": "a chair under the Clock anchor",
+				"review_path": "Return home and see the chair near the Clock anchor."
+			}
+		}
+	]
+}

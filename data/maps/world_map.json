@@ -204,6 +204,72 @@
       "unlock_rule": "default_unlocked"
     },
     {
+      "anchor_id": "anchor_e_elephant",
+      "letter": "E",
+      "core_word": "Elephant",
+      "route_order": 5,
+      "place_id": "place_town_start",
+      "position": { "x": 12, "y": 12 },
+      "card_id": "card_e_elephant_core",
+      "audio_id": "audio_word_elephant",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_f_fox",
+      "letter": "F",
+      "core_word": "Fox",
+      "route_order": 6,
+      "place_id": "place_town_start",
+      "position": { "x": 13, "y": 12 },
+      "card_id": "card_f_fox_core",
+      "audio_id": "audio_word_fox",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_g_gate",
+      "letter": "G",
+      "core_word": "Gate",
+      "route_order": 7,
+      "place_id": "place_town_start",
+      "position": { "x": 14, "y": 12 },
+      "card_id": "card_g_gate_core",
+      "audio_id": "audio_word_gate",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_h_hat",
+      "letter": "H",
+      "core_word": "Hat",
+      "route_order": 8,
+      "place_id": "place_supermarket",
+      "position": { "x": 20, "y": 5 },
+      "card_id": "card_h_hat_core",
+      "audio_id": "audio_word_hat",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_i_ice_cream",
+      "letter": "I",
+      "core_word": "Ice cream",
+      "route_order": 9,
+      "place_id": "place_supermarket",
+      "position": { "x": 21, "y": 5 },
+      "card_id": "card_i_ice_cream_core",
+      "audio_id": "audio_word_ice_cream",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_j_jacket",
+      "letter": "J",
+      "core_word": "Jacket",
+      "route_order": 10,
+      "place_id": "place_supermarket",
+      "position": { "x": 26, "y": 5 },
+      "card_id": "card_j_jacket_core",
+      "audio_id": "audio_word_jacket",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
       "anchor_id": "anchor_k_kite",
       "letter": "K",
       "core_word": "Kite",
@@ -215,6 +281,39 @@
       "unlock_rule": "default_unlocked"
     },
     {
+      "anchor_id": "anchor_l_lion",
+      "letter": "L",
+      "core_word": "Lion",
+      "route_order": 12,
+      "place_id": "place_town_start",
+      "position": { "x": 15, "y": 12 },
+      "card_id": "card_l_lion_core",
+      "audio_id": "audio_word_lion",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_m_monkey",
+      "letter": "M",
+      "core_word": "Monkey",
+      "route_order": 13,
+      "place_id": "place_town_start",
+      "position": { "x": 16, "y": 12 },
+      "card_id": "card_m_monkey_core",
+      "audio_id": "audio_word_monkey",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_n_net",
+      "letter": "N",
+      "core_word": "Net",
+      "route_order": 14,
+      "place_id": "place_town_start",
+      "position": { "x": 17, "y": 12 },
+      "card_id": "card_n_net_core",
+      "audio_id": "audio_word_net",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
       "anchor_id": "anchor_o_orange",
       "letter": "O",
       "core_word": "Orange",
@@ -224,6 +323,39 @@
       "card_id": "card_o_orange_core",
       "audio_id": "audio_word_orange",
       "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_p_panda",
+      "letter": "P",
+      "core_word": "Panda",
+      "route_order": 16,
+      "place_id": "place_town_start",
+      "position": { "x": 18, "y": 12 },
+      "card_id": "card_p_panda_core",
+      "audio_id": "audio_word_panda",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_q_queen",
+      "letter": "Q",
+      "core_word": "Queen",
+      "route_order": 17,
+      "place_id": "place_town_start",
+      "position": { "x": 19, "y": 12 },
+      "card_id": "card_q_queen_core",
+      "audio_id": "audio_word_queen",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_r_robot",
+      "letter": "R",
+      "core_word": "Robot",
+      "route_order": 18,
+      "place_id": "place_town_start",
+      "position": { "x": 20, "y": 12 },
+      "card_id": "card_r_robot_core",
+      "audio_id": "audio_word_robot",
+      "unlock_rule": "reserved_memory_anchor"
     },
     {
       "anchor_id": "anchor_s_sun",
@@ -248,6 +380,28 @@
       "unlock_rule": "default_unlocked"
     },
     {
+      "anchor_id": "anchor_u_umbrella",
+      "letter": "U",
+      "core_word": "Umbrella",
+      "route_order": 21,
+      "place_id": "place_town_start",
+      "position": { "x": 32, "y": 9 },
+      "card_id": "card_u_umbrella_core",
+      "audio_id": "audio_word_umbrella",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_v_violin",
+      "letter": "V",
+      "core_word": "Violin",
+      "route_order": 22,
+      "place_id": "place_town_start",
+      "position": { "x": 34, "y": 9 },
+      "card_id": "card_v_violin_core",
+      "audio_id": "audio_word_violin",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
       "anchor_id": "anchor_w_watch",
       "letter": "W",
       "core_word": "Watch",
@@ -257,6 +411,39 @@
       "card_id": "card_w_watch_core",
       "audio_id": "audio_word_watch",
       "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_x_x_mark_box",
+      "letter": "X",
+      "core_word": "X-mark Box",
+      "route_order": 24,
+      "place_id": "place_town_start",
+      "position": { "x": 37, "y": 9 },
+      "card_id": "card_x_x_mark_box_core",
+      "audio_id": "audio_word_x_mark_box",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_y_yo_yo",
+      "letter": "Y",
+      "core_word": "Yo-yo",
+      "route_order": 25,
+      "place_id": "place_home",
+      "position": { "x": 8, "y": 8 },
+      "card_id": "card_y_yo_yo_core",
+      "audio_id": "audio_word_yo_yo",
+      "unlock_rule": "reserved_memory_anchor"
+    },
+    {
+      "anchor_id": "anchor_z_zebra",
+      "letter": "Z",
+      "core_word": "Zebra",
+      "route_order": 26,
+      "place_id": "place_town_start",
+      "position": { "x": 38, "y": 9 },
+      "card_id": "card_z_zebra_core",
+      "audio_id": "audio_word_zebra",
+      "unlock_rule": "reserved_memory_anchor"
     }
   ],
   "collision_cells": [

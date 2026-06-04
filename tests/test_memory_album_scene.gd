@@ -3,6 +3,7 @@ extends SceneTree
 const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const MemoryCardServiceScript := preload("res://scripts/systems/memory_card_service.gd")
 const MemoryAlbumScene := preload("res://scenes/memory_album/memory_album.tscn")
+const FORBIDDEN_CHILD_PARENT_UI_TERMS := ["Parent", "Dashboard", "Report", "家长", "报告", "后台"]
 
 var failures: Array[String] = []
 
@@ -45,6 +46,8 @@ func _init() -> void:
 	var visible_text := str(scene.call("get_visible_text")).to_lower()
 	for blocked in ["lesson", "test", "word list", "review", "failed"]:
 		_expect(not visible_text.contains(blocked), "album visible text should not contain blocked term: %s" % blocked)
+	for forbidden in FORBIDDEN_CHILD_PARENT_UI_TERMS:
+		_expect(not str(scene.call("get_visible_text")).contains(str(forbidden)), "album visible text should not expose parent term: %s" % forbidden)
 
 	root.remove_child(scene)
 	scene.queue_free()
