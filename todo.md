@@ -3,7 +3,7 @@
 > 最后更新：2026-06-04  
 > 状态事实来源：本文件  
 > 当前阶段：长期路线规划 - 生活小镇从原型走向长期可玩  
-> 当前里程碑：V02.4 内容生产框架，让扩展主要写数据
+> 当前里程碑：V02.4 内容生产框架已完成，长期路线当前批次收口
 
 ## 维护规则
 
@@ -19,11 +19,11 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 46：V02.3 小镇记忆宫殿完成 |
-| 本轮目标 | 首批 A-Z 场景物件强化、anchor 互动与相册收藏、新词故事回访路径和记忆宫殿审计已完成 |
+| 当前轮次 | Round 47：V02.4 内容生产框架完成 |
+| 本轮目标 | 每日委托、NPC 对话、家具商品、anchor 内容合同和数据化回归已完成 |
 | 进行中 | 无 |
-| Ready | V02-CONTENT-001 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿 |
+| Ready | 无 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
 | 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
@@ -140,15 +140,15 @@
 
 ### V02.4 内容生产框架：让扩展主要写数据
 
-- [ ] **V02-CONTENT-001 每日委托数据化合同**  
+- [x] **V02-CONTENT-001 每日委托数据化合同**  
   Owner：Godot Dev / Game Design Agent；依赖：V02-DAILY-002；交付物：daily request schema 和 loader；验收：新增委托无需改 `scripts/main.gd` 主流程即可加载，ID、奖励、同日去重和儿童安全文案有测试。
-- [ ] **V02-CONTENT-002 NPC 对话数据化合同**  
+- [x] **V02-CONTENT-002 NPC 对话数据化合同**  
   Owner：Narrative / Godot Dev Agent；依赖：V02-DAILY-001；交付物：NPC greeting/dialogue 数据合同；验收：问候、轻委托对白、关系阶段对白可由数据驱动，默认本地 stub，无网络依赖。
-- [ ] **V02-CONTENT-003 家具和商品数据化合同**  
+- [x] **V02-CONTENT-003 家具和商品数据化合同**  
   Owner：Godot Dev / Economy Agent；依赖：V02-HOME-003；交付物：商品、家具、分类、价格和摆放 footprint 数据合同；验收：商品轮换和家具摆放读取数据，非法价格、重复 ID、缺失稳定 ID 可被测试拦截。
-- [ ] **V02-CONTENT-004 Anchor 内容包校验增强**  
+- [x] **V02-CONTENT-004 Anchor 内容包校验增强**  
   Owner：Curriculum / Memory Palace / QA Agent；依赖：V02-AZ-WORLD-004、V02-FUTURE-003；交付物：内容包校验规则扩展；验收：内容包不能覆盖核心 A-Z 编码，新增词必须绑定记忆宫殿字段，未通过人工审核不得进入 runtime。
-- [ ] **V02-CONTENT-005 V02.4 数据化回归**  
+- [x] **V02-CONTENT-005 V02.4 数据化回归**  
   Owner：QA Agent；依赖：V02-CONTENT-001 至 V02-CONTENT-004；交付物：内容数据合同和回归测试集；验收：委托、对白、商品、家具、anchor 内容均可通过数据新增并通过 headless runner。
 
 ## 阶段 0：框架与管理基线
@@ -360,3 +360,4 @@
 | 2026-06-04 | Round 44 验收 | V02.1 每日小镇 | 新增 `LocalDayService`、每日问候、每日资源刷新、今日状态和多 NPC 轻委托；Mina、店长、Sunny、故事熊、巴士哥哥每日问候按 day_key 保存，树枝/小花/小石子按日刷新，店长/故事熊/Sunny 新增轻委托；`jq`、`test_daily_request_service`、`test_daily_town_services`、`test_v021_daily_town_contract`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`test_life_services`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
 | 2026-06-04 | Round 45 验收 | V02.2 我的小屋 | 新增独立 `HomeRoom` 小屋视图，`小屋`/`小镇` 底栏可切换；家具目录扩展小桌、地毯、花盆、宠物碗、Sunny 小床和墙饰；`HomeDecorationService` 支持摆放、旋转、移动、收起、非法格温和反馈和 Sunny 家内反馈；`jq`、`test_v022_home_room_contract`、`test_life_services`、`test_life_rpg_scene`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
 | 2026-06-04 | Round 46 验收 | V02.3 小镇记忆宫殿 | 新增 `AnchorInteractionService` 和新词回访数据，靠近 A-Z anchor 使用 `看看` 会写入相册 seen/heard/collected 并显示温和故事；首批 A/B/C/D/K/O/S/T/W 保持 Sprite2D 场景物件表现；`test_v023_memory_palace_world`、`test_memory_album_scene`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
+| 2026-06-04 | Round 47 验收 | V02.4 内容生产框架 | 新增 `ContentContractValidator` 和 V02.4 内容合同测试，覆盖每日委托、每日问候、家具商品、新词故事、核心 A-Z 覆盖拦截和数据化 loader 回归；`find data -name '*.json' -print0 | xargs -0 jq empty`、`test_v024_content_contracts`、`check-only`、`headless_runner`、`test_life_rpg_scene`、`test_v022_home_room_contract`、`test_v023_memory_palace_world`、`godot --headless --path . --quit` 通过 |

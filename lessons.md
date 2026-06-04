@@ -151,3 +151,17 @@
   - Headless 测试需要扫描孩子端可见文本，防止工程占位、学习压力和家长后台文案回流。
   - 视觉任务完成前，至少运行主场景测试、全量 headless runner，并在 Godot 编辑器可用时做截图检查。
 - **验证依据：** `godot --headless --path . --check-only --script scripts/main.gd`、`tests/test_life_rpg_scene.gd`、`tests/test_playable_loop_smoke.gd`、`tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过；MCP 截图因 Godot 编辑器插件未运行无法执行。
+
+## LESSON-008：内容生产必须先过合同验证
+
+- **日期：** 2026-06-04
+- **关联任务：** `V02-CONTENT-001` 至 `V02-CONTENT-005`
+- **现象：** 每日委托、NPC 问候、家具商品、anchor 回访和新词故事都开始转向 JSON 数据生产；如果缺少统一合同，新增内容容易漏稳定 ID、漏 memory-story 字段、写入非法价格，或不小心覆盖核心 A-Z 锚点。
+- **影响：** 主流程脚本会重新承载内容规则，后续扩展需要反复改 `scripts/main.gd`，并可能破坏记忆宫殿路线和儿童安全文本边界。
+- **根因：** 数据化只解决“放在哪里”，还需要验收“能不能放、字段是否完整、是否伤害核心结构”。
+- **解决方式：** 新增内容合同验证器，统一检查稳定 ID、重复 ID、非法价格、儿童安全文本、memory-story 绑定、核心 A-Z 覆盖和候选内容包错误；全量 runner 注册该合同检查。
+- **预防规则：**
+  - 新每日委托、NPC 问候、商品家具、anchor 回访和新词故事默认只改 JSON 与 focused test。
+  - 候选内容包不能覆盖核心 A-Z anchor；新增单词必须绑定 letter、core_anchor_id、world_place_id、story_memory、visual_hook 和 review_path。
+  - 修改共享 runner 仍由 PM 集成，新增内容先用 focused contract test 证明可加载。
+- **验证依据：** `tests/test_v024_content_contracts.gd`、`tests/headless_runner.gd`、`godot --headless --path . --check-only --script scripts/systems/content_contract_validator.gd` 和 `godot --headless --path . --quit` 均通过。

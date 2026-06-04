@@ -23,6 +23,7 @@ const CloudSaveAdapterScript := preload("res://scripts/systems/cloud_save_adapte
 const ContentPackLoaderScript := preload("res://scripts/systems/content_pack_loader.gd")
 const ThemeSwitchServiceScript := preload("res://scripts/systems/theme_switch_service.gd")
 const ContentReviewPipelineScript := preload("res://scripts/systems/content_review_pipeline.gd")
+const ContentContractValidatorScript := preload("res://scripts/systems/content_contract_validator.gd")
 const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
 const AINPCProviderAdapterScript := preload("res://scripts/systems/ai_npc_provider_adapter.gd")
 const FriendVisitServiceScript := preload("res://scripts/systems/friend_visit_service.gd")
@@ -78,6 +79,7 @@ func _init() -> void:
 	_check_child_experience_and_mobile_acceptance(main)
 	_check_account_cloud_stubs()
 	_check_content_theme_review_stubs()
+	_check_content_contracts()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -430,6 +432,17 @@ func _check_content_theme_review_stubs() -> void:
 	_expect(not review.publish_for_runtime("candidate_headless_pack").get("ok", true), "ContentReviewPipeline should block unapproved content")
 	_expect(review.set_manual_status("candidate_headless_pack", "approved").get("ok", false), "ContentReviewPipeline should accept manual approval")
 	_expect(review.publish_for_runtime("candidate_headless_pack").get("ok", false), "ContentReviewPipeline should publish approved content")
+
+
+func _check_content_contracts() -> void:
+	var validator = ContentContractValidatorScript.new()
+	var result: Dictionary = validator.validate_all()
+	_expect(result.get("ok", false), "ContentContractValidator should pass all content data: %s" % [result.get("errors", [])])
+	var blocked: Dictionary = validator.validate_candidate_content_pack({
+		"anchors": [{"anchor_id": "anchor_a_apple"}],
+		"new_word_stories": [],
+	})
+	_expect(not blocked.get("ok", true), "ContentContractValidator should block core A-Z anchor overrides")
 
 
 func _check_voice_ai_social_stubs() -> void:
