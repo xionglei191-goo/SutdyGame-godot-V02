@@ -64,7 +64,10 @@
 		{
 			"item_id": "wooden_chair",
 			"display_name": "Wooden Chair",
+			"localized_display_name": "小木椅",
 			"item_type": "furniture",
+			"furniture_category": "seat",
+			"tags": ["home_decor", "cozy", "sitting"],
 			"stackable": false,
 			"price": 8,
 			"shop_id": "shop_life_basic",
@@ -76,6 +79,126 @@
 				"story_memory": "The wooden chair sits under the Clock wall so Sunny knows when cozy time starts.",
 				"visual_hook": "a chair under the Clock anchor",
 				"review_path": "Return home and see the chair near the Clock anchor."
+			}
+		},
+		{
+			"item_id": "small_table",
+			"display_name": "Small Table",
+			"localized_display_name": "小圆桌",
+			"item_type": "furniture",
+			"furniture_category": "table",
+			"tags": ["home_decor", "surface", "cozy"],
+			"stackable": false,
+			"price": 12,
+			"shop_id": "shop_life_basic",
+			"home_size": {"w": 2, "h": 1},
+			"memory_story": {
+				"letter": "T",
+				"core_anchor_id": "anchor_t_taxi",
+				"world_place_id": "place_town_start",
+				"story_memory": "At the Taxi stop, a tiny table holds a map and a warm cup for the ride home.",
+				"visual_hook": "a small table beside the Taxi stop sign",
+				"review_path": "Visit the Taxi stop, then place the table feeling back in the home room."
+			}
+		},
+		{
+			"item_id": "soft_rug",
+			"display_name": "Soft Rug",
+			"localized_display_name": "软软地毯",
+			"item_type": "furniture",
+			"furniture_category": "floor_decor",
+			"tags": ["home_decor", "floor", "cozy"],
+			"stackable": false,
+			"price": 9,
+			"shop_id": "shop_life_basic",
+			"home_size": {"w": 2, "h": 2},
+			"memory_story": {
+				"letter": "S",
+				"core_anchor_id": "anchor_s_sun",
+				"world_place_id": "place_town_start",
+				"story_memory": "A soft rug catches a warm Sun square, and Sunny curls on the bright patch.",
+				"visual_hook": "sunlight shaped like a soft rug under the Sun anchor",
+				"review_path": "Walk through Sun Plaza, then place the rug where the home floor feels warm."
+			}
+		},
+		{
+			"item_id": "flower_pot",
+			"display_name": "Flower Pot",
+			"localized_display_name": "小花盆",
+			"item_type": "furniture",
+			"furniture_category": "plant",
+			"tags": ["home_decor", "plant", "window"],
+			"stackable": false,
+			"price": 7,
+			"shop_id": "shop_life_basic",
+			"home_size": {"w": 1, "h": 1},
+			"memory_story": {
+				"letter": "O",
+				"core_anchor_id": "anchor_o_orange",
+				"world_place_id": "place_supermarket",
+				"story_memory": "Near the Orange stand, a flower pot wears one orange-colored blossom for the window.",
+				"visual_hook": "a flower pot with an orange blossom beside the Orange stand",
+				"review_path": "Notice the Orange stand at the shop, then set the flower pot by the home window."
+			}
+		},
+		{
+			"item_id": "pet_bowl",
+			"display_name": "Pet Bowl",
+			"localized_display_name": "Sunny 的小饭碗",
+			"item_type": "furniture",
+			"furniture_category": "pet_care",
+			"tags": ["home_decor", "pet_use", "feeding", "sunny"],
+			"stackable": false,
+			"price": 6,
+			"shop_id": "shop_life_basic",
+			"home_size": {"w": 1, "h": 1},
+			"memory_story": {
+				"letter": "D",
+				"core_anchor_id": "anchor_d_dog",
+				"world_place_id": "place_home",
+				"story_memory": "By the Dog anchor, Sunny's pet bowl waits with one shiny drop of water.",
+				"visual_hook": "a pet bowl beside the Dog home corner",
+				"review_path": "Return home, look at the Dog corner, and check Sunny's bowl."
+			}
+		},
+		{
+			"item_id": "sunny_bed",
+			"display_name": "Sunny Bed",
+			"localized_display_name": "Sunny 小床",
+			"item_type": "furniture",
+			"furniture_category": "pet_rest",
+			"tags": ["home_decor", "pet_use", "rest", "sunny", "cozy"],
+			"stackable": false,
+			"price": 14,
+			"shop_id": "shop_life_basic",
+			"home_size": {"w": 2, "h": 1},
+			"memory_story": {
+				"letter": "B",
+				"core_anchor_id": "anchor_b_bear",
+				"world_place_id": "place_town_start",
+				"story_memory": "Story Bear shows Sunny a small bed that feels as soft as a bedtime page.",
+				"visual_hook": "a small bed with a Bear book pattern on the blanket",
+				"review_path": "Visit the Bear corner, then return home and see Sunny's bed."
+			}
+		},
+		{
+			"item_id": "wall_decoration",
+			"display_name": "Wall Decoration",
+			"localized_display_name": "墙上小挂饰",
+			"item_type": "furniture",
+			"furniture_category": "wall_decor",
+			"tags": ["home_decor", "wall", "cozy"],
+			"stackable": false,
+			"price": 8,
+			"shop_id": "shop_life_basic",
+			"home_size": {"w": 1, "h": 1},
+			"memory_story": {
+				"letter": "W",
+				"core_anchor_id": "anchor_w_watch",
+				"world_place_id": "place_town_start",
+				"story_memory": "The Watch sign points to a wall decoration that says cozy time has no hurry.",
+				"visual_hook": "a wall decoration hanging below the Watch sign",
+				"review_path": "Pass the Watch sign, then look at the home wall where the decoration hangs."
 			}
 		}
 	]

@@ -46,6 +46,25 @@ func _init() -> void:
 
 	var reloaded_home = HomeDecorationServiceScript.new(save_service, InventoryServiceScript.new(save_service))
 	_expect(reloaded_home.get_home_state().get("placed_furniture", []).size() == 1, "home state should reload")
+	var instance_id := str(home_state.get("placed_furniture", [])[0].get("instance_id", ""))
+	var rotated: Dictionary = reloaded_home.rotate_furniture(instance_id)
+	_expect(rotated.get("ok", false), "home furniture should rotate")
+	_expect(int(rotated.get("furniture", {}).get("rotation", -1)) == 90, "home furniture rotation should persist")
+	var invalid: Dictionary = reloaded_home.place_furniture("wooden_chair", Vector2i(-1, 0))
+	_expect(not invalid.get("ok", true) and str(invalid.get("feedback", "")).contains("放不下"), "invalid home placement should give soft feedback")
+	var picked_up: Dictionary = reloaded_home.pickup_furniture(instance_id)
+	_expect(picked_up.get("ok", false), "home furniture should be picked up")
+	_expect(reloaded_home.get_home_state().get("placed_furniture", []).is_empty(), "picked up furniture should leave room")
+	_expect(int(save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) == 1, "picked up furniture should return to inventory")
+
+	var more_state: Dictionary = save_service.load_game_state()
+	more_state["coins"] = 30
+	_expect(save_service.save_game_state(more_state), "coins setup for pet furniture should save")
+	_expect(shop.buy_life_item("pet_bowl").get("ok", false), "pet bowl should be buyable")
+	_expect(reloaded_home.place_furniture("pet_bowl", Vector2i(0, 0)).get("ok", false), "pet bowl should place")
+	var sunny_feedback: Dictionary = reloaded_home.get_sunny_feedback()
+	_expect(sunny_feedback.get("ok", false), "Sunny home feedback should resolve")
+	_expect(str(sunny_feedback.get("text", "")).contains("Sunny"), "Sunny feedback should be child-facing text")
 
 	_expect(save_service.clear_for_test(), "test save should clean up")
 	_finish()

@@ -97,6 +97,10 @@ var backpack_bubble: Control
 var backpack_summary_label: Label
 var backpack_items_label: Label
 var backpack_collection_label: Label
+var town_stage: Control
+var home_room_layer: Control
+var home_furniture_layer: Node2D
+var sunny_home_feedback_label: Label
 var player_marker: Node2D
 var player_cell := PLAYER_START_CELL
 var _texture_cache: Dictionary = {}
@@ -201,11 +205,17 @@ func _create_body() -> Control:
 	var stage := Control.new()
 	stage.name = "TownStage"
 	stage.set_anchors_preset(Control.PRESET_FULL_RECT)
+	town_stage = stage
 	content.add_child(stage)
 
 	var map_frame := _create_map_canvas()
 	map_frame.set_anchors_preset(Control.PRESET_FULL_RECT)
 	stage.add_child(map_frame)
+
+	home_room_layer = _create_home_room_view()
+	home_room_layer.set_anchors_preset(Control.PRESET_FULL_RECT)
+	home_room_layer.visible = false
+	content.add_child(home_room_layer)
 
 	var hud := _create_top_message_bar()
 	hud.anchor_left = 0.015
@@ -345,8 +355,8 @@ func _create_bottom_action_bar() -> Control:
 	margin.add_child(row)
 
 	row.add_child(_create_footer_button("看看", true, "_on_interact_pressed", "InteractButton"))
-	row.add_child(_create_nav_button("小镇", true, "TownNavButton"))
-	row.add_child(_create_nav_button("小屋", false, "HomeNavButton"))
+	row.add_child(_create_footer_button("小镇", true, "_on_town_pressed", "TownNavButton"))
+	row.add_child(_create_footer_button("小屋", false, "_on_home_pressed", "HomeNavButton"))
 	row.add_child(_create_footer_button("背包", false, "_on_backpack_pressed", "BackpackNavButton"))
 
 	var contract_buttons := Control.new()
@@ -423,6 +433,105 @@ func _create_backpack_bubble() -> Control:
 	return panel
 
 
+func _create_home_room_view() -> Control:
+	var room := Control.new()
+	room.name = "HomeRoom"
+
+	var background := ColorRect.new()
+	background.name = "HomeRoomBackground"
+	background.color = Color("#f5e4bf")
+	background.set_anchors_preset(Control.PRESET_FULL_RECT)
+	room.add_child(background)
+
+	var room_stage := Node2D.new()
+	room_stage.name = "HomeRoomStage"
+	room_stage.position = Vector2(250, 95)
+	room.add_child(room_stage)
+
+	room_stage.add_child(_create_sprite("HomeFloor", Vector2(210, 155), Vector2(420, 310), "home_floor"))
+	room_stage.add_child(_create_sprite("HomeBackWall", Vector2(210, 38), Vector2(420, 76), "home_wall"))
+	for x in range(6):
+		for y in range(5):
+			var tile := _create_sprite("HomeGridCell", Vector2(70 + x * 56, 78 + y * 48), Vector2(52, 44), "home_grid_cell")
+			room_stage.add_child(tile)
+
+	home_furniture_layer = Node2D.new()
+	home_furniture_layer.name = "HomeFurnitureLayer"
+	room_stage.add_child(home_furniture_layer)
+
+	var sunny := Node2D.new()
+	sunny.name = "HomeSunny"
+	sunny.position = Vector2(400, 235)
+	sunny.add_child(_create_sprite("Shadow", Vector2(0, 17), Vector2(30, 9), "shadow"))
+	sunny.add_child(_create_sprite("Body", Vector2(0, 5), Vector2(30, 30), "npc_pet_buddy_body"))
+	sunny.add_child(_create_sprite("Head", Vector2(0, -16), Vector2(28, 24), "npc_pet_buddy_head"))
+	room_stage.add_child(sunny)
+
+	var feedback_panel := PanelContainer.new()
+	feedback_panel.name = "SunnyHomeFeedbackPanel"
+	feedback_panel.anchor_left = 0.08
+	feedback_panel.anchor_top = 0.12
+	feedback_panel.anchor_right = 0.38
+	feedback_panel.anchor_bottom = 0.12
+	feedback_panel.offset_bottom = 68
+	feedback_panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0ee"), 14, Color("#e7c46f")))
+	room.add_child(feedback_panel)
+
+	var feedback_margin := MarginContainer.new()
+	feedback_margin.add_theme_constant_override("margin_left", 14)
+	feedback_margin.add_theme_constant_override("margin_top", 10)
+	feedback_margin.add_theme_constant_override("margin_right", 14)
+	feedback_margin.add_theme_constant_override("margin_bottom", 10)
+	feedback_panel.add_child(feedback_margin)
+
+	sunny_home_feedback_label = Label.new()
+	sunny_home_feedback_label.name = "SunnyHomeFeedback"
+	sunny_home_feedback_label.text = "Sunny 在小屋里慢慢摇尾巴。"
+	sunny_home_feedback_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	sunny_home_feedback_label.add_theme_color_override("font_color", TEXT_COLOR)
+	sunny_home_feedback_label.add_theme_font_size_override("font_size", 15)
+	feedback_margin.add_child(sunny_home_feedback_label)
+
+	return room
+
+
+func _refresh_home_room() -> void:
+	if not is_instance_valid(home_furniture_layer):
+		return
+	for child in home_furniture_layer.get_children():
+		home_furniture_layer.remove_child(child)
+		child.queue_free()
+	for record in home_decoration_service.get_home_state().get("placed_furniture", []):
+		if not record is Dictionary:
+			continue
+		var furniture: Dictionary = record
+		var node := Node2D.new()
+		node.name = "home_furniture_%s" % str(furniture.get("instance_id", "item"))
+		var cell: Vector2i = _dict_to_cell(furniture.get("cell", {}))
+		var size_data: Dictionary = furniture.get("size", {"w": 1, "h": 1})
+		var width: int = max(1, int(size_data.get("w", 1)))
+		var height: int = max(1, int(size_data.get("h", 1)))
+		node.position = Vector2(70 + cell.x * 56 + (width - 1) * 28, 78 + cell.y * 48 + (height - 1) * 24)
+		node.add_child(_create_sprite("FurnitureSprite", Vector2.ZERO, Vector2(width * 48, height * 40), "home_item_%s" % str(furniture.get("item_id", "furniture"))))
+		home_furniture_layer.add_child(node)
+	var feedback: Dictionary = home_decoration_service.get_sunny_feedback()
+	if is_instance_valid(sunny_home_feedback_label):
+		sunny_home_feedback_label.text = str(feedback.get("text", "Sunny 在小屋里慢慢摇尾巴。"))
+	_update_backpack_bubble()
+
+
+func _home_error_text(reason: String) -> String:
+	match reason:
+		"invalid_cell":
+			return "这里放不下，换个更宽的小格子吧。"
+		"occupied":
+			return "这里已经有家具啦，挪一挪再试试。"
+		"not_enough_items":
+			return "背包里还没有这个家具。"
+		_:
+			return "小屋还没准备好这个动作。"
+
+
 func _create_action_button(label: String, method_name: String, node_name: String = "") -> Button:
 	var button := Button.new()
 	button.name = node_name if not node_name.is_empty() else label.replace(" ", "") + "Button"
@@ -495,6 +604,14 @@ func _on_interact_pressed() -> void:
 	interact_nearby()
 
 
+func _on_town_pressed() -> void:
+	show_town_view()
+
+
+func _on_home_pressed() -> void:
+	show_home_view()
+
+
 func _on_backpack_pressed() -> void:
 	if backpack_bubble == null:
 		return
@@ -542,9 +659,50 @@ func buy_wooden_chair() -> Dictionary:
 
 
 func place_wooden_chair(cell: Vector2i = Vector2i(2, 2)) -> Dictionary:
-	var result: Dictionary = home_decoration_service.place_furniture("wooden_chair", cell)
+	var result: Dictionary = place_home_item("wooden_chair", cell)
 	_set_life_status("把木椅放在钟表旁边啦。" if result.get("ok", false) else "背包里还没有木椅。")
 	return result
+
+
+func place_home_item(item_id: String, cell: Vector2i, rotation: int = 0) -> Dictionary:
+	var result: Dictionary = home_decoration_service.place_furniture(item_id, cell, rotation)
+	if result.get("ok", false):
+		_refresh_home_room()
+	else:
+		_set_life_status(_home_error_text(str(result.get("reason", ""))))
+	return result
+
+
+func rotate_home_item(instance_id: String) -> Dictionary:
+	var result: Dictionary = home_decoration_service.rotate_furniture(instance_id)
+	_set_life_status("家具换了一个方向。" if result.get("ok", false) else _home_error_text(str(result.get("reason", ""))))
+	_refresh_home_room()
+	return result
+
+
+func pickup_home_item(instance_id: String) -> Dictionary:
+	var result: Dictionary = home_decoration_service.pickup_furniture(instance_id)
+	_set_life_status("家具收回背包啦。" if result.get("ok", false) else _home_error_text(str(result.get("reason", ""))))
+	_refresh_home_room()
+	return result
+
+
+func show_town_view() -> void:
+	if is_instance_valid(town_stage):
+		town_stage.visible = true
+	if is_instance_valid(home_room_layer):
+		home_room_layer.visible = false
+	_set_life_status("回到阳光小镇，想去哪边都可以。")
+
+
+func show_home_view() -> void:
+	if is_instance_valid(town_stage):
+		town_stage.visible = false
+	if is_instance_valid(home_room_layer):
+		home_room_layer.visible = true
+	_refresh_home_room()
+	var feedback: Dictionary = home_decoration_service.get_sunny_feedback()
+	_set_life_status(str(feedback.get("text", "Sunny 在小屋里慢慢摇尾巴。")))
 
 
 func interact_nearby() -> Dictionary:
@@ -651,11 +809,21 @@ func _update_backpack_bubble() -> void:
 		int(game_state.get("coins", 0)),
 		int(game_state.get("pet", {}).get("happy", 0)),
 	]
-	backpack_items_label.text = "点心 %s   树枝 %s   木椅 %s" % [
+	backpack_items_label.text = "点心 %s   树枝 %s   小花 %s   小石子 %s   木椅 %s   家具 %s" % [
 		int(inventory.get("food_pet_snack", 0)),
 		int(inventory.get("branch", 0)),
+		int(inventory.get("flower", 0)),
+		int(inventory.get("stone", 0)),
 		int(inventory.get("wooden_chair", 0)),
+		_count_home_inventory_items(inventory),
 	]
+
+
+func _count_home_inventory_items(inventory: Dictionary) -> int:
+	var count := 0
+	for item_id in ["small_table", "soft_rug", "flower_pot", "pet_bowl", "sunny_bed", "wall_decoration"]:
+		count += int(inventory.get(item_id, 0))
+	return count
 
 
 func _create_nav_button(label: String, selected: bool, node_name: String = "") -> Button:
@@ -1046,6 +1214,14 @@ func _texture_colors(texture_key: String) -> Dictionary:
 		return {"fill": Color("#f0a34f"), "edge": Color("#8f6a45"), "accent": Color("#fff2a8")}
 	if texture_key == "hotspot_glow":
 		return {"fill": Color("#fff0a877"), "edge": Color("#fff0a822"), "accent": Color("#ffffffaa")}
+	if texture_key == "home_floor":
+		return {"fill": Color("#f0d49c"), "edge": Color("#c9a46b"), "accent": Color("#ffe6ad")}
+	if texture_key == "home_wall":
+		return {"fill": Color("#ffe8bd"), "edge": Color("#d7b06f"), "accent": Color("#fff4d9")}
+	if texture_key == "home_grid_cell":
+		return {"fill": Color("#f8e8c288"), "edge": Color("#d1ae7388"), "accent": Color("#fff8df88")}
+	if texture_key.begins_with("home_item_"):
+		return _home_item_texture_colors(texture_key.trim_prefix("home_item_"))
 	if texture_key.begins_with("npc_"):
 		var npc_id := texture_key.trim_prefix("npc_").trim_suffix("_body").trim_suffix("_head").trim_suffix("_ear_left").trim_suffix("_ear_right")
 		return {"fill": _npc_color(npc_id), "edge": _npc_color(npc_id).darkened(0.25), "accent": _npc_color(npc_id).lightened(0.2)}
@@ -1060,6 +1236,24 @@ func _texture_colors(texture_key: String) -> Dictionary:
 	if texture_key.begins_with("reserved_anchor_"):
 		return {"fill": Color("#e9eee3aa"), "edge": Color("#c1cbca99"), "accent": Color("#f7faf4aa")}
 	return {"fill": Color("#ffffff"), "edge": Color("#d8d8d8"), "accent": Color("#f4f4f4")}
+
+
+func _home_item_texture_colors(item_id: String) -> Dictionary:
+	match item_id:
+		"wooden_chair", "small_table":
+			return {"fill": Color("#b77d52"), "edge": Color("#765139"), "accent": Color("#e1b37c")}
+		"soft_rug":
+			return {"fill": Color("#f1b7c8"), "edge": Color("#bc7892"), "accent": Color("#ffe4ed")}
+		"flower_pot":
+			return {"fill": Color("#d88f57"), "edge": Color("#8f5c3f"), "accent": Color("#78b76a")}
+		"pet_bowl":
+			return {"fill": Color("#9ccde3"), "edge": Color("#5b93ad"), "accent": Color("#fff4d0")}
+		"sunny_bed":
+			return {"fill": Color("#f2c76a"), "edge": Color("#b98539"), "accent": Color("#fff0b5")}
+		"wall_decoration":
+			return {"fill": Color("#d9c484"), "edge": Color("#7c6f4b"), "accent": Color("#fff5c7")}
+		_:
+			return {"fill": Color("#d8c7a3"), "edge": Color("#8f7b5d"), "accent": Color("#fff5d8")}
 
 
 func _anchor_texture_colors(texture_key: String) -> Dictionary:
@@ -1254,8 +1448,13 @@ func _cell_center(cell: Dictionary) -> Vector2:
 	return _cell_position(cell) + Vector2(MAP_CELL_SIZE, MAP_CELL_SIZE) * 0.5
 
 
-func _dict_to_cell(cell: Dictionary) -> Vector2i:
-	return Vector2i(int(cell.get("x", 0)), int(cell.get("y", 0)))
+func _dict_to_cell(cell: Variant) -> Vector2i:
+	if cell is Vector2i:
+		return cell
+	if cell is Dictionary:
+		var cell_dict: Dictionary = cell
+		return Vector2i(int(cell_dict.get("x", 0)), int(cell_dict.get("y", 0)))
+	return Vector2i.ZERO
 
 
 func _cell_to_dict(cell: Vector2i) -> Dictionary:

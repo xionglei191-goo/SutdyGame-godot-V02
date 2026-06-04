@@ -1,0 +1,37 @@
+{
+	"schema_version": 1,
+	"npc_id": "pet_buddy",
+	"speaker_name": "Sunny",
+	"local_only": true,
+	"feedback": {
+		"pet_bowl": {
+			"requires_any_items": ["pet_bowl"],
+			"lines": [
+				"Sunny 跑到小饭碗边闻了闻，尾巴轻轻摇：这里像家啦。",
+				"小碗放好以后，Sunny 喝水的声音小小的，房间也安静下来。"
+			]
+		},
+		"bed": {
+			"requires_any_items": ["sunny_bed"],
+			"lines": [
+				"Sunny 在小床边转了一圈，慢慢趴下，好像找到自己的小云朵。",
+				"小床软软的，Sunny 把下巴放上去，眼睛弯弯的。"
+			]
+		},
+		"cozy_room": {
+			"requires_min_furniture_count": 3,
+			"suggested_tags": ["cozy", "home_decor"],
+			"lines": [
+				"房间里有小桌、地毯和花香，Sunny 走得慢慢的，像在逛自己的小森林。",
+				"Sunny 看看墙饰又看看地毯，轻轻靠过来：今天的小屋很舒服。"
+			]
+		},
+		"default": {
+			"fallback": true,
+			"lines": [
+				"Sunny 跟着你在小屋里走一小圈，等你慢慢布置。",
+				"小屋还在长大，Sunny 已经先把尾巴的快乐放进来了。"
+			]
+		}
+	}
+}

@@ -24,6 +24,11 @@ func _init() -> void:
 	var backpack_button := main.find_child("BackpackNavButton", true, false) as Button
 	var backpack_bubble := main.find_child("BackpackBubble", true, false) as Control
 	_expect(backpack_button != null and backpack_bubble != null and not backpack_bubble.visible, "Backpack button should start with a hidden content bubble")
+	var home_button := main.find_child("HomeNavButton", true, false) as Button
+	var town_stage := main.find_child("TownStage", true, false) as Control
+	var home_room := main.find_child("HomeRoom", true, false) as Control
+	_expect(home_button != null and home_room != null and town_stage != null, "main scene should expose HomeRoom and Home navigation")
+	_expect(home_room != null and not home_room.visible, "HomeRoom should start hidden behind town playfield")
 	_expect(main.find_child("Header", true, false) == null, "main scene should not keep a second top title banner")
 	var title_label := main.find_child("Title", true, false) as Label
 	_expect(title_label != null and str(title_label.text) == "阳光小镇", "single-line HUD should keep the town title")
@@ -161,6 +166,17 @@ func _init() -> void:
 	var home_result: Dictionary = main.place_wooden_chair(Vector2i(2, 2))
 	_expect(home_result.get("ok", false), "explicit home action should place wooden chair")
 	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() == 1, "main scene should persist placed furniture")
+	main.show_home_view()
+	_expect(home_room.visible and not town_stage.visible, "Home navigation should show the independent room view")
+	_expect(main.find_child("HomeSunny", true, false) != null, "HomeRoom should show Sunny")
+	_expect(main.find_child("HomeFurnitureLayer", true, false).get_child_count() >= 1, "HomeRoom should render placed furniture")
+	var placed_instance_id := str(main.home_decoration_service.get_home_state().get("placed_furniture", [])[0].get("instance_id", ""))
+	var rotate_result: Dictionary = main.rotate_home_item(placed_instance_id)
+	_expect(rotate_result.get("ok", false), "main scene should rotate home furniture")
+	var pickup_result: Dictionary = main.pickup_home_item(placed_instance_id)
+	_expect(pickup_result.get("ok", false), "main scene should pick up home furniture")
+	main.show_town_view()
+	_expect(town_stage.visible and not home_room.visible, "Town navigation should return to the town playfield")
 
 	main.save_service.clear_for_test()
 	_finish()

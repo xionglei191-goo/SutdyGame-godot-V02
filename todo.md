@@ -3,7 +3,7 @@
 > 最后更新：2026-06-04  
 > 状态事实来源：本文件  
 > 当前阶段：长期路线规划 - 生活小镇从原型走向长期可玩  
-> 当前里程碑：V02.2 我的小屋，家园装饰成为核心留存
+> 当前里程碑：V02.3 小镇记忆宫殿，A-Z 锚点成为稳定场景物件和回访路线
 
 ## 维护规则
 
@@ -19,11 +19,11 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 44：V02.1 每日小镇完成 |
-| 本轮目标 | 每日问候、多 NPC 轻委托、每日资源刷新、今日状态和 V02.1 smoke 已完成 |
+| 当前轮次 | Round 45：V02.2 我的小屋完成 |
+| 本轮目标 | 独立小屋视图、家具摆放/旋转/收起、家具与宠物用品扩展、Sunny 家内反馈和 V02.2 smoke 已完成 |
 | 进行中 | 无 |
-| Ready | V02-HOME-001 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇 |
+| Ready | V02-AZ-WORLD-001 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
 | 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
@@ -116,15 +116,15 @@
 
 ### V02.2 我的小屋：家园装饰成为核心留存
 
-- [ ] **V02-HOME-001 独立小屋视图**  
+- [x] **V02-HOME-001 独立小屋视图**  
   Owner：Godot Dev / UI Agent；依赖：V02-LIFE-006；交付物：HomeRoom 场景或主场景小屋模式；验收：进入小屋后看到房间、家具、Sunny 和返回小镇入口，底部操作不覆盖房间。
-- [ ] **V02-HOME-002 家具摆放/旋转/收起交互**  
+- [x] **V02-HOME-002 家具摆放/旋转/收起交互**  
   Owner：Godot Dev / UX Agent；依赖：V02-HOME-001；交付物：触屏友好的家具操作；验收：家具可选择、摆放、旋转、收起，非法位置有温和反馈，保存后重进位置不丢失。
-- [ ] **V02-HOME-003 家具与宠物用品商品扩展**  
+- [x] **V02-HOME-003 家具与宠物用品商品扩展**  
   Owner：Game Design / Godot Dev Agent；依赖：V02-LIFE-005、V02-HOME-001；交付物：首批家具和宠物用品数据；验收：至少包含小桌、地毯、花盆、宠物碗、小床、墙饰，商店可购买并进入背包或家园库存。
-- [ ] **V02-HOME-004 Sunny 家内反馈**  
+- [x] **V02-HOME-004 Sunny 家内反馈**  
   Owner：Narrative / Godot Dev Agent；依赖：V02-HOME-001、V02-HOME-003；交付物：Sunny 对家具和小屋状态的本地反馈；验收：Sunny 会对宠物碗、小床等物件给出短反馈，提升温暖感但不显示考试式评分。
-- [ ] **V02-HOME-005 V02.2 小屋 smoke**  
+- [x] **V02-HOME-005 V02.2 小屋 smoke**  
   Owner：QA Agent；依赖：V02-HOME-001 至 V02-HOME-004；交付物：小屋装饰端到端测试；验收：购买、进入小屋、摆放、旋转、收起、Sunny 反馈、保存重载全链路通过。
 
 ### V02.3 小镇记忆宫殿：A-Z 场景化与收藏回访
@@ -358,3 +358,4 @@
 | 2026-06-04 | Round 42 验收 | V02-UI-010 | 底部 `背包` 按钮打开轻量 `BackpackBubble`，展示金币、Sunny 点心、树枝、木椅、相册和 Letter Snake 入口说明；顶部 HUD 新增独立 `CoinState` 金币 badge，并将 `PetState` 收为点心、饥饿、开心三项，金币和宠物状态视觉分组；`check-only`、`test_life_rpg_scene`、`headless_runner` 通过；MCP 场景树确认 `CoinState` / `PetState` 独立存在 |
 | 2026-06-04 | Round 43 规划 | 长期路线 | 新增“长期路线：生活小镇从原型到长期可玩”章节，确定 V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架四个里程碑，并将 `V02-DAILY-001` 设为下一项 Ready |
 | 2026-06-04 | Round 44 验收 | V02.1 每日小镇 | 新增 `LocalDayService`、每日问候、每日资源刷新、今日状态和多 NPC 轻委托；Mina、店长、Sunny、故事熊、巴士哥哥每日问候按 day_key 保存，树枝/小花/小石子按日刷新，店长/故事熊/Sunny 新增轻委托；`jq`、`test_daily_request_service`、`test_daily_town_services`、`test_v021_daily_town_contract`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`test_life_services`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
+| 2026-06-04 | Round 45 验收 | V02.2 我的小屋 | 新增独立 `HomeRoom` 小屋视图，`小屋`/`小镇` 底栏可切换；家具目录扩展小桌、地毯、花盆、宠物碗、Sunny 小床和墙饰；`HomeDecorationService` 支持摆放、旋转、移动、收起、非法格温和反馈和 Sunny 家内反馈；`jq`、`test_v022_home_room_contract`、`test_life_services`、`test_life_rpg_scene`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |

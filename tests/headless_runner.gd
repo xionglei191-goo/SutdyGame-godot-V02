@@ -172,8 +172,19 @@ func _check_life_services() -> void:
 	var shop = LifeShopServiceScript.new(service, inventory)
 	_expect(shop.buy_life_item("wooden_chair").get("ok", false), "LifeShopService should buy wooden chair")
 	var home = HomeDecorationServiceScript.new(service, inventory)
-	_expect(home.place_furniture("wooden_chair", Vector2i(2, 2)).get("ok", false), "HomeDecorationService should place wooden chair")
+	var placed: Dictionary = home.place_furniture("wooden_chair", Vector2i(2, 2))
+	_expect(placed.get("ok", false), "HomeDecorationService should place wooden chair")
 	_expect(home.get_home_state().get("placed_furniture", []).size() == 1, "HomeDecorationService should persist furniture")
+	var instance_id := str(placed.get("furniture", {}).get("instance_id", ""))
+	_expect(home.rotate_furniture(instance_id).get("ok", false), "HomeDecorationService should rotate furniture")
+	_expect(home.pickup_furniture(instance_id).get("ok", false), "HomeDecorationService should pick up furniture")
+	game_state = service.load_game_state()
+	game_state["coins"] = 12
+	_expect(service.save_game_state(game_state), "life services should save pet furniture coins setup")
+	_expect(shop.buy_life_item("pet_bowl").get("ok", false), "LifeShopService should buy pet bowl")
+	_expect(home.place_furniture("pet_bowl", Vector2i(0, 0)).get("ok", false), "HomeDecorationService should place pet bowl")
+	var feedback: Dictionary = home.get_sunny_feedback()
+	_expect(feedback.get("ok", false) and str(feedback.get("text", "")).contains("Sunny"), "HomeDecorationService should provide Sunny home feedback")
 	_expect(service.clear_for_test(), "life services save should clean up")
 
 
