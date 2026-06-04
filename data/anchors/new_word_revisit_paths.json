@@ -1,0 +1,55 @@
+{
+	"schema_version": 1,
+	"stories": [
+		{
+			"story_id": "story_branch_bear_bookmark",
+			"word": "branch",
+			"letter": "B",
+			"core_anchor_id": "anchor_b_bear",
+			"world_place_id": "place_town_start",
+			"story_memory": "Mina slips a branch beside the Bear book corner and remembers it as a tiny bookmark.",
+			"visual_hook": "a branch tucked into Story Bear's open book",
+			"review_path": "Walk to Bear Corner, look at the branch, then visit Mina."
+		},
+		{
+			"story_id": "story_flower_sun_window",
+			"word": "flower",
+			"letter": "S",
+			"core_anchor_id": "anchor_s_sun",
+			"world_place_id": "place_town_start",
+			"story_memory": "A flower from Sun Plaza makes the shop window glow softly.",
+			"visual_hook": "a flower shining under the Sun Plaza light",
+			"review_path": "Walk past Sun Plaza, find the flower, then look at the shop window."
+		},
+		{
+			"story_id": "story_stone_taxi_page",
+			"word": "stone",
+			"letter": "T",
+			"core_anchor_id": "anchor_t_taxi",
+			"world_place_id": "place_town_start",
+			"story_memory": "A round stone near the Taxi stop keeps Story Bear's windy page in place.",
+			"visual_hook": "a warm stone on top of a story page beside the Taxi sign",
+			"review_path": "Walk to the Taxi Stop, pick out the stone, then return to Story Bear."
+		},
+		{
+			"story_id": "story_pet_bowl_orange_round",
+			"word": "bowl",
+			"letter": "O",
+			"core_anchor_id": "anchor_o_orange",
+			"world_place_id": "place_home",
+			"story_memory": "Sunny's bowl is round like a plate at the Orange Stand.",
+			"visual_hook": "a round bowl with a tiny orange sticker",
+			"review_path": "Visit Orange Stand, then return home and check Sunny's bowl."
+		},
+		{
+			"story_id": "story_watch_wall_charm",
+			"word": "wall",
+			"letter": "W",
+			"core_anchor_id": "anchor_w_watch",
+			"world_place_id": "place_home",
+			"story_memory": "A wall charm hangs below the Watch sign to remind the room that cozy time can be slow.",
+			"visual_hook": "a wall decoration under a Watch sign",
+			"review_path": "Walk by the Watch Sign, then look at the home wall decoration."
+		}
+	]
+}

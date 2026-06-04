@@ -12,6 +12,7 @@ const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.
 const DailyGreetingServiceScript := preload("res://scripts/systems/daily_greeting_service.gd")
 const ResourceRefreshServiceScript := preload("res://scripts/systems/resource_refresh_service.gd")
 const TodayStatusServiceScript := preload("res://scripts/systems/today_status_service.gd")
+const AnchorInteractionServiceScript := preload("res://scripts/systems/anchor_interaction_service.gd")
 const NPCMemoryStoreScript := preload("res://scripts/systems/npc_memory_store.gd")
 const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
@@ -85,6 +86,7 @@ var local_day_service
 var daily_greeting_service
 var resource_refresh_service
 var today_status_service
+var anchor_interaction_service
 var npc_memory_store
 var llm_client
 var status_label: Label
@@ -149,6 +151,7 @@ func _init_services() -> void:
 	daily_greeting_service = DailyGreetingServiceScript.new(save_service, local_day_service)
 	resource_refresh_service = ResourceRefreshServiceScript.new(save_service, inventory_service, local_day_service)
 	today_status_service = TodayStatusServiceScript.new(local_day_service)
+	anchor_interaction_service = AnchorInteractionServiceScript.new(save_service, memory_card_service)
 	npc_memory_store = NPCMemoryStoreScript.new(save_service)
 	llm_client = LLMClientScript.new(npc_memory_store)
 
@@ -717,6 +720,13 @@ func interact_nearby() -> Dictionary:
 		resource_result["target_id"] = resource_result.get("item_id", "")
 		_update_loop_status("背包里多了%s" % str(resource_result.get("display_name", "小材料")))
 		return resource_result
+
+	var anchor: Dictionary = _find_nearest_anchor(1)
+	if not anchor.is_empty():
+		var anchor_result: Dictionary = anchor_interaction_service.interact_with_anchor(anchor)
+		_set_life_status(str(anchor_result.get("text", "放进相册啦。")))
+		anchor_result["interaction_type"] = "anchor"
+		return anchor_result
 
 	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
 	if not npc.is_empty():
@@ -1591,6 +1601,20 @@ func _find_nearest_interaction(radius: int) -> Dictionary:
 		var distance := _manhattan_distance(player_cell, _dict_to_cell(interaction.get("cell", {})))
 		if distance <= radius and distance < nearest_distance:
 			nearest = interaction
+			nearest_distance = distance
+	return nearest
+
+
+func _find_nearest_anchor(radius: int) -> Dictionary:
+	var nearest: Dictionary = {}
+	var nearest_distance := radius + 1
+	for anchor in world_map.get("memory_anchors", []):
+		if not anchor is Dictionary:
+			continue
+		var anchor_data: Dictionary = anchor
+		var distance := _manhattan_distance(player_cell, _dict_to_cell(anchor_data.get("position", {})))
+		if distance <= radius and distance < nearest_distance:
+			nearest = anchor_data
 			nearest_distance = distance
 	return nearest
 

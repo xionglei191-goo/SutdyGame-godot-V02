@@ -3,7 +3,7 @@
 > 最后更新：2026-06-04  
 > 状态事实来源：本文件  
 > 当前阶段：长期路线规划 - 生活小镇从原型走向长期可玩  
-> 当前里程碑：V02.3 小镇记忆宫殿，A-Z 锚点成为稳定场景物件和回访路线
+> 当前里程碑：V02.4 内容生产框架，让扩展主要写数据
 
 ## 维护规则
 
@@ -19,11 +19,11 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 45：V02.2 我的小屋完成 |
-| 本轮目标 | 独立小屋视图、家具摆放/旋转/收起、家具与宠物用品扩展、Sunny 家内反馈和 V02.2 smoke 已完成 |
+| 当前轮次 | Round 46：V02.3 小镇记忆宫殿完成 |
+| 本轮目标 | 首批 A-Z 场景物件强化、anchor 互动与相册收藏、新词故事回访路径和记忆宫殿审计已完成 |
 | 进行中 | 无 |
-| Ready | V02-AZ-WORLD-001 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋 |
+| Ready | V02-CONTENT-001 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
 | 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
@@ -129,13 +129,13 @@
 
 ### V02.3 小镇记忆宫殿：A-Z 场景化与收藏回访
 
-- [ ] **V02-AZ-WORLD-001 首批 A-Z 场景物件强化**  
+- [x] **V02-AZ-WORLD-001 首批 A-Z 场景物件强化**  
   Owner：Memory Palace / Map / Godot Dev Agent；依赖：V02-LIFE-009；交付物：A/B/C/D/K/O/S/T/W 的场景物件表现升级；验收：Apple Tree、Bear Corner、Clock Tower、Dog House、Kite Hill、Orange Stand、Sun Plaza、Taxi Stop、Watch Sign 等在地图中可感知，不以裸字母标签为主表现。
-- [ ] **V02-AZ-WORLD-002 Anchor 互动与相册收藏**  
+- [x] **V02-AZ-WORLD-002 Anchor 互动与相册收藏**  
   Owner：Godot Dev / Curriculum Agent；依赖：V02-AZ-WORLD-001、V02-CARD-001；交付物：anchor 轻互动和相册记录；验收：孩子靠近场景物件可“看看”，相册记录见过/听过/收藏状态，界面表达为小镇发现而不是单词测验。
-- [ ] **V02-AZ-WORLD-003 新词故事回访路径**  
+- [x] **V02-AZ-WORLD-003 新词故事回访路径**  
   Owner：Curriculum / Memory Palace / Narrative Agent；依赖：V02-AZ-WORLD-001；交付物：首批新词回访数据和短故事；验收：每个新增词具备 `letter`、`core_anchor_id`、`world_place_id`、`story_memory`、`visual_hook`、`review_path`，并能从地图地点触发温和回访。
-- [ ] **V02-AZ-WORLD-004 V02.3 记忆宫殿审计**  
+- [x] **V02-AZ-WORLD-004 V02.3 记忆宫殿审计**  
   Owner：QA / Memory Palace Agent；依赖：V02-AZ-WORLD-001 至 V02-AZ-WORLD-003；交付物：A-Z 场景化审计和自动化检查；验收：核心 anchor 顺序、场景物件、相册绑定、新词故事绑定全部通过测试。
 
 ### V02.4 内容生产框架：让扩展主要写数据
@@ -359,3 +359,4 @@
 | 2026-06-04 | Round 43 规划 | 长期路线 | 新增“长期路线：生活小镇从原型到长期可玩”章节，确定 V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架四个里程碑，并将 `V02-DAILY-001` 设为下一项 Ready |
 | 2026-06-04 | Round 44 验收 | V02.1 每日小镇 | 新增 `LocalDayService`、每日问候、每日资源刷新、今日状态和多 NPC 轻委托；Mina、店长、Sunny、故事熊、巴士哥哥每日问候按 day_key 保存，树枝/小花/小石子按日刷新，店长/故事熊/Sunny 新增轻委托；`jq`、`test_daily_request_service`、`test_daily_town_services`、`test_v021_daily_town_contract`、`test_life_rpg_scene`、`test_playable_loop_smoke`、`test_life_services`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
 | 2026-06-04 | Round 45 验收 | V02.2 我的小屋 | 新增独立 `HomeRoom` 小屋视图，`小屋`/`小镇` 底栏可切换；家具目录扩展小桌、地毯、花盆、宠物碗、Sunny 小床和墙饰；`HomeDecorationService` 支持摆放、旋转、移动、收起、非法格温和反馈和 Sunny 家内反馈；`jq`、`test_v022_home_room_contract`、`test_life_services`、`test_life_rpg_scene`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
+| 2026-06-04 | Round 46 验收 | V02.3 小镇记忆宫殿 | 新增 `AnchorInteractionService` 和新词回访数据，靠近 A-Z anchor 使用 `看看` 会写入相册 seen/heard/collected 并显示温和故事；首批 A/B/C/D/K/O/S/T/W 保持 Sprite2D 场景物件表现；`test_v023_memory_palace_world`、`test_memory_album_scene`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |

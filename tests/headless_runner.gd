@@ -5,6 +5,7 @@ const AssetResolverScript := preload("res://scripts/systems/asset_resolver.gd")
 const MinigameServiceScript := preload("res://scripts/systems/minigame_service.gd")
 const QuestEventServiceScript := preload("res://scripts/systems/quest_event_service.gd")
 const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
+const MemoryCardServiceScript := preload("res://scripts/systems/memory_card_service.gd")
 const NPCMemoryStoreScript := preload("res://scripts/systems/npc_memory_store.gd")
 const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const ConversationSummaryServiceScript := preload("res://scripts/systems/conversation_summary_service.gd")
@@ -16,6 +17,7 @@ const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.
 const DailyGreetingServiceScript := preload("res://scripts/systems/daily_greeting_service.gd")
 const ResourceRefreshServiceScript := preload("res://scripts/systems/resource_refresh_service.gd")
 const TodayStatusServiceScript := preload("res://scripts/systems/today_status_service.gd")
+const AnchorInteractionServiceScript := preload("res://scripts/systems/anchor_interaction_service.gd")
 const AccountAdapterScript := preload("res://scripts/systems/account_adapter.gd")
 const CloudSaveAdapterScript := preload("res://scripts/systems/cloud_save_adapter.gd")
 const ContentPackLoaderScript := preload("res://scripts/systems/content_pack_loader.gd")
@@ -71,6 +73,7 @@ func _init() -> void:
 	_check_voice_ai_social_stubs()
 	_check_life_services()
 	_check_daily_requests()
+	_check_anchor_interactions()
 	_check_map_editor_round_trip()
 	_check_child_experience_and_mobile_acceptance(main)
 	_check_account_cloud_stubs()
@@ -219,6 +222,31 @@ func _check_daily_requests() -> void:
 	_expect(resources.collect_resource("resource_branch_bear_corner").get("ok", false), "daily resources should refresh on next day key")
 	_expect(str(today.get_today_status().get("hud_text", "")).contains("Sunny"), "today status should expose a soft Sunny hint")
 	_expect(service.clear_for_test(), "daily request save should clean up")
+
+
+func _check_anchor_interactions() -> void:
+	var service := SaveServiceScript.new("user://headless_runner_anchor_interactions.json")
+	_expect(service.clear_for_test(), "anchor interaction save should clear")
+	_expect(service.reset_for_test(), "anchor interaction save should reset")
+	var card_service = MemoryCardServiceScript.new(service)
+	var anchor_service = AnchorInteractionServiceScript.new(service, card_service)
+	_expect(anchor_service.is_loaded(), "AnchorInteractionService should load new-word revisit data")
+	var map_result: Dictionary = RuntimeMapBuilderScript.load_world_map()
+	var anchor: Dictionary = _anchor_by_id(map_result.get("data", {}).get("memory_anchors", []), "anchor_a_apple")
+	var result: Dictionary = anchor_service.interact_with_anchor(anchor)
+	_expect(result.get("ok", false), "AnchorInteractionService should interact with a world anchor")
+	_expect(bool(card_service.get_card_state("card_a_apple_core").get("collected", false)), "anchor interaction should update album collected state")
+	for story in anchor_service.get_all_stories():
+		for field in ["letter", "core_anchor_id", "world_place_id", "story_memory", "visual_hook", "review_path"]:
+			_expect(not str(story.get(field, "")).is_empty(), "new-word revisit story should include %s" % field)
+	_expect(service.clear_for_test(), "anchor interaction save should clean up")
+
+
+func _anchor_by_id(anchors: Array, anchor_id: String) -> Dictionary:
+	for anchor in anchors:
+		if anchor is Dictionary and str(anchor.get("anchor_id", "")) == anchor_id:
+			return anchor
+	return {}
 
 
 func _check_map_editor_round_trip() -> void:
