@@ -1,0 +1,17 @@
+{
+	"schema_version": 1,
+	"npc_id": "mina",
+	"profile_id": "local_profile",
+	"recent_events": [],
+	"shared_memory_notes": [
+		"Met the child near Sunshine Town Start.",
+		"Mina can guide the first pet food loop with simple words."
+	],
+	"known_card_ids": ["card_a_apple_core", "card_c_clock_core", "card_d_dog_core"],
+	"pet_state_stub": {"pet_id": "sunny_dog", "last_known_mood": "happy"},
+	"parent_allowed_interaction": {
+		"free_chat": false,
+		"fixed_stub_reply_only": true,
+		"parent_summary_visible": true
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"schema_version": 1,
+	"npc_id": "mina",
+	"display_name": "Mina",
+	"role": "Town friend and gentle guide",
+	"home_place_id": "town_start",
+	"first_stage_purpose": ["welcome", "pet_loop_hint", "letter_snake_hint"],
+	"child_facing_lines": ["Good morning.", "How are you?", "Let's go."],
+	"allowed_words": ["good", "morning", "how", "are", "you", "let's", "go", "pet", "food"],
+	"linked_cards": ["card_a_apple_core", "card_c_clock_core", "card_d_dog_core"],
+	"safety_boundary": {
+		"age_band": "around_10_true_beginner",
+		"allowed_topics": ["town welcome", "pet care", "simple greetings", "letter snake"],
+		"blocked_topics": ["real address", "phone number", "school name", "medical advice", "open social contact"],
+		"collect_personal_data": false,
+		"network_allowed": false
+	},
+	"fallback_reply": "Mina smiles and says: Good morning. Let's go."
+}

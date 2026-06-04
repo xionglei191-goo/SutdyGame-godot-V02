@@ -1,0 +1,84 @@
+{
+	"schema_id": "first_batch_extension_cards_v1",
+	"version": 1,
+	"source": "docs/development/首批扩展卡与课程来源.md",
+	"collection_state_initial": {"seen": false, "heard": false, "played": false, "collected": false, "shiny": false, "spark": 0},
+	"cards": [
+		{
+			"card_id": "card_pet_hungry",
+			"word": "hungry",
+			"learning_tag": "pet_care",
+			"story_memory": "Sunny paws the snack bowl and looks hungry at home.",
+			"collection_state": {"seen": false, "heard": false, "played": false, "collected": false, "shiny": false, "spark": 0},
+			"source_curriculum_refs": [
+				{"source": "Grade 3B", "unit": "Unit 7 Wash your hands", "topic": "hungry / care routine"},
+				{"source": "docs/14_内容基线整理与首批内容规划.md", "section": "6.2 Home/Pet Cards"}
+			],
+			"minigame_refs": [],
+			"quest_refs": ["quest_pet_food_loop_001:event_snack_time", "quest_pet_food_loop_001:event_feed_sunny"]
+		},
+		{
+			"card_id": "card_pet_food",
+			"word": "food",
+			"learning_tag": "pet_care",
+			"story_memory": "A small food basket waits for Sunny after the shop trip.",
+			"collection_state": {"seen": false, "heard": false, "played": false, "collected": false, "shiny": false, "spark": 0},
+			"source_curriculum_refs": [
+				{"source": "Grade 3B", "unit": "Unit 6 Food", "topic": "food words for supermarket play"},
+				{"source": "Grade 4A", "unit": "Unit 3 Food", "topic": "food theme extension"},
+				{"source": "docs/14_内容基线整理与首批内容规划.md", "section": "6.2 Home/Pet Cards"}
+			],
+			"minigame_refs": [],
+			"quest_refs": ["quest_pet_food_loop_001:event_food_basket", "quest_pet_food_loop_001:event_feed_sunny"]
+		},
+		{
+			"card_id": "card_shop_buy",
+			"word": "buy",
+			"learning_tag": "shop_action",
+			"story_memory": "At the supermarket counter, the basket glows when you buy Sunny Snack.",
+			"collection_state": {"seen": false, "heard": false, "played": false, "collected": false, "shiny": false, "spark": 0},
+			"source_fill_needed": "0 foundation bridge action from docs/14 section 3; no direct first-batch textbook unit assigned yet.",
+			"minigame_refs": [],
+			"quest_refs": ["quest_pet_food_loop_001:event_food_basket"]
+		},
+		{
+			"card_id": "card_shop_egg",
+			"word": "egg",
+			"letter": "E",
+			"story_memory": "A round egg rolls gently along the Food Trail shelf.",
+			"collection_state": {"seen": false, "heard": false, "played": false, "collected": false, "shiny": false, "spark": 0},
+			"source_curriculum_refs": [
+				{"source": "Grade 3B", "unit": "Unit 6 Food", "topic": "egg"},
+				{"source": "docs/14_内容基线整理与首批内容规划.md", "section": "6.3 Shop/Town Cards"}
+			],
+			"minigame_refs": ["letter_snake:food"],
+			"quest_refs": ["quest_pet_food_loop_001:reward_rules.letter_snake_food"]
+		},
+		{
+			"card_id": "card_town_bus",
+			"word": "bus",
+			"letter": "B",
+			"story_memory": "A friendly bus waits near the town stop for the first transport look.",
+			"collection_state": {"seen": false, "heard": false, "played": false, "collected": false, "shiny": false, "spark": 0},
+			"source_curriculum_refs": [
+				{"source": "Grade 3B", "unit": "Unit 9 Transport", "topic": "bus"},
+				{"source": "docs/14_内容基线整理与首批内容规划.md", "section": "6.3 Shop/Town Cards"}
+			],
+			"minigame_refs": ["letter_snake:transport"],
+			"quest_refs": []
+		},
+		{
+			"card_id": "card_weather_windy",
+			"word": "windy",
+			"learning_tag": "weather",
+			"story_memory": "Windy air lifts the kite above Sunshine Town.",
+			"collection_state": {"seen": false, "heard": false, "played": false, "collected": false, "shiny": false, "spark": 0},
+			"source_curriculum_refs": [
+				{"source": "Grade 3B", "unit": "Unit 3 Weather", "topic": "windy"},
+				{"source": "docs/14_内容基线整理与首批内容规划.md", "section": "10.1 Letter Snake 第一批目标"}
+			],
+			"minigame_refs": ["letter_snake:weather"],
+			"quest_refs": []
+		}
+	]
+}

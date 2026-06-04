@@ -1,0 +1,305 @@
+{
+  "map_id": "world_map_sunshine_town_v02_min",
+  "version": 1,
+  "canvas_size": { "w": 40, "h": 24 },
+  "cell_size": { "w": 32, "h": 32 },
+  "theme_id": "theme_sunshine_town_placeholder",
+  "districts": [
+    {
+      "district_id": "district_home",
+      "label": "Home",
+      "rect_cells": { "x": 0, "y": 0, "w": 10, "h": 10 },
+      "tile_id": "tile_home_grass",
+      "allowed_place_types": ["home", "home_room", "pet"]
+    },
+    {
+      "district_id": "district_town",
+      "label": "Sunshine Town",
+      "rect_cells": { "x": 10, "y": 0, "w": 20, "h": 16 },
+      "tile_id": "tile_town_plaza",
+      "allowed_place_types": ["town_start", "shop", "bookshop", "food"]
+    },
+    {
+      "district_id": "district_school",
+      "label": "School",
+      "rect_cells": { "x": 0, "y": 10, "w": 14, "h": 14 },
+      "tile_id": "tile_school_yard",
+      "allowed_place_types": ["school", "playground", "library"]
+    },
+    {
+      "district_id": "district_transport",
+      "label": "Transport",
+      "rect_cells": { "x": 30, "y": 0, "w": 10, "h": 24 },
+      "tile_id": "tile_transport_pavement",
+      "allowed_place_types": ["transport", "bus_station"]
+    }
+  ],
+  "roads": [
+    {
+      "road_id": "road_home_to_town",
+      "label": "Home To Town Road",
+      "road_type": "main",
+      "cells": [
+        { "x": 5, "y": 7 },
+        { "x": 6, "y": 7 },
+        { "x": 7, "y": 7 },
+        { "x": 8, "y": 7 },
+        { "x": 9, "y": 7 },
+        { "x": 10, "y": 8 },
+        { "x": 11, "y": 8 },
+        { "x": 12, "y": 8 },
+        { "x": 13, "y": 8 },
+        { "x": 14, "y": 9 },
+        { "x": 15, "y": 9 }
+      ],
+      "connects_to": ["road_shop_street"]
+    },
+    {
+      "road_id": "road_shop_street",
+      "label": "Shop Street",
+      "road_type": "shop",
+      "cells": [
+        { "x": 15, "y": 9 },
+        { "x": 16, "y": 9 },
+        { "x": 17, "y": 9 },
+        { "x": 18, "y": 9 },
+        { "x": 19, "y": 9 },
+        { "x": 20, "y": 9 },
+        { "x": 21, "y": 9 },
+        { "x": 22, "y": 9 },
+        { "x": 23, "y": 9 },
+        { "x": 24, "y": 9 }
+      ],
+      "connects_to": ["road_home_to_town", "road_transport_link"]
+    },
+    {
+      "road_id": "road_transport_link",
+      "label": "Transport Link",
+      "road_type": "transport",
+      "cells": [
+        { "x": 24, "y": 9 },
+        { "x": 25, "y": 9 },
+        { "x": 26, "y": 9 },
+        { "x": 27, "y": 10 },
+        { "x": 28, "y": 10 },
+        { "x": 29, "y": 10 },
+        { "x": 30, "y": 11 },
+        { "x": 31, "y": 11 },
+        { "x": 32, "y": 12 }
+      ],
+      "connects_to": ["road_shop_street"]
+    }
+  ],
+  "places": [
+    {
+      "place_id": "place_home",
+      "label": "Home",
+      "place_type": "home",
+      "district_id": "district_home",
+      "position": { "x": 4, "y": 4 },
+      "size": { "w": 3, "h": 3 },
+      "landmark_asset_id": "landmark_home_placeholder",
+      "occupied_cells": [
+        { "x": 4, "y": 4 },
+        { "x": 5, "y": 4 },
+        { "x": 6, "y": 4 },
+        { "x": 4, "y": 5 },
+        { "x": 5, "y": 5 },
+        { "x": 6, "y": 5 }
+      ],
+      "interaction_cell": { "x": 5, "y": 7 },
+      "place_action": "enter_home",
+      "card_actions": ["card_a_apple_core", "card_c_clock_core", "card_d_dog_core"],
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "place_id": "place_town_start",
+      "label": "Town Start",
+      "place_type": "town_start",
+      "district_id": "district_town",
+      "position": { "x": 14, "y": 8 },
+      "size": { "w": 3, "h": 2 },
+      "landmark_asset_id": "landmark_town_start_placeholder",
+      "occupied_cells": [
+        { "x": 14, "y": 8 },
+        { "x": 15, "y": 8 },
+        { "x": 16, "y": 8 }
+      ],
+      "interaction_cell": { "x": 15, "y": 9 },
+      "place_action": "open_town_start",
+      "card_actions": ["card_b_bear_core", "card_k_kite_core", "card_s_sun_core", "card_t_taxi_core", "card_w_watch_core"],
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "place_id": "place_supermarket",
+      "label": "Supermarket",
+      "place_type": "shop",
+      "district_id": "district_town",
+      "position": { "x": 22, "y": 6 },
+      "size": { "w": 4, "h": 3 },
+      "landmark_asset_id": "landmark_supermarket_placeholder",
+      "occupied_cells": [
+        { "x": 22, "y": 6 },
+        { "x": 23, "y": 6 },
+        { "x": 24, "y": 6 },
+        { "x": 25, "y": 6 },
+        { "x": 22, "y": 7 },
+        { "x": 23, "y": 7 },
+        { "x": 24, "y": 7 },
+        { "x": 25, "y": 7 },
+        { "x": 22, "y": 8 },
+        { "x": 23, "y": 8 },
+        { "x": 24, "y": 8 },
+        { "x": 25, "y": 8 }
+      ],
+      "interaction_cell": { "x": 24, "y": 9 },
+      "place_action": "enter_supermarket",
+      "card_actions": ["card_o_orange_core"],
+      "unlock_rule": "default_unlocked"
+    }
+  ],
+  "memory_anchors": [
+    {
+      "anchor_id": "anchor_a_apple",
+      "letter": "A",
+      "core_word": "Apple",
+      "route_order": 1,
+      "place_id": "place_home",
+      "position": { "x": 3, "y": 3 },
+      "card_id": "card_a_apple_core",
+      "audio_id": "audio_word_apple",
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_b_bear",
+      "letter": "B",
+      "core_word": "Bear",
+      "route_order": 2,
+      "place_id": "place_town_start",
+      "position": { "x": 13, "y": 6 },
+      "card_id": "card_b_bear_core",
+      "audio_id": "audio_word_bear",
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_c_clock",
+      "letter": "C",
+      "core_word": "Clock",
+      "route_order": 3,
+      "place_id": "place_home",
+      "position": { "x": 7, "y": 3 },
+      "card_id": "card_c_clock_core",
+      "audio_id": "audio_word_clock",
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_d_dog",
+      "letter": "D",
+      "core_word": "Dog",
+      "route_order": 4,
+      "place_id": "place_home",
+      "position": { "x": 3, "y": 6 },
+      "card_id": "card_d_dog_core",
+      "audio_id": "audio_word_dog",
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_k_kite",
+      "letter": "K",
+      "core_word": "Kite",
+      "route_order": 11,
+      "place_id": "place_town_start",
+      "position": { "x": 16, "y": 4 },
+      "card_id": "card_k_kite_core",
+      "audio_id": "audio_word_kite",
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_o_orange",
+      "letter": "O",
+      "core_word": "Orange",
+      "route_order": 15,
+      "place_id": "place_supermarket",
+      "position": { "x": 23, "y": 5 },
+      "card_id": "card_o_orange_core",
+      "audio_id": "audio_word_orange",
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_s_sun",
+      "letter": "S",
+      "core_word": "Sun",
+      "route_order": 19,
+      "place_id": "place_town_start",
+      "position": { "x": 17, "y": 2 },
+      "card_id": "card_s_sun_core",
+      "audio_id": "audio_word_sun",
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_t_taxi",
+      "letter": "T",
+      "core_word": "Taxi",
+      "route_order": 20,
+      "place_id": "place_town_start",
+      "position": { "x": 31, "y": 9 },
+      "card_id": "card_t_taxi_core",
+      "audio_id": "audio_word_taxi",
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "anchor_id": "anchor_w_watch",
+      "letter": "W",
+      "core_word": "Watch",
+      "route_order": 23,
+      "place_id": "place_town_start",
+      "position": { "x": 36, "y": 9 },
+      "card_id": "card_w_watch_core",
+      "audio_id": "audio_word_watch",
+      "unlock_rule": "default_unlocked"
+    }
+  ],
+  "collision_cells": [
+    { "x": 4, "y": 4 },
+    { "x": 5, "y": 4 },
+    { "x": 6, "y": 4 },
+    { "x": 4, "y": 5 },
+    { "x": 5, "y": 5 },
+    { "x": 6, "y": 5 },
+    { "x": 14, "y": 8 },
+    { "x": 15, "y": 8 },
+    { "x": 16, "y": 8 },
+    { "x": 22, "y": 6 },
+    { "x": 23, "y": 6 },
+    { "x": 24, "y": 6 },
+    { "x": 25, "y": 6 },
+    { "x": 22, "y": 7 },
+    { "x": 23, "y": 7 },
+    { "x": 24, "y": 7 },
+    { "x": 25, "y": 7 },
+    { "x": 22, "y": 8 },
+    { "x": 23, "y": 8 },
+    { "x": 24, "y": 8 },
+    { "x": 25, "y": 8 }
+  ],
+  "interaction_cells": [
+    {
+      "interaction_id": "interaction_home_entry",
+      "place_id": "place_home",
+      "cell": { "x": 5, "y": 7 },
+      "action": "enter_home"
+    },
+    {
+      "interaction_id": "interaction_town_start",
+      "place_id": "place_town_start",
+      "cell": { "x": 15, "y": 9 },
+      "action": "open_town_start"
+    },
+    {
+      "interaction_id": "interaction_supermarket_entry",
+      "place_id": "place_supermarket",
+      "cell": { "x": 24, "y": 9 },
+      "action": "enter_supermarket"
+    }
+  ]
+}

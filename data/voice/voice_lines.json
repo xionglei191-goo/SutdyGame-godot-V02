@@ -1,0 +1,95 @@
+{
+	"schema_version": 1,
+	"voice_lines": [
+		{
+			"audio_id": "voice_home_good_morning",
+			"text": "Good morning.",
+			"tts_voice_id": "voice_mina_warm_stub",
+			"speaker_id": "npc_mina",
+			"recording_enabled": true,
+			"repeat_after_me_enabled": true,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_home_how_are_you",
+			"text": "How are you?",
+			"tts_voice_id": "voice_mina_warm_stub",
+			"speaker_id": "npc_mina",
+			"recording_enabled": true,
+			"repeat_after_me_enabled": true,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_pet_sunny_is_hungry",
+			"text": "Sunny is hungry.",
+			"tts_voice_id": "voice_pet_buddy_soft_stub",
+			"speaker_id": "npc_pet_buddy",
+			"recording_enabled": false,
+			"repeat_after_me_enabled": false,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_pet_lets_feed_sunny",
+			"text": "Let's feed Sunny.",
+			"tts_voice_id": "voice_pet_buddy_soft_stub",
+			"speaker_id": "npc_pet_buddy",
+			"recording_enabled": true,
+			"repeat_after_me_enabled": true,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_shop_here_you_are",
+			"text": "Here you are.",
+			"tts_voice_id": "voice_shopkeeper_clear_stub",
+			"speaker_id": "npc_shopkeeper",
+			"recording_enabled": true,
+			"repeat_after_me_enabled": true,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_shop_thank_you",
+			"text": "Thank you.",
+			"tts_voice_id": "voice_shopkeeper_clear_stub",
+			"speaker_id": "npc_shopkeeper",
+			"recording_enabled": true,
+			"repeat_after_me_enabled": true,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_town_lets_go",
+			"text": "Let's go.",
+			"tts_voice_id": "voice_mina_warm_stub",
+			"speaker_id": "npc_mina",
+			"recording_enabled": true,
+			"repeat_after_me_enabled": true,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_transport_i_go_by_bus",
+			"text": "I go by bus.",
+			"tts_voice_id": "voice_bus_helper_bright_stub",
+			"speaker_id": "npc_bus_helper",
+			"recording_enabled": true,
+			"repeat_after_me_enabled": true,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_minigame_find_apple",
+			"text": "Find apple.",
+			"tts_voice_id": "voice_mina_warm_stub",
+			"speaker_id": "npc_mina",
+			"recording_enabled": false,
+			"repeat_after_me_enabled": false,
+			"speech_eval_enabled": false
+		},
+		{
+			"audio_id": "voice_reward_memory_card_found",
+			"text": "You found a memory card.",
+			"tts_voice_id": "voice_story_bear_gentle_stub",
+			"speaker_id": "npc_story_bear",
+			"recording_enabled": false,
+			"repeat_after_me_enabled": false,
+			"speech_eval_enabled": false
+		}
+	]
+}

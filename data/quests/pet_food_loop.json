@@ -1,0 +1,254 @@
+{
+	"schema_version": "0.1.0",
+	"quest_chain_id": "quest_pet_food_loop_001",
+	"title": "Sunny's First Snack",
+	"scope": "stage_1_first_playable_loop",
+	"pet": {
+		"pet_id": "pet_sunny_dog",
+		"display_name": "Sunny",
+		"species": "dog"
+	},
+	"initial_state": {
+		"current_place_id": "place_home",
+		"coins": 0,
+		"inventory": {
+			"food_pet_snack": 0
+		},
+		"pet": {
+			"hunger": 30,
+			"happy": 40,
+			"fed_today": false
+		},
+		"cards": {
+			"card_d_dog_core": "seen",
+			"card_pet_hungry": "hidden",
+			"card_pet_food": "hidden",
+			"card_shop_buy": "hidden"
+		},
+		"flags": {}
+	},
+	"state_contract": {
+		"inputs": [
+			"current_event_id",
+			"current_place_id",
+			"coins",
+			"inventory.food_pet_snack",
+			"pet.hunger",
+			"pet.happy",
+			"pet.fed_today",
+			"cards",
+			"flags",
+			"minigame.letter_snake_food_run"
+		],
+		"outputs": [
+			"next_event_id",
+			"current_place_id",
+			"coins",
+			"inventory.food_pet_snack",
+			"pet.hunger",
+			"pet.happy",
+			"pet.fed_today",
+			"cards",
+			"flags",
+			"save_snapshot"
+		]
+	},
+	"economy": {
+		"coin_floor_per_letter_snake_run": 3,
+		"coin_soft_goal": 8,
+		"food_item_id": "food_pet_snack",
+		"food_display_name": "Sunny Snack",
+		"food_price": 6,
+		"starting_coins": 0,
+		"purchase_quantity": 1,
+		"low_result_policy": "always_small_reward"
+	},
+	"reward_rules": {
+		"letter_snake_food": {
+			"minigame_id": "letter_snake",
+			"target_set_id": "food_set",
+			"target_letters": ["A", "O", "E"],
+			"target_cards": [
+				"card_a_apple_core",
+				"card_o_orange_core",
+				"card_shop_egg"
+			],
+			"coin_rewards": [
+				{
+					"result_band": "try",
+					"min_score": 0,
+					"coins": 3,
+					"card_spark": 1
+				},
+				{
+					"result_band": "bright",
+					"min_score": 4,
+					"coins": 6,
+					"card_spark": 2
+				},
+				{
+					"result_band": "shiny",
+					"min_score": 8,
+					"coins": 10,
+					"card_spark": 3,
+					"collect_card": true
+				}
+			],
+			"non_punitive_floor": {
+				"coins": 3,
+				"card_spark": 1
+			}
+		},
+		"buy_pet_food": {
+			"requires_min_coins": 6,
+			"spend_coins": 6,
+			"add_inventory": {
+				"food_pet_snack": 1
+			},
+			"card_updates": {
+				"card_pet_food": "seen",
+				"card_shop_buy": "seen"
+			}
+		},
+		"feed_pet": {
+			"requires_inventory": {
+				"food_pet_snack": 1
+			},
+			"consume_inventory": {
+				"food_pet_snack": 1
+			},
+			"pet_delta": {
+				"hunger": -25,
+				"happy": 20
+			},
+			"pet_limits": {
+				"hunger_min": 0,
+				"hunger_max": 100,
+				"happy_min": 0,
+				"happy_max": 100
+			},
+			"card_updates": {
+				"card_d_dog_core": "played",
+				"card_pet_hungry": "seen",
+				"card_pet_food": "played"
+			},
+			"save_flags": {
+				"sunny_first_snack_done": true
+			}
+		}
+	},
+	"quest_chain": [
+		{
+			"event_id": "event_welcome_home",
+			"order": 1,
+			"child_title": "Welcome Home",
+			"place_id": "place_home",
+			"requires": [],
+			"state_out": {
+				"flags.arrived_home": true,
+				"current_place_id": "place_home"
+			},
+			"next_event_id": "event_meet_sunny"
+		},
+		{
+			"event_id": "event_meet_sunny",
+			"order": 2,
+			"child_title": "Meet Sunny",
+			"place_id": "place_home",
+			"requires": ["flags.arrived_home"],
+			"state_out": {
+				"flags.met_sunny": true,
+				"cards.card_d_dog_core": "seen",
+				"pet.happy": 45
+			},
+			"next_event_id": "event_snack_time"
+		},
+		{
+			"event_id": "event_snack_time",
+			"order": 3,
+			"child_title": "Snack Time",
+			"place_id": "place_home",
+			"requires": ["flags.met_sunny"],
+			"state_out": {
+				"flags.sunny_is_hungry": true,
+				"pet.hunger": 70,
+				"pet.happy": 35,
+				"cards.card_pet_hungry": "seen"
+			},
+			"next_event_id": "event_food_trip"
+		},
+		{
+			"event_id": "event_food_trip",
+			"order": 4,
+			"child_title": "Food Trip",
+			"place_id": "place_town_start",
+			"requires": ["flags.sunny_is_hungry"],
+			"state_out": {
+				"flags.food_trip_started": true,
+				"current_place_id": "place_town_start"
+			},
+			"next_event_id": "event_letter_snake_food"
+		},
+		{
+			"event_id": "event_letter_snake_food",
+			"order": 5,
+			"child_title": "Letter Snake",
+			"place_id": "place_town_start",
+			"requires": ["flags.food_trip_started"],
+			"state_out": {
+				"flags.letter_snake_food_played": true,
+				"coins_add_from_rule": "reward_rules.letter_snake_food.coin_rewards",
+				"card_progress_add_from_rule": "reward_rules.letter_snake_food.coin_rewards"
+			},
+			"next_event_id": "event_food_basket"
+		},
+		{
+			"event_id": "event_food_basket",
+			"order": 6,
+			"child_title": "Food Basket",
+			"place_id": "place_supermarket",
+			"requires": [
+				"flags.letter_snake_food_played",
+				"coins >= economy.food_price"
+			],
+			"state_out": {
+				"coins_add": -6,
+				"inventory.food_pet_snack": 1,
+				"cards.card_pet_food": "seen",
+				"cards.card_shop_buy": "seen",
+				"current_place_id": "place_supermarket"
+			},
+			"next_event_id": "event_feed_sunny"
+		},
+		{
+			"event_id": "event_feed_sunny",
+			"order": 7,
+			"child_title": "Feed Sunny",
+			"place_id": "place_home",
+			"requires": [
+				"inventory.food_pet_snack >= 1",
+				"flags.sunny_is_hungry"
+			],
+			"state_out": {
+				"inventory.food_pet_snack": 0,
+				"pet.hunger_delta": -25,
+				"pet.happy_delta": 20,
+				"pet.fed_today": true,
+				"flags.sunny_first_snack_done": true,
+				"cards.card_d_dog_core": "played",
+				"cards.card_pet_food": "played",
+				"save_snapshot": true,
+				"current_place_id": "place_home"
+			},
+			"next_event_id": ""
+		}
+	],
+	"child_language_guard": {
+		"blocked_terms": ["lesson", "test", "failed", "word list", "review"],
+		"scan_fields": [
+			"title",
+			"food_display_name",
+			"quest_chain.child_title"
+		]
+	}
+}

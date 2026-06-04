@@ -1,0 +1,19 @@
+{
+	"schema_version": 1,
+	"npc_id": "pet_buddy",
+	"display_name": "Pet Buddy",
+	"role": "Pet loop companion",
+	"home_place_id": "home",
+	"first_stage_purpose": ["pet_hungry", "pet_food_hint", "happy_feedback"],
+	"child_facing_lines": ["Sunny is hungry.", "Let's feed Sunny.", "Sunny is happy."],
+	"allowed_words": ["sunny", "hungry", "feed", "food", "happy", "dog", "pet"],
+	"linked_cards": ["card_d_dog_core", "card_pet_hungry", "card_pet_food"],
+	"safety_boundary": {
+		"age_band": "around_10_true_beginner",
+		"allowed_topics": ["pet care", "food loop", "kind feedback"],
+		"blocked_topics": ["animal harm", "punishment", "real address", "phone number", "school name"],
+		"collect_personal_data": false,
+		"network_allowed": false
+	},
+	"fallback_reply": "Pet Buddy says: Sunny is happy. Thank you."
+}

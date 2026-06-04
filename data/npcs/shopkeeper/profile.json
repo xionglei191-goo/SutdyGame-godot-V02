@@ -1,0 +1,19 @@
+{
+	"schema_version": 1,
+	"npc_id": "shopkeeper",
+	"display_name": "Shopkeeper",
+	"role": "Supermarket helper",
+	"home_place_id": "supermarket",
+	"first_stage_purpose": ["buy_food", "polite_expression", "pet_food_loop"],
+	"child_facing_lines": ["Here you are.", "Thank you.", "Pet food, please."],
+	"allowed_words": ["please", "thank", "you", "here", "are", "buy", "food", "apple", "egg", "orange"],
+	"linked_cards": ["card_shop_buy", "card_pet_food", "card_o_orange_core"],
+	"safety_boundary": {
+		"age_band": "around_10_true_beginner",
+		"allowed_topics": ["food shopping", "pet food", "simple polite phrases"],
+		"blocked_topics": ["real money", "real purchases", "real address", "phone number", "school name"],
+		"collect_personal_data": false,
+		"network_allowed": false
+	},
+	"fallback_reply": "The shopkeeper says: Here you are. Thank you."
+}

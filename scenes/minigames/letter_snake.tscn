@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/minigames/letter_snake_scene.gd" id="1_letter_snake"]
+
+[node name="LetterSnake" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_letter_snake")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 36
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Letter Snake"
+horizontal_alignment = 1
+
+[node name="GroupLabel" type="Label" parent="MarginContainer/PanelContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Trail"
+horizontal_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="MarginContainer/PanelContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Find apple."
+horizontal_alignment = 1
+
+[node name="LetterLabel" type="Label" parent="MarginContainer/PanelContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Letters: A, C, D"
+horizontal_alignment = 1
+
+[node name="WordLabel" type="Label" parent="MarginContainer/PanelContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Words: apple, clock, dog"
+horizontal_alignment = 1
+
+[node name="SnakeLane" type="HBoxContainer" parent="MarginContainer/PanelContainer/Content"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="SnakeHead" type="ColorRect" parent="MarginContainer/PanelContainer/Content/SnakeLane"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+color = Color(0.2, 0.68, 0.42, 1)
+
+[node name="AppleToken" type="Label" parent="MarginContainer/PanelContainer/Content/SnakeLane"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClockToken" type="Label" parent="MarginContainer/PanelContainer/Content/SnakeLane"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "C"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DogToken" type="Label" parent="MarginContainer/PanelContainer/Content/SnakeLane"]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls" type="HBoxContainer" parent="MarginContainer/PanelContainer/Content"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/PanelContainer/Content/Controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Score"
+vertical_alignment = 1
+
+[node name="ScoreSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/Content/Controls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 56)
+layout_mode = 2
+max_value = 999.0
+step = 1.0
+
+[node name="CompleteButton" type="Button" parent="MarginContainer/PanelContainer/Content/Controls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 56)
+layout_mode = 2
+text = "Finish Trail"
+
+[node name="ReturnButton" type="Button" parent="MarginContainer/PanelContainer/Content/Controls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 56)
+layout_mode = 2
+text = "Back"
+
+[node name="ResultLabel" type="Label" parent="MarginContainer/PanelContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1

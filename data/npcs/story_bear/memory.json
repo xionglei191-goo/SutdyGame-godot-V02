@@ -1,0 +1,17 @@
+{
+	"schema_version": 1,
+	"npc_id": "story_bear",
+	"profile_id": "local_profile",
+	"recent_events": [],
+	"shared_memory_notes": [
+		"Story Bear introduces the Bear memory card.",
+		"Stories remain short, gentle, and fixed in the stub stage."
+	],
+	"known_card_ids": ["card_b_bear_core"],
+	"pet_state_stub": {"pet_id": "sunny_dog", "last_known_mood": "happy"},
+	"parent_allowed_interaction": {
+		"free_chat": false,
+		"fixed_stub_reply_only": true,
+		"parent_summary_visible": true
+	}
+}

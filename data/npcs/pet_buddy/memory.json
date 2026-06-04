@@ -1,0 +1,17 @@
+{
+	"schema_version": 1,
+	"npc_id": "pet_buddy",
+	"profile_id": "local_profile",
+	"recent_events": [],
+	"shared_memory_notes": [
+		"Sunny is the first local pet.",
+		"Low performance still keeps kind feedback and a small reward."
+	],
+	"known_card_ids": ["card_d_dog_core", "card_pet_hungry", "card_pet_food"],
+	"pet_state_stub": {"pet_id": "sunny_dog", "last_known_mood": "happy", "last_known_need": "food"},
+	"parent_allowed_interaction": {
+		"free_chat": false,
+		"fixed_stub_reply_only": true,
+		"parent_summary_visible": true
+	}
+}

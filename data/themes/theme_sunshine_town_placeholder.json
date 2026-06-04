@@ -1,0 +1,49 @@
+{
+  "theme_id": "theme_sunshine_town_placeholder",
+  "label": "Sunshine Town Placeholder",
+  "version": 1,
+  "style": "storybook_placeholder",
+  "placeholder": true,
+  "tile_atlas": {
+    "tile_home_grass": "placeholder://theme_sunshine_town_placeholder/tile_atlas/tile_home_grass",
+    "tile_town_plaza": "placeholder://theme_sunshine_town_placeholder/tile_atlas/tile_town_plaza",
+    "tile_school_yard": "placeholder://theme_sunshine_town_placeholder/tile_atlas/tile_school_yard",
+    "tile_transport_pavement": "placeholder://theme_sunshine_town_placeholder/tile_atlas/tile_transport_pavement",
+    "world": "placeholder://theme_sunshine_town_placeholder/tile_atlas/world"
+  },
+  "landmark_assets": {
+    "landmark_home_placeholder": "placeholder://theme_sunshine_town_placeholder/landmark/landmark_home_placeholder",
+    "landmark_town_start_placeholder": "placeholder://theme_sunshine_town_placeholder/landmark/landmark_town_start_placeholder",
+    "landmark_supermarket_placeholder": "placeholder://theme_sunshine_town_placeholder/landmark/landmark_supermarket_placeholder"
+  },
+  "npc_assets": {
+    "mina": "placeholder://theme_sunshine_town_placeholder/npc/mina",
+    "shopkeeper": "placeholder://theme_sunshine_town_placeholder/npc/shopkeeper",
+    "pet_buddy": "placeholder://theme_sunshine_town_placeholder/npc/pet_buddy"
+  },
+  "pet_assets": {
+    "sunny": "placeholder://theme_sunshine_town_placeholder/pet/sunny",
+    "dog": "placeholder://theme_sunshine_town_placeholder/pet/dog"
+  },
+  "card_art": {
+    "card_a_apple_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_a_apple_core",
+    "card_b_bear_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_b_bear_core",
+    "card_c_clock_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_c_clock_core",
+    "card_d_dog_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_d_dog_core",
+    "card_k_kite_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_k_kite_core",
+    "card_o_orange_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_o_orange_core",
+    "card_s_sun_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_s_sun_core",
+    "card_t_taxi_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_t_taxi_core",
+    "card_w_watch_core": "placeholder://theme_sunshine_town_placeholder/card_art/card_w_watch_core"
+  },
+  "ui_skin": {
+    "primary_button": "placeholder://theme_sunshine_town_placeholder/ui_skin/primary_button",
+    "panel": "placeholder://theme_sunshine_town_placeholder/ui_skin/panel",
+    "memory_album": "placeholder://theme_sunshine_town_placeholder/ui_skin/memory_album"
+  },
+  "card_frame_assets": {
+    "core": "placeholder://theme_sunshine_town_placeholder/card_frame/core",
+    "collected": "placeholder://theme_sunshine_town_placeholder/card_frame/collected",
+    "shiny": "placeholder://theme_sunshine_town_placeholder/card_frame/shiny"
+  }
+}

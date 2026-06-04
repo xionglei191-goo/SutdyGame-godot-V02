@@ -1,0 +1,106 @@
+{
+	"schema_version": 1,
+	"minigame_id": "letter_snake",
+	"display_name": "Letter Snake",
+	"return_scene": "world_overview",
+	"round_defaults": {
+		"duration_seconds": 60,
+		"min_targets_per_round": 6,
+		"max_distractors_per_round": 4,
+		"low_pressure": true
+	},
+	"result_schema": {
+		"required_fields": [
+			"minigame_id",
+			"config_set_id",
+			"score",
+			"target_letters_seen",
+			"target_words_seen",
+			"target_hits",
+			"distractor_touches",
+			"duration_seconds",
+			"reward"
+		],
+		"reward_fields": [
+			"coins",
+			"card_progress",
+			"collected_chance",
+			"shiny_chance",
+			"spark"
+		]
+	},
+	"reward_profile": {
+		"profile_id": "letter_snake_memory_card_collect",
+		"score_metric": "score",
+		"tiers": [
+			{
+				"tier_id": "spark",
+				"min_score": 0,
+				"coins": 3,
+				"card_progress": 1,
+				"collected_chance": 0.0,
+				"shiny_chance": 0.0,
+				"spark": true,
+				"child_feedback": "Nice find!"
+			},
+			{
+				"tier_id": "bright",
+				"min_score": 30,
+				"coins": 7,
+				"card_progress": 2,
+				"collected_chance": 0.25,
+				"shiny_chance": 0.0,
+				"spark": true,
+				"child_feedback": "Your card is glowing."
+			},
+			{
+				"tier_id": "gold",
+				"min_score": 70,
+				"coins": 12,
+				"card_progress": 4,
+				"collected_chance": 0.75,
+				"shiny_chance": 0.12,
+				"spark": true,
+				"child_feedback": "A bright card moment!"
+			}
+		]
+	},
+	"sets": [
+		{
+			"set_id": "home",
+			"child_title": "Home Trail",
+			"event_id": "event_letter_snake_home",
+			"target_letters": ["A", "C", "D"],
+			"target_words": ["apple", "clock", "dog"],
+			"card_ids": ["card_a_apple_core", "card_c_clock_core", "card_d_dog_core"],
+			"prompt_templates": ["Find {target}.", "Follow {target}."]
+		},
+		{
+			"set_id": "food",
+			"child_title": "Food Trail",
+			"event_id": "event_letter_snake_food",
+			"target_letters": ["A", "O", "E"],
+			"target_words": ["apple", "orange", "egg"],
+			"card_ids": ["card_a_apple_core", "card_o_orange_core", "card_shop_egg"],
+			"prompt_templates": ["Find {target}.", "Follow {target}."]
+		},
+		{
+			"set_id": "weather",
+			"child_title": "Sky Trail",
+			"event_id": "event_letter_snake_weather",
+			"target_letters": ["S", "K", "W"],
+			"target_words": ["sun", "kite", "windy"],
+			"card_ids": ["card_s_sun_core", "card_k_kite_core", "card_weather_windy"],
+			"prompt_templates": ["Find {target}.", "Follow {target}."]
+		},
+		{
+			"set_id": "transport",
+			"child_title": "Town Trail",
+			"event_id": "event_letter_snake_transport",
+			"target_letters": ["B", "T", "W"],
+			"target_words": ["bus", "taxi", "watch"],
+			"card_ids": ["card_town_bus", "card_t_taxi_core", "card_w_watch_core"],
+			"prompt_templates": ["Find {target}.", "Follow {target}."]
+		}
+	]
+}

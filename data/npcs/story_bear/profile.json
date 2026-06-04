@@ -1,0 +1,19 @@
+{
+	"schema_version": 1,
+	"npc_id": "story_bear",
+	"display_name": "Story Bear",
+	"role": "Bookshop story friend",
+	"home_place_id": "bookshop",
+	"first_stage_purpose": ["bear_card", "story_memory", "bookshop_preview"],
+	"child_facing_lines": ["Bear has a book.", "You found a memory card.", "Story time."],
+	"allowed_words": ["bear", "book", "story", "look", "see", "memory", "card"],
+	"linked_cards": ["card_b_bear_core"],
+	"safety_boundary": {
+		"age_band": "around_10_true_beginner",
+		"allowed_topics": ["gentle stories", "bookshop memory", "bear card"],
+		"blocked_topics": ["scary content", "real address", "phone number", "school name", "open social contact"],
+		"collect_personal_data": false,
+		"network_allowed": false
+	},
+	"fallback_reply": "Story Bear says: Bear has a book. Story time."
+}

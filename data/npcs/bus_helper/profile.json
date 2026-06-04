@@ -1,0 +1,19 @@
+{
+	"schema_version": 1,
+	"npc_id": "bus_helper",
+	"display_name": "Bus Helper",
+	"role": "Bus station guide",
+	"home_place_id": "bus_station",
+	"first_stage_purpose": ["transport_preview", "bus_taxi_words", "go_hint"],
+	"child_facing_lines": ["I go by bus.", "Bus or taxi?", "Let's go."],
+	"allowed_words": ["go", "bus", "taxi", "car", "train", "watch", "town"],
+	"linked_cards": ["card_town_bus", "card_t_taxi_core", "card_w_watch_core"],
+	"safety_boundary": {
+		"age_band": "around_10_true_beginner",
+		"allowed_topics": ["pretend town travel", "bus and taxi words", "simple movement"],
+		"blocked_topics": ["real travel plans", "real address", "phone number", "school name", "meeting strangers"],
+		"collect_personal_data": false,
+		"network_allowed": false
+	},
+	"fallback_reply": "Bus Helper says: I go by bus. Let's go."
+}

@@ -1,0 +1,17 @@
+{
+	"schema_version": 1,
+	"npc_id": "shopkeeper",
+	"profile_id": "local_profile",
+	"recent_events": [],
+	"shared_memory_notes": [
+		"The child can buy pet food with local coins.",
+		"The shop uses fixed polite phrases only."
+	],
+	"known_card_ids": ["card_shop_buy", "card_pet_food", "card_o_orange_core"],
+	"pet_state_stub": {"pet_id": "sunny_dog", "last_needed_item": "pet_food"},
+	"parent_allowed_interaction": {
+		"free_chat": false,
+		"fixed_stub_reply_only": true,
+		"parent_summary_visible": true
+	}
+}
