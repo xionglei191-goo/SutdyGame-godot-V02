@@ -66,6 +66,8 @@
 | 2026-06-04 | Round 44 V02.1 每日小镇 | LESSON-003 复用 | 新增每日服务时再次遇到跨服务返回值类型推断问题，按既有规则显式标注局部变量后通过；未新增已验证故障 |
 | 2026-06-04 | Round 45 V02.2 我的小屋 | 无 | 小屋视图、家具旋转/收起、宠物用品和 Sunny 家内反馈通过 focused/headless 验证，未新增已验证故障 |
 | 2026-06-04 | Round 46 V02.3 小镇记忆宫殿 | 无 | Anchor 互动、相册收藏状态和新词回访故事绑定通过 focused/headless 审计，未新增已验证故障 |
+| 2026-06-04 | Round 47 V02.4 内容生产框架 | LESSON-008 | 内容合同验证器、候选内容包拦截和数据化 loader 回归通过 focused/headless 验证 |
+| 2026-06-04 | Round 48 真实可玩路径修复 | LESSON-009 | 服务和合同测试曾通过，但孩子端相册、商店和小屋操作入口断裂；已补玩家可见操作级 smoke |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -165,3 +167,18 @@
   - 候选内容包不能覆盖核心 A-Z anchor；新增单词必须绑定 letter、core_anchor_id、world_place_id、story_memory、visual_hook 和 review_path。
   - 修改共享 runner 仍由 PM 集成，新增内容先用 focused contract test 证明可加载。
 - **验证依据：** `tests/test_v024_content_contracts.gd`、`tests/headless_runner.gd`、`godot --headless --path . --check-only --script scripts/systems/content_contract_validator.gd` 和 `godot --headless --path . --quit` 均通过。
+
+## LESSON-009：隐藏 contract 按钮不能证明孩子端可玩
+
+- **日期：** 2026-06-04
+- **关联任务：** `V02-PLAYABLE-001` 至 `V02-PLAYABLE-004`
+- **现象：** V02.1-V02.4 服务、数据合同和旧 smoke 测试均通过，但实际孩子端没有可见入口打开相册；商店购买依赖隐藏按钮或直接脚本方法；小屋家具摆放、旋转、收起也缺少真实可见操作路径。
+- **影响：** `todo.md` 标记为完成的功能在玩家视角不可玩，项目看起来“系统存在”，但不能形成动物森友会式自由操作闭环。
+- **根因：** 测试覆盖了服务方法、隐藏 contract 按钮和内部脚本调用，却没有要求通过当前孩子端可见 UI 按钮完成动作；`is_visible_in_tree()` 在 headless 手动场景中也不足以区分真实可见入口和隐藏父容器。
+- **解决方式：** 新增相册覆盖层、背包内相册入口、商店货架面板、小屋物件面板，并新增 `test_playable_ui_operations.gd`；全量 `headless_runner` 注册玩家可见按钮路径，按可见按钮打开相册、商店、小屋并验证存档变化。
+- **预防规则：**
+  - 每个宣称“可玩”的孩子端动作必须有可见入口，且至少一个测试通过可见按钮或面板按钮触发。
+  - 隐藏 contract 按钮只允许保留兼容性，不能作为完成验收依据。
+  - 新增或精简 HUD/底栏后，必须同步跑玩家操作级 smoke，覆盖相册、商店、背包、小镇/小屋、`看看`、资源、NPC、anchor 和家具操作。
+  - Headless UI 可见性检查应沿 Control 父链检查 `visible`，避免把隐藏父容器里的按钮当成孩子端入口。
+- **验证依据：** `tests/test_playable_ui_operations.gd`、`tests/test_memory_album_scene.gd`、`tests/test_life_rpg_scene.gd`、`tests/test_playable_loop_smoke.gd`、`tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过。

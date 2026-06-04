@@ -80,6 +80,7 @@ func _init() -> void:
 	_check_account_cloud_stubs()
 	_check_content_theme_review_stubs()
 	_check_content_contracts()
+	_check_playable_ui_operations()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -366,6 +367,79 @@ func _collect_visible_text(node: Node) -> String:
 	for child in node.get_children():
 		parts.append(_collect_visible_text(child))
 	return " ".join(parts)
+
+
+func _check_playable_ui_operations() -> void:
+	var save_path := "user://headless_runner_playable_ui.json"
+	var service := SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "playable UI save should clear before scene startup")
+	var main := MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("2026-06-04")
+	root.add_child(main)
+	main.call("_ready")
+
+	_press_visible_button(main.find_child("BackpackNavButton", true, false) as Button, "visible backpack button should open backpack")
+	var backpack_bubble := main.find_child("BackpackBubble", true, false) as Control
+	_expect(backpack_bubble != null and backpack_bubble.visible, "visible backpack button should show backpack bubble")
+	_press_visible_button(main.find_child("OpenMemoryAlbumButton", true, false) as Button, "visible backpack bubble should open album")
+	var album_overlay := main.find_child("MemoryAlbumOverlay", true, false) as Control
+	var album_title := main.find_child("AlbumTitle", true, false) as Label
+	_expect(album_overlay != null and album_overlay.visible, "visible album button should open album overlay")
+	_expect(album_title != null and str(album_title.text) == "小镇相册", "album overlay should expose child-facing title")
+	_press_visible_button(main.find_child("CloseMemoryAlbumButton", true, false) as Button, "visible album return button should close album")
+	_expect(album_overlay != null and not album_overlay.visible, "album return button should close overlay")
+
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	_expect(main.move_player_to_cell(Vector2i(2, 3)).get("ok", false), "playable UI should move near an anchor")
+	_press_visible_button(interact_button, "visible Interact should work near anchor")
+	var apple_state: Dictionary = main.save_service.load_learning_record().get("card_states", {}).get("card_a_apple_core", {})
+	_expect(bool(apple_state.get("collected", false)), "visible Interact should update album card state")
+	_expect(main.move_player_to_cell(Vector2i(13, 6)).get("ok", false), "playable UI should move near a resource")
+	_press_visible_button(interact_button, "visible Interact should work near resource")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("branch", 0)) >= 1, "visible Interact should collect resource")
+
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "playable UI should move to shop hotspot")
+	_press_visible_button(interact_button, "visible Interact should open shop panel")
+	var shop_panel_local := main.find_child("ShopPanel", true, false) as Control
+	_expect(shop_panel_local != null and shop_panel_local.visible, "shop panel should open from visible Interact")
+	var game_state: Dictionary = main.save_service.load_game_state()
+	game_state["coins"] = 30
+	_expect(main.save_service.save_game_state(game_state), "playable UI should save local coins for purchase path")
+	main.call("_update_loop_status", "金币准备好")
+	_press_visible_button(main.find_child("ShopBuyWoodenChairButton", true, false) as Button, "visible shop item button should buy furniture")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) == 1, "visible shop purchase should add furniture")
+
+	_press_visible_button(main.find_child("HomeNavButton", true, false) as Button, "visible Home button should open home room")
+	var home_room := main.find_child("HomeRoom", true, false) as Control
+	_expect(home_room != null and home_room.visible, "visible Home button should show home room")
+	_press_visible_button(main.find_child("HomePlaceWoodenChairButton", true, false) as Button, "visible home item button should place furniture")
+	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() == 1, "visible home item button should place furniture")
+	_press_visible_button(main.find_child("HomeRotateFirstFurnitureButton", true, false) as Button, "visible home rotate button should rotate furniture")
+	_press_visible_button(main.find_child("HomePickupFirstFurnitureButton", true, false) as Button, "visible home pickup button should pick up furniture")
+	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).is_empty(), "visible home pickup button should clear placed furniture")
+	_press_visible_button(main.find_child("TownNavButton", true, false) as Button, "visible Town button should return to town")
+	var town_stage_local := main.find_child("TownStage", true, false) as Control
+	_expect(town_stage_local != null and town_stage_local.visible, "visible Town button should show town playfield")
+
+	_expect(main.save_service.clear_for_test(), "playable UI save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _press_visible_button(button: Button, message: String) -> void:
+	_expect(button != null and _control_path_visible(button) and not button.disabled, message)
+	if button != null and _control_path_visible(button) and not button.disabled:
+		button.emit_signal("pressed")
+
+
+func _control_path_visible(node: Node) -> bool:
+	var current := node
+	while current != null:
+		if current is Control and not (current as Control).visible:
+			return false
+		current = current.get_parent()
+	return true
 
 
 func _check_account_cloud_stubs() -> void:

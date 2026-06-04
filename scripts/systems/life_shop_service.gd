@@ -45,7 +45,7 @@ func get_offer(item_id: String = "wooden_chair") -> Dictionary:
 	return {
 		"ok": true,
 		"item_id": item_id,
-		"display_name": item.get("display_name", item_id),
+		"display_name": item.get("localized_display_name", item.get("display_name", item_id)),
 		"price": int(item.get("price", 0)),
 		"item_type": item.get("item_type", ""),
 		"memory_story": item.get("memory_story", {}).duplicate(true),

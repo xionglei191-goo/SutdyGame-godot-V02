@@ -19,8 +19,8 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 47：V02.4 内容生产框架完成 |
-| 本轮目标 | 每日委托、NPC 对话、家具商品、anchor 内容合同和数据化回归已完成 |
+| 当前轮次 | Round 48：真实可玩路径修复完成 |
+| 本轮目标 | 相册、商店、小屋等孩子端真实操作入口和玩家可见 UI 操作烟测已完成 |
 | 进行中 | 无 |
 | Ready | 无 |
 | 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架 |
@@ -150,6 +150,17 @@
   Owner：Curriculum / Memory Palace / QA Agent；依赖：V02-AZ-WORLD-004、V02-FUTURE-003；交付物：内容包校验规则扩展；验收：内容包不能覆盖核心 A-Z 编码，新增词必须绑定记忆宫殿字段，未通过人工审核不得进入 runtime。
 - [x] **V02-CONTENT-005 V02.4 数据化回归**  
   Owner：QA Agent；依赖：V02-CONTENT-001 至 V02-CONTENT-004；交付物：内容数据合同和回归测试集；验收：委托、对白、商品、家具、anchor 内容均可通过数据新增并通过 headless runner。
+
+### Round 48 可玩路径修复：入口必须真实可操作
+
+- [x] **V02-PLAYABLE-001 相册孩子端入口修复**
+  Owner：PM / UI Agent；依赖：V02-AZ-WORLD-002、V02-UI-010；交付物：可见的相册入口、相册覆盖层、返回小镇路径；验收：孩子端可从可见 UI 打开相册并返回，不依赖隐藏 contract 按钮，相册中文界面通过测试。
+- [x] **V02-PLAYABLE-002 商店购买孩子端入口修复**
+  Owner：PM / UI / Systems Agent；依赖：V02-HOME-003、V02-CONTENT-003；交付物：靠近商店或店长可打开可见货架，货架按钮可购买家具并刷新背包/HUD；验收：实际 UI 按钮购买成功，金币扣减、物品入背包，买不起时温和反馈。
+- [x] **V02-PLAYABLE-003 真实操作烟测补充**
+  Owner：PM / QA Agent；依赖：V02-PLAYABLE-001、V02-PLAYABLE-002；交付物：主场景操作级 focused test；验收：测试通过“可见按钮/面板”打开相册、关闭相册、打开商店、点击商品购买，而不是直接调用隐藏脚本方法。
+- [x] **V02-PLAYABLE-004 核心生活操作同步检测**
+  Owner：PM / QA / UI Agent；依赖：V02-LIFE-011、V02-HOME-002、V02-AZ-WORLD-002；交付物：覆盖 `看看`、背包、小镇/小屋、NPC、资源、anchor、家具摆放/旋转/收起的玩家路径测试；验收：每个已宣称可玩的核心生活动作都有孩子端可见入口，并通过操作级 smoke。
 
 ## 阶段 0：框架与管理基线
 
@@ -361,3 +372,4 @@
 | 2026-06-04 | Round 45 验收 | V02.2 我的小屋 | 新增独立 `HomeRoom` 小屋视图，`小屋`/`小镇` 底栏可切换；家具目录扩展小桌、地毯、花盆、宠物碗、Sunny 小床和墙饰；`HomeDecorationService` 支持摆放、旋转、移动、收起、非法格温和反馈和 Sunny 家内反馈；`jq`、`test_v022_home_room_contract`、`test_life_services`、`test_life_rpg_scene`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
 | 2026-06-04 | Round 46 验收 | V02.3 小镇记忆宫殿 | 新增 `AnchorInteractionService` 和新词回访数据，靠近 A-Z anchor 使用 `看看` 会写入相册 seen/heard/collected 并显示温和故事；首批 A/B/C/D/K/O/S/T/W 保持 Sprite2D 场景物件表现；`test_v023_memory_palace_world`、`test_memory_album_scene`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
 | 2026-06-04 | Round 47 验收 | V02.4 内容生产框架 | 新增 `ContentContractValidator` 和 V02.4 内容合同测试，覆盖每日委托、每日问候、家具商品、新词故事、核心 A-Z 覆盖拦截和数据化 loader 回归；`find data -name '*.json' -print0 | xargs -0 jq empty`、`test_v024_content_contracts`、`check-only`、`headless_runner`、`test_life_rpg_scene`、`test_v022_home_room_contract`、`test_v023_memory_palace_world`、`godot --headless --path . --quit` 通过 |
+| 2026-06-04 | Round 48 验收 | 真实可玩路径修复 | 背包气泡新增可见相册入口并打开中文相册覆盖层；靠近商店 `看看` 打开可见货架，商品按钮可购买家具并刷新背包/HUD；小屋新增物件面板，可从可见按钮摆放、旋转、收起家具；新增 `test_playable_ui_operations` 并注册进 `headless_runner`；`check-only`、`test_memory_album_scene`、`test_playable_ui_operations`、`test_playable_loop_smoke`、`test_life_rpg_scene`、V02.1-V02.4 contract tests、`headless_runner`、`godot --headless --path . --quit` 通过 |

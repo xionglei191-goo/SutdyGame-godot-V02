@@ -76,7 +76,7 @@ func refresh() -> void:
 		_grid.add_child(_create_card_tile(card, state))
 
 	if is_instance_valid(_summary_label):
-		_summary_label.text = "%d keepsakes shining in this album" % collected_count
+		_summary_label.text = "%d 个发现亮起来" % collected_count
 
 
 func get_album_cards() -> Array[Dictionary]:
@@ -152,14 +152,14 @@ func _build_album() -> void:
 
 	var title := Label.new()
 	title.name = "AlbumTitle"
-	title.text = "Memory Album"
+	title.text = "小镇相册"
 	title.add_theme_color_override("font_color", TEXT_COLOR)
 	title.add_theme_font_size_override("font_size", 36)
 	title_area.add_child(title)
 
 	var subtitle := Label.new()
 	subtitle.name = "AlbumSubtitle"
-	subtitle.text = "Sunny Town keepsakes"
+	subtitle.text = "路过时发现的小物件"
 	subtitle.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
 	subtitle.add_theme_font_size_override("font_size", 18)
 	title_area.add_child(subtitle)
@@ -252,7 +252,7 @@ func _create_card_tile(card: Dictionary, state: Dictionary) -> Control:
 
 	var story := Label.new()
 	story.name = "StoryMemory"
-	story.text = str(card.get("story_memory", "A new keepsake waits in town."))
+	story.text = str(card.get("story_memory", "小镇里还有一个新发现等着你。"))
 	story.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	story.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
 	story.add_theme_font_size_override("font_size", 15)
@@ -263,13 +263,13 @@ func _create_card_tile(card: Dictionary, state: Dictionary) -> Control:
 	footer.add_theme_constant_override("separation", 8)
 	stack.add_child(footer)
 
-	footer.add_child(_create_badge("spark %d" % int(state.get("spark", 0)), false))
+	footer.add_child(_create_badge("亮点 %d" % int(state.get("spark", 0)), false))
 	if shiny:
-		footer.add_child(_create_badge("shiny", true))
+		footer.add_child(_create_badge("闪光", true))
 	if played:
-		footer.add_child(_create_badge("played", true))
+		footer.add_child(_create_badge("玩过", true))
 	if collected:
-		footer.add_child(_create_badge("collected", true))
+		footer.add_child(_create_badge("已收藏", true))
 
 	return tile
 
@@ -288,19 +288,19 @@ func _create_badge(text: String, active: bool) -> Label:
 
 func _state_text(state: Dictionary) -> String:
 	if bool(state.get("collected", false)):
-		return "collected"
+		return "已收藏"
 	if bool(state.get("played", false)):
-		return "played"
+		return "玩过"
 	if bool(state.get("seen", false)):
-		return "found"
-	return "waiting"
+		return "见过"
+	return "还没遇见"
 
 
 func _display_name(card: Dictionary) -> String:
 	var word := str(card.get("word", "keepsake"))
 	if card.has("letter"):
-		return "%s sticker" % str(card.get("letter", ""))
-	return "%s keepsake" % word.capitalize()
+		return "%s 小物件" % str(card.get("letter", ""))
+	return "%s 收藏" % word.capitalize()
 
 
 func _fallback_sticker(card: Dictionary) -> String:

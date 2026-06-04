@@ -16,6 +16,7 @@ const AnchorInteractionServiceScript := preload("res://scripts/systems/anchor_in
 const NPCMemoryStoreScript := preload("res://scripts/systems/npc_memory_store.gd")
 const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
+const MemoryAlbumScene := preload("res://scenes/memory_album/memory_album.tscn")
 const AZ_ANCHORS_PATH := "res://data/anchors/az_core_anchors.json"
 const VIEWPORT_SIZE := Vector2i(1280, 720)
 const BACKGROUND_COLOR := Color("#dff2d6")
@@ -99,10 +100,16 @@ var backpack_bubble: Control
 var backpack_summary_label: Label
 var backpack_items_label: Label
 var backpack_collection_label: Label
+var memory_album_layer: Control
+var shop_panel: Control
+var shop_items_list: VBoxContainer
+var shop_status_label: Label
 var town_stage: Control
 var home_room_layer: Control
 var home_furniture_layer: Node2D
 var sunny_home_feedback_label: Label
+var home_inventory_list: VBoxContainer
+var home_action_status_label: Label
 var player_marker: Node2D
 var player_cell := PLAYER_START_CELL
 var _texture_cache: Dictionary = {}
@@ -242,9 +249,21 @@ func _create_body() -> Control:
 	backpack_bubble.anchor_top = 1.0
 	backpack_bubble.anchor_right = 0.94
 	backpack_bubble.anchor_bottom = 1.0
-	backpack_bubble.offset_top = -286
+	backpack_bubble.offset_top = -330
 	backpack_bubble.offset_bottom = -92
 	content.add_child(backpack_bubble)
+
+	shop_panel = _create_shop_panel()
+	shop_panel.anchor_left = 0.62
+	shop_panel.anchor_top = 0.15
+	shop_panel.anchor_right = 0.96
+	shop_panel.anchor_bottom = 0.15
+	shop_panel.offset_bottom = 330
+	content.add_child(shop_panel)
+
+	memory_album_layer = _create_memory_album_overlay()
+	memory_album_layer.set_anchors_preset(Control.PRESET_FULL_RECT)
+	content.add_child(memory_album_layer)
 
 	var hint := Label.new()
 	hint.name = "TownFooterText"
@@ -433,7 +452,90 @@ func _create_backpack_bubble() -> Control:
 	backpack_collection_label.add_theme_font_size_override("font_size", 13)
 	stack.add_child(backpack_collection_label)
 
+	var collection_actions := HBoxContainer.new()
+	collection_actions.name = "BackpackCollectionActions"
+	collection_actions.add_theme_constant_override("separation", 8)
+	stack.add_child(collection_actions)
+	collection_actions.add_child(_create_bubble_button("相册", "_on_memory_album_pressed", "OpenMemoryAlbumButton"))
+	collection_actions.add_child(_create_bubble_button("小游戏", "_on_optional_letter_snake_pressed", "OpenLetterSnakeButton"))
+
 	return panel
+
+
+func _create_shop_panel() -> Control:
+	var panel := PanelContainer.new()
+	panel.name = "ShopPanel"
+	panel.visible = false
+	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0f4"), 16, Color("#dcae5c")))
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 14)
+	margin.add_theme_constant_override("margin_top", 12)
+	margin.add_theme_constant_override("margin_right", 14)
+	margin.add_theme_constant_override("margin_bottom", 12)
+	panel.add_child(margin)
+
+	var stack := VBoxContainer.new()
+	stack.name = "ShopShelf"
+	stack.add_theme_constant_override("separation", 8)
+	margin.add_child(stack)
+
+	var header := HBoxContainer.new()
+	header.add_theme_constant_override("separation", 8)
+	stack.add_child(header)
+
+	var title := Label.new()
+	title.name = "ShopTitle"
+	title.text = "街角商店"
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title.add_theme_color_override("font_color", TEXT_COLOR)
+	title.add_theme_font_size_override("font_size", 18)
+	header.add_child(title)
+
+	header.add_child(_create_bubble_button("收起", "_on_close_shop_pressed", "CloseShopButton", 70))
+
+	shop_status_label = Label.new()
+	shop_status_label.name = "ShopStatus"
+	shop_status_label.text = "货架上摆着小屋物件。"
+	shop_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	shop_status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
+	shop_status_label.add_theme_font_size_override("font_size", 13)
+	stack.add_child(shop_status_label)
+
+	shop_items_list = VBoxContainer.new()
+	shop_items_list.name = "ShopItemsList"
+	shop_items_list.add_theme_constant_override("separation", 6)
+	stack.add_child(shop_items_list)
+
+	return panel
+
+
+func _create_memory_album_overlay() -> Control:
+	var overlay := Control.new()
+	overlay.name = "MemoryAlbumOverlay"
+	overlay.visible = false
+
+	var album := MemoryAlbumScene.instantiate()
+	album.name = "MemoryAlbum"
+	album.set_anchors_preset(Control.PRESET_FULL_RECT)
+	if album.has_method("set_save_service"):
+		album.call("set_save_service", save_service)
+	overlay.add_child(album)
+	if album.has_method("_ready"):
+		album.call("_ready")
+
+	var close_button := _create_bubble_button("返回", "_on_close_memory_album_pressed", "CloseMemoryAlbumButton", 86)
+	close_button.anchor_left = 1.0
+	close_button.anchor_top = 0.0
+	close_button.anchor_right = 1.0
+	close_button.anchor_bottom = 0.0
+	close_button.offset_left = -122
+	close_button.offset_top = 24
+	close_button.offset_right = -28
+	close_button.offset_bottom = 66
+	overlay.add_child(close_button)
+
+	return overlay
 
 
 func _create_home_room_view() -> Control:
@@ -495,7 +597,62 @@ func _create_home_room_view() -> Control:
 	sunny_home_feedback_label.add_theme_font_size_override("font_size", 15)
 	feedback_margin.add_child(sunny_home_feedback_label)
 
+	var action_panel := _create_home_action_panel()
+	action_panel.anchor_left = 0.68
+	action_panel.anchor_top = 0.14
+	action_panel.anchor_right = 0.94
+	action_panel.anchor_bottom = 0.14
+	action_panel.offset_bottom = 250
+	room.add_child(action_panel)
+
 	return room
+
+
+func _create_home_action_panel() -> Control:
+	var panel := PanelContainer.new()
+	panel.name = "HomeActionPanel"
+	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0f0"), 16, Color("#dcae5c")))
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 14)
+	margin.add_theme_constant_override("margin_top", 12)
+	margin.add_theme_constant_override("margin_right", 14)
+	margin.add_theme_constant_override("margin_bottom", 12)
+	panel.add_child(margin)
+
+	var stack := VBoxContainer.new()
+	stack.name = "HomeActionStack"
+	stack.add_theme_constant_override("separation", 8)
+	margin.add_child(stack)
+
+	var title := Label.new()
+	title.name = "HomeActionTitle"
+	title.text = "小屋物件"
+	title.add_theme_color_override("font_color", TEXT_COLOR)
+	title.add_theme_font_size_override("font_size", 18)
+	stack.add_child(title)
+
+	home_action_status_label = Label.new()
+	home_action_status_label.name = "HomeActionStatus"
+	home_action_status_label.text = "背包里的家具会出现在这里。"
+	home_action_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	home_action_status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
+	home_action_status_label.add_theme_font_size_override("font_size", 13)
+	stack.add_child(home_action_status_label)
+
+	home_inventory_list = VBoxContainer.new()
+	home_inventory_list.name = "HomeInventoryList"
+	home_inventory_list.add_theme_constant_override("separation", 6)
+	stack.add_child(home_inventory_list)
+
+	var row := HBoxContainer.new()
+	row.name = "HomePlacedActions"
+	row.add_theme_constant_override("separation", 8)
+	stack.add_child(row)
+	row.add_child(_create_bubble_button("旋转", "_on_home_rotate_pressed", "HomeRotateFirstFurnitureButton", 72))
+	row.add_child(_create_bubble_button("收起", "_on_home_pickup_pressed", "HomePickupFirstFurnitureButton", 72))
+
+	return panel
 
 
 func _refresh_home_room() -> void:
@@ -520,7 +677,90 @@ func _refresh_home_room() -> void:
 	var feedback: Dictionary = home_decoration_service.get_sunny_feedback()
 	if is_instance_valid(sunny_home_feedback_label):
 		sunny_home_feedback_label.text = str(feedback.get("text", "Sunny 在小屋里慢慢摇尾巴。"))
+	_refresh_home_actions()
 	_update_backpack_bubble()
+
+
+func _refresh_home_actions() -> void:
+	if not is_instance_valid(home_inventory_list):
+		return
+	for child in home_inventory_list.get_children():
+		home_inventory_list.remove_child(child)
+		child.queue_free()
+
+	var inventory: Dictionary = inventory_service.get_inventory()
+	var added := 0
+	for item_id in _furniture_item_ids():
+		var count := int(inventory.get(item_id, 0))
+		if count <= 0:
+			continue
+		var item: Dictionary = inventory_service.get_item(item_id)
+		var label := "摆放 %s x%s" % [_item_display_name(item), count]
+		var button := _create_bubble_button(label, "", _button_name_from_item("HomePlace", item_id), 160)
+		button.pressed.connect(Callable(self, "_on_home_place_item_pressed").bind(item_id))
+		home_inventory_list.add_child(button)
+		added += 1
+
+	if added == 0:
+		var empty := Label.new()
+		empty.name = "HomeInventoryEmpty"
+		empty.text = "还没有可摆放的家具。"
+		empty.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
+		empty.add_theme_font_size_override("font_size", 13)
+		home_inventory_list.add_child(empty)
+
+	var placed: Array = home_decoration_service.get_home_state().get("placed_furniture", [])
+	var has_placed := not placed.is_empty()
+	var rotate_button := find_child("HomeRotateFirstFurnitureButton", true, false) as Button
+	var pickup_button := find_child("HomePickupFirstFurnitureButton", true, false) as Button
+	if rotate_button != null:
+		rotate_button.disabled = not has_placed
+	if pickup_button != null:
+		pickup_button.disabled = not has_placed
+	if is_instance_valid(home_action_status_label):
+		home_action_status_label.text = "已摆放 %s 件。可以慢慢试位置。" % placed.size() if has_placed else "背包里的家具会出现在这里。"
+
+
+func _on_home_place_item_pressed(item_id: String) -> void:
+	var result: Dictionary = place_home_item(item_id, _next_home_cell_for_item(item_id))
+	var item: Dictionary = inventory_service.get_item(item_id)
+	if result.get("ok", false):
+		_set_life_status("把%s放进小屋啦。" % _item_display_name(item))
+	elif is_instance_valid(home_action_status_label):
+		home_action_status_label.text = _home_error_text(str(result.get("reason", "")))
+
+
+func _on_home_rotate_pressed() -> void:
+	var instance_id := _first_placed_instance_id()
+	if instance_id.is_empty():
+		_set_life_status("还没有可以旋转的家具。")
+		return
+	rotate_home_item(instance_id)
+
+
+func _on_home_pickup_pressed() -> void:
+	var instance_id := _first_placed_instance_id()
+	if instance_id.is_empty():
+		_set_life_status("还没有可以收起的家具。")
+		return
+	pickup_home_item(instance_id)
+
+
+func _first_placed_instance_id() -> String:
+	var placed: Array = home_decoration_service.get_home_state().get("placed_furniture", [])
+	if placed.is_empty() or not placed[0] is Dictionary:
+		return ""
+	return str((placed[0] as Dictionary).get("instance_id", ""))
+
+
+func _next_home_cell_for_item(item_id: String) -> Vector2i:
+	for y in range(5):
+		for x in range(6):
+			var cell := Vector2i(x, y)
+			var validation: Dictionary = home_decoration_service.validate_placement(item_id, cell)
+			if validation.get("ok", false):
+				return cell
+	return HOME_DECOR_CELL
 
 
 func _home_error_text(reason: String) -> String:
@@ -571,6 +811,22 @@ func _create_footer_button(label: String, selected: bool, method_name: String = 
 	return button
 
 
+func _create_bubble_button(label: String, method_name: String, node_name: String, min_width: int = 96) -> Button:
+	var button := Button.new()
+	button.name = node_name
+	button.text = label
+	button.custom_minimum_size = Vector2(min_width, 34)
+	button.focus_mode = Control.FOCUS_NONE
+	button.add_theme_font_size_override("font_size", 14)
+	button.add_theme_color_override("font_color", Color("#284238"))
+	button.add_theme_stylebox_override("normal", _rounded_box(Color("#fff1b8"), 12, Color("#d8a84b")))
+	button.add_theme_stylebox_override("hover", _rounded_box(Color("#fff7d3"), 12, Color("#d8a84b")))
+	button.add_theme_stylebox_override("pressed", _rounded_box(Color("#f3d27d"), 12, Color("#b88335")))
+	if not method_name.is_empty():
+		button.pressed.connect(Callable(self, method_name))
+	return button
+
+
 func _on_start_loop_pressed() -> void:
 	quest_event_service.start_chain()
 	for event_id in ["event_welcome_home", "event_meet_sunny", "event_snack_time", "event_food_trip"]:
@@ -590,7 +846,107 @@ func _on_optional_letter_snake_pressed() -> void:
 
 
 func _on_memory_album_pressed() -> void:
-	_set_optional_activity_status("记忆相册是收藏册，想看的时候再看。")
+	open_memory_album()
+
+
+func _on_close_memory_album_pressed() -> void:
+	close_memory_album()
+
+
+func open_memory_album() -> Dictionary:
+	if not is_instance_valid(memory_album_layer):
+		return {"ok": false, "reason": "album_missing"}
+	if is_instance_valid(backpack_bubble):
+		backpack_bubble.visible = false
+	if is_instance_valid(memory_album_layer):
+		memory_album_layer.visible = false
+	if is_instance_valid(shop_panel):
+		shop_panel.visible = false
+	var album := memory_album_layer.find_child("MemoryAlbum", true, false)
+	if album != null and album.has_method("set_save_service"):
+		album.call("set_save_service", save_service)
+	if album != null and album.has_method("refresh"):
+		album.call("refresh")
+	memory_album_layer.visible = true
+	_set_optional_activity_status("小镇相册打开啦。")
+	_set_life_status("翻一翻今天在小镇发现的小物件。")
+	return {"ok": true, "interaction_type": "memory_album", "state": "open"}
+
+
+func close_memory_album() -> Dictionary:
+	if not is_instance_valid(memory_album_layer):
+		return {"ok": false, "reason": "album_missing"}
+	memory_album_layer.visible = false
+	_set_life_status("回到阳光小镇，继续慢慢逛。")
+	return {"ok": true, "interaction_type": "memory_album", "state": "closed"}
+
+
+func open_shop_panel() -> Dictionary:
+	if not is_instance_valid(shop_panel):
+		return {"ok": false, "reason": "shop_panel_missing"}
+	if is_instance_valid(backpack_bubble):
+		backpack_bubble.visible = false
+	if is_instance_valid(memory_album_layer):
+		memory_album_layer.visible = false
+	if is_instance_valid(memory_album_layer):
+		memory_album_layer.visible = false
+	_refresh_shop_panel()
+	shop_panel.visible = true
+	_set_life_status("街角商店的货架打开啦，喜欢的小物件可以带回小屋。")
+	return {"ok": true, "interaction_type": "shop_panel", "state": "open"}
+
+
+func close_shop_panel() -> Dictionary:
+	if not is_instance_valid(shop_panel):
+		return {"ok": false, "reason": "shop_panel_missing"}
+	shop_panel.visible = false
+	_set_life_status("离开货架，商店还亮着小灯。")
+	return {"ok": true, "interaction_type": "shop_panel", "state": "closed"}
+
+
+func _on_close_shop_pressed() -> void:
+	close_shop_panel()
+
+
+func _refresh_shop_panel() -> void:
+	if not is_instance_valid(shop_items_list):
+		return
+	for child in shop_items_list.get_children():
+		shop_items_list.remove_child(child)
+		child.queue_free()
+	var game_state: Dictionary = save_service.load_game_state()
+	if is_instance_valid(shop_status_label):
+		shop_status_label.text = "金币 %s，可以慢慢挑。" % int(game_state.get("coins", 0))
+	for item_id in _furniture_item_ids():
+		var offer: Dictionary = life_shop_service.get_offer(item_id)
+		if not offer.get("ok", false):
+			continue
+		var label := "%s  %s币" % [str(offer.get("display_name", item_id)), int(offer.get("price", 0))]
+		var button := _create_bubble_button(label, "", _button_name_from_item("ShopBuy", item_id), 190)
+		button.pressed.connect(Callable(self, "_on_shop_buy_item_pressed").bind(item_id))
+		shop_items_list.add_child(button)
+
+
+func _on_shop_buy_item_pressed(item_id: String) -> void:
+	buy_shop_item(item_id)
+
+
+func buy_shop_item(item_id: String) -> Dictionary:
+	var offer: Dictionary = life_shop_service.get_offer(item_id)
+	var result: Dictionary = life_shop_service.buy_life_item(item_id)
+	var display_name := str(offer.get("display_name", item_id))
+	if result.get("ok", false):
+		_set_life_status("买下%s，放进背包啦。" % display_name)
+	else:
+		var reason := str(result.get("reason", ""))
+		if reason == "not_enough_coins":
+			_set_life_status("金币还不够，先去帮邻居或完成小委托也可以。")
+		else:
+			_set_life_status("这个小物件今天还不能带走。")
+	_update_loop_status(status_label.text if is_instance_valid(status_label) else "商店更新啦")
+	_update_backpack_bubble()
+	_refresh_shop_panel()
+	return result
 
 
 func _on_buy_food_pressed() -> void:
@@ -619,6 +975,10 @@ func _on_backpack_pressed() -> void:
 	if backpack_bubble == null:
 		return
 	_update_backpack_bubble()
+	if is_instance_valid(shop_panel) and not backpack_bubble.visible:
+		shop_panel.visible = false
+	if is_instance_valid(memory_album_layer) and not backpack_bubble.visible:
+		memory_album_layer.visible = false
 	backpack_bubble.visible = not backpack_bubble.visible
 
 
@@ -695,6 +1055,10 @@ func show_town_view() -> void:
 		town_stage.visible = true
 	if is_instance_valid(home_room_layer):
 		home_room_layer.visible = false
+	if is_instance_valid(shop_panel):
+		shop_panel.visible = false
+	if is_instance_valid(backpack_bubble):
+		backpack_bubble.visible = false
 	_set_life_status("回到阳光小镇，想去哪边都可以。")
 
 
@@ -703,6 +1067,10 @@ func show_home_view() -> void:
 		town_stage.visible = false
 	if is_instance_valid(home_room_layer):
 		home_room_layer.visible = true
+	if is_instance_valid(shop_panel):
+		shop_panel.visible = false
+	if is_instance_valid(backpack_bubble):
+		backpack_bubble.visible = false
 	_refresh_home_room()
 	var feedback: Dictionary = home_decoration_service.get_sunny_feedback()
 	_set_life_status(str(feedback.get("text", "Sunny 在小屋里慢慢摇尾巴。")))
@@ -766,6 +1134,12 @@ func _enter_place(interaction: Dictionary) -> Dictionary:
 	game_state["current_place_id"] = place_id
 	save_service.save_game_state(game_state)
 	_set_life_status(message)
+	if place_id == "place_home":
+		show_home_view()
+	elif place_id == "place_supermarket":
+		open_shop_panel()
+	elif place_id == "place_town_start":
+		show_town_view()
 	return {
 		"ok": true,
 		"interaction_type": "place_entry",
@@ -773,6 +1147,7 @@ func _enter_place(interaction: Dictionary) -> Dictionary:
 		"place_id": place_id,
 		"place_label": place_label,
 		"action": interaction.get("action", ""),
+		"panel": "shop" if place_id == "place_supermarket" else "home" if place_id == "place_home" else "",
 		"text": message,
 	}
 
@@ -831,9 +1206,26 @@ func _update_backpack_bubble() -> void:
 
 func _count_home_inventory_items(inventory: Dictionary) -> int:
 	var count := 0
-	for item_id in ["small_table", "soft_rug", "flower_pot", "pet_bowl", "sunny_bed", "wall_decoration"]:
+	for item_id in _furniture_item_ids():
+		if item_id == "wooden_chair":
+			continue
 		count += int(inventory.get(item_id, 0))
 	return count
+
+
+func _furniture_item_ids() -> Array[String]:
+	return ["wooden_chair", "small_table", "soft_rug", "flower_pot", "pet_bowl", "sunny_bed", "wall_decoration"]
+
+
+func _item_display_name(item: Dictionary) -> String:
+	return str(item.get("localized_display_name", item.get("display_name", item.get("item_id", "小物件"))))
+
+
+func _button_name_from_item(prefix: String, item_id: String) -> String:
+	var suffix := ""
+	for part in item_id.split("_"):
+		suffix += str(part).capitalize().replace(" ", "")
+	return "%s%sButton" % [prefix, suffix]
 
 
 func _create_nav_button(label: String, selected: bool, node_name: String = "") -> Button:

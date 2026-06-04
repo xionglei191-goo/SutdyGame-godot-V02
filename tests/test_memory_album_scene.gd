@@ -38,9 +38,9 @@ func _init() -> void:
 	_expect(scene.find_child("card_w_watch_core", true, false) != null, "album should show first batch W core card")
 	_expect(scene.find_child("card_pet_food", true, false) != null, "album should show extension card pet food")
 	_expect(scene.call("get_album_cards").size() >= 15, "album should include 9 core cards plus extension cards")
-	_expect(_has_text(scene, "collected"), "album should show collected state")
-	_expect(_has_text(scene, "played"), "album should show played state")
-	_expect(_has_text(scene, "Food keepsake") or _has_text(scene, "food keepsake"), "album should display extension keepsake styling")
+	_expect(_has_text(scene, "已收藏"), "album should show collected state")
+	_expect(_has_text(scene, "玩过"), "album should show played state")
+	_expect(_has_text(scene, "Food 收藏") or _has_text(scene, "food 收藏"), "album should display extension collection styling")
 	_expect(not bool(scene.call("has_blocked_child_terms")), "album should not expose blocked child-facing terms")
 
 	var visible_text := str(scene.call("get_visible_text")).to_lower()
