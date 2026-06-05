@@ -1,9 +1,9 @@
 # StudyGame V02 项目 TODO
 
-> 最后更新：2026-06-04  
+> 最后更新：2026-06-05  
 > 状态事实来源：本文件  
-> 当前阶段：长期路线规划 - 生活小镇从原型走向长期可玩  
-> 当前里程碑：V02.4 内容生产框架已完成，长期路线当前批次收口
+> 当前阶段：美术与策划生产线建设  
+> 当前里程碑：工程可玩闭环已完成，进入可持续内容生产、美术资产生产和发布前体验门槛建设
 
 ## 维护规则
 
@@ -19,14 +19,14 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 48：真实可玩路径修复完成 |
-| 本轮目标 | 相册、商店、小屋等孩子端真实操作入口和玩家可见 UI 操作烟测已完成 |
+| 当前轮次 | Round 49：PM 路线更新完成 |
+| 本轮目标 | 补齐 V02.5 美术素材生产线、V02.6 策划内容生产线、V02.7 发布前体验与质量门槛 |
 | 进行中 | 无 |
-| Ready | 无 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架 |
+| Ready | V02-ART-001 美术资产目录与命名规范 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架、Round 48 真实可玩路径修复、Round 49 美术与策划路线更新 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
-| 临时默认值 | Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
+| 临时默认值 | 单一 storybook/cozy town 美术方向；素材必须有逻辑 asset ID；Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
 
 ## 方向纠偏：生活 RPG / 小镇养成 MVP
 
@@ -100,6 +100,9 @@
 | V02.2 | 我的小屋 | 小屋成为孩子愿意经营和装饰的归属空间 | 独立小屋视图、家具摆放/收起/保存、Sunny 家内反馈通过 |
 | V02.3 | 小镇记忆宫殿 | A-Z 锚点成为稳定场景物件和回访路线 | 首批 A-Z 场景物件强化、相册收藏和新词故事回访通过 |
 | V02.4 | 内容生产框架 | 后续内容主要写数据而不是改主脚本 | 委托、商品、家具、对白、anchor 内容数据化并有合同测试 |
+| V02.5 | 美术素材生产线 | 占位小镇开始替换为可持续生产的角色、场景、家具、UI、图标和音效素材 | 资产目录、命名规范和首批素材清单能映射到 `AssetResolver` 逻辑 ID |
+| V02.6 | 策划内容生产线 | NPC、每日委托、商店轮换、节日天气和 A-Z 场景故事可以稳定扩展 | 首批内容包规划满足儿童安全、非压力经济和记忆宫殿绑定规则 |
+| V02.7 | 发布前体验与质量门槛 | 可玩路径、退出设置、移动端布局和截图验收成为发布前固定门槛 | 关键路径截图、触控布局、退出设置和正式素材替换验收有明确清单 |
 
 ### V02.1 每日小镇：回访、居民和资源
 
@@ -161,6 +164,49 @@
   Owner：PM / QA Agent；依赖：V02-PLAYABLE-001、V02-PLAYABLE-002；交付物：主场景操作级 focused test；验收：测试通过“可见按钮/面板”打开相册、关闭相册、打开商店、点击商品购买，而不是直接调用隐藏脚本方法。
 - [x] **V02-PLAYABLE-004 核心生活操作同步检测**
   Owner：PM / QA / UI Agent；依赖：V02-LIFE-011、V02-HOME-002、V02-AZ-WORLD-002；交付物：覆盖 `看看`、背包、小镇/小屋、NPC、资源、anchor、家具摆放/旋转/收起的玩家路径测试；验收：每个已宣称可玩的核心生活动作都有孩子端可见入口，并通过操作级 smoke。
+
+### V02.5 美术素材生产线：从可玩占位走向可持续资产
+
+> 本阶段只建立生产规范和首批素材清单，初期仍使用单一 storybook/cozy town 风格，不开启多主题并行生产。所有素材必须通过逻辑 asset ID 进入 `ThemeProfile` / `AssetResolver`，玩法脚本不得硬编码具体文件路径。
+
+- [ ] **V02-ART-001 美术资产目录与命名规范**  
+  Owner：Art Direction / Asset / Godot Dev Agent；依赖：V02-CORE-005、V02-UI-004；交付物：资产分类目录、逻辑 asset ID 规则、命名规范、占位/半正式/正式状态定义、`AssetResolver` 映射要求；验收：角色、宠物、场景、A-Z anchor、家具、UI、图标和音效等未来素材均能映射到稳定逻辑 ID，玩法脚本不得新增硬编码素材路径。
+- [ ] **V02-ART-002 首批小镇场景素材清单**  
+  Owner：Art Direction / Map / Asset Agent；依赖：V02-ART-001、V02-AZ-WORLD-001；交付物：Home、Town Plaza、Shop、Bookshop、Bus Stop、道路、树、花、资源点等小镇场景素材清单；验收：每个场景物件有用途、逻辑 asset ID、当前状态、优先级、替换目标、建议尺寸/比例和验收截图要求。
+- [ ] **V02-ART-003 首批角色与宠物素材清单**  
+  Owner：Art Direction / Narrative / Asset Agent；依赖：V02-ART-001、V02-NPC-001；交付物：玩家、Mina、店长、Sunny、故事熊、巴士哥哥等角色和宠物素材需求；验收：每个角色至少定义站立状态、基础表情/状态、地图显示尺寸、UI 头像需求和儿童友好表现边界。
+- [ ] **V02-ART-004 家具与家园素材清单**  
+  Owner：Art Direction / Home Design / Asset Agent；依赖：V02-ART-001、V02-HOME-003；交付物：小桌、地毯、花盆、宠物碗、小床、墙饰等首批家具和家园素材需求；验收：每个家具有 footprint、房间显示尺寸、图标、摆放方向、状态、替换优先级和小屋截图验收点。
+- [ ] **V02-ART-005 UI 图标与状态素材清单**  
+  Owner：UI / Art Direction / UX Agent；依赖：V02-ART-001、V02-UI-010；交付物：金币、点心、饥饿、开心、背包、相册、商店、设置/退出等 HUD 与按钮图标清单；验收：HUD 和按钮不再只依赖文字表达，图标有逻辑 ID、目标尺寸、可读性要求、触控状态和 1280x720 截图验收标准。
+
+### V02.6 策划内容生产线：持续扩展日常、居民和记忆故事
+
+> 策划内容继续服务生活 RPG / 小镇养成，英语只作为环境、收藏、NPC 短句、相册和 A-Z 记忆宫殿故事层。不得把 Letter Snake、测试、课程表或单词背诵重新变成主循环条件。
+
+- [ ] **V02-DESIGN-001 NPC 内容生产规范**  
+  Owner：Game Design / Narrative / Child Safety Agent；依赖：V02-CONTENT-002、V02-PLAYABLE-004；交付物：NPC 问候、关系阶段、轻委托对白、反馈语气和儿童安全文本边界规范；验收：新增 NPC 文本可直接进入数据合同验证，不包含失败惩罚、学习压力、开放陌生人社交或家长报告口吻。
+- [ ] **V02-DESIGN-002 每日轻委托内容包规划**  
+  Owner：Game Design / Narrative Agent；依赖：V02-CONTENT-001、V02-DAILY-002；交付物：首批 10-15 条每日轻委托规划；验收：每条委托有稳定 ID、NPC、目标、奖励、关系反馈、重复规则、儿童安全文案和可见操作入口，不依赖 Letter Snake 完成。
+- [ ] **V02-DESIGN-003 商店与家具轮换策划**  
+  Owner：Game Design / Economy / Home Design Agent；依赖：V02-CONTENT-003、V02-HOME-003；交付物：商品分类、价格区间、轮换节奏、金币来源和非惩罚经济原则；验收：金币用途清晰，买不起时只有温和反馈，不形成打卡压力、损失惩罚或强消耗循环。
+- [ ] **V02-DESIGN-004 A-Z 场景故事扩展规划**  
+  Owner：Memory Palace / Narrative / Curriculum Agent；依赖：V02-AZ-WORLD-003、V02-CONTENT-004；交付物：26 个 anchor 的场景故事、视觉钩子、回访路径和新词扩展规划；验收：首批 9 个达到可制作级，剩余 17 个达到规划级；所有新增词继续绑定 `letter`、`core_anchor_id`、`world_place_id`、`story_memory`、`visual_hook`、`review_path`。
+- [ ] **V02-DESIGN-005 节日与天气轻事件规划**  
+  Owner：Game Design / Narrative / UX Agent；依赖：V02-DAILY-004、V02-CONTENT-001；交付物：晴天、雨天、集市日、儿童节等轻事件规划；验收：事件不惩罚缺席，不制造连续登录压力，能作为小镇氛围、NPC 问候、资源刷新或轻装饰变化进入后续数据生产。
+
+### V02.7 发布前体验与质量门槛：把“能玩”推进到“可验收”
+
+> 本阶段将玩家路径、截图、移动端布局和首批正式素材替换变成发布前门槛。文档规划完成后，具体实现和截图验收按任务逐项进入 Ready。
+
+- [ ] **V02-POLISH-001 退出与设置入口**  
+  Owner：UX / Godot Dev / QA Agent；依赖：V02-PLAYABLE-004；交付物：开发/桌面可见退出入口、儿童端设置或安全位置入口、移动端不误触规则；验收：PC 调试可关闭游戏，移动端不会把退出放在主操作误触区，孩子端文案安全且不暴露工程调试信息。
+- [ ] **V02-POLISH-002 玩家路径截图验收**  
+  Owner：QA / UI / Art Direction Agent；依赖：V02-PLAYABLE-004、V02-ART-001；交付物：关键路径截图清单和截图验收记录模板；验收：小镇、背包、商店、小屋、相册、anchor 互动等路径都有 1280x720 截图要求，每次 UI/美术大改后必须截图确认。
+- [ ] **V02-POLISH-003 移动端触控与布局复核**  
+  Owner：QA / UX / Godot Dev Agent；依赖：V02-UI-010、V02-PLAYABLE-004；交付物：1280x720 和较小横屏视口布局检查表；验收：按钮尺寸、遮挡、安全区、文字溢出、底栏/顶部 HUD 和弹层关闭路径均可操作。
+- [ ] **V02-POLISH-004 首批正式素材替换验收**  
+  Owner：Art Direction / Asset / QA Agent；依赖：V02-ART-002、V02-ART-003、V02-ART-004、V02-ART-005；交付物：关键占位视觉替换清单、正式或半正式素材接入记录和截图验收；验收：首屏不再像程序化占位原型，角色、场景、家具、UI 图标和关键 A-Z anchor 至少完成首批正式或半正式替换，并通过截图验收。
 
 ## 阶段 0：框架与管理基线
 
@@ -373,3 +419,4 @@
 | 2026-06-04 | Round 46 验收 | V02.3 小镇记忆宫殿 | 新增 `AnchorInteractionService` 和新词回访数据，靠近 A-Z anchor 使用 `看看` 会写入相册 seen/heard/collected 并显示温和故事；首批 A/B/C/D/K/O/S/T/W 保持 Sprite2D 场景物件表现；`test_v023_memory_palace_world`、`test_memory_album_scene`、`test_memory_palace_embedding`、`check-only`、`headless_runner`、`godot --headless --path . --quit` 通过 |
 | 2026-06-04 | Round 47 验收 | V02.4 内容生产框架 | 新增 `ContentContractValidator` 和 V02.4 内容合同测试，覆盖每日委托、每日问候、家具商品、新词故事、核心 A-Z 覆盖拦截和数据化 loader 回归；`find data -name '*.json' -print0 | xargs -0 jq empty`、`test_v024_content_contracts`、`check-only`、`headless_runner`、`test_life_rpg_scene`、`test_v022_home_room_contract`、`test_v023_memory_palace_world`、`godot --headless --path . --quit` 通过 |
 | 2026-06-04 | Round 48 验收 | 真实可玩路径修复 | 背包气泡新增可见相册入口并打开中文相册覆盖层；靠近商店 `看看` 打开可见货架，商品按钮可购买家具并刷新背包/HUD；小屋新增物件面板，可从可见按钮摆放、旋转、收起家具；新增 `test_playable_ui_operations` 并注册进 `headless_runner`；`check-only`、`test_memory_album_scene`、`test_playable_ui_operations`、`test_playable_loop_smoke`、`test_life_rpg_scene`、V02.1-V02.4 contract tests、`headless_runner`、`godot --headless --path . --quit` 通过 |
+| 2026-06-05 | Round 49 规划 | PM 路线更新 | 更新 `todo.md`、`docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/10_美术风格与换肤预留.md`、`docs/14_内容基线整理与首批内容规划.md`；新增 V02.5-V02.7 路线与 `V02-ART-001` 到 `V02-POLISH-004`，未运行 Godot 验证 |
