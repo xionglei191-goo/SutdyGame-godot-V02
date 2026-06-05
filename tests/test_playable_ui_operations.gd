@@ -17,6 +17,7 @@ func _init() -> void:
 	main.call("_ready")
 
 	_check_visible_album_path(main)
+	_check_visible_settings_path(main)
 	_check_visible_interact_paths(main)
 	_check_visible_shop_purchase_path(main)
 	_check_visible_home_decoration_path(main)
@@ -41,6 +42,32 @@ func _check_visible_album_path(main) -> void:
 	var close_button := main.find_child("CloseMemoryAlbumButton", true, false) as Button
 	_press(close_button, "Album overlay should expose a visible return button")
 	_expect(overlay != null and not overlay.visible, "Album overlay should close from its visible return button")
+
+
+func _check_visible_settings_path(main) -> void:
+	var settings_button := main.find_child("SettingsButton", true, false) as Button
+	_press(settings_button, "Settings button should be a visible top safe entry")
+	var settings_panel := main.find_child("SettingsPanel", true, false) as Control
+	_expect(settings_panel != null and settings_panel.visible, "Settings panel should open from the visible top entry")
+	var footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
+	_expect(footer_actions != null and footer_actions.get_child_count() == 4, "Settings should not add quit or settings into the bottom action bar")
+	var status := main.find_child("SettingsStatus", true, false) as Label
+	_expect(status != null and str(status.text).contains("安全位置"), "Settings panel should use child-facing safety copy")
+
+	var confirm_button := main.find_child("ConfirmExitButton", true, false) as Button
+	_expect(confirm_button != null and not confirm_button.visible, "Exit button should stay hidden until the rest confirmation step")
+	var rest_button := main.find_child("RequestRestButton", true, false) as Button
+	_press(rest_button, "Settings panel should expose a visible rest request button")
+	_expect(confirm_button != null and confirm_button.visible, "Exit confirm should appear only after the rest request")
+	var cancel_button := main.find_child("CancelRestButton", true, false) as Button
+	_press(cancel_button, "Settings panel should expose a visible continue button")
+	_expect(confirm_button != null and not confirm_button.visible, "Continue should hide the exit confirmation again")
+
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "Settings safe-place test should move away from home first")
+	var safe_button := main.find_child("SafePlaceButton", true, false) as Button
+	_press(safe_button, "Settings panel should expose a visible safe-place button")
+	_expect(main.player_cell == Vector2i(5, 8), "Safe-place button should move the player back to the town safe cell")
+	_expect(settings_panel != null and not settings_panel.visible, "Safe-place action should close the settings panel")
 
 
 func _check_visible_interact_paths(main) -> void:

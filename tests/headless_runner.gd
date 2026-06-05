@@ -390,6 +390,24 @@ func _check_playable_ui_operations() -> void:
 	_press_visible_button(main.find_child("CloseMemoryAlbumButton", true, false) as Button, "visible album return button should close album")
 	_expect(album_overlay != null and not album_overlay.visible, "album return button should close overlay")
 
+	_press_visible_button(main.find_child("SettingsButton", true, false) as Button, "visible top settings button should open settings")
+	var settings_panel := main.find_child("SettingsPanel", true, false) as Control
+	_expect(settings_panel != null and settings_panel.visible, "settings panel should open from visible top entry")
+	var visible_footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
+	_expect(visible_footer_actions != null and visible_footer_actions.get_child_count() == 4, "settings should not add quit or settings into the bottom footer")
+	var settings_status := main.find_child("SettingsStatus", true, false) as Label
+	_expect(settings_status != null and str(settings_status.text).contains("安全位置"), "settings panel should use child-facing safety copy")
+	var confirm_exit_button := main.find_child("ConfirmExitButton", true, false) as Button
+	_expect(confirm_exit_button != null and not confirm_exit_button.visible, "exit confirm button should stay hidden before rest confirmation")
+	_press_visible_button(main.find_child("RequestRestButton", true, false) as Button, "visible rest button should request a confirmation step")
+	_expect(confirm_exit_button != null and confirm_exit_button.visible, "exit confirm button should appear after rest request")
+	_press_visible_button(main.find_child("CancelRestButton", true, false) as Button, "visible continue button should cancel rest confirmation")
+	_expect(confirm_exit_button != null and not confirm_exit_button.visible, "continue button should hide exit confirmation")
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "playable UI should move away before safe-place action")
+	_press_visible_button(main.find_child("SafePlaceButton", true, false) as Button, "visible safe-place button should return to a safe town cell")
+	_expect(main.player_cell == Vector2i(5, 8), "safe-place button should move player back to the town safe cell")
+	_expect(settings_panel != null and not settings_panel.visible, "safe-place action should close settings panel")
+
 	var interact_button := main.find_child("InteractButton", true, false) as Button
 	_expect(main.move_player_to_cell(Vector2i(2, 3)).get("ok", false), "playable UI should move near an anchor")
 	_press_visible_button(interact_button, "visible Interact should work near anchor")

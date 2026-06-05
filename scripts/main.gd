@@ -100,6 +100,10 @@ var backpack_bubble: Control
 var backpack_summary_label: Label
 var backpack_items_label: Label
 var backpack_collection_label: Label
+var settings_panel: Control
+var settings_status_label: Label
+var settings_exit_confirm_visible := false
+var settings_sound_enabled := true
 var memory_album_layer: Control
 var shop_panel: Control
 var shop_items_list: VBoxContainer
@@ -235,6 +239,14 @@ func _create_body() -> Control:
 	hud.offset_bottom = 48
 	content.add_child(hud)
 
+	settings_panel = _create_settings_panel()
+	settings_panel.anchor_left = 0.68
+	settings_panel.anchor_top = 0.085
+	settings_panel.anchor_right = 0.97
+	settings_panel.anchor_bottom = 0.085
+	settings_panel.offset_bottom = 236
+	content.add_child(settings_panel)
+
 	var footer := _create_bottom_action_bar()
 	footer.anchor_left = 0.24
 	footer.anchor_top = 1.0
@@ -349,6 +361,8 @@ func _create_top_message_bar() -> Control:
 	pet_label = _create_hud_state_label("PetState", 174, Color("#eaf6ff"), Color("#93bfd0"))
 	row.add_child(pet_label)
 
+	row.add_child(_create_hud_settings_button())
+
 	cards_label = Label.new()
 	cards_label.name = "CardState"
 	cards_label.visible = false
@@ -356,6 +370,21 @@ func _create_top_message_bar() -> Control:
 	row.add_child(cards_label)
 
 	return panel
+
+
+func _create_hud_settings_button() -> Button:
+	var button := Button.new()
+	button.name = "SettingsButton"
+	button.text = "设置"
+	button.custom_minimum_size = Vector2(64, 30)
+	button.focus_mode = Control.FOCUS_NONE
+	button.add_theme_font_size_override("font_size", 13)
+	button.add_theme_color_override("font_color", Color("#284238"))
+	button.add_theme_stylebox_override("normal", _rounded_box(Color("#fffdf4"), 8, Color("#d8c68b")))
+	button.add_theme_stylebox_override("hover", _rounded_box(Color("#fff6d8"), 8, Color("#d8c68b")))
+	button.add_theme_stylebox_override("pressed", _rounded_box(Color("#eedca9"), 8, Color("#bca05d")))
+	button.pressed.connect(Callable(self, "_on_settings_pressed"))
+	return button
 
 
 func _create_bottom_action_bar() -> Control:
@@ -458,6 +487,64 @@ func _create_backpack_bubble() -> Control:
 	stack.add_child(collection_actions)
 	collection_actions.add_child(_create_bubble_button("相册", "_on_memory_album_pressed", "OpenMemoryAlbumButton"))
 	collection_actions.add_child(_create_bubble_button("小游戏", "_on_optional_letter_snake_pressed", "OpenLetterSnakeButton"))
+
+	return panel
+
+
+func _create_settings_panel() -> Control:
+	var panel := PanelContainer.new()
+	panel.name = "SettingsPanel"
+	panel.visible = false
+	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0f4"), 16, Color("#dcae5c")))
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 14)
+	margin.add_theme_constant_override("margin_top", 12)
+	margin.add_theme_constant_override("margin_right", 14)
+	margin.add_theme_constant_override("margin_bottom", 12)
+	panel.add_child(margin)
+
+	var stack := VBoxContainer.new()
+	stack.name = "SettingsStack"
+	stack.add_theme_constant_override("separation", 8)
+	margin.add_child(stack)
+
+	var header := HBoxContainer.new()
+	header.add_theme_constant_override("separation", 8)
+	stack.add_child(header)
+
+	var title := Label.new()
+	title.name = "SettingsTitle"
+	title.text = "小镇设置"
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title.add_theme_color_override("font_color", TEXT_COLOR)
+	title.add_theme_font_size_override("font_size", 18)
+	header.add_child(title)
+
+	header.add_child(_create_bubble_button("收起", "_on_close_settings_pressed", "CloseSettingsButton", 70))
+
+	settings_status_label = Label.new()
+	settings_status_label.name = "SettingsStatus"
+	settings_status_label.text = "可以先休息，也可以回到小镇安全位置。"
+	settings_status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	settings_status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
+	settings_status_label.add_theme_font_size_override("font_size", 13)
+	stack.add_child(settings_status_label)
+
+	var actions := HBoxContainer.new()
+	actions.name = "SettingsActions"
+	actions.add_theme_constant_override("separation", 8)
+	stack.add_child(actions)
+	actions.add_child(_create_bubble_button("声音开", "_on_toggle_sound_pressed", "SoundToggleButton", 86))
+	actions.add_child(_create_bubble_button("回到小镇", "_on_safe_place_pressed", "SafePlaceButton", 96))
+
+	var rest_actions := HBoxContainer.new()
+	rest_actions.name = "SettingsRestActions"
+	rest_actions.add_theme_constant_override("separation", 8)
+	stack.add_child(rest_actions)
+	rest_actions.add_child(_create_bubble_button("休息一下", "_on_request_rest_pressed", "RequestRestButton", 96))
+	rest_actions.add_child(_create_bubble_button("继续逛", "_on_cancel_rest_pressed", "CancelRestButton", 86))
+	rest_actions.add_child(_create_bubble_button("退出游戏", "_on_confirm_exit_pressed", "ConfirmExitButton", 96))
 
 	return panel
 
@@ -849,6 +936,90 @@ func _on_memory_album_pressed() -> void:
 	open_memory_album()
 
 
+func _on_settings_pressed() -> void:
+	open_settings_panel()
+
+
+func _on_close_settings_pressed() -> void:
+	close_settings_panel()
+
+
+func open_settings_panel() -> Dictionary:
+	if not is_instance_valid(settings_panel):
+		return {"ok": false, "reason": "settings_panel_missing"}
+	if is_instance_valid(backpack_bubble):
+		backpack_bubble.visible = false
+	if is_instance_valid(shop_panel):
+		shop_panel.visible = false
+	if is_instance_valid(memory_album_layer):
+		memory_album_layer.visible = false
+	settings_exit_confirm_visible = false
+	_refresh_settings_panel()
+	settings_panel.visible = true
+	_set_life_status("小镇设置打开啦，可以慢慢选。")
+	return {"ok": true, "interaction_type": "settings", "state": "open"}
+
+
+func close_settings_panel() -> Dictionary:
+	if not is_instance_valid(settings_panel):
+		return {"ok": false, "reason": "settings_panel_missing"}
+	settings_panel.visible = false
+	settings_exit_confirm_visible = false
+	_set_life_status("设置收起来啦，继续逛小镇。")
+	return {"ok": true, "interaction_type": "settings", "state": "closed"}
+
+
+func _refresh_settings_panel() -> void:
+	if is_instance_valid(settings_status_label):
+		settings_status_label.text = "要先休息一下吗？" if settings_exit_confirm_visible else "可以先休息，也可以回到小镇安全位置。"
+	var sound_button := find_child("SoundToggleButton", true, false) as Button
+	if sound_button != null:
+		sound_button.text = "声音开" if settings_sound_enabled else "声音关"
+	var cancel_button := find_child("CancelRestButton", true, false) as Button
+	var confirm_button := find_child("ConfirmExitButton", true, false) as Button
+	if cancel_button != null:
+		cancel_button.visible = settings_exit_confirm_visible
+	if confirm_button != null:
+		confirm_button.visible = settings_exit_confirm_visible
+
+
+func _on_toggle_sound_pressed() -> void:
+	settings_sound_enabled = not settings_sound_enabled
+	_refresh_settings_panel()
+	_set_life_status("声音打开啦。" if settings_sound_enabled else "声音先安静下来。")
+
+
+func _on_safe_place_pressed() -> void:
+	move_player_to_cell(PLAYER_START_CELL)
+	show_town_view()
+	if is_instance_valid(settings_panel):
+		settings_panel.visible = false
+	settings_exit_confirm_visible = false
+	_set_life_status("回到小镇安全位置啦。")
+
+
+func _on_request_rest_pressed() -> void:
+	settings_exit_confirm_visible = true
+	_refresh_settings_panel()
+	_set_life_status("如果想继续逛，也可以马上回来。")
+
+
+func _on_cancel_rest_pressed() -> void:
+	settings_exit_confirm_visible = false
+	_refresh_settings_panel()
+	_set_life_status("好呀，继续在小镇慢慢逛。")
+
+
+func _on_confirm_exit_pressed() -> void:
+	if not settings_exit_confirm_visible:
+		_on_request_rest_pressed()
+		return
+	_set_life_status("小镇会在这里等你回来。")
+	if is_instance_valid(settings_status_label):
+		settings_status_label.text = "小镇会在这里等你回来。"
+	get_tree().quit()
+
+
 func _on_close_memory_album_pressed() -> void:
 	close_memory_album()
 
@@ -858,6 +1029,8 @@ func open_memory_album() -> Dictionary:
 		return {"ok": false, "reason": "album_missing"}
 	if is_instance_valid(backpack_bubble):
 		backpack_bubble.visible = false
+	if is_instance_valid(settings_panel):
+		settings_panel.visible = false
 	if is_instance_valid(memory_album_layer):
 		memory_album_layer.visible = false
 	if is_instance_valid(shop_panel):
@@ -888,8 +1061,8 @@ func open_shop_panel() -> Dictionary:
 		backpack_bubble.visible = false
 	if is_instance_valid(memory_album_layer):
 		memory_album_layer.visible = false
-	if is_instance_valid(memory_album_layer):
-		memory_album_layer.visible = false
+	if is_instance_valid(settings_panel):
+		settings_panel.visible = false
 	_refresh_shop_panel()
 	shop_panel.visible = true
 	_set_life_status("街角商店的货架打开啦，喜欢的小物件可以带回小屋。")
@@ -979,6 +1152,8 @@ func _on_backpack_pressed() -> void:
 		shop_panel.visible = false
 	if is_instance_valid(memory_album_layer) and not backpack_bubble.visible:
 		memory_album_layer.visible = false
+	if is_instance_valid(settings_panel) and not backpack_bubble.visible:
+		settings_panel.visible = false
 	backpack_bubble.visible = not backpack_bubble.visible
 
 
@@ -1059,6 +1234,8 @@ func show_town_view() -> void:
 		shop_panel.visible = false
 	if is_instance_valid(backpack_bubble):
 		backpack_bubble.visible = false
+	if is_instance_valid(settings_panel):
+		settings_panel.visible = false
 	_set_life_status("回到阳光小镇，想去哪边都可以。")
 
 
@@ -1071,6 +1248,8 @@ func show_home_view() -> void:
 		shop_panel.visible = false
 	if is_instance_valid(backpack_bubble):
 		backpack_bubble.visible = false
+	if is_instance_valid(settings_panel):
+		settings_panel.visible = false
 	_refresh_home_room()
 	var feedback: Dictionary = home_decoration_service.get_sunny_feedback()
 	_set_life_status(str(feedback.get("text", "Sunny 在小屋里慢慢摇尾巴。")))
