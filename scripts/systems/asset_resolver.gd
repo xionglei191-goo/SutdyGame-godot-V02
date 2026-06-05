@@ -55,6 +55,18 @@ static func get_landmark_asset(logical_asset_id: String, theme_id: String = DEFA
 	return resolve_asset(theme_id, "landmark_assets", logical_asset_id)
 
 
+static func get_place_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "place_assets", logical_asset_id)
+
+
+static func get_character_sprite(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "character_assets", logical_asset_id)
+
+
+static func get_furniture_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "furniture_assets", logical_asset_id)
+
+
 static func get_npc_sprite(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "npc_assets", logical_asset_id)
 
@@ -67,12 +79,24 @@ static func get_card_art(logical_asset_id: String, theme_id: String = DEFAULT_TH
 	return resolve_asset(theme_id, "card_art", logical_asset_id)
 
 
+static func get_ui_icon(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "ui_icon_assets", logical_asset_id)
+
+
 static func get_ui_skin(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "ui_skin", logical_asset_id)
 
 
 static func get_card_frame(logical_asset_id: String = "core", theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "card_frame_assets", logical_asset_id)
+
+
+static func get_asset_acceptance_records(theme_id: String = DEFAULT_THEME_ID) -> Array:
+	var loaded := load_theme_profile(theme_id)
+	if not loaded.get("ok", false):
+		return []
+	var profile = loaded.get("profile")
+	return profile.asset_acceptance.duplicate(true)
 
 
 static func _validate_profile(profile: Resource, expected_theme_id: String) -> Array[String]:
@@ -82,7 +106,7 @@ static func _validate_profile(profile: Resource, expected_theme_id: String) -> A
 	elif profile.theme_id != expected_theme_id:
 		errors.append("Theme id mismatch. Expected %s, got %s." % [expected_theme_id, profile.theme_id])
 
-	for category in ["tile_atlas", "landmark_assets", "npc_assets", "pet_assets", "card_art", "ui_skin", "card_frame_assets"]:
+	for category in ["tile_atlas", "landmark_assets", "place_assets", "character_assets", "furniture_assets", "npc_assets", "pet_assets", "card_art", "ui_icon_assets", "ui_skin", "card_frame_assets"]:
 		if profile.get_category_assets(category).is_empty():
 			errors.append("Theme profile category is empty: %s" % category)
 

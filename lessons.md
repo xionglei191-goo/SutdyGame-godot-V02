@@ -74,6 +74,22 @@
 | 2026-06-05 | Round 52 V02.7 发布前体验门槛 | 无新增已验证教训 | 顶部设置入口、设置面板、休息二次确认和安全位置路径通过 focused/headless 验证；截图、移动端和素材替换验收表落地，正式素材尚未接入 |
 | 2026-06-05 | Round 52 素材验收收口 | 无新增已验证教训 | P0 production 素材通过 `ThemeProfile` / `AssetResolver` 接入主场景；运行时纹理断言、MCP 1280x720 截图抽查和 focused/headless 验证通过 |
 | 2026-06-05 | Round 54 PM 路线重规划 | 无新增已验证教训 | 仅更新 `docs/12`、`docs/13`、`docs/14`、`docs/15` 和 `todo.md`，将后续路线调整为 V02.7A 美术基线重建与 V02.8 每日小镇生活纵切；未改运行时代码，未运行 Godot 验证 |
+| 2026-06-05 | Round 54 截图证据复核 | LESSON-010 | MCP 已能提供 `1280x720` 运行时截图，但 headless dummy renderer 不能直接导出窗口纹理；V02.7A 的 `960x540` 门槛图需改走 MCP 或非 headless 路径 |
+| 2026-06-05 | Round 59 V02.8 纵切收口 | 无新增已验证教训 | 5 分钟日常纵切 focused/full headless 验证通过，并注册进 `headless_runner`；截图沿用已通过的非 headless 双视口证据，未产生新的已验证故障 |
+| 2026-06-05 | Round 60 V02.9 路线与排期 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、任务包和 `todo.md`，建立 V02.9 一周回访节奏与 `V02-WEEKLY-002` Ready；未改运行时代码，未产生新的已验证故障 |
+| 2026-06-05 | Round 61 V02.9 每日状态与商店轮换 | LESSON-003 / LESSON-004 复用 | 新增服务合同再次需要显式类型标注；失败编译曾留下 headless 测试进程，清理后 focused/full 验证通过；未新增新的已验证故障类型 |
+| 2026-06-05 | Round 62 V02.9 P1 居民回访入口预收 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、任务包和 `todo.md`，预收故事熊 / 巴士哥哥入口、安全边界、截图点和下一轮 smoke 输入；headless runner 与 Godot headless 启动通过，未产生新的已验证故障 |
+| 2026-06-05 | Round 63 V02.9 一周回访 smoke 与截图 | 无新增已验证教训 | 新增 7 天玩家路径 smoke 并注册进 headless runner；非 headless `x11` 路径成功导出 1280x720 / 960x540 代表截图；未产生新的已验证故障 |
+| 2026-06-05 | Round 64 V02.10 路线与 Ready 队列 | 无新增已验证教训 | 仅更新 PM 路线、内容基线、任务包和 `todo.md`，建立 V02.10 P1 居民回访扩展与 `V02-P1RETURN-001` Ready；未改运行时代码，未产生新的已验证故障 |
+| 2026-06-05 | Round 65 V02.10 P1 真实可见入口 | 无新增已验证教训 | Bookshop / Bear Corner / Bus Stop / Taxi marker 四个入口通过可见 `看看` 路径、focused test、headless runner 和 Godot 启动验证；未产生新的已验证故障 |
+| 2026-06-05 | Round 66 V02.10 P1 轻回访 | 无新增已验证教训 | 故事熊 / 巴士哥哥两条 P1 看一眼类支线通过可见 NPC / `看看` 路径、focused test、headless runner 和 Godot 启动验证；未产生新的已验证故障 |
+| 2026-06-05 | Round 67 V02.10 B/T 相册记录 | 无新增已验证教训 | B Bear / T Taxi 入口查看与 P1 轻回访均通过真实 `看看` 路径写入 card state / 小镇相册；测试中复用 LESSON-003 显式类型标注规则，未新增新的已验证故障类型 |
+| 2026-06-05 | Round 68 V02.10 P1 smoke 与截图 | 无新增已验证教训 | P1 回访 smoke、headless runner、非 headless x11 双视口截图均通过；并行截图曾因共用 user save 产生 JSON warning，已改为按 suffix 隔离保存文件，属于 LESSON-010/现有工具链规则内处理，未新增新的已验证故障类型 |
+| 2026-06-05 | Round 69 V02.11 天气路线规划 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、任务包和 `todo.md`，建立 V02.11 天气与小镇轻事件纵切与 `V02-WEATHER-001` Ready；未改运行时代码，未产生新的已验证故障 |
+| 2026-06-05 | Round 69 V02.11 天气数据合同 | 无新增已验证教训 | P0 天气事件 JSON、today_status 引用、TodayStatusService、ContentContractValidator、focused tests 和 headless runner 均通过；合同测试发现安全说明复述禁词后已改为正向表达，属于 LESSON-008 规则内收敛 |
+| 2026-06-05 | Round 70 V02.11 天气问候与轻变化 | 无新增已验证教训 | 天气问候变体、资源天气提示和商店活动角通过 focused/headless 验证；P0 商品和基础资源可得性保持不变，未产生新的已验证故障 |
+| 2026-06-05 | Round 71 V02.11 A-Z 天气相册线索 | 无新增已验证教训 | S Sun、K Kite、B Bear、U Umbrella 天气相册线索通过真实 `看看` 路径、相册显示、focused/headless 验证；测试中复用 LESSON-003 显式类型标注和 LESSON-009 真实可见入口规则，未新增新的已验证故障类型 |
+| 2026-06-05 | Round 72 V02.11 天气纵切 smoke 与截图 | 无新增已验证教训 | 多天气 day_key smoke、headless runner、非 headless x11 双视口截图均通过；截图取证按 LESSON-010 走显示驱动路径，未新增新的已验证故障类型 |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -188,3 +204,17 @@
   - 新增或精简 HUD/底栏后，必须同步跑玩家操作级 smoke，覆盖相册、商店、背包、小镇/小屋、`看看`、资源、NPC、anchor 和家具操作。
   - Headless UI 可见性检查应沿 Control 父链检查 `visible`，避免把隐藏父容器里的按钮当成孩子端入口。
 - **验证依据：** `tests/test_playable_ui_operations.gd`、`tests/test_memory_album_scene.gd`、`tests/test_life_rpg_scene.gd`、`tests/test_playable_loop_smoke.gd`、`tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过。
+
+## LESSON-010：headless dummy renderer 不能作为截图验收的唯一工具链
+
+- **日期：** 2026-06-05
+- **关联任务：** `V02-ARTBASE-005`
+- **现象：** 通过 Godot MCP 可以拿到 `/root/Main` 的 `1280x720` 运行时截图，但新增 `tests/capture_artbase005_screens.gd` 在 `godot --headless` 下执行时，`root.get_texture()` 返回空，无法导出 PNG。
+- **影响：** 即使运行时主场景和 UI 已真实出现，QA 仍无法仅靠 headless dummy renderer 自动补齐 `960x540` 门槛图，容易把“截图没出”误判成“布局一定失败”。
+- **根因：** `--headless` 使用 dummy renderer，不提供可直接读取的窗口纹理；脚本级 `get_texture().get_image()` 并不是稳定可用的截图路径。
+- **解决方式：** 保留 headless 用于合同与逻辑回归；截图验收改为使用 MCP 运行时截图或非 headless 显示驱动。`tests/capture_artbase005_screens.gd` 同时改为在检测到空纹理时给出明确阻塞原因，而不是空值崩溃。
+- **预防规则：**
+  - 视觉验收任务必须提前区分“逻辑回归工具链”和“截图取证工具链”，不要默认二者都由 headless 完成。
+  - 新增截图脚本时，先验证目标渲染路径是否真的能返回窗口纹理，再把它写进 PM 门槛。
+  - 当 `1280x720` 已由 MCP 证明运行时可见、但较小视口截图缺失时，先记录工具链阻塞，再决定是否需要继续追查布局问题。
+- **验证依据：** Godot MCP 已捕获 `/root/Main` 的 `1280x720` 运行时截图；`godot --headless --path . --check-only --script tests/capture_artbase005_screens.gd` 通过；`godot --headless --path . --script tests/capture_artbase005_screens.gd -- --output-dir user://artbase005_captures --suffix 1280` 复现空纹理问题。

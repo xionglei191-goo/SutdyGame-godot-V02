@@ -1,6 +1,7 @@
 extends SceneTree
 
 const MainScene := preload("res://scenes/main.tscn")
+const DailyRequestServiceScript := preload("res://scripts/systems/daily_request_service.gd")
 const FORBIDDEN_CHILD_PARENT_UI_TERMS := ["Parent", "Dashboard", "Report", "家长", "报告", "后台"]
 
 var failures: Array[String] = []
@@ -36,11 +37,15 @@ func _init() -> void:
 	var pet_state := main.find_child("PetState", true, false) as Label
 	_expect(coin_state != null and str(coin_state.text).contains("币"), "coin status should be separated into its own icon badge")
 	_expect(pet_state != null and not str(pet_state.text).contains("金币"), "pet status should not merge coins with Sunny's needs")
+	_expect(_texture_width(main.find_child("CoinIcon", true, false)) == 64, "coin HUD icon should use the resolved P0 art asset")
+	_expect(backpack_button != null and backpack_button.icon != null and backpack_button.icon.get_width() == 64, "backpack button should use the resolved P0 art asset")
 	_expect(main.find_child("LifeRPGPanel", true, false) == null, "main scene should not cover the map with a left life panel")
 	_expect(main.find_child("OptionalActivityPanel", true, false) == null, "main scene should not cover the map with optional activity panel")
 	_expect(main.find_child("RuntimeMap", true, false) != null, "main scene should expose runtime map")
 	_expect(main.find_child("Player", true, false) != null, "main scene should expose player marker")
 	_expect(main.find_child("npc_mina", true, false) != null, "main scene should expose Mina marker")
+	_expect(_texture_width(main.find_child("Player", true, false).find_child("Body", true, false)) == 128, "player marker should use the resolved P0 art asset")
+	_expect(_texture_width(main.find_child("npc_mina", true, false).find_child("Body", true, false)) == 128, "Mina marker should use the resolved P0 art asset")
 	_expect(main.find_child("npc_shopkeeper", true, false) != null, "main scene should expose Shopkeeper marker")
 	_expect(main.find_child("npc_pet_buddy", true, false) != null, "main scene should expose Pet Buddy marker")
 	_expect(main.find_child("npc_bus_helper", true, false) != null, "main scene should expose Bus Helper marker")
@@ -136,8 +141,63 @@ func _init() -> void:
 	_expect(int(mina_relationship.get("daily_request_count", 0)) == 1, "Mina request should save daily request count")
 	_expect(main.npc_memory_store.get_recent_events("mina").size() >= 2, "Mina daily request should persist NPC memory events")
 
+	_expect(main.move_player_to_cell(Vector2i(18, 7)).get("ok", false), "player should move to flower resource area for P0 daily requests")
+	var flower_result: Dictionary = main.interact_nearby()
+	_expect(flower_result.get("ok", false), "visible Interact should collect flowers for Shopkeeper and Sunny requests")
+	_expect(flower_result.get("interaction_type", "") == "resource", "flower collection should use the visible resource context")
+	_expect(str(flower_result.get("item_id", "")) == "flower", "flower resource should report flower item")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("flower", 0)) == 2, "flower resource should add two flowers for the P0 daily requests")
+
+	_expect(main.move_player_to_cell(Vector2i(24, 10)).get("ok", false), "player should return to Shopkeeper for P0 request")
+	var shopkeeper_start: Dictionary = main.interact_nearby()
+	_expect(shopkeeper_start.get("ok", false), "Shopkeeper should start a P0 daily request through visible Interact")
+	_expect(shopkeeper_start.get("interaction_type", "") == "npc", "Shopkeeper request should still be an NPC interaction")
+	_expect(shopkeeper_start.get("request_id", "") == "daily_shopkeeper_flower_001", "Shopkeeper should offer the flower counter request")
+	_expect(shopkeeper_start.get("request_status", "") == "active", "Shopkeeper request should become active before completion")
+	_expect(str(shopkeeper_start.get("text", "")).contains("小花"), "Shopkeeper start text should stay life-like and child-facing")
+	var shopkeeper_complete: Dictionary = main.interact_nearby()
+	_expect(shopkeeper_complete.get("ok", false), "Shopkeeper request should complete through visible Interact")
+	_expect(shopkeeper_complete.get("request_status", "") == "completed", "Shopkeeper flower request should complete")
+	_expect(bool(shopkeeper_complete.get("completed_today", false)), "Shopkeeper request should mark completed_today")
+	var after_shopkeeper_complete: Dictionary = main.save_service.load_game_state()
+	_expect(int(after_shopkeeper_complete.get("inventory", {}).get("flower", -1)) == 1, "Shopkeeper request should consume one flower")
+	_expect(int(after_shopkeeper_complete.get("coins", -1)) == 17, "Shopkeeper request should add its coin reward after Mina")
+	var shopkeeper_relationship: Dictionary = main.save_service.load_learning_record().get("npc_relationships", {}).get("shopkeeper", {})
+	_expect(int(shopkeeper_relationship.get("favor", 0)) == 1, "Shopkeeper request should add relationship favor")
+	_expect(int(shopkeeper_relationship.get("daily_request_count", 0)) == 1, "Shopkeeper request should save daily request count")
+	var shopkeeper_repeat: Dictionary = main.interact_nearby()
+	_expect(shopkeeper_repeat.get("request_status", "") == "completed", "Shopkeeper repeat interaction should stay completed today")
+	_expect(int(main.save_service.load_game_state().get("coins", -1)) == 17, "Shopkeeper repeat interaction should not duplicate rewards")
+
+	_expect(main.move_player_to_cell(Vector2i(6, 8)).get("ok", false), "player should return to Sunny for P0 request")
+	var sunny_start: Dictionary = main.interact_nearby()
+	_expect(sunny_start.get("ok", false), "Sunny should start a P0 daily request through visible Interact")
+	_expect(sunny_start.get("interaction_type", "") == "npc", "Sunny request should still be an NPC interaction")
+	_expect(sunny_start.get("request_id", "") == "daily_sunny_flower_001", "Sunny should offer the flower sniff request")
+	_expect(sunny_start.get("request_status", "") == "active", "Sunny request should become active before completion")
+	_expect(str(sunny_start.get("text", "")).contains("Sunny"), "Sunny start text should stay warm and child-facing")
+	var sunny_complete: Dictionary = main.interact_nearby()
+	_expect(sunny_complete.get("ok", false), "Sunny request should complete through visible Interact")
+	_expect(sunny_complete.get("request_status", "") == "completed", "Sunny flower request should complete")
+	_expect(bool(sunny_complete.get("completed_today", false)), "Sunny request should mark completed_today")
+	var after_sunny_complete: Dictionary = main.save_service.load_game_state()
+	_expect(int(after_sunny_complete.get("inventory", {}).get("flower", -1)) == 0, "Sunny request should consume the second flower")
+	_expect(int(after_sunny_complete.get("inventory", {}).get("branch", -1)) == 1, "Sunny request should grant a branch reward")
+	_expect(int(after_sunny_complete.get("coins", -1)) == 17, "Sunny request should not add pressure-making coins")
+	var sunny_relationship: Dictionary = main.save_service.load_learning_record().get("npc_relationships", {}).get("pet_buddy", {})
+	_expect(int(sunny_relationship.get("favor", 0)) == 1, "Sunny request should add relationship favor")
+	_expect(int(sunny_relationship.get("daily_request_count", 0)) == 1, "Sunny request should save daily request count")
+	var sunny_repeat: Dictionary = main.interact_nearby()
+	_expect(sunny_repeat.get("request_status", "") == "completed", "Sunny repeat interaction should stay completed today")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("branch", -1)) == 1, "Sunny repeat interaction should not duplicate item rewards")
+	var reloaded_daily = DailyRequestServiceScript.new(main.save_service, main.inventory_service, main.local_day_service)
+	var reloaded_daily_state: Dictionary = reloaded_daily.get_daily_state()
+	for request_id in ["daily_mina_branch_001", "daily_shopkeeper_flower_001", "daily_sunny_flower_001"]:
+		_expect(bool(reloaded_daily_state.get(request_id, {}).get("completed_today", false)), "%s should reload as completed today" % request_id)
+
 	var game_state: Dictionary = main.save_service.load_game_state()
 	game_state["coins"] = 10
+	game_state["inventory"] = {}
 	_expect(main.save_service.save_game_state(game_state), "scene coin setup should save")
 
 	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "player should move to supermarket interaction cell")
@@ -195,6 +255,19 @@ func _finish() -> void:
 func _expect(condition: bool, message: String) -> void:
 	if not condition:
 		failures.append(message)
+
+
+func _texture_width(node: Node) -> int:
+	if node == null:
+		return 0
+	var texture: Texture2D = null
+	if node is Sprite2D:
+		texture = (node as Sprite2D).texture
+	elif node is TextureRect:
+		texture = (node as TextureRect).texture
+	if texture == null:
+		return 0
+	return texture.get_width()
 
 
 func _check_npc_interaction(main, check: Dictionary) -> void:

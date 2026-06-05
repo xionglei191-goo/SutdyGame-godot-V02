@@ -36,6 +36,13 @@ func get_request(request_id: String) -> Dictionary:
 	return result
 
 
+func interact_for_request(request_id: String) -> Dictionary:
+	if not requests_by_id.has(request_id):
+		return {"handled": false, "ok": false, "reason": "unknown_request", "request_id": request_id}
+	var request: Dictionary = requests_by_id[request_id]
+	return _interact_with_request(request)
+
+
 func get_daily_state() -> Dictionary:
 	var game_state: Dictionary = save_service.load_game_state()
 	var all_requests: Dictionary = game_state.get("daily_requests", {})
@@ -46,13 +53,16 @@ func interact_for_npc(npc_id: String) -> Dictionary:
 	var request: Dictionary = _find_request_for_npc(npc_id)
 	if request.is_empty():
 		return {"handled": false, "ok": false, "reason": "no_daily_request", "npc_id": npc_id}
+	return _interact_with_request(request)
 
+
+func _interact_with_request(request: Dictionary) -> Dictionary:
 	var request_id := str(request.get("request_id", ""))
 	var state: Dictionary = _get_request_state(request_id)
 	if bool(state.get("completed_today", false)):
 		return _format_result(request, state, "already_completed", true, true)
 	if str(state.get("status", "")) == "active":
-		if _has_required_items(request):
+		if _has_requirements(request):
 			return _complete_request(request, state)
 		return _format_result(request, state, "active", true, false)
 	return _start_request(request)
@@ -73,6 +83,8 @@ func _start_request(request: Dictionary) -> Dictionary:
 
 
 func _complete_request(request: Dictionary, state: Dictionary) -> Dictionary:
+	if not _has_required_entries(request):
+		return _format_result(request, state, "active", true, false)
 	for requirement in request.get("required_items", []):
 		var required: Dictionary = requirement
 		var consume_result: Dictionary = inventory_service.consume_item(
@@ -146,6 +158,20 @@ func _has_required_items(request: Dictionary) -> bool:
 	return true
 
 
+func _has_required_entries(request: Dictionary) -> bool:
+	var game_state: Dictionary = save_service.load_game_state()
+	var seen_entries: Dictionary = game_state.get("p1_return_entries", {})
+	for entry_id in request.get("required_p1_entries", []):
+		var entry: Dictionary = seen_entries.get(str(entry_id), {})
+		if not bool(entry.get("seen", false)):
+			return false
+	return true
+
+
+func _has_requirements(request: Dictionary) -> bool:
+	return _has_required_items(request) and _has_required_entries(request)
+
+
 func _get_request_state(request_id: String) -> Dictionary:
 	return get_daily_state().get(request_id, {}).duplicate(true)
 
@@ -189,6 +215,6 @@ func _load_requests() -> void:
 			continue
 		if str(request.get("npc_id", "")).is_empty():
 			load_errors.append("Daily request missing npc_id: %s" % request_id)
-		if request.get("required_items", []).is_empty():
-			load_errors.append("Daily request missing required_items: %s" % request_id)
+		if request.get("required_items", []).is_empty() and request.get("required_p1_entries", []).is_empty():
+			load_errors.append("Daily request missing requirements: %s" % request_id)
 		requests_by_id[request_id] = request.duplicate(true)

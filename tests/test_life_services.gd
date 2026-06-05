@@ -30,6 +30,17 @@ func _init() -> void:
 	_expect(offer.get("ok", false), "wooden chair offer should load")
 	_expect(int(offer.get("price", 0)) == 8, "wooden chair price should be configured")
 	_expect(offer.get("memory_story", {}).get("core_anchor_id", "") == "anchor_c_clock", "chair offer should expose memory story anchor")
+	var rotation: Dictionary = shop.get_shop_rotation_for_day("local_day_003")
+	_expect(rotation.get("ok", false), "weekly shop rotation should load by day key")
+	_expect(str(rotation.get("rotation_id", "")) == "shop_rotation_day_003", "weekly shop rotation should keep stable rotation id")
+	_expect(str(rotation.get("weather_activity_corner", {}).get("weather_event_id", "")).begins_with("event_weather_"), "shop rotation should expose weather activity corner")
+	_expect(str(rotation.get("weather_activity_corner", {}).get("text", "")).length() > 0, "shop weather activity corner should be child-facing text")
+	_expect(_rotation_has_item(rotation, "wooden_chair"), "weekly shop rotation should include P0 chair")
+	_expect(_rotation_has_item(rotation, "pet_bowl"), "weekly shop rotation should include P0 pet bowl")
+	_expect(_rotation_has_tier(rotation, "P1"), "weekly shop rotation should include a P1 daily item")
+	var low_coin_purchase: Dictionary = shop.buy_life_item("sunny_bed")
+	_expect(not low_coin_purchase.get("ok", true), "not enough coins should not buy expensive item")
+	_expect(str(low_coin_purchase.get("reason", "")) == "not_enough_coins", "not enough coins should return gentle economy reason")
 
 	var purchase: Dictionary = shop.buy_life_item("wooden_chair")
 	_expect(purchase.get("ok", false), "wooden chair purchase should succeed")
@@ -83,3 +94,17 @@ func _finish() -> void:
 func _expect(condition: bool, message: String) -> void:
 	if not condition:
 		failures.append(message)
+
+
+func _rotation_has_item(rotation: Dictionary, item_id: String) -> bool:
+	for offer in rotation.get("offers", []):
+		if offer is Dictionary and str((offer as Dictionary).get("item_id", "")) == item_id:
+			return true
+	return false
+
+
+func _rotation_has_tier(rotation: Dictionary, tier: String) -> bool:
+	for offer in rotation.get("offers", []):
+		if offer is Dictionary and str((offer as Dictionary).get("rotation_tier", "")) == tier:
+			return true
+	return false

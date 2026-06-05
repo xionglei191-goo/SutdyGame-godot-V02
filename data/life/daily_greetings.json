@@ -4,27 +4,112 @@
 		{
 			"npc_id": "mina",
 			"first_text": "早呀，今天的广场有一点树叶香。你想散步就慢慢来。",
-			"repeat_text": "我还在这里看书。路过的时候挥挥手就好。"
+			"repeat_text": "我还在这里看书。路过的时候挥挥手就好。",
+			"weather_variants": {
+				"event_weather_sunny_soft_001": {
+					"variant_id": "weather_sunny_mina_soft",
+					"first_text": "早呀，阳光软软的，广场的小花看起来很开心。",
+					"repeat_text": "阳光还在路边等你，慢慢散步就好。"
+				},
+				"event_weather_breezy_kite_001": {
+					"variant_id": "weather_breezy_mina_path",
+					"first_text": "小风把树叶轻轻翻了一下，像在说早安。",
+					"repeat_text": "风还很轻，路边的飘带只是慢慢晃。"
+				},
+				"event_weather_after_rain_001": {
+					"variant_id": "weather_after_rain_mina_flower",
+					"first_text": "雨后的小路亮亮的，小花像刚醒来一样。",
+					"repeat_text": "花丛还有一点清新的味道，闻一闻就好。"
+				}
+			}
 		},
 		{
 			"npc_id": "shopkeeper",
 			"first_text": "欢迎来小店门口看看。今天不用急，喜欢什么就多看两眼。",
-			"repeat_text": "货架擦亮啦。你可以继续逛，也可以去找 Sunny 玩。"
+			"repeat_text": "货架擦亮啦。你可以继续逛，也可以去找 Sunny 玩。",
+			"weather_variants": {
+				"event_weather_sunny_soft_001": {
+					"variant_id": "weather_sunny_shopkeeper_corner",
+					"first_text": "阳光照到小店门口，货架看起来暖暖的。",
+					"repeat_text": "小店门口亮亮的，慢慢看也很舒服。"
+				},
+				"event_weather_breezy_kite_001": {
+					"variant_id": "weather_breezy_shopkeeper_basket",
+					"first_text": "小风吹过门口，小篮子上的布角轻轻动。",
+					"repeat_text": "门口的小篮子还在轻轻晃，像在打招呼。"
+				},
+				"event_weather_after_rain_001": {
+					"variant_id": "weather_after_rain_shopkeeper_sticker",
+					"first_text": "雨后的小店门口很干净，小贴纸也亮了一点。",
+					"repeat_text": "雨滴贴纸在货架角落闪了闪，看看就好。"
+				}
+			}
 		},
 		{
 			"npc_id": "pet_buddy",
 			"first_text": "Sunny 摇摇尾巴：今天也想和你在小镇上慢慢玩。",
-			"repeat_text": "Sunny 贴过来蹭蹭你，像是在说再走一小段吧。"
+			"repeat_text": "Sunny 贴过来蹭蹭你，像是在说再走一小段吧。",
+			"weather_variants": {
+				"event_weather_sunny_soft_001": {
+					"variant_id": "weather_sunny_sunny_soft",
+					"first_text": "Sunny 眯起眼睛，像喜欢这一小块软软的阳光。",
+					"repeat_text": "Sunny 在光斑旁摇摇尾巴，想陪你慢慢走。"
+				},
+				"event_weather_after_rain_001": {
+					"variant_id": "weather_after_rain_sunny_flower",
+					"first_text": "Sunny 闻闻雨后的花香，尾巴轻轻摇起来。",
+					"repeat_text": "Sunny 又闻了闻空气，雨后的味道很清新。"
+				},
+				"event_weather_light_rain_001": {
+					"variant_id": "weather_light_rain_sunny_home",
+					"first_text": "Sunny 靠近小屋门口，听小雨轻轻落下。",
+					"repeat_text": "Sunny 贴着你坐一会儿，小雨听起来很安静。"
+				}
+			}
 		},
 		{
 			"npc_id": "story_bear",
 			"first_text": "故事熊把书翻到有阳光的一页：今天适合收集小故事。",
-			"repeat_text": "故事熊轻轻点头，书角夹着一片暖暖的光。"
+			"repeat_text": "故事熊轻轻点头，书角夹着一片暖暖的光。",
+			"weather_variants": {
+				"event_weather_breezy_kite_001": {
+					"variant_id": "weather_breezy_story_bear_page",
+					"first_text": "风把书页吹得轻轻响，像一个小故事开头。",
+					"repeat_text": "书页又轻轻动了一下，故事熊笑了笑。"
+				},
+				"event_weather_after_rain_001": {
+					"variant_id": "weather_after_rain_story_bear_page",
+					"first_text": "雨后书店门口亮亮的，故事熊把书页放平。",
+					"repeat_text": "书页风铃轻轻响，今天的故事很安静。"
+				},
+				"event_weather_light_rain_001": {
+					"variant_id": "weather_light_rain_story_bear_bookshop",
+					"first_text": "小雨让书店门口安静下来，故事熊留了一盏小灯。",
+					"repeat_text": "小灯还亮着，故事熊说今天可以轻轻听雨。"
+				}
+			}
 		},
 		{
 			"npc_id": "bus_helper",
 			"first_text": "巴士哥哥挥挥手：站牌旁边很安静，想去哪边都可以。",
-			"repeat_text": "巴士哥哥看看路牌：今天的小镇路线很舒服。"
+			"repeat_text": "巴士哥哥看看路牌：今天的小镇路线很舒服。",
+			"weather_variants": {
+				"event_weather_breezy_kite_001": {
+					"variant_id": "weather_breezy_bus_helper_kite",
+					"first_text": "小风吹过站牌，风筝飘带在远处轻轻动。",
+					"repeat_text": "飘带还在慢慢晃，站牌这里很安心。"
+				},
+				"event_weather_after_rain_001": {
+					"variant_id": "weather_after_rain_bus_helper_stone",
+					"first_text": "雨后站牌旁的小石子亮亮的，路看起来很干净。",
+					"repeat_text": "站牌旁还有一点雨后的清新味道。"
+				},
+				"event_weather_light_rain_001": {
+					"variant_id": "weather_light_rain_bus_helper_stop",
+					"first_text": "小雨落在站牌边，声音很轻，像小鼓点。",
+					"repeat_text": "站牌这里还是安静的，慢慢看看就好。"
+				}
+			}
 		}
 	]
 }

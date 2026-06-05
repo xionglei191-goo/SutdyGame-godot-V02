@@ -109,6 +109,11 @@ func _check_visible_shop_purchase_path(main) -> void:
 	var after_purchase: Dictionary = main.save_service.load_game_state()
 	_expect(int(after_purchase.get("inventory", {}).get("wooden_chair", 0)) == 1, "Visible shop purchase should add furniture to backpack")
 	_expect(int(after_purchase.get("coins", -1)) == 22, "Visible shop purchase should deduct configured furniture price")
+	var backpack_button := main.find_child("BackpackNavButton", true, false) as Button
+	_press(backpack_button, "Backpack button should remain visible after shop purchase")
+	var backpack_items := main.find_child("BackpackItems", true, false) as Label
+	_expect(backpack_items != null and str(backpack_items.text).contains("木椅 1"), "Backpack bubble should immediately show the bought wooden chair")
+	_press(backpack_button, "Backpack button should close after checking bought furniture")
 
 
 func _check_visible_home_decoration_path(main) -> void:
@@ -122,9 +127,23 @@ func _check_visible_home_decoration_path(main) -> void:
 	var place_button := main.find_child("HomePlaceWoodenChairButton", true, false) as Button
 	_press(place_button, "Home room should expose a visible place-furniture button for bought furniture")
 	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() == 1, "Visible home button should place furniture")
+	var sunny_feedback := main.find_child("SunnyHomeFeedback", true, false) as Label
+	_expect(sunny_feedback != null and str(sunny_feedback.text).contains("Sunny"), "Home room should show Sunny feedback after visible furniture placement")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) == 0, "Visible home placement should consume the bought chair from backpack")
+	var first_furniture: Dictionary = main.home_decoration_service.get_home_state().get("placed_furniture", [])[0]
+	var first_cell: Dictionary = first_furniture.get("cell", {})
 
 	var rotate_button := main.find_child("HomeRotateFirstFurnitureButton", true, false) as Button
 	_press(rotate_button, "Home room should expose a visible rotate button")
+	var move_button := main.find_child("HomeMoveFirstFurnitureButton", true, false) as Button
+	_press(move_button, "Home room should expose a visible move button")
+	var after_move_state: Dictionary = main.home_decoration_service.get_home_state()
+	var moved_furniture: Dictionary = after_move_state.get("placed_furniture", [])[0]
+	var moved_cell: Dictionary = moved_furniture.get("cell", {})
+	_expect(int(moved_cell.get("x", -1)) != int(first_cell.get("x", -1)) or int(moved_cell.get("y", -1)) != int(first_cell.get("y", -1)), "Visible move button should change furniture cell")
+	var reloaded_home_state: Dictionary = main.home_decoration_service.get_home_state()
+	var reloaded_cell: Dictionary = reloaded_home_state.get("placed_furniture", [])[0].get("cell", {})
+	_expect(int(reloaded_cell.get("x", -1)) == int(moved_cell.get("x", -2)) and int(reloaded_cell.get("y", -1)) == int(moved_cell.get("y", -2)), "Moved furniture cell should persist in saved home state")
 	var pickup_button := main.find_child("HomePickupFirstFurnitureButton", true, false) as Button
 	_press(pickup_button, "Home room should expose a visible pickup button")
 	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).is_empty(), "Visible pickup button should remove placed furniture")

@@ -2,7 +2,7 @@
 
 > 日期：2026-06-05  
 > 范围：落实 Round 52 剩余 todo 推进计划。  
-> 结论：`V02-POLISH-001` 已进入 Godot 实现并通过自动化；`V02-POLISH-002` / `003` 的验收清单已固定；`V02-POLISH-004` 的替换验收表已固定，等待首批 production / approved 素材接入后执行截图验收。
+> 结论：`V02-POLISH-001` 已进入 Godot 实现并通过自动化；`V02-POLISH-002` / `003` 的验收清单已固定；`V02-POLISH-004` 的 P0 production 素材已通过逻辑 asset ID 接入并完成自动化与运行时截图抽查。
 
 ## V02-POLISH-001 退出与设置入口
 
@@ -33,12 +33,18 @@
   `place.town_plaza.day`、`place.home.exterior`、`place.shop.exterior`、`place.road.main`、`place.resource.branch`、`character.player.standing`、`character.mina.standing`、`pet.sunny.standing`、`ui_icon.coin`、`ui_icon.bag`。
 - 素材接入记录字段已固定：逻辑 asset ID、类别、对象 ID、状态、resolver 映射 owner、映射路径、替换目标、截图证据、验收结论、儿童安全记录和 A-Z 稳定性记录。
 - 素材只能通过 `ThemeProfile` / `AssetResolver` 映射进入 runtime，玩法脚本不得新增硬编码素材路径。
-- 本轮未生成或接入 production / approved 素材，因此 `V02-POLISH-004` 保持进行中。
+- 本轮已接入 P0 production 素材：Town Plaza、Home、Shop、主路、树枝、玩家、Mina、Sunny、金币图标和背包图标。
+- `ThemeProfile` 新增 `place_assets`、`character_assets`、`ui_icon_assets` 和接入记录；`AssetResolver` 可按逻辑 asset ID 解析 P0 素材。
+- 主场景通过 `AssetResolver` / `ResourceLoader` 加载 P0 纹理；玩法脚本没有直接硬编码具体 PNG 路径作为业务逻辑来源。
+- `tests/test_life_rpg_scene.gd` 已加入运行时纹理断言，确认金币、背包、玩家和 Mina 使用 P0 资源而不是 8x8 程序占位。
+- MCP 已捕获 `1280x720` 首屏截图并抽查运行树；A-Z anchor 节点和路线未被移动或重写。
 
 ## 验证结果
 
 ```bash
 godot --headless --path . --check-only --script scripts/main.gd
+godot --headless --path . --script tests/test_asset_resolver.gd
+godot --headless --path . --script tests/test_life_rpg_scene.gd
 godot --headless --path . --script tests/test_playable_ui_operations.gd
 godot --headless --path . --script tests/headless_runner.gd
 godot --headless --path . --quit
@@ -48,6 +54,6 @@ godot --headless --path . --quit
 
 ## 后续 Owner
 
-- Art Direction / Asset / QA：接入首批 P0 production / approved 素材后，按 `V02-POLISH-004` 截图门槛执行验收。
+- Art Direction / Asset / QA：下一阶段补 P1 素材，并按 `960x540` 较小横屏截图补验。
 - QA / UI：UI 或美术大改后，按 12 个截图点补截图记录。
 - Godot / UX：若设置入口、HUD、底栏或弹层位置继续调整，必须同步更新操作级测试。

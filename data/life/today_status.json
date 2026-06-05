@@ -1,9 +1,75 @@
 {
-	"schema_version": 1,
+	"schema_version": 2,
 	"statuses": [
-		{"weather": "今天晴天", "event": "广场微风日", "sunny_hint": "Sunny 想散步"},
-		{"weather": "今天有云", "event": "小店擦窗日", "sunny_hint": "Sunny 想闻闻花"},
-		{"weather": "今天暖暖的", "event": "故事角安静日", "sunny_hint": "Sunny 想听故事"},
-		{"weather": "今天亮亮的", "event": "站牌慢游日", "sunny_hint": "Sunny 想去路边看看"}
+		{
+			"day_key": "local_day_001",
+			"weather_event_id": "event_weather_sunny_soft_001",
+			"weather": "今天晴天",
+			"event": "广场微风日",
+			"sunny_hint": "Sunny 想散步",
+			"primary_npc": "mina",
+			"anchor_hint": "C Clock 路边的小钟牌亮了一下。",
+			"shop_rotation_id": "shop_rotation_day_001"
+		},
+		{
+			"day_key": "local_day_002",
+			"weather_event_id": "event_weather_breezy_kite_001",
+			"weather": "今天有云",
+			"event": "小店擦窗日",
+			"sunny_hint": "Sunny 想闻闻花",
+			"primary_npc": "shopkeeper",
+			"anchor_hint": "O Orange 货架旁的小标签很亮。",
+			"shop_rotation_id": "shop_rotation_day_002"
+		},
+		{
+			"day_key": "local_day_003",
+			"weather_event_id": "event_weather_sunny_soft_001",
+			"weather": "今天暖暖的",
+			"event": "Sunny 慢慢醒",
+			"sunny_hint": "Sunny 想看看小屋",
+			"primary_npc": "pet_buddy",
+			"anchor_hint": "S Sun 在小屋门口留下一块软软的光。",
+			"shop_rotation_id": "shop_rotation_day_003"
+		},
+		{
+			"day_key": "local_day_004",
+			"weather_event_id": "event_weather_light_rain_001",
+			"weather": "今天安静",
+			"event": "故事角安静日",
+			"sunny_hint": "Sunny 想听风翻书页",
+			"primary_npc": "story_bear",
+			"anchor_hint": "B Bear 书角今天只需要轻轻看一眼。",
+			"shop_rotation_id": "shop_rotation_day_004"
+		},
+		{
+			"day_key": "local_day_005",
+			"weather_event_id": "event_weather_breezy_kite_001",
+			"weather": "今天亮亮的",
+			"event": "站牌慢游日",
+			"sunny_hint": "Sunny 想去路边看看",
+			"primary_npc": "bus_helper",
+			"anchor_hint": "T Taxi 站牌旁的小石子晒得暖暖的。",
+			"shop_rotation_id": "shop_rotation_day_005"
+		},
+		{
+			"day_key": "local_day_006",
+			"weather_event_id": "event_weather_after_rain_001",
+			"weather": "今天雨后亮亮",
+			"event": "花丛闻香日",
+			"sunny_hint": "Sunny 想慢慢闻花",
+			"primary_npc": "mina",
+			"anchor_hint": "U Umbrella 的小伞影在路边晃了晃。",
+			"shop_rotation_id": "shop_rotation_day_006"
+		},
+		{
+			"day_key": "local_day_007",
+			"weather_event_id": "event_weather_light_rain_001",
+			"weather": "今天适合整理",
+			"event": "小镇整理日",
+			"sunny_hint": "Sunny 想回小屋转一圈",
+			"primary_npc": "shopkeeper",
+			"anchor_hint": "W Watch 提醒大家慢慢来，不用赶时间。",
+			"shop_rotation_id": "shop_rotation_day_007"
+		}
 	]
 }

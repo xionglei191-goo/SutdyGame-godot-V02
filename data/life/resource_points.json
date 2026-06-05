@@ -8,7 +8,11 @@
 			"quantity": 1,
 			"cell": {"x": 13, "y": 6},
 			"collect_text": "捡到一根小树枝，像故事书里的书签。",
-			"collected_text": "熊角落今天已经整理干净啦。"
+			"collected_text": "熊角落今天已经整理干净啦。",
+			"weather_hints": {
+				"event_weather_breezy_kite_001": "小风把树枝轻轻吹到路边，但数量还是和平常一样。",
+				"event_weather_light_rain_001": "小雨让树枝颜色深了一点，捡起来还是轻轻的。"
+			}
 		},
 		{
 			"point_id": "resource_flower_sun_plaza",
@@ -17,7 +21,11 @@
 			"quantity": 2,
 			"cell": {"x": 18, "y": 7},
 			"collect_text": "摘到一朵小花，香味轻轻的。",
-			"collected_text": "这片花丛今天已经休息啦。"
+			"collected_text": "这片花丛今天已经休息啦。",
+			"weather_hints": {
+				"event_weather_sunny_soft_001": "阳光让花瓣看起来软软的，花丛照常开放。",
+				"event_weather_after_rain_001": "雨后的小花醒了过来，香味轻轻飘出来。"
+			}
 		},
 		{
 			"point_id": "resource_stone_taxi_stop",
@@ -26,7 +34,11 @@
 			"quantity": 1,
 			"cell": {"x": 31, "y": 11},
 			"collect_text": "捡到一颗圆圆的小石子，适合压住故事纸。",
-			"collected_text": "站牌旁今天没有新的小石子。"
+			"collected_text": "站牌旁今天没有新的小石子。",
+			"weather_hints": {
+				"event_weather_breezy_kite_001": "小风从站牌旁走过，小石子还是稳稳待在原地。",
+				"event_weather_after_rain_001": "雨后的小石子亮亮的，像藏了一点阳光。"
+			}
 		}
 	]
 }

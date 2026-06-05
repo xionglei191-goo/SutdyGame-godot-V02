@@ -13,6 +13,7 @@ const FIRST_BATCH_CORE_IDS: Array[String] = [
 	"card_o_orange_core",
 	"card_s_sun_core",
 	"card_t_taxi_core",
+	"card_u_umbrella_core",
 	"card_w_watch_core",
 ]
 const BLOCKED_CHILD_TERMS: Array[String] = ["lesson", "test", "word list", "review", "failed"]

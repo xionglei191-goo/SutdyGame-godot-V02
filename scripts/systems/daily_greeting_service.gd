@@ -3,19 +3,22 @@ class_name DailyGreetingService
 
 const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.gd")
+const TodayStatusServiceScript := preload("res://scripts/systems/today_status_service.gd")
 
 const GREETINGS_PATH := "res://data/life/daily_greetings.json"
 
 var save_service
 var local_day_service
+var today_status_service
 var greeting_path: String = GREETINGS_PATH
 var greetings_by_npc: Dictionary = {}
 var load_errors: Array[String] = []
 
 
-func _init(service = null, day_service = null, path: String = GREETINGS_PATH) -> void:
+func _init(service = null, day_service = null, path: String = GREETINGS_PATH, status_service = null) -> void:
 	save_service = service if service != null else SaveServiceScript.new()
 	local_day_service = day_service if day_service != null else LocalDayServiceScript.new()
+	today_status_service = status_service if status_service != null else TodayStatusServiceScript.new(local_day_service)
 	greeting_path = path
 	_load_greetings()
 
@@ -50,13 +53,21 @@ func interact_for_npc(npc_id: String, allow_repeat: bool = true) -> Dictionary:
 	if not first_today and not allow_repeat:
 		return {"handled": false, "ok": false, "reason": "already_greeted", "npc_id": npc_id, "day_key": day_key}
 
+	var weather_status: Dictionary = today_status_service.get_today_status() if today_status_service != null else {}
+	var weather_event_id := str(weather_status.get("weather_event_id", ""))
+	var weather_event: Dictionary = weather_status.get("weather_event", {})
+	var variant: Dictionary = _weather_variant_for_greeting(greeting, weather_event_id)
 	var text_key: String = "first_text" if first_today else "repeat_text"
-	var text: String = str(greeting.get(text_key, greeting.get("first_text", "")))
+	var text_source: Dictionary = variant if not variant.is_empty() else greeting
+	var text: String = str(text_source.get(text_key, greeting.get(text_key, greeting.get("first_text", ""))))
+	var variant_id := str(variant.get("variant_id", ""))
 	npc_state["greeted"] = true
 	npc_state["day_key"] = day_key
 	npc_state["first_text_seen"] = bool(npc_state.get("first_text_seen", false)) or first_today
 	npc_state["repeat_count"] = int(npc_state.get("repeat_count", 0)) + (0 if first_today else 1)
 	npc_state["last_text"] = text
+	npc_state["weather_event_id"] = weather_event_id
+	npc_state["greeting_variant_id"] = variant_id
 	day_state[npc_id] = npc_state.duplicate(true)
 	_save_day_state(day_key, day_state)
 	_update_relationship(npc_id, text, day_key, first_today)
@@ -67,8 +78,19 @@ func interact_for_npc(npc_id: String, allow_repeat: bool = true) -> Dictionary:
 		"day_key": day_key,
 		"first_today": first_today,
 		"text": text,
+		"weather_event_id": weather_event_id,
+		"weather_tag": str(weather_event.get("weather_tag", "")),
+		"greeting_variant_id": variant_id,
 		"state": npc_state.duplicate(true),
 	}
+
+
+func _weather_variant_for_greeting(greeting: Dictionary, weather_event_id: String) -> Dictionary:
+	if weather_event_id.is_empty():
+		return {}
+	var variants: Dictionary = greeting.get("weather_variants", {})
+	var variant: Variant = variants.get(weather_event_id, {})
+	return variant.duplicate(true) if variant is Dictionary else {}
 
 
 func _update_relationship(npc_id: String, text: String, day_key: String, first_today: bool) -> void:

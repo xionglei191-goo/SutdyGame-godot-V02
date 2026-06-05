@@ -124,6 +124,58 @@
 			}
 		},
 		{
+			"request_id": "daily_story_bear_find_bear_corner_001",
+			"npc_id": "story_bear",
+			"title": "Bear Corner 看一眼",
+			"day_key": "local_day_004",
+			"required_items": [],
+			"required_p1_entries": ["p1_entry_story_bear_corner"],
+			"rewards": {
+				"coins": 5,
+				"relationship": 1
+			},
+			"text": {
+				"start": "故事熊想知道 Bear Corner 的小书牌还亮不亮。看一眼就好，故事会等你回来。",
+				"progress": "不用读完，也不用回答。去 Bear Corner 按一下看看，再回来坐坐就好。",
+				"complete": "熊形书牌记住了你的脚步声，故事熊把小灯调得更暖了一点。",
+				"already_completed": "Bear Corner 今天已经向你点过头啦，故事熊安静地陪你坐一会儿。"
+			},
+			"memory_story": {
+				"letter": "B",
+				"core_anchor_id": "anchor_b_bear",
+				"world_place_id": "place_town_start",
+				"story_memory": "Story Bear waits while the Bear Corner sign remembers gentle footsteps.",
+				"visual_hook": "a warm bear-shaped book sign glowing beside Story Bear",
+				"review_path": "Talk to Story Bear, look at Bear Corner, then return to Story Bear."
+			}
+		},
+		{
+			"request_id": "daily_bus_helper_taxi_spot_001",
+			"npc_id": "bus_helper",
+			"title": "Taxi marker 看一眼",
+			"day_key": "local_day_005",
+			"required_items": [],
+			"required_p1_entries": ["p1_entry_bus_helper_taxi_marker"],
+			"rewards": {
+				"coins": 6,
+				"relationship": 1
+			},
+			"text": {
+				"start": "巴士哥哥想确认黄色 taxi 小标记还在站牌旁边。我们只在车站附近看看。",
+				"progress": "不用上车，也不用赶时间。到黄色小标记旁按一下看看，再回来告诉巴士哥哥。",
+				"complete": "黄色小标记还在，车站看起来很安心。巴士哥哥轻轻点点头。",
+				"already_completed": "Taxi marker 今天已经看过啦，站牌还在这里慢慢等风。"
+			},
+			"memory_story": {
+				"letter": "T",
+				"core_anchor_id": "anchor_t_taxi",
+				"world_place_id": "place_town_start",
+				"story_memory": "Bus Helper checks the safe yellow Taxi marker beside the stop sign.",
+				"visual_hook": "a yellow taxi marker beside a calm bus stop sign",
+				"review_path": "Talk to Bus Helper, look at the Taxi marker, then return to Bus Helper."
+			}
+		},
+		{
 			"request_id": "daily_sunny_flower_001",
 			"npc_id": "pet_buddy",
 			"title": "Sunny 闻闻小花",

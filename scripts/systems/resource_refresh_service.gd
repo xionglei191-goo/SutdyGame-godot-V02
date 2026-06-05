@@ -4,21 +4,24 @@ class_name ResourceRefreshService
 const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const InventoryServiceScript := preload("res://scripts/systems/inventory_service.gd")
 const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.gd")
+const TodayStatusServiceScript := preload("res://scripts/systems/today_status_service.gd")
 
 const RESOURCE_POINTS_PATH := "res://data/life/resource_points.json"
 
 var save_service
 var inventory_service
 var local_day_service
+var today_status_service
 var resource_path: String = RESOURCE_POINTS_PATH
 var points_by_id: Dictionary = {}
 var load_errors: Array[String] = []
 
 
-func _init(service = null, inventory = null, day_service = null, path: String = RESOURCE_POINTS_PATH) -> void:
+func _init(service = null, inventory = null, day_service = null, path: String = RESOURCE_POINTS_PATH, status_service = null) -> void:
 	save_service = service if service != null else SaveServiceScript.new()
 	inventory_service = inventory if inventory != null else InventoryServiceScript.new(save_service)
 	local_day_service = day_service if day_service != null else LocalDayServiceScript.new()
+	today_status_service = status_service if status_service != null else TodayStatusServiceScript.new(local_day_service)
 	resource_path = path
 	_load_points()
 
@@ -34,6 +37,7 @@ func get_point(point_id: String) -> Dictionary:
 	var result := point.duplicate(true)
 	result["ok"] = true
 	result["available_today"] = not is_collected_today(point_id)
+	_apply_weather_hint(result)
 	return result
 
 
@@ -105,8 +109,20 @@ func collect_resource(point_id: String) -> Dictionary:
 		"day_key": day_key,
 		"display_name": point.get("display_name", item_id),
 		"text": str(point.get("collect_text", "收进背包啦。")),
+		"weather_event_id": str(point.get("weather_event_id", "")),
+		"weather_hint": str(point.get("weather_hint", "")),
 		"inventory": collected.get("inventory", {}).duplicate(true),
 	}
+
+
+func _apply_weather_hint(point: Dictionary) -> void:
+	var status: Dictionary = today_status_service.get_today_status() if today_status_service != null else {}
+	var weather_event_id := str(status.get("weather_event_id", ""))
+	point["weather_event_id"] = weather_event_id
+	var hints: Dictionary = point.get("weather_hints", {})
+	var hint := str(hints.get(weather_event_id, ""))
+	if not hint.is_empty():
+		point["weather_hint"] = hint
 
 
 func _get_day_state(day_key: String) -> Dictionary:

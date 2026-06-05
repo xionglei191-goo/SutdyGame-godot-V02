@@ -1,0 +1,93 @@
+{
+	"schema_version": 1,
+	"events": [
+		{
+			"event_id": "event_weather_sunny_soft_001",
+			"priority": "P0",
+			"weather_tag": "sunny",
+			"day_keys": ["local_day_001", "local_day_003"],
+			"today_status_text": "今天阳光软软的，广场很适合散步。",
+			"npc_greeting_refs": ["weather_sunny_mina_soft", "weather_sunny_sunny_soft"],
+			"resource_effect": "只做阳光和花草的视觉提示，基础资源照常可得。",
+			"shop_rotation_hint": "商店可轻展示晴天风铃，不覆盖 P0 常驻商品。",
+			"anchor_hints": ["anchor_s_sun"],
+			"album_clues": [
+				{
+					"anchor_id": "anchor_s_sun",
+					"card_id": "card_s_sun_core",
+					"album_tag": "Sunny day.",
+					"story_memory": "Sun Plaza 的阳光像软软的小毯子，照在今天散步的小路上。",
+					"environment_word": "sunny"
+				}
+			],
+			"album_tag": "Sunny day.",
+			"child_safety_note": "只做温和氛围，不记录到访次数、表现或运营压力。"
+		},
+		{
+			"event_id": "event_weather_breezy_kite_001",
+			"priority": "P0",
+			"weather_tag": "breezy",
+			"day_keys": ["local_day_002", "local_day_005"],
+			"today_status_text": "小风吹过广场，风筝飘带轻轻动。",
+			"npc_greeting_refs": ["weather_breezy_mina_path", "weather_breezy_bus_helper_kite"],
+			"resource_effect": "只做树枝和飘带的视觉提示，不减少基础资源。",
+			"shop_rotation_hint": "商店可轻展示微风飘带或晴天风铃，不覆盖 P0 常驻商品。",
+			"anchor_hints": ["anchor_k_kite"],
+			"album_clues": [
+				{
+					"anchor_id": "anchor_k_kite",
+					"card_id": "card_k_kite_core",
+					"album_tag": "Windy Kite.",
+					"story_memory": "Kite Hill 的彩色飘带被小风托起来，像在给广场轻轻挥手。",
+					"environment_word": "windy"
+				}
+			],
+			"album_tag": "Windy Kite.",
+			"child_safety_note": "只做温和氛围，不记录到访次数、表现或追风离场压力。"
+		},
+		{
+			"event_id": "event_weather_after_rain_001",
+			"priority": "P0",
+			"weather_tag": "after_rain",
+			"day_keys": ["local_day_006"],
+			"today_status_text": "雨后的小路亮亮的，花也醒过来了。",
+			"npc_greeting_refs": ["weather_after_rain_mina_flower", "weather_after_rain_shopkeeper_sticker"],
+			"resource_effect": "只做花和小水光的视觉提示，基础资源照常可得。",
+			"shop_rotation_hint": "商店可轻展示雨滴贴纸，不覆盖 P0 常驻商品。",
+			"anchor_hints": ["anchor_u_umbrella", "anchor_s_sun"],
+			"album_clues": [
+				{
+					"anchor_id": "anchor_u_umbrella",
+					"card_id": "card_u_umbrella_core",
+					"album_tag": "After Rain.",
+					"story_memory": "Umbrella 的小伞影守在雨后亮亮的小路边，像一朵安静的小云。",
+					"environment_word": "after rain"
+				}
+			],
+			"album_tag": "After Rain.",
+			"child_safety_note": "只做温和氛围，不记录到访次数、表现或强天气避险压力。"
+		},
+		{
+			"event_id": "event_weather_light_rain_001",
+			"priority": "P0",
+			"weather_tag": "light_rain",
+			"day_keys": ["local_day_004", "local_day_007"],
+			"today_status_text": "今天有小雨，书店门口听起来很安静。",
+			"npc_greeting_refs": ["weather_light_rain_story_bear_bookshop", "weather_light_rain_sunny_home"],
+			"resource_effect": "只做室内和书店氛围提示，不减少基础资源。",
+			"shop_rotation_hint": "商店可轻展示雨滴贴纸或小书堆，不覆盖 P0 常驻商品。",
+			"anchor_hints": ["anchor_b_bear", "anchor_u_umbrella"],
+			"album_clues": [
+				{
+					"anchor_id": "anchor_b_bear",
+					"card_id": "card_b_bear_core",
+					"album_tag": "Light Rain.",
+					"story_memory": "Bear Corner 的书页在小雨声里慢慢翻动，书店门口听起来很安静。",
+					"environment_word": "rainy"
+				}
+			],
+			"album_tag": "Light Rain.",
+			"child_safety_note": "只做温和氛围，不记录到访次数、表现或赶路回家压力。"
+		}
+	]
+}

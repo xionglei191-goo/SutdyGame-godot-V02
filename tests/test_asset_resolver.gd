@@ -24,6 +24,7 @@ func _init() -> void:
 	_expect_placeholder(AssetResolverScript.get_card_art("card_a_apple_core", THEME_ID), "card art")
 	_expect_placeholder(AssetResolverScript.get_ui_skin("primary_button", THEME_ID), "ui skin")
 	_expect_placeholder(AssetResolverScript.get_card_frame("core", THEME_ID), "card frame")
+	_check_polish_assets()
 
 	var missing: Dictionary = AssetResolverScript.get_pet_sprite("unknown_pet", THEME_ID)
 	_expect(not missing.get("ok", true), "unknown logical asset id must be reported")
@@ -43,6 +44,53 @@ func _expect_placeholder(result: Dictionary, label: String) -> void:
 	_expect(result.get("theme_id", "") == THEME_ID, "%s must keep the requested theme id" % label)
 	_expect(str(result.get("asset_id", "")).length() > 0, "%s must include logical asset id" % label)
 	_expect(str(result.get("placeholder_path", "")).begins_with("placeholder://%s/" % THEME_ID), "%s must return a logical placeholder path" % label)
+
+
+func _check_polish_assets() -> void:
+	var required_assets := [
+		{"category": "place_assets", "asset_id": "place.town_plaza.day"},
+		{"category": "place_assets", "asset_id": "place.home.exterior"},
+		{"category": "place_assets", "asset_id": "place.shop.exterior"},
+		{"category": "place_assets", "asset_id": "place.road.main"},
+		{"category": "place_assets", "asset_id": "place.resource.branch"},
+		{"category": "character_assets", "asset_id": "character.player.standing"},
+		{"category": "character_assets", "asset_id": "character.mina.standing"},
+		{"category": "character_assets", "asset_id": "character.shopkeeper.standing"},
+		{"category": "character_assets", "asset_id": "character.story_bear.standing"},
+		{"category": "character_assets", "asset_id": "character.bus_helper.standing"},
+		{"category": "furniture_assets", "asset_id": "furniture.small_table.placed"},
+		{"category": "furniture_assets", "asset_id": "furniture.pet_bowl.placed"},
+		{"category": "furniture_assets", "asset_id": "furniture.sunny_bed.placed"},
+		{"category": "pet_assets", "asset_id": "pet.sunny.standing"},
+		{"category": "ui_icon_assets", "asset_id": "ui_icon.coin"},
+		{"category": "ui_icon_assets", "asset_id": "ui_icon.bag"},
+		{"category": "ui_icon_assets", "asset_id": "ui_icon.shop"},
+		{"category": "ui_icon_assets", "asset_id": "ui_icon.close"},
+		{"category": "ui_icon_assets", "asset_id": "ui_icon.settings"},
+	]
+	var records: Array = AssetResolverScript.get_asset_acceptance_records(THEME_ID)
+	for spec in required_assets:
+		var category := str(spec.get("category", ""))
+		var asset_id := str(spec.get("asset_id", ""))
+		var resolved: Dictionary = AssetResolverScript.resolve_asset(THEME_ID, category, asset_id)
+		_expect(resolved.get("ok", false), "Polish asset should resolve: %s" % asset_id)
+		var asset_path := str(resolved.get("placeholder_path", ""))
+		_expect(asset_path.begins_with("res://assets/art/"), "Polish asset should map through project art assets: %s -> %s" % [asset_id, asset_path])
+		_expect(FileAccess.file_exists(asset_path), "Polish mapped resource should exist: %s" % asset_path)
+		var record: Dictionary = _acceptance_record_for(records, asset_id)
+		_expect(not record.is_empty(), "Polish asset should have acceptance record: %s" % asset_id)
+		_expect(str(record.get("status", "")) == "production", "Polish asset should be production status: %s" % asset_id)
+		_expect(str(record.get("acceptance_result", "")) == "pass", "Polish asset should have pass acceptance result: %s" % asset_id)
+		_expect(str(record.get("resource_path_for_mapping", "")) == asset_path, "Acceptance path should match resolver mapping: %s" % asset_id)
+		_expect(str(record.get("notes_child_safety", "")).length() > 0, "Polish asset should record child safety notes: %s" % asset_id)
+		_expect(str(record.get("notes_anchor_integrity", "")).length() > 0, "Polish asset should record anchor integrity notes: %s" % asset_id)
+
+
+func _acceptance_record_for(records: Array, asset_id: String) -> Dictionary:
+	for record in records:
+		if record is Dictionary and str(record.get("logical_asset_id", "")) == asset_id:
+			return record
+	return {}
 
 
 func _expect(condition: bool, message: String) -> void:

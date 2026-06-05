@@ -16,6 +16,7 @@ const AnchorInteractionServiceScript := preload("res://scripts/systems/anchor_in
 const NPCMemoryStoreScript := preload("res://scripts/systems/npc_memory_store.gd")
 const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
+const AssetResolverScript := preload("res://scripts/systems/asset_resolver.gd")
 const MemoryAlbumScene := preload("res://scenes/memory_album/memory_album.tscn")
 const AZ_ANCHORS_PATH := "res://data/anchors/az_core_anchors.json"
 const VIEWPORT_SIZE := Vector2i(1280, 720)
@@ -117,6 +118,27 @@ var home_action_status_label: Label
 var player_marker: Node2D
 var player_cell := PLAYER_START_CELL
 var _texture_cache: Dictionary = {}
+var _logical_asset_texture_keys: Dictionary = {
+	"plaza": {"category": "place_assets", "asset_id": "place.town_plaza.day"},
+	"road": {"category": "place_assets", "asset_id": "place.road.main"},
+	"place_place_home_body": {"category": "place_assets", "asset_id": "place.home.exterior"},
+	"place_place_supermarket_body": {"category": "place_assets", "asset_id": "place.shop.exterior"},
+	"resource_branch": {"category": "place_assets", "asset_id": "place.resource.branch"},
+	"player_body": {"category": "character_assets", "asset_id": "character.player.standing"},
+	"npc_mina_body": {"category": "character_assets", "asset_id": "character.mina.standing"},
+	"npc_shopkeeper_body": {"category": "character_assets", "asset_id": "character.shopkeeper.standing"},
+	"npc_bus_helper_body": {"category": "character_assets", "asset_id": "character.bus_helper.standing"},
+	"npc_story_bear_body": {"category": "character_assets", "asset_id": "character.story_bear.standing"},
+	"npc_pet_buddy_body": {"category": "pet_assets", "asset_id": "pet.sunny.standing"},
+	"home_item_small_table": {"category": "furniture_assets", "asset_id": "furniture.small_table.placed"},
+	"home_item_pet_bowl": {"category": "furniture_assets", "asset_id": "furniture.pet_bowl.placed"},
+	"home_item_sunny_bed": {"category": "furniture_assets", "asset_id": "furniture.sunny_bed.placed"},
+	"ui_icon_coin": {"category": "ui_icon_assets", "asset_id": "ui_icon.coin"},
+	"ui_icon_bag": {"category": "ui_icon_assets", "asset_id": "ui_icon.bag"},
+	"ui_icon_shop": {"category": "ui_icon_assets", "asset_id": "ui_icon.shop"},
+	"ui_icon_close": {"category": "ui_icon_assets", "asset_id": "ui_icon.close"},
+	"ui_icon_settings": {"category": "ui_icon_assets", "asset_id": "ui_icon.settings"},
+}
 
 
 func _ready() -> void:
@@ -203,11 +225,6 @@ func _create_body() -> Control:
 	nav.custom_minimum_size = Vector2(220, 0)
 	nav.add_theme_constant_override("separation", 10)
 	body.add_child(nav)
-
-	nav.add_child(_create_nav_button("小镇", true))
-	nav.add_child(_create_nav_button("小屋", false))
-	nav.add_child(_create_nav_button("相册", false))
-	nav.add_child(_create_nav_button("背包", false))
 
 	var content := Control.new()
 	content.name = "Content"
@@ -355,6 +372,8 @@ func _create_top_message_bar() -> Control:
 	optional_activity_label.visible = false
 	row.add_child(optional_activity_label)
 
+	row.add_child(_create_asset_icon("CoinIcon", "ui_icon_coin", Vector2(30, 30)))
+
 	coin_label = _create_hud_state_label("CoinState", 72, Color("#fff0bc"), Color("#d8a84b"))
 	row.add_child(coin_label)
 
@@ -377,6 +396,8 @@ func _create_hud_settings_button() -> Button:
 	button.name = "SettingsButton"
 	button.text = "设置"
 	button.custom_minimum_size = Vector2(64, 30)
+	button.icon = _get_texture("ui_icon_settings")
+	button.expand_icon = true
 	button.focus_mode = Control.FOCUS_NONE
 	button.add_theme_font_size_override("font_size", 13)
 	button.add_theme_color_override("font_color", Color("#284238"))
@@ -408,7 +429,10 @@ func _create_bottom_action_bar() -> Control:
 	row.add_child(_create_footer_button("看看", true, "_on_interact_pressed", "InteractButton"))
 	row.add_child(_create_footer_button("小镇", true, "_on_town_pressed", "TownNavButton"))
 	row.add_child(_create_footer_button("小屋", false, "_on_home_pressed", "HomeNavButton"))
-	row.add_child(_create_footer_button("背包", false, "_on_backpack_pressed", "BackpackNavButton"))
+	var backpack_button := _create_footer_button("背包", false, "_on_backpack_pressed", "BackpackNavButton")
+	backpack_button.icon = _get_texture("ui_icon_bag")
+	backpack_button.expand_icon = true
+	row.add_child(backpack_button)
 
 	var contract_buttons := Control.new()
 	contract_buttons.name = "FooterContractButtons"
@@ -435,6 +459,15 @@ func _create_hud_state_label(node_name: String, min_width: int, fill: Color, bor
 	label.add_theme_font_size_override("font_size", 12)
 	label.add_theme_stylebox_override("normal", _rounded_box(fill, 8, border))
 	return label
+
+
+func _create_asset_icon(node_name: String, texture_key: String, icon_size: Vector2) -> TextureRect:
+	var icon := TextureRect.new()
+	icon.name = node_name
+	icon.texture = _get_texture(texture_key)
+	icon.custom_minimum_size = icon_size
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	return icon
 
 
 func _create_backpack_bubble() -> Control:
@@ -577,6 +610,7 @@ func _create_shop_panel() -> Control:
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title.add_theme_color_override("font_color", TEXT_COLOR)
 	title.add_theme_font_size_override("font_size", 18)
+	header.add_child(_create_asset_icon("ShopIcon", "ui_icon_shop", Vector2(30, 30)))
 	header.add_child(title)
 
 	header.add_child(_create_bubble_button("收起", "_on_close_shop_pressed", "CloseShopButton", 70))
@@ -737,6 +771,7 @@ func _create_home_action_panel() -> Control:
 	row.add_theme_constant_override("separation", 8)
 	stack.add_child(row)
 	row.add_child(_create_bubble_button("旋转", "_on_home_rotate_pressed", "HomeRotateFirstFurnitureButton", 72))
+	row.add_child(_create_bubble_button("挪动", "_on_home_move_pressed", "HomeMoveFirstFurnitureButton", 72))
 	row.add_child(_create_bubble_button("收起", "_on_home_pickup_pressed", "HomePickupFirstFurnitureButton", 72))
 
 	return panel
@@ -799,9 +834,12 @@ func _refresh_home_actions() -> void:
 	var placed: Array = home_decoration_service.get_home_state().get("placed_furniture", [])
 	var has_placed := not placed.is_empty()
 	var rotate_button := find_child("HomeRotateFirstFurnitureButton", true, false) as Button
+	var move_button := find_child("HomeMoveFirstFurnitureButton", true, false) as Button
 	var pickup_button := find_child("HomePickupFirstFurnitureButton", true, false) as Button
 	if rotate_button != null:
 		rotate_button.disabled = not has_placed
+	if move_button != null:
+		move_button.disabled = not has_placed
 	if pickup_button != null:
 		pickup_button.disabled = not has_placed
 	if is_instance_valid(home_action_status_label):
@@ -823,6 +861,21 @@ func _on_home_rotate_pressed() -> void:
 		_set_life_status("还没有可以旋转的家具。")
 		return
 	rotate_home_item(instance_id)
+
+
+func _on_home_move_pressed() -> void:
+	var instance_id := _first_placed_instance_id()
+	if instance_id.is_empty():
+		_set_life_status("还没有可以挪动的家具。")
+		return
+	var placed: Array = home_decoration_service.get_home_state().get("placed_furniture", [])
+	var current_cell := Vector2i.ZERO
+	for record in placed:
+		if record is Dictionary and str(record.get("instance_id", "")) == instance_id:
+			current_cell = _dict_to_cell((record as Dictionary).get("cell", {}))
+			break
+	var next_cell := Vector2i((current_cell.x + 1) % 4, min(current_cell.y + 1, 3))
+	move_home_item(instance_id, next_cell)
 
 
 func _on_home_pickup_pressed() -> void:
@@ -903,6 +956,9 @@ func _create_bubble_button(label: String, method_name: String, node_name: String
 	button.name = node_name
 	button.text = label
 	button.custom_minimum_size = Vector2(min_width, 34)
+	if node_name.begins_with("Close") or node_name == "CancelRestButton":
+		button.icon = _get_texture("ui_icon_close")
+		button.expand_icon = true
 	button.focus_mode = Control.FOCUS_NONE
 	button.add_theme_font_size_override("font_size", 14)
 	button.add_theme_color_override("font_color", Color("#284238"))
@@ -1218,6 +1274,13 @@ func rotate_home_item(instance_id: String) -> Dictionary:
 	return result
 
 
+func move_home_item(instance_id: String, cell: Vector2i) -> Dictionary:
+	var result: Dictionary = home_decoration_service.move_furniture(instance_id, cell)
+	_set_life_status("家具挪到新的小角落啦。" if result.get("ok", false) else _home_error_text(str(result.get("reason", ""))))
+	_refresh_home_room()
+	return result
+
+
 func pickup_home_item(instance_id: String) -> Dictionary:
 	var result: Dictionary = home_decoration_service.pickup_furniture(instance_id)
 	_set_life_status("家具收回背包啦。" if result.get("ok", false) else _home_error_text(str(result.get("reason", ""))))
@@ -1271,6 +1334,9 @@ func interact_nearby() -> Dictionary:
 	var anchor: Dictionary = _find_nearest_anchor(1)
 	if not anchor.is_empty():
 		var anchor_result: Dictionary = anchor_interaction_service.interact_with_anchor(anchor)
+		var weather_clue: Dictionary = _record_weather_anchor_clue(anchor, anchor_result)
+		if not weather_clue.is_empty():
+			anchor_result["weather_clue"] = weather_clue
 		_set_life_status(str(anchor_result.get("text", "放进相册啦。")))
 		anchor_result["interaction_type"] = "anchor"
 		return anchor_result
@@ -1294,6 +1360,8 @@ func _handle_map_interaction(interaction: Dictionary) -> Dictionary:
 	match action:
 		"enter_supermarket", "enter_home", "open_town_start":
 			return _enter_place(interaction)
+		"look_p1_return_entry":
+			return _look_p1_return_entry(interaction)
 		_:
 			_set_life_status("这个地方还没有准备好。")
 			return {
@@ -1302,6 +1370,135 @@ func _handle_map_interaction(interaction: Dictionary) -> Dictionary:
 				"action": action,
 				"interaction_id": interaction.get("interaction_id", ""),
 			}
+
+
+func _look_p1_return_entry(interaction: Dictionary) -> Dictionary:
+	var interaction_id := str(interaction.get("interaction_id", ""))
+	var text := str(interaction.get("text", "这里很安静，可以慢慢看看。"))
+	var entry_label := str(interaction.get("entry_label", "小镇角落"))
+	var npc_id := str(interaction.get("npc_id", ""))
+	var linked_anchor_id := str(interaction.get("linked_anchor_id", ""))
+	var game_state: Dictionary = save_service.load_game_state()
+	var p1_entries: Dictionary = game_state.get("p1_return_entries", {})
+	p1_entries[interaction_id] = {
+		"seen": true,
+		"entry_label": entry_label,
+		"entry_kind": str(interaction.get("entry_kind", "")),
+		"npc_id": npc_id,
+		"linked_anchor_id": linked_anchor_id,
+		"place_id": str(interaction.get("place_id", _current_place_for_cell(player_cell))),
+	}
+	game_state["p1_return_entries"] = p1_entries
+	save_service.save_game_state(game_state)
+	var album_record: Dictionary = _record_p1_anchor_album(linked_anchor_id)
+	var weather_clue: Dictionary = _record_weather_anchor_clue(_anchor_by_id(linked_anchor_id), {"card_id": str(album_record.get("card_id", ""))})
+	var display_text := text
+	if not weather_clue.is_empty():
+		display_text = "%s 天气相册记下：%s" % [text, str(weather_clue.get("story_memory", ""))]
+	var display_prefix := _localized_npc_name(npc_id, entry_label) if not npc_id.is_empty() else entry_label
+	_set_life_status("%s：%s" % [display_prefix, display_text])
+	return {
+		"ok": true,
+		"interaction_type": "p1_return_entry",
+		"interaction_id": interaction_id,
+		"entry_label": entry_label,
+		"entry_kind": str(interaction.get("entry_kind", "")),
+		"npc_id": npc_id,
+		"linked_anchor_id": linked_anchor_id,
+		"place_id": str(interaction.get("place_id", _current_place_for_cell(player_cell))),
+		"text": display_text,
+		"card_id": str(album_record.get("card_id", "")),
+		"album_state": album_record.get("album_state", {}),
+		"weather_clue": weather_clue,
+	}
+
+
+func _record_p1_anchor_album(anchor_id: String) -> Dictionary:
+	var anchor := _anchor_by_id(anchor_id)
+	var card_id := str(anchor.get("card_id", ""))
+	if card_id.is_empty():
+		return {"ok": false, "reason": "missing_card_id", "anchor_id": anchor_id}
+	memory_card_service.set_card_flags(card_id, {
+		"seen": true,
+		"heard": true,
+		"collected": true,
+		"card_progress": 4,
+	})
+	return {
+		"ok": true,
+		"anchor_id": anchor_id,
+		"card_id": card_id,
+		"album_state": memory_card_service.get_card_state(card_id),
+	}
+
+
+func _record_weather_anchor_clue(anchor: Dictionary, anchor_result: Dictionary) -> Dictionary:
+	if today_status_service == null or save_service == null:
+		return {}
+	var anchor_id := str(anchor.get("anchor_id", ""))
+	var card_id := str(anchor.get("card_id", anchor_result.get("card_id", "")))
+	if anchor_id.is_empty() or card_id.is_empty():
+		return {}
+	var status: Dictionary = today_status_service.get_today_status()
+	var weather_event: Dictionary = status.get("weather_event", {})
+	var clue: Dictionary = _weather_clue_for_anchor(weather_event, anchor_id)
+	if clue.is_empty():
+		return {}
+	var game_state: Dictionary = save_service.load_game_state()
+	var records: Dictionary = game_state.get("weather_album_clues", {})
+	var event_id := str(weather_event.get("event_id", status.get("weather_event_id", "")))
+	var record_id := "%s:%s" % [event_id, anchor_id]
+	var record: Dictionary = {
+		"seen": true,
+		"event_id": event_id,
+		"weather_tag": str(weather_event.get("weather_tag", "")),
+		"anchor_id": anchor_id,
+		"card_id": card_id,
+		"album_tag": str(clue.get("album_tag", weather_event.get("album_tag", ""))),
+		"story_memory": str(clue.get("story_memory", "")),
+		"environment_word": str(clue.get("environment_word", "")),
+		"day_key": str(status.get("day_key", "")),
+	}
+	records[record_id] = record
+	game_state["weather_album_clues"] = records
+	save_service.save_game_state(game_state)
+	var clue_text := str(clue.get("story_memory", ""))
+	if not clue_text.is_empty():
+		anchor_result["text"] = "%s 天气相册记下：%s" % [str(anchor.get("core_word", "小物件")), clue_text]
+	return record
+
+
+func _weather_clue_for_anchor(weather_event: Dictionary, anchor_id: String) -> Dictionary:
+	for clue_value in weather_event.get("album_clues", []):
+		if clue_value is Dictionary:
+			var clue: Dictionary = clue_value
+			if str(clue.get("anchor_id", "")) == anchor_id:
+				return clue.duplicate(true)
+	for hint_value in weather_event.get("anchor_hints", []):
+		if str(hint_value) == anchor_id:
+			return {
+				"anchor_id": anchor_id,
+				"album_tag": str(weather_event.get("album_tag", "")),
+				"story_memory": str(weather_event.get("today_status_text", "")),
+				"environment_word": str(weather_event.get("weather_tag", "")),
+			}
+	return {}
+
+
+func _anchor_by_id(anchor_id: String) -> Dictionary:
+	if anchor_id.is_empty():
+		return {}
+	for anchor_value in world_map.get("memory_anchors", []):
+		if anchor_value is Dictionary:
+			var anchor: Dictionary = anchor_value
+			if str(anchor.get("anchor_id", "")) == anchor_id:
+				return anchor.duplicate(true)
+	for anchor_value in az_core_data.get("anchors", []):
+		if anchor_value is Dictionary:
+			var anchor: Dictionary = anchor_value
+			if str(anchor.get("anchor_id", "")) == anchor_id:
+				return anchor.duplicate(true)
+	return {}
 
 
 func _enter_place(interaction: Dictionary) -> Dictionary:
@@ -1502,6 +1699,9 @@ func _create_map_canvas() -> Control:
 			continue
 		map.add_child(_create_reserved_anchor_marker(anchor))
 
+	for point in resource_refresh_service.get_available_points():
+		map.add_child(_create_resource_marker(point))
+
 	for npc in FIRST_NPCS:
 		map.add_child(_create_npc_marker(npc))
 
@@ -1535,6 +1735,15 @@ func _create_place_marker(place: Dictionary) -> Node2D:
 	elif place_id == "place_town_start":
 		marker.add_child(_create_sprite("PlazaFlag", Vector2(building_size.x * 0.28, -building_size.y * 0.22), Vector2(14, 26), "plaza_flag"))
 
+	return marker
+
+
+func _create_resource_marker(point: Dictionary) -> Node2D:
+	var marker := Node2D.new()
+	var item_id := str(point.get("item_id", "resource"))
+	marker.name = "resource_%s" % item_id
+	marker.position = _cell_center(point.get("cell", {}))
+	marker.add_child(_create_sprite("ResourceSprite", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.2, MAP_CELL_SIZE * 1.2), "resource_%s" % item_id))
 	return marker
 
 
@@ -1601,10 +1810,13 @@ func _create_player_marker() -> Node2D:
 	var marker := Node2D.new()
 	marker.name = "Player"
 	marker.add_child(_create_sprite("Shadow", Vector2(0, 14), Vector2(22, 7), "shadow"))
-	marker.add_child(_create_sprite("Body", Vector2(0, 4), Vector2(20, 24), "player_body"))
-	marker.add_child(_create_sprite("Head", Vector2(0, -12), Vector2(22, 20), "player_head"))
-	marker.add_child(_create_sprite("FaceDotLeft", Vector2(-4, -13), Vector2(3, 3), "face_dot"))
-	marker.add_child(_create_sprite("FaceDotRight", Vector2(4, -13), Vector2(3, 3), "face_dot"))
+	if _can_resolve_texture_key("player_body"):
+		marker.add_child(_create_sprite("Body", Vector2(0, -4), Vector2(34, 43), "player_body"))
+	else:
+		marker.add_child(_create_sprite("Body", Vector2(0, 4), Vector2(20, 24), "player_body"))
+		marker.add_child(_create_sprite("Head", Vector2(0, -12), Vector2(22, 20), "player_head"))
+		marker.add_child(_create_sprite("FaceDotLeft", Vector2(-4, -13), Vector2(3, 3), "face_dot"))
+		marker.add_child(_create_sprite("FaceDotRight", Vector2(4, -13), Vector2(3, 3), "face_dot"))
 	return marker
 
 
@@ -1649,7 +1861,7 @@ func interact_with_npc(npc_id: String) -> Dictionary:
 		greeting_result["network_used"] = false
 		return greeting_result
 
-	var daily_result: Dictionary = daily_request_service.interact_for_npc(npc_id)
+	var daily_result: Dictionary = _interact_for_visible_daily_request(npc_id)
 	if bool(daily_result.get("handled", false)):
 		var daily_text := str(daily_result.get("text", ""))
 		var daily_display_name := _npc_display_name(npc_id)
@@ -1717,6 +1929,23 @@ func interact_with_npc(npc_id: String) -> Dictionary:
 	}
 
 
+func _interact_for_visible_daily_request(npc_id: String) -> Dictionary:
+	var request_id := _visible_daily_request_id_for_npc(npc_id)
+	if not request_id.is_empty() and daily_request_service.has_method("interact_for_request"):
+		return daily_request_service.interact_for_request(request_id)
+	return daily_request_service.interact_for_npc(npc_id)
+
+
+func _visible_daily_request_id_for_npc(npc_id: String) -> String:
+	match npc_id:
+		"story_bear":
+			return "daily_story_bear_find_bear_corner_001"
+		"bus_helper":
+			return "daily_bus_helper_taxi_spot_001"
+		_:
+			return ""
+
+
 func _map_anchor_letters() -> Array[String]:
 	var letters: Array[String] = []
 	for anchor in world_map.get("memory_anchors", []):
@@ -1737,9 +1966,13 @@ func _create_sprite(sprite_name: String, sprite_position: Vector2, sprite_size: 
 	return sprite
 
 
-func _get_texture(texture_key: String) -> ImageTexture:
+func _get_texture(texture_key: String) -> Texture2D:
 	if _texture_cache.has(texture_key):
 		return _texture_cache[texture_key]
+	var resolved_texture := _get_resolved_asset_texture(texture_key)
+	if resolved_texture != null:
+		_texture_cache[texture_key] = resolved_texture
+		return resolved_texture
 	var colors := _texture_colors(texture_key)
 	var image := Image.create(8, 8, false, Image.FORMAT_RGBA8)
 	image.fill(colors.get("fill", Color.WHITE))
@@ -1758,6 +1991,42 @@ func _get_texture(texture_key: String) -> ImageTexture:
 	var texture := ImageTexture.create_from_image(image)
 	_texture_cache[texture_key] = texture
 	return texture
+
+
+func _can_resolve_texture_key(texture_key: String) -> bool:
+	var spec: Dictionary = _logical_asset_texture_keys.get(texture_key, {})
+	if spec.is_empty():
+		return false
+	var resolved: Dictionary = AssetResolverScript.resolve_asset(
+		AssetResolverScript.DEFAULT_THEME_ID,
+		str(spec.get("category", "")),
+		str(spec.get("asset_id", ""))
+	)
+	return resolved.get("ok", false) and FileAccess.file_exists(str(resolved.get("placeholder_path", "")))
+
+
+func _get_resolved_asset_texture(texture_key: String) -> Texture2D:
+	var spec: Dictionary = _logical_asset_texture_keys.get(texture_key, {})
+	if spec.is_empty():
+		return null
+	var resolved: Dictionary = AssetResolverScript.resolve_asset(
+		AssetResolverScript.DEFAULT_THEME_ID,
+		str(spec.get("category", "")),
+		str(spec.get("asset_id", ""))
+	)
+	if not resolved.get("ok", false):
+		return null
+	var asset_path := str(resolved.get("placeholder_path", ""))
+	if not FileAccess.file_exists(asset_path):
+		return null
+	var loaded_texture := ResourceLoader.load(asset_path) as Texture2D
+	if loaded_texture != null:
+		return loaded_texture
+	var image := Image.new()
+	var load_error := image.load(asset_path)
+	if load_error != OK:
+		return null
+	return ImageTexture.create_from_image(image)
 
 
 func _texture_colors(texture_key: String) -> Dictionary:

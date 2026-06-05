@@ -487,6 +487,50 @@
       "place_id": "place_supermarket",
       "cell": { "x": 24, "y": 9 },
       "action": "enter_supermarket"
+    },
+    {
+      "interaction_id": "p1_entry_story_bear_bookshop_door",
+      "place_id": "place_town_start",
+      "cell": { "x": 12, "y": 6 },
+      "action": "look_p1_return_entry",
+      "entry_label": "Bookshop 门口",
+      "entry_kind": "bookshop_door",
+      "npc_id": "story_bear",
+      "linked_anchor_id": "anchor_b_bear",
+      "text": "书店门口很安静，故事熊在里面留了一盏小灯。"
+    },
+    {
+      "interaction_id": "p1_entry_story_bear_corner",
+      "place_id": "place_town_start",
+      "cell": { "x": 13, "y": 7 },
+      "action": "look_p1_return_entry",
+      "entry_label": "Bear Corner",
+      "entry_kind": "bear_corner",
+      "npc_id": "story_bear",
+      "linked_anchor_id": "anchor_b_bear",
+      "text": "熊形书牌记住了你的脚步声。故事可以慢慢读。"
+    },
+    {
+      "interaction_id": "p1_entry_bus_helper_stop_sign",
+      "place_id": "place_town_start",
+      "cell": { "x": 32, "y": 11 },
+      "action": "look_p1_return_entry",
+      "entry_label": "Bus Stop 站牌",
+      "entry_kind": "bus_stop_sign",
+      "npc_id": "bus_helper",
+      "linked_anchor_id": "anchor_t_taxi",
+      "text": "站牌就在这里等风，我们只在站牌旁边看看。"
+    },
+    {
+      "interaction_id": "p1_entry_bus_helper_taxi_marker",
+      "place_id": "place_town_start",
+      "cell": { "x": 31, "y": 10 },
+      "action": "look_p1_return_entry",
+      "entry_label": "Taxi marker",
+      "entry_kind": "taxi_marker",
+      "npc_id": "bus_helper",
+      "linked_anchor_id": "anchor_t_taxi",
+      "text": "黄色小标记还在，车站看起来很安心。"
     }
   ]
 }

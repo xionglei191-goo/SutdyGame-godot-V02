@@ -201,5 +201,119 @@
 				"review_path": "Pass the Watch sign, then look at the home wall where the decoration hangs."
 			}
 		}
+	],
+	"shop_rotations": [
+		{
+			"rotation_id": "shop_rotation_day_001",
+			"day_key": "local_day_001",
+			"theme": "晴天散步小篮",
+			"weather_activity_corner": {
+				"weather_event_id": "event_weather_sunny_soft_001",
+				"text": "小店角落挂着晴天风铃，只是今天的小装饰。",
+				"slot_hint": "活动角不覆盖常驻家具"
+			},
+			"offers": [
+				{"item_id": "wooden_chair", "rotation_tier": "P0", "slot": "常驻家具"},
+				{"item_id": "pet_bowl", "rotation_tier": "P0", "slot": "Sunny 用品"},
+				{"item_id": "branch", "rotation_tier": "P0", "slot": "材料补充"},
+				{"item_id": "small_table", "rotation_tier": "P1", "slot": "散步后的小角落"}
+			]
+		},
+		{
+			"rotation_id": "shop_rotation_day_002",
+			"day_key": "local_day_002",
+			"theme": "小店擦窗日",
+			"weather_activity_corner": {
+				"weather_event_id": "event_weather_breezy_kite_001",
+				"text": "门口小篮子的布角轻轻动，像在和风打招呼。",
+				"slot_hint": "活动角不覆盖常驻家具"
+			},
+			"offers": [
+				{"item_id": "wooden_chair", "rotation_tier": "P0", "slot": "常驻家具"},
+				{"item_id": "pet_bowl", "rotation_tier": "P0", "slot": "Sunny 用品"},
+				{"item_id": "flower_pot", "rotation_tier": "P1", "slot": "窗边小物"},
+				{"item_id": "flower", "rotation_tier": "P1", "slot": "小花补充"}
+			]
+		},
+		{
+			"rotation_id": "shop_rotation_day_003",
+			"day_key": "local_day_003",
+			"theme": "Sunny 小屋日",
+			"weather_activity_corner": {
+				"weather_event_id": "event_weather_sunny_soft_001",
+				"text": "窗边有一小块阳光，Sunny 用品看起来暖暖的。",
+				"slot_hint": "活动角不覆盖常驻家具"
+			},
+			"offers": [
+				{"item_id": "wooden_chair", "rotation_tier": "P0", "slot": "常驻家具"},
+				{"item_id": "pet_bowl", "rotation_tier": "P0", "slot": "Sunny 用品"},
+				{"item_id": "sunny_bed", "rotation_tier": "P0", "slot": "Sunny 小床"},
+				{"item_id": "soft_rug", "rotation_tier": "P1", "slot": "晒太阳地毯"}
+			]
+		},
+		{
+			"rotation_id": "shop_rotation_day_004",
+			"day_key": "local_day_004",
+			"theme": "故事角安静日",
+			"weather_activity_corner": {
+				"weather_event_id": "event_weather_light_rain_001",
+				"text": "雨滴贴纸放在小角落，像一页安静的小故事。",
+				"slot_hint": "活动角不覆盖常驻家具"
+			},
+			"offers": [
+				{"item_id": "wooden_chair", "rotation_tier": "P0", "slot": "常驻家具"},
+				{"item_id": "pet_bowl", "rotation_tier": "P0", "slot": "Sunny 用品"},
+				{"item_id": "branch", "rotation_tier": "P0", "slot": "书签材料"},
+				{"item_id": "wall_decoration", "rotation_tier": "P1", "slot": "墙上小故事"}
+			]
+		},
+		{
+			"rotation_id": "shop_rotation_day_005",
+			"day_key": "local_day_005",
+			"theme": "站牌慢游日",
+			"weather_activity_corner": {
+				"weather_event_id": "event_weather_breezy_kite_001",
+				"text": "微风飘带挂在活动角，只是轻轻陪小镇晃一晃。",
+				"slot_hint": "活动角不覆盖常驻家具"
+			},
+			"offers": [
+				{"item_id": "wooden_chair", "rotation_tier": "P0", "slot": "常驻家具"},
+				{"item_id": "pet_bowl", "rotation_tier": "P0", "slot": "Sunny 用品"},
+				{"item_id": "stone", "rotation_tier": "P1", "slot": "路边小石子"},
+				{"item_id": "small_table", "rotation_tier": "P1", "slot": "等车小桌"}
+			]
+		},
+		{
+			"rotation_id": "shop_rotation_day_006",
+			"day_key": "local_day_006",
+			"theme": "雨后亮亮日",
+			"weather_activity_corner": {
+				"weather_event_id": "event_weather_after_rain_001",
+				"text": "雨后小贴纸亮了一点，看看就很舒服。",
+				"slot_hint": "活动角不覆盖常驻家具"
+			},
+			"offers": [
+				{"item_id": "wooden_chair", "rotation_tier": "P0", "slot": "常驻家具"},
+				{"item_id": "pet_bowl", "rotation_tier": "P0", "slot": "Sunny 用品"},
+				{"item_id": "flower", "rotation_tier": "P1", "slot": "雨后小花"},
+				{"item_id": "wall_decoration", "rotation_tier": "P2", "slot": "雨后小纪念"}
+			]
+		},
+		{
+			"rotation_id": "shop_rotation_day_007",
+			"day_key": "local_day_007",
+			"theme": "小镇整理日",
+			"weather_activity_corner": {
+				"weather_event_id": "event_weather_light_rain_001",
+				"text": "小雨天的活动角很安静，适合慢慢看小物。",
+				"slot_hint": "活动角不覆盖常驻家具"
+			},
+			"offers": [
+				{"item_id": "wooden_chair", "rotation_tier": "P0", "slot": "常驻家具"},
+				{"item_id": "pet_bowl", "rotation_tier": "P0", "slot": "Sunny 用品"},
+				{"item_id": "sunny_bed", "rotation_tier": "P0", "slot": "Sunny 小床"},
+				{"item_id": "soft_rug", "rotation_tier": "P1", "slot": "整理小地毯"}
+			]
+		}
 	]
 }

@@ -32,6 +32,16 @@
 			"review_path": "Walk to the Taxi Stop, pick out the stone, then return to Story Bear."
 		},
 		{
+			"story_id": "story_chair_clock_cozy_time",
+			"word": "chair",
+			"letter": "C",
+			"core_anchor_id": "anchor_c_clock",
+			"world_place_id": "place_home",
+			"story_memory": "The Clock corner ticks softly while a wooden chair waits for cozy home time.",
+			"visual_hook": "a small chair under the Clock with warm morning light",
+			"review_path": "Look at the Clock corner, then return home and sit the chair nearby."
+		},
+		{
 			"story_id": "story_pet_bowl_orange_round",
 			"word": "bowl",
 			"letter": "O",

@@ -81,6 +81,10 @@ func _init() -> void:
 	_check_content_theme_review_stubs()
 	_check_content_contracts()
 	_check_playable_ui_operations()
+	_check_v028_daily_life_slice()
+	_check_v029_weekly_return_smoke()
+	_check_v0210_p1_return_smoke()
+	_check_v0211_weather_slice_smoke()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -125,6 +129,42 @@ func _check_asset_resolver() -> void:
 	var landmark: Dictionary = AssetResolverScript.get_landmark_asset("landmark_home_placeholder")
 	_expect(landmark.get("ok", false), "AssetResolver should resolve home landmark")
 	_expect(str(landmark.get("placeholder_path", "")).begins_with("placeholder://"), "AssetResolver must return logical placeholder path")
+	_check_polish_p0_asset_resolver_records()
+
+
+func _check_polish_p0_asset_resolver_records() -> void:
+	var theme_id := "theme_sunshine_town_placeholder"
+	var required_assets := [
+		{"category": "place_assets", "asset_id": "place.town_plaza.day"},
+		{"category": "place_assets", "asset_id": "place.home.exterior"},
+		{"category": "place_assets", "asset_id": "place.shop.exterior"},
+		{"category": "place_assets", "asset_id": "place.road.main"},
+		{"category": "place_assets", "asset_id": "place.resource.branch"},
+		{"category": "character_assets", "asset_id": "character.player.standing"},
+		{"category": "character_assets", "asset_id": "character.mina.standing"},
+		{"category": "pet_assets", "asset_id": "pet.sunny.standing"},
+		{"category": "ui_icon_assets", "asset_id": "ui_icon.coin"},
+		{"category": "ui_icon_assets", "asset_id": "ui_icon.bag"},
+	]
+	var records: Array = AssetResolverScript.get_asset_acceptance_records(theme_id)
+	for spec in required_assets:
+		var category := str(spec.get("category", ""))
+		var asset_id := str(spec.get("asset_id", ""))
+		var resolved: Dictionary = AssetResolverScript.resolve_asset(theme_id, category, asset_id)
+		_expect(resolved.get("ok", false), "P0 polish asset should resolve in headless runner: %s" % asset_id)
+		var asset_path := str(resolved.get("placeholder_path", ""))
+		_expect(asset_path.begins_with("res://assets/art/"), "P0 polish asset should map to project art: %s" % asset_id)
+		_expect(FileAccess.file_exists(asset_path), "P0 polish asset file should exist: %s" % asset_path)
+		var record: Dictionary = _asset_acceptance_record_for(records, asset_id)
+		_expect(str(record.get("status", "")) == "production", "P0 polish asset should be production: %s" % asset_id)
+		_expect(str(record.get("acceptance_result", "")) == "pass", "P0 polish asset should have pass result: %s" % asset_id)
+
+
+func _asset_acceptance_record_for(records: Array, asset_id: String) -> Dictionary:
+	for record in records:
+		if record is Dictionary and str(record.get("logical_asset_id", "")) == asset_id:
+			return record
+	return {}
 
 
 func _check_service_loop_smoke() -> void:
@@ -204,6 +244,7 @@ func _check_daily_requests() -> void:
 	var resources = ResourceRefreshServiceScript.new(service, inventory, day)
 	var today = TodayStatusServiceScript.new(day)
 	var daily = DailyRequestServiceScript.new(service, inventory, day)
+	var shop = LifeShopServiceScript.new(service, inventory)
 	_expect(greetings.is_loaded(), "DailyGreetingService should load greeting data")
 	_expect(resources.is_loaded(), "ResourceRefreshService should load resource data")
 	_expect(today.is_loaded(), "TodayStatusService should load today status data")
@@ -224,7 +265,78 @@ func _check_daily_requests() -> void:
 	day.set_day_key_for_test("2026-06-05")
 	_expect(resources.collect_resource("resource_branch_bear_corner").get("ok", false), "daily resources should refresh on next day key")
 	_expect(str(today.get_today_status().get("hud_text", "")).contains("Sunny"), "today status should expose a soft Sunny hint")
+	_expect(str(today.get_today_status().get("weather_event_id", "")).begins_with("event_weather_"), "today status should expose a weather event id")
+	_check_weekly_status_and_shop_rotations(shop)
 	_expect(service.clear_for_test(), "daily request save should clean up")
+
+
+func _check_weekly_status_and_shop_rotations(shop) -> void:
+	var seen_events: Dictionary = {}
+	var seen_weather_events: Dictionary = {}
+	var seen_weather_greetings: Dictionary = {}
+	var seen_p2 := false
+	for day_index in range(1, 8):
+		var day_key := "local_day_%03d" % day_index
+		var weekly_day = LocalDayServiceScript.new(day_key)
+		var weekly_today = TodayStatusServiceScript.new(weekly_day)
+		var weekly_greetings = DailyGreetingServiceScript.new(SaveServiceScript.new("user://headless_runner_weather_greetings_%s.json" % day_key), weekly_day)
+		var weekly_resources = ResourceRefreshServiceScript.new(SaveServiceScript.new("user://headless_runner_weather_resources_%s.json" % day_key), InventoryServiceScript.new(SaveServiceScript.new("user://headless_runner_weather_resources_%s.json" % day_key)), weekly_day)
+		_expect(weekly_today.is_loaded(), "weekly today status should load: %s" % day_key)
+		var status: Dictionary = weekly_today.get_today_status()
+		_expect(status.get("ok", false), "weekly today status should resolve: %s" % day_key)
+		_expect(str(status.get("day_key", "")) == day_key, "weekly today status should keep day key: %s" % day_key)
+		_expect(str(status.get("anchor_hint", "")).length() > 0, "weekly today status should include anchor hint: %s" % day_key)
+		_expect(str(status.get("hud_text", "")).contains(str(status.get("today_status_text", ""))), "weekly today status should include weather HUD text: %s" % day_key)
+		seen_events[str(status.get("event", ""))] = true
+		var weather_event_id := str(status.get("weather_event_id", ""))
+		seen_weather_events[weather_event_id] = true
+		var weather_greeting: Dictionary = weekly_greetings.interact_for_npc(_weather_test_npc(weather_event_id))
+		_expect(str(weather_greeting.get("weather_event_id", "")) == weather_event_id, "weekly weather greeting should match event: %s" % day_key)
+		_expect(str(weather_greeting.get("greeting_variant_id", "")).begins_with("weather_"), "weekly weather greeting should use data variant: %s" % day_key)
+		seen_weather_greetings[weather_event_id] = true
+		var available_points: Array = weekly_resources.get_available_points()
+		_expect(available_points.size() >= 3, "weather should not hide baseline resource points: %s" % day_key)
+		for point in available_points:
+			if point is Dictionary:
+				_expect(int((point as Dictionary).get("quantity", 0)) >= 1, "weather should not reduce resource quantity: %s" % day_key)
+		var rotation: Dictionary = shop.get_shop_rotation(str(status.get("shop_rotation_id", "")))
+		_expect(rotation.get("ok", false), "weekly shop rotation should resolve: %s" % day_key)
+		_expect(str(rotation.get("weather_activity_corner", {}).get("weather_event_id", "")) == weather_event_id, "weekly shop activity corner should match weather event: %s" % day_key)
+		_expect(_rotation_has_tier(rotation, "P0"), "weekly shop rotation should keep P0 offers: %s" % day_key)
+		_expect(_rotation_has_item(rotation, "wooden_chair"), "weekly shop rotation should keep chair offer: %s" % day_key)
+		if _rotation_has_tier(rotation, "P2"):
+			seen_p2 = true
+	_expect(seen_events.size() == 7, "weekly status should provide 7 distinct gentle events")
+	_expect(seen_weather_events.size() == 4, "weekly status should cover four P0 weather events")
+	_expect(seen_weather_greetings.size() == 4, "weekly greetings should cover four P0 weather variants")
+	_expect(seen_p2, "weekly shop rotations should include at least one P2 light variant")
+
+
+func _rotation_has_item(rotation: Dictionary, item_id: String) -> bool:
+	for offer in rotation.get("offers", []):
+		if offer is Dictionary and str((offer as Dictionary).get("item_id", "")) == item_id:
+			return true
+	return false
+
+
+func _rotation_has_tier(rotation: Dictionary, tier: String) -> bool:
+	for offer in rotation.get("offers", []):
+		if offer is Dictionary and str((offer as Dictionary).get("rotation_tier", "")) == tier:
+			return true
+	return false
+
+
+func _weather_test_npc(weather_event_id: String) -> String:
+	match weather_event_id:
+		"event_weather_sunny_soft_001":
+			return "pet_buddy"
+		"event_weather_breezy_kite_001":
+			return "bus_helper"
+		"event_weather_after_rain_001":
+			return "mina"
+		"event_weather_light_rain_001":
+			return "story_bear"
+	return "mina"
 
 
 func _check_anchor_interactions() -> void:
@@ -369,6 +481,11 @@ func _collect_visible_text(node: Node) -> String:
 	return " ".join(parts)
 
 
+func _visible_text_for_card(main, card_id: String) -> String:
+	var card: Node = main.find_child(card_id, true, false)
+	return _collect_visible_text(card) if card != null else ""
+
+
 func _check_playable_ui_operations() -> void:
 	var save_path := "user://headless_runner_playable_ui.json"
 	var service := SaveServiceScript.new(save_path)
@@ -443,6 +560,319 @@ func _check_playable_ui_operations() -> void:
 	_expect(main.save_service.clear_for_test(), "playable UI save should clean up")
 	root.remove_child(main)
 	main.queue_free()
+
+
+func _check_v028_daily_life_slice() -> void:
+	var save_path := "user://headless_runner_v028_daily_slice.json"
+	var service := SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.8 daily slice save should clear before scene startup")
+	var main := MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("2026-06-05")
+	root.add_child(main)
+	main.call("_ready")
+
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	_expect(main.move_player_to_cell(Vector2i(14, 10)).get("ok", false), "V02.8 slice should move near Mina")
+	_press_visible_button(interact_button, "V02.8 slice should greet Mina from visible Interact")
+	_press_visible_button(interact_button, "V02.8 slice should start Mina branch request from visible Interact")
+	_expect(str(main.life_status_label.text).contains("树枝"), "V02.8 slice should show Mina branch request")
+
+	_expect(main.move_player_to_cell(Vector2i(13, 6)).get("ok", false), "V02.8 slice should move to branch resource")
+	_press_visible_button(interact_button, "V02.8 slice should collect branch from visible Interact")
+	_expect(main.move_player_to_cell(Vector2i(14, 10)).get("ok", false), "V02.8 slice should return to Mina")
+	_press_visible_button(interact_button, "V02.8 slice should complete Mina request from visible Interact")
+	var after_mina: Dictionary = main.save_service.load_game_state()
+	_expect(int(after_mina.get("coins", 0)) == 6, "V02.8 slice should earn local coins from Mina")
+	_expect(bool(after_mina.get("daily_requests", {}).get("2026-06-05", {}).get("daily_mina_branch_001", {}).get("completed_today", false)), "V02.8 slice should persist Mina completion")
+
+	after_mina["coins"] = 12
+	_expect(main.save_service.save_game_state(after_mina), "V02.8 slice should prepare enough earned local coins for shop")
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.8 slice should move to shop hotspot")
+	_press_visible_button(interact_button, "V02.8 slice should open shop from visible Interact")
+	_press_visible_button(main.find_child("ShopBuyWoodenChairButton", true, false) as Button, "V02.8 slice should buy chair from visible shop button")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) == 1, "V02.8 slice should add bought chair to backpack")
+
+	_press_visible_button(main.find_child("BackpackNavButton", true, false) as Button, "V02.8 slice should open backpack from visible button")
+	var backpack_items := main.find_child("BackpackItems", true, false) as Label
+	_expect(backpack_items != null and str(backpack_items.text).contains("木椅 1"), "V02.8 slice should show bought chair in backpack")
+	_press_visible_button(main.find_child("BackpackNavButton", true, false) as Button, "V02.8 slice should close backpack before home")
+	_press_visible_button(main.find_child("HomeNavButton", true, false) as Button, "V02.8 slice should enter home from visible button")
+	_press_visible_button(main.find_child("HomePlaceWoodenChairButton", true, false) as Button, "V02.8 slice should place chair from visible home button")
+	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() == 1, "V02.8 slice should persist placed chair")
+	var sunny_feedback := main.find_child("SunnyHomeFeedback", true, false) as Label
+	_expect(sunny_feedback != null and str(sunny_feedback.text).contains("Sunny"), "V02.8 slice should show Sunny home feedback")
+
+	_press_visible_button(main.find_child("TownNavButton", true, false) as Button, "V02.8 slice should return to town")
+	for anchor_spec in [
+		{"cell": Vector2i(7, 3), "card": "card_c_clock_core", "word": "Clock"},
+		{"cell": Vector2i(23, 5), "card": "card_o_orange_core", "word": "Orange"},
+		{"cell": Vector2i(17, 2), "card": "card_s_sun_core", "word": "Sun"},
+	]:
+		_expect(main.move_player_to_cell(anchor_spec.get("cell", Vector2i.ZERO)).get("ok", false), "V02.8 slice should move to anchor: %s" % anchor_spec.get("card", ""))
+		_press_visible_button(interact_button, "V02.8 slice should revisit anchor from visible Interact: %s" % anchor_spec.get("card", ""))
+		_expect(bool(main.memory_card_service.get_card_state(str(anchor_spec.get("card", ""))).get("collected", false)), "V02.8 slice should collect anchor album state: %s" % anchor_spec.get("card", ""))
+		_expect(str(main.life_status_label.text).contains(str(anchor_spec.get("word", ""))), "V02.8 slice should show anchor story feedback: %s" % anchor_spec.get("word", ""))
+
+	for forbidden in ["考试", "评分", "课程", "背诵", "倒计时", "失败惩罚", "Godot skeleton", "Loaded places"]:
+		_expect(not _collect_visible_text(main).contains(forbidden), "V02.8 slice visible UI should not contain forbidden text: %s" % forbidden)
+
+	_expect(main.save_service.clear_for_test(), "V02.8 daily slice save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v029_weekly_return_smoke() -> void:
+	var save_path := "user://headless_runner_v029_weekly_return_smoke.json"
+	var service := SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.9 weekly smoke save should clear before scene startup")
+	var main := MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	var seen_events: Dictionary = {}
+	for day_index in range(1, 8):
+		var day_key := "local_day_%03d" % day_index
+		main.set_day_key_for_test(day_key)
+		main.call("_update_today_status")
+
+		var status: Dictionary = main.today_status_service.get_today_status()
+		_expect(status.get("ok", false), "V02.9 weekly smoke should resolve today status: %s" % day_key)
+		_expect(str(status.get("day_key", "")) == day_key, "V02.9 weekly smoke should keep requested day key: %s" % day_key)
+		_expect(str(main.life_status_label.text).contains(str(status.get("event", ""))), "V02.9 weekly smoke HUD should refresh event text: %s" % day_key)
+		_expect(str(main.life_status_label.text).contains(str(status.get("today_status_text", ""))), "V02.11 weather smoke HUD should show weather event text: %s" % day_key)
+		_expect(str(status.get("anchor_hint", "")).length() > 0, "V02.9 weekly smoke should keep A-Z anchor hint: %s" % day_key)
+		seen_events[str(status.get("event", ""))] = true
+
+		var rotation: Dictionary = main.life_shop_service.get_shop_rotation(str(status.get("shop_rotation_id", "")))
+		_expect(rotation.get("ok", false), "V02.9 weekly smoke should resolve shop rotation: %s" % day_key)
+		_expect(_rotation_has_item(rotation, "wooden_chair"), "V02.9 weekly smoke should keep wooden chair visible as P0: %s" % day_key)
+		_expect(_rotation_has_tier(rotation, "P0"), "V02.9 weekly smoke should keep at least one P0 offer: %s" % day_key)
+
+		_complete_visible_mina_weekly_path(main, day_key)
+
+		if day_key == "local_day_004":
+			_expect(str(status.get("primary_npc", "")) == "story_bear", "V02.9 story day should stay represented in status data")
+			_expect(str(status.get("anchor_hint", "")).contains("B Bear"), "V02.9 story day should keep B Bear as a soft hint")
+		elif day_key == "local_day_005":
+			_expect(str(status.get("primary_npc", "")) == "bus_helper", "V02.9 bus day should stay represented in status data")
+			_expect(str(status.get("anchor_hint", "")).contains("T Taxi"), "V02.9 bus day should keep T Taxi as a soft hint")
+
+	var state: Dictionary = main.save_service.load_game_state()
+	state["coins"] = max(12, int(state.get("coins", 0)))
+	_expect(main.save_service.save_game_state(state), "V02.9 weekly smoke should prepare gentle coins for final shop/home check")
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.9 weekly smoke should move to shop hotspot after 7 days")
+	_press_visible_button(interact_button, "V02.9 weekly smoke should open shop shelf after 7 days")
+	_expect((main.find_child("ShopPanel", true, false) as Control).visible, "V02.9 weekly smoke should show visible shop panel after 7 days")
+	_press_visible_button(main.find_child("ShopBuyWoodenChairButton", true, false) as Button, "V02.9 weekly smoke should buy P0 chair after 7 days")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) >= 1, "V02.9 weekly smoke should add P0 chair to backpack")
+	_press_visible_button(main.find_child("HomeNavButton", true, false) as Button, "V02.9 weekly smoke should open home room")
+	_press_visible_button(main.find_child("HomePlaceWoodenChairButton", true, false) as Button, "V02.9 weekly smoke should place bought chair")
+	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() >= 1, "V02.9 weekly smoke should persist home placement")
+
+	for forbidden in ["Godot skeleton", "Loaded places", "课程", "测验", "考试", "评分", "背诵", "倒计时", "失败惩罚", "陌生人带走", "独自远行", "赶时间"]:
+		_expect(not _collect_visible_text(main).contains(forbidden), "V02.9 weekly smoke visible UI should not contain forbidden text: %s" % forbidden)
+	_expect(seen_events.size() == 7, "V02.9 weekly smoke should expose 7 distinct gentle day events")
+
+	_expect(main.save_service.clear_for_test(), "V02.9 weekly smoke save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0210_p1_return_entries() -> void:
+	var save_path := "user://headless_runner_v0210_p1_return_entries.json"
+	var service := SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.10 P1 return save should clear before scene startup")
+	var main := MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_004")
+	root.add_child(main)
+	main.call("_ready")
+
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	for entry in [
+		{"id": "p1_entry_story_bear_bookshop_door", "cell": Vector2i(12, 6), "kind": "bookshop_door", "text": "书店门口", "npc": "story_bear", "anchor": "anchor_b_bear", "card": "card_b_bear_core"},
+		{"id": "p1_entry_story_bear_corner", "cell": Vector2i(13, 7), "kind": "bear_corner", "text": "熊形书牌", "npc": "story_bear", "anchor": "anchor_b_bear", "card": "card_b_bear_core"},
+		{"id": "p1_entry_bus_helper_stop_sign", "cell": Vector2i(32, 11), "kind": "bus_stop_sign", "text": "站牌", "npc": "bus_helper", "anchor": "anchor_t_taxi", "card": "card_t_taxi_core"},
+		{"id": "p1_entry_bus_helper_taxi_marker", "cell": Vector2i(31, 10), "kind": "taxi_marker", "text": "黄色小标记", "npc": "bus_helper", "anchor": "anchor_t_taxi", "card": "card_t_taxi_core"},
+	]:
+		_expect(main.find_child(str(entry.get("id", "")), true, false) != null, "V02.10 P1 entry hotspot should be visible: %s" % entry.get("id", ""))
+		_expect(main.move_player_to_cell(entry.get("cell", Vector2i.ZERO)).get("ok", false), "V02.10 P1 return should move to visible hotspot: %s" % entry.get("id", ""))
+		_press_visible_button(interact_button, "V02.10 P1 return should trigger through visible Interact: %s" % entry.get("id", ""))
+		_expect(str(main.life_status_label.text).contains(str(entry.get("text", ""))), "V02.10 P1 return HUD should show gentle feedback: %s" % entry.get("id", ""))
+		var state: Dictionary = main.save_service.load_game_state()
+		var saved: Dictionary = state.get("p1_return_entries", {}).get(str(entry.get("id", "")), {})
+		_expect(bool(saved.get("seen", false)), "V02.10 P1 return should persist seen state: %s" % entry.get("id", ""))
+		_expect(str(saved.get("entry_kind", "")) == str(entry.get("kind", "")), "V02.10 P1 return should persist entry kind: %s" % entry.get("id", ""))
+		_expect(str(saved.get("npc_id", "")) == str(entry.get("npc", "")), "V02.10 P1 return should bind resident: %s" % entry.get("id", ""))
+		_expect(str(saved.get("linked_anchor_id", "")) == str(entry.get("anchor", "")), "V02.10 P1 return should preserve A-Z anchor link: %s" % entry.get("id", ""))
+		var card_state: Dictionary = main.memory_card_service.get_card_state(str(entry.get("card", "")))
+		_expect(bool(card_state.get("seen", false)), "V02.10 P1 return should mark linked card seen: %s" % entry.get("card", ""))
+		_expect(bool(card_state.get("heard", false)), "V02.10 P1 return should mark linked card heard: %s" % entry.get("card", ""))
+		_expect(bool(card_state.get("collected", false)), "V02.10 P1 return should mark linked card collected: %s" % entry.get("card", ""))
+
+	_expect(main.open_memory_album().get("ok", false), "V02.10 P1 return album should open after linked card records")
+	_expect(_visible_text_for_card(main, "card_b_bear_core").contains("已收藏"), "V02.10 P1 return album should show B Bear collected")
+	_expect(_visible_text_for_card(main, "card_t_taxi_core").contains("已收藏"), "V02.10 P1 return album should show T Taxi collected")
+	_expect(not _collect_visible_text(main).contains("正确率"), "V02.10 P1 return album should not show accuracy wording")
+	_expect(not _collect_visible_text(main).contains("等级"), "V02.10 P1 return album should not show level wording")
+	main.close_memory_album()
+
+	_expect((main.find_child("ShopPanel", true, false) as Control) != null and not (main.find_child("ShopPanel", true, false) as Control).visible, "V02.10 P1 return should not open shop panel")
+	_expect(int(main.save_service.load_game_state().get("coins", 0)) == 0, "V02.10 P1 return should not award coins")
+	for forbidden in ["阅读测验", "测验", "考试", "评分", "背诵", "倒计时", "赶时间", "陌生人带走", "独自远行", "上车", "错过班车"]:
+		_expect(not _collect_visible_text(main).contains(forbidden), "V02.10 P1 return visible UI should not contain forbidden text: %s" % forbidden)
+
+	_expect(main.save_service.clear_for_test(), "V02.10 P1 return save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0210_p1_return_smoke() -> void:
+	_check_v0210_p1_return_entries()
+	_check_v0210_p1_light_returns()
+
+
+func _check_v0210_p1_light_returns() -> void:
+	var save_path := "user://headless_runner_v0210_p1_light_returns.json"
+	var service := SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.10 P1 light return save should clear before scene startup")
+	var main := MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_004")
+	root.add_child(main)
+	main.call("_ready")
+
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	_expect(main.move_player_to_cell(Vector2i(12, 7)).get("ok", false), "V02.10 P1 light return should move near Story Bear")
+	_press_visible_button(interact_button, "V02.10 P1 light return should greet Story Bear")
+	_press_visible_button(interact_button, "V02.10 P1 light return should start Story Bear request")
+	_expect(str(main.life_status_label.text).contains("Bear Corner"), "V02.10 Story Bear request should mention Bear Corner")
+	_expect(main.move_player_to_cell(Vector2i(13, 7)).get("ok", false), "V02.10 P1 light return should move to Bear Corner")
+	_press_visible_button(interact_button, "V02.10 P1 light return should see Bear Corner")
+	_expect(bool(main.memory_card_service.get_card_state("card_b_bear_core").get("collected", false)), "V02.10 Story Bear P1 path should collect B Bear album card")
+	_expect(main.move_player_to_cell(Vector2i(12, 7)).get("ok", false), "V02.10 P1 light return should return to Story Bear")
+	_press_visible_button(interact_button, "V02.10 P1 light return should complete Story Bear request")
+	var story_state: Dictionary = main.save_service.load_game_state()
+	_expect(bool(story_state.get("daily_requests", {}).get("local_day_004", {}).get("daily_story_bear_find_bear_corner_001", {}).get("completed_today", false)), "V02.10 Story Bear P1 request should persist completion")
+	_expect(int(story_state.get("coins", 0)) == 5, "V02.10 Story Bear P1 request should award gentle coins once")
+
+	main.set_day_key_for_test("local_day_005")
+	main.call("_update_today_status")
+	_expect(main.move_player_to_cell(Vector2i(32, 12)).get("ok", false), "V02.10 P1 light return should move near Bus Helper")
+	_press_visible_button(interact_button, "V02.10 P1 light return should greet Bus Helper")
+	_press_visible_button(interact_button, "V02.10 P1 light return should start Bus Helper request")
+	_expect(str(main.life_status_label.text).contains("taxi"), "V02.10 Bus Helper request should mention taxi marker")
+	_expect(main.move_player_to_cell(Vector2i(31, 10)).get("ok", false), "V02.10 P1 light return should move to Taxi marker")
+	_press_visible_button(interact_button, "V02.10 P1 light return should see Taxi marker")
+	_expect(bool(main.memory_card_service.get_card_state("card_t_taxi_core").get("collected", false)), "V02.10 Bus Helper P1 path should collect T Taxi album card")
+	_expect(main.move_player_to_cell(Vector2i(32, 12)).get("ok", false), "V02.10 P1 light return should return to Bus Helper")
+	_press_visible_button(interact_button, "V02.10 P1 light return should complete Bus Helper request")
+	var bus_state: Dictionary = main.save_service.load_game_state()
+	_expect(bool(bus_state.get("daily_requests", {}).get("local_day_005", {}).get("daily_bus_helper_taxi_spot_001", {}).get("completed_today", false)), "V02.10 Bus Helper P1 request should persist completion")
+	_expect(int(bus_state.get("coins", 0)) == 11, "V02.10 Bus Helper P1 request should add gentle coins once")
+	_expect(main.open_memory_album().get("ok", false), "V02.10 P1 light return album should open after request paths")
+	_expect(_visible_text_for_card(main, "card_b_bear_core").contains("已收藏"), "V02.10 P1 light return album should show B Bear collected")
+	_expect(_visible_text_for_card(main, "card_t_taxi_core").contains("已收藏"), "V02.10 P1 light return album should show T Taxi collected")
+	_expect(not _collect_visible_text(main).contains("正确率"), "V02.10 P1 light return album should not show accuracy wording")
+	_expect(not _collect_visible_text(main).contains("等级"), "V02.10 P1 light return album should not show level wording")
+	main.close_memory_album()
+
+	for forbidden in ["阅读测验", "测验", "考试", "评分", "背诵", "倒计时", "赶时间", "陌生人带走", "独自远行", "上车", "错过班车"]:
+		_expect(not _collect_visible_text(main).contains(forbidden), "V02.10 P1 light return visible UI should not contain forbidden text: %s" % forbidden)
+
+	_expect(main.save_service.clear_for_test(), "V02.10 P1 light return save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0211_weather_slice_smoke() -> void:
+	var save_path := "user://headless_runner_v0211_weather_slice_smoke.json"
+	var service := SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.11 weather slice save should clear before scene startup")
+	var main := MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	var weather_paths: Array[Dictionary] = [
+		{"day_key": "local_day_001", "event_id": "event_weather_sunny_soft_001", "anchor_id": "anchor_s_sun", "card_id": "card_s_sun_core", "cell": Vector2i(17, 2), "album_tag": "Sunny day."},
+		{"day_key": "local_day_002", "event_id": "event_weather_breezy_kite_001", "anchor_id": "anchor_k_kite", "card_id": "card_k_kite_core", "cell": Vector2i(16, 4), "album_tag": "Windy Kite."},
+		{"day_key": "local_day_004", "event_id": "event_weather_light_rain_001", "anchor_id": "anchor_b_bear", "card_id": "card_b_bear_core", "cell": Vector2i(13, 7), "album_tag": "Light Rain."},
+		{"day_key": "local_day_006", "event_id": "event_weather_after_rain_001", "anchor_id": "anchor_u_umbrella", "card_id": "card_u_umbrella_core", "cell": Vector2i(32, 9), "album_tag": "After Rain."},
+	]
+	var seen_weather_events: Dictionary = {}
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	for path in weather_paths:
+		var day_key := str(path.get("day_key", ""))
+		main.set_day_key_for_test(day_key)
+		main.call("_update_today_status")
+		var status: Dictionary = main.today_status_service.get_today_status()
+		var weather_event_id := str(status.get("weather_event_id", ""))
+		_expect(status.get("ok", false), "V02.11 weather slice should resolve today status: %s" % day_key)
+		_expect(weather_event_id == str(path.get("event_id", "")), "V02.11 weather slice should use expected event: %s" % day_key)
+		_expect(str(main.life_status_label.text).contains(str(status.get("today_status_text", ""))), "V02.11 weather slice HUD should show weather text: %s" % day_key)
+		seen_weather_events[weather_event_id] = true
+
+		var rotation: Dictionary = main.life_shop_service.get_shop_rotation(str(status.get("shop_rotation_id", "")))
+		_expect(rotation.get("ok", false), "V02.11 weather slice should resolve shop rotation: %s" % day_key)
+		_expect(str(rotation.get("weather_activity_corner", {}).get("weather_event_id", "")) == weather_event_id, "V02.11 weather slice shop corner should match weather: %s" % day_key)
+		_expect(_rotation_has_item(rotation, "wooden_chair"), "V02.11 weather slice should keep P0 chair: %s" % day_key)
+		_expect(_rotation_has_tier(rotation, "P0"), "V02.11 weather slice should keep P0 offers: %s" % day_key)
+
+		_complete_visible_mina_weekly_path(main, day_key)
+
+		_expect(main.move_player_to_cell(path.get("cell", Vector2i.ZERO)).get("ok", false), "V02.11 weather slice should move to weather clue: %s" % path.get("anchor_id", ""))
+		_press_visible_button(interact_button, "V02.11 weather slice should trigger weather clue: %s" % path.get("anchor_id", ""))
+		_expect(str(main.life_status_label.text).contains("天气相册"), "V02.11 weather slice clue HUD should mention album: %s" % path.get("anchor_id", ""))
+		var record_id := "%s:%s" % [weather_event_id, str(path.get("anchor_id", ""))]
+		var record: Dictionary = main.save_service.load_game_state().get("weather_album_clues", {}).get(record_id, {})
+		_expect(bool(record.get("seen", false)), "V02.11 weather slice should persist clue record: %s" % record_id)
+		_expect(str(record.get("album_tag", "")) == str(path.get("album_tag", "")), "V02.11 weather slice should persist album tag: %s" % record_id)
+		var card_state: Dictionary = main.memory_card_service.get_card_state(str(path.get("card_id", "")))
+		_expect(bool(card_state.get("seen", false)) and bool(card_state.get("collected", false)), "V02.11 weather slice should collect weather card: %s" % path.get("card_id", ""))
+
+	_expect(seen_weather_events.size() == 4, "V02.11 weather slice should cover four P0 weather events")
+	_expect(main.open_memory_album().get("ok", false), "V02.11 weather slice should open album after weather clues")
+	for path in weather_paths:
+		_expect(_visible_text_for_card(main, str(path.get("card_id", ""))).contains("已收藏"), "V02.11 weather slice album should show collected card: %s" % path.get("card_id", ""))
+	main.close_memory_album()
+
+	var state: Dictionary = main.save_service.load_game_state()
+	state["coins"] = max(12, int(state.get("coins", 0)))
+	_expect(main.save_service.save_game_state(state), "V02.11 weather slice should prepare coins for shop/home")
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.11 weather slice should move to shop")
+	_press_visible_button(interact_button, "V02.11 weather slice should open shop")
+	_expect((main.find_child("ShopPanel", true, false) as Control).visible, "V02.11 weather slice should show shop panel")
+	_press_visible_button(main.find_child("ShopBuyWoodenChairButton", true, false) as Button, "V02.11 weather slice should buy P0 chair")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) >= 1, "V02.11 weather slice should add chair")
+	_press_visible_button(main.find_child("HomeNavButton", true, false) as Button, "V02.11 weather slice should open home")
+	_press_visible_button(main.find_child("HomePlaceWoodenChairButton", true, false) as Button, "V02.11 weather slice should place chair")
+	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() >= 1, "V02.11 weather slice should persist home placement")
+	for forbidden in ["Godot skeleton", "Loaded places", "课程", "测验", "考试", "评分", "背诵", "倒计时", "失败惩罚", "陌生人带走", "独自远行", "赶时间", "打卡", "补签", "连续登录", "错过"]:
+		_expect(not _collect_visible_text(main).contains(forbidden), "V02.11 weather slice visible UI should not contain forbidden text: %s" % forbidden)
+
+	_expect(main.save_service.clear_for_test(), "V02.11 weather slice save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _complete_visible_mina_weekly_path(main, day_key: String) -> void:
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	_expect(main.move_player_to_cell(Vector2i(14, 10)).get("ok", false), "V02.9 weekly smoke should move near Mina: %s" % day_key)
+	_press_visible_button(interact_button, "V02.9 weekly smoke should greet or advance Mina: %s" % day_key)
+	_press_visible_button(interact_button, "V02.9 weekly smoke should start Mina request: %s" % day_key)
+	_expect(str(main.life_status_label.text).contains("树枝"), "V02.9 weekly smoke should show Mina branch request: %s" % day_key)
+	_expect(main.move_player_to_cell(Vector2i(13, 6)).get("ok", false), "V02.9 weekly smoke should move to branch resource: %s" % day_key)
+	_press_visible_button(interact_button, "V02.9 weekly smoke should collect branch: %s" % day_key)
+	_expect(main.move_player_to_cell(Vector2i(14, 10)).get("ok", false), "V02.9 weekly smoke should return to Mina: %s" % day_key)
+	_press_visible_button(interact_button, "V02.9 weekly smoke should complete Mina request: %s" % day_key)
+	var daily_state: Dictionary = main.save_service.load_game_state().get("daily_requests", {}).get(day_key, {}).get("daily_mina_branch_001", {})
+	_expect(bool(daily_state.get("completed_today", false)), "V02.9 weekly smoke should persist Mina completion by day: %s" % day_key)
 
 
 func _press_visible_button(button: Button, message: String) -> void:

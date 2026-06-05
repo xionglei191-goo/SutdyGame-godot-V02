@@ -30,6 +30,21 @@ func get_item(item_id: String) -> Dictionary:
 	return result
 
 
+func get_catalog_data() -> Dictionary:
+	var rotations: Array = []
+	var file := FileAccess.open(catalog_path, FileAccess.READ)
+	if file == null:
+		return {"ok": false, "reason": "unable_to_open_catalog", "shop_rotations": []}
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if not parsed is Dictionary:
+		return {"ok": false, "reason": "invalid_catalog", "shop_rotations": []}
+	var data: Dictionary = parsed
+	for rotation in data.get("shop_rotations", []):
+		if rotation is Dictionary:
+			rotations.append((rotation as Dictionary).duplicate(true))
+	return {"ok": true, "shop_rotations": rotations}
+
+
 func get_inventory() -> Dictionary:
 	return save_service.load_game_state().get("inventory", {}).duplicate(true)
 

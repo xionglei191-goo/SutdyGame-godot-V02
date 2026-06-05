@@ -2,8 +2,8 @@
 
 > 最后更新：2026-06-05
 > 状态事实来源：本文件
-> 当前阶段：V02.7A 美术基线重建
-> 当前里程碑：工程可玩闭环已完成，先重建可信 Sunshine Town 首屏，再推进每日小镇生活纵切
+> 当前阶段：V02.11 天气与小镇轻事件纵切
+> 当前里程碑：V02.11 天气与小镇轻事件纵切已通过，下一步由 PM 建立后续阶段路线
 
 ## 维护规则
 
@@ -19,11 +19,11 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 54：V02.7A 美术基线重建规划与启动 |
-| 本轮目标 | 重评现有 P0/P1 素材状态，固定 Sunshine Town 首屏视觉目标，避免把占位资产误当最终美术 |
-| 进行中 | V02-ARTBASE-001 首屏视觉目标与资产降级审计 |
-| Ready | V02-ARTBASE-001 首屏视觉目标与资产降级审计 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架、Round 48 真实可玩路径修复、Round 49 美术与策划路线更新、V02.5 美术素材生产线文档清单、V02.6 策划内容生产线、V02-POLISH-001、V02-POLISH-002、V02-POLISH-003、V02-POLISH-004 |
+| 当前轮次 | Round 72：V02.11 天气纵切 smoke 与截图 |
+| 本轮目标 | 收口 V02-WEATHER-004：多天气 day_key 玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图 |
+| 进行中 | 无 |
+| Ready | 无 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架、Round 48 真实可玩路径修复、Round 49 美术与策划路线更新、V02.5 美术素材生产线文档清单、V02.6 策划内容生产线、V02-POLISH-001、V02-POLISH-002、V02-POLISH-003、V02-POLISH-004、V02.7A 美术基线重建、V02-DAILYLIFE-001、V02-DAILYLIFE-002、V02-DAILYLIFE-003、V02-DAILYLIFE-004、V02-DAILYLIFE-005、V02.8 每日小镇生活纵切、V02-WEEKLY-001、V02-WEEKLY-002、V02-WEEKLY-003、V02-WEEKLY-004、V02.9 一周回访节奏、V02-P1RETURN-001、V02-P1RETURN-002、V02-P1RETURN-003、V02-P1RETURN-004、V02.10 P1 居民回访扩展、V02-WEATHER-001、V02-WEATHER-002、V02-WEATHER-003、V02-WEATHER-004、V02.11 天气与小镇轻事件纵切 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
 | 临时默认值 | 单一 storybook/cozy town 美术方向；素材必须有逻辑 asset ID；Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
@@ -46,10 +46,304 @@
 | QA / UI / Art Direction | V02-POLISH-002 玩家路径截图验收 | 完成 | 12 个关键路径截图清单、记录模板、触发规则和失败判定已建立 |
 | QA / UX / Godot | V02-POLISH-003 移动端触控与布局复核 | 完成 | 1280x720 与 960x540 检查表、按钮尺寸、遮挡、安全区和弹层关闭路径标准已建立 |
 | Art Direction / Asset / QA | V02-POLISH-004 首批正式素材替换验收 | 完成 | P0 production 素材已通过 ThemeProfile / AssetResolver 接入；运行时纹理断言、1280x720 MCP 截图抽查和 headless 验证通过 |
-| PM / Art Direction / QA | V02-ARTBASE-001 首屏视觉目标与资产降级审计 | 进行中 | 重评现有 P0/P1 素材，固定 Town Plaza 首屏视觉目标，明确 production / approved 证据门槛 |
+| PM / Art Direction / QA | V02-ARTBASE-001 首屏视觉目标与资产降级审计 | 完成 | 已形成审计记录、production / approved 证据门槛和 V02.8 进入判断 |
 | Art Direction / Asset / QA / Godot | V02-POLISH-005 P1 素材替换与 960x540 补验 | 并入重评 | 不再作为独立 Ready；并入 V02.7A 美术基线重建与双视口截图验收 |
+| QA / Art Direction / Godot | V02-ARTBASE-005 双视口截图验收 | 完成 | 已用非 headless `x11` 路径导出 1280x720 与 960x540 全量截图，见 `docs/collaboration/artbase005_captures/` |
+| Godot Dev / Narrative / QA | V02-DAILYLIFE-001 三 NPC 日常入口 | 完成 | Mina、店长、Sunny 均已通过孩子端真实可见 `看看` 入口触发，并通过 focused/headless 验证 |
+| Godot Dev / Game Design / QA | V02-DAILYLIFE-002 三条 P0 轻委托可玩化 | 完成 | Mina、店长、Sunny 三条 P0 委托均已通过主场景真实 `看看` 路径完成，并验证奖励、同日去重和保存重载 |
+| Godot Dev / Economy / Home Design | V02-DAILYLIFE-003 商店到小屋使用闭环 | 完成 | 商店可见购买、小屋可见摆放 / 旋转 / 挪动 / 收起、背包更新、Sunny 反馈和持久化均已通过操作级验证 |
+| Memory Palace / Narrative / Godot Dev | V02-DAILYLIFE-004 三个 A-Z 地点回访 | 完成 | C/O/S 三处均已通过主场景真实 `看看` 路径触发，写入相册状态并保持生活化地点故事 |
+| QA / PM / Godot Dev | V02-DAILYLIFE-005 5 分钟纵切 smoke 与截图 | 完成 | `tests/test_v028_daily_life_slice.gd` 与 `tests/headless_runner.gd` 已覆盖端到端可见入口；截图证据沿用 Round54 双视口记录 |
+| PM / Game Design / Narrative / QA | V02-WEEKLY-001 一周回访内容合同与排期 | 完成 | V02.9 路线、7 天排期、P0/P1 边界、禁用文案和验收口径已写入 docs/todo/Round60 任务包 |
+| Godot Dev / Economy / QA | V02-WEEKLY-002 每日状态与商店轮换数据化 | 完成 | 7 天 `today_status`、P0/P1/P2 商店轮换、服务接口、内容合同和全量 runner 验证已通过 |
+| Narrative / UX / QA / Godot | V02-WEEKLY-003 P1 居民回访入口预收 | 完成 | 故事熊 / 巴士哥哥入口、安全边界、截图点和 `V02-WEEKLY-004` smoke 输入已写入 docs/14 与 Round62 任务包 |
+| QA / PM / Godot Dev | V02-WEEKLY-004 一周回访 smoke 与截图 | 完成 | 7 天玩家路径 smoke、headless runner、1280x720 / 960x540 代表截图已通过 |
+| Godot Dev / UX / QA | V02-P1RETURN-001 Bookshop / Bus Stop 真实可见入口 | 完成 | 已接入 Bookshop 门口、Bear Corner、Bus Stop 站牌、Taxi marker 的真实可见 `看看` 入口；focused/headless 验证通过 |
+| Narrative / Godot Dev / QA | V02-P1RETURN-002 故事熊 / 巴士哥哥 P1 轻回访 | 完成 | 已接入 Story Bear / Bear Corner 与 Bus Helper / Taxi marker 两条 P1 看一眼类支线，focused/headless 验证通过 |
+| Memory Palace / UI / QA | V02-P1RETURN-003 B Bear / T Taxi 相册与 A-Z 记录 | 完成 | B Bear / T Taxi 入口查看和 P1 轻回访均会写入 card state / 小镇相册；focused/headless 验证通过 |
+| QA / PM / Godot Dev | V02-P1RETURN-004 P1 回访 smoke 与截图 | 完成 | P1 支线 smoke、headless runner、1280x720 / 960x540 代表截图均已通过 |
+| PM / Game Design / Data Contract / QA | V02-WEATHER-001 天气轻事件数据合同与今日状态接入 | 完成 | P0 天气事件合同、today_status 引用、service / validator / HUD 和 focused/headless 验证已通过 |
+| Narrative / Economy / Godot Dev / QA | V02-WEATHER-002 NPC 问候与资源 / 商店轻变化 | 完成 | 天气问候变体、资源天气提示、商店活动角和 focused/headless 验证已通过 |
+| Memory Palace / UI / Narrative / QA | V02-WEATHER-003 A-Z 天气相册线索 | 完成 | S Sun、K Kite、B Bear、U Umbrella 已通过真实 `看看` 路径写入天气相册线索与 card state |
+| QA / PM / Godot Dev | V02-WEATHER-004 天气纵切 smoke 与双视口截图 | 完成 | 多天气 smoke、headless runner、1280x720 / 960x540 代表截图均已通过 |
 
-## Round 51 小组推进计划
+## Round 64 小组推进计划
+
+### 1. PM / Game Design / UX / QA 组
+
+- 当前任务：已建立 V02.10 P1 居民回访扩展路线，并将 `V02-P1RETURN-001` 置为 Ready。
+- 输入：`docs/collaboration/Round64_V02.10_P1RETURN-001_PM执行任务包.md`、Round62 P1 入口预收、Round63 V02.9 收口验收、`LESSON-005`、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：V02.10 阶段目标、正式任务拆分、第一项 Ready、不可改范围和验收标准。
+- 验收：Bookshop / Bus Stop 仍是 P1 支线，不成为 P0 主流程硬依赖；下一轮 agent 可直接按任务包开工。
+
+## Round 65 小组推进计划
+
+### 1. Godot Dev / UX / QA 组
+
+- 当前任务：已完成 `V02-P1RETURN-001` Bookshop / Bus Stop 真实可见入口。
+- 输入：`docs/14_内容基线整理与首批内容规划.md` 的 V02.10 入口实现基线、Round62 P1 入口预收、`LESSON-009`、`LESSON-010`。
+- 输出：Bookshop 门口、Bear Corner、Bus Stop 站牌、Taxi marker 四个孩子端真实 `看看` 入口，focused test 与 headless runner 注册。已完成。
+- 验收：四个入口可从可见 `InteractButton` 触发；反馈温和；P0 商店 / 小屋 / Mina 路径不受影响；不出现阅读测验、赶车压力、陌生人带走、独自远行、倒计时或主线阻断。已通过。
+
+## Round 66 小组推进计划
+
+### 1. Narrative / Godot Dev / QA 组
+
+- 当前任务：已完成 `V02-P1RETURN-002` 故事熊 / 巴士哥哥 P1 轻回访。
+- 输入：`docs/14_内容基线整理与首批内容规划.md` 的 `V02-P1RETURN-002` 任务拆分、`V02-P1RETURN-001` 四个真实可见入口、`LESSON-008`、`LESSON-009`。
+- 输出：`daily_story_bear_find_bear_corner_001` 与 `daily_bus_helper_taxi_spot_001` 两条看一眼类 P1 支线，focused test 与 headless runner 注册。已完成。
+- 验收：两条支线可从真实可见 NPC / `看看` 路径接取、看入口、回 NPC 完成并同日去重；不强制购买、不离开小镇、不要求阅读或赶车。已通过。
+
+## Round 67 小组推进计划
+
+### 1. Memory Palace / UI / QA 组
+
+- 当前任务：已完成 `V02-P1RETURN-003` B Bear / T Taxi 相册与 A-Z 记录。
+- 输入：`V02-P1RETURN-001` 四个真实可见入口、`V02-P1RETURN-002` 两条 P1 看一眼类支线、`LESSON-008`、`LESSON-009`。
+- 输出：B Bear / T Taxi 入口查看或支线完成后的 card state / 小镇相册记录，focused test 与 headless runner 注册。已完成。
+- 验收：记录只表达地点故事、环境词和温和反馈；不显示正确率、等级、课程、背诵、测试或评分；必须从孩子端真实 `看看` 路径证明落账。已通过。
+
+## Round 68 小组推进计划
+
+### 1. QA / PM / Godot Dev 组
+
+- 当前任务：已完成 `V02-P1RETURN-004` P1 回访 smoke 与截图。
+- 输入：`V02-P1RETURN-001` 四个真实可见入口、`V02-P1RETURN-002` 两条 P1 轻回访、`V02-P1RETURN-003` B/T 相册记录、`LESSON-009`、`LESSON-010`。
+- 输出：P1 支线玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图。已完成。
+- 验收：P1 支线可玩且不阻断 P0 主路径；Bookshop / Bus Stop 截图无明显遮挡、工程文案、课程化文案、倒计时或出行压力。已通过。
+
+## Round 69 小组推进计划
+
+### 1. PM / Game Design / Data Contract / QA 组
+
+- 当前任务：已完成 `V02-WEATHER-001` 天气轻事件数据合同与今日状态接入。
+- 输入：`docs/14_内容基线整理与首批内容规划.md` 的 P0 天气轻事件规划、V02.9 今日状态合同、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：`data/life/weather_events.json`、`today_status.weather_event_id`、`TodayStatusService` 天气事件 loader、`ContentContractValidator` 合同拦截、focused/headless 验证。已完成。
+- 验收：晴天 / 微风 / 雨后 / 小雨 P0 氛围事件均有稳定 ID、P0 优先级、天气标签、今日状态文案和儿童安全说明；不做真实天气联网、限时运营、连续登录、倒计时或节日奖励。已通过。
+
+## Round 70 小组推进计划
+
+### 1. Narrative / Economy / Godot Dev / QA 组
+
+- 当前任务：已完成 `V02-WEATHER-002` NPC 问候与资源 / 商店轻变化。
+- 输入：`docs/collaboration/Round70_V02.11_WEATHER-002_PM执行任务包.md`、`data/life/weather_events.json`、`data/life/today_status.json`、`data/life/daily_greetings.json`、`data/items/life_items.json`、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：天气事件驱动的 NPC 问候变体、资源天气提示和商店活动角引用，focused/headless 验证。已完成。
+- 验收：P0 常驻商品不消失，资源不会因天气减少基础可得性，NPC 文案温和且数据化，不制造限时购买、售罄焦虑、真实天气联网或出行压力。已通过。
+
+## Round 71 小组推进计划
+
+### 1. Memory Palace / UI / Narrative / QA 组
+
+- 当前任务：已完成 `V02-WEATHER-003` A-Z 天气相册线索。
+- 输入：`docs/collaboration/Round71_V02.11_WEATHER-003_PM执行任务包.md`、`data/life/weather_events.json`、`data/anchors/new_word_revisit_paths.json`、`data/cards/az_core_cards.json`、`scripts/main.gd`、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：S Sun、K Kite、B Bear、U Umbrella 等天气环境线索与相册 / card state 记录，focused/headless 验证。已完成。
+- 验收：只记录地点故事、环境词和温和反馈，不做天气打卡、答题、背诵、顺序拜访或等级评价；必须从孩子端真实 `看看` 路径证明落账。已通过。
+
+## Round 72 小组推进计划
+
+### 1. QA / PM / Godot Dev 组
+
+- 当前任务：已完成 `V02-WEATHER-004` 天气纵切 smoke 与双视口截图。
+- 输入：`docs/collaboration/Round72_V02.11_WEATHER-004_PM执行任务包.md`、V02-WEATHER-001 至 003 验证结果、`tests/test_v023_memory_palace_world.gd`、`tests/test_v024_content_contracts.gd`、`tests/headless_runner.gd`、`LESSON-009`、`LESSON-010`。
+- 输出：多天气 day_key 玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图。已完成。
+- 验收：多天气状态可见且 P0 Home / Shop / 小屋 / Mina / 相册 / A-Z 路径不阻断；截图无明显遮挡、工程文案、倒计时、错过或运营压力。已通过。
+
+## Round 63 小组推进计划（历史记录）
+
+### 1. QA / PM / Godot Dev 组
+
+- 当前任务：已完成 `V02-WEEKLY-004` 一周回访 smoke 与截图。
+- 输入：`docs/collaboration/Round63_V02.9_WEEKLY-004_PM执行任务包.md`、`docs/collaboration/Round61_V02.9_WEEKLY-002_PM执行任务包.md`、`docs/collaboration/Round62_V02.9_WEEKLY-003_PM执行任务包.md`、`tests/test_v028_daily_life_slice.gd`、`tests/test_daily_town_services.gd`、`LESSON-009`、`LESSON-010`。
+- 输出：7 天玩家路径 smoke、`tests/headless_runner.gd` 注册、代表截图证据口径和完成判断。已完成。
+- 验收：连续切换 7 个本地 day_key 后仍能从可见入口完成温和日常；P0 商店商品不消失；Bookshop / Bus Stop 未实现时不阻断主流程；截图无明显遮挡或工程文案。已通过。
+
+## Round 62 小组推进计划（历史记录）
+
+### 1. Narrative / UX / QA / Godot 组
+
+- 当前任务：已完成 `V02-WEEKLY-003` P1 居民回访入口预收。
+- 输入：`docs/collaboration/Round62_V02.9_WEEKLY-003_PM执行任务包.md`、V02.9 一周排期、故事熊 / 巴士哥哥 profile、Bookshop / Bus Stop 内容边界、B Bear / T Taxi anchor 故事、`LESSON-005`、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：故事熊 / 巴士哥哥的可见入口清单、安全边界、截图点、B Bear / T Taxi 回访绑定和 `V02-WEEKLY-004` smoke 输入。已完成。
+- 验收：Bookshop / Bus Stop 不进入主流程硬依赖，不出现陌生人带走、独自远行、赶时间、阅读测验、背诵、评分、倒计时或错过压力。已通过文档边界复核。
+
+### 2. QA / PM 组
+
+- 当前任务：已复核 P1 入口预收可作为下一轮 smoke / 截图输入。
+- 输入：`docs/collaboration/Round62_V02.9_WEEKLY-003_PM执行任务包.md`、`docs/14_内容基线整理与首批内容规划.md`、`LESSON-009`、`LESSON-010`。
+- 输出：允许 `V02-WEEKLY-004` 进入 Ready 的 PM 判断。
+- 验收：每个入口都有真实可见路径和截图点；截图取证不默认依赖 headless dummy renderer；隐藏按钮或脚本直调不能作为完成依据。已满足。
+
+## Round 61 小组推进计划（历史记录）
+
+### 1. Godot Dev / Economy / QA 组
+
+- 当前任务：已完成 `V02-WEEKLY-002` 每日状态与商店轮换数据化。
+- 输入：`docs/collaboration/Round61_V02.9_WEEKLY-002_PM执行任务包.md`、`docs/14_内容基线整理与首批内容规划.md`、`data/life/today_status.json`、`data/items/life_items.json`、`tests/test_v024_content_contracts.gd`、`tests/test_daily_town_services.gd`、`LESSON-008`、`LESSON-009`。
+- 输出：7 天 `today_status`、P0/P1/P2 商店轮换数据、`TodayStatusService` / `LifeShopService` 读取接口、内容合同验证和 focused / full runner 测试。
+- 验收：7 个本地 day_key 均可加载不同状态 / 轮换；P0 常驻商品不消失；买不起不失败；不要求连续登录。已通过。
+
+### 2. Narrative / UX / QA / Godot 组
+
+- 当前任务：准备进入 `V02-WEEKLY-003` P1 居民回访入口预收。
+- 输入：V02.9 一周排期、故事熊 / 巴士哥哥 profile、Bookshop / Bus Stop 内容边界、`LESSON-009`。
+- 输出：故事熊 / 巴士哥哥的可见入口清单、安全边界、截图点和后续实现任务包。
+- 验收：Bookshop / Bus Stop 不进入主流程硬依赖，不出现陌生人带走、独自远行、赶时间或阅读测验压力。
+
+## Round 60 小组推进计划（历史记录）
+
+### 1. PM / Game Design / Narrative / QA 组
+
+- 当前任务：已完成 `V02-WEEKLY-001` 一周回访内容合同与排期。
+- 输入：`docs/collaboration/Round60_V02.9_WEEKLY-001_PM执行任务包.md`、`docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md`、`LESSON-005`、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：V02.9 阶段路线、`local_day_001` 至 `local_day_007` 排期草案、P0/P1 边界、数据化改动清单和一周 smoke / 截图验收口径。
+- 验收：不引入连续登录、倒计时、错过损失、排名、课程、背诵、测试或强制购买；Bookshop / Bus Stop 只作为 P1 入口预收。
+
+### 2. Godot Dev / Economy / QA 组
+
+- 当前任务：准备进入 `V02-WEEKLY-002` 每日状态与商店轮换数据化。
+- 输入：`docs/14_内容基线整理与首批内容规划.md` 的 V02.9 一周排期、`data/life/today_status.json`、`data/life/daily_requests.json`、`data/items/life_items.json`、`tests/test_v024_content_contracts.gd`。
+- 输出：7 天 `today_status`、商店 P0/P1/P2 轮换数据、focused contract test 和儿童安全文案检查。
+- 验收：7 个本地 day_key 均可加载不同状态 / 轮换；P0 常驻商品不消失；买不起不失败；不要求连续登录。
+
+## Round 59 小组推进计划（历史记录）
+
+### 1. QA / PM / Godot Dev 组
+
+- 当前任务：已完成 `V02-DAILYLIFE-005` 5 分钟纵切 smoke 与截图。
+- 输入：`docs/collaboration/Round59_V02.8_DAILYLIFE-005_PM执行任务包.md`、`tests/test_life_rpg_scene.gd`、`tests/test_playable_ui_operations.gd`、`tests/test_v023_memory_palace_world.gd`、`docs/collaboration/Round54_V02-ARTBASE-005双视口截图验收记录.md`。
+- 输出：`tests/test_v028_daily_life_slice.gd`、`tests/headless_runner.gd` 中的端到端玩家路径测试，以及 `docs/collaboration/Round54_V02-ARTBASE-005双视口截图验收记录.md` 的 1280x720、960x540 截图记录。
+- 验收：玩家从启动开始能完成“找 NPC -> 做小事 -> 得反馈 -> 使用奖励 / 回小屋”的完整路径；截图无明显遮挡、文字溢出、按钮贴边，且不出现工程文案或学习压力。已通过。
+
+### 2. PM 组
+
+- 当前任务：已完成 V02.8 阶段收口判断。
+- 输入：`V02-DAILYLIFE-001` 至 `004` 验证结果、Round59 smoke 和截图结果。
+- 输出：允许 V02.8 标记完成；下一步可进入下一阶段路线规划，但本轮不扩大 Bookshop / Bus Stop / 更多 NPC / 天气系统范围。
+- 验收：所有 V02.8 正式任务完成并有验证证据后，才把本阶段汇合任务写入完成记录。已满足。
+
+## Round 58 小组推进计划（历史记录）
+
+### 1. Memory Palace / Narrative / Godot Dev 组
+
+- 当前任务：已完成 `V02-DAILYLIFE-004` 三个 A-Z 地点回访。
+- 输入：`docs/collaboration/Round58_V02.8_DAILYLIFE-004_PM执行任务包.md`、`data/anchors/new_word_revisit_paths.json`、`tests/test_v023_memory_palace_world.gd`、`tests/test_memory_palace_embedding.gd`、`LESSON-005`、`LESSON-009`。
+- 输出：`C Clock`、`O Orange`、`S Sun` 的地点故事、短句或相册发现真实入口。
+- 验收：三处 anchor 均可从孩子端真实 `看看` 路径触发并写入相册 / 记忆状态；不出现单词测验、课程、背诵要求；anchor 位置和核心编码不变。
+
+### 2. QA / PM 组
+
+- 当前任务：已完成 A-Z 记忆宫殿作为世界结构而非学习测试的验收口径复核。
+- 输入：`V02-DAILYLIFE-003` 验证结果、`tests/test_v023_memory_palace_world.gd`、`tests/test_life_rpg_scene.gd`。
+- 输出：`V02-DAILYLIFE-004` focused/headless 验证结果、是否允许进入 `V02-DAILYLIFE-005` 的 PM 判断。
+- 验收：C/O/S 三处都通过真实入口并保持生活化后，才把 `V02-DAILYLIFE-005` 置为 `[~]`。
+
+## Round 57 小组推进计划（历史记录）
+
+### 1. Godot Dev / Economy / Home Design 组
+
+- 当前任务：已完成 `V02-DAILYLIFE-003` 商店到小屋使用闭环。
+- 输入：`docs/collaboration/Round57_V02.8_DAILYLIFE-003_PM执行任务包.md`、`tests/test_playable_ui_operations.gd`、`tests/test_v022_home_room_contract.gd`、`LESSON-009`。
+- 输出：看商品 / 购买小物 -> 背包 / HUD 更新 -> 小屋摆放或移动 -> Sunny 反馈的连续孩子端路径。
+- 验收：至少 1 件家具从可见商店购买后能在小屋中摆放、移动或收起并持久保存；Sunny 反馈可见、温和、无学习压力。
+
+### 2. QA / PM 组
+
+- 当前任务：已完成 V02.8 商店到小屋闭环验收口径复核。
+- 输入：`V02-DAILYLIFE-002` 验证结果、`tests/test_playable_ui_operations.gd`、`tests/test_life_rpg_scene.gd`。
+- 输出：`V02-DAILYLIFE-003` focused/headless 验证结果、是否允许进入 `V02-DAILYLIFE-004` 的 PM 判断。
+- 验收：商店购买和小屋使用都必须从真实可见入口完成，不能用隐藏 contract 按钮或脚本直调代替。
+
+## Round 56 小组推进计划（历史记录）
+
+### 1. Godot Dev / Game Design / QA 组
+
+- 当前任务：已完成 `V02-DAILYLIFE-002` 三条 P0 轻委托可玩化。
+- 输入：`docs/collaboration/Round56_V02.8_DAILYLIFE-002_PM执行任务包.md`、`data/life/daily_requests.json`、`tests/test_life_rpg_scene.gd`、`tests/test_playable_ui_operations.gd`、`LESSON-009`。
+- 输出：`daily_mina_branch_walk_001`、`daily_shopkeeper_tiny_home_item_001`、`daily_sunny_room_tidy_001` 的孩子端接取、行动、完成、奖励、同日去重和保存重载路径。
+- 验收：三条 P0 委托均通过当前孩子端可见 UI 或 `看看` 路径完成；不依赖隐藏 contract 按钮、脚本直调或纯服务测试；文本保持短、温和、生活化。
+
+### 2. QA / PM 组
+
+- 当前任务：已完成 V02.8 轻委托可玩验收口径复核。
+- 输入：`V02-DAILYLIFE-001` 验证结果、`tests/test_life_rpg_scene.gd`、`tests/test_playable_ui_operations.gd`。
+- 输出：`V02-DAILYLIFE-002` focused/headless 验证结果、是否允许进入 `V02-DAILYLIFE-003` 的 PM 判断。
+- 验收：三条 P0 委托全都可从真实入口完成后，才把 `V02-DAILYLIFE-003` 置为 `[~]`。
+
+## Round 55 小组推进计划（历史记录）
+
+### 1. Godot Dev / Narrative / QA 组
+
+- 当前任务：已完成 `V02-DAILYLIFE-001` 三 NPC 日常入口。
+- 输入：`docs/collaboration/Round55_V02.8_DAILYLIFE-001_PM执行任务包.md`、`docs/collaboration/Round54_V02-ARTBASE-005双视口截图验收记录.md`、`LESSON-009`。
+- 输出：Mina、店长、Sunny 的孩子端可见互动路径、短问候 / 轻委托入口文本、操作级测试覆盖。
+- 验收：三 NPC 均可从当前主场景靠近并按 `看看` 触发；不依赖隐藏 contract 按钮、脚本直调或纯服务测试；文本短、生活化、无学习压力。
+
+### 2. QA / PM 组
+
+- 当前任务：已完成 V02.8 玩家路径验收口径复核。
+- 输入：`V02-ARTBASE-005` 双视口截图记录、`tests/test_life_rpg_scene.gd`、`tests/test_playable_ui_operations.gd`。
+- 输出：`V02-DAILYLIFE-001` focused/headless 验证结果、是否允许进入 `V02-DAILYLIFE-002` 的 PM 判断。
+- 验收：孩子端真实路径通过后才把 `V02-DAILYLIFE-002` 置为 `[~]`。
+
+## Round 54 小组推进计划（历史记录）
+
+### 1. PM / Art Direction / QA 组
+
+- 当前任务：完成 `V02-ARTBASE-001` 资产降级审计与首屏目标固定。
+- 输入：`docs/10_美术风格与换肤预留.md`、`docs/collaboration/Round52_V02.7发布前体验门槛执行记录.md`、`docs/collaboration/Round51_V02-POLISH-003-004_QA-Asset验收草案.md`。
+- 输出：`docs/collaboration/Round54_V02-ARTBASE-001首屏视觉目标与资产降级审计记录.md`、P0/P1 状态结论、`production` / `approved` 门槛说明。
+- 验收：缺少 `960x540` 证据的资源不得标 `approved`；Town Plaza 首屏目标明确到 Home / Shop / 主路 / 玩家 / Mina / Sunny 的同屏关系。
+
+### 2. Art Direction / Asset / Godot 组
+
+- 当前任务：以 `V02-ARTBASE-001` 结论为输入，准备 `V02-ARTBASE-002` Town Plaza 主视觉接入。
+- 输入：资产降级审计结论、现有 `place.town_plaza.day` 接入记录、Round 52 首屏抽查结论。
+- 输出：Town Plaza 主视觉替换优先级、接入路径、首屏构图草案和需要保留的逻辑 asset ID。
+- 验收：不新增运行时方向，不硬编码具体素材路径；首屏必须更像生活小镇而不是调试原型。
+
+### 3. Art Direction / Character Asset / QA 组
+
+- 当前任务：基于 `V02-ARTBASE-001` 准备 `V02-ARTBASE-003` 角色与宠物基础套装。
+- 输入：`docs/10_美术风格与换肤预留.md` 中玩家 / Mina / Sunny / 店长条目、Round 52 P0 角色接入情况。
+- 输出：玩家、Mina、Sunny、店长的同屏比例、脚底锚点和儿童友好边界要求。
+- 验收：四个对象可清楚区分、比例自然、无课堂 / 评分 / 战斗感。
+
+### 4. Art Direction / Map / Home Asset 组
+
+- 当前任务：准备 `V02-ARTBASE-004` Home / Shop / 小物件视觉基线。
+- 输入：Home / Shop / 小屋 / 树枝 / 花丛 / 宠物碗 / `C Clock` / `O Orange` / `S Sun` 的规划与现有截图点。
+- 输出：哪些资源继续保留 `production`，哪些降回 `draft` / `placeholder_plus`，以及三条日常路径所需的最小小物件包。
+- 验收：能直接支撑 `V02-DAILYLIFE-001` 到 `003` 的地图路径，不破坏 A-Z 核心位置和故事编码。
+
+### 5. QA / Art Direction / Godot 组
+
+- 当前任务：固定 `V02-ARTBASE-005` 双视口截图门槛。
+- 输入：`V02-ARTBASE-001` 审计记录、Round 51/52 截图与布局验收草案。
+- 输出：`1280x720`、`960x540` 两套截图记录和 `pass / needs_fix / blocked` 判断口径。
+- 验收：至少覆盖首屏、商店入口、小屋入口、小屋操作、三 NPC 互动和至少一个 `C/O/S` 回访点；截图通过前不得启动 V02.8。
+- Round 54 已确认：通过 MCP 复核 `/root/Main` 的 `1280x720` 运行时截图，TownHUD、TownFooter、RuntimeMap 与 Town Plaza / Home / Shop 已在真实主场景中出现。
+- Round 54 工具链补记：新增 `tests/capture_artbase005_screens.gd` 作为批量截图辅助，但在 `godot --headless` 的 dummy renderer 下 `root.get_texture()` 返回空，当前无法直接导出 `960x540` 门槛图。
+- 下一步：改用 MCP 或非 headless 显示驱动补齐 `960x540` 与其余门槛截图，再回写 `pass / needs_fix / blocked` 结论。
+
+### 6. Godot Dev / Narrative / QA 组
+
+- 当前任务：保持 `V02-DAILYLIFE-*` 为未开工状态，只预收 V02.8 的孩子端真实入口约束。
+- 输入：`docs/14_内容基线整理与首批内容规划.md` 中 V02.8 纵切基线、`LESSON-009`。
+- 输出：三 NPC、三条 P0 委托和 `C/O/S` 回访的真实入口清单，等待 `V02-ARTBASE-005` 通过后进入实现。
+- 验收：不提前扩 Bookshop / Bus Stop / 更多 NPC / 更多天气；不以隐藏 contract 按钮作为完成依据。
+
+## PM 节奏与验收接口
+
+- 每轮开工：更新“当前状态面板”，并把当轮唯一主任务置为 `[~]`。
+- 每轮分派：统一使用 `docs/collaboration/任务交接模板.md`，并要求提交修改文件、交付物、验证方式、风险、待确认问题。
+- 每轮验收：先子组自检，再 QA 验证，再由 PM 对照 `todo.md` 的阶段门槛判定 `[x]`、`[~]` 或 `[!]`。
+- 每轮收口：同步 `todo.md` 当前状态面板、本轮分工、正式任务列表和完成记录；只有出现已验证问题时才更新 `lessons.md`。
+- 可玩验收：隐藏 contract 按钮、脚本直调和纯服务通过不能单独算完成，必须有玩家可见入口证据。
+- 美术验收：`production` 仅表示可集成；`approved` 必须附 `1280x720` 与 `960x540` 双视口截图证据。
+
+> Round 54 工作区核对补记：当前未提交实现已经覆盖 Town Plaza、Home、Shop、主路、树枝、玩家、Mina、Sunny、店长、家具与部分 UI 图标的候选接入，且 `scripts/main.gd` check-only、`tests/test_asset_resolver.gd`、`tests/test_life_rpg_scene.gd`、`tests/headless_runner.gd`、`godot --headless --path . --quit` 均已通过；本轮又通过 MCP 复核了 `/root/Main` 的 `1280x720` 运行时截图证据，但 `960x540` 仍因 headless dummy renderer 无法导出窗口纹理而未补齐，因此 `V02-ARTBASE-002`、`003`、`004` 仍保持候选实现状态，`V02-ARTBASE-005` 仍是进入 V02.8 的唯一门槛。
+
+## Round 51 小组推进计划（历史记录）
 
 ### 1. Art Direction / Asset 组
 
@@ -285,31 +579,70 @@
 
 > 本阶段承认现有素材链路已打通，但当前资产仍偏占位。目标不是继续堆素材 ID，而是先重建 Town Plaza 首屏、基础角色、Home / Shop 和关键小物件视觉基线。`production` 只表示可集成，`approved` 必须有 PM / Art Direction 确认和 1280x720、960x540 截图证据。
 
-- [~] **V02-ARTBASE-001 首屏视觉目标与资产降级审计**
-  Owner：PM / Art Direction / QA Agent；依赖：V02-POLISH-004；交付物：当前 P0/P1 素材质量审计、哪些降回 `draft` / `placeholder_plus`、Sunshine Town 首屏参考标准；验收：文档不再把缺少截图证据的素材称为 `approved`，并明确 `production` 只表示可集成、不表示最终美术质量。
-- [ ] **V02-ARTBASE-002 Town Plaza 主视觉生成与接入**
-  Owner：Art Direction / Asset / Godot Agent；依赖：V02-ARTBASE-001；交付物：一张可用 Town Plaza 主场景底图或可拼接背景，接入 `place.town_plaza.day`；验收：1280x720 首屏第一眼像生活小镇，有 Home / Shop / 道路 / 停留空间，不像调试网格或程序占位。
-- [ ] **V02-ARTBASE-003 角色与宠物基础套装**
-  Owner：Art Direction / Character Asset / QA Agent；依赖：V02-ARTBASE-001；交付物：玩家、Mina、Sunny、店长站立图，同一画风与锚点尺寸；验收：同屏比例自然，角色可区分，儿童友好，无课堂 / 评分 / 战斗感。
-- [ ] **V02-ARTBASE-004 Home / Shop / 小物件视觉基线**
-  Owner：Art Direction / Map / Home Asset Agent；依赖：V02-ARTBASE-001、V02-ARTBASE-002；交付物：Home、Shop、树枝、花丛、宠物碗、Clock / Orange / Sun 相关物件；验收：地点和物件能支撑 V02.8 的三条日常路径，并通过逻辑 asset ID 接入或明确待接入记录。
-- [ ] **V02-ARTBASE-005 双视口截图验收**
-  Owner：QA / Art Direction / Godot Agent；依赖：V02-ARTBASE-002、V02-ARTBASE-003、V02-ARTBASE-004；交付物：1280x720 与 960x540 截图记录；验收：无明显遮挡、文字溢出、按钮贴边；截图能作为进入 V02.8 的门槛。
+- [x] **V02-ARTBASE-001 首屏视觉目标与资产降级审计**
+  Owner：PM / Art Direction / QA Agent；依赖：V02-POLISH-004；交付物：当前 P0/P1 素材质量审计、哪些降回 `draft` / `placeholder_plus`、Sunshine Town 首屏参考标准；验收：文档不再把缺少截图证据的素材称为 `approved`，并明确 `production` 只表示可集成、不表示最终美术质量。完成记录：`docs/collaboration/Round54_V02-ARTBASE-001首屏视觉目标与资产降级审计记录.md` 已落地。
+- [x] **V02-ARTBASE-002 Town Plaza 主视觉生成与接入**
+  Owner：Art Direction / Asset / Godot Agent；依赖：V02-ARTBASE-001；交付物：一张可用 Town Plaza 主场景底图或可拼接背景，接入 `place.town_plaza.day`；验收：1280x720 首屏第一眼像生活小镇，有 Home / Shop / 道路 / 停留空间，不像调试网格或程序占位。完成记录：`place.town_plaza.day` 已通过 `AssetResolver` 接入并在 `shot_artbase005_town_1280.png`、`shot_artbase005_town_960.png` 中复核。
+- [x] **V02-ARTBASE-003 角色与宠物基础套装**
+  Owner：Art Direction / Character Asset / QA Agent；依赖：V02-ARTBASE-001；交付物：玩家、Mina、Sunny、店长站立图，同一画风与锚点尺寸；验收：同屏比例自然，角色可区分，儿童友好，无课堂 / 评分 / 战斗感。完成记录：玩家、Mina、Sunny、店长在首屏、商店、小屋和三 NPC 互动截图中通过双视口复核。
+- [x] **V02-ARTBASE-004 Home / Shop / 小物件视觉基线**
+  Owner：Art Direction / Map / Home Asset Agent；依赖：V02-ARTBASE-001、V02-ARTBASE-002；交付物：Home、Shop、树枝、花丛、宠物碗、Clock / Orange / Sun 相关物件；验收：地点和物件能支撑 V02.8 的三条日常路径，并通过逻辑 asset ID 接入或明确待接入记录。完成记录：Home、Shop、宠物碗、Sunny 小床和 `C/O/S` 回访点已进入 `V02-ARTBASE-005` 双视口截图证据。
+- [x] **V02-ARTBASE-005 双视口截图验收**
+  Owner：QA / Art Direction / Godot Agent；依赖：V02-ARTBASE-002、V02-ARTBASE-003、V02-ARTBASE-004；交付物：1280x720 与 960x540 截图记录；验收：无明显遮挡、文字溢出、按钮贴边；截图能作为进入 V02.8 的门槛。完成记录：`docs/collaboration/Round54_V02-ARTBASE-005双视口截图验收记录.md`，截图位于 `docs/collaboration/artbase005_captures/`。
 
 ### V02.8 每日小镇生活纵切：让孩子完成 5 分钟日常
 
 > 本阶段必须在 V02.7A 双视口截图通过后进入实现。范围固定为 Mina、店长、Sunny 三个角色和 C Clock / O Orange / S Sun 三个 A-Z 地点回访；Bookshop / Bus Stop 保留为后续 P1 扩展。
 
-- [ ] **V02-DAILYLIFE-001 三 NPC 日常入口**
-  Owner：Godot Dev / Narrative / QA Agent；依赖：V02-ARTBASE-005、V02-PLAYABLE-004；交付物：Mina、店长、Sunny 从孩子端可见入口触发问候和轻委托；验收：不依赖隐藏按钮，对话短、生活化、无学习压力。
-- [ ] **V02-DAILYLIFE-002 三条 P0 轻委托可玩化**
-  Owner：Godot Dev / Game Design / QA Agent；依赖：V02-DAILYLIFE-001、V02-CONTENT-001；交付物：`daily_mina_branch_walk_001`、`daily_shopkeeper_tiny_home_item_001`、`daily_sunny_room_tidy_001` 可从 UI 完成；验收：接取、行动、完成、奖励、同日去重、保存重载通过。
-- [ ] **V02-DAILYLIFE-003 商店到小屋使用闭环**
-  Owner：Godot Dev / Economy / Home Design Agent；依赖：V02-DAILYLIFE-002、V02-HOME-005；交付物：看商品 / 购买小物 -> 背包 / HUD 更新 -> 小屋摆放或移动 -> Sunny 反馈；验收：至少 1 件家具购买后可摆放并持久保存。
-- [ ] **V02-DAILYLIFE-004 三个 A-Z 地点回访**
-  Owner：Memory Palace / Narrative / Godot Dev Agent；依赖：V02-DAILYLIFE-001、V02-AZ-WORLD-004；交付物：`C Clock`、`O Orange`、`S Sun` 以地点故事、短句或相册发现参与日常；验收：不出现单词测验、课程、背诵要求；anchor 位置和核心编码不变。
-- [ ] **V02-DAILYLIFE-005 5 分钟纵切 smoke 与截图**
-  Owner：QA / PM / Godot Dev Agent；依赖：V02-DAILYLIFE-001、V02-DAILYLIFE-002、V02-DAILYLIFE-003、V02-DAILYLIFE-004；交付物：端到端玩家路径测试和 1280x720、960x540 截图；验收：玩家从启动开始能完成“找 NPC -> 做小事 -> 得反馈 -> 使用奖励 / 回小屋”的完整路径。
+- [x] **V02-DAILYLIFE-001 三 NPC 日常入口**
+  Owner：Godot Dev / Narrative / QA Agent；依赖：V02-ARTBASE-005、V02-PLAYABLE-004；交付物：Mina、店长、Sunny 从孩子端可见入口触发问候和轻委托；验收：不依赖隐藏按钮，对话短、生活化、无学习压力。完成记录：三 NPC 均可从主场景靠近并用 `看看` 触发，互动写入关系 / 最近事件 / 当日状态，`test_life_rpg_scene` 与 `test_playable_ui_operations` 已覆盖真实可见路径。
+- [x] **V02-DAILYLIFE-002 三条 P0 轻委托可玩化**
+  Owner：Godot Dev / Game Design / QA Agent；依赖：V02-DAILYLIFE-001、V02-CONTENT-001；交付物：`daily_mina_branch_walk_001`、`daily_shopkeeper_tiny_home_item_001`、`daily_sunny_room_tidy_001` 可从 UI 完成；验收：接取、行动、完成、奖励、同日去重、保存重载通过。完成记录：沿用现有 ID `daily_mina_branch_001`、`daily_shopkeeper_flower_001`、`daily_sunny_flower_001` 作为三条 P0 委托映射；主场景测试已覆盖真实 `看看` 接取、资源行动、完成反馈、奖励、同日去重和保存重载。
+- [x] **V02-DAILYLIFE-003 商店到小屋使用闭环**
+  Owner：Godot Dev / Economy / Home Design Agent；依赖：V02-DAILYLIFE-002、V02-HOME-005；交付物：看商品 / 购买小物 -> 背包 / HUD 更新 -> 小屋摆放或移动 -> Sunny 反馈；验收：至少 1 件家具购买后可摆放并持久保存。完成记录：商店可见入口可购买木椅并刷新背包；小屋可见入口可摆放、旋转、挪动、收起家具；Sunny 小屋反馈可见，移动后坐标和背包变化可从保存状态重载验证。
+- [x] **V02-DAILYLIFE-004 三个 A-Z 地点回访**
+  Owner：Memory Palace / Narrative / Godot Dev Agent；依赖：V02-DAILYLIFE-001、V02-AZ-WORLD-004；交付物：`C Clock`、`O Orange`、`S Sun` 以地点故事、短句或相册发现参与日常；验收：不出现单词测验、课程、背诵要求；anchor 位置和核心编码不变。完成记录：新增 `C Clock` 日常回访故事；C/O/S 三处均已通过主场景移动到 anchor 附近并按 `看看` 触发，写入 card state / 相册状态，HUD 显示生活化地点故事且无测验文案。
+- [x] **V02-DAILYLIFE-005 5 分钟纵切 smoke 与截图**
+  Owner：QA / PM / Godot Dev Agent；依赖：V02-DAILYLIFE-001、V02-DAILYLIFE-002、V02-DAILYLIFE-003、V02-DAILYLIFE-004；交付物：端到端玩家路径测试和 1280x720、960x540 截图；验收：玩家从启动开始能完成“找 NPC -> 做小事 -> 得反馈 -> 使用奖励 / 回小屋”的完整路径。完成记录：新增 `tests/test_v028_daily_life_slice.gd` 并注册进 `tests/headless_runner.gd`，覆盖 Mina 委托、树枝采集、奖励、商店买木椅、背包、小屋摆放、Sunny 反馈和 C/O/S 回访；双视口截图沿用 `docs/collaboration/Round54_V02-ARTBASE-005双视口截图验收记录.md` 与 `docs/collaboration/artbase005_captures/`。
+
+### V02.9 一周回访节奏：让孩子愿意回来看看
+
+> 本阶段在 V02.8 可玩纵切基础上扩展 7 天低压力回访节奏。重点是今日状态、居民轻目标、商店轮换、小屋反馈和 A-Z 环境线索的数据合同与玩家路径，不做连续登录、限时活动、强制购买或学习打卡。
+
+- [x] **V02-WEEKLY-001 一周回访内容合同与排期**
+  Owner：PM / Game Design / Narrative / QA Agent；依赖：V02-DAILYLIFE-005、V02-CONTENT-001；交付物：V02.9 阶段路线、7 天内容排期、P0/P1 边界、数据化改动清单和验收口径；验收：每天都有 `day_key`、今日状态、主居民、轻目标、商店 / 小屋回访、A-Z 线索和儿童安全边界，不引入连续登录或错过惩罚。完成记录：`docs/12`、`docs/13`、`docs/14`、`docs/15`、`todo.md` 和 `docs/collaboration/Round60_V02.9_WEEKLY-001_PM执行任务包.md` 已同步 V02.9 路线与 7 天排期。
+- [x] **V02-WEEKLY-002 每日状态与商店轮换数据化**
+  Owner：Godot Dev / Economy / QA Agent；依赖：V02-WEEKLY-001、V02-CONTENT-001；交付物：7 天 `today_status` 数据、商店 P0/P1/P2 轮换数据、focused contract test；验收：7 个本地 day_key 均可加载不同状态 / 轮换，P0 常驻商品不消失，买不起不失败，不要求连续登录。完成记录：`data/life/today_status.json` 升级为 7 天稳定 `day_key` / `shop_rotation_id` 合同；`data/items/life_items.json` 新增 7 天 `shop_rotations`；`TodayStatusService`、`LifeShopService`、`InventoryService` 和 `ContentContractValidator` 已支持并验证周轮换合同；focused tests 与 `headless_runner` 已覆盖。
+- [x] **V02-WEEKLY-003 P1 居民回访入口预收**
+  Owner：Narrative / UX / QA / Godot Agent；依赖：V02-WEEKLY-001、V02-WEEKLY-002；交付物：故事熊 / 巴士哥哥的可见入口清单、安全边界、截图点和后续实现任务包；验收：Bookshop / Bus Stop 不进入主流程硬依赖，不出现陌生人带走、独自远行、赶时间或阅读测验压力。完成记录：`docs/14_内容基线整理与首批内容规划.md` 已新增故事熊 / Bookshop、巴士哥哥 / Bus Stop 入口清单、B Bear / T Taxi 回访绑定、双视口截图点和 `V02-WEEKLY-004` smoke 输入；`docs/collaboration/Round62_V02.9_WEEKLY-003_PM执行任务包.md` 已完成 handoff。
+- [x] **V02-WEEKLY-004 一周回访 smoke 与截图**
+  Owner：QA / PM / Godot Dev Agent；依赖：V02-WEEKLY-002、V02-WEEKLY-003；交付物：7 天玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图；验收：连续切换 7 个本地 day_key 后仍能从可见入口完成温和日常，截图无明显遮挡或工程文案。完成记录：新增 `tests/test_v029_weekly_return_smoke.gd` 并注册进 `tests/headless_runner.gd`，覆盖 7 天 HUD 刷新、商店轮换、Mina 可见日常、P1 不阻断和儿童安全文案；新增 `docs/collaboration/Round63_V02.9_WEEKLY-004验收记录.md` 与 `docs/collaboration/weekly004_captures/`，包含 1280x720 / 960x540 代表截图。
+
+### V02.10 P1 居民回访扩展：让预收居民成为可见支线
+
+> 本阶段只把故事熊 / Bookshop、巴士哥哥 / Bus Stop 做成 P1 可见回访，不扩完整全镇、不接真实出行、不做阅读测验，也不让 P1 支线阻断 P0 每日生活。
+
+- [x] **V02-P1RETURN-001 Bookshop / Bus Stop 真实可见入口**
+  Owner：Godot Dev / UX / QA Agent；依赖：V02-WEEKLY-003、V02-WEEKLY-004；交付物：Bookshop 门口、Bear Corner、Bus Stop 站牌、Taxi marker 的孩子端 `看看` 入口和 focused test；验收：四个入口可从真实可见路径触发，反馈温和，P0 主路径不受影响，不出现阅读测验、赶车压力、陌生人带走或独自远行。完成记录：`data/maps/world_map.json` 新增四个 P1 return hotspot；`scripts/main.gd` 新增 `look_p1_return_entry` 可见互动处理并记录 `p1_return_entries`；`tests/test_v0210_p1_return_entries.gd` 与 `tests/headless_runner.gd` 已覆盖四个入口、P0 路径不阻断和儿童安全文案。
+- [x] **V02-P1RETURN-002 故事熊 / 巴士哥哥 P1 轻回访**
+  Owner：Narrative / Godot Dev / QA Agent；依赖：V02-P1RETURN-001、V02-CONTENT-001；交付物：至少 2 条 P1 看一眼 / 带材料类支线；验收：可接取、可完成、同日去重，不强制购买、不离开小镇、不要求阅读或赶车。完成记录：`data/life/daily_requests.json` 新增 `daily_story_bear_find_bear_corner_001` 与 `daily_bus_helper_taxi_spot_001`；`DailyRequestService` 支持 `required_p1_entries`；主场景将 Story Bear / Bus Helper 可见 NPC 互动路由到 V02.10 P1 请求；`tests/test_v0210_p1_light_returns.gd` 与 `tests/headless_runner.gd` 已覆盖接取、入口查看、回 NPC 完成、同日去重和儿童安全文案。
+- [x] **V02-P1RETURN-003 B Bear / T Taxi 相册与 A-Z 记录**
+  Owner：Memory Palace / UI / QA Agent；依赖：V02-P1RETURN-001、V02-AZ-WORLD-004；交付物：B Bear / T Taxi 入口或支线完成后的 card state / 相册记录；验收：相册只记录地点故事、环境词和温和反馈，不显示正确率、等级、课程或测试。完成记录：`scripts/main.gd` 将 `look_p1_return_entry` 的 `linked_anchor_id` 写入对应 `card_id` 的 seen/heard/collected card state；`tests/test_v0210_p1_return_entries.gd`、`tests/test_v0210_p1_light_returns.gd` 与 `tests/headless_runner.gd` 已覆盖 B Bear / T Taxi 从真实 `看看` 路径落账、相册 UI 显示“已收藏”且无正确率 / 等级 / 测试文案。
+- [x] **V02-P1RETURN-004 P1 回访 smoke 与截图**
+  Owner：QA / PM / Godot Dev Agent；依赖：V02-P1RETURN-001、V02-P1RETURN-002、V02-P1RETURN-003；交付物：P1 支线玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图；验收：P1 支线可玩且不阻断 P0 主路径，Bookshop / Bus Stop 截图无明显遮挡或工程文案。完成记录：新增 `tests/test_v0210_p1_return_smoke.gd` 并在 `tests/headless_runner.gd` 以 `_check_v0210_p1_return_smoke()` 注册，覆盖故事熊 / 巴士哥哥 P1 路径、B/T 相册记录、P0 Mina / 商店 / 小屋不阻断和禁用文案；新增 `tests/capture_p1return004_screens.gd`、`docs/collaboration/Round68_V02.10_P1RETURN-004验收记录.md` 与 `docs/collaboration/p1return004_captures/`，包含 1280x720 / 960x540 的 Story Bear、Bear Corner、Bus Helper、Taxi marker 代表截图。
+
+### V02.11 天气与小镇轻事件纵切：让每天的小镇有温和变化
+
+> 本阶段只把晴天、微风、雨后、小雨等 P0 天气轻事件做成生活化数据合同和可见今日状态，不做真实天气联网、节日运营页、连续登录、倒计时、补签、错过损失或奖励墙。
+
+- [x] **V02-WEATHER-001 天气轻事件数据合同与今日状态接入**
+  Owner：PM / Game Design / Data Contract / Godot Dev / QA Agent；依赖：V02-WEEKLY-002、V02-DESIGN-005、V02-CONTENT-001；交付物：P0 天气事件 JSON / today_status 引用、loader / validator、focused contract test 和 HUD 今日状态可见短句；验收：晴天、微风、雨后、小雨四类事件均有稳定 ID、P0 优先级、天气标签、短中文状态文案和儿童安全说明，不接真实天气 API，不出现倒计时、错过、补签、连续或必须文案。完成记录：`data/life/weather_events.json`、`data/life/today_status.json`、`scripts/systems/today_status_service.gd`、`scripts/systems/content_contract_validator.gd`、`tests/test_v024_content_contracts.gd`、`tests/test_daily_town_services.gd` 和 `tests/headless_runner.gd` 已接入并验证通过。
+- [x] **V02-WEATHER-002 NPC 问候与资源 / 商店轻变化**
+  Owner：Narrative / Economy / Godot Dev / QA Agent；依赖：V02-WEATHER-001、V02-DAILYLIFE-001、V02-WEEKLY-002；交付物：天气事件驱动的 NPC 问候变体、资源提示 / 权重轻变化和商店活动角引用；验收：P0 常驻商品不消失，资源不会因天气减少基础可得性，NPC 文案温和且数据化，不制造限时购买或售罄焦虑。完成记录：`data/life/daily_greetings.json` 新增天气问候变体，`data/life/resource_points.json` 新增天气提示，`data/items/life_items.json` 新增 `weather_activity_corner`；`DailyGreetingService`、`ResourceRefreshService`、`LifeShopService` 和 `ContentContractValidator` 已接入并通过 focused/headless 验证。
+- [x] **V02-WEATHER-003 A-Z 天气相册线索**
+  Owner：Memory Palace / UI / Narrative / QA Agent；依赖：V02-WEATHER-001、V02-AZ-WORLD-004、V02-P1RETURN-003；交付物：S Sun、K Kite、B Bear、U Umbrella 等天气环境线索与相册 / card state 记录；验收：只记录地点故事、环境词和温和反馈，不做天气打卡、答题、背诵、顺序拜访或等级评价。完成记录：`data/life/weather_events.json` 新增 `album_clues`，`scripts/main.gd` 在真实可见 anchor / P1 look 路径记录 `weather_album_clues` 并点亮对应 card state，`scripts/ui/memory_album.gd` 显示 U Umbrella 卡片，`scripts/systems/content_contract_validator.gd` 拦截天气相册线索字段缺失；`tests/test_v023_memory_palace_world.gd` 覆盖 S Sun、K Kite、B Bear、U Umbrella 在对应 day_key 通过 `看看` 路径落账并打开相册验证“已收藏”，focused/headless 验证通过。
+- [x] **V02-WEATHER-004 天气纵切 smoke 与双视口截图**
+  Owner：QA / PM / Godot Dev Agent；依赖：V02-WEATHER-001、V02-WEATHER-002、V02-WEATHER-003；交付物：多天气 day_key 玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图；验收：多天气状态可见且 P0 Home / Shop / 小屋 / Mina / 相册 / A-Z 路径不阻断，截图无明显遮挡、工程文案、倒计时、错过或运营压力。完成记录：新增 `tests/test_v0211_weather_slice_smoke.gd` 并在 `tests/headless_runner.gd` 注册 `_check_v0211_weather_slice_smoke()`，覆盖晴天、微风、小雨、雨后四类天气 day_key、Mina 日常、P0 商店、小屋摆放、相册和 S/K/B/U 天气线索落账；新增 `tests/capture_weather004_screens.gd`、`docs/collaboration/Round72_V02.11_WEATHER-004验收记录.md` 与 `docs/collaboration/weather004_captures/`，包含 1280x720 / 960x540 的 Sunny Sun、Breezy Kite、Light Rain Bear、After Rain Album、Shop、Home 代表截图；focused/headless/双视口取证均通过。
 
 ## 阶段 0：框架与管理基线
 
@@ -528,3 +861,22 @@
 | 2026-06-05 | Round 52 验收 | V02.7 发布前体验门槛实现与验收表落地 | `scripts/main.gd` 新增顶部设置入口、`SettingsPanel`、声音开关、回到小镇安全位置、休息二次确认和退出入口；`tests/test_playable_ui_operations.gd` 与 `tests/headless_runner.gd` 覆盖设置真实可见路径、底栏不新增退出、二次确认和安全位置；新增 `docs/collaboration/Round52_V02.7发布前体验门槛执行记录.md`；`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_playable_ui_operations.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；`V02-POLISH-004` 因尚未接入正式素材保持进行中 |
 | 2026-06-05 | Round 52 素材验收收口 | V02-POLISH-004 首批正式素材替换验收 | 接入 P0 production 素材：Town Plaza、Home、Shop、主路、树枝、玩家、Mina、Sunny、金币图标和背包图标；新增 `ThemeProfile` 分类、`AssetResolver` 查询、主场景逻辑 asset 纹理加载和运行时纹理断言；MCP 捕获 1280x720 首屏截图并抽查运行树；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_asset_resolver.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过 |
 | 2026-06-05 | Round 54 规划启动 | V02.7A 美术基线重建与 V02.8 每日小镇生活纵切 | 按 `AGENTS.md` 文档路线顺序更新 `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`；将 `V02-POLISH-005` 并入 V02.7A 重评，新增 `V02-ARTBASE-001` 至 `005` 与 `V02-DAILYLIFE-001` 至 `005`；本轮只改 PM 文档和台账，未改运行时代码，未运行 Godot 验证 |
+| 2026-06-05 | Round 54 PM 执行落地 | V02.7A 任务包、审计记录与 PM 节奏收口 | 新增 `docs/collaboration/Round54_V02.7A-V02.8_PM执行任务包.md` 与 `docs/collaboration/Round54_V02-ARTBASE-001首屏视觉目标与资产降级审计记录.md`；在 `docs/10_美术风格与换肤预留.md` 增补 `placeholder_plus` 状态定义；在 `docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md` 写入 Round 54 分派顺序、PM 节奏与 V02.8 开工门槛；仅改 PM 文档和台账，未改运行时代码，未运行 Godot 验证 |
+| 2026-06-05 | Round 54 工作区核对 | V02.7A 候选实现与阶段门槛复核 | 核对未提交改动确认 `ThemeProfile` / `AssetResolver`、主场景和 `assets/art/` 已存在 Town Plaza、Home、Shop、主路、树枝、玩家、Mina、Sunny、店长、家具与部分 UI 图标的候选接入；`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_asset_resolver.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；因 `1280x720` / `960x540` V02.7A 截图尚未补齐，`V02-ARTBASE-002`、`003`、`004` 维持候选实现状态，`V02-ARTBASE-005` 仍是进入 V02.8 的唯一门槛 |
+| 2026-06-05 | Round 54 截图证据复核 | V02-ARTBASE-005 运行时证据与工具链限制补记 | 通过 Godot MCP 捕获 `/root/Main` 的 `1280x720` 运行时截图，并核对 TownHUD、TownFooter 与主场景节点存在；新增 `tests/capture_artbase005_screens.gd` 作为批量截图辅助脚本；`godot --headless --path . --check-only --script tests/capture_artbase005_screens.gd` 通过，但 `godot --headless --path . --script tests/capture_artbase005_screens.gd -- --output-dir user://artbase005_captures --suffix 1280` 证实 dummy renderer 无法导出窗口纹理，因此 `960x540` 门槛截图仍待 MCP 或非 headless 路径补齐 |
+| 2026-06-05 | Round 55 验收 / Round 56 启动 | V02-DAILYLIFE-001 三 NPC 日常入口收口与 V02-DAILYLIFE-002 分派 | Mina、店长、Sunny 均已从主场景真实可见路径靠近并用 `看看` 触发问候 / 轻委托入口，互动写入关系、最近事件或当日状态；`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/test_playable_ui_operations.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；新增 `docs/collaboration/Round56_V02.8_DAILYLIFE-002_PM执行任务包.md`，将下一轮唯一主任务置为 `V02-DAILYLIFE-002` |
+| 2026-06-05 | Round 56 验收 / Round 57 启动 | V02-DAILYLIFE-002 三条 P0 轻委托可玩化收口与 V02-DAILYLIFE-003 分派 | 主场景测试新增 Mina、店长、Sunny 三条 P0 委托真实路径覆盖：`daily_mina_branch_001`、`daily_shopkeeper_flower_001`、`daily_sunny_flower_001` 分别映射路线中的三条 P0 目标；孩子端通过 `看看` 接取、采集资源、交付、获得奖励，并验证同日重复不重复奖励和重载保存状态；`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/test_playable_ui_operations.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；新增 `docs/collaboration/Round57_V02.8_DAILYLIFE-003_PM执行任务包.md`，将下一轮唯一主任务置为 `V02-DAILYLIFE-003` |
+| 2026-06-05 | Round 57 验收 / Round 58 启动 | V02-DAILYLIFE-003 商店到小屋使用闭环收口与 V02-DAILYLIFE-004 分派 | 主场景新增小屋可见 `挪动` 按钮和 `move_home_item()` 路径；操作级测试覆盖从可见商店入口购买木椅、背包气泡即时显示、进入小屋摆放、Sunny 反馈、旋转、挪动并保存坐标、收起并恢复背包；`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_playable_ui_operations.gd`、`godot --headless --path . --script tests/test_v022_home_room_contract.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；新增 `docs/collaboration/Round58_V02.8_DAILYLIFE-004_PM执行任务包.md`，将下一轮唯一主任务置为 `V02-DAILYLIFE-004` |
+| 2026-06-05 | Round 58 验收 / Round 59 启动 | V02-DAILYLIFE-004 三个 A-Z 地点回访收口与 V02-DAILYLIFE-005 分派 | `data/anchors/new_word_revisit_paths.json` 新增 `story_chair_clock_cozy_time`，补齐 `C Clock` 生活回访故事；`tests/test_v023_memory_palace_world.gd` 新增 C/O/S 三处主场景真实 `看看` 路径验证，确认 card state / 相册状态更新、HUD 显示生活化地点故事且无测验文案；`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_v023_memory_palace_world.gd`、`godot --headless --path . --script tests/test_memory_palace_embedding.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；新增 `docs/collaboration/Round59_V02.8_DAILYLIFE-005_PM执行任务包.md`，将下一轮唯一主任务置为 `V02-DAILYLIFE-005` |
+| 2026-06-05 | Round 59 验收 | V02-DAILYLIFE-005 5 分钟纵切 smoke 与 V02.8 阶段收口 | 新增并验证 `tests/test_v028_daily_life_slice.gd`，玩家从启动后通过真实可见入口完成 Mina 问候 / 轻委托、树枝采集、交付奖励、商店购买木椅、背包查看、小屋摆放、Sunny 反馈和 C/O/S 三处回访；同一路径已注册进 `tests/headless_runner.gd` 作为全量回归门槛；双视口截图证据沿用 `docs/collaboration/Round54_V02-ARTBASE-005双视口截图验收记录.md`。`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_v028_daily_life_slice.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/test_playable_ui_operations.gd`、`godot --headless --path . --script tests/test_v023_memory_palace_world.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过 |
+| 2026-06-05 | Round 60 验收 / Round 61 Ready | V02-WEEKLY-001 一周回访内容合同与排期收口 | 更新 `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`，新增 `docs/collaboration/Round60_V02.9_WEEKLY-001_PM执行任务包.md`；建立 `local_day_001` 至 `local_day_007` 的今日状态、主居民、轻目标、商店 / 小屋回访、A-Z 线索和儿童安全边界；将下一轮唯一 Ready 置为 `V02-WEEKLY-002 每日状态与商店轮换数据化`；本轮仅改 PM 文档和台账，`godot --headless --path . --script tests/headless_runner.gd` 与 `godot --headless --path . --quit` 通过 |
+| 2026-06-05 | Round 61 验收 / Round 62 Ready | V02-WEEKLY-002 每日状态与商店轮换数据化收口 | `data/life/today_status.json` 升级为 7 天稳定状态合同，包含 `day_key`、`primary_npc`、`anchor_hint` 和 `shop_rotation_id`；`data/items/life_items.json` 新增 7 天 `shop_rotations`，覆盖 P0 常驻、P1 日常轮换和 P2 雨后轻变体；`TodayStatusService` 支持按 day_key 稳定命中，`LifeShopService` 支持按 day 或 rotation 读取 offer，`ContentContractValidator` 拦截 today status 与 shop rotation 合同错误；`tests/test_v024_content_contracts.gd`、`tests/test_daily_town_services.gd`、`tests/test_life_services.gd` 和 `tests/headless_runner.gd` 已覆盖 7 天状态、P0 常驻、P1/P2 轮换、买不起不失败和儿童安全文案；验证命令与 `godot --headless --path . --quit` 通过；下一轮唯一 Ready 为 `V02-WEEKLY-003 P1 居民回访入口预收` |
+| 2026-06-05 | Round 65 验收 / Round 66 Ready | V02-P1RETURN-001 Bookshop / Bus Stop 真实可见入口收口 | `data/maps/world_map.json` 新增 Bookshop 门口、Bear Corner、Bus Stop 站牌、Taxi marker 四个 P1 return hotspot；`scripts/main.gd` 新增 `look_p1_return_entry` 处理，孩子端通过底栏 `看看` 触发温和反馈并保存 `p1_return_entries`，不发金币、不打开出行或学习流程；新增 `tests/test_v0210_p1_return_entries.gd` 并注册 `tests/headless_runner.gd`，覆盖四个可见入口、P0 商店 / 小屋路径不阻断和儿童安全禁用文案；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --check-only --script tests/test_v0210_p1_return_entries.gd`、`godot --headless --path . --script tests/test_v0210_p1_return_entries.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；下一轮唯一 Ready 为 `V02-P1RETURN-002 故事熊 / 巴士哥哥 P1 轻回访` |
+| 2026-06-05 | Round 66 验收 / Round 67 Ready | V02-P1RETURN-002 故事熊 / 巴士哥哥 P1 轻回访收口 | `data/life/daily_requests.json` 新增 `daily_story_bear_find_bear_corner_001` 与 `daily_bus_helper_taxi_spot_001`；`scripts/systems/daily_request_service.gd` 支持 `required_p1_entries`；`scripts/main.gd` 将 Story Bear / Bus Helper 可见 NPC 互动路由到 V02.10 P1 请求；`scripts/systems/content_contract_validator.gd` 允许每日请求使用 `required_items` 或 `required_p1_entries`；新增 `tests/test_v0210_p1_light_returns.gd` 并注册 `tests/headless_runner.gd`，覆盖两条 P1 支线接取、看入口、回 NPC 完成、同日去重和禁用文案；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/systems/daily_request_service.gd`、`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --check-only --script tests/test_v0210_p1_light_returns.gd`、`godot --headless --path . --script tests/test_v0210_p1_light_returns.gd`、`godot --headless --path . --script tests/test_daily_request_service.gd`、`godot --headless --path . --script tests/test_daily_town_services.gd`、`godot --headless --path . --script tests/test_v024_content_contracts.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；下一轮唯一 Ready 为 `V02-P1RETURN-003 B Bear / T Taxi 相册与 A-Z 记录` |
+| 2026-06-05 | Round 67 验收 / Round 68 Ready | V02-P1RETURN-003 B Bear / T Taxi 相册与 A-Z 记录收口 | `scripts/main.gd` 为 P1 return entry 增加 `linked_anchor_id -> card_id` 相册落账，Bookshop / Bear Corner 写入 `card_b_bear_core`，Bus Stop / Taxi marker 写入 `card_t_taxi_core`；`tests/test_v0210_p1_return_entries.gd` 与 `tests/test_v0210_p1_light_returns.gd` 覆盖入口查看、轻回访完成、card state seen/heard/collected 和小镇相册“已收藏”显示；`tests/headless_runner.gd` 已注册集成断言；`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_v0210_p1_return_entries.gd`、`godot --headless --path . --script tests/test_v0210_p1_light_returns.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；下一轮唯一 Ready 为 `V02-P1RETURN-004 P1 回访 smoke 与截图` |
+| 2026-06-05 | Round 68 验收 | V02-P1RETURN-004 P1 回访 smoke 与截图收口 | 新增 `tests/test_v0210_p1_return_smoke.gd`，并在 `tests/headless_runner.gd` 注册 `_check_v0210_p1_return_smoke()`；新增 `tests/capture_p1return004_screens.gd` 与 `docs/collaboration/Round68_V02.10_P1RETURN-004验收记录.md`；非 headless `x11` 路径导出 `docs/collaboration/p1return004_captures/` 下 8 张 P1 代表截图，覆盖 Story Bear、Bear Corner、Bus Helper、Taxi marker 的 1280x720 与 960x540；`godot --headless --path . --check-only --script tests/capture_p1return004_screens.gd`、`godot --headless --path . --check-only --script tests/test_v0210_p1_return_smoke.gd`、`godot --headless --path . --script tests/test_v0210_p1_return_smoke.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；V02.10 P1 居民回访扩展可标记完成，下一轮应由 PM 建立下一阶段路线 |
+| 2026-06-05 | Round 69 规划 / Ready | V02.11 天气与小镇轻事件纵切路线建立 | 按文档路线顺序更新 `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`；新增 `docs/collaboration/Round69_V02.11_WEATHER-001_PM执行任务包.md`；将 V02.11 拆为 `V02-WEATHER-001` 至 `004`，并将下一轮唯一 Ready 置为 `V02-WEATHER-001 天气轻事件数据合同与今日状态接入`；本轮仅改 PM 文档和台账，验证命令通过 |
+| 2026-06-05 | Round 69 验收 / Round 70 Ready | V02-WEATHER-001 天气轻事件数据合同与今日状态接入收口 | 新增 `data/life/weather_events.json`，包含 `event_weather_sunny_soft_001`、`event_weather_breezy_kite_001`、`event_weather_after_rain_001`、`event_weather_light_rain_001` 四个 P0 天气轻事件；`data/life/today_status.json` 为 7 个本地 day_key 增加 `weather_event_id`；`TodayStatusService` 输出天气事件与 HUD 短句；`ContentContractValidator` 拦截 required P0 event、天气标签、P0 优先级、安全文本和 today_status 引用；`tests/test_v024_content_contracts.gd`、`tests/test_daily_town_services.gd`、`tests/headless_runner.gd` 已覆盖；新增 `docs/collaboration/Round70_V02.11_WEATHER-002_PM执行任务包.md`，下一轮唯一 Ready 为 `V02-WEATHER-002 NPC 问候与资源 / 商店轻变化`；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/systems/today_status_service.gd`、`godot --headless --path . --check-only --script scripts/systems/content_contract_validator.gd`、`godot --headless --path . --script tests/test_daily_town_services.gd`、`godot --headless --path . --script tests/test_v024_content_contracts.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；无残留 headless 测试进程 |
+| 2026-06-05 | Round 70 验收 / Round 71 Ready | V02-WEATHER-002 NPC 问候与资源 / 商店轻变化收口 | `data/life/daily_greetings.json` 新增天气问候变体并用稳定 `variant_id` 回连 `weather_events.npc_greeting_refs`；`DailyGreetingService` 返回 `weather_event_id`、`weather_tag` 与 `greeting_variant_id`；`data/life/resource_points.json` 新增 `weather_hints`，`ResourceRefreshService` 只附加天气提示且不改变资源数量；`data/items/life_items.json` 新增 `weather_activity_corner`，`LifeShopService` 返回活动角说明但不覆盖 `offers`；`ContentContractValidator` 已拦截天气问候悬空引用、资源天气提示、商店活动角和 P0 `wooden_chair` 保留；`tests/test_v024_content_contracts.gd`、`tests/test_daily_town_services.gd`、`tests/test_life_services.gd` 与 `tests/headless_runner.gd` 已覆盖；新增 `docs/collaboration/Round71_V02.11_WEATHER-003_PM执行任务包.md`，下一轮唯一 Ready 为 `V02-WEATHER-003 A-Z 天气相册线索`；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/systems/content_contract_validator.gd`、`godot --headless --path . --check-only --script tests/headless_runner.gd`、`godot --headless --path . --script tests/test_v024_content_contracts.gd`、`godot --headless --path . --script tests/test_daily_town_services.gd`、`godot --headless --path . --script tests/test_life_services.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；无残留 headless 测试进程 |
+| 2026-06-05 | Round 71 验收 / Round 72 Ready | V02-WEATHER-003 A-Z 天气相册线索收口 | `data/life/weather_events.json` 为晴天、微风、雨后、小雨四类 P0 天气新增 `album_clues`，分别绑定 S Sun、K Kite、U Umbrella、B Bear 的 `anchor_id`、`card_id`、天气相册标签、地点故事和环境词；`scripts/main.gd` 在孩子端真实 `看看` 路径中记录 `weather_album_clues`，直接 anchor 与 P1 look hotspot 均可点亮对应 card state，其中 B Bear 通过 Bear Corner 避开 Mina 树枝资源格；`scripts/ui/memory_album.gd` 将 U Umbrella 纳入相册显示；`ContentContractValidator` 拦截天气相册线索缺字段或未回连 `anchor_hints`；`tests/test_v023_memory_palace_world.gd` 覆盖四类天气 day_key 从可见 `看看` 路径落账、打开相册显示“已收藏”且无正确率 / 等级 / 打卡 / 测验文案；新增 `docs/collaboration/Round72_V02.11_WEATHER-004_PM执行任务包.md`，下一轮唯一 Ready 为 `V02-WEATHER-004 天气纵切 smoke 与双视口截图`；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --check-only --script scripts/systems/content_contract_validator.gd`、`godot --headless --path . --script tests/test_v023_memory_palace_world.gd`、`godot --headless --path . --script tests/test_v024_content_contracts.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；无残留 headless 测试进程 |
+| 2026-06-05 | Round 72 验收 | V02-WEATHER-004 天气纵切 smoke 与双视口截图收口 | 新增 `tests/test_v0211_weather_slice_smoke.gd`，覆盖晴天、微风、小雨、雨后四类天气 day_key、HUD 天气状态、Mina 日常、P0 商店、小屋摆放、相册和 S/K/B/U 天气线索落账；`tests/headless_runner.gd` 注册 `_check_v0211_weather_slice_smoke()` 作为全量回归门槛；新增 `tests/capture_weather004_screens.gd` 与 `docs/collaboration/Round72_V02.11_WEATHER-004验收记录.md`；非 headless `x11` / `opengl3` 路径导出 `docs/collaboration/weather004_captures/` 下 12 张代表截图，覆盖 Sunny Sun、Breezy Kite、Light Rain Bear、After Rain Album、Shop、Home 的 1280x720 与 960x540；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script tests/test_v0211_weather_slice_smoke.gd`、`godot --headless --path . --check-only --script tests/capture_weather004_screens.gd`、`godot --headless --path . --check-only --script tests/headless_runner.gd`、`godot --headless --path . --script tests/test_v0211_weather_slice_smoke.gd`、`godot --headless --path . --script tests/headless_runner.gd`、双视口截图导出、`godot --headless --path . --quit` 均通过；无残留 headless 测试进程；V02.11 天气与小镇轻事件纵切可标记完成，下一步应由 PM 建立后续阶段路线 |
