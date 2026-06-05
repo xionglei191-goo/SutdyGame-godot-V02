@@ -42,3 +42,27 @@ Use concise imperative commits such as `feat: add home decoration state`. PRs sh
 ## Agent-Specific Instructions
 
 Read `todo.md` before work and `lessons.md` before risky changes. Set selected tasks to `[~]`, keep scope narrow, do not revert other agents' work, then update task status, completion records, and lessons after validation. Preserve A-Z memory anchors as world structure; preserve other learning systems as optional/collection features unless a task explicitly removes them.
+
+## Documentation Route & Ledger Sync
+
+For new stage routes or next-stage planning, update documents in this order by default: `docs/12_V02开发路线.md` -> `docs/13_V02详细开发计划.md` -> `docs/14_内容基线整理与首批内容规划.md` -> `docs/15_项目经理接管与下一阶段执行计划.md` -> `todo.md`.
+
+During execution and closeout, `todo.md` is the status source of truth. When a task enters Ready, `[~]`, `[x]`, or `[!]`, check and keep these `todo.md` areas consistent: current status panel, current-round assignment table, formal stage task list, completion records, and `lessons.md` only when there is a verified lesson or failure. Do not update only the status panel or assignment table while leaving the formal stage task list missing or stale.
+
+## Image Generation Fallback
+
+When bitmap image generation is needed, prefer the built-in image generation tool if available. If the built-in tool is unavailable or blocked, use the local fallback script at `/home/xionglei/GameProject/tools/image_generator.js`.
+
+Text-to-image:
+
+```bash
+node /home/xionglei/GameProject/tools/image_generator.js text "prompt" "output.png" "1024x1024"
+```
+
+Image-to-image:
+
+```bash
+node /home/xionglei/GameProject/tools/image_generator.js edit "source.png" "prompt" "mask.png" "output.png"
+```
+
+Use `null` for the mask argument when no mask is needed. Save generated project assets under the repo asset tree with stable, descriptive filenames, then register them through logical asset IDs and `AssetResolver` rather than hardcoding paths in runtime code.
