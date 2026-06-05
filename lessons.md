@@ -90,6 +90,18 @@
 | 2026-06-05 | Round 70 V02.11 天气问候与轻变化 | 无新增已验证教训 | 天气问候变体、资源天气提示和商店活动角通过 focused/headless 验证；P0 商品和基础资源可得性保持不变，未产生新的已验证故障 |
 | 2026-06-05 | Round 71 V02.11 A-Z 天气相册线索 | 无新增已验证教训 | S Sun、K Kite、B Bear、U Umbrella 天气相册线索通过真实 `看看` 路径、相册显示、focused/headless 验证；测试中复用 LESSON-003 显式类型标注和 LESSON-009 真实可见入口规则，未新增新的已验证故障类型 |
 | 2026-06-05 | Round 72 V02.11 天气纵切 smoke 与截图 | 无新增已验证教训 | 多天气 day_key smoke、headless runner、非 headless x11 双视口截图均通过；截图取证按 LESSON-010 走显示驱动路径，未新增新的已验证故障类型 |
+| 2026-06-05 | Round 73 V02.12 Home / School 中心 A-Z 世界规划合同 | 无新增已验证教训 | 新增 `az_world_plan` 数据合同、规划验证器和 focused/headless 回归；Home / School 双中心、26 anchor 分布、远郊边界和未来 0 基础挂接位均通过验证，未产生新的已验证故障 |
+| 2026-06-05 | Round 74-76 V02.12 AZWORLD 任务包与阶段收口 | 无新增已验证教训 | 通过子 agent 分派和 PM 集成完成区域道路安全规划、17 个 reserved anchor 制作规格、Home / School 0 基础挂接、截图验收口径和扩展合同回归；未产生新的已验证故障 |
+| 2026-06-05 | Round 77 V02.13 全量课本内容世界化主线策划 | 无新增已验证教训 | 三上公开来源摘要、8 册 source ledger、85 个单元摘要、世界映射、P0/P1/P2 主线分层、合同测试和 headless runner 均通过；仅新增数据 / 合同 / PM 文档，未接入孩子端 runtime |
+| 2026-06-05 | Round 78 V02.14 Home / School P0 可玩纵切路线规划 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、任务包和 `todo.md`，建立 V02.14 Home / School P0 路线与 `V02-HOMESCHOOL-002` Ready；未改运行时代码，未产生新的已验证故障 |
+| 2026-06-05 | Round 79 V02.14 Home / School P0 可玩纵切实现 | 无新增已验证教训 | Home / Walk / School / Return P0 可见 `看看` 路径、A-Z 相册落账、focused/full headless 和 MCP 1280x720 截图抽查通过；共享 runner 曾缺 `_check_v0214_homeschool_slice()` 注册函数，按 LESSON-006 的共享 runner 集成规则补齐后通过，未形成新的故障类型 |
+| 2026-06-05 | Round 80 V02.15 Home / School 日常回访路线规划 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、任务包和 `todo.md`，建立 V02.15 学校生活轻循环路线与 `V02-SCHOOLDAILY-002` Ready；未改运行时代码，未产生新的已验证故障 |
+| 2026-06-05 | Round 81 V02-SCHOOLDAILY-002 School Day State Contract 数据化 | 无新增已验证教训 | 7 天 school day state、loader / service、内容合同检查和 focused/headless 验证通过；未产生新的已验证故障 |
+| 2026-06-05 | Round 82 V02.15 学校日常完整纵切收口 | 无新增已验证教训 | 7 天 Home -> Walk -> School -> Return 真实 `看看` 路径、Sunny return 保存、headless runner 和双视口截图均通过；未产生新的已验证故障 |
+| 2026-06-05 | Round 83 V02.16 Playable RC Gate 路线规划 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、任务包和 `todo.md`，建立 V02.16 可制作内容与体验抛光路线与 `V02-PRODUCTION-002` Ready；未改运行时代码，未产生新的已验证故障 |
+| 2026-06-05 | Round 86 V02.17 世界地图运行时落地收口 | LESSON-011 | 26 anchor 全量运行时 smoke 发现近邻资源 / 旧坐标会吞掉 A-Z 相册路径，已调整交互优先级与天气 smoke 坐标 |
+| 2026-06-05 | Round 87 V02.18 世界地图可读性路线规划 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、任务包和 `todo.md`，建立 V02.18 地图视觉可读性与探索体验抛光路线与 `V02-MAPREAD-002` Ready；未改运行时代码，未产生新的已验证故障 |
+| 2026-06-05 | Round 88 V02.18 世界地图可读性收口 | 无新增已验证教训 | 26 anchor 可读性 focused/full headless 验证通过；共享 runner helper 补齐属于 LESSON-006 规则内处理，未形成新的故障类型 |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -218,3 +230,17 @@
   - 新增截图脚本时，先验证目标渲染路径是否真的能返回窗口纹理，再把它写进 PM 门槛。
   - 当 `1280x720` 已由 MCP 证明运行时可见、但较小视口截图缺失时，先记录工具链阻塞，再决定是否需要继续追查布局问题。
 - **验证依据：** Godot MCP 已捕获 `/root/Main` 的 `1280x720` 运行时截图；`godot --headless --path . --check-only --script tests/capture_artbase005_screens.gd` 通过；`godot --headless --path . --script tests/capture_artbase005_screens.gd -- --output-dir user://artbase005_captures --suffix 1280` 复现空纹理问题。
+
+## LESSON-011：密集地图热点必须验证交互优先级和旧坐标回归
+
+- **日期：** 2026-06-05
+- **关联任务：** `V02-WORLDMAP-002` 至 `V02-WORLDMAP-005`
+- **现象：** V02.17 26 anchor 运行时 smoke 初次验证时，B Bear 附近的树枝资源先于 anchor 被 `interact_nearby()` 收集，导致相册未落账；V02.11 weather smoke 仍使用 K Kite / U Umbrella 的旧坐标，无法触发迁移后的天气相册线索。
+- **影响：** 地图数据已经包含 26 个 anchor，但孩子端真实 `看看` 路径可能被近邻资源、NPC 或旧截图点吞掉，造成“合同存在但玩家不可点亮”的假完成。
+- **根因：** 旧交互顺序是 exact hotspot -> nearby resource -> nearby anchor，资源点和 A-Z anchor 变密后会发生优先级冲突；同时旧 smoke 的固定坐标没有随 V02.17 运行时坐标迁移。
+- **解决方式：** `interact_nearby()` 改为 exact hotspot -> exact resource -> nearby anchor -> nearby resource -> NPC，保留站在资源格上的收集路径，同时让近邻 A-Z `看看` 不被资源抢占；V02.11 weather smoke 与 headless runner 更新 K Kite / U Umbrella 到 V02.17 坐标。
+- **预防规则：**
+  - 新增或迁移地图热点时，必须跑真实 `看看` 路径 smoke，不能只检查 node / JSON 存在。
+  - 资源、NPC、地点 hotspot 和 A-Z anchor 半径重叠时，要明确 exact 与 nearby 的优先级，并验证相册落账和资源收集都仍可达。
+  - 迁移 anchor 坐标后，同步更新天气、P1、截图和历史 smoke 的固定 look cell，或改为从 `world_map.memory_anchors` 读取。
+- **验证依据：** `godot --headless --path . --script tests/test_v0217_worldmap_anchor_runtime.gd`、`godot --headless --path . --script tests/test_v0211_weather_slice_smoke.gd`、`godot --headless --path . --script tests/test_v028_daily_life_slice.gd`、`godot --headless --path . --script tests/test_v0216_playable_rc_gate.gd`、`godot --headless --path . --script tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过。

@@ -5,9 +5,9 @@ const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 
 const WEATHER_PATHS: Array[Dictionary] = [
 	{"day_key": "local_day_001", "event_id": "event_weather_sunny_soft_001", "anchor_id": "anchor_s_sun", "card_id": "card_s_sun_core", "cell": Vector2i(17, 2), "weather_text": "阳光", "album_tag": "Sunny day."},
-	{"day_key": "local_day_002", "event_id": "event_weather_breezy_kite_001", "anchor_id": "anchor_k_kite", "card_id": "card_k_kite_core", "cell": Vector2i(16, 4), "weather_text": "小风", "album_tag": "Windy Kite."},
+	{"day_key": "local_day_002", "event_id": "event_weather_breezy_kite_001", "anchor_id": "anchor_k_kite", "card_id": "card_k_kite_core", "cell": Vector2i(7, 11), "weather_text": "小风", "album_tag": "Windy Kite."},
 	{"day_key": "local_day_004", "event_id": "event_weather_light_rain_001", "anchor_id": "anchor_b_bear", "card_id": "card_b_bear_core", "cell": Vector2i(13, 7), "weather_text": "小雨", "album_tag": "Light Rain."},
-	{"day_key": "local_day_006", "event_id": "event_weather_after_rain_001", "anchor_id": "anchor_u_umbrella", "card_id": "card_u_umbrella_core", "cell": Vector2i(32, 9), "weather_text": "雨后", "album_tag": "After Rain."},
+	{"day_key": "local_day_006", "event_id": "event_weather_after_rain_001", "anchor_id": "anchor_u_umbrella", "card_id": "card_u_umbrella_core", "cell": Vector2i(33, 13), "weather_text": "雨后", "album_tag": "After Rain."},
 ]
 
 var failures: Array[String] = []

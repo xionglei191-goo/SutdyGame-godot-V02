@@ -4,6 +4,7 @@ class_name ContentContractValidator
 const DAILY_REQUESTS_PATH := "res://data/life/daily_requests.json"
 const DAILY_GREETINGS_PATH := "res://data/life/daily_greetings.json"
 const TODAY_STATUS_PATH := "res://data/life/today_status.json"
+const SCHOOL_DAY_STATES_PATH := "res://data/life/school_day_states.json"
 const WEATHER_EVENTS_PATH := "res://data/life/weather_events.json"
 const RESOURCE_POINTS_PATH := "res://data/life/resource_points.json"
 const ITEMS_PATH := "res://data/items/life_items.json"
@@ -14,6 +15,7 @@ const PRESSURE_TERMS := ["test", "quiz", "exam", "score", "drill", "lesson", "ho
 const STORY_FIELDS := ["letter", "core_anchor_id", "world_place_id", "story_memory", "visual_hook", "review_path"]
 const ROTATION_TIERS := ["P0", "P1", "P2"]
 const WEATHER_TAGS := ["sunny", "breezy", "after_rain", "light_rain"]
+const SCHOOL_DAY_STAGES := ["home_school_walk", "school_gate", "school_yard", "return_home"]
 const REQUIRED_P0_WEATHER_EVENTS := [
 	"event_weather_sunny_soft_001",
 	"event_weather_breezy_kite_001",
@@ -29,6 +31,7 @@ func validate_all() -> Dictionary:
 	var greeting_variant_ids: Dictionary = _validate_daily_greetings(errors)
 	var weather_event_ids: Dictionary = _validate_weather_events(errors, greeting_variant_ids)
 	_validate_today_status(errors, weather_event_ids)
+	_validate_school_day_states(errors)
 	_validate_resource_points(errors, weather_event_ids)
 	_validate_items(errors)
 	_validate_anchor_content(errors, warnings)
@@ -214,6 +217,53 @@ func _validate_today_status(errors: Array[String], weather_event_ids: Dictionary
 	for required_id in REQUIRED_P0_WEATHER_EVENTS:
 		if not seen_weather_events.has(required_id):
 			errors.append("today status must reference required P0 weather event: %s" % required_id)
+
+
+func _validate_school_day_states(errors: Array[String]) -> void:
+	var data: Dictionary = _load_json(SCHOOL_DAY_STATES_PATH, errors)
+	var seen_day_keys: Dictionary = {}
+	var seen_event_ids: Dictionary = {}
+	var core_anchor_ids: Dictionary = _core_anchor_ids()
+	for state_value in data.get("states", []):
+		if not state_value is Dictionary:
+			errors.append("school day state entry must be object")
+			continue
+		var state: Dictionary = state_value
+		var day_key := str(state.get("day_key", ""))
+		_require_id(day_key, seen_day_keys, "school day state day_key", errors)
+		if str(state.get("theme", "")).is_empty():
+			errors.append("school day state missing theme: %s" % day_key)
+		var entries: Dictionary = state.get("entries", {})
+		for stage in SCHOOL_DAY_STAGES:
+			if not entries.has(stage):
+				errors.append("school day state missing stage %s for %s" % [stage, day_key])
+				continue
+			var entry_value: Variant = entries.get(stage, {})
+			if not entry_value is Dictionary:
+				errors.append("school day state stage must be object: %s %s" % [day_key, stage])
+				continue
+			var entry: Dictionary = entry_value
+			var event_id := str(entry.get("event_id", ""))
+			_require_id(event_id, seen_event_ids, "school day event", errors)
+			if str(entry.get("stage", "")) != stage:
+				errors.append("school day entry stage mismatch: %s %s" % [day_key, event_id])
+			if str(entry.get("place_id", "")).is_empty():
+				errors.append("school day entry missing place_id: %s" % event_id)
+			if str(entry.get("child_facing_text", "")).is_empty():
+				errors.append("school day entry missing child_facing_text: %s" % event_id)
+			if str(entry.get("safety_note", "")).is_empty():
+				errors.append("school day entry missing safety_note: %s" % event_id)
+			if entry.get("anchor_ids", []).is_empty():
+				errors.append("school day entry missing anchor_ids: %s" % event_id)
+			for anchor_id_value in entry.get("anchor_ids", []):
+				var anchor_id := str(anchor_id_value)
+				if not core_anchor_ids.has(anchor_id):
+					errors.append("school day entry references unknown anchor: %s %s" % [event_id, anchor_id])
+			if entry.get("environment_words", []).is_empty():
+				errors.append("school day entry missing environment_words: %s" % event_id)
+			_validate_child_safe_dict(entry, "school day entry %s" % event_id, errors)
+	if seen_day_keys.size() < 7:
+		errors.append("school day states must include at least 7 local day entries")
 
 
 func _validate_resource_points(errors: Array[String], weather_event_ids: Dictionary) -> void:

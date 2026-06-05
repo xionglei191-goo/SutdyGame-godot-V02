@@ -1,0 +1,328 @@
+{
+	"schema_id": "school_day_states_v1",
+	"version": 1,
+	"states": [
+		{
+			"day_key": "local_day_001",
+			"theme": "soft_gate_bell",
+			"entries": {
+				"home_school_walk": {
+					"event_id": "schoolday_walk_flower_sign_001_day_001",
+					"stage": "home_school_walk",
+					"place_id": "place_home_school_walk",
+					"display_prefix": "上学小路",
+					"child_facing_text": "花丛旁的小路牌轻轻亮着，look 一眼就能看到 school gate 的方向。",
+					"anchor_ids": ["anchor_g_gate", "anchor_s_sun"],
+					"environment_words": ["look", "school", "gate"],
+					"safety_note": "小路保持熟悉、短途、可回家。"
+				},
+				"school_gate": {
+					"event_id": "schoolday_gate_bell_001_day_001",
+					"stage": "school_gate",
+					"place_id": "place_school_gate",
+					"display_prefix": "School Gate",
+					"child_facing_text": "校门小铃叮咚一声，Hello，今天的 gate 很安静。",
+					"anchor_ids": ["anchor_g_gate", "anchor_e_elephant"],
+					"environment_words": ["hello", "gate"],
+					"safety_note": "校门只是温和入口。"
+				},
+				"school_yard": {
+					"event_id": "schoolday_yard_net_robot_001_day_001",
+					"stage": "school_yard",
+					"place_id": "place_school_yard",
+					"display_prefix": "School Yard",
+					"child_facing_text": "操场边的 net 被太阳照得软软的，Robot 角也在安静发光。",
+					"anchor_ids": ["anchor_n_net", "anchor_r_robot"],
+					"environment_words": ["net", "robot", "play"],
+					"safety_note": "操场发现保持安静观看。"
+				},
+				"return_home": {
+					"event_id": "schoolday_return_sunny_day_note_001_day_001",
+					"stage": "return_home",
+					"place_id": "place_home",
+					"display_prefix": "Sunny",
+					"child_facing_text": "Sunny 听你说起小铃铛，尾巴摇得很轻。",
+					"anchor_ids": ["anchor_d_dog", "anchor_a_apple"],
+					"environment_words": ["home", "dog"],
+					"safety_note": "回家反馈保持温暖收束。"
+				}
+			}
+		},
+		{
+			"day_key": "local_day_002",
+			"theme": "kite_yard_day",
+			"entries": {
+				"home_school_walk": {
+					"event_id": "schoolday_walk_flower_sign_001_day_002",
+					"stage": "home_school_walk",
+					"place_id": "place_home_school_walk",
+					"display_prefix": "小路天空",
+					"child_facing_text": "风筝影子从小路上滑过去，Kite 像在给 gate 指方向。",
+					"anchor_ids": ["anchor_k_kite", "anchor_g_gate"],
+					"environment_words": ["kite", "gate", "go"],
+					"safety_note": "天空线索只作轻轻回访。"
+				},
+				"school_gate": {
+					"event_id": "schoolday_gate_bell_001_day_002",
+					"stage": "school_gate",
+					"place_id": "place_school_gate",
+					"display_prefix": "School Gate",
+					"child_facing_text": "gate 旁的小象图案眨了眨眼，好像在说早上好。",
+					"anchor_ids": ["anchor_g_gate", "anchor_e_elephant"],
+					"environment_words": ["gate", "elephant"],
+					"safety_note": "校门图案只作友好招呼。"
+				},
+				"school_yard": {
+					"event_id": "schoolday_yard_net_robot_001_day_002",
+					"stage": "school_yard",
+					"place_id": "place_school_yard",
+					"display_prefix": "School Yard",
+					"child_facing_text": "风筝线轻轻越过操场，Yo-yo 彩绳在角落里弯成小圈。",
+					"anchor_ids": ["anchor_k_kite", "anchor_y_yo_yo"],
+					"environment_words": ["kite", "yo-yo", "play"],
+					"safety_note": "操场物件只作慢慢观察。"
+				},
+				"return_home": {
+					"event_id": "schoolday_return_sunny_day_note_001_day_002",
+					"stage": "return_home",
+					"place_id": "place_home",
+					"display_prefix": "Sunny",
+					"child_facing_text": "Sunny 听到 Kite 的小故事，趴在 Apple 垫旁边慢慢眨眼。",
+					"anchor_ids": ["anchor_d_dog", "anchor_a_apple", "anchor_k_kite"],
+					"environment_words": ["kite", "home"],
+					"safety_note": "回家故事只记录今天看到的温柔画面。"
+				}
+			}
+		},
+		{
+			"day_key": "local_day_003",
+			"theme": "robot_corner_day",
+			"entries": {
+				"home_school_walk": {
+					"event_id": "schoolday_walk_flower_sign_001_day_003",
+					"stage": "home_school_walk",
+					"place_id": "place_home_school_walk",
+					"display_prefix": "上学小路",
+					"child_facing_text": "小书包标签在路边晃了晃，go 的箭头指向熟悉的 school。",
+					"anchor_ids": ["anchor_w_watch", "anchor_g_gate"],
+					"environment_words": ["go", "school", "bag"],
+					"safety_note": "路线保持清楚、短途、可返回。"
+				},
+				"school_gate": {
+					"event_id": "schoolday_gate_bell_001_day_003",
+					"stage": "school_gate",
+					"place_id": "place_school_gate",
+					"display_prefix": "School Gate",
+					"child_facing_text": "gate 旁的小钟牌亮了一下，提醒大家慢慢来。",
+					"anchor_ids": ["anchor_g_gate", "anchor_c_clock"],
+					"environment_words": ["gate", "clock"],
+					"safety_note": "时间线索表达慢慢来。"
+				},
+				"school_yard": {
+					"event_id": "schoolday_yard_net_robot_001_day_003",
+					"stage": "school_yard",
+					"place_id": "place_school_yard",
+					"display_prefix": "Robot 角",
+					"child_facing_text": "Robot 角的小灯闪了一下，旁边的 net 像一朵方方的云。",
+					"anchor_ids": ["anchor_r_robot", "anchor_n_net"],
+					"environment_words": ["robot", "net"],
+					"safety_note": "Robot 角保持静态观察。"
+				},
+				"return_home": {
+					"event_id": "schoolday_return_sunny_day_note_001_day_003",
+					"stage": "return_home",
+					"place_id": "place_home",
+					"display_prefix": "Sunny",
+					"child_facing_text": "Sunny 听完 Robot 角的小灯故事，轻轻靠在小床边。",
+					"anchor_ids": ["anchor_d_dog", "anchor_r_robot"],
+					"environment_words": ["robot", "dog"],
+					"safety_note": "Sunny 反馈保持陪伴感。"
+				}
+			}
+		},
+		{
+			"day_key": "local_day_004",
+			"theme": "quiet_yoyo_day",
+			"entries": {
+				"home_school_walk": {
+					"event_id": "schoolday_walk_flower_sign_001_day_004",
+					"stage": "home_school_walk",
+					"place_id": "place_home_school_walk",
+					"display_prefix": "小路花丛",
+					"child_facing_text": "花丛边的小牌写着 look，Sun 的小光点落在路边。",
+					"anchor_ids": ["anchor_s_sun", "anchor_g_gate"],
+					"environment_words": ["look", "sun"],
+					"safety_note": "花丛线索保持近处观察。"
+				},
+				"school_gate": {
+					"event_id": "schoolday_gate_bell_001_day_004",
+					"stage": "school_gate",
+					"place_id": "place_school_gate",
+					"display_prefix": "School Gate",
+					"child_facing_text": "gate 的木纹今天很亮，Elephant 小贴纸安静地守在旁边。",
+					"anchor_ids": ["anchor_g_gate", "anchor_e_elephant"],
+					"environment_words": ["gate", "elephant"],
+					"safety_note": "贴纸是友好地点线索。"
+				},
+				"school_yard": {
+					"event_id": "schoolday_yard_net_robot_001_day_004",
+					"stage": "school_yard",
+					"place_id": "place_school_yard",
+					"display_prefix": "Yo-yo 角",
+					"child_facing_text": "Yo-yo 彩绳像小彩虹，轻轻挂在操场角落。",
+					"anchor_ids": ["anchor_y_yo_yo", "anchor_k_kite"],
+					"environment_words": ["yo-yo", "play"],
+					"safety_note": "彩绳线索只作安静观看。"
+				},
+				"return_home": {
+					"event_id": "schoolday_return_sunny_day_note_001_day_004",
+					"stage": "return_home",
+					"place_id": "place_home",
+					"display_prefix": "Sunny",
+					"child_facing_text": "Sunny 听你说起 Yo-yo 彩绳，绕着小地毯走了一小圈。",
+					"anchor_ids": ["anchor_d_dog", "anchor_y_yo_yo"],
+					"environment_words": ["yo-yo", "home"],
+					"safety_note": "回家故事保持轻松。"
+				}
+			}
+		},
+		{
+			"day_key": "local_day_005",
+			"theme": "net_corner_day",
+			"entries": {
+				"home_school_walk": {
+					"event_id": "schoolday_walk_flower_sign_001_day_005",
+					"stage": "home_school_walk",
+					"place_id": "place_home_school_walk",
+					"display_prefix": "上学小路",
+					"child_facing_text": "Watch 小牌在路边闪了闪，提醒脚步可以很慢。",
+					"anchor_ids": ["anchor_w_watch", "anchor_s_sun"],
+					"environment_words": ["watch", "sun"],
+					"safety_note": "时间物件表达慢慢散步。"
+				},
+				"school_gate": {
+					"event_id": "schoolday_gate_bell_001_day_005",
+					"stage": "school_gate",
+					"place_id": "place_school_gate",
+					"display_prefix": "School Gate",
+					"child_facing_text": "gate 旁的小叶子排成一条线，好像给 school 画了边框。",
+					"anchor_ids": ["anchor_g_gate", "anchor_e_elephant"],
+					"environment_words": ["gate", "school"],
+					"safety_note": "边框线索保持友好地点感。"
+				},
+				"school_yard": {
+					"event_id": "schoolday_yard_net_robot_001_day_005",
+					"stage": "school_yard",
+					"place_id": "place_school_yard",
+					"display_prefix": "School Yard",
+					"child_facing_text": "操场 net 今天像一张软软的小窗，Robot 角安静地看着天空。",
+					"anchor_ids": ["anchor_n_net", "anchor_r_robot", "anchor_k_kite"],
+					"environment_words": ["net", "robot", "kite"],
+					"safety_note": "操场小窗只作视觉发现。"
+				},
+				"return_home": {
+					"event_id": "schoolday_return_sunny_day_note_001_day_005",
+					"stage": "return_home",
+					"place_id": "place_home",
+					"display_prefix": "Sunny",
+					"child_facing_text": "Sunny 听到 net 小窗的故事，把头放在小桌边。",
+					"anchor_ids": ["anchor_d_dog", "anchor_n_net"],
+					"environment_words": ["net", "dog"],
+					"safety_note": "回家反馈保持陪伴。"
+				}
+			}
+		},
+		{
+			"day_key": "local_day_006",
+			"theme": "after_rain_gate_day",
+			"entries": {
+				"home_school_walk": {
+					"event_id": "schoolday_walk_flower_sign_001_day_006",
+					"stage": "home_school_walk",
+					"place_id": "place_home_school_walk",
+					"display_prefix": "雨后小路",
+					"child_facing_text": "雨后的小路亮亮的，Umbrella 小影子在花边晃了晃。",
+					"anchor_ids": ["anchor_u_umbrella", "anchor_s_sun"],
+					"environment_words": ["umbrella", "look"],
+					"safety_note": "雨后线索只作近处氛围。"
+				},
+				"school_gate": {
+					"event_id": "schoolday_gate_bell_001_day_006",
+					"stage": "school_gate",
+					"place_id": "place_school_gate",
+					"display_prefix": "School Gate",
+					"child_facing_text": "gate 上的小水珠排成亮亮一串，Elephant 图案像在微笑。",
+					"anchor_ids": ["anchor_g_gate", "anchor_e_elephant", "anchor_u_umbrella"],
+					"environment_words": ["gate", "umbrella"],
+					"safety_note": "雨后画面保持平稳温和。"
+				},
+				"school_yard": {
+					"event_id": "schoolday_yard_net_robot_001_day_006",
+					"stage": "school_yard",
+					"place_id": "place_school_yard",
+					"display_prefix": "School Yard",
+					"child_facing_text": "Robot 角旁边的小水点亮了一下，Yo-yo 彩绳颜色更软了。",
+					"anchor_ids": ["anchor_r_robot", "anchor_y_yo_yo"],
+					"environment_words": ["robot", "yo-yo"],
+					"safety_note": "雨后操场只作安静发现。"
+				},
+				"return_home": {
+					"event_id": "schoolday_return_sunny_day_note_001_day_006",
+					"stage": "return_home",
+					"place_id": "place_home",
+					"display_prefix": "Sunny",
+					"child_facing_text": "Sunny 听你说雨后 gate 很亮，轻轻靠近小碗。",
+					"anchor_ids": ["anchor_d_dog", "anchor_g_gate"],
+					"environment_words": ["gate", "home"],
+					"safety_note": "回家收束保持安心。"
+				}
+			}
+		},
+		{
+			"day_key": "local_day_007",
+			"theme": "album_review_day",
+			"entries": {
+				"home_school_walk": {
+					"event_id": "schoolday_walk_flower_sign_001_day_007",
+					"stage": "home_school_walk",
+					"place_id": "place_home_school_walk",
+					"display_prefix": "上学小路",
+					"child_facing_text": "小路牌把这一周看过的 gate、kite 和 sun 都藏进小花边。",
+					"anchor_ids": ["anchor_g_gate", "anchor_k_kite", "anchor_s_sun"],
+					"environment_words": ["gate", "kite", "sun"],
+					"safety_note": "一周回访只作温柔回看。"
+				},
+				"school_gate": {
+					"event_id": "schoolday_gate_bell_001_day_007",
+					"stage": "school_gate",
+					"place_id": "place_school_gate",
+					"display_prefix": "School Gate",
+					"child_facing_text": "gate 今天像相册封面，Hello 的小字藏在铃铛旁边。",
+					"anchor_ids": ["anchor_g_gate", "anchor_e_elephant"],
+					"environment_words": ["hello", "gate"],
+					"safety_note": "相册感只记录地点故事。"
+				},
+				"school_yard": {
+					"event_id": "schoolday_yard_net_robot_001_day_007",
+					"stage": "school_yard",
+					"place_id": "place_school_yard",
+					"display_prefix": "School Yard",
+					"child_facing_text": "net、Robot 和 Yo-yo 都在操场角落安静排成一排。",
+					"anchor_ids": ["anchor_n_net", "anchor_r_robot", "anchor_y_yo_yo"],
+					"environment_words": ["net", "robot", "yo-yo"],
+					"safety_note": "操场回看保持轻松。"
+				},
+				"return_home": {
+					"event_id": "schoolday_return_sunny_day_note_001_day_007",
+					"stage": "return_home",
+					"place_id": "place_home",
+					"display_prefix": "Sunny",
+					"child_facing_text": "Sunny 听完这一周的小路故事，和你一起看相册里的小亮点。",
+					"anchor_ids": ["anchor_d_dog", "anchor_a_apple", "anchor_o_orange"],
+					"environment_words": ["home", "orange"],
+					"safety_note": "一周回家故事保持陪伴和收藏感。"
+				}
+			}
+		}
+	]
+}

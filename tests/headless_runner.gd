@@ -24,6 +24,9 @@ const ContentPackLoaderScript := preload("res://scripts/systems/content_pack_loa
 const ThemeSwitchServiceScript := preload("res://scripts/systems/theme_switch_service.gd")
 const ContentReviewPipelineScript := preload("res://scripts/systems/content_review_pipeline.gd")
 const ContentContractValidatorScript := preload("res://scripts/systems/content_contract_validator.gd")
+const AZWorldPlanContractScript := preload("res://scripts/data/az_world_plan_contract.gd")
+const TextbookWorldContractScript := preload("res://scripts/data/textbook_world_contract.gd")
+const V0218MapReadabilityTestScript := preload("res://tests/test_v0218_map_readability.gd")
 const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
 const AINPCProviderAdapterScript := preload("res://scripts/systems/ai_npc_provider_adapter.gd")
 const FriendVisitServiceScript := preload("res://scripts/systems/friend_visit_service.gd")
@@ -41,7 +44,7 @@ func _init() -> void:
 
 	var data: Dictionary = result.get("data", {})
 	var summary: Dictionary = RuntimeMapBuilderScript.build_summary(data)
-	_expect(summary.get("place_count") == 3, "minimum map must contain Home, Town Start, and Supermarket")
+	_expect(int(summary.get("place_count", 0)) >= 6, "runtime map must contain Home, Town Start, Supermarket, Home-School Walk, School Gate, and School Yard")
 	_expect(summary.get("anchor_count") == 26, "minimum map must contain all 26 A-Z memory palace anchors")
 	_expect(_letters(data) == _az_letters(), "memory anchors must follow A-Z route order")
 
@@ -58,6 +61,9 @@ func _init() -> void:
 	_expect(main.find_child("place_home", true, false) != null, "main scene must create Home marker")
 	_expect(main.find_child("place_town_start", true, false) != null, "main scene must create Town Start marker")
 	_expect(main.find_child("place_supermarket", true, false) != null, "main scene must create Supermarket marker")
+	_expect(main.find_child("place_home_school_walk", true, false) != null, "main scene must create Home-School Walk marker")
+	_expect(main.find_child("place_school_gate", true, false) != null, "main scene must create School Gate marker")
+	_expect(main.find_child("place_school_yard", true, false) != null, "main scene must create School Yard marker")
 	_expect(main.find_child("anchor_a_apple", true, false) != null, "main scene must create anchor markers")
 	_expect(main.find_child("anchor_e_elephant", true, false) != null, "main scene must create reserved A-Z anchor markers")
 	_expect(main.find_child("interaction_home_entry", true, false) != null, "main scene must create hotspot markers")
@@ -85,6 +91,12 @@ func _init() -> void:
 	_check_v029_weekly_return_smoke()
 	_check_v0210_p1_return_smoke()
 	_check_v0211_weather_slice_smoke()
+	_check_v0212_az_world_plan()
+	_check_v0213_textbook_world_plan()
+	_check_v0214_homeschool_slice()
+	_check_v0215_school_daily_slice()
+	_check_v0216_playable_rc_gate()
+	_check_v0218_map_readability()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -801,9 +813,9 @@ func _check_v0211_weather_slice_smoke() -> void:
 
 	var weather_paths: Array[Dictionary] = [
 		{"day_key": "local_day_001", "event_id": "event_weather_sunny_soft_001", "anchor_id": "anchor_s_sun", "card_id": "card_s_sun_core", "cell": Vector2i(17, 2), "album_tag": "Sunny day."},
-		{"day_key": "local_day_002", "event_id": "event_weather_breezy_kite_001", "anchor_id": "anchor_k_kite", "card_id": "card_k_kite_core", "cell": Vector2i(16, 4), "album_tag": "Windy Kite."},
+		{"day_key": "local_day_002", "event_id": "event_weather_breezy_kite_001", "anchor_id": "anchor_k_kite", "card_id": "card_k_kite_core", "cell": Vector2i(7, 11), "album_tag": "Windy Kite."},
 		{"day_key": "local_day_004", "event_id": "event_weather_light_rain_001", "anchor_id": "anchor_b_bear", "card_id": "card_b_bear_core", "cell": Vector2i(13, 7), "album_tag": "Light Rain."},
-		{"day_key": "local_day_006", "event_id": "event_weather_after_rain_001", "anchor_id": "anchor_u_umbrella", "card_id": "card_u_umbrella_core", "cell": Vector2i(32, 9), "album_tag": "After Rain."},
+		{"day_key": "local_day_006", "event_id": "event_weather_after_rain_001", "anchor_id": "anchor_u_umbrella", "card_id": "card_u_umbrella_core", "cell": Vector2i(33, 13), "album_tag": "After Rain."},
 	]
 	var seen_weather_events: Dictionary = {}
 	var interact_button := main.find_child("InteractButton", true, false) as Button
@@ -965,6 +977,403 @@ func _check_content_contracts() -> void:
 		"new_word_stories": [],
 	})
 	_expect(not blocked.get("ok", true), "ContentContractValidator should block core A-Z anchor overrides")
+
+
+func _check_v0212_az_world_plan() -> void:
+	var loaded: Dictionary = AZWorldPlanContractScript.load_plan()
+	_expect(loaded.get("ok", false), "V02.12 A-Z world plan should pass contract: %s" % [loaded.get("errors", [])])
+	var data: Dictionary = loaded.get("data", {})
+	_expect(str(data.get("center_policy", "")) == "home_school_dual_core", "V02.12 world plan should keep Home / School center")
+	var anchors: Array = data.get("anchors", [])
+	_expect(anchors.size() == 26, "V02.12 world plan should distribute all 26 anchors")
+	var by_letter: Dictionary = {}
+	for anchor in anchors:
+		if anchor is Dictionary:
+			by_letter[str((anchor as Dictionary).get("letter", ""))] = anchor
+	for letter in ["A", "C", "D", "W"]:
+		_expect(str(by_letter.get(letter, {}).get("home_school_relation", "")) == "home_line", "V02.12 home line should include: %s" % letter)
+		_expect(str(by_letter.get(letter, {}).get("map_ring", "")) == "center", "V02.12 home line should stay in center: %s" % letter)
+	for letter in ["E", "G", "K", "N", "R", "Y"]:
+		_expect(str(by_letter.get(letter, {}).get("home_school_relation", "")) == "school_line", "V02.12 school line should include: %s" % letter)
+		_expect(str(by_letter.get(letter, {}).get("map_ring", "")) == "center", "V02.12 school line should stay in center: %s" % letter)
+	_expect(str(by_letter.get("X", {}).get("map_ring", "")) == "far_edge", "V02.12 X should remain far-edge reserve")
+	_expect(str(by_letter.get("Z", {}).get("map_ring", "")) == "far_edge", "V02.12 Z should remain far-edge reserve")
+
+
+func _check_v0213_textbook_world_plan() -> void:
+	var loaded: Dictionary = TextbookWorldContractScript.load_plan()
+	_expect(loaded.get("ok", false), "V02.13 textbook world plan should pass contract: %s" % [loaded.get("errors", [])])
+	var data: Dictionary = loaded.get("data", {})
+	_expect(data.get("textbook_sources", []).size() == 8, "V02.13 should cover 8 textbook sources")
+	_expect(data.get("curriculum_items", []).size() == 85, "V02.13 should summarize all 85 unit slots")
+	var p0_count := 0
+	for mapping in data.get("world_mappings", []):
+		if mapping is Dictionary and str((mapping as Dictionary).get("tier", "")) == "P0":
+			p0_count += 1
+			_expect(not ["anchor_x_x_mark_box", "anchor_z_zebra"].has(str((mapping as Dictionary).get("anchor_id", ""))), "V02.13 P0 mapping should not use far-edge anchors")
+	_expect(p0_count >= 12, "V02.13 should include P0 Home / School mappings")
+
+
+func _check_v0214_homeschool_slice() -> void:
+	var save_path := "user://headless_runner_v0214_homeschool_slice.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.14 homeschool runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	var path: Array[Dictionary] = [
+		{"event_id": "homeschool_home_morning_bag_001", "cell": Vector2i(4, 7), "text": "Good morning", "cards": ["card_a_apple_core", "card_c_clock_core", "card_w_watch_core"]},
+		{"event_id": "homeschool_home_sunny_good_morning_001", "cell": Vector2i(6, 8), "text": "Sunny", "cards": ["card_d_dog_core"]},
+		{"event_id": "homeschool_walk_gate_sign_001", "cell": Vector2i(8, 11), "text": "school gate", "cards": ["card_g_gate_core"]},
+		{"event_id": "homeschool_walk_kite_sky_001", "cell": Vector2i(9, 12), "text": "Kite", "cards": ["card_k_kite_core", "card_s_sun_core"]},
+		{"event_id": "homeschool_school_gate_hello_001", "cell": Vector2i(11, 13), "text": "Hello", "cards": ["card_e_elephant_core", "card_g_gate_core"]},
+		{"event_id": "homeschool_school_yard_play_001", "cell": Vector2i(11, 15), "text": "Robot", "cards": ["card_n_net_core", "card_r_robot_core", "card_y_yo_yo_core"]},
+		{"event_id": "homeschool_return_sunny_story_001", "cell": Vector2i(5, 8), "text": "回到小屋", "cards": ["card_a_apple_core", "card_d_dog_core", "card_o_orange_core"]},
+	]
+	for step in path:
+		var event_id := str(step.get("event_id", ""))
+		_expect(main.find_child(event_id, true, false) != null, "V02.14 homeschool hotspot should exist: %s" % event_id)
+		_expect(main.move_player_to_cell(step.get("cell", Vector2i.ZERO)).get("ok", false), "V02.14 homeschool player should reach: %s" % event_id)
+		_press_visible_button(interact_button, "V02.14 homeschool visible Interact should trigger: %s" % event_id)
+		_expect(str(main.life_status_label.text).contains(str(step.get("text", ""))), "V02.14 homeschool feedback should be visible: %s" % event_id)
+		var record: Dictionary = main.save_service.load_game_state().get("homeschool_events", {}).get(event_id, {})
+		_expect(bool(record.get("seen", false)), "V02.14 homeschool event should persist: %s" % event_id)
+		for card_id in step.get("cards", []):
+			var card_state: Dictionary = main.memory_card_service.get_card_state(str(card_id))
+			_expect(bool(card_state.get("collected", false)), "V02.14 homeschool card should be collected: %s" % card_id)
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.14 should keep shop path walkable")
+	_press_visible_button(interact_button, "V02.14 visible Interact should still open shop")
+	var shop_panel := main.find_child("ShopPanel", true, false) as Control
+	_expect(shop_panel != null and shop_panel.visible, "V02.14 should keep shop panel available")
+	_expect(main.move_player_to_cell(Vector2i(5, 7)).get("ok", false), "V02.14 should keep home path walkable")
+	_press_visible_button(interact_button, "V02.14 visible Interact should still open home")
+	var home_room := main.find_child("HomeRoom", true, false) as Control
+	_expect(home_room != null and home_room.visible, "V02.14 should keep home room available")
+	_expect(not _collect_visible_text(main).contains("测试"), "V02.14 visible UI should not expose test wording")
+	_expect(not _collect_visible_text(main).contains("分数"), "V02.14 visible UI should not expose score wording")
+	main.save_service.clear_for_test()
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0215_school_daily_slice() -> void:
+	var save_path := "user://headless_runner_v0215_school_daily_slice.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.15 school daily runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	var path: Array[Dictionary] = [
+		{"event_id": "homeschool_walk_gate_sign_001", "cell": Vector2i(8, 11), "stage": "home_school_walk"},
+		{"event_id": "homeschool_school_gate_hello_001", "cell": Vector2i(11, 13), "stage": "school_gate"},
+		{"event_id": "homeschool_school_yard_play_001", "cell": Vector2i(11, 15), "stage": "school_yard"},
+		{"event_id": "homeschool_return_sunny_story_001", "cell": Vector2i(5, 8), "stage": "return_home"},
+	]
+	var seen_school_day_events: Dictionary = {}
+	var seen_return_events: Dictionary = {}
+	for day_index in range(1, 8):
+		var day_key := "local_day_%03d" % day_index
+		main.set_day_key_for_test(day_key)
+		main.call("_update_today_status")
+		var school_state: Dictionary = main.school_day_state_service.get_today_school_state()
+		_expect(school_state.get("ok", false), "V02.15 school daily should resolve school state: %s" % day_key)
+		_expect(str(school_state.get("day_key", "")) == day_key, "V02.15 school daily should keep requested day key: %s" % day_key)
+		for step in path:
+			var stage := str(step.get("stage", ""))
+			var event_id := str(step.get("event_id", ""))
+			var entry: Dictionary = main.school_day_state_service.get_entry(stage)
+			_expect(str(entry.get("day_key", "")) == day_key, "V02.15 school daily entry should inherit day key: %s %s" % [day_key, stage])
+			_expect(str(entry.get("stage", "")) == stage, "V02.15 school daily entry should keep stage: %s %s" % [day_key, stage])
+			_expect(main.find_child(event_id, true, false) != null, "V02.15 school daily hotspot should exist: %s" % event_id)
+			_expect(main.move_player_to_cell(step.get("cell", Vector2i.ZERO)).get("ok", false), "V02.15 school daily player should reach: %s %s" % [day_key, stage])
+			_press_visible_button(interact_button, "V02.15 school daily visible Interact should trigger: %s %s" % [day_key, stage])
+			_expect(str(main.life_status_label.text).contains(str(entry.get("child_facing_text", ""))), "V02.15 school daily feedback should show day-specific text: %s %s" % [day_key, stage])
+			var record: Dictionary = main.save_service.load_game_state().get("school_day_events", {}).get(str(entry.get("event_id", "")), {})
+			_expect(bool(record.get("seen", false)), "V02.15 school daily event should persist: %s" % entry.get("event_id", ""))
+			_expect(str(record.get("day_key", "")) == day_key, "V02.15 school daily persisted event should keep day: %s" % entry.get("event_id", ""))
+			_expect(str(record.get("stage", "")) == stage, "V02.15 school daily persisted event should keep stage: %s" % entry.get("event_id", ""))
+			_expect(not (record.get("anchor_ids", []) as Array).is_empty(), "V02.15 school daily persisted event should keep anchors: %s" % entry.get("event_id", ""))
+			_expect(not (record.get("environment_words", []) as Array).is_empty(), "V02.15 school daily persisted event should keep environment words: %s" % entry.get("event_id", ""))
+			seen_school_day_events[str(entry.get("event_id", ""))] = true
+			if stage == "return_home":
+				seen_return_events[str(entry.get("event_id", ""))] = true
+				_expect(str(entry.get("display_prefix", "")).contains("Sunny"), "V02.15 return entry should stay tied to Sunny: %s" % day_key)
+	_expect(seen_school_day_events.size() == 28, "V02.15 school daily should persist 7 days x 4 school events")
+	_expect(seen_return_events.size() == 7, "V02.15 school daily should persist seven Sunny return events")
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.15 school daily should keep shop path walkable")
+	_press_visible_button(interact_button, "V02.15 school daily visible Interact should still open shop")
+	var shop_panel := main.find_child("ShopPanel", true, false) as Control
+	_expect(shop_panel != null and shop_panel.visible, "V02.15 school daily should keep shop panel available")
+	_expect(main.move_player_to_cell(Vector2i(5, 7)).get("ok", false), "V02.15 school daily should keep home path walkable")
+	_press_visible_button(interact_button, "V02.15 school daily visible Interact should still open Home")
+	var home_room := main.find_child("HomeRoom", true, false) as Control
+	_expect(home_room != null and home_room.visible, "V02.15 school daily should keep Home room available")
+	for forbidden in ["课程", "单元", "测试", "测验", "考试", "背诵", "词表", "分数", "倒计时", "迟到", "作业", "老师评价", "家长报告", "独自远行", "上车", "必须", "打卡"]:
+		_expect(not _collect_visible_text(main).contains(forbidden), "V02.15 school daily visible UI should not contain forbidden text: %s" % forbidden)
+	_expect(main.save_service.clear_for_test(), "V02.15 school daily runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0216_playable_rc_gate() -> void:
+	var save_path := "user://headless_runner_v0216_playable_rc_gate.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.16 playable RC save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_006")
+	root.add_child(main)
+	main.call("_ready")
+	var game_state: Dictionary = main.save_service.load_game_state()
+	game_state["coins"] = 20
+	game_state["inventory"] = {"food_pet_snack": 1}
+	_expect(main.save_service.save_game_state(game_state), "V02.16 playable RC should seed local state")
+	main.call("_update_loop_status", "小镇准备好")
+	main.call("_update_today_status")
+
+	var footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
+	_expect(footer_actions != null and footer_actions.get_child_count() == 4, "V02.16 playable RC should keep four footer actions")
+	var footer_hint := main.find_child("TownFooterText", true, false) as Label
+	_expect(footer_hint != null and str(footer_hint.text).contains("看看"), "V02.16 playable RC should explain visible look action")
+	_check_v0216_visible_text(main, "startup")
+
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	_expect(main.move_player_to_cell(Vector2i(14, 10)).get("ok", false), "V02.16 playable RC should move near Mina")
+	_press_visible_button(interact_button, "V02.16 playable RC should greet Mina")
+	_press_visible_button(interact_button, "V02.16 playable RC should start Mina request")
+	_expect(str(main.life_status_label.text).contains("树枝"), "V02.16 playable RC Mina request should stay life-like")
+	_expect(main.move_player_to_cell(Vector2i(13, 6)).get("ok", false), "V02.16 playable RC should move to branch")
+	_press_visible_button(interact_button, "V02.16 playable RC should collect branch")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("branch", 0)) >= 1, "V02.16 playable RC should collect resource")
+	_expect(main.move_player_to_cell(Vector2i(14, 10)).get("ok", false), "V02.16 playable RC should return to Mina")
+	_press_visible_button(interact_button, "V02.16 playable RC should complete Mina request")
+	_expect(int(main.save_service.load_game_state().get("coins", 0)) >= 6, "V02.16 playable RC should keep gentle coins")
+
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.16 playable RC should reach Shop")
+	_press_visible_button(interact_button, "V02.16 playable RC should open Shop")
+	var shop_panel := main.find_child("ShopPanel", true, false) as Control
+	_expect(shop_panel != null and shop_panel.visible, "V02.16 playable RC should show Shop")
+	_press_visible_button(main.find_child("ShopBuyWoodenChairButton", true, false) as Button, "V02.16 playable RC should buy chair")
+	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) >= 1, "V02.16 playable RC should add chair")
+	_press_visible_button(main.find_child("CloseShopButton", true, false) as Button, "V02.16 playable RC should close Shop")
+	_expect(shop_panel != null and not shop_panel.visible, "V02.16 playable RC Shop should close")
+
+	_press_visible_button(main.find_child("HomeNavButton", true, false) as Button, "V02.16 playable RC should open Home")
+	var home_room := main.find_child("HomeRoom", true, false) as Control
+	_expect(home_room != null and home_room.visible, "V02.16 playable RC should show Home")
+	_press_visible_button(main.find_child("HomePlaceWoodenChairButton", true, false) as Button, "V02.16 playable RC should place chair")
+	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() >= 1, "V02.16 playable RC should persist Home placement")
+	var sunny_feedback := main.find_child("SunnyHomeFeedback", true, false) as Label
+	_expect(sunny_feedback != null and str(sunny_feedback.text).contains("Sunny"), "V02.16 playable RC should show Sunny feedback")
+	_press_visible_button(main.find_child("HomeRotateFirstFurnitureButton", true, false) as Button, "V02.16 playable RC should rotate furniture")
+	_press_visible_button(main.find_child("HomeMoveFirstFurnitureButton", true, false) as Button, "V02.16 playable RC should move furniture")
+	_press_visible_button(main.find_child("TownNavButton", true, false) as Button, "V02.16 playable RC should return to Town")
+
+	for step in [
+		{"cell": Vector2i(8, 11), "stage": "home_school_walk"},
+		{"cell": Vector2i(11, 13), "stage": "school_gate"},
+		{"cell": Vector2i(11, 15), "stage": "school_yard"},
+		{"cell": Vector2i(5, 8), "stage": "return_home"},
+	]:
+		var stage := str(step.get("stage", ""))
+		var entry: Dictionary = main.school_day_state_service.get_entry(stage)
+		_expect(not entry.is_empty(), "V02.16 playable RC should resolve school entry: %s" % stage)
+		_expect(main.move_player_to_cell(step.get("cell", Vector2i.ZERO)).get("ok", false), "V02.16 playable RC should reach school step: %s" % stage)
+		_press_visible_button(interact_button, "V02.16 playable RC should trigger school step: %s" % stage)
+		_expect(str(main.life_status_label.text).contains(str(entry.get("child_facing_text", ""))), "V02.16 playable RC should show school text: %s" % stage)
+	_expect(main.save_service.load_game_state().get("school_day_events", {}).size() >= 4, "V02.16 playable RC should persist school day events")
+
+	_press_visible_button(main.find_child("BackpackNavButton", true, false) as Button, "V02.16 playable RC should open Backpack")
+	_press_visible_button(main.find_child("OpenMemoryAlbumButton", true, false) as Button, "V02.16 playable RC should open Album")
+	var album_overlay := main.find_child("MemoryAlbumOverlay", true, false) as Control
+	_expect(album_overlay != null and album_overlay.visible, "V02.16 playable RC should show Album")
+	_check_v0216_visible_text(main, "album")
+	_press_visible_button(main.find_child("CloseMemoryAlbumButton", true, false) as Button, "V02.16 playable RC should close Album")
+	_press_visible_button(main.find_child("SettingsButton", true, false) as Button, "V02.16 playable RC should open Settings")
+	var settings_panel := main.find_child("SettingsPanel", true, false) as Control
+	_expect(settings_panel != null and settings_panel.visible, "V02.16 playable RC should show Settings")
+	_check_v0216_visible_text(main, "settings")
+	_press_visible_button(main.find_child("RequestRestButton", true, false) as Button, "V02.16 playable RC should reveal rest confirmation")
+	var confirm_exit_button := main.find_child("ConfirmExitButton", true, false) as Button
+	_expect(confirm_exit_button != null and confirm_exit_button.visible, "V02.16 playable RC should show exit confirmation only after rest request")
+	_press_visible_button(main.find_child("CancelRestButton", true, false) as Button, "V02.16 playable RC should cancel rest confirmation")
+	_expect(confirm_exit_button != null and not confirm_exit_button.visible, "V02.16 playable RC should hide exit confirmation")
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.16 playable RC should move before safe-place")
+	_press_visible_button(main.find_child("SafePlaceButton", true, false) as Button, "V02.16 playable RC should use safe-place")
+	_expect(main.player_cell == Vector2i(5, 8), "V02.16 playable RC should return to safe cell")
+	_expect(settings_panel != null and not settings_panel.visible, "V02.16 playable RC safe-place should close Settings")
+	_check_v0216_visible_text(main, "final")
+
+	_expect(main.save_service.clear_for_test(), "V02.16 playable RC save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0216_visible_text(main, context: String) -> void:
+	var text := _collect_visible_child_text(main)
+	for forbidden in ["Godot skeleton", "Loaded places", "from JSON", "课程", "单元", "测试", "测验", "考试", "背诵", "词表", "分数", "正确率", "家长报告", "必须完成", "错过损失", "迟到", "作业", "打卡", "倒计时", "赶时间", "陌生人带走", "独自远行"]:
+		_expect(not text.contains(forbidden), "V02.16 playable RC visible UI should not contain forbidden text (%s): %s" % [context, forbidden])
+
+
+func _check_v0218_map_readability() -> void:
+	_expect(V0218MapReadabilityTestScript != null, "V02.18 map readability focused test should compile for headless runner")
+	var result: Dictionary = RuntimeMapBuilderScript.load_world_map()
+	_expect(result.get("ok", false), "V02.18 map readability should load world map")
+	var world_map: Dictionary = result.get("data", {})
+	var save_path := "user://headless_runner_v0218_map_readability.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.18 map readability save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	root.add_child(main)
+	main.call("_ready")
+	_expect(main.find_child("MapReadabilityLayer", true, false) is Node2D, "V02.18 map readability should expose guide layer")
+	for node_name in ["MapReadZoneHomeSchool", "MapReadZoneTownRing", "MapReadZoneFarEdge", "MapReadSignHome", "MapReadSignSchool", "MapReadSignTownRing", "MapReadSignFarEdge"]:
+		_expect(main.find_child(node_name, true, false) != null, "V02.18 map readability should expose guide node: %s" % node_name)
+	var groups := {}
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	_expect(interact_button != null and _control_path_visible(interact_button), "V02.18 map readability should keep visible Interact button")
+	for anchor_value in world_map.get("memory_anchors", []):
+		if not anchor_value is Dictionary:
+			continue
+		var anchor: Dictionary = anchor_value
+		var anchor_id := str(anchor.get("anchor_id", ""))
+		var letter := str(anchor.get("letter", ""))
+		var card_id := str(anchor.get("card_id", ""))
+		var core_word := str(anchor.get("core_word", ""))
+		var group := _v0218_screenshot_group_for_letter(letter)
+		groups[group] = true
+		var node := main.find_child(anchor_id, true, false) as Node2D
+		_expect(node != null, "V02.18 map readability should create anchor node: %s" % anchor_id)
+		if node == null:
+			continue
+		_expect(str(node.get_meta("mapread_layer", "")) == _v0218_layer_for_letter(letter), "V02.18 map readability should expose layer meta: %s" % anchor_id)
+		_expect(str(node.get_meta("mapread_screenshot_group", "")) == group, "V02.18 map readability should expose screenshot group: %s" % anchor_id)
+		var sprite := node.find_child("ObjectSprite", true, false) as Sprite2D
+		_expect(sprite != null and sprite.texture != null and sprite.scale.x > 0.0 and sprite.scale.y > 0.0, "V02.18 map readability should keep object sprite readable: %s" % anchor_id)
+		var badge := node.find_child("LetterBadge", true, false) as Label
+		_expect(badge != null and badge.text == letter and badge.size.x >= 28.0 and badge.size.y >= 28.0, "V02.18 map readability should keep readable badge: %s" % anchor_id)
+		var look_cell := _v0218_best_look_cell(main, _dict_to_cell(anchor.get("position", {})), anchor_id)
+		_expect(main.move_player_to_cell(look_cell).get("ok", false), "V02.18 map readability should reach anchor: %s" % anchor_id)
+		_press_visible_button(interact_button, "V02.18 map readability should trigger anchor through visible Interact: %s" % anchor_id)
+		_expect(str(main.life_status_label.text).contains(core_word), "V02.18 map readability feedback should name object: %s" % anchor_id)
+		_expect(bool(main.memory_card_service.get_card_state(card_id).get("collected", false)), "V02.18 map readability should collect album card: %s" % anchor_id)
+	_v0218_check_school_badge_spacing(world_map.get("memory_anchors", []))
+	_expect(groups.has("home_anchors") and groups.has("school_line") and groups.has("first_ring") and groups.has("second_ring") and groups.has("far_edge"), "V02.18 map readability should cover all screenshot groups")
+	_expect(main.open_memory_album().get("ok", false), "V02.18 map readability should open album after exploration")
+	for forbidden in ["课程", "单元", "测试", "测验", "考试", "背诵", "词表", "分数", "正确率", "等级", "打卡", "完成率", "倒计时", "迟到", "必须", "错过", "独自远行", "赶车"]:
+		_expect(not _collect_visible_child_text(main).contains(forbidden), "V02.18 map readability visible text should avoid pressure wording: %s" % forbidden)
+	main.close_memory_album()
+	_expect(main.save_service.clear_for_test(), "V02.18 map readability save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _v0218_best_look_cell(main, anchor_cell: Vector2i, anchor_id: String) -> Vector2i:
+	var candidates: Array[Vector2i] = [
+		anchor_cell,
+		anchor_cell + Vector2i(1, 0),
+		anchor_cell + Vector2i(-1, 0),
+		anchor_cell + Vector2i(0, 1),
+		anchor_cell + Vector2i(0, -1),
+	]
+	for candidate in candidates:
+		if main.move_player_to_cell(candidate).get("ok", false):
+			var nearest_anchor: Dictionary = main.call("_find_nearest_anchor", 1)
+			if str(nearest_anchor.get("anchor_id", "")) == anchor_id:
+				return candidate
+	return anchor_cell
+
+
+func _v0218_check_school_badge_spacing(anchors: Array) -> void:
+	var badge_rects: Array[Dictionary] = []
+	for anchor_value in anchors:
+		if not anchor_value is Dictionary:
+			continue
+		var anchor: Dictionary = anchor_value
+		var letter := str(anchor.get("letter", ""))
+		if not ["E", "G", "K", "N", "R", "Y"].has(letter):
+			continue
+		var rect := _v0218_badge_rect_for_anchor(anchor)
+		for existing in badge_rects:
+			_expect(not _v0218_rects_are_too_close(rect, existing.get("rect", Rect2())), "V02.18 School line badges should not visually stack: %s near %s" % [letter, existing.get("letter", "")])
+		badge_rects.append({"letter": letter, "rect": rect})
+
+
+func _v0218_badge_rect_for_anchor(anchor: Dictionary) -> Rect2:
+	var cell := _dict_to_cell(anchor.get("position", {}))
+	var route_order := int(anchor.get("route_order", 1))
+	var top_left := (Vector2(cell.x, cell.y) + Vector2(0.5, 0.5)) * 32.0 + _v0218_anchor_badge_offset(route_order)
+	return Rect2(top_left, Vector2(28, 28))
+
+
+func _v0218_anchor_badge_offset(route_order: int) -> Vector2:
+	var offsets: Array[Vector2] = [
+		Vector2(8, -31),
+		Vector2(-31, -27),
+		Vector2(10, 7),
+		Vector2(-31, 5),
+	]
+	return offsets[(max(route_order, 1) - 1) % offsets.size()]
+
+
+func _v0218_rects_are_too_close(a: Rect2, b: Rect2) -> bool:
+	var padded := Rect2(a.position - Vector2(4, 4), a.size + Vector2(8, 8))
+	return padded.intersects(b)
+
+
+func _dict_to_cell(cell: Variant) -> Vector2i:
+	if cell is Vector2i:
+		return cell
+	if cell is Dictionary:
+		var dict: Dictionary = cell
+		return Vector2i(int(dict.get("x", 0)), int(dict.get("y", 0)))
+	return Vector2i.ZERO
+
+
+func _v0218_screenshot_group_for_letter(letter: String) -> String:
+	if ["A", "C", "D", "W"].has(letter):
+		return "home_anchors"
+	if ["E", "G", "K", "N", "R", "Y"].has(letter):
+		return "school_line"
+	if ["B", "F", "H", "I", "J", "O", "T"].has(letter):
+		return "first_ring"
+	if ["L", "M", "P", "Q", "S", "U", "V"].has(letter):
+		return "second_ring"
+	if ["X", "Z"].has(letter):
+		return "far_edge"
+	return "reserved"
+
+
+func _v0218_layer_for_letter(letter: String) -> String:
+	if ["A", "C", "D", "W", "E", "G", "K", "N", "R", "Y"].has(letter):
+		return "p0_center"
+	if ["B", "F", "H", "I", "J", "O", "T"].has(letter):
+		return "first_ring"
+	if ["L", "M", "P", "Q", "S", "U", "V"].has(letter):
+		return "second_ring"
+	if ["X", "Z"].has(letter):
+		return "far_edge"
+	return "reserved"
+
+
+func _collect_visible_child_text(node: Node) -> String:
+	if node is Control and not (node as Control).visible:
+		return ""
+	var text := ""
+	if node is Label:
+		text += (node as Label).text + "\n"
+	elif node is Button:
+		text += (node as Button).text + "\n"
+	for child in node.get_children():
+		text += _collect_visible_child_text(child)
+	return text
 
 
 func _check_voice_ai_social_stubs() -> void:

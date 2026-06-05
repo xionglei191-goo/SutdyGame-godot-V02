@@ -2,8 +2,8 @@
 
 > 最后更新：2026-06-05
 > 状态事实来源：本文件
-> 当前阶段：V02.11 天气与小镇轻事件纵切
-> 当前里程碑：V02.11 天气与小镇轻事件纵切已通过，下一步由 PM 建立后续阶段路线
+> 当前阶段：V02.18 世界地图视觉可读性与探索体验抛光
+> 当前里程碑：V02.18 世界地图视觉可读性与探索体验抛光已完成，下一步由 PM 建立后续阶段路线与 Ready 队列
 
 ## 维护规则
 
@@ -19,11 +19,11 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 72：V02.11 天气纵切 smoke 与截图 |
-| 本轮目标 | 收口 V02-WEATHER-004：多天气 day_key 玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图 |
+| 当前轮次 | Round 88：V02.18 世界地图视觉可读性与探索体验抛光全任务收口 |
+| 本轮目标 | 完成 V02-MAPREAD-002 至 005：26 Anchor 可读性审计、视觉层级与道路引导、徽章 / 热点 / 反馈抛光、探索 smoke 与截图口径收口 |
 | 进行中 | 无 |
 | Ready | 无 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架、Round 48 真实可玩路径修复、Round 49 美术与策划路线更新、V02.5 美术素材生产线文档清单、V02.6 策划内容生产线、V02-POLISH-001、V02-POLISH-002、V02-POLISH-003、V02-POLISH-004、V02.7A 美术基线重建、V02-DAILYLIFE-001、V02-DAILYLIFE-002、V02-DAILYLIFE-003、V02-DAILYLIFE-004、V02-DAILYLIFE-005、V02.8 每日小镇生活纵切、V02-WEEKLY-001、V02-WEEKLY-002、V02-WEEKLY-003、V02-WEEKLY-004、V02.9 一周回访节奏、V02-P1RETURN-001、V02-P1RETURN-002、V02-P1RETURN-003、V02-P1RETURN-004、V02.10 P1 居民回访扩展、V02-WEATHER-001、V02-WEATHER-002、V02-WEATHER-003、V02-WEATHER-004、V02.11 天气与小镇轻事件纵切 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架、Round 48 真实可玩路径修复、Round 49 美术与策划路线更新、V02.5 美术素材生产线文档清单、V02.6 策划内容生产线、V02-POLISH-001、V02-POLISH-002、V02-POLISH-003、V02-POLISH-004、V02.7A 美术基线重建、V02-DAILYLIFE-001、V02-DAILYLIFE-002、V02-DAILYLIFE-003、V02-DAILYLIFE-004、V02-DAILYLIFE-005、V02.8 每日小镇生活纵切、V02-WEEKLY-001、V02-WEEKLY-002、V02-WEEKLY-003、V02-WEEKLY-004、V02.9 一周回访节奏、V02-P1RETURN-001、V02-P1RETURN-002、V02-P1RETURN-003、V02-P1RETURN-004、V02.10 P1 居民回访扩展、V02-WEATHER-001、V02-WEATHER-002、V02-WEATHER-003、V02-WEATHER-004、V02.11 天气与小镇轻事件纵切、V02-AZWORLD-001、V02-AZWORLD-002、V02-AZWORLD-003、V02-AZWORLD-004、V02-AZWORLD-005、V02.12 学校-家庭中心世界地图与 A-Z 锚点规划、V02-TEXTBOOK-001、V02-TEXTBOOK-002、V02-TEXTBOOK-003、V02-TEXTBOOK-004、V02-TEXTBOOK-005、V02.13 全量课本内容世界化主线策划、V02-HOMESCHOOL-001、V02-HOMESCHOOL-002、V02-HOMESCHOOL-003、V02-HOMESCHOOL-004、V02-HOMESCHOOL-005、V02-SCHOOLDAILY-001、V02-SCHOOLDAILY-002、V02-SCHOOLDAILY-003、V02-SCHOOLDAILY-004、V02-SCHOOLDAILY-005、V02.15 Home / School 日常回访与学校生活轻循环、V02-PRODUCTION-001、V02-PRODUCTION-002、V02-PRODUCTION-003、V02-PRODUCTION-004、V02-PRODUCTION-005、V02.16 可制作内容与体验抛光 / Playable RC Gate、V02-WORLDMAP-001、V02-WORLDMAP-002、V02-WORLDMAP-003、V02-WORLDMAP-004、V02-WORLDMAP-005、V02.17 世界地图运行时落地与 26 Anchor 可视布局、V02-MAPREAD-001、V02-MAPREAD-002、V02-MAPREAD-003、V02-MAPREAD-004、V02-MAPREAD-005、V02.18 世界地图视觉可读性与探索体验抛光 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
 | 临时默认值 | 单一 storybook/cozy town 美术方向；素材必须有逻辑 asset ID；Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
@@ -66,6 +66,57 @@
 | Narrative / Economy / Godot Dev / QA | V02-WEATHER-002 NPC 问候与资源 / 商店轻变化 | 完成 | 天气问候变体、资源天气提示、商店活动角和 focused/headless 验证已通过 |
 | Memory Palace / UI / Narrative / QA | V02-WEATHER-003 A-Z 天气相册线索 | 完成 | S Sun、K Kite、B Bear、U Umbrella 已通过真实 `看看` 路径写入天气相册线索与 card state |
 | QA / PM / Godot Dev | V02-WEATHER-004 天气纵切 smoke 与双视口截图 | 完成 | 多天气 smoke、headless runner、1280x720 / 960x540 代表截图均已通过 |
+| PM / Memory Palace / Map / Curriculum / QA | V02-AZWORLD-001 Home / School 中心地图原则与 26 anchor 分布合同 | 完成 | `az_world_plan` 数据合同、Home / School 双中心、26 anchor 分布、远郊边界和 focused/headless 验证已通过 |
+| Map / PM / UX / QA | V02-AZWORLD-002 世界地图区域、道路、环线和安全边界规划 | 完成 | 已完成 Round74 任务包、区域道路安全规划、`routes` / `safety_boundaries` 合同和 focused/headless 验证 |
+| Memory Palace / Narrative / Art Direction / QA | V02-AZWORLD-003 17 个 reserved anchor 升级为可制作级规格 | 完成 | 已完成 Round75 任务包、17 个 `reserved_anchor_specs`、可制作级规格记录和合同验证 |
+| Curriculum / Narrative / PM / QA | V02-AZWORLD-004 Home / School 0 基础主线挂接位 | 完成 | 已完成 Round76 任务包、`foundation_story_hooks` 和 Home / School 0 基础挂接记录 |
+| QA / PM / Godot Dev | V02-AZWORLD-005 合同测试、回归验证和截图验收口径 | 完成 | 已完成 `screenshot_acceptance`、扩展 focused/headless 回归和 V02.12 收口验证 |
+| Curriculum / PM / QA | V02-TEXTBOOK-001 小学全册教材源补齐 | 完成 | 三上已补结构化摘要与公开来源记录；三下至六下 7 册沿用本地分析，8 册 source ledger 已进入 `textbook_world_plan` |
+| Curriculum / Data Contract / QA | V02-TEXTBOOK-002 全量课本内容结构化清单 | 完成 | 85 个单元摘要已进入 `curriculum_items`，覆盖三上至六下每册单元数 |
+| Memory Palace / Narrative / Map / QA | V02-TEXTBOOK-003 世界化主线映射表 | 完成 | `world_mappings` 已绑定世界地点、NPC、A-Z anchor、故事记忆、视觉钩子、回访路径和孩子端温和表达 |
+| PM / Curriculum / Narrative / QA | V02-TEXTBOOK-004 Home / School 第一主线与 P0/P1/P2 分层 | 完成 | `mainline_segments` 已定义 Home morning、Home-School Walk、Shop bridge、P1 first ring 和 P2 reserve，P0 不使用远郊 |
+| QA / Data Contract / PM | V02-TEXTBOOK-005 数据合同与回归验证 | 完成 | 新增 `TextbookWorldContract`、focused test 和 headless runner 注册；V02.13 数据合同通过 |
+| PM / Game Design / Narrative / QA | V02-HOMESCHOOL-001 Home / School P0 可玩纵切路线与任务拆分 | 完成 | 已完成 V02.14 路线、P0 内容点、任务拆分、Round78 PM 任务包和下一轮 Ready |
+| Godot Dev / Narrative / QA | V02-HOMESCHOOL-002 Home Morning Foundation 数据化与可见入口 | 完成 | Home / 小屋 / Sunny 早晨真实可见 `看看` 入口、A/C/D/W 线索和 focused test 已通过 |
+| Map / Godot Dev / UX / QA | V02-HOMESCHOOL-003 Home-School Walk 可见路径与安全边界 | 完成 | Home-School Walk 路牌 / 风筝热点、安全返回和 G/K/S 线索已通过 |
+| Narrative / Godot Dev / Memory Palace / QA | V02-HOMESCHOOL-004 School Gate / School Yard 首批地点故事 | 完成 | School Gate / School Yard 地点故事和 E/G/K/N/R/Y 线索已通过 |
+| QA / PM / Godot Dev | V02-HOMESCHOOL-005 P0 主线 smoke、截图和儿童文本验收 | 完成 | 玩家路径 smoke、headless runner 注册、Godot 启动和 MCP 1280x720 运行时截图抽查已通过 |
+| PM / Game Design / Narrative / QA | V02-SCHOOLDAILY-001 Home / School 日常回访路线与任务拆分 | 完成 | 已完成 V02.15 路线、7 天差异维度、任务拆分、Round80 PM 任务包和下一轮 Ready |
+| Data Contract / Godot Dev / QA | V02-SCHOOLDAILY-002 School Day State Contract 数据化 | 完成 | 7 天 school day state、loader / service、合同测试和儿童安全禁词拦截已通过 focused/headless 验证 |
+| Narrative / Godot Dev / Memory Palace / QA | V02-SCHOOLDAILY-003 School Gate / Yard 每日可见差异 | 完成 | 校门 / 操场按天变化的真实 `看看` 路径、A-Z 记录和 focused/headless 验证已通过 |
+| Home Design / Narrative / Godot Dev / QA | V02-SCHOOLDAILY-004 Home Return / Sunny 日常回访 | 完成 | 7 天 return_home / Sunny 回家反馈按 day_key 保存并通过 focused/headless 验证 |
+| QA / PM / Godot Dev | V02-SCHOOLDAILY-005 7 天学校生活 smoke 与截图 | 完成 | 7 天玩家路径 smoke、headless runner、1280x720 / 960x540 代表截图均已通过 |
+| PM / Game Design / Narrative / QA | V02-PRODUCTION-001 V02.16 路线、试玩范围和发布门槛规划 | 完成 | 已完成 V02.16 Playable RC Gate 范围、任务拆分、Round83 PM 任务包和下一轮 Ready |
+| Narrative / UX / QA / Godot | V02-PRODUCTION-002 孩子端文案、反馈语气和禁用词统一审校 | 完成 | 新增 V02.16 可见文本扫描，覆盖 HUD、NPC、Sunny、Home / School、天气、P1、商店、小屋、相册和设置 |
+| UX / Godot / QA | V02-PRODUCTION-003 核心操作动线抛光 | 完成 | `看看`、小镇、背包、商店、小屋、相册、设置均通过真实可见入口和关闭路径验证 |
+| Art Direction / UI / QA / Godot | V02-PRODUCTION-004 关键美术 / UI 截图复核 | 完成 | 已导出 Town Plaza、Home、Shop、School Gate、School Yard、Album、Settings 双视口截图；继续区分 `production` 与 `approved` |
+| QA / PM / Godot | V02-PRODUCTION-005 试玩版总 smoke、双视口截图和阶段收口 | 完成 | 总 smoke 注册进 headless runner，双视口截图与阶段验收记录已落地 |
+| PM / Map / Memory Palace / QA | V02-WORLDMAP-001 V02.17 路线、地图布局范围和 Ready 规划 | 完成 | 已完成 V02.17 世界地图运行时落地路线、任务拆分、Round85 PM 任务包和下一轮 Ready |
+| Map / UX / Memory Palace / QA | V02-WORLDMAP-002 26 Anchor 地图坐标与分层可达蓝图 | 完成 | 26 anchor 运行时坐标 / 分层 / 截图口径已写入 Round86 记录并落到 `world_map.memory_anchors` |
+| Godot Dev / Map / Narrative / QA | V02-WORLDMAP-003 P0 Home / School 中心路线运行时地图接入 | 完成 | A/C/D/W/E/G/K/N/R/Y 均可通过真实 `看看` 或 Home / School event 落账 |
+| Godot Dev / Narrative / Art Direction / QA | V02-WORLDMAP-004 First / Second Ring Anchor 预览与 P1 可见入口 | 完成 | B/F/H/I/J/O/T/L/M/P/Q/S/U/V 具备可见预览 / P1 入口，不阻断 P0 |
+| QA / PM / Godot | V02-WORLDMAP-005 26 Anchor 合同、smoke 与双视口截图收口 | 完成 | focused V02.17、全量 headless runner、Godot 启动通过；截图口径记录完成 |
+| PM / Map / Art Direction / QA | V02-MAPREAD-001 V02.18 路线、审计范围和 Ready 规划 | 完成 | 已完成 V02.18 地图可读性抛光路线、任务拆分、Round87 PM 任务包和下一轮 Ready |
+| QA / Map / UX / Art Direction | V02-MAPREAD-002 26 Anchor 可读性审计与截图基线 | 完成 | 26 anchor 审计、截图组基线、徽章 / 物件 / 热点问题清单已进入 Round88 验收记录和 focused test |
+| Map / Art Direction / Godot / QA | V02-MAPREAD-003 地图视觉层级与道路引导抛光 | 完成 | 新增 MapReadabilityLayer、Home / School / Town / Far Edge 区域底纹与短路牌，focused/headless 验证通过 |
+| Godot / UX / Narrative / QA | V02-MAPREAD-004 Anchor 徽章、热点优先级和反馈短句抛光 | 完成 | 字母徽章尺寸 / 对比增强，anchor 元数据与真实 `看看` 路径回归通过 |
+| QA / PM / Godot | V02-MAPREAD-005 地图探索 smoke、相册复核与双视口截图收口 | 完成 | `tests/test_v0218_map_readability.gd`、V02.17 回归、全量 headless runner 和 Godot 启动均通过；截图口径写入 Round88 记录 |
+
+## Round 80 小组推进计划
+
+### 1. PM / Game Design / Narrative / QA 组
+
+- 当前任务：已完成 `V02-SCHOOLDAILY-001 Home / School 日常回访路线与任务拆分`，并将 `V02-SCHOOLDAILY-002` 置为 Ready。
+- 输入：V02.14 可玩纵切收口记录、`data/life/homeschool_events.json`、`data/life/today_status.json`、`data/maps/az_world_plan.json`、`data/curriculum/textbook_world_plan.json`、`docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：V02.15 阶段目标、7 天差异维度、正式任务拆分、Round80 PM 任务包、下一轮 Ready、不可改范围和验收标准。
+- 验收：下一轮 agent 可直接按 `docs/collaboration/Round80_V02.15_SCHOOLDAILY-001_PM执行任务包.md` 开工；学校生活保持生活化，不出现课程页、作业、测试、背诵、迟到、打卡、分数、远郊硬依赖或隐藏入口验收。
+
+### 2. Data Contract / Godot Dev / QA 组
+
+- 当前任务：已完成 `V02-SCHOOLDAILY-002 School Day State Contract 数据化`。
+- 输入：Round80 PM 任务包、`data/life/homeschool_events.json`、`data/life/today_status.json`、`scripts/systems/today_status_service.gd`、`scripts/systems/content_contract_validator.gd`、`tests/test_daily_town_services.gd`、`tests/test_v0214_homeschool_slice.gd`。
+- 输出：7 天 school day state 数据、loader / service、focused contract test 和 headless runner 注册。已完成。
+- 验收：7 个 `local_day_001` 至 `local_day_007` 均可加载 gate / yard / walk / return 内容；字段绑定地点、anchor、环境词、孩子端温和文本和安全说明；不出现课程、作业、测试、迟到、打卡、分数或家长报告。已通过。
 
 ## Round 64 小组推进计划
 
@@ -147,6 +198,24 @@
 - 输入：`docs/collaboration/Round72_V02.11_WEATHER-004_PM执行任务包.md`、V02-WEATHER-001 至 003 验证结果、`tests/test_v023_memory_palace_world.gd`、`tests/test_v024_content_contracts.gd`、`tests/headless_runner.gd`、`LESSON-009`、`LESSON-010`。
 - 输出：多天气 day_key 玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图。已完成。
 - 验收：多天气状态可见且 P0 Home / Shop / 小屋 / Mina / 相册 / A-Z 路径不阻断；截图无明显遮挡、工程文案、倒计时、错过或运营压力。已通过。
+
+## Round 73 小组推进计划
+
+### 1. PM / Memory Palace / Map / Curriculum / QA 组
+
+- 当前任务：已完成 `V02-AZWORLD-001 Home / School 中心地图原则与 26 anchor 分布合同`。
+- 输入：用户确认的 Home / School 世界中心方向、`data/anchors/az_core_anchors.json`、`docs/14_内容基线整理与首批内容规划.md` 的 26 anchor 故事种子、`LESSON-005`、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：`data/maps/az_world_plan.json`、`scripts/data/az_world_plan_contract.gd`、`tests/test_v0212_az_world_plan.gd`、`tests/headless_runner.gd` 注册、路线文档和台账同步。已完成。
+- 验收：Home / School 为世界地图中心；26 个 anchor 全量分布；A/C/D/W 覆盖 Home 线，E/G/K/N/R/Y 覆盖 School 线；X/Z 等远郊锚点不成为 P0 主流程硬依赖；未来 0 基础 / 课本挂接只进入内部字段，孩子端不显示课程、单元、测试、背诵或词表。已通过。
+
+## Round 74 小组推进计划
+
+### 1. Map / PM / UX / QA 组
+
+- 当前任务：已完成 `V02-AZWORLD-002 世界地图区域、道路、环线和安全边界规划`。
+- 输入：`data/maps/az_world_plan.json`、`docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`LESSON-005`、`LESSON-008`、`LESSON-009`、`LESSON-010`。
+- 输出：`docs/collaboration/Round74_V02.12_AZWORLD-002_PM执行任务包.md`、`docs/collaboration/Round74_V02.12_AZWORLD-002区域道路安全规划.md`，以及 `data/maps/az_world_plan.json` 的 `routes` / `safety_boundaries`。已完成。
+- 验收：任务包能直接交给 Map / UX / QA worker 执行；远郊预留不成为 P0 主流程硬依赖；不出现独自远行、赶车、倒计时、陌生人带走、课程化地图或测试路线。已通过。
 
 ## Round 63 小组推进计划（历史记录）
 
@@ -644,6 +713,111 @@
 - [x] **V02-WEATHER-004 天气纵切 smoke 与双视口截图**
   Owner：QA / PM / Godot Dev Agent；依赖：V02-WEATHER-001、V02-WEATHER-002、V02-WEATHER-003；交付物：多天气 day_key 玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图；验收：多天气状态可见且 P0 Home / Shop / 小屋 / Mina / 相册 / A-Z 路径不阻断，截图无明显遮挡、工程文案、倒计时、错过或运营压力。完成记录：新增 `tests/test_v0211_weather_slice_smoke.gd` 并在 `tests/headless_runner.gd` 注册 `_check_v0211_weather_slice_smoke()`，覆盖晴天、微风、小雨、雨后四类天气 day_key、Mina 日常、P0 商店、小屋摆放、相册和 S/K/B/U 天气线索落账；新增 `tests/capture_weather004_screens.gd`、`docs/collaboration/Round72_V02.11_WEATHER-004验收记录.md` 与 `docs/collaboration/weather004_captures/`，包含 1280x720 / 960x540 的 Sunny Sun、Breezy Kite、Light Rain Bear、After Rain Album、Shop、Home 代表截图；focused/headless/双视口取证均通过。
 
+### V02.12 学校-家庭中心世界地图与 A-Z 锚点规划
+
+> 本阶段先为后续课本场景主线建立地图地基：Home 和 School 位于世界地图中心，26 个 A-Z anchor 分布在中心、第一圈、第二圈和远郊预留中。课本知识点只作为未来场景挂接位，不在孩子端显示课程、单元、测试、背诵或词表。
+
+- [x] **V02-AZWORLD-001 Home / School 中心地图原则与 26 anchor 分布合同**
+  Owner：PM / Memory Palace / Map / Curriculum / QA Agent；依赖：V02.11 收口、V02-AZ-WORLD-004、V02-CONTENT-005；交付物：`data/maps/az_world_plan.json`、`scripts/data/az_world_plan_contract.gd`、focused contract test、`headless_runner` 注册、路线文档同步；验收：Home / School 为中心，26 个 anchor 全量分布，A/C/D/W 覆盖 Home 线，E/G/K/N/R/Y 覆盖 School 线，X/Z 远郊不阻断 P0，未来 0 基础 / 课本挂接字段完整。完成记录：新增 `data/maps/az_world_plan.json` 定义 Home / School 双中心、center / first_ring / second_ring / far_edge 四层结构和 26 anchor 分布；新增 `scripts/data/az_world_plan_contract.gd` 与 `tests/test_v0212_az_world_plan.gd`，并在 `tests/headless_runner.gd` 注册 `_check_v0212_az_world_plan()`；同步 `docs/12`、`docs/13`、`docs/14`、`docs/15` 和 `todo.md`；JSON、focused、A-Z core、memory palace、headless runner 和 Godot headless 启动均通过。
+- [x] **V02-AZWORLD-002 世界地图区域、道路、环线和安全边界规划**
+  Owner：Map / PM / UX / QA Agent；依赖：V02-AZWORLD-001；交付物：中心、第一圈、第二圈、远郊预留的区域 / 道路 / 安全边界规划；验收：Home-School Walk 可作为第一主线安全路线，远郊不制造出行压力。完成记录：新增 `docs/collaboration/Round74_V02.12_AZWORLD-002_PM执行任务包.md` 与 `docs/collaboration/Round74_V02.12_AZWORLD-002区域道路安全规划.md`；`data/maps/az_world_plan.json` 新增 `routes` 与 `safety_boundaries`；合同和 focused test 已覆盖 P0 Home-School Walk、first / second ring、far_edge 不阻断和安全返回点。
+- [x] **V02-AZWORLD-003 17 个 reserved anchor 升级为可制作级规格**
+  Owner：Memory Palace / Narrative / Art Direction / QA Agent；依赖：V02-AZWORLD-001、V02-AZWORLD-002；交付物：E/F/G/H/I/J/L/M/N/P/Q/R/U/V/X/Y/Z 的可见入口、相册记录、素材规格和儿童安全边界；验收：17 个 reserved anchor 可交给数据、场景、美术 worker 拆分。完成记录：新增 `docs/collaboration/Round75_V02.12_AZWORLD-003_PM执行任务包.md` 与 `docs/collaboration/Round75_V02.12_AZWORLD-003可制作级规格记录.md`；`data/maps/az_world_plan.json` 新增 17 条 `reserved_anchor_specs`，均包含 visible entry、album record、logical asset IDs、`make_ready` 和安全说明；合同和 focused test 已覆盖。
+- [x] **V02-AZWORLD-004 Home / School 0 基础主线挂接位**
+  Owner：Curriculum / Narrative / PM / QA Agent；依赖：V02-AZWORLD-001；交付物：family、home、room、clock、dog、bag、school、gate、play、look、go、good morning 等内部挂接位；验收：知识点落在 Home / School 生活事件中，不形成课程页或测试门槛。完成记录：新增 `docs/collaboration/Round76_V02.12_AZWORLD-004_005_PM执行任务包.md` 与 `docs/collaboration/Round76_V02.12_AZWORLD-004_005挂接与验收记录.md`；`data/maps/az_world_plan.json` 新增 `foundation_story_hooks`，覆盖 12 个首批 0 基础 tag / 短句并绑定 Home / School 场景与 A-Z anchor。
+- [x] **V02-AZWORLD-005 合同测试、回归验证和截图验收口径**
+  Owner：QA / PM / Godot Dev Agent；依赖：V02-AZWORLD-001 至 004；交付物：focused/headless 回归、后续实现截图点和验收记录口径；验收：A-Z 世界规划进入全量回归，截图点覆盖 Home、School、Home-School Walk 和代表远郊预留。完成记录：`scripts/data/az_world_plan_contract.gd` 与 `tests/test_v0212_az_world_plan.gd` 已扩展覆盖 routes、safety boundaries、reserved specs、foundation hooks 和 screenshot acceptance；`tests/headless_runner.gd` 已注册 `_check_v0212_az_world_plan()`；全量验证通过。
+
+### V02.13 全量课本内容世界化主线策划
+
+> 本阶段把小学三上至六下 8 册课本内容补齐为可加载世界化数据源。范围固定为数据与合同，不接入孩子端 runtime，不做课程页、单元门、背诵表、测试路线或截图验收。
+
+- [x] **V02-TEXTBOOK-001 小学全册教材源补齐**
+  Owner：Curriculum / PM / QA Agent；依赖：V02.12 收口；交付物：三上结构化摘要、8 册 `textbook_sources` ledger；验收：三上、三下、四上、四下、五上、五下、六上、六下均有本地摘要或来源记录。完成记录：新增 `curriculum/小学英语重点分析/三年级上册.txt`，保留公开来源 URL、抓取日期和只摘要不复制原文的边界；`data/curriculum/textbook_world_plan.json` 的 `textbook_sources` 覆盖 8 册。
+- [x] **V02-TEXTBOOK-002 全量课本内容结构化清单**
+  Owner：Curriculum / Data Contract / QA Agent；依赖：V02-TEXTBOOK-001；交付物：按年级 / 单元 / 主题整理的 `curriculum_items`；验收：每个单元有主题、关键词、短句、生活场景候选和来源。完成记录：`curriculum_items` 覆盖 85 个单元摘要：三上 10、三下 10、四上 10、四下 10、五上 12、五下 12、六上 12、六下 9。
+- [x] **V02-TEXTBOOK-003 世界化主线映射表**
+  Owner：Memory Palace / Narrative / Map / QA Agent；依赖：V02-TEXTBOOK-002、V02-AZWORLD-001；交付物：`world_mappings`；验收：每个映射绑定 `world_place_id`、`npc_id`、`anchor_id`、`story_memory`、`visual_hook`、`review_path`、`child_facing_line` 和 `tier`。完成记录：新增 P0/P1/P2 世界映射，P0 聚焦 Home、Home-School Walk、School Gate、School Yard、Shop 和 Sunny 角落，P1/P2 只作扩展预留。
+- [x] **V02-TEXTBOOK-004 Home / School 第一主线与 P0/P1/P2 分层**
+  Owner：PM / Curriculum / Narrative / QA Agent；依赖：V02-TEXTBOOK-003；交付物：`mainline_segments`；验收：P0 只覆盖 0 基础、三上 / 三下高频和 Home / School 生活事件，P1/P2 不阻断当前每日小镇。完成记录：新增 Home Morning Foundation、Home-School Walk Foundation、Shop Food Bridge、First Ring Story Expansion 和 Future Reserve 五段分层；P0 不使用 `anchor_x_x_mark_box` / `anchor_z_zebra` 或 far edge 地点。
+- [x] **V02-TEXTBOOK-005 数据合同与回归验证**
+  Owner：QA / Data Contract / PM Agent；依赖：V02-TEXTBOOK-001 至 004；交付物：`scripts/data/textbook_world_contract.gd`、`tests/test_v0213_textbook_world_plan.gd`、`tests/headless_runner.gd` 注册；验收：JSON、合同、focused、headless runner 和 Godot headless 启动通过。完成记录：新增 `TextbookWorldContract`，可拦截缺册、单元数不一致、缺映射、P0 远郊依赖和孩子端压力文案；focused/headless 验证通过。
+
+### V02.14 Home / School P0 可玩纵切
+
+> 本阶段把 V02.13 的 Home / School 第一主线推进为孩子端真实可见的生活路线。P0 只覆盖 Home、Home-School Walk、School Gate、School Yard、Shop 和 Sunny 角落；Bookshop、Bus Stop、Park、Theatre、Music Corner、Far Edge 继续作为 P1/P2 预留，不阻断主流程。
+
+- [x] **V02-HOMESCHOOL-001 Home / School P0 可玩纵切路线与任务拆分**
+  Owner：PM / Game Design / Narrative / QA Agent；依赖：V02.13 收口、V02-AZWORLD-001 至 005、V02-TEXTBOOK-001 至 005；交付物：V02.14 路线、P0 内容点、任务拆分、Round78 PM 任务包和 Ready 队列；验收：`docs/12`、`docs/13`、`docs/14`、`docs/15`、`todo.md` 同步，下一轮唯一 Ready 明确。完成记录：新增 `docs/collaboration/Round78_V02.14_HOMESCHOOL-001_PM执行任务包.md`；将 V02.14 拆为 `V02-HOMESCHOOL-002` 至 `005`，首批内容点固定为 Home morning、Home-School Walk、School Gate / School Yard 和 Return / Shop bridge。
+- [x] **V02-HOMESCHOOL-002 Home Morning Foundation 数据化与可见入口**
+  Owner：Godot Dev / Narrative / QA Agent；依赖：V02-HOMESCHOOL-001；交付物：Home / 小屋 / Sunny 早晨可见入口、温和反馈、A/C/D/W Home 线索记录和 focused test；验收：玩家从真实可见 `看看` / Home / Sunny / 小屋路径触发，不依赖隐藏 contract 按钮，不出现起床打卡、迟到、课程、作业、测试、背诵、分数或家长报告。完成记录：新增 `data/life/homeschool_events.json` 的 Home morning 两条 P0 事件；`data/maps/world_map.json` 新增 Home / Sunny 早晨可见 hotspot；`scripts/main.gd` 通过 `look_homeschool_event` 保存 `homeschool_events` 并点亮 A/C/D/W 对应 card state；`tests/test_v0214_homeschool_slice.gd` 真实可见 `看看` 路径通过。
+- [x] **V02-HOMESCHOOL-003 Home-School Walk 可见路径与安全边界**
+  Owner：Map / Godot Dev / UX / QA Agent；依赖：V02-HOMESCHOOL-002；交付物：Home-School Walk 可走路线、路牌 / 风筝 / 校门方向线索、安全返回和 focused test；验收：路线可走、可看、可回 Home，不引用 far edge，不出现赶路、倒计时、交通危险或独自远行。完成记录：`data/maps/world_map.json` 已接入 `place_home_school_walk`、路牌与风筝天空两个 P0 hotspot；玩家可移动至小路节点并用底栏 `看看` 触发 G/K/S/W 线索；focused / headless 验证确认不引用 far edge、不阻断回 Home。
+- [x] **V02-HOMESCHOOL-004 School Gate / School Yard 首批地点故事**
+  Owner：Narrative / Godot Dev / Memory Palace / QA Agent；依赖：V02-HOMESCHOOL-003；交付物：School Gate / School Yard 首批地点故事、NPC 轻反馈、E/G/K/N/R/Y A-Z 记录和 focused test；验收：学校像生活地点和操场回访，不出现课堂、老师训导、作业、测试、背诵或分数。完成记录：`data/life/homeschool_events.json` 新增 School Gate hello 与 School Yard play corner；`data/maps/world_map.json` 接入 `place_school_gate` / `place_school_yard` 可见 hotspot；`tests/test_v0214_homeschool_slice.gd` 验证 E/G/K/N/R/Y card state 与相册收藏状态。
+- [x] **V02-HOMESCHOOL-005 P0 主线 smoke、截图和儿童文本验收**
+  Owner：QA / PM / Godot Dev Agent；依赖：V02-HOMESCHOOL-002、V02-HOMESCHOOL-003、V02-HOMESCHOOL-004；交付物：Home -> Walk -> School -> Return / Shop bridge 玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图；验收：P0 主线可玩且不阻断 V02.8-V02.11 已有每日小镇、商店、小屋、天气和相册路径，截图无明显遮挡、工程文案或课程化文案。完成记录：新增 `tests/test_v0214_homeschool_slice.gd` 覆盖 Home -> Walk -> School -> Return / Shop bridge、相册落账、旧 P0 商店 / 小屋闭环和儿童安全禁词；`tests/headless_runner.gd` 已补齐 `_check_v0214_homeschool_slice()` 注册；focused、headless runner、Godot headless 启动和 MCP 1280x720 运行时截图抽查通过。
+
+### V02.15 Home / School 日常回访与学校生活轻循环
+
+> 本阶段把 V02.14 已经走通的 Home / School P0 路线扩展为 7 天低压力回访节奏。P0 仍只覆盖 Home、Home-School Walk、School Gate、School Yard、Shop 和 Sunny 角落；差异来自校门问候、操场小发现、上学路环境线索和回家 Sunny 反馈，不新增课程页、作业、测试、打卡、迟到或分数。
+
+- [x] **V02-SCHOOLDAILY-001 Home / School 日常回访路线与任务拆分**
+  Owner：PM / Game Design / Narrative / QA Agent；依赖：V02.14 收口、V02-AZWORLD-001 至 005、V02-TEXTBOOK-001 至 005；交付物：V02.15 路线、7 天差异维度、任务拆分、Round80 PM 任务包和 Ready 队列；验收：`docs/12`、`docs/13`、`docs/14`、`docs/15`、`todo.md` 同步，下一轮唯一 Ready 明确。完成记录：新增 `docs/collaboration/Round80_V02.15_SCHOOLDAILY-001_PM执行任务包.md`；将 V02.15 拆为 `V02-SCHOOLDAILY-002` 至 `005`，首批差异维度固定为 School Gate greeting、School Yard discovery、Home-School Walk variation 和 Home Return story。
+- [x] **V02-SCHOOLDAILY-002 School Day State Contract 数据化**
+  Owner：Data Contract / Godot Dev / QA Agent；依赖：V02-SCHOOLDAILY-001；交付物：School day state JSON、loader / service、合同测试；验收：7 个 `local_day_001` 至 `local_day_007` 均可加载 gate / yard / walk / return 内容，字段绑定 `stage`、`place_id`、`anchor_ids`、`environment_words`、`child_facing_text` 和 `safety_note`，合同拦截课程、作业、测试、迟到、打卡、分数或家长报告文案。完成记录：新增 `data/life/school_day_states.json` 7 天四阶段 school day state；`scripts/systems/school_day_state_service.gd` 可按 day_key 读取今日 school state 与阶段 entry；`scripts/systems/content_contract_validator.gd` 已纳入 school day state 合同检查；`tests/test_v024_content_contracts.gd` 验证 7 天 `home_school_walk` / `school_gate` / `school_yard` / `return_home` 可加载并含 anchor、环境词、孩子端文本和安全说明；focused、check-only 与 headless runner 通过。
+- [x] **V02-SCHOOLDAILY-003 School Gate / Yard 每日可见差异**
+  Owner：Narrative / Godot Dev / Memory Palace / QA Agent；依赖：V02-SCHOOLDAILY-002；交付物：School Gate / Yard 每日可见差异、A-Z 记录和 focused test；验收：玩家从真实可见 `看看` 路径触发校门 / 操场每日反馈，E/G/K/N/R/Y 线索自然复现，不出现课堂、老师训导、作业、测试、背诵或分数。完成记录：`scripts/main.gd` 已在 `look_homeschool_event` 中按当前 `day_key` 读取 `SchoolDayStateService.get_entry(stage)`，校门 / 操场真实 `看看` 热点会显示当天 `child_facing_text`、保存 `school_day_events` 并点亮 entry 绑定的 A-Z card state；新增 `tests/test_v0215_school_daily_slice.gd` 覆盖 7 天校门 / 操场每日差异、A-Z card 落账和儿童安全文案。
+- [x] **V02-SCHOOLDAILY-004 Home Return / Sunny 日常回访**
+  Owner：Home Design / Narrative / Godot Dev / QA Agent；依赖：V02-SCHOOLDAILY-003；交付物：Home Return / Sunny 按 day_key 的回家反馈、保存记录和 focused test；验收：回家反馈温暖、可保存、可复核相册，不变成学习总结、家长报告、作业检查或表现评价。完成记录：`return_home` 阶段已按 7 个 day_key 读取 Sunny 回家文本并保存为 `school_day_events`，`tests/test_v0215_school_daily_slice.gd` 验证 7 条 `return_home` 记录均落账、保留 stage / day_key / anchors / environment_words，并确认 display_prefix 仍绑定 Sunny。
+- [x] **V02-SCHOOLDAILY-005 7 天学校生活 smoke 与截图**
+  Owner：QA / PM / Godot Dev Agent；依赖：V02-SCHOOLDAILY-002、V02-SCHOOLDAILY-003、V02-SCHOOLDAILY-004；交付物：7 天 Home -> Walk -> School -> Return 玩家路径 smoke、headless runner 注册、1280x720 与 960x540 代表截图；验收：7 天均可玩且不阻断 V02.8-V02.14 已有每日小镇、商店、小屋、天气、相册和 Home / School 纵切路径，截图无明显遮挡、工程文案或课程化文案。完成记录：新增 `tests/test_v0215_school_daily_slice.gd`，覆盖 7 天 x 4 阶段真实可见 `看看` 路径、28 条 school day event 保存、7 条 Sunny return 保存、商店 / 小屋旧路径不阻断和儿童安全禁词；`tests/headless_runner.gd` 注册 `_check_v0215_school_daily_slice()`；新增 `tests/capture_schooldaily005_screens.gd` 并导出 `docs/collaboration/schooldaily005_captures/` 下 10 张 1280x720 / 960x540 代表截图。
+
+### V02.16 可制作内容与体验抛光 / Playable RC Gate
+
+> 本阶段把 V02.8-V02.15 已跑通的核心体验整理成 5-10 分钟可试玩 / 可制作版本门槛。范围固定为现有 P0/P1 内容的文本统一、操作动线抛光、美术 / UI 截图复核和完整玩家路径验收；不扩地图、不新增课程 UI、不把 Bookshop / Bus Stop 升为 P0，也不改 A-Z anchor 结构。
+
+- [x] **V02-PRODUCTION-001 V02.16 路线、试玩范围和发布门槛规划**
+  Owner：PM / Game Design / Narrative / QA Agent；依赖：V02.15 收口、V02-DAILYLIFE-005、V02-WEATHER-004、V02-P1RETURN-004、V02-SCHOOLDAILY-005；交付物：V02.16 路线、试玩范围、发布门槛、Round83 PM 任务包和 Ready 队列；验收：`docs/12`、`docs/13`、`docs/14`、`docs/15`、`todo.md` 同步，下一轮唯一 Ready 明确。完成记录：新增 `docs/collaboration/Round83_V02.16_PRODUCTION-001_PM执行任务包.md`；将 V02.16 拆为 `V02-PRODUCTION-002` 至 `005`，试玩范围固定为每日小镇、Home / School、天气、P1 轻回访、商店、小屋、Sunny、相册和设置。
+- [x] **V02-PRODUCTION-002 孩子端文案、反馈语气和禁用词统一审校**
+  Owner：Narrative / UX / QA / Godot Agent；依赖：V02-PRODUCTION-001；交付物：孩子端可见文本审校、反馈语气统一、禁用词扫描测试扩展；验收：HUD、NPC、Sunny、Home / School、天气、P1、商店、小屋、相册和设置均为温暖短句，不出现课程、作业、测试、背诵、迟到、打卡、分数、正确率、家长报告、必须完成或错过损失。完成记录：新增 `tests/test_v0216_playable_rc_gate.gd` 的孩子端可见文本扫描，并在 `tests/headless_runner.gd` 注册 `_check_v0216_playable_rc_gate()`；扫描覆盖启动、Mina、资源、商店、小屋、Sunny、Home / School、相册和设置真实可见状态。
+- [x] **V02-PRODUCTION-003 核心操作动线抛光**
+  Owner：UX / Godot / QA Agent；依赖：V02-PRODUCTION-002；交付物：`看看`、小镇、背包、商店、小屋、相册、设置的打开、反馈、关闭和遮挡修正；验收：启动后能看懂当前位置，底栏不遮挡，反馈明确，面板可关闭；只做小范围 UI / UX polish，不重做主界面结构，不使用隐藏 contract 按钮作为验收。完成记录：V02.16 smoke 已覆盖 `看看`、小镇、背包、商店、小屋、相册和设置的真实可见入口；商店 / 相册 / 设置均验证可见关闭路径，小屋验证摆放、旋转、挪动和 Sunny 反馈。
+- [x] **V02-PRODUCTION-004 关键美术 / UI 截图复核**
+  Owner：Art Direction / UI / QA / Godot Agent；依赖：V02-PRODUCTION-003；交付物：Town Plaza、Home、Shop、School Gate、School Yard、Album、Settings 的 1280x720 与 960x540 截图复核记录；验收：使用 `ThemeProfile` / `AssetResolver`，无 runtime 硬编码资源路径；资产状态区分 `production` 与 `approved`，缺少双视口截图证据不得标为 `approved`。完成记录：新增 `tests/capture_production005_screens.gd` 与 `docs/collaboration/production005_captures/`，用非 headless `x11` / `opengl3` 路径导出 7 个关键视图的 1280x720 与 960x540 截图；`Round84_V02.16_PRODUCTION-005验收记录.md` 明确本轮不自动把全部资源提升为 `approved`。
+- [x] **V02-PRODUCTION-005 试玩版总 smoke、双视口截图和阶段收口**
+  Owner：QA / PM / Godot Agent；依赖：V02-PRODUCTION-002、V02-PRODUCTION-003、V02-PRODUCTION-004；交付物：试玩版总 smoke、`tests/headless_runner.gd` 注册、1280x720 与 960x540 代表截图、`todo.md` 与 `lessons.md` 收口；验收：启动 -> Mina / 资源 -> Shop -> Home -> Sunny -> Home-School Walk -> School Gate -> School Yard -> Return Home -> Album -> Settings 全路径通过，截图无明显遮挡、文本溢出、工程文案或课程化文案。完成记录：新增 `docs/collaboration/Round84_V02.16_PRODUCTION-005验收记录.md`；focused V02.16 smoke、全量 headless runner、Godot headless 启动和双视口截图导出均通过，V02.16 Playable RC Gate 可标记完成。
+
+### V02.17 世界地图运行时落地与 26 Anchor 可视布局
+
+> 本阶段把 V02.12 的 `az_world_plan` 从规划合同推进到运行时地图布局、可见热点、相册落账和截图验收。范围固定为现有 26 个 A-Z anchor、Home / School 双中心、first / second ring 和 far edge 安全边界；不重新设计 A-Z 编码，不做课程地图、字母打卡或顺序拜访考试。
+
+- [x] **V02-WORLDMAP-001 V02.17 路线、地图布局范围和 Ready 规划**
+  Owner：PM / Map / Memory Palace / QA Agent；依赖：V02.16 收口、V02-AZWORLD-001 至 005、V02-HOMESCHOOL-005、V02-SCHOOLDAILY-005、V02-PRODUCTION-005；交付物：V02.17 路线、地图布局范围、任务拆分、Round85 PM 任务包和 Ready 队列；验收：`docs/12`、`docs/13`、`docs/14`、`docs/15`、`todo.md` 同步，下一轮唯一 Ready 明确。完成记录：新增 `docs/collaboration/Round85_V02.17_WORLDMAP-001_PM执行任务包.md`；将 V02.17 拆为 `V02-WORLDMAP-002` 至 `005`，阶段目标固定为 26 anchor 坐标蓝图、P0 中心路线运行时接入、first / second ring 预览和 26 anchor QA 收口。
+- [x] **V02-WORLDMAP-002 26 Anchor 地图坐标与分层可达蓝图**
+  Owner：Map / UX / Memory Palace / QA Agent；依赖：V02-WORLDMAP-001、`data/maps/az_world_plan.json`、`data/anchors/az_core_anchors.json`；交付物：26 anchor 运行时坐标蓝图、道路关系、入口状态、截图点和安全边界表；验收：每个 anchor 保留 `anchor_id`、`letter`、`core_word`、`route_order` 和 `card_id`，P0 / first ring / second ring / far edge 分层清楚，不要求孩子按 A-Z 顺序拜访，不出现课程、测试、背诵、打卡、倒计时或远郊主流程依赖。完成记录：`docs/collaboration/Round86_V02.17_WORLDMAP-002_005运行时布局与验收记录.md` 固定 Home line、School line、first ring、second ring、far edge 运行时坐标口径；`data/maps/world_map.json` 的 26 个 `memory_anchors` 保留核心 ID、letter、core_word、route_order 和 card_id。
+- [x] **V02-WORLDMAP-003 P0 Home / School 中心路线运行时地图接入**
+  Owner：Godot Dev / Map / Narrative / QA Agent；依赖：V02-WORLDMAP-002；交付物：A/C/D/W、E/G/K/N/R/Y 的中心路线地图节点、可见物件、`看看` 热点、相册落账和 focused test；验收：Home -> Home-School Walk -> School Gate -> School Yard 可走可看，所有落账来自真实可见入口，不阻断 V02.16 总路径，学校不课程化。完成记录：`tests/test_v0217_worldmap_anchor_runtime.gd` 覆盖中心路线 anchor 真实 `看看` 落账；`interact_nearby()` 调整为 exact resource 优先、nearby anchor 优先于 nearby resource，避免 A-Z 相册入口被周边资源吞掉。
+- [x] **V02-WORLDMAP-004 First / Second Ring Anchor 预览与 P1 可见入口**
+  Owner：Godot Dev / Narrative / Art Direction / QA Agent；依赖：V02-WORLDMAP-002、V02-WORLDMAP-003；交付物：B/F/H/I/J/O/T 与 L/M/P/Q/S/U/V 的预览入口、P1 支线入口、logical asset ID 接入计划和儿童安全文本；验收：first / second ring 不阻断 P0，Bookshop、Garden、Park、Theatre、Music Corner 等只作生活回访或预览，不出现顺序拜访、阅读测验、赶车压力、表演评分或危险模仿。完成记录：first / second ring 与 X/Z far edge 均通过 V02.17 focused test 的 Node2D / ObjectSprite / 相册落账验证；B Bear、K Kite、U Umbrella 等既有天气 / P1 路径已对齐新坐标。
+- [x] **V02-WORLDMAP-005 26 Anchor 合同、smoke 与双视口截图收口**
+  Owner：QA / PM / Godot Agent；依赖：V02-WORLDMAP-003、V02-WORLDMAP-004；交付物：26 anchor 合同测试、运行时 smoke、相册落账复核、1280x720 与 960x540 代表截图和阶段收口记录；验收：focused / headless / Godot 启动通过；代表截图无明显遮挡、文本溢出、工程文案、裸字母牌或课程化文案；X/Z 远郊只作边界预览，不进入 P0。完成记录：`godot --headless --path . --script tests/test_v0217_worldmap_anchor_runtime.gd`、`godot --headless --path . --script tests/test_v0211_weather_slice_smoke.gd`、`godot --headless --path . --script tests/test_v028_daily_life_slice.gd`、`godot --headless --path . --script tests/test_v0216_playable_rc_gate.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 均通过；截图验收口径写入 Round86 记录，后续实际双视口截图仍按非 headless / MCP 工具链执行。
+
+### V02.18 世界地图视觉可读性与探索体验抛光
+
+> 本阶段把 V02.17 已经落地的 26 anchor 地图从“功能可达”推进到“孩子能看懂、找得到、愿意回访”。范围固定为视觉可读性、道路引导、热点优先级、反馈短句、相册回访和双视口截图证据；不新增课程内容，不重排 A-Z 编码，不扩远郊 P0，不做字母打卡或完成率。
+
+- [x] **V02-MAPREAD-001 V02.18 路线、审计范围和 Ready 规划**
+  Owner：PM / Map / Art Direction / QA Agent；依赖：V02.17 收口、V02-WORLDMAP-002 至 005、V02-PRODUCTION-005、`LESSON-009`、`LESSON-010`、`LESSON-011`；交付物：V02.18 路线、审计范围、任务拆分、Round87 PM 任务包和 Ready 队列；验收：`docs/12`、`docs/13`、`docs/14`、`docs/15`、`todo.md` 同步，下一轮唯一 Ready 明确。完成记录：新增 `docs/collaboration/Round87_V02.18_MAPREAD-001_PM执行任务包.md`；将 V02.18 拆为 `V02-MAPREAD-002` 至 `005`，阶段目标固定为 26 anchor 可读性审计、地图视觉层级 / 道路引导抛光、anchor 徽章 / 热点优先级 / 反馈短句抛光和地图探索 smoke / 双视口截图收口。
+- [x] **V02-MAPREAD-002 26 Anchor 可读性审计与截图基线**
+  Owner：QA / Map / UX / Art Direction Agent；依赖：V02-MAPREAD-001、`data/maps/world_map.json`、`data/maps/az_world_plan.json`、Round86 V02.17 运行时布局与验收记录；交付物：26 anchor 可读性审计表、双视口截图基线、遮挡 / 热点 / 小字 / 区域层次问题清单；验收：覆盖 Home anchors、School line、first ring、second ring、far edge 和 Album，不改核心 ID / route_order，不以服务直调或隐藏按钮作为可读性证据，不出现课程、测试、背诵、打卡、分数、完成率或远郊每日路线。完成记录：`tests/test_v0218_map_readability.gd` 覆盖 26 anchor 的截图组、主轮廓、徽章尺寸、可见 look cell、真实 `看看` 路径和儿童安全文案；Round88 验收记录固定 Home anchors / School line / first ring / second ring / far edge / Album 截图口径。
+- [x] **V02-MAPREAD-003 地图视觉层级与道路引导抛光**
+  Owner：Map / Art Direction / Godot / QA Agent；依赖：V02-MAPREAD-002；交付物：Home / School / Town / Far Edge 区域层次、道路引导、安全边界和回家线索抛光；验收：1280x720 与 960x540 下 P0 中心、第一圈、第二圈和远郊边界一眼可区分，不改变 26 anchor 核心编码，不误导孩子独自远行或每日必到。完成记录：`scripts/main.gd` 新增 `MapReadabilityLayer`、三组区域底纹和四个短路牌，Home / School / Town Ring / Far Edge 视觉层级可被 focused/headless 审计。
+- [x] **V02-MAPREAD-004 Anchor 徽章、热点优先级和反馈短句抛光**
+  Owner：Godot / UX / Narrative / QA Agent；依赖：V02-MAPREAD-002、V02-MAPREAD-003；交付物：字母徽章辅助识别、热点优先级、`看看` 反馈短句和相册回访文案抛光；验收：生活物件优先、字母徽章辅助；附近资源 / NPC / hotspot 不吞掉 anchor 相册路径；反馈不课程化、不打卡、不评价。完成记录：字母徽章尺寸提升至 28px、字体提升至 16，并为 anchor 增加 `mapread_layer` / `mapread_screenshot_group` 元数据；focused test 使用真实 `InteractButton` 验证 26 anchor 相册路径不被资源、NPC 或 hotspot 吞掉。
+- [x] **V02-MAPREAD-005 地图探索 smoke、相册复核与双视口截图收口**
+  Owner：QA / PM / Godot Agent；依赖：V02-MAPREAD-003、V02-MAPREAD-004；交付物：地图探索操作级 smoke、相册复核、headless runner 注册、1280x720 与 960x540 代表截图和阶段收口记录；验收：26 anchor 探索路径、旧 V02.16 / V02.17 路径和相册显示均通过；截图无明显遮挡、文本溢出、工程文案、裸字母牌或课程化文案。完成记录：新增 `docs/collaboration/Round88_V02.18_MAPREAD-002_005验收记录.md`；`tests/headless_runner.gd` 已实际执行 V02.18 可读性审计；focused、V02.17 回归、全量 headless runner 和 Godot 启动均通过。
+
 ## 阶段 0：框架与管理基线
 
 - [x] **V02-BASE-001 产品定位与体验原则**
@@ -880,3 +1054,17 @@
 | 2026-06-05 | Round 70 验收 / Round 71 Ready | V02-WEATHER-002 NPC 问候与资源 / 商店轻变化收口 | `data/life/daily_greetings.json` 新增天气问候变体并用稳定 `variant_id` 回连 `weather_events.npc_greeting_refs`；`DailyGreetingService` 返回 `weather_event_id`、`weather_tag` 与 `greeting_variant_id`；`data/life/resource_points.json` 新增 `weather_hints`，`ResourceRefreshService` 只附加天气提示且不改变资源数量；`data/items/life_items.json` 新增 `weather_activity_corner`，`LifeShopService` 返回活动角说明但不覆盖 `offers`；`ContentContractValidator` 已拦截天气问候悬空引用、资源天气提示、商店活动角和 P0 `wooden_chair` 保留；`tests/test_v024_content_contracts.gd`、`tests/test_daily_town_services.gd`、`tests/test_life_services.gd` 与 `tests/headless_runner.gd` 已覆盖；新增 `docs/collaboration/Round71_V02.11_WEATHER-003_PM执行任务包.md`，下一轮唯一 Ready 为 `V02-WEATHER-003 A-Z 天气相册线索`；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/systems/content_contract_validator.gd`、`godot --headless --path . --check-only --script tests/headless_runner.gd`、`godot --headless --path . --script tests/test_v024_content_contracts.gd`、`godot --headless --path . --script tests/test_daily_town_services.gd`、`godot --headless --path . --script tests/test_life_services.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；无残留 headless 测试进程 |
 | 2026-06-05 | Round 71 验收 / Round 72 Ready | V02-WEATHER-003 A-Z 天气相册线索收口 | `data/life/weather_events.json` 为晴天、微风、雨后、小雨四类 P0 天气新增 `album_clues`，分别绑定 S Sun、K Kite、U Umbrella、B Bear 的 `anchor_id`、`card_id`、天气相册标签、地点故事和环境词；`scripts/main.gd` 在孩子端真实 `看看` 路径中记录 `weather_album_clues`，直接 anchor 与 P1 look hotspot 均可点亮对应 card state，其中 B Bear 通过 Bear Corner 避开 Mina 树枝资源格；`scripts/ui/memory_album.gd` 将 U Umbrella 纳入相册显示；`ContentContractValidator` 拦截天气相册线索缺字段或未回连 `anchor_hints`；`tests/test_v023_memory_palace_world.gd` 覆盖四类天气 day_key 从可见 `看看` 路径落账、打开相册显示“已收藏”且无正确率 / 等级 / 打卡 / 测验文案；新增 `docs/collaboration/Round72_V02.11_WEATHER-004_PM执行任务包.md`，下一轮唯一 Ready 为 `V02-WEATHER-004 天气纵切 smoke 与双视口截图`；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --check-only --script scripts/systems/content_contract_validator.gd`、`godot --headless --path . --script tests/test_v023_memory_palace_world.gd`、`godot --headless --path . --script tests/test_v024_content_contracts.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；无残留 headless 测试进程 |
 | 2026-06-05 | Round 72 验收 | V02-WEATHER-004 天气纵切 smoke 与双视口截图收口 | 新增 `tests/test_v0211_weather_slice_smoke.gd`，覆盖晴天、微风、小雨、雨后四类天气 day_key、HUD 天气状态、Mina 日常、P0 商店、小屋摆放、相册和 S/K/B/U 天气线索落账；`tests/headless_runner.gd` 注册 `_check_v0211_weather_slice_smoke()` 作为全量回归门槛；新增 `tests/capture_weather004_screens.gd` 与 `docs/collaboration/Round72_V02.11_WEATHER-004验收记录.md`；非 headless `x11` / `opengl3` 路径导出 `docs/collaboration/weather004_captures/` 下 12 张代表截图，覆盖 Sunny Sun、Breezy Kite、Light Rain Bear、After Rain Album、Shop、Home 的 1280x720 与 960x540；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script tests/test_v0211_weather_slice_smoke.gd`、`godot --headless --path . --check-only --script tests/capture_weather004_screens.gd`、`godot --headless --path . --check-only --script tests/headless_runner.gd`、`godot --headless --path . --script tests/test_v0211_weather_slice_smoke.gd`、`godot --headless --path . --script tests/headless_runner.gd`、双视口截图导出、`godot --headless --path . --quit` 均通过；无残留 headless 测试进程；V02.11 天气与小镇轻事件纵切可标记完成，下一步应由 PM 建立后续阶段路线 |
+| 2026-06-05 | Round 73 验收 / Round 74 Ready | V02-AZWORLD-001 Home / School 中心地图原则与 26 anchor 分布合同收口 | 新增 `data/maps/az_world_plan.json`，以 Home / School 为世界地图双中心，定义 center / first_ring / second_ring / far_edge 四层结构、5 个规划 district 和 26 个 A-Z anchor 的路线分布、故事记忆、视觉钩子、相册记录、安全边界与 `future_curriculum_hooks`；新增 `scripts/data/az_world_plan_contract.gd`，拦截非 Home / School 中心、缺失 26 anchor、远郊成为主流程依赖、缺少未来挂接位和压力词；新增 `tests/test_v0212_az_world_plan.gd` 并在 `tests/headless_runner.gd` 注册 `_check_v0212_az_world_plan()`；同步 `docs/12`、`docs/13`、`docs/14`、`docs/15` 和 `todo.md`；`find data -name '*.json' -print0 \| xargs -0 jq empty`、`godot --headless --path . --check-only --script scripts/data/az_world_plan_contract.gd`、`godot --headless --path . --check-only --script tests/test_v0212_az_world_plan.gd`、`godot --headless --path . --script tests/test_v0212_az_world_plan.gd`、`godot --headless --path . --script tests/test_az_core_data.gd`、`godot --headless --path . --script tests/test_memory_palace_embedding.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；下一轮 Ready 为 `V02-AZWORLD-002 世界地图区域、道路、环线和安全边界规划` |
+| 2026-06-05 | Round 74 验收 | V02-AZWORLD-002 世界地图区域、道路、环线和安全边界规划收口 | 子 agent Franklin 新增 `docs/collaboration/Round74_V02.12_AZWORLD-002_PM执行任务包.md`；主 PM 集成新增 `docs/collaboration/Round74_V02.12_AZWORLD-002区域道路安全规划.md`；`data/maps/az_world_plan.json` 新增 `routes` 与 `safety_boundaries`，覆盖 `route_p0_home_school_walk`、first ring、second ring、far edge、safe return 和 far edge 不阻断 P0；`scripts/data/az_world_plan_contract.gd` 与 `tests/test_v0212_az_world_plan.gd` 已验证 |
+| 2026-06-05 | Round 75 验收 | V02-AZWORLD-003 17 个 reserved anchor 升级为可制作级规格收口 | 子 agent Planck 新增 `docs/collaboration/Round75_V02.12_AZWORLD-003_PM执行任务包.md`；主 PM 集成新增 `docs/collaboration/Round75_V02.12_AZWORLD-003可制作级规格记录.md`；`data/maps/az_world_plan.json` 新增 17 条 `reserved_anchor_specs`，覆盖 E/F/G/H/I/J/L/M/N/P/Q/R/U/V/X/Y/Z 的 visible entry、album record、logical asset IDs、`make_ready` 和儿童安全说明；合同与 focused/headless 验证通过 |
+| 2026-06-05 | Round 76 验收 | V02-AZWORLD-004 / 005 Home / School 0 基础挂接与 V02.12 阶段收口 | 子 agent Dewey 新增 `docs/collaboration/Round76_V02.12_AZWORLD-004_005_PM执行任务包.md`；主 PM 集成新增 `docs/collaboration/Round76_V02.12_AZWORLD-004_005挂接与验收记录.md`；`data/maps/az_world_plan.json` 新增 `foundation_story_hooks` 和 `screenshot_acceptance`，覆盖 family/home/room/clock/dog/bag/school/gate/play/look/go/good_morning、Home / School 生活场景、anchor 绑定、截图点和双视口口径；`scripts/data/az_world_plan_contract.gd`、`tests/test_v0212_az_world_plan.gd` 与 `tests/headless_runner.gd` 已扩展；JSON、check-only、focused、A-Z core、memory palace、headless runner 和 Godot headless 启动均通过；V02.12 学校-家庭中心世界地图与 A-Z 锚点规划可标记完成 |
+| 2026-06-05 | Round 77 验收 | V02.13 全量课本内容世界化主线策划收口 | 新增 `curriculum/小学英语重点分析/三年级上册.txt`、`data/curriculum/textbook_world_plan.json`、`scripts/data/textbook_world_contract.gd`、`tests/test_v0213_textbook_world_plan.gd`、`docs/collaboration/Round77_V02.13_TEXTBOOK-001_005_PM执行任务包.md` 和验收记录；`tests/headless_runner.gd` 注册 `_check_v0213_textbook_world_plan()`；8 册 source ledger、85 个单元摘要、世界映射、P0/P1/P2 主线分层、缺册 / 远郊 / 压力文案拦截均通过；JSON、check-only、focused、headless runner 和 Godot headless 启动均通过；V02.13 可标记完成 |
+| 2026-06-05 | Round 78 规划 / Ready | V02.14 Home / School P0 可玩纵切路线建立 | 按文档路线顺序更新 `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`；新增 `docs/collaboration/Round78_V02.14_HOMESCHOOL-001_PM执行任务包.md`；将 V02.14 拆为 `V02-HOMESCHOOL-002` 至 `005`，并将下一轮唯一 Ready 置为 `V02-HOMESCHOOL-002 Home Morning Foundation 数据化与可见入口`；本轮仅改 PM 文档和台账，验证命令通过 |
+| 2026-06-05 | Round 79 验收 | V02.14 Home / School P0 可玩纵切实现收口 | 新增 `data/life/homeschool_events.json`，覆盖 Home morning、Home-School Walk、School Gate、School Yard 和 Return / Sunny story 七个 P0 生活事件；`data/maps/world_map.json` 接入 Home / Sunny / Walk / School Gate / School Yard 可见 `看看` hotspot；`scripts/main.gd` 通过 `look_homeschool_event` 保存 `homeschool_events` 并点亮 A/C/D/W、G/K/S、E/G/K/N/R/Y 等 A-Z card state；新增 `tests/test_v0214_homeschool_slice.gd` 并在 `tests/headless_runner.gd` 补齐 `_check_v0214_homeschool_slice()` 集成注册；`godot --headless --path . --script tests/test_v0214_homeschool_slice.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 通过；Godot MCP 主场景启动、运行时场景树和 1280x720 截图抽查通过；V02.14 可标记完成，下一步应由 PM 建立 V02.15 路线与 Ready 队列 |
+| 2026-06-05 | Round 80 规划 / Ready | V02.15 Home / School 日常回访与学校生活轻循环路线建立 | 按文档路线顺序更新 `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`；新增 `docs/collaboration/Round80_V02.15_SCHOOLDAILY-001_PM执行任务包.md`；将 V02.15 拆为 `V02-SCHOOLDAILY-002` 至 `005`，首批差异维度固定为 School Gate greeting、School Yard discovery、Home-School Walk variation 和 Home Return story，并将下一轮唯一 Ready 置为 `V02-SCHOOLDAILY-002 School Day State Contract 数据化`；本轮仅改 PM 文档和台账，`godot --headless --path . --script tests/headless_runner.gd` 与 `godot --headless --path . --quit` 通过 |
+| 2026-06-05 | Round 81 验收 | V02-SCHOOLDAILY-002 School Day State Contract 数据化收口 | 新增并核对 `data/life/school_day_states.json` 7 天 school day state，覆盖 `home_school_walk`、`school_gate`、`school_yard`、`return_home` 四阶段；`scripts/systems/school_day_state_service.gd` 已接入 day_key loader / entry 读取；`scripts/systems/content_contract_validator.gd` 新增 school day state 合同检查，拦截缺字段、重复 event_id、未知 anchor 和儿童压力文案；`tests/test_v024_content_contracts.gd` 已验证 7 天四阶段均可通过 service 加载并含地点、anchor、环境词、孩子端文本和安全说明；`godot --headless --path . --check-only --script scripts/systems/content_contract_validator.gd`、`godot --headless --path . --script tests/test_v024_content_contracts.gd`、`godot --headless --path . --script tests/headless_runner.gd` 通过；无新增已验证教训 |
+| 2026-06-05 | Round 82 验收 | V02.15 Home / School 日常回访与学校生活轻循环收口 | 完成 `V02-SCHOOLDAILY-003` 至 `005`：`scripts/main.gd` 已通过 `look_homeschool_event` 使用当前 day_key 的 `SchoolDayStateService` entry 为 Home-School Walk、School Gate、School Yard、Return Home 追加每日差异文本、保存 `school_day_events` 并点亮 A-Z card state；新增 `tests/test_v0215_school_daily_slice.gd` 覆盖 7 天 x 4 阶段真实可见 `看看` 路径、28 条 school day event 保存、7 条 Sunny return 保存、商店 / 小屋旧路径不阻断和儿童安全禁词；`tests/headless_runner.gd` 注册 `_check_v0215_school_daily_slice()`；新增 `tests/capture_schooldaily005_screens.gd`，非 headless `x11` / `opengl3` 路径导出 `docs/collaboration/schooldaily005_captures/` 下 10 张代表截图，覆盖 Day 1 Gate、Day 3 Yard、Day 7 Return、Shop、Home 的 1280x720 与 960x540；`godot --headless --path . --check-only --script tests/test_v0215_school_daily_slice.gd`、`godot --headless --path . --check-only --script tests/capture_schooldaily005_screens.gd`、`godot --headless --path . --check-only --script tests/headless_runner.gd`、`godot --headless --path . --script tests/test_v0215_school_daily_slice.gd`、`godot --headless --path . --script tests/headless_runner.gd`、双视口截图导出和 `godot --headless --path . --quit` 通过；V02.15 可标记完成，下一步由 PM 建立后续阶段路线 |
+| 2026-06-05 | Round 83 规划 / Ready | V02.16 可制作内容与体验抛光 / Playable RC Gate 路线建立 | 按文档路线顺序更新 `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`；新增 `docs/collaboration/Round83_V02.16_PRODUCTION-001_PM执行任务包.md`；将 V02.16 拆为 `V02-PRODUCTION-002` 至 `005`，试玩范围固定为每日小镇、Home / School、天气、P1 轻回访、商店、小屋、Sunny、相册和设置，并将下一轮唯一 Ready 置为 `V02-PRODUCTION-002 孩子端文案、反馈语气和禁用词统一审校`；本轮仅改 PM 文档和台账，未改运行时代码 |
+| 2026-06-05 | Round 85 规划 / Ready | V02.17 世界地图运行时落地与 26 Anchor 可视布局路线建立 | 按文档路线顺序更新 `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`；新增 `docs/collaboration/Round85_V02.17_WORLDMAP-001_PM执行任务包.md`；将 V02.17 拆为 `V02-WORLDMAP-002` 至 `005`，阶段目标固定为 26 anchor 坐标蓝图、P0 Home / School 中心路线运行时接入、first / second ring 预览与 26 anchor QA 收口，并将下一轮唯一 Ready 置为 `V02-WORLDMAP-002 26 Anchor 地图坐标与分层可达蓝图`；本轮仅改 PM 文档和台账，未改运行时代码 |
+| 2026-06-05 | Round 87 规划 / Ready | V02.18 世界地图视觉可读性与探索体验抛光路线建立 | 按文档路线顺序更新 `docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`；新增 `docs/collaboration/Round87_V02.18_MAPREAD-001_PM执行任务包.md`；将 V02.18 拆为 `V02-MAPREAD-002` 至 `005`，阶段目标固定为 26 anchor 可读性审计、地图视觉层级 / 道路引导抛光、anchor 徽章 / 热点优先级 / 反馈短句抛光和地图探索 smoke / 双视口截图收口，并将下一轮唯一 Ready 置为 `V02-MAPREAD-002 26 Anchor 可读性审计与截图基线`；本轮仅改 PM 文档和台账，未改运行时代码 |
+| 2026-06-05 | Round 88 验收 | V02.18 世界地图视觉可读性与探索体验抛光收口 | 完成 `V02-MAPREAD-002` 至 `005`：`scripts/main.gd` 新增 `MapReadabilityLayer`、Home / School / Town Ring / Far Edge 区域底纹、短路牌、anchor 可读性元数据和更清晰的字母徽章；新增 `tests/test_v0218_map_readability.gd` 并在 `tests/headless_runner.gd` 实际注册 V02.18 审计，覆盖 26 anchor 截图组、物件轮廓、徽章尺寸、真实 `看看` 路径、相册落账和儿童安全文案；新增 `docs/collaboration/Round88_V02.18_MAPREAD-002_005验收记录.md`；`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --check-only --script tests/test_v0218_map_readability.gd`、`godot --headless --path . --check-only --script tests/headless_runner.gd`、`godot --headless --path . --script tests/test_v0218_map_readability.gd`、`godot --headless --path . --script tests/test_v0217_worldmap_anchor_runtime.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 均通过；V02.18 可标记完成，下一步由 PM 建立后续阶段路线 |

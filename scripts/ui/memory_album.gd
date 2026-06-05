@@ -9,12 +9,17 @@ const FIRST_BATCH_CORE_IDS: Array[String] = [
 	"card_b_bear_core",
 	"card_c_clock_core",
 	"card_d_dog_core",
+	"card_e_elephant_core",
+	"card_g_gate_core",
 	"card_k_kite_core",
+	"card_n_net_core",
 	"card_o_orange_core",
+	"card_r_robot_core",
 	"card_s_sun_core",
 	"card_t_taxi_core",
 	"card_u_umbrella_core",
 	"card_w_watch_core",
+	"card_y_yo_yo_core",
 ]
 const BLOCKED_CHILD_TERMS: Array[String] = ["lesson", "test", "word list", "review", "failed"]
 const BACKGROUND_COLOR := Color("#eef4f0")

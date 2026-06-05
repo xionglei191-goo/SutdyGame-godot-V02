@@ -1,0 +1,97 @@
+{
+	"schema_id": "homeschool_events_v1",
+	"version": 1,
+	"events": [
+		{
+			"event_id": "homeschool_home_morning_bag_001",
+			"stage": "home_morning",
+			"tier": "P0",
+			"place_id": "place_home",
+			"entry_label": "Home morning bag",
+			"display_prefix": "小屋早晨",
+			"text": "小书包在门边轻轻亮了一下。Good morning，小屋今天也暖暖的。",
+			"anchor_ids": ["anchor_a_apple", "anchor_c_clock", "anchor_w_watch"],
+			"environment_words": ["home", "bag", "clock", "Good morning"],
+			"next_hint": "可以出门，沿着小路去看看 school gate。",
+			"safety_note": "早晨只是生活起点，不写打卡、迟到、作业或必须完成。"
+		},
+		{
+			"event_id": "homeschool_home_sunny_good_morning_001",
+			"stage": "home_morning",
+			"tier": "P0",
+			"place_id": "place_home",
+			"entry_label": "Sunny morning corner",
+			"display_prefix": "Sunny",
+			"text": "Sunny 摇摇尾巴，好像在说 Good morning。小狗角落已经记在相册里。",
+			"anchor_ids": ["anchor_d_dog", "anchor_c_clock"],
+			"environment_words": ["dog", "Good morning"],
+			"next_hint": "慢慢出门也可以，Sunny 会在小屋等你回来。",
+			"safety_note": "不把照顾 Sunny 写成责任惩罚或健康焦虑。"
+		},
+		{
+			"event_id": "homeschool_walk_gate_sign_001",
+			"stage": "home_school_walk",
+			"tier": "P0",
+			"place_id": "place_home_school_walk",
+			"entry_label": "Home-School Walk sign",
+			"display_prefix": "上学小路",
+			"text": "小路牌写着 school gate。我们只沿着熟悉的小路慢慢看。",
+			"anchor_ids": ["anchor_g_gate", "anchor_w_watch"],
+			"environment_words": ["go", "look", "school", "gate"],
+			"next_hint": "校门就在前面，想回家也可以沿路回去。",
+			"safety_note": "不写独自远行、赶路、倒计时或交通危险。"
+		},
+		{
+			"event_id": "homeschool_walk_kite_sky_001",
+			"stage": "home_school_walk",
+			"tier": "P0",
+			"place_id": "place_home_school_walk",
+			"entry_label": "Kite sky",
+			"display_prefix": "小路天空",
+			"text": "风筝在路上方轻轻晃，Kite 的小尾巴像在挥手。",
+			"anchor_ids": ["anchor_k_kite", "anchor_s_sun"],
+			"environment_words": ["kite", "sunny", "look"],
+			"next_hint": "看一眼就好，天气只是小镇的软软背景。",
+			"safety_note": "不做天气打卡、顺序拜访或速度挑战。"
+		},
+		{
+			"event_id": "homeschool_school_gate_hello_001",
+			"stage": "school_gate",
+			"tier": "P0",
+			"place_id": "place_school_gate",
+			"entry_label": "School Gate hello",
+			"display_prefix": "School Gate",
+			"text": "校门的小铃铛轻轻响：Hello。这里是熟悉的 school gate。",
+			"anchor_ids": ["anchor_e_elephant", "anchor_g_gate"],
+			"environment_words": ["hello", "school", "gate"],
+			"next_hint": "可以去操场看看，也可以回家找 Sunny。",
+			"safety_note": "校门不是答题门，不做资格、考试或迟到判断。"
+		},
+		{
+			"event_id": "homeschool_school_yard_play_001",
+			"stage": "school_yard",
+			"tier": "P0",
+			"place_id": "place_school_yard",
+			"entry_label": "School Yard play corner",
+			"display_prefix": "School Yard",
+			"text": "操场网、Robot 角和 Yo-yo 彩绳都安静地等着你看一眼。",
+			"anchor_ids": ["anchor_n_net", "anchor_r_robot", "anchor_y_yo_yo", "anchor_k_kite"],
+			"environment_words": ["play", "net", "robot", "yo-yo"],
+			"next_hint": "操场只是小镇的一块生活角落，不用完成挑战。",
+			"safety_note": "不出现课堂、老师训导、作业、测试、背诵或分数。"
+		},
+		{
+			"event_id": "homeschool_return_sunny_story_001",
+			"stage": "return_home",
+			"tier": "P0",
+			"place_id": "place_home",
+			"entry_label": "Return to Sunny",
+			"display_prefix": "回家故事",
+			"text": "回到小屋，Sunny 听你说起 school gate 和小路上的 Orange 小标签。",
+			"anchor_ids": ["anchor_d_dog", "anchor_a_apple", "anchor_o_orange"],
+			"environment_words": ["thank you", "orange", "home"],
+			"next_hint": "今天看到的地方已经留在小镇相册里。",
+			"safety_note": "回家反馈不是学习总结，也不是家长报告。"
+		}
+	]
+}

@@ -24,7 +24,7 @@
       "label": "School",
       "rect_cells": { "x": 0, "y": 10, "w": 14, "h": 14 },
       "tile_id": "tile_school_yard",
-      "allowed_place_types": ["school", "playground", "library"]
+      "allowed_place_types": ["school", "playground", "library", "walk"]
     },
     {
       "district_id": "district_transport",
@@ -88,6 +88,23 @@
         { "x": 32, "y": 12 }
       ],
       "connects_to": ["road_shop_street"]
+    },
+    {
+      "road_id": "road_home_school_walk",
+      "label": "Home School Walk",
+      "road_type": "school",
+      "cells": [
+        { "x": 5, "y": 8 },
+        { "x": 6, "y": 9 },
+        { "x": 7, "y": 10 },
+        { "x": 8, "y": 11 },
+        { "x": 9, "y": 12 },
+        { "x": 10, "y": 12 },
+        { "x": 11, "y": 12 },
+        { "x": 11, "y": 13 },
+        { "x": 11, "y": 14 }
+      ],
+      "connects_to": ["road_home_to_town"]
     }
   ],
   "places": [
@@ -156,6 +173,48 @@
       "place_action": "enter_supermarket",
       "card_actions": ["card_o_orange_core"],
       "unlock_rule": "default_unlocked"
+    },
+    {
+      "place_id": "place_home_school_walk",
+      "label": "Home-School Walk",
+      "place_type": "walk",
+      "district_id": "district_school",
+      "position": { "x": 7, "y": 10 },
+      "size": { "w": 3, "h": 2 },
+      "landmark_asset_id": "landmark_home_school_walk_placeholder",
+      "occupied_cells": [],
+      "interaction_cell": { "x": 8, "y": 11 },
+      "place_action": "look_homeschool_event",
+      "card_actions": ["card_g_gate_core", "card_k_kite_core", "card_w_watch_core"],
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "place_id": "place_school_gate",
+      "label": "School Gate",
+      "place_type": "school",
+      "district_id": "district_school",
+      "position": { "x": 10, "y": 11 },
+      "size": { "w": 3, "h": 2 },
+      "landmark_asset_id": "landmark_school_gate_placeholder",
+      "occupied_cells": [],
+      "interaction_cell": { "x": 11, "y": 13 },
+      "place_action": "look_homeschool_event",
+      "card_actions": ["card_e_elephant_core", "card_g_gate_core"],
+      "unlock_rule": "default_unlocked"
+    },
+    {
+      "place_id": "place_school_yard",
+      "label": "School Yard",
+      "place_type": "playground",
+      "district_id": "district_school",
+      "position": { "x": 8, "y": 14 },
+      "size": { "w": 5, "h": 3 },
+      "landmark_asset_id": "landmark_school_yard_placeholder",
+      "occupied_cells": [],
+      "interaction_cell": { "x": 11, "y": 15 },
+      "place_action": "look_homeschool_event",
+      "card_actions": ["card_n_net_core", "card_r_robot_core", "card_y_yo_yo_core"],
+      "unlock_rule": "default_unlocked"
     }
   ],
   "memory_anchors": [
@@ -176,7 +235,7 @@
       "core_word": "Bear",
       "route_order": 2,
       "place_id": "place_town_start",
-      "position": { "x": 13, "y": 6 },
+      "position": { "x": 13, "y": 5 },
       "card_id": "card_b_bear_core",
       "audio_id": "audio_word_bear",
       "unlock_rule": "default_unlocked"
@@ -208,8 +267,8 @@
       "letter": "E",
       "core_word": "Elephant",
       "route_order": 5,
-      "place_id": "place_town_start",
-      "position": { "x": 12, "y": 12 },
+      "place_id": "place_school_yard",
+      "position": { "x": 6, "y": 15 },
       "card_id": "card_e_elephant_core",
       "audio_id": "audio_word_elephant",
       "unlock_rule": "reserved_memory_anchor"
@@ -230,8 +289,8 @@
       "letter": "G",
       "core_word": "Gate",
       "route_order": 7,
-      "place_id": "place_town_start",
-      "position": { "x": 14, "y": 12 },
+      "place_id": "place_school_gate",
+      "position": { "x": 11, "y": 12 },
       "card_id": "card_g_gate_core",
       "audio_id": "audio_word_gate",
       "unlock_rule": "reserved_memory_anchor"
@@ -274,8 +333,8 @@
       "letter": "K",
       "core_word": "Kite",
       "route_order": 11,
-      "place_id": "place_town_start",
-      "position": { "x": 16, "y": 4 },
+      "place_id": "place_home_school_walk",
+      "position": { "x": 7, "y": 11 },
       "card_id": "card_k_kite_core",
       "audio_id": "audio_word_kite",
       "unlock_rule": "default_unlocked"
@@ -297,7 +356,7 @@
       "core_word": "Monkey",
       "route_order": 13,
       "place_id": "place_town_start",
-      "position": { "x": 16, "y": 12 },
+      "position": { "x": 17, "y": 14 },
       "card_id": "card_m_monkey_core",
       "audio_id": "audio_word_monkey",
       "unlock_rule": "reserved_memory_anchor"
@@ -307,8 +366,8 @@
       "letter": "N",
       "core_word": "Net",
       "route_order": 14,
-      "place_id": "place_town_start",
-      "position": { "x": 17, "y": 12 },
+      "place_id": "place_school_yard",
+      "position": { "x": 8, "y": 17 },
       "card_id": "card_n_net_core",
       "audio_id": "audio_word_net",
       "unlock_rule": "reserved_memory_anchor"
@@ -330,7 +389,7 @@
       "core_word": "Panda",
       "route_order": 16,
       "place_id": "place_town_start",
-      "position": { "x": 18, "y": 12 },
+      "position": { "x": 14, "y": 13 },
       "card_id": "card_p_panda_core",
       "audio_id": "audio_word_panda",
       "unlock_rule": "reserved_memory_anchor"
@@ -341,7 +400,7 @@
       "core_word": "Queen",
       "route_order": 17,
       "place_id": "place_town_start",
-      "position": { "x": 19, "y": 12 },
+      "position": { "x": 19, "y": 13 },
       "card_id": "card_q_queen_core",
       "audio_id": "audio_word_queen",
       "unlock_rule": "reserved_memory_anchor"
@@ -351,8 +410,8 @@
       "letter": "R",
       "core_word": "Robot",
       "route_order": 18,
-      "place_id": "place_town_start",
-      "position": { "x": 20, "y": 12 },
+      "place_id": "place_school_yard",
+      "position": { "x": 12, "y": 16 },
       "card_id": "card_r_robot_core",
       "audio_id": "audio_word_robot",
       "unlock_rule": "reserved_memory_anchor"
@@ -385,7 +444,7 @@
       "core_word": "Umbrella",
       "route_order": 21,
       "place_id": "place_town_start",
-      "position": { "x": 32, "y": 9 },
+      "position": { "x": 33, "y": 13 },
       "card_id": "card_u_umbrella_core",
       "audio_id": "audio_word_umbrella",
       "unlock_rule": "reserved_memory_anchor"
@@ -396,7 +455,7 @@
       "core_word": "Violin",
       "route_order": 22,
       "place_id": "place_town_start",
-      "position": { "x": 34, "y": 9 },
+      "position": { "x": 34, "y": 12 },
       "card_id": "card_v_violin_core",
       "audio_id": "audio_word_violin",
       "unlock_rule": "reserved_memory_anchor"
@@ -406,8 +465,8 @@
       "letter": "W",
       "core_word": "Watch",
       "route_order": 23,
-      "place_id": "place_town_start",
-      "position": { "x": 36, "y": 9 },
+      "place_id": "place_home",
+      "position": { "x": 7, "y": 4 },
       "card_id": "card_w_watch_core",
       "audio_id": "audio_word_watch",
       "unlock_rule": "default_unlocked"
@@ -418,7 +477,7 @@
       "core_word": "X-mark Box",
       "route_order": 24,
       "place_id": "place_town_start",
-      "position": { "x": 37, "y": 9 },
+      "position": { "x": 36, "y": 12 },
       "card_id": "card_x_x_mark_box_core",
       "audio_id": "audio_word_x_mark_box",
       "unlock_rule": "reserved_memory_anchor"
@@ -428,8 +487,8 @@
       "letter": "Y",
       "core_word": "Yo-yo",
       "route_order": 25,
-      "place_id": "place_home",
-      "position": { "x": 8, "y": 8 },
+      "place_id": "place_school_yard",
+      "position": { "x": 10, "y": 14 },
       "card_id": "card_y_yo_yo_core",
       "audio_id": "audio_word_yo_yo",
       "unlock_rule": "reserved_memory_anchor"
@@ -440,7 +499,7 @@
       "core_word": "Zebra",
       "route_order": 26,
       "place_id": "place_town_start",
-      "position": { "x": 38, "y": 9 },
+      "position": { "x": 38, "y": 12 },
       "card_id": "card_z_zebra_core",
       "audio_id": "audio_word_zebra",
       "unlock_rule": "reserved_memory_anchor"
@@ -487,6 +546,55 @@
       "place_id": "place_supermarket",
       "cell": { "x": 24, "y": 9 },
       "action": "enter_supermarket"
+    },
+    {
+      "interaction_id": "homeschool_home_morning_bag_001",
+      "place_id": "place_home",
+      "cell": { "x": 4, "y": 7 },
+      "action": "look_homeschool_event",
+      "event_id": "homeschool_home_morning_bag_001"
+    },
+    {
+      "interaction_id": "homeschool_home_sunny_good_morning_001",
+      "place_id": "place_home",
+      "cell": { "x": 6, "y": 8 },
+      "action": "look_homeschool_event",
+      "event_id": "homeschool_home_sunny_good_morning_001"
+    },
+    {
+      "interaction_id": "homeschool_walk_gate_sign_001",
+      "place_id": "place_home_school_walk",
+      "cell": { "x": 8, "y": 11 },
+      "action": "look_homeschool_event",
+      "event_id": "homeschool_walk_gate_sign_001"
+    },
+    {
+      "interaction_id": "homeschool_walk_kite_sky_001",
+      "place_id": "place_home_school_walk",
+      "cell": { "x": 9, "y": 12 },
+      "action": "look_homeschool_event",
+      "event_id": "homeschool_walk_kite_sky_001"
+    },
+    {
+      "interaction_id": "homeschool_school_gate_hello_001",
+      "place_id": "place_school_gate",
+      "cell": { "x": 11, "y": 13 },
+      "action": "look_homeschool_event",
+      "event_id": "homeschool_school_gate_hello_001"
+    },
+    {
+      "interaction_id": "homeschool_school_yard_play_001",
+      "place_id": "place_school_yard",
+      "cell": { "x": 11, "y": 15 },
+      "action": "look_homeschool_event",
+      "event_id": "homeschool_school_yard_play_001"
+    },
+    {
+      "interaction_id": "homeschool_return_sunny_story_001",
+      "place_id": "place_home",
+      "cell": { "x": 5, "y": 8 },
+      "action": "look_homeschool_event",
+      "event_id": "homeschool_return_sunny_story_001"
     },
     {
       "interaction_id": "p1_entry_story_bear_bookshop_door",

@@ -12,6 +12,7 @@ const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.
 const DailyGreetingServiceScript := preload("res://scripts/systems/daily_greeting_service.gd")
 const ResourceRefreshServiceScript := preload("res://scripts/systems/resource_refresh_service.gd")
 const TodayStatusServiceScript := preload("res://scripts/systems/today_status_service.gd")
+const SchoolDayStateServiceScript := preload("res://scripts/systems/school_day_state_service.gd")
 const AnchorInteractionServiceScript := preload("res://scripts/systems/anchor_interaction_service.gd")
 const NPCMemoryStoreScript := preload("res://scripts/systems/npc_memory_store.gd")
 const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
@@ -19,6 +20,7 @@ const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_buil
 const AssetResolverScript := preload("res://scripts/systems/asset_resolver.gd")
 const MemoryAlbumScene := preload("res://scenes/memory_album/memory_album.tscn")
 const AZ_ANCHORS_PATH := "res://data/anchors/az_core_anchors.json"
+const HOMESCHOOL_EVENTS_PATH := "res://data/life/homeschool_events.json"
 const VIEWPORT_SIZE := Vector2i(1280, 720)
 const BACKGROUND_COLOR := Color("#dff2d6")
 const SURFACE_COLOR := Color("#fffdf4")
@@ -73,6 +75,7 @@ const FIRST_NPCS := [
 
 var world_map: Dictionary = {}
 var az_core_data: Dictionary = {}
+var homeschool_events_by_id: Dictionary = {}
 var map_errors: Array = []
 var save_path_override := ""
 var day_key_override := ""
@@ -88,6 +91,7 @@ var local_day_service
 var daily_greeting_service
 var resource_refresh_service
 var today_status_service
+var school_day_state_service
 var anchor_interaction_service
 var npc_memory_store
 var llm_client
@@ -150,6 +154,7 @@ func _ready() -> void:
 	var result: Dictionary = RuntimeMapBuilderScript.load_world_map()
 	world_map = result.get("data", {})
 	az_core_data = _load_json(AZ_ANCHORS_PATH)
+	homeschool_events_by_id = _load_homeschool_events()
 	map_errors = result.get("errors", [])
 	_init_services()
 	_build_shell()
@@ -184,6 +189,7 @@ func _init_services() -> void:
 	daily_greeting_service = DailyGreetingServiceScript.new(save_service, local_day_service)
 	resource_refresh_service = ResourceRefreshServiceScript.new(save_service, inventory_service, local_day_service)
 	today_status_service = TodayStatusServiceScript.new(local_day_service)
+	school_day_state_service = SchoolDayStateServiceScript.new(local_day_service)
 	anchor_interaction_service = AnchorInteractionServiceScript.new(save_service, memory_card_service)
 	npc_memory_store = NPCMemoryStoreScript.new(save_service)
 	llm_client = LLMClientScript.new(npc_memory_store)
@@ -1323,7 +1329,7 @@ func interact_nearby() -> Dictionary:
 	if not exact_interaction.is_empty():
 		return _handle_map_interaction(exact_interaction)
 
-	var resource_result: Dictionary = resource_refresh_service.collect_nearest(player_cell, 1)
+	var resource_result: Dictionary = resource_refresh_service.collect_nearest(player_cell, 0)
 	if resource_result.get("ok", false):
 		_set_life_status(str(resource_result.get("text", "收进背包啦。")))
 		resource_result["interaction_type"] = "resource"
@@ -1340,6 +1346,14 @@ func interact_nearby() -> Dictionary:
 		_set_life_status(str(anchor_result.get("text", "放进相册啦。")))
 		anchor_result["interaction_type"] = "anchor"
 		return anchor_result
+
+	resource_result = resource_refresh_service.collect_nearest(player_cell, 1)
+	if resource_result.get("ok", false):
+		_set_life_status(str(resource_result.get("text", "收进背包啦。")))
+		resource_result["interaction_type"] = "resource"
+		resource_result["target_id"] = resource_result.get("item_id", "")
+		_update_loop_status("背包里多了%s" % str(resource_result.get("display_name", "小材料")))
+		return resource_result
 
 	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
 	if not npc.is_empty():
@@ -1362,6 +1376,8 @@ func _handle_map_interaction(interaction: Dictionary) -> Dictionary:
 			return _enter_place(interaction)
 		"look_p1_return_entry":
 			return _look_p1_return_entry(interaction)
+		"look_homeschool_event":
+			return _look_homeschool_event(interaction)
 		_:
 			_set_life_status("这个地方还没有准备好。")
 			return {
@@ -1370,6 +1386,95 @@ func _handle_map_interaction(interaction: Dictionary) -> Dictionary:
 				"action": action,
 				"interaction_id": interaction.get("interaction_id", ""),
 			}
+
+
+func _look_homeschool_event(interaction: Dictionary) -> Dictionary:
+	var event_id := str(interaction.get("event_id", interaction.get("interaction_id", "")))
+	var event: Dictionary = homeschool_events_by_id.get(event_id, {})
+	if event.is_empty():
+		_set_life_status("这段小路还在准备，先慢慢看看周围吧。")
+		return {"ok": false, "reason": "unknown_homeschool_event", "event_id": event_id}
+	var stage := str(event.get("stage", ""))
+	var school_day_entry: Dictionary = school_day_state_service.get_entry(stage) if school_day_state_service != null else {}
+	var anchor_records: Array[Dictionary] = []
+	for anchor_id_value in event.get("anchor_ids", []):
+		var record: Dictionary = _record_homeschool_anchor_album(str(anchor_id_value))
+		if record.get("ok", false):
+			anchor_records.append(record)
+	for anchor_id_value in school_day_entry.get("anchor_ids", []):
+		var record: Dictionary = _record_homeschool_anchor_album(str(anchor_id_value))
+		if record.get("ok", false):
+			anchor_records.append(record)
+	var game_state: Dictionary = save_service.load_game_state()
+	var records: Dictionary = game_state.get("homeschool_events", {})
+	records[event_id] = {
+		"seen": true,
+		"event_id": event_id,
+		"stage": stage,
+		"place_id": str(event.get("place_id", interaction.get("place_id", _current_place_for_cell(player_cell)))),
+		"anchor_ids": event.get("anchor_ids", []).duplicate(true),
+		"environment_words": event.get("environment_words", []).duplicate(true),
+		"last_cell": _cell_to_dict(player_cell),
+	}
+	game_state["homeschool_events"] = records
+	var school_day_record: Dictionary = {}
+	if not school_day_entry.is_empty():
+		var school_day_records: Dictionary = game_state.get("school_day_events", {})
+		var school_day_event_id := str(school_day_entry.get("event_id", ""))
+		school_day_record = {
+			"seen": true,
+			"event_id": school_day_event_id,
+			"day_key": str(school_day_entry.get("day_key", "")),
+			"theme": str(school_day_entry.get("theme", "")),
+			"stage": str(school_day_entry.get("stage", stage)),
+			"place_id": str(school_day_entry.get("place_id", event.get("place_id", ""))),
+			"anchor_ids": school_day_entry.get("anchor_ids", []).duplicate(true),
+			"environment_words": school_day_entry.get("environment_words", []).duplicate(true),
+			"last_cell": _cell_to_dict(player_cell),
+		}
+		school_day_records[school_day_event_id] = school_day_record
+		game_state["school_day_events"] = school_day_records
+	save_service.save_game_state(game_state)
+	var prefix := str(event.get("display_prefix", event.get("entry_label", "Home / School")))
+	var text := str(event.get("text", "这里有一段温和的小路故事。"))
+	var next_hint := str(event.get("next_hint", ""))
+	var display_text := text if next_hint.is_empty() else "%s %s" % [text, next_hint]
+	var school_day_text := str(school_day_entry.get("child_facing_text", ""))
+	if not school_day_text.is_empty():
+		display_text = "%s 今天的小发现：%s" % [display_text, school_day_text]
+	_set_life_status("%s：%s" % [prefix, display_text])
+	return {
+		"ok": true,
+		"interaction_type": "homeschool_event",
+		"interaction_id": str(interaction.get("interaction_id", event_id)),
+		"event_id": event_id,
+		"stage": stage,
+		"place_id": str(event.get("place_id", interaction.get("place_id", ""))),
+		"text": display_text,
+		"anchor_records": anchor_records,
+		"environment_words": event.get("environment_words", []).duplicate(true),
+		"school_day_entry": school_day_entry,
+		"school_day_record": school_day_record,
+	}
+
+
+func _record_homeschool_anchor_album(anchor_id: String) -> Dictionary:
+	var anchor := _anchor_by_id(anchor_id)
+	var card_id := str(anchor.get("card_id", ""))
+	if card_id.is_empty():
+		return {"ok": false, "reason": "missing_card_id", "anchor_id": anchor_id}
+	memory_card_service.set_card_flags(card_id, {
+		"seen": true,
+		"heard": true,
+		"collected": true,
+		"card_progress": 4,
+	})
+	return {
+		"ok": true,
+		"anchor_id": anchor_id,
+		"card_id": card_id,
+		"album_state": memory_card_service.get_card_state(card_id),
+	}
 
 
 func _look_p1_return_entry(interaction: Dictionary) -> Dictionary:
@@ -1767,7 +1872,11 @@ func _create_anchor_marker(anchor: Dictionary) -> Node2D:
 	marker.name = anchor.get("anchor_id", "anchor")
 	var letter := str(anchor.get("letter", ""))
 	marker.position = _cell_center(anchor.get("position", {}))
+	marker.set_meta("mapread_layer", _mapread_layer_for_anchor(letter))
+	marker.set_meta("mapread_screenshot_group", _mapread_screenshot_group_for_anchor(letter))
+	marker.set_meta("mapread_core_word", str(anchor.get("core_word", "")))
 	marker.add_child(_create_anchor_object_sprite(letter))
+	marker.add_child(_create_anchor_letter_badge(anchor))
 
 	var object := Node2D.new()
 	object.name = "ObjectLabel"
@@ -1784,6 +1893,7 @@ func _create_reserved_anchor_marker(anchor: Dictionary) -> Node2D:
 		((20 + int((route_order - 1) / 13)) * MAP_CELL_SIZE) + MAP_CELL_SIZE
 	)
 	marker.add_child(_create_sprite("FutureObject", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.15, MAP_CELL_SIZE * 0.9), "reserved_anchor_%s" % str(anchor.get("letter", ""))))
+	marker.add_child(_create_anchor_letter_badge(anchor))
 
 	var label := Node2D.new()
 	label.name = "ObjectLabel"
@@ -2034,6 +2144,12 @@ func _texture_colors(texture_key: String) -> Dictionary:
 		return {"fill": Color("#dff0d1"), "edge": Color("#d5e8c7"), "accent": Color("#e8f6da")}
 	if texture_key == "soft_horizon":
 		return {"fill": Color("#f7ffe433"), "edge": Color("#f7ffe400"), "accent": Color("#ffffff22")}
+	if texture_key == "mapread_home_school_zone":
+		return {"fill": Color("#e8f6d655"), "edge": Color("#9fcf9b55"), "accent": Color("#fffdf055")}
+	if texture_key == "mapread_town_ring_zone":
+		return {"fill": Color("#f8e5ad44"), "edge": Color("#d6af5c55"), "accent": Color("#fff2bc55")}
+	if texture_key == "mapread_far_edge_zone":
+		return {"fill": Color("#dce8ef44"), "edge": Color("#86a8b755"), "accent": Color("#f6fbff55")}
 	if texture_key == "road":
 		return {"fill": ROAD_COLOR, "edge": Color("#caa66b"), "accent": Color("#ead39a")}
 	if texture_key == "pond":
@@ -2154,8 +2270,38 @@ func _create_anchor_object_sprite(letter: String) -> Sprite2D:
 	return _create_sprite("ObjectSprite", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.55, MAP_CELL_SIZE * 1.35), texture_key)
 
 
+func _create_anchor_letter_badge(anchor: Dictionary) -> Label:
+	var letter := str(anchor.get("letter", ""))
+	var route_order := int(anchor.get("route_order", 1))
+	var badge := Label.new()
+	badge.name = "LetterBadge"
+	badge.text = letter
+	badge.custom_minimum_size = Vector2(28, 28)
+	badge.size = Vector2(28, 28)
+	badge.position = _anchor_badge_offset(route_order)
+	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	badge.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	badge.z_index = 8
+	badge.add_theme_color_override("font_color", Color("#284238"))
+	badge.add_theme_font_size_override("font_size", 16)
+	badge.add_theme_stylebox_override("normal", _rounded_box(Color("#fff8cfee"), 10, Color("#9f7a2e")))
+	return badge
+
+
+func _anchor_badge_offset(route_order: int) -> Vector2:
+	var offsets: Array[Vector2] = [
+		Vector2(8, -31),
+		Vector2(-31, -27),
+		Vector2(10, 7),
+		Vector2(-31, 5),
+	]
+	return offsets[(max(route_order, 1) - 1) % offsets.size()]
+
+
 func _add_town_scenery(map: Node2D, map_width: int, map_height: int) -> void:
 	map.add_child(_create_sprite("SoftHorizon", Vector2(map_width, map_height) * 0.5, Vector2(map_width, map_height), "soft_horizon"))
+	map.add_child(_create_map_readability_layer())
 	map.add_child(_create_sprite("TownPond", Vector2(30.5, 5.0) * MAP_CELL_SIZE, Vector2(5 * MAP_CELL_SIZE, 4 * MAP_CELL_SIZE), "pond"))
 	map.add_child(_create_sprite("TownPlaza", Vector2(16.0, 8.5) * MAP_CELL_SIZE, Vector2(8 * MAP_CELL_SIZE, 5 * MAP_CELL_SIZE), "plaza"))
 
@@ -2173,6 +2319,69 @@ func _add_town_scenery(map: Node2D, map_width: int, map_height: int) -> void:
 		tree.add_child(_create_sprite("Trunk", Vector2(0, 13), Vector2(8, 18), "tree_trunk"))
 		tree.add_child(_create_sprite("Crown", Vector2(0, -2), Vector2(MAP_CELL_SIZE * 1.5, MAP_CELL_SIZE * 1.42), "tree_crown"))
 		map.add_child(tree)
+
+
+func _create_map_readability_layer() -> Node2D:
+	var layer := Node2D.new()
+	layer.name = "MapReadabilityLayer"
+	layer.z_index = -2
+	layer.add_child(_create_mapread_zone("MapReadZoneHomeSchool", Vector2(6.0, 9.0) * MAP_CELL_SIZE, Vector2(11.5, 17.0) * MAP_CELL_SIZE, "mapread_home_school_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneTownRing", Vector2(22.0, 8.5) * MAP_CELL_SIZE, Vector2(18.5, 11.0) * MAP_CELL_SIZE, "mapread_town_ring_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneFarEdge", Vector2(37.5, 13.0) * MAP_CELL_SIZE, Vector2(5.0, 5.5) * MAP_CELL_SIZE, "mapread_far_edge_zone"))
+	layer.add_child(_create_mapread_sign("MapReadSignHome", Vector2(5.0, 7.2) * MAP_CELL_SIZE, "回家"))
+	layer.add_child(_create_mapread_sign("MapReadSignSchool", Vector2(10.3, 11.0) * MAP_CELL_SIZE, "学校"))
+	layer.add_child(_create_mapread_sign("MapReadSignTownRing", Vector2(20.0, 6.4) * MAP_CELL_SIZE, "小镇圈"))
+	layer.add_child(_create_mapread_sign("MapReadSignFarEdge", Vector2(36.8, 10.8) * MAP_CELL_SIZE, "远处边界"))
+	return layer
+
+
+func _create_mapread_zone(zone_name: String, zone_position: Vector2, zone_size: Vector2, texture_key: String) -> Sprite2D:
+	var zone := _create_sprite(zone_name, zone_position, zone_size, texture_key)
+	zone.z_index = -2
+	return zone
+
+
+func _create_mapread_sign(sign_name: String, sign_position: Vector2, text: String) -> Label:
+	var sign := Label.new()
+	sign.name = sign_name
+	sign.text = text
+	sign.position = sign_position
+	sign.custom_minimum_size = Vector2(78, 24)
+	sign.size = Vector2(78, 24)
+	sign.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	sign.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	sign.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	sign.z_index = 9
+	sign.add_theme_color_override("font_color", Color("#284238"))
+	sign.add_theme_font_size_override("font_size", 13)
+	sign.add_theme_stylebox_override("normal", _rounded_box(Color("#fffdf0dd"), 8, Color("#8ab18d")))
+	return sign
+
+
+func _mapread_layer_for_anchor(letter: String) -> String:
+	if ["A", "C", "D", "W", "E", "G", "K", "N", "R", "Y"].has(letter):
+		return "p0_center"
+	if ["B", "F", "H", "I", "J", "O", "T"].has(letter):
+		return "first_ring"
+	if ["L", "M", "P", "Q", "S", "U", "V"].has(letter):
+		return "second_ring"
+	if ["X", "Z"].has(letter):
+		return "far_edge"
+	return "reserved"
+
+
+func _mapread_screenshot_group_for_anchor(letter: String) -> String:
+	if ["A", "C", "D", "W"].has(letter):
+		return "home_anchors"
+	if ["E", "G", "K", "N", "R", "Y"].has(letter):
+		return "school_line"
+	if ["B", "F", "H", "I", "J", "O", "T"].has(letter):
+		return "first_ring"
+	if ["L", "M", "P", "Q", "S", "U", "V"].has(letter):
+		return "second_ring"
+	if ["X", "Z"].has(letter):
+		return "far_edge"
+	return "reserved"
 
 
 func _place_color(place_id: String) -> Color:
@@ -2486,6 +2695,18 @@ func _load_json(path: String) -> Dictionary:
 		return {}
 	var parsed: Variant = JSON.parse_string(file.get_as_text())
 	return parsed if parsed is Dictionary else {}
+
+
+func _load_homeschool_events() -> Dictionary:
+	var data: Dictionary = _load_json(HOMESCHOOL_EVENTS_PATH)
+	var events_by_id: Dictionary = {}
+	for event_value in data.get("events", []):
+		if event_value is Dictionary:
+			var event: Dictionary = event_value
+			var event_id := str(event.get("event_id", ""))
+			if not event_id.is_empty():
+				events_by_id[event_id] = event.duplicate(true)
+	return events_by_id
 
 
 func _rounded_box(fill: Color, radius: int, border: Color = Color.TRANSPARENT) -> StyleBoxFlat:
