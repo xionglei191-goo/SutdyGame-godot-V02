@@ -23,8 +23,7 @@
 
 - 多天气 day_key 玩家路径 smoke，至少覆盖晴天、微风、雨后、小雨四类天气状态。
 - 必要的 focused test 与 `tests/headless_runner.gd` 集成断言。
-- 1280x720 与 960x540 代表截图，建议覆盖 Today HUD、Town Plaza / Kite、Bookshop / Bear Corner、Shop / Home 或相册路径。
-- `docs/collaboration/Round72_V02.11_WEATHER-004验收记录.md` 与截图目录。
+- 旧截图证据已清理；本轮保留多天气 smoke、headless runner 集成断言和台账收口。
 - `todo.md` 完成记录和 `lessons.md` 轮次复盘。
 
 ## 验收标准

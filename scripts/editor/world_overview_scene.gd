@@ -18,7 +18,7 @@ const TEXT_COLOR := Color("#1f2d2f")
 var world_map: Dictionary = {}
 var editor_state: Dictionary = {}
 var load_errors: Array = []
-var selected_road_id := "road_home_to_town"
+var selected_road_id := "road_home_plaza_ring"
 var _proxy_root: Control
 var _grid_root: Control
 var _cell_overlay_root: Control

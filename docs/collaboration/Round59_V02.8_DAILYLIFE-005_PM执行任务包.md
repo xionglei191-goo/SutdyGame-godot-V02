@@ -18,7 +18,6 @@ QA / PM / Godot Dev Agent
 
 - `tests/test_life_rpg_scene.gd`
 - `tests/test_playable_ui_operations.gd`
-- `tests/capture_artbase005_screens.gd`
 - `scripts/main.gd`
 - 相关截图记录、协作文档和 `todo.md`
 
@@ -33,7 +32,7 @@ QA / PM / Godot Dev Agent
 
 - `todo.md`
 - `docs/collaboration/Round58_V02.8_DAILYLIFE-004_PM执行任务包.md`
-- `docs/collaboration/Round54_V02-ARTBASE-005双视口截图验收记录.md`
+- 历史 ARTBASE 双视口截图结论
 - `tests/test_life_rpg_scene.gd`
 - `tests/test_playable_ui_operations.gd`
 - `tests/test_v023_memory_palace_world.gd`
@@ -74,6 +73,6 @@ godot --headless --path . --quit
 - 修改文件：`tests/headless_runner.gd`、`todo.md`、`docs/collaboration/Round59_V02.8_DAILYLIFE-005_PM执行任务包.md`、`lessons.md`。
 - 新增内容：`tests/test_v028_daily_life_slice.gd` 已作为端到端 focused smoke 存在；本轮将同一路径注册进 `tests/headless_runner.gd`。
 - 验证方式：`godot --headless --path . --check-only --script scripts/main.gd`、`godot --headless --path . --script tests/test_v028_daily_life_slice.gd`、`godot --headless --path . --script tests/test_life_rpg_scene.gd`、`godot --headless --path . --script tests/test_playable_ui_operations.gd`、`godot --headless --path . --script tests/test_v023_memory_palace_world.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 均通过。
-- 截图记录：沿用 `docs/collaboration/Round54_V02-ARTBASE-005双视口截图验收记录.md` 与 `docs/collaboration/artbase005_captures/`，其中 1280x720、960x540 均覆盖首屏、商店、小屋、三 NPC 和 C/O/S 回访点。
+- 截图记录：旧截图证据已清理；本任务保留 focused smoke、headless runner 与阶段收口结论。
 - 风险：本轮未扩 Bookshop / Bus Stop / 更多 NPC / 天气系统；后续若开启下一阶段，需要先建立新 Ready 任务和验收口径。
 - 待确认问题：无。PM 判断：`V02-DAILYLIFE-005` 与 V02.8 每日小镇生活纵切可以标记完成。

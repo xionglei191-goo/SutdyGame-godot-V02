@@ -28,6 +28,9 @@ const AZWorldPlanContractScript := preload("res://scripts/data/az_world_plan_con
 const TextbookWorldContractScript := preload("res://scripts/data/textbook_world_contract.gd")
 const V0218MapReadabilityTestScript := preload("res://tests/test_v0218_map_readability.gd")
 const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
+const ANCHOR_ASSET_IDS: Array[String] = [
+	"anchor.a.apple_tree", "anchor.b.bear_corner", "anchor.c.clock", "anchor.d.dog_corner", "anchor.e.elephant_slide", "anchor.f.fox_topiary", "anchor.g.school_gate", "anchor.h.hat_sign", "anchor.i.ice_cream_cart", "anchor.j.jacket_window", "anchor.k.kite", "anchor.l.lion_fountain", "anchor.m.monkey_tree", "anchor.n.soft_net", "anchor.o.orange_stall", "anchor.p.panda_corner", "anchor.q.queen_poster", "anchor.r.robot_sign", "anchor.s.sun_landmark", "anchor.t.taxi_marker", "anchor.u.beach_umbrella", "anchor.v.violin_corner", "anchor.w.watch_table", "anchor.x.x_mark_box", "anchor.y.yo_yo_corner", "anchor.z.zebra_edge"
+]
 const AINPCProviderAdapterScript := preload("res://scripts/systems/ai_npc_provider_adapter.gd")
 const FriendVisitServiceScript := preload("res://scripts/systems/friend_visit_service.gd")
 const MapEditorSyncServiceScript := preload("res://scripts/editor/map_editor_sync_service.gd")
@@ -49,7 +52,8 @@ func _init() -> void:
 	_expect(_letters(data) == _az_letters(), "memory anchors must follow A-Z route order")
 
 	var invalid: Dictionary = data.duplicate(true)
-	invalid["places"][0]["interaction_cell"] = invalid["places"][0]["occupied_cells"][0]
+	var occupied_place_index := _first_place_with_occupied_cells(invalid.get("places", []))
+	invalid["places"][occupied_place_index]["interaction_cell"] = invalid["places"][occupied_place_index]["occupied_cells"][0]
 	var invalid_errors: Array[String] = WorldMapContractScript.validate_map(invalid)
 	_expect(not invalid_errors.is_empty(), "invalid interaction overlap must be rejected")
 
@@ -147,6 +151,16 @@ func _check_asset_resolver() -> void:
 func _check_polish_p0_asset_resolver_records() -> void:
 	var theme_id := "theme_sunshine_town_placeholder"
 	var required_assets := [
+		{"category": "place_assets", "asset_id": "place.world_map.base_1280"},
+		{"category": "place_assets", "asset_id": "place.home.yard"},
+		{"category": "place_assets", "asset_id": "place.home_school_walk.day"},
+		{"category": "place_assets", "asset_id": "place.school_gate.exterior"},
+		{"category": "place_assets", "asset_id": "place.school_yard.day"},
+		{"category": "place_assets", "asset_id": "place.shop_street.day"},
+		{"category": "place_assets", "asset_id": "place.animal_park.day"},
+		{"category": "place_assets", "asset_id": "place.coast_edge.day"},
+		{"category": "place_assets", "asset_id": "place.sun_scene.morning"},
+		{"category": "place_assets", "asset_id": "place.story_culture_bridge.day"},
 		{"category": "place_assets", "asset_id": "place.town_plaza.day"},
 		{"category": "place_assets", "asset_id": "place.home.exterior"},
 		{"category": "place_assets", "asset_id": "place.shop.exterior"},
@@ -159,6 +173,8 @@ func _check_polish_p0_asset_resolver_records() -> void:
 		{"category": "ui_icon_assets", "asset_id": "ui_icon.bag"},
 	]
 	var records: Array = AssetResolverScript.get_asset_acceptance_records(theme_id)
+	for anchor_asset_id in ANCHOR_ASSET_IDS:
+		required_assets.append({"category": "anchor_assets", "asset_id": anchor_asset_id})
 	for spec in required_assets:
 		var category := str(spec.get("category", ""))
 		var asset_id := str(spec.get("asset_id", ""))
@@ -381,11 +397,11 @@ func _check_map_editor_round_trip() -> void:
 	root.add_child(scene)
 	scene.call("_ready")
 	var grid: Dictionary = scene.call("get_grid_summary")
-	_expect(grid.get("canvas_w") == 40 and grid.get("canvas_h") == 24, "Map editor grid should match 40x24 world canvas")
+	_expect(grid.get("canvas_w") == 60 and grid.get("canvas_h") == 34, "Map editor grid should match 60x34 world canvas")
 	_expect(grid.get("logical_cell_w") == 32 and grid.get("logical_cell_h") == 32, "Map editor grid should preserve runtime logical cell size")
-	var road_add: Dictionary = scene.call("toggle_road_cell_for_test", "road_home_to_town", Vector2i(6, 8))
+	var road_add: Dictionary = scene.call("toggle_road_cell_for_test", "road_home_plaza_ring", Vector2i(26, 16))
 	_expect(road_add.get("ok", false), "Map editor should add road cell")
-	_expect(bool(scene.call("has_road_cell", "road_home_to_town", Vector2i(6, 8))), "Map editor should read added road cell")
+	_expect(bool(scene.call("has_road_cell", "road_home_plaza_ring", Vector2i(26, 16))), "Map editor should read added road cell")
 	var occupied: Dictionary = scene.call("set_occupied_cell_for_test", Vector2i(2, 2), true)
 	_expect(occupied.get("ok", false), "Map editor should set occupied cell")
 	var blocked: Dictionary = scene.call("set_interaction_cell_for_test", "interaction_headless_blocked", "place_home", Vector2i(2, 2))
@@ -534,7 +550,7 @@ func _check_playable_ui_operations() -> void:
 	_expect(confirm_exit_button != null and not confirm_exit_button.visible, "continue button should hide exit confirmation")
 	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "playable UI should move away before safe-place action")
 	_press_visible_button(main.find_child("SafePlaceButton", true, false) as Button, "visible safe-place button should return to a safe town cell")
-	_expect(main.player_cell == Vector2i(5, 8), "safe-place button should move player back to the town safe cell")
+	_expect(main.player_cell == Vector2i(31, 19), "safe-place button should move player back to the home plaza safe cell")
 	_expect(settings_panel != null and not settings_panel.visible, "safe-place action should close settings panel")
 
 	var interact_button := main.find_child("InteractButton", true, false) as Button
@@ -617,9 +633,9 @@ func _check_v028_daily_life_slice() -> void:
 
 	_press_visible_button(main.find_child("TownNavButton", true, false) as Button, "V02.8 slice should return to town")
 	for anchor_spec in [
-		{"cell": Vector2i(7, 3), "card": "card_c_clock_core", "word": "Clock"},
-		{"cell": Vector2i(23, 5), "card": "card_o_orange_core", "word": "Orange"},
-		{"cell": Vector2i(17, 2), "card": "card_s_sun_core", "word": "Sun"},
+		{"cell": Vector2i(31, 15), "card": "card_c_clock_core", "word": "Clock"},
+		{"cell": Vector2i(51, 10), "card": "card_o_orange_core", "word": "Orange"},
+		{"cell": Vector2i(7, 3), "card": "card_s_sun_core", "word": "Sun"},
 	]:
 		_expect(main.move_player_to_cell(anchor_spec.get("cell", Vector2i.ZERO)).get("ok", false), "V02.8 slice should move to anchor: %s" % anchor_spec.get("card", ""))
 		_press_visible_button(interact_button, "V02.8 slice should revisit anchor from visible Interact: %s" % anchor_spec.get("card", ""))
@@ -708,7 +724,7 @@ func _check_v0210_p1_return_entries() -> void:
 	for entry in [
 		{"id": "p1_entry_story_bear_bookshop_door", "cell": Vector2i(12, 6), "kind": "bookshop_door", "text": "书店门口", "npc": "story_bear", "anchor": "anchor_b_bear", "card": "card_b_bear_core"},
 		{"id": "p1_entry_story_bear_corner", "cell": Vector2i(13, 7), "kind": "bear_corner", "text": "熊形书牌", "npc": "story_bear", "anchor": "anchor_b_bear", "card": "card_b_bear_core"},
-		{"id": "p1_entry_bus_helper_stop_sign", "cell": Vector2i(32, 11), "kind": "bus_stop_sign", "text": "站牌", "npc": "bus_helper", "anchor": "anchor_t_taxi", "card": "card_t_taxi_core"},
+		{"id": "p1_entry_bus_helper_stop_sign", "cell": Vector2i(32, 11), "kind": "bus_stop_sign", "text": "小车牌", "npc": "bus_helper", "anchor": "anchor_t_taxi", "card": "card_t_taxi_core"},
 		{"id": "p1_entry_bus_helper_taxi_marker", "cell": Vector2i(31, 10), "kind": "taxi_marker", "text": "黄色小标记", "npc": "bus_helper", "anchor": "anchor_t_taxi", "card": "card_t_taxi_core"},
 	]:
 		_expect(main.find_child(str(entry.get("id", "")), true, false) != null, "V02.10 P1 entry hotspot should be visible: %s" % entry.get("id", ""))
@@ -812,7 +828,7 @@ func _check_v0211_weather_slice_smoke() -> void:
 	main.call("_ready")
 
 	var weather_paths: Array[Dictionary] = [
-		{"day_key": "local_day_001", "event_id": "event_weather_sunny_soft_001", "anchor_id": "anchor_s_sun", "card_id": "card_s_sun_core", "cell": Vector2i(17, 2), "album_tag": "Sunny day."},
+		{"day_key": "local_day_001", "event_id": "event_weather_sunny_soft_001", "anchor_id": "anchor_s_sun", "card_id": "card_s_sun_core", "cell": Vector2i(7, 3), "album_tag": "Sunny day."},
 		{"day_key": "local_day_002", "event_id": "event_weather_breezy_kite_001", "anchor_id": "anchor_k_kite", "card_id": "card_k_kite_core", "cell": Vector2i(7, 11), "album_tag": "Windy Kite."},
 		{"day_key": "local_day_004", "event_id": "event_weather_light_rain_001", "anchor_id": "anchor_b_bear", "card_id": "card_b_bear_core", "cell": Vector2i(13, 7), "album_tag": "Light Rain."},
 		{"day_key": "local_day_006", "event_id": "event_weather_after_rain_001", "anchor_id": "anchor_u_umbrella", "card_id": "card_u_umbrella_core", "cell": Vector2i(33, 13), "album_tag": "After Rain."},
@@ -1206,7 +1222,7 @@ func _check_v0216_playable_rc_gate() -> void:
 	_expect(confirm_exit_button != null and not confirm_exit_button.visible, "V02.16 playable RC should hide exit confirmation")
 	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.16 playable RC should move before safe-place")
 	_press_visible_button(main.find_child("SafePlaceButton", true, false) as Button, "V02.16 playable RC should use safe-place")
-	_expect(main.player_cell == Vector2i(5, 8), "V02.16 playable RC should return to safe cell")
+	_expect(main.player_cell == Vector2i(31, 19), "V02.16 playable RC should return to safe cell")
 	_expect(settings_panel != null and not settings_panel.visible, "V02.16 playable RC safe-place should close Settings")
 	_check_v0216_visible_text(main, "final")
 
@@ -1234,8 +1250,14 @@ func _check_v0218_map_readability() -> void:
 	root.add_child(main)
 	main.call("_ready")
 	_expect(main.find_child("MapReadabilityLayer", true, false) is Node2D, "V02.18 map readability should expose guide layer")
-	for node_name in ["MapReadZoneHomeSchool", "MapReadZoneTownRing", "MapReadZoneFarEdge", "MapReadSignHome", "MapReadSignSchool", "MapReadSignTownRing", "MapReadSignFarEdge"]:
+	var artpass004_zone_names: Array[String] = ["MapReadZoneSun", "MapReadZoneSchoolGate", "MapReadZoneSchoolYard", "MapReadZoneWalk", "MapReadZoneStory", "MapReadZoneHome", "MapReadZoneShop", "MapReadZoneAnimal", "MapReadZoneCoast"]
+	for node_name in artpass004_zone_names + ["MapReadSignSun", "MapReadSignSchool", "MapReadSignStory", "MapReadSignHome", "MapReadSignShop", "MapReadSignAnimal", "MapReadSignCoast"]:
 		_expect(main.find_child(node_name, true, false) != null, "V02.18 map readability should expose guide node: %s" % node_name)
+	for node_name in artpass004_zone_names:
+		var zone := main.find_child(node_name, true, false) as Sprite2D
+		_expect(zone != null and zone.texture != null and zone.texture.get_width() >= 512, "ARTPASS-004 map zone should use production place asset in headless runner: %s" % node_name)
+	var ground := main.find_child("Ground", true, false) as Sprite2D
+	_expect(ground != null and ground.texture != null and ground.texture.get_width() == 1280, "ARTPASS-004 ground should use 1280 world map base asset in headless runner")
 	var groups := {}
 	var interact_button := main.find_child("InteractButton", true, false) as Button
 	_expect(interact_button != null and _control_path_visible(interact_button), "V02.18 map readability should keep visible Interact button")
@@ -1298,7 +1320,7 @@ func _v0218_check_school_badge_spacing(anchors: Array) -> void:
 			continue
 		var anchor: Dictionary = anchor_value
 		var letter := str(anchor.get("letter", ""))
-		if not ["E", "G", "K", "N", "R", "Y"].has(letter):
+		if not ["G", "K", "N", "R", "S", "Y"].has(letter):
 			continue
 		var rect := _v0218_badge_rect_for_anchor(anchor)
 		for existing in badge_rects:
@@ -1309,11 +1331,41 @@ func _v0218_check_school_badge_spacing(anchors: Array) -> void:
 func _v0218_badge_rect_for_anchor(anchor: Dictionary) -> Rect2:
 	var cell := _dict_to_cell(anchor.get("position", {}))
 	var route_order := int(anchor.get("route_order", 1))
-	var top_left := (Vector2(cell.x, cell.y) + Vector2(0.5, 0.5)) * 32.0 + _v0218_anchor_badge_offset(route_order)
+	var top_left := (Vector2(cell.x, cell.y) + Vector2(0.5, 0.5)) * 16.0 + _v0218_anchor_badge_offset(route_order, str(anchor.get("letter", "")))
 	return Rect2(top_left, Vector2(28, 28))
 
 
-func _v0218_anchor_badge_offset(route_order: int) -> Vector2:
+func _v0218_anchor_badge_offset(route_order: int, letter: String = "") -> Vector2:
+	var per_letter_offsets: Dictionary = {
+		"A": Vector2(-42, -34),
+		"B": Vector2(-38, -24),
+		"C": Vector2(36, -40),
+		"D": Vector2(-42, 8),
+		"E": Vector2(-42, -20),
+		"F": Vector2(10, -42),
+		"G": Vector2(24, -28),
+		"H": Vector2(-38, -20),
+		"I": Vector2(18, -36),
+		"J": Vector2(-34, 4),
+		"K": Vector2(-42, -18),
+		"L": Vector2(18, -28),
+		"M": Vector2(-42, -8),
+		"N": Vector2(-42, -12),
+		"O": Vector2(20, -10),
+		"P": Vector2(18, 8),
+		"Q": Vector2(-42, 6),
+		"R": Vector2(18, -34),
+		"S": Vector2(46, -14),
+		"T": Vector2(20, 4),
+		"U": Vector2(12, -62),
+		"V": Vector2(-42, 6),
+		"W": Vector2(20, -8),
+		"X": Vector2(18, 2),
+		"Y": Vector2(-42, -8),
+		"Z": Vector2(16, -38),
+	}
+	if per_letter_offsets.has(letter):
+		return per_letter_offsets.get(letter)
 	var offsets: Array[Vector2] = [
 		Vector2(8, -31),
 		Vector2(-31, -27),
@@ -1338,27 +1390,27 @@ func _dict_to_cell(cell: Variant) -> Vector2i:
 
 
 func _v0218_screenshot_group_for_letter(letter: String) -> String:
-	if ["A", "C", "D", "W"].has(letter):
+	if ["A", "C", "D", "T", "W"].has(letter):
 		return "home_anchors"
-	if ["E", "G", "K", "N", "R", "Y"].has(letter):
+	if ["G", "K", "N", "R", "S", "Y"].has(letter):
 		return "school_line"
-	if ["B", "F", "H", "I", "J", "O", "T"].has(letter):
+	if ["B", "Q", "V", "H", "I", "J", "O"].has(letter):
 		return "first_ring"
-	if ["L", "M", "P", "Q", "S", "U", "V"].has(letter):
+	if ["E", "F", "L", "M", "P", "Z"].has(letter):
 		return "second_ring"
-	if ["X", "Z"].has(letter):
+	if ["U", "X"].has(letter):
 		return "far_edge"
 	return "reserved"
 
 
 func _v0218_layer_for_letter(letter: String) -> String:
-	if ["A", "C", "D", "W", "E", "G", "K", "N", "R", "Y"].has(letter):
+	if ["A", "C", "D", "T", "W", "G", "K", "N", "R", "Y", "S"].has(letter):
 		return "p0_center"
-	if ["B", "F", "H", "I", "J", "O", "T"].has(letter):
+	if ["B", "Q", "V", "H", "I", "J", "O"].has(letter):
 		return "first_ring"
-	if ["L", "M", "P", "Q", "S", "U", "V"].has(letter):
+	if ["E", "F", "L", "M", "P", "Z"].has(letter):
 		return "second_ring"
-	if ["X", "Z"].has(letter):
+	if ["U", "X"].has(letter):
 		return "far_edge"
 	return "reserved"
 
@@ -1374,6 +1426,14 @@ func _collect_visible_child_text(node: Node) -> String:
 	for child in node.get_children():
 		text += _collect_visible_child_text(child)
 	return text
+
+
+func _first_place_with_occupied_cells(places: Array) -> int:
+	for index in range(places.size()):
+		var place = places[index]
+		if place is Dictionary and not (place as Dictionary).get("occupied_cells", []).is_empty():
+			return index
+	return 0
 
 
 func _check_voice_ai_social_stubs() -> void:

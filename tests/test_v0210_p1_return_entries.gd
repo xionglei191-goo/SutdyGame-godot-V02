@@ -32,7 +32,7 @@ func _check_visible_p1_entries(main) -> void:
 	for entry in [
 		{"id": "p1_entry_story_bear_bookshop_door", "cell": Vector2i(12, 6), "kind": "bookshop_door", "text": "书店门口", "npc": "story_bear", "anchor": "anchor_b_bear", "card": "card_b_bear_core"},
 		{"id": "p1_entry_story_bear_corner", "cell": Vector2i(13, 7), "kind": "bear_corner", "text": "熊形书牌", "npc": "story_bear", "anchor": "anchor_b_bear", "card": "card_b_bear_core"},
-		{"id": "p1_entry_bus_helper_stop_sign", "cell": Vector2i(32, 11), "kind": "bus_stop_sign", "text": "站牌", "npc": "bus_helper", "anchor": "anchor_t_taxi", "card": "card_t_taxi_core"},
+		{"id": "p1_entry_bus_helper_stop_sign", "cell": Vector2i(32, 11), "kind": "bus_stop_sign", "text": "小车牌", "npc": "bus_helper", "anchor": "anchor_t_taxi", "card": "card_t_taxi_core"},
 		{"id": "p1_entry_bus_helper_taxi_marker", "cell": Vector2i(31, 10), "kind": "taxi_marker", "text": "黄色小标记", "npc": "bus_helper", "anchor": "anchor_t_taxi", "card": "card_t_taxi_core"},
 	]:
 		_expect(main.find_child(str(entry.get("id", "")), true, false) != null, "P1 entry hotspot should be visible: %s" % entry.get("id", ""))

@@ -9,6 +9,7 @@ class_name ThemeProfileResource
 @export var tile_atlas: Dictionary = {}
 @export var landmark_assets: Dictionary = {}
 @export var place_assets: Dictionary = {}
+@export var anchor_assets: Dictionary = {}
 @export var character_assets: Dictionary = {}
 @export var furniture_assets: Dictionary = {}
 @export var npc_assets: Dictionary = {}
@@ -29,6 +30,7 @@ func load_from_dictionary(data: Dictionary) -> void:
 	tile_atlas = data.get("tile_atlas", {})
 	landmark_assets = data.get("landmark_assets", {})
 	place_assets = data.get("place_assets", {})
+	anchor_assets = data.get("anchor_assets", {})
 	character_assets = data.get("character_assets", {})
 	furniture_assets = data.get("furniture_assets", {})
 	npc_assets = data.get("npc_assets", {})
@@ -50,6 +52,7 @@ func to_dictionary() -> Dictionary:
 		"tile_atlas": tile_atlas,
 		"landmark_assets": landmark_assets,
 		"place_assets": place_assets,
+		"anchor_assets": anchor_assets,
 		"character_assets": character_assets,
 		"furniture_assets": furniture_assets,
 		"npc_assets": npc_assets,
@@ -70,6 +73,8 @@ func get_category_assets(category: String) -> Dictionary:
 			return landmark_assets
 		"place_assets", "place":
 			return place_assets
+		"anchor_assets", "anchor":
+			return anchor_assets
 		"character_assets", "character":
 			return character_assets
 		"furniture_assets", "furniture":

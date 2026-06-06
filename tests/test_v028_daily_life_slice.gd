@@ -75,16 +75,16 @@ func _complete_visible_daily_slice(main) -> void:
 
 	var town_button := main.find_child("TownNavButton", true, false) as Button
 	_press(town_button, "Visible Town button should return to town for anchor revisit")
-	_expect(main.move_player_to_cell(Vector2i(7, 3)).get("ok", false), "Slice should move to C Clock anchor")
+	_expect(main.move_player_to_cell(Vector2i(31, 15)).get("ok", false), "Slice should move to C Clock anchor")
 	_press(interact_button, "Visible Interact should revisit C Clock")
 	_expect(bool(main.memory_card_service.get_card_state("card_c_clock_core").get("collected", false)), "Slice should collect C Clock album state")
 	_expect(str(main.life_status_label.text).contains("Clock"), "Slice should show C Clock story feedback")
 
-	_expect(main.move_player_to_cell(Vector2i(23, 5)).get("ok", false), "Slice should move to O Orange anchor")
+	_expect(main.move_player_to_cell(Vector2i(51, 10)).get("ok", false), "Slice should move to O Orange anchor")
 	_press(interact_button, "Visible Interact should revisit O Orange")
 	_expect(bool(main.memory_card_service.get_card_state("card_o_orange_core").get("collected", false)), "Slice should collect O Orange album state")
 
-	_expect(main.move_player_to_cell(Vector2i(17, 2)).get("ok", false), "Slice should move to S Sun anchor")
+	_expect(main.move_player_to_cell(Vector2i(7, 3)).get("ok", false), "Slice should move to S Sun anchor")
 	_press(interact_button, "Visible Interact should revisit S Sun")
 	_expect(bool(main.memory_card_service.get_card_state("card_s_sun_core").get("collected", false)), "Slice should collect S Sun album state")
 

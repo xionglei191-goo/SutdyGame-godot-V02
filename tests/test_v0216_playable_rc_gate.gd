@@ -160,7 +160,7 @@ func _check_album_and_settings_path(main) -> void:
 	_expect(confirm_button != null and not confirm_button.visible, "V02.16 RC continue should hide exit confirmation")
 	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.16 RC should move away before safe-place check")
 	_press(main.find_child("SafePlaceButton", true, false) as Button, "V02.16 RC Settings safe-place should work")
-	_expect(main.player_cell == Vector2i(5, 8), "V02.16 RC safe-place should return to start cell")
+	_expect(main.player_cell == Vector2i(31, 19), "V02.16 RC safe-place should return to home plaza")
 	_expect(settings_panel != null and not settings_panel.visible, "V02.16 RC safe-place should close Settings")
 
 

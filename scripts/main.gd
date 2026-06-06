@@ -32,10 +32,12 @@ const PLAYER_COLOR := Color("#5f8fd3")
 const NPC_COLOR := Color("#c96f55")
 const WATER_COLOR := Color("#a7d9df")
 const FLOWER_COLOR := Color("#e6819b")
-const MAP_CELL_SIZE := 22
+const MAP_CELL_SIZE := 16
+const MAP_ORIGIN := Vector2.ZERO
+const MAP_RENDER_SIZE := Vector2(1280, 720)
 const TEXT_COLOR := Color("#1f2d2f")
 const MUTED_TEXT_COLOR := Color("#5d6b6d")
-const PLAYER_START_CELL := Vector2i(5, 8)
+const PLAYER_START_CELL := Vector2i(31, 19)
 const INTERACTION_RADIUS := 2
 const BRANCH_RESOURCE_CELL := Vector2i(13, 6)
 const HOME_DECOR_CELL := Vector2i(2, 2)
@@ -53,23 +55,23 @@ const PARENT_ENTRY_SPEC := {
 const FIRST_NPCS := [
 	{
 		"npc_id": "mina",
-		"cell": {"x": 15, "y": 10},
+		"cell": {"x": 38, "y": 22},
 	},
 	{
 		"npc_id": "shopkeeper",
-		"cell": {"x": 24, "y": 10},
+		"cell": {"x": 43, "y": 12},
 	},
 	{
 		"npc_id": "pet_buddy",
-		"cell": {"x": 6, "y": 8},
+		"cell": {"x": 28, "y": 20},
 	},
 	{
 		"npc_id": "bus_helper",
-		"cell": {"x": 32, "y": 12},
+		"cell": {"x": 36, "y": 20},
 	},
 	{
 		"npc_id": "story_bear",
-		"cell": {"x": 12, "y": 7},
+		"cell": {"x": 16, "y": 18},
 	},
 ]
 
@@ -123,10 +125,53 @@ var player_marker: Node2D
 var player_cell := PLAYER_START_CELL
 var _texture_cache: Dictionary = {}
 var _logical_asset_texture_keys: Dictionary = {
+	"ground": {"category": "place_assets", "asset_id": "place.world_map.base_1280"},
 	"plaza": {"category": "place_assets", "asset_id": "place.town_plaza.day"},
 	"road": {"category": "place_assets", "asset_id": "place.road.main"},
-	"place_place_home_body": {"category": "place_assets", "asset_id": "place.home.exterior"},
-	"place_place_supermarket_body": {"category": "place_assets", "asset_id": "place.shop.exterior"},
+	"mapread_sun_scene_zone": {"category": "place_assets", "asset_id": "place.sun_scene.morning"},
+	"mapread_home_yard_zone": {"category": "place_assets", "asset_id": "place.home.yard"},
+	"mapread_home_school_walk_zone": {"category": "place_assets", "asset_id": "place.home_school_walk.day"},
+	"mapread_school_gate_zone": {"category": "place_assets", "asset_id": "place.school_gate.exterior"},
+	"mapread_school_yard_zone": {"category": "place_assets", "asset_id": "place.school_yard.day"},
+	"mapread_story_culture_zone": {"category": "place_assets", "asset_id": "place.story_culture_bridge.day"},
+	"mapread_shop_street_zone": {"category": "place_assets", "asset_id": "place.shop_street.day"},
+	"mapread_animal_park_zone": {"category": "place_assets", "asset_id": "place.animal_park.day"},
+	"mapread_coast_edge_zone": {"category": "place_assets", "asset_id": "place.coast_edge.day"},
+	"place_place_sun_scene_body": {"category": "place_assets", "asset_id": "place.sun_scene.morning"},
+	"place_place_home_body": {"category": "place_assets", "asset_id": "place.home.yard"},
+	"place_place_home_school_walk_body": {"category": "place_assets", "asset_id": "place.home_school_walk.day"},
+	"place_place_school_gate_body": {"category": "place_assets", "asset_id": "place.school_gate.exterior"},
+	"place_place_school_yard_body": {"category": "place_assets", "asset_id": "place.school_yard.day"},
+	"place_place_town_start_body": {"category": "place_assets", "asset_id": "place.story_culture_bridge.day"},
+	"place_place_supermarket_body": {"category": "place_assets", "asset_id": "place.shop_street.day"},
+	"place_place_animal_park_body": {"category": "place_assets", "asset_id": "place.animal_park.day"},
+	"place_place_coast_edge_body": {"category": "place_assets", "asset_id": "place.coast_edge.day"},
+	"anchor_a_apple_tree": {"category": "anchor_assets", "asset_id": "anchor.a.apple_tree"},
+	"anchor_b_bear_corner": {"category": "anchor_assets", "asset_id": "anchor.b.bear_corner"},
+	"anchor_c_clock": {"category": "anchor_assets", "asset_id": "anchor.c.clock"},
+	"anchor_d_dog_corner": {"category": "anchor_assets", "asset_id": "anchor.d.dog_corner"},
+	"anchor_e_elephant_slide": {"category": "anchor_assets", "asset_id": "anchor.e.elephant_slide"},
+	"anchor_f_fox_topiary": {"category": "anchor_assets", "asset_id": "anchor.f.fox_topiary"},
+	"anchor_g_school_gate": {"category": "anchor_assets", "asset_id": "anchor.g.school_gate"},
+	"anchor_h_hat_sign": {"category": "anchor_assets", "asset_id": "anchor.h.hat_sign"},
+	"anchor_i_ice_cream_cart": {"category": "anchor_assets", "asset_id": "anchor.i.ice_cream_cart"},
+	"anchor_j_jacket_window": {"category": "anchor_assets", "asset_id": "anchor.j.jacket_window"},
+	"anchor_k_kite": {"category": "anchor_assets", "asset_id": "anchor.k.kite"},
+	"anchor_l_lion_fountain": {"category": "anchor_assets", "asset_id": "anchor.l.lion_fountain"},
+	"anchor_m_monkey_tree": {"category": "anchor_assets", "asset_id": "anchor.m.monkey_tree"},
+	"anchor_n_soft_net": {"category": "anchor_assets", "asset_id": "anchor.n.soft_net"},
+	"anchor_o_orange_stall": {"category": "anchor_assets", "asset_id": "anchor.o.orange_stall"},
+	"anchor_p_panda_corner": {"category": "anchor_assets", "asset_id": "anchor.p.panda_corner"},
+	"anchor_q_queen_poster": {"category": "anchor_assets", "asset_id": "anchor.q.queen_poster"},
+	"anchor_r_robot_sign": {"category": "anchor_assets", "asset_id": "anchor.r.robot_sign"},
+	"anchor_s_sun_landmark": {"category": "anchor_assets", "asset_id": "anchor.s.sun_landmark"},
+	"anchor_t_taxi_marker": {"category": "anchor_assets", "asset_id": "anchor.t.taxi_marker"},
+	"anchor_u_beach_umbrella": {"category": "anchor_assets", "asset_id": "anchor.u.beach_umbrella"},
+	"anchor_v_violin_corner": {"category": "anchor_assets", "asset_id": "anchor.v.violin_corner"},
+	"anchor_w_watch_table": {"category": "anchor_assets", "asset_id": "anchor.w.watch_table"},
+	"anchor_x_x_mark_box": {"category": "anchor_assets", "asset_id": "anchor.x.x_mark_box"},
+	"anchor_y_yo_yo_corner": {"category": "anchor_assets", "asset_id": "anchor.y.yo_yo_corner"},
+	"anchor_z_zebra_edge": {"category": "anchor_assets", "asset_id": "anchor.z.zebra_edge"},
 	"resource_branch": {"category": "place_assets", "asset_id": "place.resource.branch"},
 	"player_body": {"category": "character_assets", "asset_id": "character.player.standing"},
 	"npc_mina_body": {"category": "character_assets", "asset_id": "character.mina.standing"},
@@ -198,17 +243,17 @@ func _init_services() -> void:
 func _build_shell() -> void:
 	var background := ColorRect.new()
 	background.name = "Background"
-	background.color = Color("#cdebc0")
+	background.color = Color("#dff2d6")
 	background.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(background)
 
 	var margin := MarginContainer.new()
 	margin.name = "SafeArea"
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
-	margin.add_theme_constant_override("margin_left", 18)
-	margin.add_theme_constant_override("margin_top", 14)
-	margin.add_theme_constant_override("margin_right", 18)
-	margin.add_theme_constant_override("margin_bottom", 14)
+	margin.add_theme_constant_override("margin_left", 0)
+	margin.add_theme_constant_override("margin_top", 0)
+	margin.add_theme_constant_override("margin_right", 0)
+	margin.add_theme_constant_override("margin_bottom", 0)
 	add_child(margin)
 
 	var layout := VBoxContainer.new()
@@ -255,28 +300,28 @@ func _create_body() -> Control:
 	content.add_child(home_room_layer)
 
 	var hud := _create_top_message_bar()
-	hud.anchor_left = 0.015
-	hud.anchor_top = 0.015
-	hud.anchor_right = 0.985
-	hud.anchor_bottom = 0.015
-	hud.offset_bottom = 48
+	hud.anchor_left = 0.02
+	hud.anchor_top = 0.018
+	hud.anchor_right = 0.98
+	hud.anchor_bottom = 0.018
+	hud.offset_bottom = 42
 	content.add_child(hud)
 
 	settings_panel = _create_settings_panel()
 	settings_panel.anchor_left = 0.68
-	settings_panel.anchor_top = 0.085
+	settings_panel.anchor_top = 0.08
 	settings_panel.anchor_right = 0.97
-	settings_panel.anchor_bottom = 0.085
+	settings_panel.anchor_bottom = 0.08
 	settings_panel.offset_bottom = 236
 	content.add_child(settings_panel)
 
 	var footer := _create_bottom_action_bar()
-	footer.anchor_left = 0.24
+	footer.anchor_left = 0.31
 	footer.anchor_top = 1.0
-	footer.anchor_right = 0.76
+	footer.anchor_right = 0.69
 	footer.anchor_bottom = 1.0
-	footer.offset_top = -72
-	footer.offset_bottom = -10
+	footer.offset_top = -86
+	footer.offset_bottom = -22
 	content.add_child(footer)
 
 	backpack_bubble = _create_backpack_bubble()
@@ -303,15 +348,15 @@ func _create_body() -> Control:
 	var hint := Label.new()
 	hint.name = "TownFooterText"
 	hint.text = "点一点草地去散步。靠近居民、小屋、商店或树枝时，可以按“看看”。"
-	hint.anchor_left = 0.24
+	hint.anchor_left = 0.28
 	hint.anchor_top = 1.0
-	hint.anchor_right = 0.76
+	hint.anchor_right = 0.72
 	hint.anchor_bottom = 1.0
-	hint.offset_top = -104
-	hint.offset_bottom = -82
+	hint.offset_top = -116
+	hint.offset_bottom = -96
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	hint.add_theme_color_override("font_color", Color("#24413a"))
-	hint.add_theme_font_size_override("font_size", 14)
+	hint.add_theme_font_size_override("font_size", 13)
 	content.add_child(hint)
 
 	return body
@@ -320,26 +365,26 @@ func _create_body() -> Control:
 func _create_top_message_bar() -> Control:
 	var panel := PanelContainer.new()
 	panel.name = "TownHUD"
-	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fff8dff0"), 8, Color("#d7bc71")))
+	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#f7fbffd8"), 8, Color("#ffffff99")))
 
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 14)
-	margin.add_theme_constant_override("margin_top", 5)
-	margin.add_theme_constant_override("margin_right", 14)
-	margin.add_theme_constant_override("margin_bottom", 5)
+	margin.add_theme_constant_override("margin_left", 12)
+	margin.add_theme_constant_override("margin_top", 4)
+	margin.add_theme_constant_override("margin_right", 12)
+	margin.add_theme_constant_override("margin_bottom", 4)
 	panel.add_child(margin)
 
 	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 12)
+	row.add_theme_constant_override("separation", 9)
 	margin.add_child(row)
 
 	var title := Label.new()
 	title.name = "Title"
 	title.text = "阳光小镇"
-	title.custom_minimum_size = Vector2(118, 0)
+	title.custom_minimum_size = Vector2(106, 0)
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	title.add_theme_color_override("font_color", TEXT_COLOR)
-	title.add_theme_font_size_override("font_size", 22)
+	title.add_theme_font_size_override("font_size", 20)
 	row.add_child(title)
 
 	var town_status := Label.new()
@@ -347,9 +392,9 @@ func _create_top_message_bar() -> Control:
 	town_status.text = "开放" if map_errors.is_empty() else "照看中"
 	town_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	town_status.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	town_status.custom_minimum_size = Vector2(70, 30)
+	town_status.custom_minimum_size = Vector2(62, 26)
 	town_status.add_theme_color_override("font_color", Color.WHITE)
-	town_status.add_theme_font_size_override("font_size", 13)
+	town_status.add_theme_font_size_override("font_size", 12)
 	town_status.add_theme_stylebox_override("normal", _rounded_box(PRIMARY_COLOR, 8))
 	row.add_child(town_status)
 
@@ -360,12 +405,12 @@ func _create_top_message_bar() -> Control:
 	life_status_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	life_status_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	life_status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
-	life_status_label.add_theme_font_size_override("font_size", 14)
+	life_status_label.add_theme_font_size_override("font_size", 13)
 	row.add_child(life_status_label)
 
 	status_label = Label.new()
 	status_label.name = "LoopStatus"
-	status_label.custom_minimum_size = Vector2(150, 0)
+	status_label.custom_minimum_size = Vector2(128, 0)
 	status_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	status_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
@@ -378,12 +423,12 @@ func _create_top_message_bar() -> Control:
 	optional_activity_label.visible = false
 	row.add_child(optional_activity_label)
 
-	row.add_child(_create_asset_icon("CoinIcon", "ui_icon_coin", Vector2(30, 30)))
+	row.add_child(_create_asset_icon("CoinIcon", "ui_icon_coin", Vector2(26, 26)))
 
-	coin_label = _create_hud_state_label("CoinState", 72, Color("#fff0bc"), Color("#d8a84b"))
+	coin_label = _create_hud_state_label("CoinState", 64, Color("#fff0bc"), Color("#d8a84b"))
 	row.add_child(coin_label)
 
-	pet_label = _create_hud_state_label("PetState", 174, Color("#eaf6ff"), Color("#93bfd0"))
+	pet_label = _create_hud_state_label("PetState", 150, Color("#eaf6ff"), Color("#93bfd0"))
 	row.add_child(pet_label)
 
 	row.add_child(_create_hud_settings_button())
@@ -400,16 +445,16 @@ func _create_top_message_bar() -> Control:
 func _create_hud_settings_button() -> Button:
 	var button := Button.new()
 	button.name = "SettingsButton"
-	button.text = "设置"
-	button.custom_minimum_size = Vector2(64, 30)
+	button.text = ""
+	button.custom_minimum_size = Vector2(38, 30)
 	button.icon = _get_texture("ui_icon_settings")
 	button.expand_icon = true
 	button.focus_mode = Control.FOCUS_NONE
 	button.add_theme_font_size_override("font_size", 13)
 	button.add_theme_color_override("font_color", Color("#284238"))
-	button.add_theme_stylebox_override("normal", _rounded_box(Color("#fffdf4"), 8, Color("#d8c68b")))
-	button.add_theme_stylebox_override("hover", _rounded_box(Color("#fff6d8"), 8, Color("#d8c68b")))
-	button.add_theme_stylebox_override("pressed", _rounded_box(Color("#eedca9"), 8, Color("#bca05d")))
+	button.add_theme_stylebox_override("normal", _ui_skin_box("glass_icon_button", _rounded_box(Color("#f7fbffee"), 8, Color("#ffffffaa")), 22))
+	button.add_theme_stylebox_override("hover", _ui_skin_box("glass_icon_button", _rounded_box(Color("#ffffffee"), 8, Color("#ffffffcc")), 22))
+	button.add_theme_stylebox_override("pressed", _ui_skin_box("glass_button_pressed", _rounded_box(Color("#e9f2f7ee"), 8, Color("#cfdce5")), 22))
 	button.pressed.connect(Callable(self, "_on_settings_pressed"))
 	return button
 
@@ -417,19 +462,19 @@ func _create_hud_settings_button() -> Button:
 func _create_bottom_action_bar() -> Control:
 	var bar := PanelContainer.new()
 	bar.name = "TownFooter"
-	bar.add_theme_stylebox_override("panel", _rounded_box(Color("#fff6dde8"), 18, Color("#e9c878")))
+	bar.add_theme_stylebox_override("panel", _rounded_box(Color("#f7fbffd8"), 8, Color("#ffffff99")))
 
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 12)
-	margin.add_theme_constant_override("margin_top", 7)
-	margin.add_theme_constant_override("margin_right", 12)
-	margin.add_theme_constant_override("margin_bottom", 7)
+	margin.add_theme_constant_override("margin_left", 10)
+	margin.add_theme_constant_override("margin_top", 8)
+	margin.add_theme_constant_override("margin_right", 10)
+	margin.add_theme_constant_override("margin_bottom", 8)
 	bar.add_child(margin)
 
 	var row := HBoxContainer.new()
 	row.name = "FooterVisibleActions"
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
-	row.add_theme_constant_override("separation", 10)
+	row.add_theme_constant_override("separation", 8)
 	margin.add_child(row)
 
 	row.add_child(_create_footer_button("看看", true, "_on_interact_pressed", "InteractButton"))
@@ -480,7 +525,7 @@ func _create_backpack_bubble() -> Control:
 	var panel := PanelContainer.new()
 	panel.name = "BackpackBubble"
 	panel.visible = false
-	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0f2"), 16, Color("#e9c878")))
+	panel.add_theme_stylebox_override("panel", _ui_skin_box("glass_panel_small", _rounded_box(Color("#f7fbfff0"), 16, Color("#ffffffaa")), 28))
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 14)
@@ -534,7 +579,7 @@ func _create_settings_panel() -> Control:
 	var panel := PanelContainer.new()
 	panel.name = "SettingsPanel"
 	panel.visible = false
-	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0f4"), 16, Color("#dcae5c")))
+	panel.add_theme_stylebox_override("panel", _ui_skin_box("glass_panel_large", _rounded_box(Color("#f7fbfff0"), 16, Color("#ffffffaa")), 32))
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 14)
@@ -592,7 +637,7 @@ func _create_shop_panel() -> Control:
 	var panel := PanelContainer.new()
 	panel.name = "ShopPanel"
 	panel.visible = false
-	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0f4"), 16, Color("#dcae5c")))
+	panel.add_theme_stylebox_override("panel", _ui_skin_box("glass_panel_large", _rounded_box(Color("#f7fbfff0"), 16, Color("#ffffffaa")), 32))
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 14)
@@ -706,7 +751,7 @@ func _create_home_room_view() -> Control:
 	feedback_panel.anchor_right = 0.38
 	feedback_panel.anchor_bottom = 0.12
 	feedback_panel.offset_bottom = 68
-	feedback_panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0ee"), 14, Color("#e7c46f")))
+	feedback_panel.add_theme_stylebox_override("panel", _ui_skin_box("glass_panel_small", _rounded_box(Color("#f7fbffee"), 14, Color("#ffffffaa")), 28))
 	room.add_child(feedback_panel)
 
 	var feedback_margin := MarginContainer.new()
@@ -738,7 +783,7 @@ func _create_home_room_view() -> Control:
 func _create_home_action_panel() -> Control:
 	var panel := PanelContainer.new()
 	panel.name = "HomeActionPanel"
-	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#fffaf0f0"), 16, Color("#dcae5c")))
+	panel.add_theme_stylebox_override("panel", _ui_skin_box("glass_panel_large", _rounded_box(Color("#f7fbfff0"), 16, Color("#ffffffaa")), 32))
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 14)
@@ -928,10 +973,10 @@ func _create_action_button(label: String, method_name: String, node_name: String
 	button.custom_minimum_size = Vector2(112, 38)
 	button.focus_mode = Control.FOCUS_NONE
 	button.add_theme_font_size_override("font_size", 13)
-	button.add_theme_color_override("font_color", Color.WHITE)
-	button.add_theme_stylebox_override("normal", _rounded_box(PRIMARY_COLOR, 8))
-	button.add_theme_stylebox_override("hover", _rounded_box(PRIMARY_COLOR.lightened(0.08), 8))
-	button.add_theme_stylebox_override("pressed", _rounded_box(PRIMARY_COLOR.darkened(0.08), 8))
+	button.add_theme_color_override("font_color", Color("#284238"))
+	button.add_theme_stylebox_override("normal", _ui_skin_box("glass_button_normal", _rounded_box(PRIMARY_COLOR, 8), 24))
+	button.add_theme_stylebox_override("hover", _ui_skin_box("glass_button_normal", _rounded_box(PRIMARY_COLOR.lightened(0.08), 8), 24))
+	button.add_theme_stylebox_override("pressed", _ui_skin_box("glass_button_pressed", _rounded_box(PRIMARY_COLOR.darkened(0.08), 8), 24))
 	button.pressed.connect(Callable(self, method_name))
 	return button
 
@@ -940,18 +985,18 @@ func _create_footer_button(label: String, selected: bool, method_name: String = 
 	var button := Button.new()
 	button.name = node_name if not node_name.is_empty() else label.replace(" ", "") + "FooterButton"
 	button.text = label
-	button.custom_minimum_size = Vector2(104, 48)
+	button.custom_minimum_size = Vector2(84, 40)
 	button.focus_mode = Control.FOCUS_NONE
-	button.add_theme_font_size_override("font_size", 17)
+	button.add_theme_font_size_override("font_size", 15)
 	button.add_theme_color_override("font_color", Color("#27443b") if selected else Color("#46584f"))
-	var normal_color := Color("#ffe28f") if selected else Color("#fffdf4")
-	var hover_color := Color("#ffeca9") if selected else Color("#fff7dc")
-	var pressed_color := Color("#f7c86f") if selected else Color("#f1ead2")
-	var border_color := Color("#d39b43") if selected else Color("#ded0a7")
-	button.add_theme_stylebox_override("normal", _rounded_box(normal_color, 16, border_color))
-	button.add_theme_stylebox_override("hover", _rounded_box(hover_color, 16, border_color.lightened(0.08)))
-	button.add_theme_stylebox_override("pressed", _rounded_box(pressed_color, 16, border_color.darkened(0.08)))
-	button.add_theme_stylebox_override("focus", _rounded_box(Color("#fff3b8"), 16, Color("#f0b35a")))
+	var normal_color := Color("#f7fbffee") if selected else Color("#ffffffdc")
+	var hover_color := Color("#ffffffee") if selected else Color("#f7fbffee")
+	var pressed_color := Color("#e8f0f6ee") if selected else Color("#e8f0f6dd")
+	var border_color := Color("#ffffffcc") if selected else Color("#dfeaf2bb")
+	button.add_theme_stylebox_override("normal", _rounded_box(normal_color, 8, border_color))
+	button.add_theme_stylebox_override("hover", _rounded_box(hover_color, 8, border_color.lightened(0.08)))
+	button.add_theme_stylebox_override("pressed", _rounded_box(pressed_color, 8, border_color.darkened(0.08)))
+	button.add_theme_stylebox_override("focus", _rounded_box(Color("#ffffffee"), 8, Color("#b9d8e8")))
 	if not method_name.is_empty():
 		button.pressed.connect(Callable(self, method_name))
 	return button
@@ -968,9 +1013,9 @@ func _create_bubble_button(label: String, method_name: String, node_name: String
 	button.focus_mode = Control.FOCUS_NONE
 	button.add_theme_font_size_override("font_size", 14)
 	button.add_theme_color_override("font_color", Color("#284238"))
-	button.add_theme_stylebox_override("normal", _rounded_box(Color("#fff1b8"), 12, Color("#d8a84b")))
-	button.add_theme_stylebox_override("hover", _rounded_box(Color("#fff7d3"), 12, Color("#d8a84b")))
-	button.add_theme_stylebox_override("pressed", _rounded_box(Color("#f3d27d"), 12, Color("#b88335")))
+	button.add_theme_stylebox_override("normal", _ui_skin_box("glass_button_normal", _rounded_box(Color("#f7fbffee"), 12, Color("#ffffffaa")), 24))
+	button.add_theme_stylebox_override("hover", _ui_skin_box("glass_button_normal", _rounded_box(Color("#ffffffee"), 12, Color("#ffffffcc")), 24))
+	button.add_theme_stylebox_override("pressed", _ui_skin_box("glass_button_pressed", _rounded_box(Color("#e8f0f6ee"), 12, Color("#cfdce5")), 24))
 	if not method_name.is_empty():
 		button.pressed.connect(Callable(self, method_name))
 	return button
@@ -1264,8 +1309,8 @@ func place_wooden_chair(cell: Vector2i = Vector2i(2, 2)) -> Dictionary:
 	return result
 
 
-func place_home_item(item_id: String, cell: Vector2i, rotation: int = 0) -> Dictionary:
-	var result: Dictionary = home_decoration_service.place_furniture(item_id, cell, rotation)
+func place_home_item(item_id: String, cell: Vector2i, furniture_rotation: int = 0) -> Dictionary:
+	var result: Dictionary = home_decoration_service.place_furniture(item_id, cell, furniture_rotation)
 	if result.get("ok", false):
 		_refresh_home_room()
 	else:
@@ -1776,7 +1821,8 @@ func _create_map_canvas() -> Control:
 
 	var map := Node2D.new()
 	map.name = "RuntimeMap"
-	map.position = Vector2.ZERO
+	map.position = MAP_ORIGIN
+	map.scale = _map_render_scale(map_width, map_height)
 	var ground := _create_sprite("Ground", Vector2(map_width, map_height) * 0.5, Vector2(map_width, map_height), "ground")
 	map.add_child(ground)
 	frame.add_child(map)
@@ -1785,7 +1831,9 @@ func _create_map_canvas() -> Control:
 
 	for road in world_map.get("roads", []):
 		for cell in road.get("cells", []):
-			map.add_child(_create_sprite("RoadCell", _cell_center(cell), Vector2(MAP_CELL_SIZE + 6, MAP_CELL_SIZE + 4), "road"))
+			var road_cell := _create_sprite("RoadCell", _cell_center(cell), Vector2(MAP_CELL_SIZE + 6, MAP_CELL_SIZE + 4), "road")
+			road_cell.modulate = Color(1, 1, 1, 0.2)
+			map.add_child(road_cell)
 
 	for place in world_map.get("places", []):
 		map.add_child(_create_place_marker(place))
@@ -1829,8 +1877,15 @@ func _create_place_marker(place: Dictionary) -> Node2D:
 	)
 	marker.position = _cell_position(place.get("position", {})) + building_size * 0.5
 
+	var body_texture_key := "place_%s_body" % place_id
 	marker.add_child(_create_sprite("Shadow", Vector2(3, building_size.y * 0.45), Vector2(building_size.x * 0.95, 15), "shadow"))
-	marker.add_child(_create_sprite("Building", Vector2(0, 8), Vector2(building_size.x, building_size.y - 8), "place_%s_body" % place_id))
+	if _can_resolve_texture_key(body_texture_key):
+		var production_body := _create_sprite("Building", Vector2.ZERO, building_size, body_texture_key)
+		production_body.modulate = Color(1, 1, 1, 0.06)
+		marker.add_child(production_body)
+		return marker
+
+	marker.add_child(_create_sprite("Building", Vector2(0, 8), Vector2(building_size.x, building_size.y - 8), body_texture_key))
 	marker.add_child(_create_sprite("Roof", Vector2(0, -building_size.y * 0.32), Vector2(building_size.x * 0.92, 22), "place_%s_roof" % place_id))
 	marker.add_child(_create_sprite("Door", Vector2(0, building_size.y * 0.25), Vector2(14, 18), "door_%s" % place_id))
 	marker.add_child(_create_sprite("WindowLeft", Vector2(-building_size.x * 0.25, 4), Vector2(12, 12), "window_%s_left" % place_id))
@@ -1890,7 +1945,7 @@ func _create_reserved_anchor_marker(anchor: Dictionary) -> Node2D:
 	var route_order := int(anchor.get("route_order", 1))
 	marker.position = Vector2(
 		(((route_order - 1) % 13) * MAP_CELL_SIZE * 2) + MAP_CELL_SIZE,
-		((20 + int((route_order - 1) / 13)) * MAP_CELL_SIZE) + MAP_CELL_SIZE
+		((20 + int(float(route_order - 1) / 13.0)) * MAP_CELL_SIZE) + MAP_CELL_SIZE
 	)
 	marker.add_child(_create_sprite("FutureObject", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.15, MAP_CELL_SIZE * 0.9), "reserved_anchor_%s" % str(anchor.get("letter", ""))))
 	marker.add_child(_create_anchor_letter_badge(anchor))
@@ -1935,6 +1990,7 @@ func move_player_by_cells(delta: Vector2i) -> Dictionary:
 
 
 func move_player_to_cell(target_cell: Vector2i) -> Dictionary:
+	target_cell = _remap_legacy_runtime_cell(target_cell)
 	if not _is_cell_walkable(target_cell):
 		_set_life_status("那里暂时走不过去。")
 		return {"ok": false, "reason": "blocked", "cell": _cell_to_dict(target_cell)}
@@ -2076,6 +2132,13 @@ func _create_sprite(sprite_name: String, sprite_position: Vector2, sprite_size: 
 	return sprite
 
 
+func _map_render_scale(map_width: int, map_height: int) -> Vector2:
+	return Vector2(
+		MAP_RENDER_SIZE.x / max(float(map_width), 1.0),
+		MAP_RENDER_SIZE.y / max(float(map_height), 1.0)
+	)
+
+
 func _get_texture(texture_key: String) -> Texture2D:
 	if _texture_cache.has(texture_key):
 		return _texture_cache[texture_key]
@@ -2132,6 +2195,10 @@ func _get_resolved_asset_texture(texture_key: String) -> Texture2D:
 	var loaded_texture := ResourceLoader.load(asset_path) as Texture2D
 	if loaded_texture != null:
 		return loaded_texture
+	return _load_image_texture(asset_path)
+
+
+func _load_image_texture(asset_path: String) -> Texture2D:
 	var image := Image.new()
 	var load_error := image.load(asset_path)
 	if load_error != OK:
@@ -2245,29 +2312,40 @@ func _anchor_texture_colors(texture_key: String) -> Dictionary:
 
 
 func _create_anchor_object_sprite(letter: String) -> Sprite2D:
-	var texture_key := "anchor_%s" % letter.to_lower()
-	match letter:
-		"A":
-			texture_key = "anchor_apple_tree"
-		"B":
-			texture_key = "anchor_bear_plush"
-		"C":
-			texture_key = "anchor_clock"
-		"D":
-			texture_key = "anchor_doghouse"
-		"K":
-			texture_key = "anchor_kite"
-		"O":
-			texture_key = "anchor_orange_stand"
-		"S":
-			texture_key = "anchor_sun"
-		"T":
-			texture_key = "anchor_taxi_stop"
-		"W":
-			texture_key = "anchor_watch_sign"
-		_:
-			texture_key = "reserved_anchor_%s" % letter
+	var texture_key := _anchor_texture_key_for_letter(letter)
 	return _create_sprite("ObjectSprite", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.55, MAP_CELL_SIZE * 1.35), texture_key)
+
+
+func _anchor_texture_key_for_letter(letter: String) -> String:
+	var texture_keys: Dictionary = {
+		"A": "anchor_a_apple_tree",
+		"B": "anchor_b_bear_corner",
+		"C": "anchor_c_clock",
+		"D": "anchor_d_dog_corner",
+		"E": "anchor_e_elephant_slide",
+		"F": "anchor_f_fox_topiary",
+		"G": "anchor_g_school_gate",
+		"H": "anchor_h_hat_sign",
+		"I": "anchor_i_ice_cream_cart",
+		"J": "anchor_j_jacket_window",
+		"K": "anchor_k_kite",
+		"L": "anchor_l_lion_fountain",
+		"M": "anchor_m_monkey_tree",
+		"N": "anchor_n_soft_net",
+		"O": "anchor_o_orange_stall",
+		"P": "anchor_p_panda_corner",
+		"Q": "anchor_q_queen_poster",
+		"R": "anchor_r_robot_sign",
+		"S": "anchor_s_sun_landmark",
+		"T": "anchor_t_taxi_marker",
+		"U": "anchor_u_beach_umbrella",
+		"V": "anchor_v_violin_corner",
+		"W": "anchor_w_watch_table",
+		"X": "anchor_x_x_mark_box",
+		"Y": "anchor_y_yo_yo_corner",
+		"Z": "anchor_z_zebra_edge",
+	}
+	return str(texture_keys.get(letter, "reserved_anchor_%s" % letter))
 
 
 func _create_anchor_letter_badge(anchor: Dictionary) -> Label:
@@ -2278,7 +2356,7 @@ func _create_anchor_letter_badge(anchor: Dictionary) -> Label:
 	badge.text = letter
 	badge.custom_minimum_size = Vector2(28, 28)
 	badge.size = Vector2(28, 28)
-	badge.position = _anchor_badge_offset(route_order)
+	badge.position = _anchor_badge_offset(route_order, letter)
 	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	badge.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -2289,7 +2367,37 @@ func _create_anchor_letter_badge(anchor: Dictionary) -> Label:
 	return badge
 
 
-func _anchor_badge_offset(route_order: int) -> Vector2:
+func _anchor_badge_offset(route_order: int, letter: String = "") -> Vector2:
+	var per_letter_offsets: Dictionary = {
+		"A": Vector2(-42, -34),
+		"B": Vector2(-38, -24),
+		"C": Vector2(36, -40),
+		"D": Vector2(-42, 8),
+		"E": Vector2(-42, -20),
+		"F": Vector2(10, -42),
+		"G": Vector2(24, -28),
+		"H": Vector2(-38, -20),
+		"I": Vector2(18, -36),
+		"J": Vector2(-34, 4),
+		"K": Vector2(-42, -18),
+		"L": Vector2(18, -28),
+		"M": Vector2(-42, -8),
+		"N": Vector2(-42, -12),
+		"O": Vector2(20, -10),
+		"P": Vector2(18, 8),
+		"Q": Vector2(-42, 6),
+		"R": Vector2(18, -34),
+		"S": Vector2(46, -14),
+		"T": Vector2(20, 4),
+		"U": Vector2(12, -62),
+		"V": Vector2(-42, 6),
+		"W": Vector2(20, -8),
+		"X": Vector2(18, 2),
+		"Y": Vector2(-42, -8),
+		"Z": Vector2(16, -38),
+	}
+	if per_letter_offsets.has(letter):
+		return per_letter_offsets.get(letter)
 	var offsets: Array[Vector2] = [
 		Vector2(8, -31),
 		Vector2(-31, -27),
@@ -2300,21 +2408,20 @@ func _anchor_badge_offset(route_order: int) -> Vector2:
 
 
 func _add_town_scenery(map: Node2D, map_width: int, map_height: int) -> void:
-	map.add_child(_create_sprite("SoftHorizon", Vector2(map_width, map_height) * 0.5, Vector2(map_width, map_height), "soft_horizon"))
 	map.add_child(_create_map_readability_layer())
-	map.add_child(_create_sprite("TownPond", Vector2(30.5, 5.0) * MAP_CELL_SIZE, Vector2(5 * MAP_CELL_SIZE, 4 * MAP_CELL_SIZE), "pond"))
-	map.add_child(_create_sprite("TownPlaza", Vector2(16.0, 8.5) * MAP_CELL_SIZE, Vector2(8 * MAP_CELL_SIZE, 5 * MAP_CELL_SIZE), "plaza"))
 
-	for cell in [Vector2i(2, 12), Vector2i(4, 14), Vector2i(8, 18), Vector2i(18, 4), Vector2i(30, 16), Vector2i(35, 9)]:
+	for cell in [Vector2i(7, 6), Vector2i(15, 18), Vector2i(22, 24), Vector2i(39, 18), Vector2i(47, 27), Vector2i(55, 26)]:
 		var flower := Node2D.new()
 		flower.name = "FlowerPatch"
+		flower.modulate = Color(1, 1, 1, 0.35)
 		flower.position = Vector2(cell.x + 0.5, cell.y + 0.5) * MAP_CELL_SIZE
 		flower.add_child(_create_sprite("Petals", Vector2.ZERO, Vector2(15, 13), "flower"))
 		map.add_child(flower)
 
-	for cell in [Vector2i(1, 2), Vector2i(9, 3), Vector2i(11, 13), Vector2i(20, 14), Vector2i(27, 18), Vector2i(36, 4)]:
+	for cell in [Vector2i(12, 4), Vector2i(9, 15), Vector2i(24, 11), Vector2i(38, 25), Vector2i(50, 20), Vector2i(58, 27)]:
 		var tree := Node2D.new()
 		tree.name = "RoundTree"
+		tree.modulate = Color(1, 1, 1, 0.32)
 		tree.position = Vector2(cell.x + 0.72, cell.y + 0.72) * MAP_CELL_SIZE
 		tree.add_child(_create_sprite("Trunk", Vector2(0, 13), Vector2(8, 18), "tree_trunk"))
 		tree.add_child(_create_sprite("Crown", Vector2(0, -2), Vector2(MAP_CELL_SIZE * 1.5, MAP_CELL_SIZE * 1.42), "tree_crown"))
@@ -2325,61 +2432,72 @@ func _create_map_readability_layer() -> Node2D:
 	var layer := Node2D.new()
 	layer.name = "MapReadabilityLayer"
 	layer.z_index = -2
-	layer.add_child(_create_mapread_zone("MapReadZoneHomeSchool", Vector2(6.0, 9.0) * MAP_CELL_SIZE, Vector2(11.5, 17.0) * MAP_CELL_SIZE, "mapread_home_school_zone"))
-	layer.add_child(_create_mapread_zone("MapReadZoneTownRing", Vector2(22.0, 8.5) * MAP_CELL_SIZE, Vector2(18.5, 11.0) * MAP_CELL_SIZE, "mapread_town_ring_zone"))
-	layer.add_child(_create_mapread_zone("MapReadZoneFarEdge", Vector2(37.5, 13.0) * MAP_CELL_SIZE, Vector2(5.0, 5.5) * MAP_CELL_SIZE, "mapread_far_edge_zone"))
-	layer.add_child(_create_mapread_sign("MapReadSignHome", Vector2(5.0, 7.2) * MAP_CELL_SIZE, "回家"))
-	layer.add_child(_create_mapread_sign("MapReadSignSchool", Vector2(10.3, 11.0) * MAP_CELL_SIZE, "学校"))
-	layer.add_child(_create_mapread_sign("MapReadSignTownRing", Vector2(20.0, 6.4) * MAP_CELL_SIZE, "小镇圈"))
-	layer.add_child(_create_mapread_sign("MapReadSignFarEdge", Vector2(36.8, 10.8) * MAP_CELL_SIZE, "远处边界"))
+	layer.modulate = Color(1, 1, 1, 0.34)
+	layer.add_child(_create_mapread_zone("MapReadZoneSun", Vector2(8.0, 3.0) * MAP_CELL_SIZE, Vector2(10.0, 4.0) * MAP_CELL_SIZE, "mapread_sun_scene_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneSchoolGate", Vector2(20.5, 11.0) * MAP_CELL_SIZE, Vector2(7.0, 5.0) * MAP_CELL_SIZE, "mapread_school_gate_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneSchoolYard", Vector2(17.0, 11.8) * MAP_CELL_SIZE, Vector2(12.0, 10.0) * MAP_CELL_SIZE, "mapread_school_yard_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneWalk", Vector2(24.0, 14.7) * MAP_CELL_SIZE, Vector2(6.0, 5.0) * MAP_CELL_SIZE, "mapread_home_school_walk_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneStory", Vector2(15.5, 22.0) * MAP_CELL_SIZE, Vector2(13.0, 10.0) * MAP_CELL_SIZE, "mapread_story_culture_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneHome", Vector2(31.0, 18.0) * MAP_CELL_SIZE, Vector2(12.0, 12.0) * MAP_CELL_SIZE, "mapread_home_yard_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneShop", Vector2(48.0, 10.5) * MAP_CELL_SIZE, Vector2(16.0, 11.0) * MAP_CELL_SIZE, "mapread_shop_street_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneAnimal", Vector2(47.5, 25.0) * MAP_CELL_SIZE, Vector2(17.0, 12.0) * MAP_CELL_SIZE, "mapread_animal_park_zone"))
+	layer.add_child(_create_mapread_zone("MapReadZoneCoast", Vector2(55.5, 30.0) * MAP_CELL_SIZE, Vector2(7.0, 4.0) * MAP_CELL_SIZE, "mapread_coast_edge_zone"))
+	layer.add_child(_create_mapread_sign("MapReadSignSun", Vector2(5.0, 2.1) * MAP_CELL_SIZE, "太阳"))
+	layer.add_child(_create_mapread_sign("MapReadSignSchool", Vector2(17.5, 6.2) * MAP_CELL_SIZE, "学校"))
+	layer.add_child(_create_mapread_sign("MapReadSignStory", Vector2(11.0, 18.5) * MAP_CELL_SIZE, "故事桥"))
+	layer.add_child(_create_mapread_sign("MapReadSignHome", Vector2(28.0, 13.2) * MAP_CELL_SIZE, "回家"))
+	layer.add_child(_create_mapread_sign("MapReadSignShop", Vector2(43.0, 6.2) * MAP_CELL_SIZE, "商店街"))
+	layer.add_child(_create_mapread_sign("MapReadSignAnimal", Vector2(41.0, 20.0) * MAP_CELL_SIZE, "动物公园"))
+	layer.add_child(_create_mapread_sign("MapReadSignCoast", Vector2(53.0, 29.2) * MAP_CELL_SIZE, "海边"))
 	return layer
 
 
 func _create_mapread_zone(zone_name: String, zone_position: Vector2, zone_size: Vector2, texture_key: String) -> Sprite2D:
 	var zone := _create_sprite(zone_name, zone_position, zone_size, texture_key)
 	zone.z_index = -2
+	zone.modulate = Color(1, 1, 1, 0.025)
 	return zone
 
 
 func _create_mapread_sign(sign_name: String, sign_position: Vector2, text: String) -> Label:
-	var sign := Label.new()
-	sign.name = sign_name
-	sign.text = text
-	sign.position = sign_position
-	sign.custom_minimum_size = Vector2(78, 24)
-	sign.size = Vector2(78, 24)
-	sign.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	sign.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	sign.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	sign.z_index = 9
-	sign.add_theme_color_override("font_color", Color("#284238"))
-	sign.add_theme_font_size_override("font_size", 13)
-	sign.add_theme_stylebox_override("normal", _rounded_box(Color("#fffdf0dd"), 8, Color("#8ab18d")))
-	return sign
+	var sign_label := Label.new()
+	sign_label.name = sign_name
+	sign_label.text = text
+	sign_label.position = sign_position
+	sign_label.custom_minimum_size = Vector2(78, 24)
+	sign_label.size = Vector2(78, 24)
+	sign_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	sign_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	sign_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	sign_label.z_index = 9
+	sign_label.add_theme_color_override("font_color", Color("#284238"))
+	sign_label.add_theme_font_size_override("font_size", 13)
+	sign_label.add_theme_stylebox_override("normal", _rounded_box(Color("#fffdf0dd"), 8, Color("#8ab18d")))
+	return sign_label
 
 
 func _mapread_layer_for_anchor(letter: String) -> String:
-	if ["A", "C", "D", "W", "E", "G", "K", "N", "R", "Y"].has(letter):
+	if ["A", "C", "D", "T", "W", "G", "K", "N", "R", "Y", "S"].has(letter):
 		return "p0_center"
-	if ["B", "F", "H", "I", "J", "O", "T"].has(letter):
+	if ["B", "Q", "V", "H", "I", "J", "O"].has(letter):
 		return "first_ring"
-	if ["L", "M", "P", "Q", "S", "U", "V"].has(letter):
+	if ["E", "F", "L", "M", "P", "Z"].has(letter):
 		return "second_ring"
-	if ["X", "Z"].has(letter):
+	if ["U", "X"].has(letter):
 		return "far_edge"
 	return "reserved"
 
 
 func _mapread_screenshot_group_for_anchor(letter: String) -> String:
-	if ["A", "C", "D", "W"].has(letter):
+	if ["A", "C", "D", "T", "W"].has(letter):
 		return "home_anchors"
-	if ["E", "G", "K", "N", "R", "Y"].has(letter):
+	if ["G", "K", "N", "R", "S", "Y"].has(letter):
 		return "school_line"
-	if ["B", "F", "H", "I", "J", "O", "T"].has(letter):
+	if ["B", "Q", "V", "H", "I", "J", "O"].has(letter):
 		return "first_ring"
-	if ["L", "M", "P", "Q", "S", "U", "V"].has(letter):
+	if ["E", "F", "L", "M", "P", "Z"].has(letter):
 		return "second_ring"
-	if ["X", "Z"].has(letter):
+	if ["U", "X"].has(letter):
 		return "far_edge"
 	return "reserved"
 
@@ -2520,6 +2638,39 @@ func _cell_to_dict(cell: Vector2i) -> Dictionary:
 	return {"x": cell.x, "y": cell.y}
 
 
+func _remap_legacy_runtime_cell(cell: Vector2i) -> Vector2i:
+	var redirects: Dictionary = {
+		"2,3": Vector2i(28, 16),
+		"4,7": Vector2i(28, 17),
+		"5,7": Vector2i(31, 19),
+		"5,8": Vector2i(31, 20),
+		"6,8": Vector2i(28, 20),
+		"7,11": Vector2i(16, 8),
+		"8,11": Vector2i(24, 15),
+		"9,12": Vector2i(16, 9),
+		"11,13": Vector2i(21, 12),
+		"11,15": Vector2i(19, 15),
+		"12,6": Vector2i(17, 18),
+		"12,7": Vector2i(16, 18),
+		"13,6": Vector2i(19, 18),
+		"13,7": Vector2i(18, 19),
+		"14,10": Vector2i(38, 22),
+		"15,10": Vector2i(38, 22),
+		"16,4": Vector2i(9, 5),
+		"17,2": Vector2i(7, 3),
+		"23,5": Vector2i(51, 10),
+		"24,9": Vector2i(41, 11),
+		"24,10": Vector2i(41, 11),
+		"31,10": Vector2i(34, 21),
+		"31,11": Vector2i(35, 20),
+		"32,9": Vector2i(34, 20),
+		"32,11": Vector2i(35, 20),
+		"32,12": Vector2i(36, 20),
+		"33,13": Vector2i(54, 30),
+	}
+	return redirects.get("%s,%s" % [cell.x, cell.y], cell)
+
+
 func _update_player_marker() -> void:
 	if is_instance_valid(player_marker):
 		player_marker.position = Vector2(player_cell.x + 0.5, player_cell.y + 0.5) * MAP_CELL_SIZE
@@ -2528,7 +2679,7 @@ func _update_player_marker() -> void:
 func _load_player_cell() -> Vector2i:
 	var game_state: Dictionary = save_service.load_game_state()
 	if game_state.get("player_cell") is Dictionary:
-		return _dict_to_cell(game_state.get("player_cell", {}))
+		return _remap_legacy_runtime_cell(_dict_to_cell(game_state.get("player_cell", {})))
 	return PLAYER_START_CELL
 
 
@@ -2541,10 +2692,10 @@ func _save_player_cell() -> void:
 
 func _current_place_for_cell(cell: Vector2i) -> String:
 	for place in world_map.get("places", []):
-		var position := _dict_to_cell(place.get("position", {}))
+		var place_position := _dict_to_cell(place.get("position", {}))
 		var size_data: Dictionary = place.get("size", {"w": 1, "h": 1})
-		var size := Vector2i(int(size_data.get("w", 1)), int(size_data.get("h", 1)))
-		if cell.x >= position.x and cell.x < position.x + size.x and cell.y >= position.y and cell.y < position.y + size.y:
+		var place_size := Vector2i(int(size_data.get("w", 1)), int(size_data.get("h", 1)))
+		if cell.x >= place_position.x and cell.x < place_position.x + place_size.x and cell.y >= place_position.y and cell.y < place_position.y + place_size.y:
 			return str(place.get("place_id", ""))
 	return "town_walk"
 
@@ -2563,7 +2714,12 @@ func _on_map_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
 		if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:
-			move_player_to_cell(Vector2i(int(mouse_event.position.x / MAP_CELL_SIZE), int(mouse_event.position.y / MAP_CELL_SIZE)))
+			var canvas_size: Dictionary = world_map.get("canvas_size", {"w": 40, "h": 24})
+			var map_width := int(canvas_size.get("w", 40)) * MAP_CELL_SIZE
+			var map_height := int(canvas_size.get("h", 24)) * MAP_CELL_SIZE
+			var map_scale := _map_render_scale(map_width, map_height)
+			var map_position := (mouse_event.position - MAP_ORIGIN) / map_scale
+			move_player_to_cell(Vector2i(int(map_position.x / MAP_CELL_SIZE), int(map_position.y / MAP_CELL_SIZE)))
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -2722,4 +2878,25 @@ func _rounded_box(fill: Color, radius: int, border: Color = Color.TRANSPARENT) -
 		box.border_width_top = 1
 		box.border_width_right = 1
 		box.border_width_bottom = 1
+	return box
+
+
+func _ui_skin_box(logical_asset_id: String, fallback: StyleBox, texture_margin: int = 24) -> StyleBox:
+	var resolved: Dictionary = AssetResolverScript.get_ui_skin(logical_asset_id, AssetResolverScript.DEFAULT_THEME_ID)
+	if not resolved.get("ok", false):
+		return fallback
+	var asset_path := str(resolved.get("placeholder_path", ""))
+	if not FileAccess.file_exists(asset_path):
+		return fallback
+	var texture := ResourceLoader.load(asset_path) as Texture2D
+	if texture == null:
+		texture = _load_image_texture(asset_path)
+	if texture == null:
+		return fallback
+	var box := StyleBoxTexture.new()
+	box.texture = texture
+	box.texture_margin_left = texture_margin
+	box.texture_margin_top = texture_margin
+	box.texture_margin_right = texture_margin
+	box.texture_margin_bottom = texture_margin
 	return box

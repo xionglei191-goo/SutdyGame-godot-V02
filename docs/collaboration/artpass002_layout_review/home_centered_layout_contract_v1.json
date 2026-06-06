@@ -1,0 +1,193 @@
+{
+  "schema_id": "home_centered_layout_contract_v1",
+  "status": "accepted_runtime_reference",
+  "source_layout": "sunshine_town_world_layout_home_centered_proposal_v4",
+  "source_road_plan": "sunshine_town_home_centered_road_network_plan_v1",
+  "design_principle": "Home is the world center. Daily routes radiate from home and return home safely.",
+  "proposal_grid": {
+    "width": 60,
+    "height": 34,
+    "coordinate_space": "runtime_reference"
+  },
+  "zones": [
+    {
+      "zone_id": "zone_sun_scene",
+      "label": "Morning Sun Landmark",
+      "role": "upper-left visual landmark attached to the school morning route",
+      "relative_to_home": "far_upper_left",
+      "anchor_ids": ["anchor_s_sun"],
+      "p0_dependency": false,
+      "art_intent": "A warm sunrise sky scene that visually frames the school route; it is not a separate gameplay district."
+    },
+    {
+      "zone_id": "zone_school_morning_walk",
+      "label": "School / Morning Walk",
+      "role": "upper-left P0 school life area",
+      "relative_to_home": "upper_left",
+      "anchor_ids": ["anchor_g_gate", "anchor_k_kite", "anchor_n_net", "anchor_r_robot", "anchor_y_yo_yo"],
+      "p0_dependency": true,
+      "art_intent": "A safe school yard and morning path, not a classroom or test area."
+    },
+    {
+      "zone_id": "zone_story_culture_bridge",
+      "label": "Story + Culture Bridge",
+      "role": "left-side bridge between school and home",
+      "relative_to_home": "left",
+      "anchor_ids": ["anchor_b_bear", "anchor_q_queen", "anchor_v_violin"],
+      "p0_dependency": false,
+      "art_intent": "A quiet bookshop, theatre, and music bridge that supports after-school return."
+    },
+    {
+      "zone_id": "zone_home_core",
+      "label": "Home Core",
+      "role": "world center and daily return hub",
+      "relative_to_home": "center",
+      "anchor_ids": ["anchor_a_apple", "anchor_c_clock", "anchor_d_dog", "anchor_w_watch", "anchor_t_taxi"],
+      "p0_dependency": true,
+      "art_intent": "Home, room, Sunny corner, and driveway form the emotional center of the map."
+    },
+    {
+      "zone_id": "zone_shop_street",
+      "label": "Shop Street",
+      "role": "upper-right daily errand branch",
+      "relative_to_home": "upper_right",
+      "anchor_ids": ["anchor_h_hat", "anchor_i_ice_cream", "anchor_o_orange", "anchor_j_jacket"],
+      "p0_dependency": false,
+      "art_intent": "A visible shop street branch for errands, storefronts, and light rewards."
+    },
+    {
+      "zone_id": "zone_animal_park_zoo_corner",
+      "label": "Animal Park + Zoo Corner",
+      "role": "lower-right animal and nature branch",
+      "relative_to_home": "lower_right",
+      "anchor_ids": ["anchor_e_elephant", "anchor_f_fox", "anchor_l_lion", "anchor_p_panda", "anchor_m_monkey", "anchor_z_zebra"],
+      "p0_dependency": false,
+      "art_intent": "Animal-shaped landmarks live together in one coherent park / zoo corner."
+    },
+    {
+      "zone_id": "zone_beach_coast_edge",
+      "label": "Beach / Coast Edge",
+      "role": "optional lower-right edge preview",
+      "relative_to_home": "far_lower_right",
+      "anchor_ids": ["anchor_u_umbrella", "anchor_x_x_mark_box"],
+      "p0_dependency": false,
+      "art_intent": "A soft coast edge with a beach umbrella and lost box, not a required travel route."
+    }
+  ],
+  "planning_anchors": [
+    {"anchor_id": "anchor_s_sun", "letter": "S", "zone_id": "zone_sun_scene", "planning_position": {"x": 7, "y": 3}},
+    {"anchor_id": "anchor_g_gate", "letter": "G", "zone_id": "zone_school_morning_walk", "planning_position": {"x": 21, "y": 11}},
+    {"anchor_id": "anchor_k_kite", "letter": "K", "zone_id": "zone_school_morning_walk", "planning_position": {"x": 16, "y": 8}},
+    {"anchor_id": "anchor_n_net", "letter": "N", "zone_id": "zone_school_morning_walk", "planning_position": {"x": 14, "y": 13}},
+    {"anchor_id": "anchor_r_robot", "letter": "R", "zone_id": "zone_school_morning_walk", "planning_position": {"x": 20, "y": 14}},
+    {"anchor_id": "anchor_y_yo_yo", "letter": "Y", "zone_id": "zone_school_morning_walk", "planning_position": {"x": 17, "y": 15}},
+    {"anchor_id": "anchor_b_bear", "letter": "B", "zone_id": "zone_story_culture_bridge", "planning_position": {"x": 18, "y": 18}},
+    {"anchor_id": "anchor_q_queen", "letter": "Q", "zone_id": "zone_story_culture_bridge", "planning_position": {"x": 14, "y": 23}},
+    {"anchor_id": "anchor_v_violin", "letter": "V", "zone_id": "zone_story_culture_bridge", "planning_position": {"x": 19, "y": 25}},
+    {"anchor_id": "anchor_a_apple", "letter": "A", "zone_id": "zone_home_core", "planning_position": {"x": 28, "y": 16}},
+    {"anchor_id": "anchor_c_clock", "letter": "C", "zone_id": "zone_home_core", "planning_position": {"x": 31, "y": 15}},
+    {"anchor_id": "anchor_w_watch", "letter": "W", "zone_id": "zone_home_core", "planning_position": {"x": 32, "y": 18}},
+    {"anchor_id": "anchor_d_dog", "letter": "D", "zone_id": "zone_home_core", "planning_position": {"x": 27, "y": 20}},
+    {"anchor_id": "anchor_t_taxi", "letter": "T", "zone_id": "zone_home_core", "planning_position": {"x": 34, "y": 20}},
+    {"anchor_id": "anchor_h_hat", "letter": "H", "zone_id": "zone_shop_street", "planning_position": {"x": 43, "y": 8}},
+    {"anchor_id": "anchor_i_ice_cream", "letter": "I", "zone_id": "zone_shop_street", "planning_position": {"x": 47, "y": 8}},
+    {"anchor_id": "anchor_o_orange", "letter": "O", "zone_id": "zone_shop_street", "planning_position": {"x": 51, "y": 10}},
+    {"anchor_id": "anchor_j_jacket", "letter": "J", "zone_id": "zone_shop_street", "planning_position": {"x": 53, "y": 13}},
+    {"anchor_id": "anchor_e_elephant", "letter": "E", "zone_id": "zone_animal_park_zoo_corner", "planning_position": {"x": 41, "y": 22}},
+    {"anchor_id": "anchor_f_fox", "letter": "F", "zone_id": "zone_animal_park_zoo_corner", "planning_position": {"x": 44, "y": 20}},
+    {"anchor_id": "anchor_l_lion", "letter": "L", "zone_id": "zone_animal_park_zoo_corner", "planning_position": {"x": 47, "y": 24}},
+    {"anchor_id": "anchor_p_panda", "letter": "P", "zone_id": "zone_animal_park_zoo_corner", "planning_position": {"x": 45, "y": 28}},
+    {"anchor_id": "anchor_m_monkey", "letter": "M", "zone_id": "zone_animal_park_zoo_corner", "planning_position": {"x": 41, "y": 28}},
+    {"anchor_id": "anchor_z_zebra", "letter": "Z", "zone_id": "zone_animal_park_zoo_corner", "planning_position": {"x": 52, "y": 24}},
+    {"anchor_id": "anchor_u_umbrella", "letter": "U", "zone_id": "zone_beach_coast_edge", "planning_position": {"x": 54, "y": 30}},
+    {"anchor_id": "anchor_x_x_mark_box", "letter": "X", "zone_id": "zone_beach_coast_edge", "planning_position": {"x": 57, "y": 30}}
+  ],
+  "road_hubs": [
+    {"hub_id": "H0", "label": "Home Plaza Hub", "planning_position": {"x": 31, "y": 19}, "role": "main return point"},
+    {"hub_id": "H1", "label": "Morning Fork", "planning_position": {"x": 24, "y": 15}, "role": "school / story split"},
+    {"hub_id": "H2", "label": "School Gate Hub", "planning_position": {"x": 21, "y": 11}, "role": "school entry"},
+    {"hub_id": "H3", "label": "Story Bridge Hub", "planning_position": {"x": 18, "y": 18}, "role": "quiet left-side bridge"},
+    {"hub_id": "H4", "label": "Shop Street Gate", "planning_position": {"x": 39, "y": 13}, "role": "shop branch from home"},
+    {"hub_id": "H5", "label": "Animal Park Gate", "planning_position": {"x": 39, "y": 22}, "role": "animal branch from home"},
+    {"hub_id": "H6", "label": "Coast Preview Gate", "planning_position": {"x": 52, "y": 27}, "role": "optional coast edge"},
+    {"hub_id": "H7", "label": "Sun Viewpoint", "planning_position": {"x": 7, "y": 3}, "role": "visual morning landmark"}
+  ],
+  "roads": [
+    {
+      "road_id": "R0",
+      "label": "Home Plaza Ring",
+      "priority": "p0_local",
+      "path": ["anchor_a_apple", "anchor_c_clock", "anchor_w_watch", "anchor_t_taxi", "H0", "anchor_d_dog", "anchor_a_apple"],
+      "safety_note": "Short home loop; always keeps the child near home."
+    },
+    {
+      "road_id": "R1",
+      "label": "Morning School Road",
+      "priority": "p0_main",
+      "path": ["H0", "H1", "H2", "anchor_k_kite", "anchor_s_sun"],
+      "safety_note": "Main emotional road: go to school while facing morning sun."
+    },
+    {
+      "road_id": "R2",
+      "label": "School Yard Loop",
+      "priority": "p0_local",
+      "path": ["H2", "anchor_k_kite", "anchor_n_net", "anchor_r_robot", "anchor_y_yo_yo", "H2"],
+      "safety_note": "School is safe play and greeting, not classroom pressure."
+    },
+    {
+      "road_id": "R3",
+      "label": "Story Bridge Lane",
+      "priority": "p1_bridge",
+      "path": ["H1", "H3", "anchor_q_queen", "anchor_v_violin", "H0"],
+      "safety_note": "Story and culture connect school return and home."
+    },
+    {
+      "road_id": "R4",
+      "label": "Shop Street Branch",
+      "priority": "p1_daily_branch",
+      "path": ["H0", "H4", "anchor_h_hat", "anchor_i_ice_cream", "anchor_o_orange", "anchor_j_jacket"],
+      "safety_note": "Shop branch must not require purchase to continue."
+    },
+    {
+      "road_id": "R5",
+      "label": "Animal Park Branch",
+      "priority": "p1_daily_branch",
+      "path": ["H0", "H5", "anchor_e_elephant", "anchor_f_fox", "anchor_l_lion", "anchor_z_zebra", "anchor_p_panda", "anchor_m_monkey", "anchor_e_elephant"],
+      "safety_note": "Animal and zoo landmarks form a coherent park loop."
+    },
+    {
+      "road_id": "R6",
+      "label": "Coast Preview Spur",
+      "priority": "p2_optional_spur",
+      "path": ["anchor_z_zebra", "H6", "anchor_u_umbrella", "anchor_x_x_mark_box"],
+      "safety_note": "Coast edge remains optional and cannot become a daily requirement."
+    },
+    {
+      "road_id": "R7",
+      "label": "Home-Shop Service Path",
+      "priority": "secondary_connector",
+      "path": ["anchor_t_taxi", "H4"],
+      "safety_note": "Short visible connector from driveway to shopping street."
+    },
+    {
+      "road_id": "R8",
+      "label": "Home-Animal Garden Path",
+      "priority": "secondary_connector",
+      "path": ["anchor_t_taxi", "H5"],
+      "safety_note": "Gentle garden path from home to animal park."
+    }
+  ],
+  "runtime_migration_notes": [
+    "data/maps/world_map.json has been migrated to this home-centered 60x34 reference layout.",
+    "Keep anchor_id, letter, core_word, route_order, card_id, and album bindings stable in future art passes.",
+    "Keep road IDs and hub semantics aligned with this contract when replacing runtime coordinates or assets.",
+    "Re-run V02.17, V02.18, and full headless tests after any runtime coordinate change.",
+    "Update screenshot baselines for Home, School, Story Bridge, Shop Street, Animal Park, and Coast Edge."
+  ],
+  "forbidden_changes": [
+    "Do not turn the map into a course map or A-Z ordered test path.",
+    "Do not make Coast Edge or Animal Park required by P0 daily routes.",
+    "Do not add countdown, lateness, correctness, score, or mandatory completion language.",
+    "Do not hardcode production art paths; use logical asset IDs and AssetResolver."
+  ]
+}

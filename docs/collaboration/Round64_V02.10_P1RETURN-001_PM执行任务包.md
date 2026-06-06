@@ -37,7 +37,6 @@ PM / Game Design / UX / QA Agent
 ## Inputs
 
 - `docs/collaboration/Round62_V02.9_WEEKLY-003_PM执行任务包.md`
-- `docs/collaboration/Round63_V02.9_WEEKLY-004验收记录.md`
 - `docs/14_内容基线整理与首批内容规划.md` 中 V02-WEEKLY-003 P1 入口预收、B Bear / T Taxi anchor 规划
 - `LESSON-005`、`LESSON-008`、`LESSON-009`、`LESSON-010`
 

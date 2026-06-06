@@ -13,6 +13,7 @@ const LOCAL_THEME_PATHS := {
 const REQUIRED_CATEGORIES: Array[String] = [
 	"tile_atlas",
 	"landmark_assets",
+	"anchor_assets",
 	"npc_assets",
 	"pet_assets",
 	"card_art",

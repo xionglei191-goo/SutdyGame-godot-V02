@@ -66,7 +66,7 @@ func _check_visible_settings_path(main) -> void:
 	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "Settings safe-place test should move away from home first")
 	var safe_button := main.find_child("SafePlaceButton", true, false) as Button
 	_press(safe_button, "Settings panel should expose a visible safe-place button")
-	_expect(main.player_cell == Vector2i(5, 8), "Safe-place button should move the player back to the town safe cell")
+	_expect(main.player_cell == Vector2i(31, 19), "Safe-place button should move the player back to the home plaza safe cell")
 	_expect(settings_panel != null and not settings_panel.visible, "Safe-place action should close the settings panel")
 
 

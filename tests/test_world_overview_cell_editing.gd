@@ -11,8 +11,8 @@ func _init() -> void:
 	root.add_child(scene)
 	scene.call("_ready")
 
-	var road_id := "road_home_to_town"
-	var added_cell := Vector2i(6, 8)
+	var road_id := "road_home_plaza_ring"
+	var added_cell := Vector2i(26, 16)
 	var original_count: int = int(scene.call("get_road_cell_count", road_id))
 	var added: Dictionary = scene.call("toggle_road_cell_for_test", road_id, added_cell)
 	_expect(added.get("ok", false), "road cell should be addable")
@@ -39,7 +39,7 @@ func _init() -> void:
 	_expect(moved.get("ok", false), "place marker move should be command-backed")
 	_expect(scene.call("get_place_marker_cell", "place_home") == Vector2i(8, 9), "place marker should move")
 	_expect(scene.call("undo_for_test").get("ok", false), "undo should restore place marker move")
-	_expect(scene.call("get_place_marker_cell", "place_home") == Vector2i(4, 4), "undo should restore original place marker cell")
+	_expect(scene.call("get_place_marker_cell", "place_home") == Vector2i(29, 17), "undo should restore original place marker cell")
 	_expect(scene.call("redo_for_test").get("ok", false), "redo should reapply place marker move")
 	_expect(scene.call("get_place_marker_cell", "place_home") == Vector2i(8, 9), "redo should restore moved place marker cell")
 

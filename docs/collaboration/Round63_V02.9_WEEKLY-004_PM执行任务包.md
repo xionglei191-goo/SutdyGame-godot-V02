@@ -71,8 +71,8 @@ godot --headless --path . --quit
 
 完成后填写：
 
-- 修改文件：`tests/test_v029_weekly_return_smoke.gd`、`tests/headless_runner.gd`、`docs/collaboration/Round63_V02.9_WEEKLY-004_PM执行任务包.md`、`docs/collaboration/Round63_V02.9_WEEKLY-004验收记录.md`、`todo.md`、`docs/13_V02详细开发计划.md`、`docs/15_项目经理接管与下一阶段执行计划.md`、`lessons.md`。
-- 新增内容：7 天玩家路径 smoke、全量 runner 注册、1280x720 / 960x540 代表截图证据和 V02.9 阶段收口判断。
-- 验证方式：`find data -name '*.json' -print0 | xargs -0 jq empty`、`godot --headless --path . --script tests/test_v029_weekly_return_smoke.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 均通过；非 headless `x11` 截图命令成功导出 18 张代表截图。
+- 修改文件：`tests/test_v029_weekly_return_smoke.gd`、`tests/headless_runner.gd`、`docs/collaboration/Round63_V02.9_WEEKLY-004_PM执行任务包.md`、`todo.md`、`docs/13_V02详细开发计划.md`、`docs/15_项目经理接管与下一阶段执行计划.md`、`lessons.md`。
+- 新增内容：7 天玩家路径 smoke、全量 runner 注册和 V02.9 阶段收口判断。
+- 验证方式：`find data -name '*.json' -print0 | xargs -0 jq empty`、`godot --headless --path . --script tests/test_v029_weekly_return_smoke.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 均通过。
 - 风险：Bookshop / Bus Stop 仍只是 P1 入口预收，本轮没有实现其运行时入口；后续若要接入，必须单独建立真实入口和截图验收。
 - 待确认问题：下一阶段路线尚未建立。PM 判断：`V02-WEEKLY-004` 和 V02.9 一周回访节奏可以标记完成，下一步应进入新阶段规划 / Ready 队列建立。

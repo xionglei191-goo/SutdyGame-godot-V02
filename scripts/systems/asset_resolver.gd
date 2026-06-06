@@ -59,6 +59,10 @@ static func get_place_asset(logical_asset_id: String, theme_id: String = DEFAULT
 	return resolve_asset(theme_id, "place_assets", logical_asset_id)
 
 
+static func get_anchor_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "anchor_assets", logical_asset_id)
+
+
 static func get_character_sprite(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "character_assets", logical_asset_id)
 
@@ -106,7 +110,7 @@ static func _validate_profile(profile: Resource, expected_theme_id: String) -> A
 	elif profile.theme_id != expected_theme_id:
 		errors.append("Theme id mismatch. Expected %s, got %s." % [expected_theme_id, profile.theme_id])
 
-	for category in ["tile_atlas", "landmark_assets", "place_assets", "character_assets", "furniture_assets", "npc_assets", "pet_assets", "card_art", "ui_icon_assets", "ui_skin", "card_frame_assets"]:
+	for category in ["tile_atlas", "landmark_assets", "place_assets", "anchor_assets", "character_assets", "furniture_assets", "npc_assets", "pet_assets", "card_art", "ui_icon_assets", "ui_skin", "card_frame_assets"]:
 		if profile.get_category_assets(category).is_empty():
 			errors.append("Theme profile category is empty: %s" % category)
 

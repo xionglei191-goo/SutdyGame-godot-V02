@@ -4,11 +4,13 @@ const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
 const MainScene := preload("res://scenes/main.tscn")
 
-const HOME_LINE: Array[String] = ["A", "C", "D", "W"]
-const SCHOOL_LINE: Array[String] = ["E", "G", "K", "N", "R", "Y"]
-const FIRST_RING: Array[String] = ["B", "F", "H", "I", "J", "O", "T"]
-const SECOND_RING: Array[String] = ["L", "M", "P", "Q", "S", "U", "V"]
-const FAR_EDGE: Array[String] = ["X", "Z"]
+const HOME_LINE: Array[String] = ["A", "C", "D", "T", "W"]
+const SCHOOL_LINE: Array[String] = ["G", "K", "N", "R", "Y"]
+const STORY_BRIDGE: Array[String] = ["B", "Q", "V"]
+const SHOP_STREET: Array[String] = ["H", "I", "J", "O"]
+const ANIMAL_PARK: Array[String] = ["E", "F", "L", "M", "P", "Z"]
+const SUN_SCENE: Array[String] = ["S"]
+const COAST_EDGE: Array[String] = ["U", "X"]
 const FORBIDDEN_TEXT: Array[String] = ["课程", "单元", "测试", "测验", "考试", "背诵", "词表", "分数", "正确率", "等级", "打卡", "倒计时", "迟到", "必须", "错过", "独自远行", "赶车"]
 
 var failures: Array[String] = []
@@ -59,15 +61,19 @@ func _check_runtime_anchor_blueprint(world_map: Dictionary) -> void:
 
 func _check_anchor_layer(letter: String, position: Vector2i, anchor_id: String) -> void:
 	if HOME_LINE.has(letter):
-		_expect(position.x <= 8 and position.y <= 7, "Home-line anchor should stay near Home: %s at %s" % [anchor_id, position])
+		_expect(position.x >= 27 and position.x <= 34 and position.y >= 15 and position.y <= 20, "Home anchor should stay around Home Core: %s at %s" % [anchor_id, position])
 	elif SCHOOL_LINE.has(letter):
-		_expect(position.x >= 5 and position.x <= 13 and position.y >= 10 and position.y <= 18, "School-line anchor should stay near Walk/Gate/Yard: %s at %s" % [anchor_id, position])
-	elif FIRST_RING.has(letter):
-		_expect(position.x >= 12 and position.x <= 31 and position.y >= 5 and position.y <= 12, "First-ring anchor should stay in daily town ring: %s at %s" % [anchor_id, position])
-	elif SECOND_RING.has(letter):
-		_expect(position.x >= 14 and position.x <= 34 and position.y >= 2 and position.y <= 14, "Second-ring anchor should stay in preview ring: %s at %s" % [anchor_id, position])
-	elif FAR_EDGE.has(letter):
-		_expect(position.x >= 36 and position.y >= 12, "Far-edge anchor should remain at transport edge: %s at %s" % [anchor_id, position])
+		_expect(position.x >= 14 and position.x <= 21 and position.y >= 8 and position.y <= 15, "School anchor should stay near Morning School: %s at %s" % [anchor_id, position])
+	elif STORY_BRIDGE.has(letter):
+		_expect(position.x >= 14 and position.x <= 19 and position.y >= 18 and position.y <= 25, "Story bridge anchor should connect School and Home: %s at %s" % [anchor_id, position])
+	elif SHOP_STREET.has(letter):
+		_expect(position.x >= 43 and position.x <= 53 and position.y >= 8 and position.y <= 13, "Shop anchor should stay in Shop Street: %s at %s" % [anchor_id, position])
+	elif ANIMAL_PARK.has(letter):
+		_expect(position.x >= 41 and position.x <= 52 and position.y >= 20 and position.y <= 28, "Animal anchor should stay in Animal Park: %s at %s" % [anchor_id, position])
+	elif SUN_SCENE.has(letter):
+		_expect(position.x >= 5 and position.x <= 9 and position.y >= 2 and position.y <= 4, "Sun anchor should stay in the standalone Sun Scene: %s at %s" % [anchor_id, position])
+	elif COAST_EDGE.has(letter):
+		_expect(position.x >= 54 and position.y >= 30, "Coast anchor should remain at Beach / Coast Edge: %s at %s" % [anchor_id, position])
 
 
 func _check_main_scene_anchor_nodes_and_album(world_map: Dictionary) -> void:

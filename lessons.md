@@ -1,6 +1,6 @@
 # StudyGame V02 开发经验记录
 
-> 最后更新：2026-06-05
+> 最后更新：2026-06-06
 > 本文件只记录已经实际发生并确认的问题。潜在风险记录在项目计划或 `todo.md`，不作为开发经验。
 
 ## 记录规则
@@ -102,6 +102,10 @@
 | 2026-06-05 | Round 86 V02.17 世界地图运行时落地收口 | LESSON-011 | 26 anchor 全量运行时 smoke 发现近邻资源 / 旧坐标会吞掉 A-Z 相册路径，已调整交互优先级与天气 smoke 坐标 |
 | 2026-06-05 | Round 87 V02.18 世界地图可读性路线规划 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、任务包和 `todo.md`，建立 V02.18 地图视觉可读性与探索体验抛光路线与 `V02-MAPREAD-002` Ready；未改运行时代码，未产生新的已验证故障 |
 | 2026-06-05 | Round 88 V02.18 世界地图可读性收口 | 无新增已验证教训 | 26 anchor 可读性 focused/full headless 验证通过；共享 runner helper 补齐属于 LESSON-006 规则内处理，未形成新的故障类型 |
+| 2026-06-06 | Round 93 V02.19 ARTPASS-004 地图区域资产接入 | 无新增已验证教训 | 世界地图底图、9 个区域块、`anchor_assets` 合同和 runtime logical asset 接入通过 JSON、AssetResolver、V02.18 可读性、V02.17 runtime、全量 headless runner 和 Godot 启动验证；未产生新的已验证故障 |
+| 2026-06-06 | Round 94 V02.19 ARTPASS-005 26 Anchor 物件接入 | 无新增已验证教训 | 26 个 anchor production 物件资产、ThemeProfile 映射和 runtime ObjectSprite 接入通过 JSON、AssetResolver、V02.18 可读性、V02.17 runtime、全量 headless runner 和 Godot 启动验证；未产生新的已验证故障 |
+| 2026-06-06 | Round 95 V02.19 ARTPASS-006 样张驱动美术返工收口 | 无新增已验证教训 | 地图底图、26 anchor、glass UI skin 和 1280x720 runtime proof 通过 JSON、AssetResolver、V02.18 可读性、V02.17 runtime、Playable UI、RC Gate、全量 headless runner 和 Godot 启动验证；UI skin raw-load warning 已在本轮内改为 ResourceLoader 优先，未形成新的故障类型 |
+| 2026-06-06 | Round 96 V02.19 ARTPASS-007 全屏构图与 UI 返修收口 | 无新增已验证教训 | 针对用户视觉反馈完成 1280x720 fullscreen playfield、弱化旧路格、常驻 HUD/footer 轻玻璃化和底栏按钮比例统一；focused/full headless 与非 headless 1280 proof 均通过，未形成新的故障类型 |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -221,15 +225,15 @@
 
 - **日期：** 2026-06-05
 - **关联任务：** `V02-ARTBASE-005`
-- **现象：** 通过 Godot MCP 可以拿到 `/root/Main` 的 `1280x720` 运行时截图，但新增 `tests/capture_artbase005_screens.gd` 在 `godot --headless` 下执行时，`root.get_texture()` 返回空，无法导出 PNG。
+- **现象：** 通过 Godot MCP 可以拿到 `/root/Main` 的 `1280x720` 运行时截图，历史截图辅助脚本在 `godot --headless` 下执行时，`root.get_texture()` 返回空，无法导出 PNG。
 - **影响：** 即使运行时主场景和 UI 已真实出现，QA 仍无法仅靠 headless dummy renderer 自动补齐 `960x540` 门槛图，容易把“截图没出”误判成“布局一定失败”。
 - **根因：** `--headless` 使用 dummy renderer，不提供可直接读取的窗口纹理；脚本级 `get_texture().get_image()` 并不是稳定可用的截图路径。
-- **解决方式：** 保留 headless 用于合同与逻辑回归；截图验收改为使用 MCP 运行时截图或非 headless 显示驱动。`tests/capture_artbase005_screens.gd` 同时改为在检测到空纹理时给出明确阻塞原因，而不是空值崩溃。
+- **解决方式：** 保留 headless 用于合同与逻辑回归；截图验收改为使用 MCP 运行时截图或非 headless 显示驱动；后续清理轮已移除旧截图辅助脚本，视觉取证不再复用该文件。
 - **预防规则：**
   - 视觉验收任务必须提前区分“逻辑回归工具链”和“截图取证工具链”，不要默认二者都由 headless 完成。
   - 新增截图脚本时，先验证目标渲染路径是否真的能返回窗口纹理，再把它写进 PM 门槛。
   - 当 `1280x720` 已由 MCP 证明运行时可见、但较小视口截图缺失时，先记录工具链阻塞，再决定是否需要继续追查布局问题。
-- **验证依据：** Godot MCP 已捕获 `/root/Main` 的 `1280x720` 运行时截图；`godot --headless --path . --check-only --script tests/capture_artbase005_screens.gd` 通过；`godot --headless --path . --script tests/capture_artbase005_screens.gd -- --output-dir user://artbase005_captures --suffix 1280` 复现空纹理问题。
+- **验证依据：** Godot MCP 曾捕获 `/root/Main` 的 `1280x720` 运行时截图；旧 capture 脚本曾复现 headless 空纹理问题，后续已清理。
 
 ## LESSON-011：密集地图热点必须验证交互优先级和旧坐标回归
 

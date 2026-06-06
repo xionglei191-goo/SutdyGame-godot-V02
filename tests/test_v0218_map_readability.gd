@@ -4,11 +4,11 @@ const SaveServiceScript := preload("res://scripts/systems/save_service.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
 const MainScene := preload("res://scenes/main.tscn")
 
-const HOME_ANCHORS: Array[String] = ["A", "C", "D", "W"]
-const SCHOOL_LINE: Array[String] = ["E", "G", "K", "N", "R", "Y"]
-const FIRST_RING: Array[String] = ["B", "F", "H", "I", "J", "O", "T"]
-const SECOND_RING: Array[String] = ["L", "M", "P", "Q", "S", "U", "V"]
-const FAR_EDGE: Array[String] = ["X", "Z"]
+const HOME_ANCHORS: Array[String] = ["A", "C", "D", "T", "W"]
+const SCHOOL_LINE: Array[String] = ["G", "K", "N", "R", "S", "Y"]
+const FIRST_RING: Array[String] = ["B", "Q", "V", "H", "I", "J", "O"]
+const SECOND_RING: Array[String] = ["E", "F", "L", "M", "P", "Z"]
+const FAR_EDGE: Array[String] = ["U", "X"]
 const FORBIDDEN_TEXT: Array[String] = ["课程", "单元", "测试", "测验", "考试", "背诵", "词表", "分数", "正确率", "等级", "打卡", "完成率", "倒计时", "迟到", "必须", "错过", "独自远行", "赶车"]
 
 var failures: Array[String] = []
@@ -67,10 +67,17 @@ func _check_runtime_readability(world_map: Dictionary) -> void:
 	main.call("_ready")
 
 	_expect(main.find_child("MapReadabilityLayer", true, false) is Node2D, "V02.18 map should expose readability layer")
-	for node_name in ["MapReadZoneHomeSchool", "MapReadZoneTownRing", "MapReadZoneFarEdge", "MapReadSignHome", "MapReadSignSchool", "MapReadSignTownRing", "MapReadSignFarEdge"]:
+	var artpass004_zone_names: Array[String] = ["MapReadZoneSun", "MapReadZoneSchoolGate", "MapReadZoneSchoolYard", "MapReadZoneWalk", "MapReadZoneStory", "MapReadZoneHome", "MapReadZoneShop", "MapReadZoneAnimal", "MapReadZoneCoast"]
+	for node_name in artpass004_zone_names + ["MapReadSignSun", "MapReadSignSchool", "MapReadSignStory", "MapReadSignHome", "MapReadSignShop", "MapReadSignAnimal", "MapReadSignCoast"]:
 		_expect(main.find_child(node_name, true, false) != null, "V02.18 map should expose guide node: %s" % node_name)
+	for node_name in artpass004_zone_names:
+		var zone := main.find_child(node_name, true, false) as Sprite2D
+		_expect(zone != null and zone.texture != null and zone.texture.get_width() >= 512, "ARTPASS-004 map zone should use production place asset: %s" % node_name)
+	var ground := main.find_child("Ground", true, false) as Sprite2D
+	_expect(ground != null and ground.texture != null and ground.texture.get_width() == 1280, "ARTPASS-004 ground should use 1280 world map base asset")
 
 	var seen_groups := {}
+	var badge_rects: Array[Dictionary] = []
 	var interact_button := main.find_child("InteractButton", true, false) as Button
 	_expect(interact_button != null and _control_path_visible(interact_button), "V02.18 visible Interact button should stay available")
 	for anchor_value in world_map.get("memory_anchors", []):
@@ -93,10 +100,13 @@ func _check_runtime_readability(world_map: Dictionary) -> void:
 		var sprite := node.find_child("ObjectSprite", true, false) as Sprite2D
 		_expect(sprite != null and sprite.scale.x > 0.0 and sprite.scale.y > 0.0, "V02.18 anchor should have readable object sprite: %s" % anchor_id)
 		_expect(sprite != null and sprite.texture != null and sprite.texture.get_width() > 0, "V02.18 anchor sprite should have texture: %s" % anchor_id)
+		_expect(sprite != null and sprite.texture != null and sprite.texture.get_width() == 160, "ARTPASS-005 anchor should use production anchor asset texture: %s" % anchor_id)
 		var badge := node.find_child("LetterBadge", true, false) as Label
 		_expect(badge != null and badge.text == letter, "V02.18 anchor should keep letter badge: %s" % anchor_id)
 		_expect(badge != null and badge.size.x >= 28.0 and badge.size.y >= 28.0, "V02.18 letter badge should be readable size: %s" % anchor_id)
 		_expect(badge != null and int(badge.get_theme_font_size("font_size")) >= 16, "V02.18 letter badge should use readable font: %s" % anchor_id)
+		if badge != null:
+			badge_rects.append({"anchor_id": anchor_id, "letter": letter, "rect": badge.get_global_rect()})
 
 		var anchor_cell := _dict_to_cell(anchor.get("position", {}))
 		var look_cell := _best_look_cell(main, anchor_cell, anchor_id)
@@ -108,6 +118,7 @@ func _check_runtime_readability(world_map: Dictionary) -> void:
 			_expect(not str(main.life_status_label.text).contains(forbidden), "V02.18 anchor feedback should avoid pressure text %s: %s" % [forbidden, anchor_id])
 
 	_expect(seen_groups.size() == 5, "V02.18 runtime pass should cover all screenshot groups")
+	_check_runtime_badge_spacing(badge_rects, main)
 	_expect(main.open_memory_album().get("ok", false), "V02.18 album should open after full map exploration")
 	var album_text := _collect_visible_child_text(main)
 	for forbidden in FORBIDDEN_TEXT:
@@ -166,11 +177,41 @@ func _check_school_badge_spacing(anchors: Array) -> void:
 func _badge_rect_for_anchor(anchor: Dictionary) -> Rect2:
 	var cell := _dict_to_cell(anchor.get("position", {}))
 	var route_order := int(anchor.get("route_order", 1))
-	var top_left := (Vector2(cell.x, cell.y) + Vector2(0.5, 0.5)) * 32.0 + _anchor_badge_offset(route_order)
+	var top_left := (Vector2(cell.x, cell.y) + Vector2(0.5, 0.5)) * 16.0 + _anchor_badge_offset(route_order, str(anchor.get("letter", "")))
 	return Rect2(top_left, Vector2(28, 28))
 
 
-func _anchor_badge_offset(route_order: int) -> Vector2:
+func _anchor_badge_offset(route_order: int, letter: String = "") -> Vector2:
+	var per_letter_offsets: Dictionary = {
+		"A": Vector2(-42, -34),
+		"B": Vector2(-38, -24),
+		"C": Vector2(36, -40),
+		"D": Vector2(-42, 8),
+		"E": Vector2(-42, -20),
+		"F": Vector2(10, -42),
+		"G": Vector2(24, -28),
+		"H": Vector2(-38, -20),
+		"I": Vector2(18, -36),
+		"J": Vector2(-34, 4),
+		"K": Vector2(-42, -18),
+		"L": Vector2(18, -28),
+		"M": Vector2(-42, -8),
+		"N": Vector2(-42, -12),
+		"O": Vector2(20, -10),
+		"P": Vector2(18, 8),
+		"Q": Vector2(-42, 6),
+		"R": Vector2(18, -34),
+		"S": Vector2(46, -14),
+		"T": Vector2(20, 4),
+		"U": Vector2(12, -62),
+		"V": Vector2(-42, 6),
+		"W": Vector2(20, -8),
+		"X": Vector2(18, 2),
+		"Y": Vector2(-42, -8),
+		"Z": Vector2(16, -38),
+	}
+	if per_letter_offsets.has(letter):
+		return per_letter_offsets.get(letter)
 	var offsets: Array[Vector2] = [
 		Vector2(8, -31),
 		Vector2(-31, -27),
@@ -183,6 +224,22 @@ func _anchor_badge_offset(route_order: int) -> Vector2:
 func _rects_are_too_close(a: Rect2, b: Rect2) -> bool:
 	var padded := Rect2(a.position - Vector2(4, 4), a.size + Vector2(8, 8))
 	return padded.intersects(b)
+
+
+func _check_runtime_badge_spacing(badge_rects: Array[Dictionary], main) -> void:
+	for index in range(badge_rects.size()):
+		var current: Dictionary = badge_rects[index]
+		var current_rect: Rect2 = current.get("rect", Rect2())
+		for other_index in range(index + 1, badge_rects.size()):
+			var other: Dictionary = badge_rects[other_index]
+			_expect(not current_rect.intersects(other.get("rect", Rect2())), "V02.18 runtime letter badges should not overlap: %s near %s" % [current.get("letter", ""), other.get("letter", "")])
+	for sign_name in ["MapReadSignSun", "MapReadSignSchool", "MapReadSignStory", "MapReadSignHome", "MapReadSignShop", "MapReadSignAnimal", "MapReadSignCoast"]:
+		var sign := main.find_child(sign_name, true, false) as Label
+		if sign == null:
+			continue
+		var sign_rect := sign.get_global_rect()
+		for badge in badge_rects:
+			_expect(not sign_rect.intersects(badge.get("rect", Rect2())), "V02.18 runtime letter badge should not cover area sign: %s over %s" % [badge.get("letter", ""), sign_name])
 
 
 func _screenshot_group_for_letter(letter: String) -> String:

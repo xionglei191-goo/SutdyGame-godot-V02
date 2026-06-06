@@ -31,9 +31,7 @@ PM 结论：
 
 - 已通过 Godot MCP 捕获 `/root/Main` 的 `1280x720` 运行时截图，并复核 `TownHUD`、`TownFooter`、`RuntimeMap` 与 Town Plaza / Home / Shop 同时出现在真实主场景中。
 - 已通过运行时节点属性复核确认：顶部 HUD 与底部 `TownFooter` 仍落在安全区域内，没有在当前默认逻辑分辨率下直接消失。
-- 已新增 `tests/capture_artbase005_screens.gd` 作为 `V02-ARTBASE-005` 的批量截图辅助脚本，用来串起首屏、商店、小屋和 anchor 回访点的固定取证路径。
-- 但该脚本在 `godot --headless` 的 dummy renderer 下会遇到 `root.get_texture()` 为空的问题，说明当前缺失的是截图导出工具链，而不是已经确认失败的布局结论。
-- 因此，本轮可确认“`1280x720` 运行时证据存在”，但仍不能宣布 `V02-ARTBASE-005` 通过；`960x540` 与其余门槛图仍需改走 MCP 或非 headless 显示路径补齐。
+- 历史截图辅助脚本已在清理轮移除；该轮结论保留为：headless 不能承担截图取证，视觉证据应走 MCP 或非 headless 显示路径。
 
 ## 固定口径
 

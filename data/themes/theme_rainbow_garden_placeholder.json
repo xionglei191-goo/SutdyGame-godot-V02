@@ -16,6 +16,9 @@
     "landmark_town_start_placeholder": "placeholder://theme_rainbow_garden_placeholder/landmark/landmark_town_start_placeholder",
     "landmark_supermarket_placeholder": "placeholder://theme_rainbow_garden_placeholder/landmark/landmark_supermarket_placeholder"
   },
+  "anchor_assets": {
+    "anchor.a.apple_tree": "placeholder://theme_rainbow_garden_placeholder/anchor/anchor.a.apple_tree"
+  },
   "npc_assets": {
     "mina": "placeholder://theme_rainbow_garden_placeholder/npc/mina",
     "shopkeeper": "placeholder://theme_rainbow_garden_placeholder/npc/shopkeeper",

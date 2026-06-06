@@ -1,0 +1,271 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2300" height="1380" viewBox="0 0 2300 1380">
+<rect width="2300" height="1380" fill="#fbfaf4"/>
+<text x="72" y="48" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="800" fill="#263238">Sunshine Town Home-Centered Road Network Plan V1</text>
+<text x="72" y="82" font-family="Inter, Arial, sans-serif" font-size="16" fill="#5c6670">Road planning over V4 layout: Home is the hub; P0 school road, story bridge, shop branch, animal branch, and optional coast spur are separated for clear walking space.</text>
+<rect x="151" y="150.58823529411765" width="270" height="122.3529411764706" rx="22" fill="#fff7d8" stroke="#d9a514" stroke-width="3" opacity="0.68"/>
+<text x="167" y="180.58823529411765" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#d9a514">Sun Scene</text>
+<rect x="340" y="272.94117647058823" width="378" height="367.05882352941177" rx="26" fill="#e8f6ef" stroke="#3a9b73" stroke-width="3" opacity="0.68"/>
+<text x="356" y="302.94117647058823" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#3a9b73">School / Morning Walk</text>
+<rect x="313" y="640" width="351" height="305.88235294117646" rx="26" fill="#e0f0fb" stroke="#287fb8" stroke-width="3" opacity="0.68"/>
+<text x="329" y="670" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#287fb8">Story + Culture Bridge</text>
+<rect x="745" y="487.05882352941177" width="324" height="367.05882352941177" rx="28" fill="#e4f4eb" stroke="#2e8b57" stroke-width="3" opacity="0.68"/>
+<text x="761" y="517.0588235294117" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#2e8b57">Home Core</text>
+<rect x="1150" y="272.94117647058823" width="432" height="336.47058823529414" rx="26" fill="#fff0d2" stroke="#d28a1e" stroke-width="3" opacity="0.68"/>
+<text x="1166" y="302.94117647058823" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#d28a1e">Shop Street</text>
+<rect x="1123" y="701.1764705882354" width="459" height="367.05882352941177" rx="26" fill="#edf7dd" stroke="#5b9f45" stroke-width="3" opacity="0.68"/>
+<text x="1139" y="731.1764705882354" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#5b9f45">Animal Park + Zoo Corner</text>
+<rect x="1474" y="976.4705882352941" width="189" height="122.3529411764706" rx="18" fill="#efe4f7" stroke="#8b57bd" stroke-width="3" opacity="0.68"/>
+<text x="1490" y="1006.4705882352941" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#8b57bd">Beach / Coast Edge</text>
+<line x1="70" y1="120" x2="70" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="124" y1="120" x2="124" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="178" y1="120" x2="178" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="232" y1="120" x2="232" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="286" y1="120" x2="286" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="340" y1="120" x2="340" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="394" y1="120" x2="394" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="448" y1="120" x2="448" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="502" y1="120" x2="502" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="556" y1="120" x2="556" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="610" y1="120" x2="610" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="664" y1="120" x2="664" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="718" y1="120" x2="718" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="772" y1="120" x2="772" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="826" y1="120" x2="826" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="880" y1="120" x2="880" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="934" y1="120" x2="934" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="988" y1="120" x2="988" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1042" y1="120" x2="1042" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1096" y1="120" x2="1096" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1150" y1="120" x2="1150" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1204" y1="120" x2="1204" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1258" y1="120" x2="1258" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1312" y1="120" x2="1312" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1366" y1="120" x2="1366" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1420" y1="120" x2="1420" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1474" y1="120" x2="1474" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1528" y1="120" x2="1528" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1582" y1="120" x2="1582" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1636" y1="120" x2="1636" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="1690" y1="120" x2="1690" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="120" x2="1690" y2="120" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="181.1764705882353" x2="1690" y2="181.1764705882353" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="242.3529411764706" x2="1690" y2="242.3529411764706" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="303.52941176470586" x2="1690" y2="303.52941176470586" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="364.7058823529412" x2="1690" y2="364.7058823529412" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="425.88235294117646" x2="1690" y2="425.88235294117646" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="487.05882352941177" x2="1690" y2="487.05882352941177" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="548.2352941176471" x2="1690" y2="548.2352941176471" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="609.4117647058824" x2="1690" y2="609.4117647058824" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="670.5882352941177" x2="1690" y2="670.5882352941177" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="731.7647058823529" x2="1690" y2="731.7647058823529" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="792.9411764705883" x2="1690" y2="792.9411764705883" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="854.1176470588235" x2="1690" y2="854.1176470588235" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="915.2941176470589" x2="1690" y2="915.2941176470589" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="976.4705882352941" x2="1690" y2="976.4705882352941" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="1037.6470588235295" x2="1690" y2="1037.6470588235295" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="1098.8235294117649" x2="1690" y2="1098.8235294117649" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<line x1="70" y1="1160" x2="1690" y2="1160" stroke="#d8d4c7" stroke-width="1" opacity="0.22"/>
+<path d="M 826 609.4117647058824 L 907 578.8235294117648 L 934 670.5882352941177 L 988 731.7647058823529 L 907 701.1764705882354 L 799 731.7647058823529 L 826 609.4117647058824" fill="none" stroke="#fff8e8" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 826 609.4117647058824 L 907 578.8235294117648 L 934 670.5882352941177 L 988 731.7647058823529 L 907 701.1764705882354 L 799 731.7647058823529 L 826 609.4117647058824" fill="none" stroke="#cfa96a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<path d="M 907 701.1764705882354 L 718 578.8235294117648 L 637 456.47058823529414 L 502 364.7058823529412 L 259 211.76470588235293" fill="none" stroke="#fff8e8" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 907 701.1764705882354 L 718 578.8235294117648 L 637 456.47058823529414 L 502 364.7058823529412 L 259 211.76470588235293" fill="none" stroke="#e0b344" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<path d="M 637 456.47058823529414 L 502 364.7058823529412 L 448 517.6470588235295 L 610 548.2352941176471 L 529 578.8235294117648 L 637 456.47058823529414" fill="none" stroke="#fff8e8" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 637 456.47058823529414 L 502 364.7058823529412 L 448 517.6470588235295 L 610 548.2352941176471 L 529 578.8235294117648 L 637 456.47058823529414" fill="none" stroke="#8fc68f" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<path d="M 718 578.8235294117648 L 556 670.5882352941177 L 448 823.529411764706 L 583 884.7058823529412 L 907 701.1764705882354" fill="none" stroke="#fff8e8" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 718 578.8235294117648 L 556 670.5882352941177 L 448 823.529411764706 L 583 884.7058823529412 L 907 701.1764705882354" fill="none" stroke="#75acd2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<path d="M 907 701.1764705882354 L 1123 517.6470588235295 L 1231 364.7058823529412 L 1339 364.7058823529412 L 1447 425.88235294117646 L 1501 517.6470588235295" fill="none" stroke="#fff8e8" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 907 701.1764705882354 L 1123 517.6470588235295 L 1231 364.7058823529412 L 1339 364.7058823529412 L 1447 425.88235294117646 L 1501 517.6470588235295" fill="none" stroke="#d69531" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<path d="M 907 701.1764705882354 L 1123 792.9411764705883 L 1177 792.9411764705883 L 1258 731.7647058823529 L 1339 854.1176470588235 L 1474 854.1176470588235 L 1285 976.4705882352941 L 1177 976.4705882352941 L 1177 792.9411764705883" fill="none" stroke="#fff8e8" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 907 701.1764705882354 L 1123 792.9411764705883 L 1177 792.9411764705883 L 1258 731.7647058823529 L 1339 854.1176470588235 L 1474 854.1176470588235 L 1285 976.4705882352941 L 1177 976.4705882352941 L 1177 792.9411764705883" fill="none" stroke="#82b95a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<path d="M 1474 854.1176470588235 L 1474 945.8823529411765 L 1528 1037.6470588235295 L 1609 1037.6470588235295" fill="none" stroke="#fff8e8" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 1474 854.1176470588235 L 1474 945.8823529411765 L 1528 1037.6470588235295 L 1609 1037.6470588235295" fill="none" stroke="#a67ad1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<path d="M 988 731.7647058823529 L 1123 517.6470588235295" fill="none" stroke="#fff8e8" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 988 731.7647058823529 L 1123 517.6470588235295" fill="none" stroke="#d8b46f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<path d="M 988 731.7647058823529 L 1123 792.9411764705883" fill="none" stroke="#fff8e8" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" opacity="0.96"/>
+<path d="M 988 731.7647058823529 L 1123 792.9411764705883" fill="none" stroke="#b7cf7b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.84"/>
+<rect x="890" y="684.1764705882354" width="34" height="34" rx="8" fill="#ffffff" stroke="#263238" stroke-width="3"/>
+<text x="907" y="706.1764705882354" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#263238">H0</text>
+<rect x="701" y="561.8235294117648" width="34" height="34" rx="8" fill="#ffffff" stroke="#263238" stroke-width="3"/>
+<text x="718" y="583.8235294117648" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#263238">H1</text>
+<rect x="620" y="439.47058823529414" width="34" height="34" rx="8" fill="#ffffff" stroke="#263238" stroke-width="3"/>
+<text x="637" y="461.47058823529414" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#263238">H2</text>
+<rect x="539" y="653.5882352941177" width="34" height="34" rx="8" fill="#ffffff" stroke="#263238" stroke-width="3"/>
+<text x="556" y="675.5882352941177" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#263238">H3</text>
+<rect x="1106" y="500.6470588235295" width="34" height="34" rx="8" fill="#ffffff" stroke="#263238" stroke-width="3"/>
+<text x="1123" y="522.6470588235295" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#263238">H4</text>
+<rect x="1106" y="775.9411764705883" width="34" height="34" rx="8" fill="#ffffff" stroke="#263238" stroke-width="3"/>
+<text x="1123" y="797.9411764705883" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#263238">H5</text>
+<rect x="1457" y="928.8823529411765" width="34" height="34" rx="8" fill="#ffffff" stroke="#263238" stroke-width="3"/>
+<text x="1474" y="950.8823529411765" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#263238">H6</text>
+<rect x="242" y="194.76470588235293" width="34" height="34" rx="8" fill="#ffffff" stroke="#263238" stroke-width="3"/>
+<text x="259" y="216.76470588235293" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#263238">H7</text>
+<circle cx="259" cy="211.76470588235293" r="22" fill="#ffffff" stroke="#d9a514" stroke-width="5"/>
+<circle cx="259" cy="211.76470588235293" r="14" fill="#d9a514"/>
+<text x="259" y="216.76470588235293" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">S</text>
+<circle cx="637" cy="456.47058823529414" r="22" fill="#ffffff" stroke="#3a9b73" stroke-width="5"/>
+<circle cx="637" cy="456.47058823529414" r="14" fill="#3a9b73"/>
+<text x="637" y="461.47058823529414" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">G</text>
+<circle cx="502" cy="364.7058823529412" r="22" fill="#ffffff" stroke="#3a9b73" stroke-width="5"/>
+<circle cx="502" cy="364.7058823529412" r="14" fill="#3a9b73"/>
+<text x="502" y="369.7058823529412" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">K</text>
+<circle cx="448" cy="517.6470588235295" r="22" fill="#ffffff" stroke="#3a9b73" stroke-width="5"/>
+<circle cx="448" cy="517.6470588235295" r="14" fill="#3a9b73"/>
+<text x="448" y="522.6470588235295" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">N</text>
+<circle cx="610" cy="548.2352941176471" r="22" fill="#ffffff" stroke="#3a9b73" stroke-width="5"/>
+<circle cx="610" cy="548.2352941176471" r="14" fill="#3a9b73"/>
+<text x="610" y="553.2352941176471" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">R</text>
+<circle cx="529" cy="578.8235294117648" r="22" fill="#ffffff" stroke="#3a9b73" stroke-width="5"/>
+<circle cx="529" cy="578.8235294117648" r="14" fill="#3a9b73"/>
+<text x="529" y="583.8235294117648" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">Y</text>
+<circle cx="556" cy="670.5882352941177" r="22" fill="#ffffff" stroke="#287fb8" stroke-width="5"/>
+<circle cx="556" cy="670.5882352941177" r="14" fill="#287fb8"/>
+<text x="556" y="675.5882352941177" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">B</text>
+<circle cx="448" cy="823.529411764706" r="22" fill="#ffffff" stroke="#287fb8" stroke-width="5"/>
+<circle cx="448" cy="823.529411764706" r="14" fill="#287fb8"/>
+<text x="448" y="828.529411764706" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">Q</text>
+<circle cx="583" cy="884.7058823529412" r="22" fill="#ffffff" stroke="#287fb8" stroke-width="5"/>
+<circle cx="583" cy="884.7058823529412" r="14" fill="#287fb8"/>
+<text x="583" y="889.7058823529412" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">V</text>
+<circle cx="826" cy="609.4117647058824" r="22" fill="#ffffff" stroke="#2e8b57" stroke-width="5"/>
+<circle cx="826" cy="609.4117647058824" r="14" fill="#2e8b57"/>
+<text x="826" y="614.4117647058824" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">A</text>
+<circle cx="907" cy="578.8235294117648" r="22" fill="#ffffff" stroke="#2e8b57" stroke-width="5"/>
+<circle cx="907" cy="578.8235294117648" r="14" fill="#2e8b57"/>
+<text x="907" y="583.8235294117648" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">C</text>
+<circle cx="934" cy="670.5882352941177" r="22" fill="#ffffff" stroke="#2e8b57" stroke-width="5"/>
+<circle cx="934" cy="670.5882352941177" r="14" fill="#2e8b57"/>
+<text x="934" y="675.5882352941177" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">W</text>
+<circle cx="799" cy="731.7647058823529" r="22" fill="#ffffff" stroke="#2e8b57" stroke-width="5"/>
+<circle cx="799" cy="731.7647058823529" r="14" fill="#2e8b57"/>
+<text x="799" y="736.7647058823529" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">D</text>
+<circle cx="988" cy="731.7647058823529" r="22" fill="#ffffff" stroke="#2e8b57" stroke-width="5"/>
+<circle cx="988" cy="731.7647058823529" r="14" fill="#2e8b57"/>
+<text x="988" y="736.7647058823529" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">T</text>
+<circle cx="1231" cy="364.7058823529412" r="22" fill="#ffffff" stroke="#d28a1e" stroke-width="5"/>
+<circle cx="1231" cy="364.7058823529412" r="14" fill="#d28a1e"/>
+<text x="1231" y="369.7058823529412" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">H</text>
+<circle cx="1339" cy="364.7058823529412" r="22" fill="#ffffff" stroke="#d28a1e" stroke-width="5"/>
+<circle cx="1339" cy="364.7058823529412" r="14" fill="#d28a1e"/>
+<text x="1339" y="369.7058823529412" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">I</text>
+<circle cx="1447" cy="425.88235294117646" r="22" fill="#ffffff" stroke="#d28a1e" stroke-width="5"/>
+<circle cx="1447" cy="425.88235294117646" r="14" fill="#d28a1e"/>
+<text x="1447" y="430.88235294117646" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">O</text>
+<circle cx="1501" cy="517.6470588235295" r="22" fill="#ffffff" stroke="#d28a1e" stroke-width="5"/>
+<circle cx="1501" cy="517.6470588235295" r="14" fill="#d28a1e"/>
+<text x="1501" y="522.6470588235295" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">J</text>
+<circle cx="1177" cy="792.9411764705883" r="22" fill="#ffffff" stroke="#5b9f45" stroke-width="5"/>
+<circle cx="1177" cy="792.9411764705883" r="14" fill="#5b9f45"/>
+<text x="1177" y="797.9411764705883" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">E</text>
+<circle cx="1258" cy="731.7647058823529" r="22" fill="#ffffff" stroke="#5b9f45" stroke-width="5"/>
+<circle cx="1258" cy="731.7647058823529" r="14" fill="#5b9f45"/>
+<text x="1258" y="736.7647058823529" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">F</text>
+<circle cx="1339" cy="854.1176470588235" r="22" fill="#ffffff" stroke="#5b9f45" stroke-width="5"/>
+<circle cx="1339" cy="854.1176470588235" r="14" fill="#5b9f45"/>
+<text x="1339" y="859.1176470588235" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">L</text>
+<circle cx="1285" cy="976.4705882352941" r="22" fill="#ffffff" stroke="#5b9f45" stroke-width="5"/>
+<circle cx="1285" cy="976.4705882352941" r="14" fill="#5b9f45"/>
+<text x="1285" y="981.4705882352941" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">P</text>
+<circle cx="1177" cy="976.4705882352941" r="22" fill="#ffffff" stroke="#5b9f45" stroke-width="5"/>
+<circle cx="1177" cy="976.4705882352941" r="14" fill="#5b9f45"/>
+<text x="1177" y="981.4705882352941" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">M</text>
+<circle cx="1474" cy="854.1176470588235" r="22" fill="#ffffff" stroke="#5b9f45" stroke-width="5"/>
+<circle cx="1474" cy="854.1176470588235" r="14" fill="#5b9f45"/>
+<text x="1474" y="859.1176470588235" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">Z</text>
+<circle cx="1528" cy="1037.6470588235295" r="22" fill="#ffffff" stroke="#8b57bd" stroke-width="5"/>
+<circle cx="1528" cy="1037.6470588235295" r="14" fill="#8b57bd"/>
+<text x="1528" y="1042.6470588235295" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">U</text>
+<circle cx="1609" cy="1037.6470588235295" r="22" fill="#ffffff" stroke="#8b57bd" stroke-width="5"/>
+<circle cx="1609" cy="1037.6470588235295" r="14" fill="#8b57bd"/>
+<text x="1609" y="1042.6470588235295" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="900" fill="#ffffff">X</text>
+<text x="448" y="242.3529411764706" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#b98300">R1 Morning School Road</text>
+<text x="340" y="976.4705882352941" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#287fb8">R3 Story Bridge Lane</text>
+<text x="745" y="884.7058823529412" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#8a6a33">R0 Home Plaza Ring</text>
+<text x="1204" y="242.3529411764706" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#b87413">R4 Shop Street Branch</text>
+<text x="1123" y="1098.8235294117649" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#5b9f45">R5 Animal Park Branch</text>
+<text x="1447" y="1129.4117647058824" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" fill="#8b57bd">R6 Coast Preview Spur</text>
+<rect x="1730" y="120" width="500" height="1040" rx="10" fill="#ffffff" stroke="#d5d0c4"/>
+<text x="1754" y="162" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800" fill="#263238">Road Network Rules</text>
+<text x="1754" y="202" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">- Home Plaza Hub H0 is the return center for all daily</text>
+<text x="1754" y="221" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">routes.</text>
+<text x="1754" y="248" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">- R1 is the only P0 emotional main road: Home -&gt; School -&gt;</text>
+<text x="1754" y="267" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">Sun.</text>
+<text x="1754" y="294" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">- Story/Culture is a quiet bridge between school return and</text>
+<text x="1754" y="313" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">home, not a far district.</text>
+<text x="1754" y="340" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">- Shop and Animal are separate right-side branches so</text>
+<text x="1754" y="359" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">storefronts and park objects do not crowd the main road.</text>
+<text x="1754" y="386" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">- Coast U/X is an optional preview spur and must not become</text>
+<text x="1754" y="405" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">a daily requirement.</text>
+<text x="1754" y="432" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">- Road ribbons reserve visual space for actual walking</text>
+<text x="1754" y="451" font-family="Inter, Arial, sans-serif" font-size="13" fill="#34424d">lanes, trees, signs, and touch targets.</text>
+<text x="1754" y="484" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#263238">Route IDs</text>
+<line x1="1756" y1="508" x2="1796" y2="508" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="508" x2="1796" y2="508" stroke="#cfa96a" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="514" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R0 Home Plaza Ring</text>
+<text x="1808" y="534" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Short loop inside home; keeps returning child to the</text>
+<text x="1808" y="550" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">center.</text>
+<line x1="1756" y1="572" x2="1796" y2="572" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="572" x2="1796" y2="572" stroke="#e0b344" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="578" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R1 Morning School Road</text>
+<text x="1808" y="598" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Primary emotional line: leave home, walk toward school and</text>
+<text x="1808" y="614" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">morning sun.</text>
+<line x1="1756" y1="636" x2="1796" y2="636" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="636" x2="1796" y2="636" stroke="#8fc68f" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="642" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R2 School Yard Loop</text>
+<text x="1808" y="662" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Local school play loop; no classroom/test pressure.</text>
+<line x1="1756" y1="684" x2="1796" y2="684" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="684" x2="1796" y2="684" stroke="#75acd2" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="690" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R3 Story Bridge Lane</text>
+<text x="1808" y="710" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Left-side cultural lane links school return and home.</text>
+<line x1="1756" y1="732" x2="1796" y2="732" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="732" x2="1796" y2="732" stroke="#d69531" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="738" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R4 Shop Street Branch</text>
+<text x="1808" y="758" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Upper-right daily errand branch; does not block school</text>
+<text x="1808" y="774" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">route.</text>
+<line x1="1756" y1="796" x2="1796" y2="796" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="796" x2="1796" y2="796" stroke="#82b95a" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="802" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R5 Animal Park Branch</text>
+<text x="1808" y="822" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Lower-right animal/zoo loop with enough interior walking</text>
+<text x="1808" y="838" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">space.</text>
+<line x1="1756" y1="860" x2="1796" y2="860" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="860" x2="1796" y2="860" stroke="#a67ad1" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="866" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R6 Coast Preview Spur</text>
+<text x="1808" y="886" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Soft optional edge; beach umbrella and lost box, no P0</text>
+<text x="1808" y="902" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">dependency.</text>
+<line x1="1756" y1="924" x2="1796" y2="924" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="924" x2="1796" y2="924" stroke="#d8b46f" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="930" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R7 Home-Shop Service Path</text>
+<text x="1808" y="950" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Short visible connector from driveway to shopping street.</text>
+<line x1="1756" y1="972" x2="1796" y2="972" stroke="#fff8e8" stroke-width="14" stroke-linecap="round"/>
+<line x1="1756" y1="972" x2="1796" y2="972" stroke="#b7cf7b" stroke-width="6" stroke-linecap="round"/>
+<text x="1808" y="978" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="800" fill="#263238">R8 Home-Animal Garden Path</text>
+<text x="1808" y="998" font-family="Inter, Arial, sans-serif" font-size="11" fill="#6c747c">Gentle garden path from home to animal park.</text>
+<rect x="72" y="1203" width="2156" height="74" rx="8" fill="#ffffff" stroke="#d5d0c4"/>
+<line x1="96" y1="1245" x2="138" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="96" y1="1245" x2="138" y2="1245" stroke="#cfa96a" stroke-width="7" stroke-linecap="round"/>
+<text x="150" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R0</text>
+<line x1="311" y1="1245" x2="353" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="311" y1="1245" x2="353" y2="1245" stroke="#e0b344" stroke-width="7" stroke-linecap="round"/>
+<text x="365" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R1</text>
+<line x1="526" y1="1245" x2="568" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="526" y1="1245" x2="568" y2="1245" stroke="#8fc68f" stroke-width="7" stroke-linecap="round"/>
+<text x="580" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R2</text>
+<line x1="741" y1="1245" x2="783" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="741" y1="1245" x2="783" y2="1245" stroke="#75acd2" stroke-width="7" stroke-linecap="round"/>
+<text x="795" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R3</text>
+<line x1="956" y1="1245" x2="998" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="956" y1="1245" x2="998" y2="1245" stroke="#d69531" stroke-width="7" stroke-linecap="round"/>
+<text x="1010" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R4</text>
+<line x1="1171" y1="1245" x2="1213" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="1171" y1="1245" x2="1213" y2="1245" stroke="#82b95a" stroke-width="7" stroke-linecap="round"/>
+<text x="1225" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R5</text>
+<line x1="1386" y1="1245" x2="1428" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="1386" y1="1245" x2="1428" y2="1245" stroke="#a67ad1" stroke-width="7" stroke-linecap="round"/>
+<text x="1440" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R6</text>
+<line x1="1601" y1="1245" x2="1643" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="1601" y1="1245" x2="1643" y2="1245" stroke="#d8b46f" stroke-width="7" stroke-linecap="round"/>
+<text x="1655" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R7</text>
+<line x1="1816" y1="1245" x2="1858" y2="1245" stroke="#fff8e8" stroke-width="16" stroke-linecap="round"/>
+<line x1="1816" y1="1245" x2="1858" y2="1245" stroke="#b7cf7b" stroke-width="7" stroke-linecap="round"/>
+<text x="1870" y="1250" font-family="Inter, Arial, sans-serif" font-size="11" fill="#263238">R8</text>
+<text x="72" y="1348" font-family="Inter, Arial, sans-serif" font-size="13" fill="#6c747c">Proposal only: not applied to runtime JSON. H0-H7 and R0-R8 are draft road IDs for later data contracts.</text>
+</svg>
