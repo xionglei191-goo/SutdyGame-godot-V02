@@ -106,6 +106,10 @@
 | 2026-06-06 | Round 94 V02.19 ARTPASS-005 26 Anchor 物件接入 | 无新增已验证教训 | 26 个 anchor production 物件资产、ThemeProfile 映射和 runtime ObjectSprite 接入通过 JSON、AssetResolver、V02.18 可读性、V02.17 runtime、全量 headless runner 和 Godot 启动验证；未产生新的已验证故障 |
 | 2026-06-06 | Round 95 V02.19 ARTPASS-006 样张驱动美术返工收口 | 无新增已验证教训 | 地图底图、26 anchor、glass UI skin 和 1280x720 runtime proof 通过 JSON、AssetResolver、V02.18 可读性、V02.17 runtime、Playable UI、RC Gate、全量 headless runner 和 Godot 启动验证；UI skin raw-load warning 已在本轮内改为 ResourceLoader 优先，未形成新的故障类型 |
 | 2026-06-06 | Round 96 V02.19 ARTPASS-007 全屏构图与 UI 返修收口 | 无新增已验证教训 | 针对用户视觉反馈完成 1280x720 fullscreen playfield、弱化旧路格、常驻 HUD/footer 轻玻璃化和底栏按钮比例统一；focused/full headless 与非 headless 1280 proof 均通过，未形成新的故障类型 |
+| 2026-06-06 | Round 97 V02.19 ARTPASS-008 剩余 runtime 素材补齐收口 | 无新增已验证教训 | 使用外部生成脚本覆盖仍在 runtime 映射中的 places、UI icons、Sunny、家具和角色 PNG；透明素材完成后处理；JSON、mapped PNG、orphan import、AssetResolver、Playable RC、UI 操作、全量 headless runner 和 Godot 启动验证均通过，未形成新的故障类型 |
+| 2026-06-06 | Round 98 V02.19 ARTPASS-009 branch 漏项补齐收口 | 无新增已验证教训 | 使用外部生成脚本覆盖 `place.resource.branch` 对应的 96x96 透明 PNG；JSON、mapped PNG、orphan import、AssetResolver、全量 headless runner 和 Godot 启动验证均通过，未形成新的故障类型 |
+| 2026-06-06 | Round 99 V02.19 ARTPASS-010 运行时视觉验收与发布候选整理收口 | 无新增已验证教训 | 1280x720 runtime proof 覆盖 Town、Home、Shop、Album、Settings；旧辅助层降噪和 Album overlay 穿层在本轮内修复；focused/full headless、Godot 启动和残留进程检查均通过，未形成新的故障类型 |
+| 2026-06-06 | Round 101 V02.20 PLAYGATE-002..009 文档队列收口 | 无新增已验证教训 | 调用智能体完成首屏审计、自由生活 smoke 规格、空间 / UI / 文本返修方案、旧路径矩阵、1280 approved 判定和 V02.20 收口决策；缺口均作为 V02.21 返修输入记录，未复现新的故障类型 |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 

@@ -27,6 +27,7 @@ const ContentContractValidatorScript := preload("res://scripts/systems/content_c
 const AZWorldPlanContractScript := preload("res://scripts/data/az_world_plan_contract.gd")
 const TextbookWorldContractScript := preload("res://scripts/data/textbook_world_contract.gd")
 const V0218MapReadabilityTestScript := preload("res://tests/test_v0218_map_readability.gd")
+const V0220PlaygateControlsTestScript := preload("res://tests/test_v0220_playgate_controls.gd")
 const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
 const ANCHOR_ASSET_IDS: Array[String] = [
 	"anchor.a.apple_tree", "anchor.b.bear_corner", "anchor.c.clock", "anchor.d.dog_corner", "anchor.e.elephant_slide", "anchor.f.fox_topiary", "anchor.g.school_gate", "anchor.h.hat_sign", "anchor.i.ice_cream_cart", "anchor.j.jacket_window", "anchor.k.kite", "anchor.l.lion_fountain", "anchor.m.monkey_tree", "anchor.n.soft_net", "anchor.o.orange_stall", "anchor.p.panda_corner", "anchor.q.queen_poster", "anchor.r.robot_sign", "anchor.s.sun_landmark", "anchor.t.taxi_marker", "anchor.u.beach_umbrella", "anchor.v.violin_corner", "anchor.w.watch_table", "anchor.x.x_mark_box", "anchor.y.yo_yo_corner", "anchor.z.zebra_edge"
@@ -101,6 +102,7 @@ func _init() -> void:
 	_check_v0215_school_daily_slice()
 	_check_v0216_playable_rc_gate()
 	_check_v0218_map_readability()
+	_check_v0220_playgate_controls()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -442,8 +444,8 @@ func _check_child_experience_and_mobile_acceptance(main: Control) -> void:
 	_expect(hud != null and hud is Control and (hud as Control).anchor_top <= 0.03 and (hud as Control).anchor_right >= 0.95, "town HUD should be a top message bar, not a side status panel")
 	var coin_state := main.find_child("CoinState", true, false) as Label
 	var pet_state := main.find_child("PetState", true, false) as Label
-	_expect(coin_state != null and coin_state.get_theme_stylebox("normal") != null and str(coin_state.text).contains("币"), "coin HUD state should be a separate icon badge")
-	_expect(pet_state != null and pet_state.get_theme_stylebox("normal") != null and not str(pet_state.text).contains("金币"), "pet HUD state should keep Sunny snack, hunger, and happy separate from coins")
+	_expect(coin_state != null and coin_state.get_theme_stylebox("normal") != null and str(coin_state.text).is_valid_int(), "coin HUD state should be a compact icon-plus-number badge")
+	_expect(pet_state != null and pet_state.get_theme_stylebox("normal") != null and str(pet_state.text).contains("心") and not str(pet_state.text).contains("金币"), "pet HUD state should keep Sunny snack and happy separate from coins")
 	_expect(main.find_child("Header", true, false) == null, "town title should be folded into the single-line HUD, not a second top banner")
 	_expect(hud != null and hud is Control and (hud as Control).offset_bottom <= 52.0, "town HUD should stay compact enough to leave the playfield visible")
 	var footer := main.find_child("TownFooter", true, false)
@@ -1280,7 +1282,7 @@ func _check_v0218_map_readability() -> void:
 		var sprite := node.find_child("ObjectSprite", true, false) as Sprite2D
 		_expect(sprite != null and sprite.texture != null and sprite.scale.x > 0.0 and sprite.scale.y > 0.0, "V02.18 map readability should keep object sprite readable: %s" % anchor_id)
 		var badge := node.find_child("LetterBadge", true, false) as Label
-		_expect(badge != null and badge.text == letter and badge.size.x >= 28.0 and badge.size.y >= 28.0, "V02.18 map readability should keep readable badge: %s" % anchor_id)
+		_expect(badge != null and badge.text == letter and badge.size.x >= 22.0 and badge.size.y >= 22.0 and badge.size.x <= 24.0 and badge.size.y <= 24.0, "V02.20 map readability should keep a quiet readable badge: %s" % anchor_id)
 		var look_cell := _v0218_best_look_cell(main, _dict_to_cell(anchor.get("position", {})), anchor_id)
 		_expect(main.move_player_to_cell(look_cell).get("ok", false), "V02.18 map readability should reach anchor: %s" % anchor_id)
 		_press_visible_button(interact_button, "V02.18 map readability should trigger anchor through visible Interact: %s" % anchor_id)
@@ -1293,6 +1295,47 @@ func _check_v0218_map_readability() -> void:
 		_expect(not _collect_visible_child_text(main).contains(forbidden), "V02.18 map readability visible text should avoid pressure wording: %s" % forbidden)
 	main.close_memory_album()
 	_expect(main.save_service.clear_for_test(), "V02.18 map readability save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0220_playgate_controls() -> void:
+	_expect(V0220PlaygateControlsTestScript != null, "V02.20 playgate controls focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0220_playgate_controls.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.20 playgate controls save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	var start_cell: Vector2i = main.player_cell
+	var target_cell := start_cell + Vector2i(1, 0)
+	var start_position: Vector2 = main.player_marker.position
+	var request: Dictionary = main.request_player_walk_to_cell(target_cell)
+	_expect(request.get("ok", false) and bool(request.get("walking", false)), "V02.20 playgate should request embodied walking")
+	_expect(main.player_cell == start_cell, "V02.20 playgate walking should not teleport logical cell immediately")
+	main.call("_advance_player_walk", 1.0 / 60.0)
+	_expect(main.player_marker.position != start_position, "V02.20 playgate marker should move over time")
+	_expect(main.player_cell == start_cell, "V02.20 playgate should keep logical cell before arrival")
+	var finish: Dictionary = main.finish_player_walk_for_test()
+	_expect(finish.get("ok", false) and main.player_cell == target_cell, "V02.20 playgate should arrive through frame advancement")
+
+	_expect(main.runtime_map_node != null and main.runtime_map_node.scale.x > 1.0 and main.runtime_map_node.scale.y > 1.0, "V02.20 playgate should use local neighborhood camera scale")
+	var before_camera: Vector2 = main.runtime_map_node.position
+	_expect(main.request_player_walk_to_cell(main.player_cell + Vector2i(4, 0)).get("ok", false), "V02.20 playgate should start a camera follow walk")
+	main.finish_player_walk_for_test()
+	_expect(main.runtime_map_node.position != before_camera, "V02.20 playgate camera should follow the player")
+
+	_expect(main.request_player_walk_to_cell(Vector2i(38, 22)).get("ok", false), "V02.20 playgate prompt should walk near Mina")
+	main.finish_player_walk_for_test()
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "npc" and str(target.get("display_name", "")).contains("米娜"), "V02.20 playgate prompt should resolve visible NPC target")
+	var prompt := main.find_child("InteractionPrompt", true, false) as Label
+	_expect(prompt != null and prompt.visible and str(prompt.text).contains("米娜"), "V02.20 playgate prompt label should name the current target")
+
+	_expect(main.save_service.clear_for_test(), "V02.20 playgate controls save should clean up")
 	root.remove_child(main)
 	main.queue_free()
 

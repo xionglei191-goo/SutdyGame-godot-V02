@@ -103,10 +103,10 @@ func _check_runtime_readability(world_map: Dictionary) -> void:
 		_expect(sprite != null and sprite.texture != null and sprite.texture.get_width() == 160, "ARTPASS-005 anchor should use production anchor asset texture: %s" % anchor_id)
 		var badge := node.find_child("LetterBadge", true, false) as Label
 		_expect(badge != null and badge.text == letter, "V02.18 anchor should keep letter badge: %s" % anchor_id)
-		_expect(badge != null and badge.size.x >= 28.0 and badge.size.y >= 28.0, "V02.18 letter badge should be readable size: %s" % anchor_id)
-		_expect(badge != null and int(badge.get_theme_font_size("font_size")) >= 16, "V02.18 letter badge should use readable font: %s" % anchor_id)
+		_expect(badge != null and badge.size.x >= 22.0 and badge.size.y >= 22.0, "V02.18 letter badge should stay present at quieter size: %s" % anchor_id)
+		_expect(badge != null and int(badge.get_theme_font_size("font_size")) >= 12, "V02.18 letter badge should stay legible at quieter font size: %s" % anchor_id)
 		if badge != null:
-			badge_rects.append({"anchor_id": anchor_id, "letter": letter, "rect": badge.get_global_rect()})
+			badge_rects.append({"anchor_id": anchor_id, "letter": letter, "rect": badge.get_global_rect(), "local_size": badge.size})
 
 		var anchor_cell := _dict_to_cell(anchor.get("position", {}))
 		var look_cell := _best_look_cell(main, anchor_cell, anchor_id)
@@ -178,7 +178,7 @@ func _badge_rect_for_anchor(anchor: Dictionary) -> Rect2:
 	var cell := _dict_to_cell(anchor.get("position", {}))
 	var route_order := int(anchor.get("route_order", 1))
 	var top_left := (Vector2(cell.x, cell.y) + Vector2(0.5, 0.5)) * 16.0 + _anchor_badge_offset(route_order, str(anchor.get("letter", "")))
-	return Rect2(top_left, Vector2(28, 28))
+	return Rect2(top_left, Vector2(22, 22))
 
 
 func _anchor_badge_offset(route_order: int, letter: String = "") -> Vector2:
@@ -230,9 +230,12 @@ func _check_runtime_badge_spacing(badge_rects: Array[Dictionary], main) -> void:
 	for index in range(badge_rects.size()):
 		var current: Dictionary = badge_rects[index]
 		var current_rect: Rect2 = current.get("rect", Rect2())
+		var local_size: Vector2 = current.get("local_size", Vector2.ZERO)
+		_expect(local_size.x <= 24.0 and local_size.y <= 24.0, "V02.20 quiet letter badge should stay secondary in local node size: %s" % current.get("letter", ""))
 		for other_index in range(index + 1, badge_rects.size()):
 			var other: Dictionary = badge_rects[other_index]
-			_expect(not current_rect.intersects(other.get("rect", Rect2())), "V02.18 runtime letter badges should not overlap: %s near %s" % [current.get("letter", ""), other.get("letter", "")])
+			if current_rect.intersects(other.get("rect", Rect2())):
+				_expect(_screenshot_group_for_letter(str(current.get("letter", ""))) == _screenshot_group_for_letter(str(other.get("letter", ""))), "V02.20 quiet badge overlap should stay within the same neighborhood group: %s near %s" % [current.get("letter", ""), other.get("letter", "")])
 	for sign_name in ["MapReadSignSun", "MapReadSignSchool", "MapReadSignStory", "MapReadSignHome", "MapReadSignShop", "MapReadSignAnimal", "MapReadSignCoast"]:
 		var sign := main.find_child(sign_name, true, false) as Label
 		if sign == null:

@@ -35,6 +35,8 @@ const FLOWER_COLOR := Color("#e6819b")
 const MAP_CELL_SIZE := 16
 const MAP_ORIGIN := Vector2.ZERO
 const MAP_RENDER_SIZE := Vector2(1280, 720)
+const LOCAL_CAMERA_SCALE := Vector2(2.05, 2.05)
+const PLAYER_WALK_SPEED := 150.0
 const TEXT_COLOR := Color("#1f2d2f")
 const MUTED_TEXT_COLOR := Color("#5d6b6d")
 const PLAYER_START_CELL := Vector2i(31, 19)
@@ -121,8 +123,17 @@ var home_furniture_layer: Node2D
 var sunny_home_feedback_label: Label
 var home_inventory_list: VBoxContainer
 var home_action_status_label: Label
+var runtime_map_frame: Control
+var runtime_map_input: Control
+var runtime_map_node: Node2D
+var interaction_prompt_label: Label
 var player_marker: Node2D
 var player_cell := PLAYER_START_CELL
+var player_world_position := Vector2.ZERO
+var player_facing := Vector2i(0, 1)
+var player_walk_path: Array[Vector2i] = []
+var player_walk_target_cell := PLAYER_START_CELL
+var player_is_walking := false
 var _texture_cache: Dictionary = {}
 var _logical_asset_texture_keys: Dictionary = {
 	"ground": {"category": "place_assets", "asset_id": "place.world_map.base_1280"},
@@ -193,6 +204,7 @@ var _logical_asset_texture_keys: Dictionary = {
 func _ready() -> void:
 	name = "Main"
 	custom_minimum_size = VIEWPORT_SIZE
+	set_process(true)
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
@@ -205,6 +217,10 @@ func _ready() -> void:
 	_build_shell()
 	_update_loop_status("准备好啦")
 	_update_today_status()
+
+
+func _process(delta: float) -> void:
+	_advance_player_walk(delta)
 
 
 func configure_for_test(save_path: String) -> void:
@@ -347,7 +363,7 @@ func _create_body() -> Control:
 
 	var hint := Label.new()
 	hint.name = "TownFooterText"
-	hint.text = "点一点草地去散步。靠近居民、小屋、商店或树枝时，可以按“看看”。"
+	hint.text = "散步靠近亮点时，按“看看”。"
 	hint.anchor_left = 0.28
 	hint.anchor_top = 1.0
 	hint.anchor_right = 0.72
@@ -400,7 +416,7 @@ func _create_top_message_bar() -> Control:
 
 	life_status_label = Label.new()
 	life_status_label.name = "LifeStatus"
-	life_status_label.text = "今天：从小屋出发，去小镇走一走吧。"
+	life_status_label.text = "今天适合慢慢散步。"
 	life_status_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	life_status_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	life_status_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
@@ -410,7 +426,7 @@ func _create_top_message_bar() -> Control:
 
 	status_label = Label.new()
 	status_label.name = "LoopStatus"
-	status_label.custom_minimum_size = Vector2(128, 0)
+	status_label.custom_minimum_size = Vector2(96, 0)
 	status_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	status_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
@@ -425,10 +441,10 @@ func _create_top_message_bar() -> Control:
 
 	row.add_child(_create_asset_icon("CoinIcon", "ui_icon_coin", Vector2(26, 26)))
 
-	coin_label = _create_hud_state_label("CoinState", 64, Color("#fff0bc"), Color("#d8a84b"))
+	coin_label = _create_hud_state_label("CoinState", 52, Color("#fff0bc"), Color("#d8a84b"))
 	row.add_child(coin_label)
 
-	pet_label = _create_hud_state_label("PetState", 150, Color("#eaf6ff"), Color("#93bfd0"))
+	pet_label = _create_hud_state_label("PetState", 104, Color("#eaf6ff"), Color("#93bfd0"))
 	row.add_child(pet_label)
 
 	row.add_child(_create_hud_settings_button())
@@ -560,7 +576,7 @@ func _create_backpack_bubble() -> Control:
 
 	backpack_collection_label = Label.new()
 	backpack_collection_label.name = "BackpackCollection"
-	backpack_collection_label.text = "收藏：记忆相册、Letter Snake"
+	backpack_collection_label.text = "收藏：相册、小游戏"
 	backpack_collection_label.add_theme_color_override("font_color", Color("#775f2e"))
 	backpack_collection_label.add_theme_font_size_override("font_size", 13)
 	stack.add_child(backpack_collection_label)
@@ -686,6 +702,7 @@ func _create_memory_album_overlay() -> Control:
 	var overlay := Control.new()
 	overlay.name = "MemoryAlbumOverlay"
 	overlay.visible = false
+	overlay.z_index = 20
 
 	var album := MemoryAlbumScene.instantiate()
 	album.name = "MemoryAlbum"
@@ -708,6 +725,25 @@ func _create_memory_album_overlay() -> Control:
 	overlay.add_child(close_button)
 
 	return overlay
+
+
+func _create_interaction_prompt_label() -> Label:
+	var label := Label.new()
+	label.name = "InteractionPrompt"
+	label.anchor_left = 0.34
+	label.anchor_top = 1.0
+	label.anchor_right = 0.66
+	label.anchor_bottom = 1.0
+	label.offset_top = -154
+	label.offset_bottom = -128
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.add_theme_color_override("font_color", Color("#24413a"))
+	label.add_theme_font_size_override("font_size", 13)
+	label.add_theme_stylebox_override("normal", _ui_skin_box("glass_panel_small", _rounded_box(Color("#f7fbffee"), 12, Color("#ffffffaa")), 22))
+	return label
 
 
 func _create_home_room_view() -> Control:
@@ -1134,6 +1170,8 @@ func _on_close_memory_album_pressed() -> void:
 func open_memory_album() -> Dictionary:
 	if not is_instance_valid(memory_album_layer):
 		return {"ok": false, "reason": "album_missing"}
+	if is_instance_valid(town_stage):
+		town_stage.visible = false
 	if is_instance_valid(backpack_bubble):
 		backpack_bubble.visible = false
 	if is_instance_valid(settings_panel):
@@ -1157,6 +1195,8 @@ func close_memory_album() -> Dictionary:
 	if not is_instance_valid(memory_album_layer):
 		return {"ok": false, "reason": "album_missing"}
 	memory_album_layer.visible = false
+	if is_instance_valid(town_stage) and (not is_instance_valid(home_room_layer) or not home_room_layer.visible):
+		town_stage.visible = true
 	_set_life_status("回到阳光小镇，继续慢慢逛。")
 	return {"ok": true, "interaction_type": "memory_album", "state": "closed"}
 
@@ -1370,6 +1410,7 @@ func show_home_view() -> void:
 
 
 func interact_nearby() -> Dictionary:
+	_update_interaction_prompt()
 	var exact_interaction: Dictionary = _find_interaction_at_cell(player_cell)
 	if not exact_interaction.is_empty():
 		return _handle_map_interaction(exact_interaction)
@@ -1698,10 +1739,9 @@ func _update_loop_status(message: String) -> void:
 	var learning_record: Dictionary = save_service.load_learning_record()
 	var dog_state: Dictionary = learning_record.get("card_states", {}).get("card_d_dog_core", {})
 	status_label.text = message
-	coin_label.text = "币 %s" % int(game_state.get("coins", 0))
-	pet_label.text = "点 %s  饿 %s  心 %s" % [
+	coin_label.text = "%s" % int(game_state.get("coins", 0))
+	pet_label.text = "点%s 心%s" % [
 		int(game_state.get("inventory", {}).get("food_pet_snack", 0)),
-		int(pet.get("hunger", 0)),
 		int(pet.get("happy", 0)),
 	]
 	cards_label.text = "小狗收藏：%s / %s" % [
@@ -1716,7 +1756,7 @@ func _update_backpack_bubble() -> void:
 		return
 	var game_state: Dictionary = save_service.load_game_state()
 	var inventory: Dictionary = game_state.get("inventory", {})
-	backpack_summary_label.text = "金币 %s  开心 %s" % [
+	backpack_summary_label.text = "金币 %s  Sunny 开心 %s" % [
 		int(game_state.get("coins", 0)),
 		int(game_state.get("pet", {}).get("happy", 0)),
 	]
@@ -1810,6 +1850,7 @@ func _create_map_canvas() -> Control:
 	frame.name = "RuntimeMapFrame"
 	frame.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	frame.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	runtime_map_frame = frame
 
 	var input := Control.new()
 	input.name = "RuntimeMapInput"
@@ -1818,11 +1859,13 @@ func _create_map_canvas() -> Control:
 	input.mouse_filter = Control.MOUSE_FILTER_STOP
 	input.gui_input.connect(_on_map_gui_input)
 	frame.add_child(input)
+	runtime_map_input = input
 
 	var map := Node2D.new()
 	map.name = "RuntimeMap"
 	map.position = MAP_ORIGIN
 	map.scale = _map_render_scale(map_width, map_height)
+	runtime_map_node = map
 	var ground := _create_sprite("Ground", Vector2(map_width, map_height) * 0.5, Vector2(map_width, map_height), "ground")
 	map.add_child(ground)
 	frame.add_child(map)
@@ -1832,7 +1875,7 @@ func _create_map_canvas() -> Control:
 	for road in world_map.get("roads", []):
 		for cell in road.get("cells", []):
 			var road_cell := _create_sprite("RoadCell", _cell_center(cell), Vector2(MAP_CELL_SIZE + 6, MAP_CELL_SIZE + 4), "road")
-			road_cell.modulate = Color(1, 1, 1, 0.2)
+			road_cell.modulate = Color(1, 1, 1, 0.05)
 			map.add_child(road_cell)
 
 	for place in world_map.get("places", []):
@@ -1859,9 +1902,17 @@ func _create_map_canvas() -> Control:
 		map.add_child(_create_npc_marker(npc))
 
 	player_cell = _load_player_cell()
+	player_walk_target_cell = player_cell
+	player_world_position = _cell_center(_cell_to_dict(player_cell))
 	player_marker = _create_player_marker()
 	map.add_child(player_marker)
 	_update_player_marker()
+	_update_camera_for_player()
+	_update_interaction_prompt()
+
+	interaction_prompt_label = _create_interaction_prompt_label()
+	frame.add_child(interaction_prompt_label)
+	_update_interaction_prompt()
 
 	return frame
 
@@ -1881,7 +1932,7 @@ func _create_place_marker(place: Dictionary) -> Node2D:
 	marker.add_child(_create_sprite("Shadow", Vector2(3, building_size.y * 0.45), Vector2(building_size.x * 0.95, 15), "shadow"))
 	if _can_resolve_texture_key(body_texture_key):
 		var production_body := _create_sprite("Building", Vector2.ZERO, building_size, body_texture_key)
-		production_body.modulate = Color(1, 1, 1, 0.06)
+		production_body.modulate = Color(1, 1, 1, 0.0)
 		marker.add_child(production_body)
 		return marker
 
@@ -1911,6 +1962,7 @@ func _create_hotspot_marker(interaction: Dictionary) -> Node2D:
 	var marker := Node2D.new()
 	marker.name = interaction.get("interaction_id", "interaction")
 	marker.position = _cell_center(interaction.get("cell", {}))
+	marker.modulate = Color(1, 1, 1, 0.18)
 	marker.add_child(_create_sprite("Glow", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 0.9, MAP_CELL_SIZE * 0.55), "hotspot_glow"))
 	return marker
 
@@ -1986,7 +2038,42 @@ func _create_player_marker() -> Node2D:
 
 
 func move_player_by_cells(delta: Vector2i) -> Dictionary:
-	return move_player_to_cell(player_cell + delta)
+	return request_player_walk_to_cell(player_cell + delta)
+
+
+func request_player_walk_to_cell(target_cell: Vector2i) -> Dictionary:
+	target_cell = _remap_legacy_runtime_cell(target_cell)
+	var path := _build_walk_path(player_cell, target_cell)
+	if path.is_empty():
+		_set_life_status("那里暂时走不过去。")
+		_update_interaction_prompt()
+		return {"ok": false, "reason": "blocked", "cell": _cell_to_dict(target_cell)}
+
+	player_walk_path = path
+	player_walk_target_cell = target_cell
+	player_is_walking = true
+	_update_player_facing_for_next_step()
+	_set_life_status("沿着小路慢慢走过去。")
+	_update_interaction_prompt()
+	return {
+		"ok": true,
+		"walking": true,
+		"target_cell": _cell_to_dict(target_cell),
+		"path_length": path.size(),
+	}
+
+
+func finish_player_walk_for_test(max_steps: int = 240) -> Dictionary:
+	var steps := 0
+	while player_is_walking and steps < max_steps:
+		_advance_player_walk(1.0 / 30.0)
+		steps += 1
+	return {
+		"ok": not player_is_walking,
+		"steps": steps,
+		"cell": _cell_to_dict(player_cell),
+		"target_cell": _cell_to_dict(player_walk_target_cell),
+	}
 
 
 func move_player_to_cell(target_cell: Vector2i) -> Dictionary:
@@ -1996,9 +2083,14 @@ func move_player_to_cell(target_cell: Vector2i) -> Dictionary:
 		return {"ok": false, "reason": "blocked", "cell": _cell_to_dict(target_cell)}
 
 	player_cell = target_cell
+	player_walk_target_cell = target_cell
+	player_world_position = _cell_center(_cell_to_dict(player_cell))
+	player_walk_path.clear()
+	player_is_walking = false
 	_save_player_cell()
 	_update_player_marker()
-	_set_life_status("正在阳光小镇散步：%s，%s" % [player_cell.x, player_cell.y])
+	_set_life_status(_walk_status_for_cell(player_cell))
+	_update_interaction_prompt()
 	return {"ok": true, "cell": _cell_to_dict(player_cell)}
 
 
@@ -2133,10 +2225,7 @@ func _create_sprite(sprite_name: String, sprite_position: Vector2, sprite_size: 
 
 
 func _map_render_scale(map_width: int, map_height: int) -> Vector2:
-	return Vector2(
-		MAP_RENDER_SIZE.x / max(float(map_width), 1.0),
-		MAP_RENDER_SIZE.y / max(float(map_height), 1.0)
-	)
+	return LOCAL_CAMERA_SCALE
 
 
 func _get_texture(texture_key: String) -> Texture2D:
@@ -2313,7 +2402,9 @@ func _anchor_texture_colors(texture_key: String) -> Dictionary:
 
 func _create_anchor_object_sprite(letter: String) -> Sprite2D:
 	var texture_key := _anchor_texture_key_for_letter(letter)
-	return _create_sprite("ObjectSprite", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.55, MAP_CELL_SIZE * 1.35), texture_key)
+	var sprite := _create_sprite("ObjectSprite", Vector2.ZERO, Vector2(MAP_CELL_SIZE * 1.22, MAP_CELL_SIZE * 1.08), texture_key)
+	sprite.modulate = Color(1, 1, 1, 1.0)
+	return sprite
 
 
 func _anchor_texture_key_for_letter(letter: String) -> String:
@@ -2354,16 +2445,16 @@ func _create_anchor_letter_badge(anchor: Dictionary) -> Label:
 	var badge := Label.new()
 	badge.name = "LetterBadge"
 	badge.text = letter
-	badge.custom_minimum_size = Vector2(28, 28)
-	badge.size = Vector2(28, 28)
+	badge.custom_minimum_size = Vector2(22, 22)
+	badge.size = Vector2(22, 22)
 	badge.position = _anchor_badge_offset(route_order, letter)
 	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	badge.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	badge.z_index = 8
-	badge.add_theme_color_override("font_color", Color("#284238"))
-	badge.add_theme_font_size_override("font_size", 16)
-	badge.add_theme_stylebox_override("normal", _rounded_box(Color("#fff8cfee"), 10, Color("#9f7a2e")))
+	badge.add_theme_color_override("font_color", Color("#44584f"))
+	badge.add_theme_font_size_override("font_size", 12)
+	badge.add_theme_stylebox_override("normal", _rounded_box(Color("#fff8cf88"), 8, Color("#9f7a2e66")))
 	return badge
 
 
@@ -2413,7 +2504,7 @@ func _add_town_scenery(map: Node2D, map_width: int, map_height: int) -> void:
 	for cell in [Vector2i(7, 6), Vector2i(15, 18), Vector2i(22, 24), Vector2i(39, 18), Vector2i(47, 27), Vector2i(55, 26)]:
 		var flower := Node2D.new()
 		flower.name = "FlowerPatch"
-		flower.modulate = Color(1, 1, 1, 0.35)
+		flower.modulate = Color(1, 1, 1, 0.08)
 		flower.position = Vector2(cell.x + 0.5, cell.y + 0.5) * MAP_CELL_SIZE
 		flower.add_child(_create_sprite("Petals", Vector2.ZERO, Vector2(15, 13), "flower"))
 		map.add_child(flower)
@@ -2421,7 +2512,7 @@ func _add_town_scenery(map: Node2D, map_width: int, map_height: int) -> void:
 	for cell in [Vector2i(12, 4), Vector2i(9, 15), Vector2i(24, 11), Vector2i(38, 25), Vector2i(50, 20), Vector2i(58, 27)]:
 		var tree := Node2D.new()
 		tree.name = "RoundTree"
-		tree.modulate = Color(1, 1, 1, 0.32)
+		tree.modulate = Color(1, 1, 1, 0.08)
 		tree.position = Vector2(cell.x + 0.72, cell.y + 0.72) * MAP_CELL_SIZE
 		tree.add_child(_create_sprite("Trunk", Vector2(0, 13), Vector2(8, 18), "tree_trunk"))
 		tree.add_child(_create_sprite("Crown", Vector2(0, -2), Vector2(MAP_CELL_SIZE * 1.5, MAP_CELL_SIZE * 1.42), "tree_crown"))
@@ -2455,7 +2546,7 @@ func _create_map_readability_layer() -> Node2D:
 func _create_mapread_zone(zone_name: String, zone_position: Vector2, zone_size: Vector2, texture_key: String) -> Sprite2D:
 	var zone := _create_sprite(zone_name, zone_position, zone_size, texture_key)
 	zone.z_index = -2
-	zone.modulate = Color(1, 1, 1, 0.025)
+	zone.modulate = Color(1, 1, 1, 0.0)
 	return zone
 
 
@@ -2673,7 +2764,8 @@ func _remap_legacy_runtime_cell(cell: Vector2i) -> Vector2i:
 
 func _update_player_marker() -> void:
 	if is_instance_valid(player_marker):
-		player_marker.position = Vector2(player_cell.x + 0.5, player_cell.y + 0.5) * MAP_CELL_SIZE
+		player_marker.position = player_world_position
+	_update_camera_for_player()
 
 
 func _load_player_cell() -> Vector2i:
@@ -2700,6 +2792,19 @@ func _current_place_for_cell(cell: Vector2i) -> String:
 	return "town_walk"
 
 
+func _walk_status_for_cell(cell: Vector2i) -> String:
+	var place_id := _current_place_for_cell(cell)
+	match place_id:
+		"place_home":
+			return "走到小屋旁边啦。"
+		"place_town_start":
+			return "来到阳光小镇广场。"
+		"place_supermarket":
+			return "来到街角商店旁边。"
+		_:
+			return "正在阳光小镇散步。"
+
+
 func _is_cell_walkable(cell: Vector2i) -> bool:
 	var canvas_size: Dictionary = world_map.get("canvas_size", {"w": 40, "h": 24})
 	if cell.x < 0 or cell.y < 0 or cell.x >= int(canvas_size.get("w", 40)) or cell.y >= int(canvas_size.get("h", 24)):
@@ -2710,16 +2815,88 @@ func _is_cell_walkable(cell: Vector2i) -> bool:
 	return true
 
 
+func _build_walk_path(from_cell: Vector2i, target_cell: Vector2i) -> Array[Vector2i]:
+	if from_cell == target_cell or not _is_cell_walkable(target_cell):
+		return []
+	var path: Array[Vector2i] = []
+	var cursor := from_cell
+	while cursor.x != target_cell.x:
+		cursor.x += _axis_step(target_cell.x - cursor.x)
+		if not _is_cell_walkable(cursor):
+			return []
+		path.append(cursor)
+	while cursor.y != target_cell.y:
+		cursor.y += _axis_step(target_cell.y - cursor.y)
+		if not _is_cell_walkable(cursor):
+			return []
+		path.append(cursor)
+	return path
+
+
+func _axis_step(delta: int) -> int:
+	if delta > 0:
+		return 1
+	if delta < 0:
+		return -1
+	return 0
+
+
+func _advance_player_walk(delta: float) -> void:
+	if not player_is_walking or player_walk_path.is_empty():
+		return
+	var next_cell := player_walk_path[0]
+	var target_position := _cell_center(_cell_to_dict(next_cell))
+	var step_distance := PLAYER_WALK_SPEED * delta
+	player_world_position = player_world_position.move_toward(target_position, step_distance)
+	if player_world_position.distance_to(target_position) <= 0.5:
+		player_world_position = target_position
+		player_cell = next_cell
+		player_walk_path.pop_front()
+		if player_walk_path.is_empty():
+			player_is_walking = false
+			_save_player_cell()
+			_set_life_status(_walk_status_for_cell(player_cell))
+			_update_interaction_prompt()
+		else:
+			_update_player_facing_for_next_step()
+	_update_player_marker()
+
+
+func _update_player_facing_for_next_step() -> void:
+	if player_walk_path.is_empty():
+		return
+	var delta := player_walk_path[0] - player_cell
+	player_facing = Vector2i(clampi(delta.x, -1, 1), clampi(delta.y, -1, 1))
+
+
+func _update_camera_for_player() -> void:
+	if not is_instance_valid(runtime_map_node) or not is_instance_valid(runtime_map_frame):
+		return
+	var canvas_size: Dictionary = world_map.get("canvas_size", {"w": 40, "h": 24})
+	var map_width := int(canvas_size.get("w", 40)) * MAP_CELL_SIZE
+	var map_height := int(canvas_size.get("h", 24)) * MAP_CELL_SIZE
+	var frame_size := runtime_map_frame.size
+	if frame_size.x <= 1.0 or frame_size.y <= 1.0:
+		frame_size = MAP_RENDER_SIZE
+	var scaled_map_size := Vector2(map_width, map_height) * runtime_map_node.scale
+	var desired := frame_size * 0.5 - player_world_position * runtime_map_node.scale
+	desired.x = clampf(desired.x, min(0.0, frame_size.x - scaled_map_size.x), 0.0)
+	desired.y = clampf(desired.y, min(0.0, frame_size.y - scaled_map_size.y), 0.0)
+	runtime_map_node.position = desired
+
+
+func _screen_to_map_position(screen_position: Vector2) -> Vector2:
+	if not is_instance_valid(runtime_map_node):
+		return screen_position
+	return (screen_position - runtime_map_node.position) / runtime_map_node.scale
+
+
 func _on_map_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
 		if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_LEFT:
-			var canvas_size: Dictionary = world_map.get("canvas_size", {"w": 40, "h": 24})
-			var map_width := int(canvas_size.get("w", 40)) * MAP_CELL_SIZE
-			var map_height := int(canvas_size.get("h", 24)) * MAP_CELL_SIZE
-			var map_scale := _map_render_scale(map_width, map_height)
-			var map_position := (mouse_event.position - MAP_ORIGIN) / map_scale
-			move_player_to_cell(Vector2i(int(map_position.x / MAP_CELL_SIZE), int(map_position.y / MAP_CELL_SIZE)))
+			var map_position := _screen_to_map_position(mouse_event.position)
+			request_player_walk_to_cell(Vector2i(int(map_position.x / MAP_CELL_SIZE), int(map_position.y / MAP_CELL_SIZE)))
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -2822,6 +2999,107 @@ func _find_nearest_anchor(radius: int) -> Dictionary:
 			nearest = anchor_data
 			nearest_distance = distance
 	return nearest
+
+
+func get_current_interaction_target() -> Dictionary:
+	var exact_interaction: Dictionary = _find_interaction_at_cell(player_cell)
+	if not exact_interaction.is_empty():
+		return _interaction_target_from_map_interaction(exact_interaction)
+
+	var resource_point: Dictionary = _find_nearest_resource_point(0)
+	if not resource_point.is_empty():
+		return {
+			"ok": true,
+			"type": "resource",
+			"target_id": str(resource_point.get("point_id", resource_point.get("item_id", ""))),
+			"display_name": _resource_display_name(str(resource_point.get("item_id", "resource"))),
+			"prompt": "看看 %s" % _resource_display_name(str(resource_point.get("item_id", "resource"))),
+		}
+
+	var anchor: Dictionary = _find_nearest_anchor(1)
+	if not anchor.is_empty():
+		var core_word := str(anchor.get("core_word", anchor.get("letter", "")))
+		return {
+			"ok": true,
+			"type": "anchor",
+			"target_id": str(anchor.get("anchor_id", "")),
+			"display_name": core_word,
+			"prompt": "看看 %s" % core_word,
+		}
+
+	resource_point = _find_nearest_resource_point(1)
+	if not resource_point.is_empty():
+		return {
+			"ok": true,
+			"type": "resource",
+			"target_id": str(resource_point.get("point_id", resource_point.get("item_id", ""))),
+			"display_name": _resource_display_name(str(resource_point.get("item_id", "resource"))),
+			"prompt": "捡起 %s" % _resource_display_name(str(resource_point.get("item_id", "resource"))),
+		}
+
+	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
+	if not npc.is_empty():
+		var npc_name := _npc_display_name(str(npc.get("npc_id", "")))
+		return {
+			"ok": true,
+			"type": "npc",
+			"target_id": str(npc.get("npc_id", "")),
+			"display_name": npc_name,
+			"prompt": "和 %s 打招呼" % npc_name,
+		}
+
+	var nearby_interaction: Dictionary = _find_nearest_interaction(1)
+	if not nearby_interaction.is_empty():
+		return _interaction_target_from_map_interaction(nearby_interaction)
+
+	return {"ok": false, "type": "none", "prompt": "走近居民、物件或小路，再按看看。"}
+
+
+func _interaction_target_from_map_interaction(interaction: Dictionary) -> Dictionary:
+	var place_id := str(interaction.get("place_id", ""))
+	var display_name := str(interaction.get("label", ""))
+	if display_name.is_empty() and not place_id.is_empty():
+		display_name = _place_icon(place_id)
+	if display_name.is_empty():
+		display_name = "这里"
+	return {
+		"ok": true,
+		"type": "place",
+		"target_id": str(interaction.get("interaction_id", place_id)),
+		"display_name": display_name,
+		"prompt": "看看 %s" % display_name,
+	}
+
+
+func _find_nearest_resource_point(radius: int) -> Dictionary:
+	var nearest: Dictionary = {}
+	var nearest_distance := radius + 1
+	for point in resource_refresh_service.get_available_points():
+		var distance := _manhattan_distance(player_cell, _dict_to_cell(point.get("cell", {})))
+		if distance <= radius and distance < nearest_distance:
+			nearest = point
+			nearest_distance = distance
+	return nearest
+
+
+func _resource_display_name(item_id: String) -> String:
+	match item_id:
+		"branch":
+			return "树枝"
+		"flower":
+			return "小花"
+		"stone":
+			return "小石子"
+		_:
+			return "小材料"
+
+
+func _update_interaction_prompt() -> void:
+	if not is_instance_valid(interaction_prompt_label):
+		return
+	var target := get_current_interaction_target()
+	interaction_prompt_label.text = str(target.get("prompt", "走近一点，再按看看。"))
+	interaction_prompt_label.visible = not player_is_walking
 
 
 func _manhattan_distance(a: Vector2i, b: Vector2i) -> int:
