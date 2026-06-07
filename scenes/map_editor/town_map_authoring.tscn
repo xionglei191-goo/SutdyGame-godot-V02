@@ -51,6 +51,11 @@ layout_mode = 0
 offset_left = 252.0
 offset_top = 52.0
 
+[node name="StoryPropMarkerLayer" type="Control" parent="."]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
+
 [node name="ExportValidationPanel" type="PanelContainer" parent="."]
 clip_contents = true
 layout_mode = 0

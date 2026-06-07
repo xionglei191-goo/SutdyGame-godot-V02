@@ -145,6 +145,18 @@
 | 2026-06-07 | Round 138 V02.27 MAPEDITOR-010 直接拖拽编辑与字母可见性返修收口 | 无新增已验证教训 | marker 全局拖拽追踪、Inspector 输入控件和 A-Z 字母可见性增强通过 focused/full headless、Godot 启动和 diff 检查；属于用户反馈后的可操作性返修，未形成新的故障类型 |
 | 2026-06-07 | Round 139 V02.28 MAPDOGFOOD-001 路线与任务包收口 | 无新增已验证教训 | 仅更新 PM 路线、内容基线、接管计划、协作任务包和 `todo.md`，建立 Map Editor 实战生产验证队列与下一轮 Ready；未改 runtime、data、tests 或 assets，未形成新的故障类型 |
 | 2026-06-07 | Round 140 V02.28 MAPDOGFOOD-002..005 实战生产验证收口 | LESSON-012 | Dogfood 发现 Place 合同通过不等于孩子端 action 一定支持；已补 Place `place_action` Inspector 编辑、interaction action 同步和真实入口 focused/full 验证 |
+| 2026-06-07 | Round 144 V02.31 MOTION-001 行走动画与角色动作规格收口 | 无新增已验证教训 | 仅更新动作规格、路线文档、内容基线、接管计划和 `todo.md`；未改 runtime、data、tests 或 assets，未形成新的故障类型 |
+| 2026-06-07 | Round 145 V02.32 CONTROLS-001 Animal Crossing-like 操控规格收口 | 无新增已验证教训 | 仅更新操控规格、路线文档、内容基线、接管计划和 `todo.md`；未改 runtime、data、tests 或 assets，未形成新的故障类型 |
+| 2026-06-07 | Round 146 V02.33 ARTPIPE-001 美术资产生产规格收口 | 无新增已验证教训 | 仅更新资产生产规格、路线文档、内容基线、接管计划和 `todo.md`；未生成资产、未改 ThemeProfile、未改 runtime、data 或 tests，未形成新的故障类型 |
+| 2026-06-07 | Round 147 V02.34 ARTPIPE-002 Map Editor / ThemeProfile / AssetResolver 接入规范收口 | 无新增已验证教训 | 仅更新接入规范、路线文档、内容基线、接管计划和 `todo.md`；未生成资产、未改 runtime、data 或 tests，未形成新的故障类型 |
+| 2026-06-07 | Round 148 V02.34 ARTPROD-001 首批美术资产生产与接入收口 | 无新增已验证教训 | 首批 production 资产、metadata、story prop 数据、ThemeProfile / AssetResolver / Map Editor marker 和 focused/full headless 验证通过；production 仍未自动 approved，未形成新的故障类型 |
+| 2026-06-07 | Round 149 V02.35 RUNTIME-ANIM-001 动作操控运行时纵切收口 | 无新增已验证教训 | Player motion sheet、keyboard hold、camera smoothing、prompt glow / tap ripple、focused/full headless 和 1280 viewport proof 均通过；测试中复用 LESSON-003 显式类型标注规则，未形成新的故障类型 |
+| 2026-06-07 | Round 150 V02.36 STORYSLICE-001 故事线 + 美术 + 动作整合纵切收口 | 无新增已验证教训 | 四个 P0 story prop runtime、A/B/H/N/R/Y 相册落账、Story Bear / branch 轻联动、focused/full headless、JSON、diff check 和 1280 viewport proof 均通过；仅修正本轮测试期望与 story slice state 命名，未形成新的故障类型 |
+| 2026-06-07 | Round 151 V02.37 STORYBATCH-001 内容批量生产与批准线规划收口 | 无新增已验证教训 | 仅更新 PM 路线、内容基线、接管计划、协作任务包和 `todo.md`，建立 V02.37+ story batch 队列、批准线和下一轮 Ready；未改 runtime、data、tests 或 assets，未形成新的故障类型 |
+| 2026-06-07 | Round 153 V02.37 STORYBATCH-003 第二批 production 资产与接入收口 | 无新增已验证教训 | 第二批 7 张 story prop production PNG、ThemeProfile / AssetResolver、story prop JSON、Map Editor marker、provenance contact sheet、focused/full headless 验证均通过；接触表发现并修正 chroma-key 残留，属于 LESSON-013 规则内收敛，未形成新的故障类型 |
+| 2026-06-07 | Round 154 V02.38 VISUALRECOVERY-001 全面纠偏与文档重写 | LESSON-014 | 用户复核和文档 / 1280 proof 对照确认：整张世界底图与宽松 approved 口径掩盖了 modular visual system 缺失；已暂停 V02.37 后续 story batch，新增 V02.38 visual recovery gate |
+| 2026-06-07 | Round 155-Round159 V02.38 VISUALRECOVERY-002..006 全面视觉恢复收口 | LESSON-015 | TownStage detail render 调用缩进导致 recovery props 被每个 place 重复渲染；已改为一次性渲染并补 exact-count 断言 |
+| 2026-06-07 | Round 160 V02.39 VISUALREBUILD-001 视觉生产体系重建路线 | LESSON-016 | 用户二次视觉复核确认：no-full-map modular runtime 只能证明工程脚手架，不能证明画面达到 artpass003；已将 V02.38 重解释为 `visual_scaffold` 并阻塞 StoryBatch |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -301,3 +313,61 @@
   - Map Editor 生产脚本可以读取 JSON 复核，但正式交付必须能追溯到候选 state、Validate 和安全写回。
   - 若合同只验证 schema / 地图关系，focused test 还必须补 runtime-supported action 和可见文本安全。
 - **验证依据：** `godot --headless --path . --script tests/test_v028_mapdogfood_production.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit`、`git diff --check` 和非 headless 1280 proof 均通过。
+
+## LESSON-013：bitmap production 资产必须记录生成脚本和后处理证据
+
+- **日期：** 2026-06-07
+- **关联任务：** `V02-ARTPROD-001`、Round141-151 图片来源返修
+- **现象：** Round148 首批 production PNG 已接入 ThemeProfile / AssetResolver 并通过运行测试，但协作文档只记录了资产文件和接入合同，没有记录生图脚本、prompt、临时源图、抠底 / 缩放后处理和接触表目检证据。
+- **影响：** 后续追问资产来源时，无法直接从台账判断图片是否来自指定生图脚本；即使 runtime 合同通过，也会留下生产可追溯性缺口。
+- **根因：** 美术资产验收把重点放在 logical asset ID、尺寸、resolver 和 runtime proof 上，缺少“bitmap 生成 provenance”作为 production 资产的必填记录。
+- **解决方式：** 已核查 Round141-151 只有 Round148 新增 bitmap PNG，并使用 `/home/xionglei/GameProject/tools/image_generator.js` 全量重新生成 10 张 Round148 PNG；补记源图临时路径、后处理方式、接触表和尺寸 / 通道检查。
+- **预防规则：**
+  - 新增或替换 bitmap production 资产时，协作文档必须记录使用的生图脚本、关键 prompt 方向、源图临时落点、后处理步骤和最终尺寸 / alpha 结果。
+  - PNG 可接入不等于可追溯；没有生成证据的 production 资产不得进入 approved 判定。
+  - 透明 UI / sprite / story prop 资产重生后必须做接触表目检，特别检查深色背景可读性、绿边残留和全透明误抠。
+- **验证依据：** `docs/collaboration/Round148_V02.34_ARTPROD-001首批美术资产生产与接入.md` 已补 Round141-151 图片来源返修记录；10 张 PNG 已经脚本重生、回写原路径并保持原尺寸合同。
+
+## LESSON-014：整张底图和宽松 approved 会掩盖 modular visual system 缺失
+
+- **日期：** 2026-06-07
+- **关联任务：** `V02-VISUALRECOVERY-001`、V02.19-V02.23 visual approval、V02.37 story batch
+- **现象：** `docs/collaboration/artpass003_visual_direction/` 的目标是统一的 cozy town 场景、glass UI 和 prop-first A-Z 表达，但当前 runtime 主要依赖 `place.world_map.base_1280` / `world_map_base_1280.png` 承载整体画面，再叠加热点、A-Z badge、角色、story prop 和 UI。Round119 曾把多个视图标为 `approved`，但对照方向图后仍能看到系统标记、比例不统一、UI 大白条和底图遮盖真实美术系统缺失。
+- **影响：** 项目会继续新增 story prop 和内容批次，却把问题堆在同一张底图上；测试和截图能证明入口存在、尺寸正确、文本安全，但不能证明画面接近最终目标或可长期扩展。
+- **根因：** `approved` 语义偏宽，接近“可玩 / 可读 / 无阻塞”，没有区分 `functional_pass` 与 `final_approved`；美术生产把一张完整世界底图当作主画面，绕过了 terrain tile、region chunk、building prefab、prop / anchor、actor 和 UI 统一资产系统。
+- **解决方式：** 已建立 V02.38 全面视觉纠偏路线：暂停 `V02-STORYBATCH-004/005`，把 Round119 历史 `approved` 改按 `functional_pass` 管理，将 `docs/collaboration/artpass003_visual_direction/` 和 Round92 写为硬门槛，并规划 `V02-VISUALRECOVERY-001..006`。
+- **预防规则：**
+  - `production` 只代表可集成；`functional_pass` 只代表能玩；`final_approved` 必须同时有同轮 1280 proof、真实入口、artpass003 贴近度和 PM / Art Direction 判断。
+  - `world_map_base_1280.png` 或任何 full-map background 只能作为 reference，不得作为 final runtime 主画面。
+  - 后续视觉任务必须优先建立 modular visual system：terrain tiles、region chunks、building prefabs、world props / anchors、actors、soft shadows 和 glass UI。
+  - A-Z 默认必须 prop-first；裸字母牌、课程入口或打卡目标不得作为主要表现。
+- **验证依据：** `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md`、`todo.md` 和 `docs/collaboration/Round154_V02.38_VISUALRECOVERY-001全面纠偏与文档重写.md` 已同步 V02.38 纠偏事实；`git diff --check` 与 `godot --headless --path . --quit` 通过。
+
+## LESSON-015：视觉恢复测试要同时检查下限和噪声上限
+
+- **日期：** 2026-06-07
+- **关联任务：** `V02-VISUALRECOVERY-004`、`V02-VISUALRECOVERY-005`、`V02-VISUALRECOVERY-006`
+- **现象：** `TownStage.setup()` 中 `_render_plaza_life_details()`、`_render_school_life_details()` 和 `_render_visual_recovery_world_props()` 缩进在 `for place` 循环内，导致 plaza / school detail 和 V02.38 recovery world props 按 place 数重复生成；原测试只断言 `world_prop_count >= 3`，无法发现重复渲染造成的视觉噪声。
+- **影响：** 自动化会把“数量更多”误判为通过，但 1280 proof 中会出现视觉堆叠、旧 place context 和 prop-first anchor 噪声，削弱 HUD / Anchor / Actor 降噪目标。
+- **根因：** 视觉恢复验收只设置了 minimum count，没有为首屏固定资产、辅助 marker、badge 或 detail layer 设置 upper bound / exact count；渲染调用位置的缩进错误没有被测试捕获。
+- **解决方式：** 已将三组 detail / world prop 渲染调用移出 place 循环，只渲染一次；`tests/test_town_stage_layered_runtime.gd`、`tests/test_v0238_visual_recovery_runtime.gd` 和 `tests/headless_runner.gd` 改为断言三件 first-screen recovery world props 精确渲染一次。后续复核又发现 unresolved fallback place marker 仍可能保持高 alpha，已统一降为 context marker，并新增 `non_prefab_place_max_alpha` 上限断言。
+- **预防规则：**
+  - 视觉降噪任务不能只写 `>=` 下限；对固定数量的首屏 props、badge、detail marker、fallback place marker 和 overlay，应同时写 exact count 或上限。
+  - 1280 proof 前必须人工抽查是否出现“测试通过但视觉重复”的情况。
+  - 新增 runtime visual snapshot 字段时，应记录用于检测噪声的 count / alpha / category，而不只记录功能存在性。
+- **验证依据：** `godot --headless --path . --script tests/test_town_stage_layered_runtime.gd`、`godot --headless --path . --script tests/test_v0238_visual_recovery_runtime.gd`、`godot --headless --path . --script tests/headless_runner.gd` 和 Round159 non-headless 1280 proof capture 均通过。
+
+## LESSON-016：工程视觉脚手架不能替代目标画面批准
+
+- **日期：** 2026-06-07
+- **关联任务：** `V02-VISUALRECOVERY-006`、`V02-VISUALREBUILD-001`、V02.37 story batch
+- **现象：** Round159 证明 runtime 不再依赖 full-map background，且 terrain / region / prefab / prop / actor / glass UI 分层和真实入口 smoke 通过；但用户对照 `docs/collaboration/artpass003_visual_direction/` 复核后确认当前截图仍像数据地图 / 系统索引叠层，不像 home-centered cozy town。V02.38 的 `visual_candidate` 口径过早，不能解锁 StoryBatch。
+- **影响：** 如果继续 `V02-STORYBATCH-004`，新 story prop 会堆在错误生产模型上，扩大资产和内容债务；后续截图可能继续通过工程 gate，却无法达到最终产品视觉。
+- **根因：** 视觉生产仍以 `world_map` 数据、cell、place、anchor、NPC 和功能入口为第一驱动，再把美术贴到运行时上；缺少先行的 1280 target frame、Godot 可执行 visual layout contract、Logic Map / Visual Layout 分离和 target/runtime 并排 art-direction gate。
+- **解决方式：** 已建立 V02.39 Godot 视觉生产体系重建路线：V02.38 项目级重解释为 `visual_scaffold`；`V02-STORYBATCH-004/005` 继续阻塞；下一项 Ready 改为 `V02-VISUALREBUILD-002 1280 目标画面与 Godot 可执行视觉合同`。
+- **预防规则：**
+  - no-full-map、layer count、headless runner、真实入口 smoke 或工程重构通过，只能证明 `functional_pass` / `visual_scaffold`，不能自动升级为 `runtime_visual_match` 或 `final_approved`。
+  - 最终视觉路线必须按 `target 1280 frame -> visual layout contract -> unified asset kit -> runtime visual match -> art-direction gate` 推进。
+  - `world_map` 继续作为逻辑事实来源，但首屏构图必须由独立 Visual Layout 决定，避免 26 anchors、place labels、NPC、resource 和 HUD 同屏同权展示。
+  - StoryBatch 只有在 V02.39 达到 `runtime_visual_match` 且 PM / Art Direction 明确解锁后才能恢复 Ready。
+- **验证依据：** `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md`、`todo.md` 和 `docs/collaboration/Round160_V02.39_VISUALREBUILD-001视觉生产体系重建路线与任务包.md` 已同步 V02.39 视觉生产体系重建事实。

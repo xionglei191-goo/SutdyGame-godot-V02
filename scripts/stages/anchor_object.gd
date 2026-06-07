@@ -54,6 +54,8 @@ func _configure_anchor_sprite(letter: String) -> void:
 	sprite.scale = built.scale
 	sprite.modulate = built.modulate
 	sprite.z_index = built.z_index
+	for meta_key in built.get_meta_list():
+		sprite.set_meta(str(meta_key), built.get_meta(str(meta_key)))
 	built.free()
 
 
@@ -84,6 +86,8 @@ func _configure_sprite(sprite_name: String, sprite_position: Vector2, sprite_siz
 	sprite.scale = built.scale
 	sprite.modulate = built.modulate
 	sprite.z_index = built.z_index
+	for meta_key in built.get_meta_list():
+		sprite.set_meta(str(meta_key), built.get_meta(str(meta_key)))
 	sprite.visible = true
 	built.free()
 

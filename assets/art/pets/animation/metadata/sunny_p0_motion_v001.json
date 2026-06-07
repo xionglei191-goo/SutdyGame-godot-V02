@@ -1,0 +1,36 @@
+{
+  "metadata_id": "anim_meta.pet.sunny.p0_motion",
+  "sheet_asset_id": "anim_sheet.pet.sunny.p0_motion",
+  "source_png": "res://assets/art/pets/animation/sunny_p0_motion_v001.png",
+  "frame_size": {"w": 64, "h": 64},
+  "pivot": {"x": 32, "y": 50},
+  "animations": [
+    {
+      "logical_animation_id": "anim.pet.sunny.idle.down",
+      "row": 0,
+      "frames": [0],
+      "fps": 1,
+      "loop": true,
+      "direction": "down",
+      "fallback_asset_id": "pet.sunny.standing"
+    },
+    {
+      "logical_animation_id": "anim.pet.sunny.wag.down",
+      "row": 1,
+      "frames": [0, 1, 2, 3],
+      "fps": 7,
+      "loop": true,
+      "direction": "down",
+      "fallback_asset_id": "pet.sunny.standing"
+    },
+    {
+      "logical_animation_id": "anim.pet.sunny.greet.down",
+      "row": 2,
+      "frames": [0, 1, 2, 3],
+      "fps": 7,
+      "loop": false,
+      "direction": "down",
+      "fallback_asset_id": "pet.sunny.standing"
+    }
+  ]
+}

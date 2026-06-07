@@ -51,6 +51,42 @@ static func get_tile_atlas(logical_asset_id: String = "world", theme_id: String 
 	return resolve_asset(theme_id, "tile_atlas", logical_asset_id)
 
 
+static func get_tile_edge_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "tile_edge_assets", logical_asset_id)
+
+
+static func get_terrain_edge_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "terrain_edge_assets", logical_asset_id)
+
+
+static func get_terrain_tile_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "terrain_tile_assets", logical_asset_id)
+
+
+static func get_terrain_decal_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "terrain_decal_assets", logical_asset_id)
+
+
+static func get_region_chunk_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "region_chunk_assets", logical_asset_id)
+
+
+static func get_building_prefab_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "building_prefab_assets", logical_asset_id)
+
+
+static func get_world_prop_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "world_prop_assets", logical_asset_id)
+
+
+static func get_soft_shadow_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "soft_shadow_assets", logical_asset_id)
+
+
+static func get_shadow_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "shadow_assets", logical_asset_id)
+
+
 static func get_landmark_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "landmark_assets", logical_asset_id)
 
@@ -59,12 +95,28 @@ static func get_place_asset(logical_asset_id: String, theme_id: String = DEFAULT
 	return resolve_asset(theme_id, "place_assets", logical_asset_id)
 
 
+static func get_story_prop_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "story_prop_assets", logical_asset_id)
+
+
 static func get_anchor_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "anchor_assets", logical_asset_id)
 
 
 static func get_character_sprite(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "character_assets", logical_asset_id)
+
+
+static func get_actor_sprite(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "actor_sprite_assets", logical_asset_id)
+
+
+static func get_character_animation(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "character_animation_assets", logical_asset_id)
+
+
+static func get_actor_animation(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "actor_animation_assets", logical_asset_id)
 
 
 static func get_furniture_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
@@ -79,6 +131,18 @@ static func get_pet_sprite(logical_asset_id: String, theme_id: String = DEFAULT_
 	return resolve_asset(theme_id, "pet_assets", logical_asset_id)
 
 
+static func get_pet_animation(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "pet_animation_assets", logical_asset_id)
+
+
+static func get_animation_metadata(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "animation_metadata_assets", logical_asset_id)
+
+
+static func get_actor_animation_metadata(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "actor_animation_metadata_assets", logical_asset_id)
+
+
 static func get_card_art(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "card_art", logical_asset_id)
 
@@ -87,8 +151,16 @@ static func get_ui_icon(logical_asset_id: String, theme_id: String = DEFAULT_THE
 	return resolve_asset(theme_id, "ui_icon_assets", logical_asset_id)
 
 
+static func get_ui_feedback(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "ui_feedback_assets", logical_asset_id)
+
+
 static func get_ui_skin(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
 	return resolve_asset(theme_id, "ui_skin", logical_asset_id)
+
+
+static func get_glass_ui_asset(logical_asset_id: String, theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
+	return resolve_asset(theme_id, "glass_ui_assets", logical_asset_id)
 
 
 static func get_card_frame(logical_asset_id: String = "core", theme_id: String = DEFAULT_THEME_ID) -> Dictionary:
@@ -110,7 +182,7 @@ static func _validate_profile(profile: Resource, expected_theme_id: String) -> A
 	elif profile.theme_id != expected_theme_id:
 		errors.append("Theme id mismatch. Expected %s, got %s." % [expected_theme_id, profile.theme_id])
 
-	for category in ["tile_atlas", "landmark_assets", "place_assets", "anchor_assets", "character_assets", "furniture_assets", "npc_assets", "pet_assets", "card_art", "ui_icon_assets", "ui_skin", "card_frame_assets"]:
+	for category in ["tile_atlas", "terrain_tile_assets", "terrain_edge_assets", "region_chunk_assets", "building_prefab_assets", "world_prop_assets", "shadow_assets", "landmark_assets", "place_assets", "anchor_assets", "actor_sprite_assets", "actor_animation_assets", "actor_animation_metadata_assets", "character_assets", "furniture_assets", "npc_assets", "pet_assets", "card_art", "ui_icon_assets", "glass_ui_assets", "ui_skin", "card_frame_assets"]:
 		if profile.get_category_assets(category).is_empty():
 			errors.append("Theme profile category is empty: %s" % category)
 

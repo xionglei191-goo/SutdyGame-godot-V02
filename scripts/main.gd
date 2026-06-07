@@ -31,6 +31,7 @@ const MemoryAlbumOverlayScene := preload("res://scenes/world/ui/memory_album_ove
 const HomeRoomScene := preload("res://scenes/world/home/home_room.tscn")
 const AZ_ANCHORS_PATH := "res://data/anchors/az_core_anchors.json"
 const HOMESCHOOL_EVENTS_PATH := "res://data/life/homeschool_events.json"
+const STORY_PROPS_PATH := "res://data/life/story_props.json"
 const VIEWPORT_SIZE := Vector2i(1280, 720)
 const BACKGROUND_COLOR := Color("#dff2d6")
 const SURFACE_COLOR := Color("#fffdf4")
@@ -90,6 +91,7 @@ const FIRST_NPCS := [
 var world_map: Dictionary = {}
 var az_core_data: Dictionary = {}
 var homeschool_events_by_id: Dictionary = {}
+var story_props: Array = []
 var map_errors: Array = []
 var save_path_override := ""
 var day_key_override := ""
@@ -143,6 +145,7 @@ var runtime_map_frame: Control
 var runtime_map_input: Control
 var runtime_map_node: Node2D
 var interaction_prompt_label: Label
+var interaction_prompt_glow: TextureRect
 var player_marker: Node2D
 var player_cell := PLAYER_START_CELL
 var player_world_position := Vector2.ZERO
@@ -150,12 +153,29 @@ var player_facing := Vector2i(0, 1)
 var player_walk_path: Array[Vector2i] = []
 var player_walk_target_cell := PLAYER_START_CELL
 var player_is_walking := false
+var held_move_direction := Vector2i.ZERO
+var held_move_cooldown := 0.0
 var runtime_npcs: Array = []
 var _texture_cache: Dictionary = {}
 var _logical_asset_texture_keys: Dictionary = {
-	"ground": {"category": "place_assets", "asset_id": "place.world_map.base_1280"},
-	"plaza": {"category": "place_assets", "asset_id": "place.town_plaza.day"},
-	"road": {"category": "place_assets", "asset_id": "place.road.main"},
+	"ground": {"category": "terrain_tile_assets", "asset_id": "terrain.grass.soft_tile"},
+	"terrain_grass_tile": {"category": "terrain_tile_assets", "asset_id": "terrain.grass.soft_tile"},
+	"terrain_path_tile": {"category": "terrain_tile_assets", "asset_id": "terrain.path.soft_tile"},
+	"terrain_plaza_tile": {"category": "terrain_tile_assets", "asset_id": "terrain.plaza.warm_tile"},
+	"terrain_grass_path_edge": {"category": "terrain_decal_assets", "asset_id": "terrain_decal.grass_path.soft_edge"},
+	"region_home_edge_chunk": {"category": "region_chunk_assets", "asset_id": "region.home.edge_chunk"},
+	"region_town_plaza_chunk": {"category": "region_chunk_assets", "asset_id": "region.town_plaza.chunk"},
+	"region_shop_street_chunk": {"category": "region_chunk_assets", "asset_id": "region.shop_street.chunk"},
+	"region_school_line_chunk": {"category": "region_chunk_assets", "asset_id": "region.school_line.chunk"},
+	"building_prefab_home": {"category": "building_prefab_assets", "asset_id": "building.home.cottage"},
+	"building_prefab_shop": {"category": "building_prefab_assets", "asset_id": "building.shop.market"},
+	"building_prefab_school_gate": {"category": "building_prefab_assets", "asset_id": "building.school.gate"},
+	"world_prop_apple_basket_anchor": {"category": "world_prop_assets", "asset_id": "world_prop.anchor.apple_basket"},
+	"world_prop_clock_corner_anchor": {"category": "world_prop_assets", "asset_id": "world_prop.anchor.clock_corner"},
+	"world_prop_sunny_corner": {"category": "world_prop_assets", "asset_id": "world_prop.home.sunny_corner"},
+	"shadow": {"category": "soft_shadow_assets", "asset_id": "soft_shadow.oval.default"},
+	"plaza": {"category": "terrain_tile_assets", "asset_id": "terrain.plaza.warm_tile"},
+	"road": {"category": "terrain_tile_assets", "asset_id": "terrain.path.soft_tile"},
 	"mapread_sun_scene_zone": {"category": "place_assets", "asset_id": "place.sun_scene.morning"},
 	"mapread_home_yard_zone": {"category": "place_assets", "asset_id": "place.home.yard"},
 	"mapread_home_school_walk_zone": {"category": "place_assets", "asset_id": "place.home_school_walk.day"},
@@ -166,12 +186,12 @@ var _logical_asset_texture_keys: Dictionary = {
 	"mapread_animal_park_zone": {"category": "place_assets", "asset_id": "place.animal_park.day"},
 	"mapread_coast_edge_zone": {"category": "place_assets", "asset_id": "place.coast_edge.day"},
 	"place_place_sun_scene_body": {"category": "place_assets", "asset_id": "place.sun_scene.morning"},
-	"place_place_home_body": {"category": "place_assets", "asset_id": "place.home.yard"},
+	"place_place_home_body": {"category": "building_prefab_assets", "asset_id": "building.home.cottage"},
 	"place_place_home_school_walk_body": {"category": "place_assets", "asset_id": "place.home_school_walk.day"},
-	"place_place_school_gate_body": {"category": "place_assets", "asset_id": "place.school_gate.exterior"},
+	"place_place_school_gate_body": {"category": "building_prefab_assets", "asset_id": "building.school.gate"},
 	"place_place_school_yard_body": {"category": "place_assets", "asset_id": "place.school_yard.day"},
 	"place_place_town_start_body": {"category": "place_assets", "asset_id": "place.story_culture_bridge.day"},
-	"place_place_supermarket_body": {"category": "place_assets", "asset_id": "place.shop_street.day"},
+	"place_place_supermarket_body": {"category": "building_prefab_assets", "asset_id": "building.shop.market"},
 	"place_place_animal_park_body": {"category": "place_assets", "asset_id": "place.animal_park.day"},
 	"place_place_coast_edge_body": {"category": "place_assets", "asset_id": "place.coast_edge.day"},
 	"anchor_a_apple_tree": {"category": "anchor_assets", "asset_id": "anchor.a.apple_tree"},
@@ -215,6 +235,20 @@ var _logical_asset_texture_keys: Dictionary = {
 	"ui_icon_shop": {"category": "ui_icon_assets", "asset_id": "ui_icon.shop"},
 	"ui_icon_close": {"category": "ui_icon_assets", "asset_id": "ui_icon.close"},
 	"ui_icon_settings": {"category": "ui_icon_assets", "asset_id": "ui_icon.settings"},
+	"player_motion_sheet": {"category": "character_animation_assets", "asset_id": "anim_sheet.player.p0_motion"},
+	"ui_feedback_prompt_glow": {"category": "ui_feedback_assets", "asset_id": "ui_feedback.prompt_soft_glow"},
+	"ui_feedback_tap_ripple": {"category": "ui_feedback_assets", "asset_id": "ui_feedback.tap_ripple_soft"},
+	"story_prop_story_prop_marker_home_apple_welcome_photo": {"category": "story_prop_assets", "asset_id": "story_prop.home.apple_welcome_photo"},
+	"story_prop_story_prop_marker_school_yard_net_robot_yoyo": {"category": "story_prop_assets", "asset_id": "story_prop.school.yard_net_robot_yoyo_corner"},
+	"story_prop_story_prop_marker_shop_hat_ribbon_window": {"category": "story_prop_assets", "asset_id": "story_prop.shop.hat_ribbon_window"},
+	"story_prop_story_prop_marker_plaza_bear_book_branch": {"category": "story_prop_assets", "asset_id": "story_prop.plaza.bear_book_branch_bookmark"},
+	"story_prop_story_prop_marker_home_clock_chair_corner": {"category": "story_prop_assets", "asset_id": "story_prop.home.clock_chair_corner"},
+	"story_prop_story_prop_marker_home_sunny_towel_dog_corner": {"category": "story_prop_assets", "asset_id": "story_prop.home.sunny_towel_dog_corner"},
+	"story_prop_story_prop_marker_home_watch_wall_charm": {"category": "story_prop_assets", "asset_id": "story_prop.home.watch_wall_charm"},
+	"story_prop_story_prop_marker_school_gate_bell_sign": {"category": "story_prop_assets", "asset_id": "story_prop.school.gate_bell_sign"},
+	"story_prop_story_prop_marker_walk_kite_leaf_path": {"category": "story_prop_assets", "asset_id": "story_prop.walk.kite_leaf_path"},
+	"story_prop_story_prop_marker_shop_orange_bowl_window": {"category": "story_prop_assets", "asset_id": "story_prop.shop.orange_bowl_window"},
+	"story_prop_story_prop_marker_sun_flower_patch": {"category": "story_prop_assets", "asset_id": "story_prop.plaza.sun_flower_patch"},
 }
 
 
@@ -229,6 +263,7 @@ func _ready() -> void:
 	world_map = result.get("data", {})
 	az_core_data = _load_json(AZ_ANCHORS_PATH)
 	homeschool_events_by_id = _load_homeschool_events()
+	story_props = _load_story_props()
 	map_errors = result.get("errors", [])
 	_init_services()
 	_build_shell()
@@ -237,6 +272,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	_update_held_movement(delta)
 	_advance_player_walk(delta)
 
 
@@ -826,6 +862,24 @@ func _create_interaction_prompt_label() -> Label:
 	label.add_theme_font_size_override("font_size", 13)
 	label.add_theme_stylebox_override("normal", _ui_skin_box("glass_panel_small", _rounded_box(Color("#f7fbffee"), 12, Color("#ffffffaa")), 22))
 	return label
+
+
+func _create_interaction_prompt_glow() -> TextureRect:
+	var glow := TextureRect.new()
+	glow.name = "InteractionPromptGlow"
+	glow.anchor_left = 0.315
+	glow.anchor_top = 1.0
+	glow.anchor_right = 0.685
+	glow.anchor_bottom = 1.0
+	glow.offset_top = -164
+	glow.offset_bottom = -118
+	glow.texture = _get_texture("ui_feedback_prompt_glow")
+	glow.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	glow.stretch_mode = TextureRect.STRETCH_SCALE
+	glow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	glow.modulate = Color(1, 1, 1, 0.68)
+	glow.visible = false
+	return glow
 
 
 func _create_home_room_view() -> Control:
@@ -1754,6 +1808,10 @@ func interact_nearby() -> Dictionary:
 	if not exact_interaction.is_empty():
 		return _handle_map_interaction(exact_interaction)
 
+	var exact_story_prop: Dictionary = _find_story_prop_at_cell(player_cell)
+	if not exact_story_prop.is_empty():
+		return _look_story_prop(exact_story_prop)
+
 	var resource_result: Dictionary = resource_refresh_service.collect_nearest(player_cell, 0)
 	if resource_result.get("ok", false):
 		_set_life_status(str(resource_result.get("text", "收进背包啦。")))
@@ -1788,6 +1846,10 @@ func interact_nearby() -> Dictionary:
 		anchor_result["interaction_type"] = "anchor"
 		return anchor_result
 
+	var story_prop: Dictionary = _find_nearest_story_prop(1)
+	if not story_prop.is_empty():
+		return _look_story_prop(story_prop)
+
 	resource_result = resource_refresh_service.collect_nearest(player_cell, 1)
 	if resource_result.get("ok", false):
 		_set_life_status(str(resource_result.get("text", "收进背包啦。")))
@@ -1813,6 +1875,11 @@ func _handle_map_interaction(interaction: Dictionary) -> Dictionary:
 			return _look_p1_return_entry(interaction)
 		"look_homeschool_event":
 			return _look_homeschool_event(interaction)
+		"look_story_prop":
+			var story_prop := _story_prop_by_id(str(interaction.get("story_prop_id", interaction.get("interaction_id", ""))))
+			if story_prop.is_empty():
+				story_prop = interaction.duplicate(true)
+			return _look_story_prop(story_prop)
 		_:
 			_set_life_status("这个地方还没有准备好。")
 			return {
@@ -1821,6 +1888,114 @@ func _handle_map_interaction(interaction: Dictionary) -> Dictionary:
 				"action": action,
 				"interaction_id": interaction.get("interaction_id", ""),
 			}
+
+
+func _look_story_prop(story_prop: Dictionary) -> Dictionary:
+	var story_prop_id := str(story_prop.get("story_prop_id", ""))
+	if story_prop_id.is_empty():
+		_set_life_status("这个小物件还在整理，先看看旁边吧。")
+		return {"ok": false, "reason": "missing_story_prop_id"}
+	var core_anchor_ids: Array[String] = []
+	for anchor_id_value in story_prop.get("core_anchor_ids", []):
+		var anchor_id := str(anchor_id_value)
+		if not anchor_id.is_empty() and not core_anchor_ids.has(anchor_id):
+			core_anchor_ids.append(anchor_id)
+	var anchor_records: Array[Dictionary] = []
+	var story_memories: Array[String] = []
+	for anchor_id in core_anchor_ids:
+		var record: Dictionary = _record_story_slice_anchor_album(anchor_id)
+		if record.get("ok", false):
+			anchor_records.append(record)
+			var story_memory := str(record.get("story", {}).get("story_memory", ""))
+			if not story_memory.is_empty():
+				story_memories.append(story_memory)
+	var npc_id := str(story_prop.get("npc_id", ""))
+	var resource_item_id := str(story_prop.get("resource_item_id", ""))
+	var resource_count := 0
+	if not resource_item_id.is_empty() and inventory_service != null:
+		resource_count = int(inventory_service.get_inventory().get(resource_item_id, 0))
+	var record := {
+		"seen": true,
+		"story_prop_id": story_prop_id,
+		"storyline_id": str(story_prop.get("storyline_id", "")),
+		"place_id": str(story_prop.get("place_id", _current_place_for_cell(player_cell))),
+		"core_anchor_ids": core_anchor_ids.duplicate(true),
+		"card_ids": _card_ids_from_anchor_records(anchor_records),
+		"environment_words": story_prop.get("environment_words", []).duplicate(true),
+		"npc_id": npc_id,
+		"resource_item_id": resource_item_id,
+		"resource_count": resource_count,
+		"last_position": _cell_to_dict(player_cell),
+	}
+	var game_state: Dictionary = save_service.load_game_state()
+	var records: Dictionary = game_state.get("story_slice_records", {})
+	records[story_prop_id] = record
+	game_state["story_slice_records"] = records
+	save_service.save_game_state(game_state)
+	var label := str(story_prop.get("child_label", "看看小物件")).trim_prefix("看看").strip_edges()
+	if label.is_empty():
+		label = "小物件"
+	var feedback := str(story_prop.get("child_feedback", "这个小物件把今天的小故事放进相册。"))
+	var context := _story_prop_context_text(npc_id, resource_item_id, resource_count)
+	var display_text := "%s：%s" % [label, feedback]
+	if not context.is_empty():
+		display_text = "%s %s" % [display_text, context]
+	_set_life_status(display_text)
+	return {
+		"ok": true,
+		"interaction_type": "story_prop",
+		"story_prop_id": story_prop_id,
+		"storyline_id": str(story_prop.get("storyline_id", "")),
+		"place_id": str(record.get("place_id", "")),
+		"core_anchor_ids": core_anchor_ids,
+		"anchor_records": anchor_records,
+		"story_memories": story_memories,
+		"environment_words": story_prop.get("environment_words", []).duplicate(true),
+		"npc_id": npc_id,
+		"resource_item_id": resource_item_id,
+		"resource_count": resource_count,
+		"text": display_text,
+		"record": record,
+	}
+
+
+func _record_story_slice_anchor_album(anchor_id: String) -> Dictionary:
+	var anchor := _anchor_by_id(anchor_id)
+	var card_id := str(anchor.get("card_id", ""))
+	if card_id.is_empty():
+		return {"ok": false, "reason": "missing_card_id", "anchor_id": anchor_id}
+	memory_card_service.set_card_flags(card_id, {
+		"seen": true,
+		"heard": true,
+		"collected": true,
+		"card_progress": 4,
+	})
+	return {
+		"ok": true,
+		"anchor_id": anchor_id,
+		"card_id": card_id,
+		"letter": str(anchor.get("letter", "")),
+		"core_word": str(anchor.get("core_word", "")),
+		"story": anchor_interaction_service.get_story_for_anchor(anchor_id),
+		"album_state": memory_card_service.get_card_state(card_id),
+	}
+
+
+func _card_ids_from_anchor_records(anchor_records: Array[Dictionary]) -> Array[String]:
+	var card_ids: Array[String] = []
+	for record in anchor_records:
+		var card_id := str(record.get("card_id", ""))
+		if not card_id.is_empty() and not card_ids.has(card_id):
+			card_ids.append(card_id)
+	return card_ids
+
+
+func _story_prop_context_text(npc_id: String, resource_item_id: String, resource_count: int) -> String:
+	if npc_id == "story_bear" and resource_item_id == "branch" and resource_count > 0:
+		return "背包里的树枝也记得这条小书签路。"
+	if npc_id == "story_bear":
+		return "故事熊就在附近，路过时可以慢慢打招呼。"
+	return ""
 
 
 func _look_homeschool_event(interaction: Dictionary) -> Dictionary:
@@ -2218,6 +2393,7 @@ func _create_map_canvas() -> Control:
 		"world_map": world_map,
 		"az_core_data": az_core_data,
 		"resource_points": resource_refresh_service.get_available_points(),
+		"story_props": story_props,
 		"first_npcs": _active_npcs(),
 		"outdoor_items": outdoor_decoration_service.get_placed_items(),
 		"map_cell_size": MAP_CELL_SIZE,
@@ -2233,6 +2409,8 @@ func _create_map_canvas() -> Control:
 	_update_camera_for_player()
 	_update_interaction_prompt()
 
+	interaction_prompt_glow = _create_interaction_prompt_glow()
+	runtime_map_frame.add_child(interaction_prompt_glow)
 	interaction_prompt_label = _create_interaction_prompt_label()
 	runtime_map_frame.add_child(interaction_prompt_label)
 	_update_interaction_prompt()
@@ -2370,14 +2548,17 @@ func request_player_walk_to_cell(target_cell: Vector2i) -> Dictionary:
 	if path.is_empty():
 		_set_life_status("那里暂时走不过去。")
 		_update_interaction_prompt()
+		_update_player_marker()
 		return {"ok": false, "reason": "blocked", "cell": _cell_to_dict(target_cell)}
 
 	player_walk_path = path
 	player_walk_target_cell = target_cell
 	player_is_walking = true
 	_update_player_facing_for_next_step()
+	held_move_cooldown = 0.0
 	_set_life_status("沿着小路慢慢走过去。")
 	_update_interaction_prompt()
+	_update_player_marker()
 	return {
 		"ok": true,
 		"walking": true,
@@ -2410,6 +2591,7 @@ func move_player_to_cell(target_cell: Vector2i) -> Dictionary:
 	player_world_position = _cell_center(_cell_to_dict(player_cell))
 	player_walk_path.clear()
 	player_is_walking = false
+	held_move_cooldown = 0.0
 	_save_player_cell()
 	_update_player_marker()
 	_set_life_status(_walk_status_for_cell(player_cell))
@@ -2445,6 +2627,30 @@ func get_npc_routine_snapshot() -> Dictionary:
 	if npc_routine_service == null:
 		return {"ok": false, "reason": "routine_service_missing"}
 	return npc_routine_service.get_routine_snapshot(FIRST_NPCS)
+
+
+func get_story_slice_snapshot() -> Dictionary:
+	var stage_snapshot: Dictionary = {}
+	if is_instance_valid(town_stage) and town_stage.has_method("get_expapproval_snapshot"):
+		stage_snapshot = town_stage.call("get_expapproval_snapshot")
+	var game_state: Dictionary = save_service.load_game_state() if save_service != null else {}
+	var story_records: Dictionary = game_state.get("story_slice_records", {})
+	var seen_anchor_ids: Array[String] = []
+	for record_value in story_records.values():
+		if not record_value is Dictionary:
+			continue
+		for anchor_id_value in (record_value as Dictionary).get("core_anchor_ids", []):
+			var anchor_id := str(anchor_id_value)
+			if not anchor_id.is_empty() and not seen_anchor_ids.has(anchor_id):
+				seen_anchor_ids.append(anchor_id)
+	return {
+		"story_prop_count": int(stage_snapshot.get("story_prop_count", 0)),
+		"story_prop_names": stage_snapshot.get("story_prop_names", []),
+		"story_record_count": story_records.size(),
+		"story_records": story_records.duplicate(true),
+		"seen_anchor_ids": seen_anchor_ids,
+		"life_status_text": life_status_label.text if is_instance_valid(life_status_label) else "",
+	}
 
 
 func interact_with_npc(npc_id: String) -> Dictionary:
@@ -2568,6 +2774,11 @@ func _create_sprite(sprite_name: String, sprite_position: Vector2, sprite_size: 
 	var sprite := Sprite2D.new()
 	sprite.name = sprite_name
 	sprite.position = sprite_position
+	sprite.set_meta("texture_key", texture_key)
+	var spec: Dictionary = _logical_asset_texture_keys.get(texture_key, {})
+	if not spec.is_empty():
+		sprite.set_meta("asset_category", str(spec.get("category", "")))
+		sprite.set_meta("logical_asset_id", str(spec.get("asset_id", "")))
 	sprite.texture = _get_texture(texture_key)
 	var texture_size := Vector2(sprite.texture.get_width(), sprite.texture.get_height())
 	sprite.scale = Vector2(
@@ -2620,6 +2831,18 @@ func _can_resolve_texture_key(texture_key: String) -> bool:
 	return resolved.get("ok", false) and FileAccess.file_exists(str(resolved.get("placeholder_path", "")))
 
 
+func _place_prefab_texture_key_for_place(place_id: String) -> String:
+	match place_id:
+		"place_home":
+			return "building_prefab_home"
+		"place_supermarket":
+			return "building_prefab_shop"
+		"place_school_gate":
+			return "building_prefab_school_gate"
+		_:
+			return ""
+
+
 func _get_resolved_asset_texture(texture_key: String) -> Texture2D:
 	var spec: Dictionary = _logical_asset_texture_keys.get(texture_key, {})
 	if spec.is_empty():
@@ -2634,6 +2857,8 @@ func _get_resolved_asset_texture(texture_key: String) -> Texture2D:
 	var asset_path := str(resolved.get("placeholder_path", ""))
 	if not FileAccess.file_exists(asset_path):
 		return null
+	if asset_path.get_extension().to_lower() == "png" and not FileAccess.file_exists("%s.import" % asset_path):
+		return _load_image_texture(asset_path)
 	var loaded_texture := ResourceLoader.load(asset_path) as Texture2D
 	if loaded_texture != null:
 		return loaded_texture
@@ -2689,18 +2914,18 @@ func _texture_colors(texture_key: String) -> Dictionary:
 		return {"fill": Color("#d6a45d"), "edge": Color("#8f6844"), "accent": Color("#fff2a8")}
 	if texture_key == "anchor_shop_sign":
 		return {"fill": Color("#f5c85c"), "edge": Color("#a76f3c"), "accent": Color("#fff2a8")}
-		if texture_key == "plaza_flag":
-			return {"fill": Color("#f0a34f"), "edge": Color("#8f6a45"), "accent": Color("#fff2a8")}
-		if texture_key == "plaza_bench":
-			return {"fill": Color("#b98258"), "edge": Color("#73503a"), "accent": Color("#e5bd82")}
-		if texture_key == "plaza_flower_basket":
-			return {"fill": Color("#d88f57"), "edge": Color("#8f5c3f"), "accent": Color("#f5d86f")}
-		if texture_key == "plaza_notice_board":
-			return {"fill": Color("#f3d48a"), "edge": Color("#8c6844"), "accent": Color("#fff8d5")}
-		if texture_key == "plaza_tiny_lamp":
-			return {"fill": Color("#f6e4a2"), "edge": Color("#76634c"), "accent": Color("#fff9cf")}
-		if texture_key == "hotspot_glow":
-			return {"fill": Color("#fff0a877"), "edge": Color("#fff0a822"), "accent": Color("#ffffffaa")}
+	if texture_key == "plaza_flag":
+		return {"fill": Color("#f0a34f"), "edge": Color("#8f6a45"), "accent": Color("#fff2a8")}
+	if texture_key == "plaza_bench":
+		return {"fill": Color("#b98258"), "edge": Color("#73503a"), "accent": Color("#e5bd82")}
+	if texture_key == "plaza_flower_basket":
+		return {"fill": Color("#d88f57"), "edge": Color("#8f5c3f"), "accent": Color("#f5d86f")}
+	if texture_key == "plaza_notice_board":
+		return {"fill": Color("#f3d48a"), "edge": Color("#8c6844"), "accent": Color("#fff8d5")}
+	if texture_key == "plaza_tiny_lamp":
+		return {"fill": Color("#f6e4a2"), "edge": Color("#76634c"), "accent": Color("#fff9cf")}
+	if texture_key == "hotspot_glow":
+		return {"fill": Color("#fff0a877"), "edge": Color("#fff0a822"), "accent": Color("#ffffffaa")}
 	if texture_key == "home_floor":
 		return {"fill": Color("#f0d49c"), "edge": Color("#c9a46b"), "accent": Color("#ffe6ad")}
 	if texture_key == "home_wall":
@@ -2831,7 +3056,7 @@ func _create_anchor_letter_badge(anchor: Dictionary) -> Label:
 	badge.custom_minimum_size = Vector2(22, 22)
 	badge.size = Vector2(20, 20)
 	badge.position = _anchor_badge_offset(route_order, letter)
-	badge.modulate = Color(1, 1, 1, 0.68)
+	badge.modulate = Color(1, 1, 1, 0.48)
 	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	badge.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -3149,6 +3374,8 @@ func _remap_legacy_runtime_cell(cell: Vector2i) -> Vector2i:
 func _update_player_marker() -> void:
 	if is_instance_valid(town_stage) and town_stage.has_method("update_player_marker"):
 		town_stage.call("update_player_marker", player_world_position)
+		if town_stage.has_method("set_player_motion_state"):
+			town_stage.call("set_player_motion_state", player_facing, player_is_walking)
 	elif is_instance_valid(player_marker):
 		player_marker.position = player_world_position
 	_update_camera_for_player()
@@ -3237,6 +3464,7 @@ func _axis_step(delta: int) -> int:
 
 func _advance_player_walk(delta: float) -> void:
 	if not player_is_walking or player_walk_path.is_empty():
+		_update_player_marker()
 		return
 	var next_cell := player_walk_path[0]
 	var target_position := _cell_center(_cell_to_dict(next_cell))
@@ -3251,6 +3479,7 @@ func _advance_player_walk(delta: float) -> void:
 			_save_player_cell()
 			_set_life_status(_walk_status_for_cell(player_cell))
 			_update_interaction_prompt()
+			held_move_cooldown = 0.08
 		else:
 			_update_player_facing_for_next_step()
 	_update_player_marker()
@@ -3291,7 +3520,9 @@ func _screen_to_map_position(screen_position: Vector2) -> Vector2:
 
 
 func _on_town_stage_cell_requested(cell: Vector2i) -> void:
-	request_player_walk_to_cell(cell)
+	var result: Dictionary = request_player_walk_to_cell(cell)
+	if result.get("ok", false) and is_instance_valid(town_stage) and town_stage.has_method("show_tap_feedback_at_cell"):
+		town_stage.call("show_tap_feedback_at_cell", cell)
 
 
 func _on_map_gui_input(event: InputEvent) -> void:
@@ -3303,16 +3534,74 @@ func _on_map_gui_input(event: InputEvent) -> void:
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		match event.keycode:
-			KEY_UP, KEY_W:
-				move_player_by_cells(Vector2i(0, -1))
-			KEY_DOWN, KEY_S:
-				move_player_by_cells(Vector2i(0, 1))
-			KEY_LEFT, KEY_A:
-				move_player_by_cells(Vector2i(-1, 0))
-			KEY_RIGHT, KEY_D:
-				move_player_by_cells(Vector2i(1, 0))
+	if not event is InputEventKey:
+		return
+	var key_event: InputEventKey = event
+	var direction := _direction_for_keycode(key_event.keycode)
+	if direction == Vector2i.ZERO:
+		return
+	if key_event.pressed:
+		held_move_direction = direction
+		if not key_event.echo and not player_is_walking:
+			move_player_by_cells(direction)
+	else:
+		if held_move_direction == direction:
+			held_move_direction = Vector2i.ZERO
+
+
+func _update_held_movement(delta: float) -> void:
+	if held_move_direction == Vector2i.ZERO:
+		return
+	held_move_cooldown = maxf(held_move_cooldown - delta, 0.0)
+	if player_is_walking or held_move_cooldown > 0.0:
+		return
+	var result: Dictionary = move_player_by_cells(held_move_direction)
+	if not result.get("ok", false):
+		held_move_cooldown = 0.18
+
+
+func simulate_held_move_for_test(direction: Vector2i, frames: int = 90) -> Dictionary:
+	held_move_direction = direction
+	var start_cell := player_cell
+	for index in range(frames):
+		_process(1.0 / 30.0)
+	var end_cell := player_cell
+	held_move_direction = Vector2i.ZERO
+	return {
+		"ok": end_cell != start_cell,
+		"start_cell": _cell_to_dict(start_cell),
+		"end_cell": _cell_to_dict(end_cell),
+		"direction": _cell_to_dict(direction),
+	}
+
+
+func get_runtime_motion_snapshot() -> Dictionary:
+	var stage_snapshot: Dictionary = {}
+	if is_instance_valid(town_stage) and town_stage.has_method("get_runtime_motion_snapshot"):
+		stage_snapshot = town_stage.call("get_runtime_motion_snapshot")
+	return {
+		"player_cell": _cell_to_dict(player_cell),
+		"player_facing": _cell_to_dict(player_facing),
+		"player_is_walking": player_is_walking,
+		"held_move_direction": _cell_to_dict(held_move_direction),
+		"stage": stage_snapshot,
+		"prompt_glow_visible": is_instance_valid(interaction_prompt_glow) and interaction_prompt_glow.visible,
+		"prompt_visible": is_instance_valid(interaction_prompt_label) and interaction_prompt_label.visible,
+	}
+
+
+func _direction_for_keycode(keycode: Key) -> Vector2i:
+	match keycode:
+		KEY_UP, KEY_W:
+			return Vector2i(0, -1)
+		KEY_DOWN, KEY_S:
+			return Vector2i(0, 1)
+		KEY_LEFT, KEY_A:
+			return Vector2i(-1, 0)
+		KEY_RIGHT, KEY_D:
+			return Vector2i(1, 0)
+		_:
+			return Vector2i.ZERO
 
 
 func _find_npc(npc_id: String) -> Dictionary:
@@ -3401,6 +3690,41 @@ func _find_nearest_interaction(radius: int) -> Dictionary:
 	return nearest
 
 
+func _find_story_prop_at_cell(cell: Vector2i) -> Dictionary:
+	for story_prop_value in story_props:
+		if not story_prop_value is Dictionary:
+			continue
+		var story_prop: Dictionary = story_prop_value
+		if not bool(story_prop.get("visible_in_child_runtime", false)):
+			continue
+		if _dict_to_cell(story_prop.get("interaction_cell", story_prop.get("cell", {}))) == cell:
+			return story_prop.duplicate(true)
+	return {}
+
+
+func _find_nearest_story_prop(radius: int) -> Dictionary:
+	var nearest: Dictionary = {}
+	var nearest_distance := radius + 1
+	for story_prop_value in story_props:
+		if not story_prop_value is Dictionary:
+			continue
+		var story_prop: Dictionary = story_prop_value
+		if not bool(story_prop.get("visible_in_child_runtime", false)):
+			continue
+		var distance := _manhattan_distance(player_cell, _dict_to_cell(story_prop.get("interaction_cell", story_prop.get("cell", {}))))
+		if distance <= radius and distance < nearest_distance:
+			nearest = story_prop
+			nearest_distance = distance
+	return nearest.duplicate(true)
+
+
+func _story_prop_by_id(story_prop_id: String) -> Dictionary:
+	for story_prop_value in story_props:
+		if story_prop_value is Dictionary and str((story_prop_value as Dictionary).get("story_prop_id", "")) == story_prop_id:
+			return (story_prop_value as Dictionary).duplicate(true)
+	return {}
+
+
 func _find_nearest_anchor(radius: int) -> Dictionary:
 	var nearest: Dictionary = {}
 	var nearest_distance := radius + 1
@@ -3419,6 +3743,10 @@ func get_current_interaction_target() -> Dictionary:
 	var exact_interaction: Dictionary = _find_interaction_at_cell(player_cell)
 	if not exact_interaction.is_empty():
 		return _interaction_target_from_map_interaction(exact_interaction)
+
+	var exact_story_prop: Dictionary = _find_story_prop_at_cell(player_cell)
+	if not exact_story_prop.is_empty():
+		return _interaction_target_from_story_prop(exact_story_prop)
 
 	var resource_point: Dictionary = _find_nearest_resource_point(0)
 	if not resource_point.is_empty():
@@ -3463,6 +3791,10 @@ func get_current_interaction_target() -> Dictionary:
 			"prompt": "看看 %s" % core_word,
 		}
 
+	var story_prop: Dictionary = _find_nearest_story_prop(1)
+	if not story_prop.is_empty():
+		return _interaction_target_from_story_prop(story_prop)
+
 	resource_point = _find_nearest_resource_point(1)
 	if not resource_point.is_empty():
 		return {
@@ -3491,6 +3823,19 @@ func _interaction_target_from_map_interaction(interaction: Dictionary) -> Dictio
 		"ok": true,
 		"type": "place",
 		"target_id": str(interaction.get("interaction_id", place_id)),
+		"display_name": display_name,
+		"prompt": "看看 %s" % display_name,
+	}
+
+
+func _interaction_target_from_story_prop(story_prop: Dictionary) -> Dictionary:
+	var display_name := str(story_prop.get("child_label", "看看小物件")).trim_prefix("看看").strip_edges()
+	if display_name.is_empty():
+		display_name = "小物件"
+	return {
+		"ok": true,
+		"type": "story_prop",
+		"target_id": str(story_prop.get("story_prop_id", "")),
 		"display_name": display_name,
 		"prompt": "看看 %s" % display_name,
 	}
@@ -3525,6 +3870,8 @@ func _update_interaction_prompt() -> void:
 	var target := get_current_interaction_target()
 	interaction_prompt_label.text = str(target.get("prompt", "走近一点，再按看看。"))
 	interaction_prompt_label.visible = not player_is_walking
+	if is_instance_valid(interaction_prompt_glow):
+		interaction_prompt_glow.visible = interaction_prompt_label.visible and bool(target.get("ok", false))
 
 
 func _manhattan_distance(a: Vector2i, b: Vector2i) -> int:
@@ -3566,6 +3913,15 @@ func _load_homeschool_events() -> Dictionary:
 			if not event_id.is_empty():
 				events_by_id[event_id] = event.duplicate(true)
 	return events_by_id
+
+
+func _load_story_props() -> Array:
+	var data: Dictionary = _load_json(STORY_PROPS_PATH)
+	var props: Array = []
+	for story_prop_value in data.get("story_props", []):
+		if story_prop_value is Dictionary:
+			props.append((story_prop_value as Dictionary).duplicate(true))
+	return props
 
 
 func _rounded_box(fill: Color, radius: int, border: Color = Color.TRANSPARENT) -> StyleBoxFlat:

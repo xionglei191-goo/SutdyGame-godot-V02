@@ -40,6 +40,8 @@ mouse_filter = 0
 
 [node name="HotspotLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
 
+[node name="StoryPropLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
 [node name="CollisionDebugLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
 visible = false
 

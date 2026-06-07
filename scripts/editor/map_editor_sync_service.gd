@@ -3,11 +3,14 @@ class_name MapEditorSyncService
 
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
 const WorldMapContractScript := preload("res://scripts/data/world_map_contract.gd")
+const AssetResolverScript := preload("res://scripts/systems/asset_resolver.gd")
 
 const RESOURCE_POINTS_PATH := "res://data/life/resource_points.json"
 const NPC_ROUTINES_PATH := "res://data/life/npc_routines.json"
+const STORY_PROPS_PATH := "res://data/life/story_props.json"
 const LIFE_ITEMS_PATH := "res://data/items/life_items.json"
 const KNOWN_NPC_IDS: Array[String] = ["mina", "shopkeeper", "pet_buddy", "bus_helper", "story_bear"]
+const STORY_PROP_FORBIDDEN_TERMS: Array[String] = ["课程", "单元", "测试", "测验", "考试", "背诵", "词表", "分数", "正确率", "等级", "倒计时", "迟到", "作业", "老师评价", "家长报告", "坐标", "格子", "调试", "debug", "editor", "footprint"]
 
 
 static func import_from_json(path: String = RuntimeMapBuilderScript.WORLD_MAP_PATH) -> Dictionary:
@@ -298,6 +301,57 @@ static func validate_npc_routines(routine_data: Dictionary, map_data: Dictionary
 	return errors
 
 
+static func validate_story_props(story_prop_data: Dictionary, map_data: Dictionary) -> Array[String]:
+	var errors: Array[String] = []
+	if not story_prop_data.has("story_props") or not story_prop_data.get("story_props", []) is Array:
+		return ["story_props_missing"]
+	var canvas: Dictionary = map_data.get("canvas_size", {})
+	var anchor_ids := _anchor_ids(map_data)
+	var place_ids := _place_ids(map_data)
+	var protected: Dictionary = _protected_cells_for_story_props(map_data)
+	var seen_ids: Dictionary = {}
+	for prop_value in story_prop_data.get("story_props", []):
+		if not prop_value is Dictionary:
+			errors.append("story prop is not dictionary")
+			continue
+		var prop: Dictionary = prop_value
+		var prop_id := str(prop.get("story_prop_id", ""))
+		var place_id := str(prop.get("place_id", ""))
+		var logical_asset_id := str(prop.get("logical_asset_id", ""))
+		var interaction_key := _cell_key(prop.get("interaction_cell", {}))
+		if prop_id.is_empty():
+			errors.append("story prop has empty story_prop_id")
+		elif seen_ids.has(prop_id):
+			errors.append("duplicate story_prop_id: %s" % prop_id)
+		else:
+			seen_ids[prop_id] = true
+		if not place_ids.has(place_id):
+			errors.append("story prop has unknown place_id: %s" % prop_id)
+		if not AssetResolverScript.get_story_prop_asset(logical_asset_id).get("ok", false):
+			errors.append("story prop has unresolved logical_asset_id: %s" % prop_id)
+		if not _cell_in_canvas(prop.get("cell", {}), canvas):
+			errors.append("story prop cell outside canvas: %s" % prop_id)
+		if not _cell_in_canvas(prop.get("interaction_cell", {}), canvas):
+			errors.append("story prop interaction cell outside canvas: %s" % prop_id)
+		if protected.has(interaction_key):
+			errors.append("story prop interaction cell overlaps protected %s: %s" % [protected[interaction_key], prop_id])
+		if int(prop.get("size", {}).get("w", 0)) <= 0 or int(prop.get("size", {}).get("h", 0)) <= 0:
+			errors.append("story prop size must be positive: %s" % prop_id)
+		if str(prop.get("action", "")) != "look_story_prop":
+			errors.append("story prop action must be look_story_prop: %s" % prop_id)
+		for anchor_id_value in prop.get("core_anchor_ids", []):
+			var anchor_id := str(anchor_id_value)
+			if not anchor_ids.has(anchor_id):
+				errors.append("story prop has unknown core_anchor_id %s: %s" % [anchor_id, prop_id])
+		var child_label := str(prop.get("child_label", ""))
+		if child_label.is_empty():
+			errors.append("story prop child_label is empty: %s" % prop_id)
+		for term in STORY_PROP_FORBIDDEN_TERMS:
+			if child_label.contains(term):
+				errors.append("story prop child_label has forbidden term %s: %s" % [term, prop_id])
+	return errors
+
+
 static func round_trip_state(editor_state: Dictionary) -> Dictionary:
 	var exported: Dictionary = export_to_dictionary(editor_state)
 	if not exported.get("ok", false):
@@ -400,6 +454,35 @@ static func _protected_cells_for_npcs(map_data: Dictionary, resource_data: Dicti
 		if point is Dictionary:
 			protected[_cell_key((point as Dictionary).get("cell", {}))] = "resource:%s" % str((point as Dictionary).get("point_id", ""))
 	return protected
+
+
+static func _protected_cells_for_story_props(map_data: Dictionary) -> Dictionary:
+	var protected: Dictionary = {}
+	for anchor in map_data.get("memory_anchors", []):
+		if anchor is Dictionary:
+			protected[_cell_key((anchor as Dictionary).get("position", {}))] = "anchor:%s" % str((anchor as Dictionary).get("anchor_id", ""))
+	for interaction in map_data.get("interaction_cells", []):
+		if interaction is Dictionary:
+			protected[_cell_key((interaction as Dictionary).get("cell", {}))] = "interaction:%s" % str((interaction as Dictionary).get("interaction_id", ""))
+	for cell in map_data.get("collision_cells", []):
+		protected[_cell_key(cell)] = "collision"
+	return protected
+
+
+static func _anchor_ids(map_data: Dictionary) -> Dictionary:
+	var ids: Dictionary = {}
+	for anchor in map_data.get("memory_anchors", []):
+		if anchor is Dictionary:
+			ids[str((anchor as Dictionary).get("anchor_id", ""))] = true
+	return ids
+
+
+static func _place_ids(map_data: Dictionary) -> Dictionary:
+	var ids: Dictionary = {}
+	for place in map_data.get("places", []):
+		if place is Dictionary:
+			ids[str((place as Dictionary).get("place_id", ""))] = true
+	return ids
 
 
 static func _cell_in_canvas(cell: Dictionary, canvas: Dictionary) -> bool:

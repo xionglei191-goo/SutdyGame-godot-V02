@@ -27,7 +27,27 @@ func _init() -> void:
 	_expect_placeholder(AssetResolverScript.get_card_art("card_a_apple_core", THEME_ID), "card art")
 	_expect_project_asset(AssetResolverScript.get_ui_skin("primary_button", THEME_ID), "ui skin")
 	_expect_placeholder(AssetResolverScript.get_card_frame("core", THEME_ID), "card frame")
+	_expect_project_asset(AssetResolverScript.get_story_prop_asset("story_prop.home.apple_welcome_photo", THEME_ID), "story prop")
+	_expect_project_asset(AssetResolverScript.get_character_animation("anim_sheet.player.p0_motion", THEME_ID), "character animation")
+	_expect_project_asset(AssetResolverScript.get_pet_animation("anim_sheet.pet.sunny.p0_motion", THEME_ID), "pet animation")
+	_expect_project_asset(AssetResolverScript.get_animation_metadata("anim_meta.player.p0_motion", THEME_ID), "animation metadata")
+	_expect_project_asset(AssetResolverScript.get_ui_feedback("ui_feedback.prompt_soft_glow", THEME_ID), "ui feedback")
+	_expect_project_asset(AssetResolverScript.get_tile_edge_asset("tile_edge.grass_path.soft", THEME_ID), "tile edge")
+	_expect_project_asset(AssetResolverScript.get_terrain_edge_asset("tile_edge.grass_path.soft", THEME_ID), "canonical terrain edge alias")
+	_expect_project_asset(AssetResolverScript.get_terrain_tile_asset("terrain.grass.soft_tile", THEME_ID), "visual recovery terrain tile")
+	_expect_project_asset(AssetResolverScript.get_region_chunk_asset("region.town_plaza.chunk", THEME_ID), "visual recovery region chunk")
+	_expect_project_asset(AssetResolverScript.get_building_prefab_asset("building.home.cottage", THEME_ID), "visual recovery building prefab")
+	_expect_project_asset(AssetResolverScript.get_world_prop_asset("world_prop.anchor.apple_basket", THEME_ID), "visual recovery world prop")
+	_expect_project_asset(AssetResolverScript.get_world_prop_asset("world_prop.anchor.clock_corner", THEME_ID), "visual recovery clock world prop")
+	_expect_project_asset(AssetResolverScript.get_world_prop_asset("world_prop.home.sunny_corner", THEME_ID), "visual recovery Sunny world prop")
+	_expect_project_asset(AssetResolverScript.get_soft_shadow_asset("soft_shadow.oval.default", THEME_ID), "visual recovery soft shadow")
+	_expect_project_asset(AssetResolverScript.get_shadow_asset("soft_shadow.oval.default", THEME_ID), "canonical shadow alias")
+	_expect_project_asset(AssetResolverScript.get_actor_sprite("character.player.standing", THEME_ID), "canonical actor sprite alias")
+	_expect_project_asset(AssetResolverScript.get_actor_animation("anim_sheet.player.p0_motion", THEME_ID), "canonical actor animation alias")
+	_expect_project_asset(AssetResolverScript.get_actor_animation_metadata("anim_meta.player.p0_motion", THEME_ID), "canonical actor animation metadata alias")
+	_expect_project_asset(AssetResolverScript.get_glass_ui_asset("glass_hud_bar", THEME_ID), "canonical glass UI alias")
 	_check_polish_assets()
+	_check_visual_recovery_reference_assets()
 
 	var missing: Dictionary = AssetResolverScript.get_pet_sprite("unknown_pet", THEME_ID)
 	_expect(not missing.get("ok", true), "unknown logical asset id must be reported")
@@ -51,8 +71,7 @@ func _expect_placeholder(result: Dictionary, label: String) -> void:
 
 func _check_polish_assets() -> void:
 	var required_assets := [
-		{"category": "place_assets", "asset_id": "place.world_map.base_1280"},
-		{"category": "place_assets", "asset_id": "place.home.yard"},
+			{"category": "place_assets", "asset_id": "place.home.yard"},
 		{"category": "place_assets", "asset_id": "place.home_school_walk.day"},
 		{"category": "place_assets", "asset_id": "place.school_gate.exterior"},
 		{"category": "place_assets", "asset_id": "place.school_yard.day"},
@@ -87,7 +106,36 @@ func _check_polish_assets() -> void:
 		{"category": "ui_skin", "asset_id": "glass_button_normal"},
 		{"category": "ui_skin", "asset_id": "glass_button_pressed"},
 		{"category": "ui_skin", "asset_id": "glass_icon_button"},
-	]
+		{"category": "story_prop_assets", "asset_id": "story_prop.home.apple_welcome_photo"},
+		{"category": "story_prop_assets", "asset_id": "story_prop.school.yard_net_robot_yoyo_corner"},
+		{"category": "story_prop_assets", "asset_id": "story_prop.shop.hat_ribbon_window"},
+		{"category": "story_prop_assets", "asset_id": "story_prop.plaza.bear_book_branch_bookmark"},
+		{"category": "character_animation_assets", "asset_id": "anim_sheet.player.p0_motion"},
+		{"category": "pet_animation_assets", "asset_id": "anim_sheet.pet.sunny.p0_motion"},
+		{"category": "ui_feedback_assets", "asset_id": "ui_feedback.prompt_soft_glow"},
+		{"category": "ui_feedback_assets", "asset_id": "ui_feedback.collect_sparkle_soft"},
+		{"category": "ui_feedback_assets", "asset_id": "ui_feedback.tap_ripple_soft"},
+			{"category": "tile_edge_assets", "asset_id": "tile_edge.grass_path.soft"},
+			{"category": "terrain_edge_assets", "asset_id": "tile_edge.grass_path.soft"},
+			{"category": "terrain_tile_assets", "asset_id": "terrain.grass.soft_tile"},
+			{"category": "terrain_tile_assets", "asset_id": "terrain.path.soft_tile"},
+			{"category": "terrain_tile_assets", "asset_id": "terrain.plaza.warm_tile"},
+			{"category": "region_chunk_assets", "asset_id": "region.home.edge_chunk"},
+			{"category": "region_chunk_assets", "asset_id": "region.town_plaza.chunk"},
+			{"category": "region_chunk_assets", "asset_id": "region.shop_street.chunk"},
+			{"category": "region_chunk_assets", "asset_id": "region.school_line.chunk"},
+			{"category": "building_prefab_assets", "asset_id": "building.home.cottage"},
+			{"category": "building_prefab_assets", "asset_id": "building.shop.market"},
+			{"category": "building_prefab_assets", "asset_id": "building.school.gate"},
+			{"category": "world_prop_assets", "asset_id": "world_prop.anchor.apple_basket"},
+			{"category": "world_prop_assets", "asset_id": "world_prop.anchor.clock_corner"},
+			{"category": "world_prop_assets", "asset_id": "world_prop.home.sunny_corner"},
+			{"category": "soft_shadow_assets", "asset_id": "soft_shadow.oval.default"},
+			{"category": "shadow_assets", "asset_id": "soft_shadow.oval.default"},
+			{"category": "actor_sprite_assets", "asset_id": "character.player.standing"},
+			{"category": "actor_animation_assets", "asset_id": "anim_sheet.player.p0_motion"},
+			{"category": "glass_ui_assets", "asset_id": "glass_hud_bar"},
+		]
 	var records: Array = AssetResolverScript.get_asset_acceptance_records(THEME_ID)
 	for anchor_asset_id in ANCHOR_ASSET_IDS:
 		required_assets.append({"category": "anchor_assets", "asset_id": anchor_asset_id})
@@ -106,6 +154,17 @@ func _check_polish_assets() -> void:
 		_expect(str(record.get("resource_path_for_mapping", "")) == asset_path, "Acceptance path should match resolver mapping: %s" % asset_id)
 		_expect(str(record.get("notes_child_safety", "")).length() > 0, "Polish asset should record child safety notes: %s" % asset_id)
 		_expect(str(record.get("notes_anchor_integrity", "")).length() > 0, "Polish asset should record anchor integrity notes: %s" % asset_id)
+
+
+func _check_visual_recovery_reference_assets() -> void:
+	var world_base: Dictionary = AssetResolverScript.get_place_asset("place.world_map.base_1280", THEME_ID)
+	_expect(world_base.get("ok", false), "V02.38 reference world map base should still resolve for migration comparison")
+	var world_base_path := str(world_base.get("placeholder_path", ""))
+	_expect(world_base_path.ends_with("world_map_base_1280.png"), "V02.38 reference world map base should remain the historical proof asset")
+	_expect(FileAccess.file_exists(world_base_path), "V02.38 reference world map base file should stay available")
+	var record: Dictionary = _acceptance_record_for(AssetResolverScript.get_asset_acceptance_records(THEME_ID), "place.world_map.base_1280")
+	_expect(str(record.get("status", "")) == "reference_only", "V02.38 world map base acceptance record should be reference-only")
+	_expect(str(record.get("acceptance_result", "")) == "reference_only", "V02.38 world map base should not carry current production approval")
 
 
 func _acceptance_record_for(records: Array, asset_id: String) -> Dictionary:

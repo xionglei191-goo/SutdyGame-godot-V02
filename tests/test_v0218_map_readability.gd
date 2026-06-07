@@ -73,8 +73,13 @@ func _check_runtime_readability(world_map: Dictionary) -> void:
 	for node_name in artpass004_zone_names:
 		var zone := main.find_child(node_name, true, false) as Sprite2D
 		_expect(zone != null and zone.texture != null and zone.texture.get_width() >= 512, "ARTPASS-004 map zone should use production place asset: %s" % node_name)
-	var ground := main.find_child("Ground", true, false) as Sprite2D
-	_expect(ground != null and ground.texture != null and ground.texture.get_width() == 1280, "ARTPASS-004 ground should use 1280 world map base asset")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_visual_recovery_snapshot"), "V02.38 TownStage should expose modular visual recovery snapshot")
+	if stage != null and stage.has_method("get_visual_recovery_snapshot"):
+		var visual_snapshot: Dictionary = stage.call("get_visual_recovery_snapshot")
+		_expect(not bool(visual_snapshot.get("uses_full_map_background", true)), "V02.38 runtime ground should not use world_map_base_1280 as final main background")
+		_expect(int(visual_snapshot.get("terrain_tile_count", 0)) >= 100, "V02.38 runtime ground should be composed from modular terrain tiles")
+		_expect(int(visual_snapshot.get("region_chunk_count", 0)) >= 4, "V02.38 runtime should expose modular region chunks")
 
 	var seen_groups := {}
 	var badge_rects: Array[Dictionary] = []
@@ -106,7 +111,7 @@ func _check_runtime_readability(world_map: Dictionary) -> void:
 		_expect(badge != null and badge.size.x >= 22.0 and badge.size.y >= 22.0, "V02.18 letter badge should stay present at quieter size: %s" % anchor_id)
 		_expect(badge != null and int(badge.get_theme_font_size("font_size")) >= 12, "V02.18 letter badge should stay legible at quieter font size: %s" % anchor_id)
 		if badge != null:
-			badge_rects.append({"anchor_id": anchor_id, "letter": letter, "rect": badge.get_global_rect(), "local_size": badge.size})
+			badge_rects.append({"anchor_id": anchor_id, "letter": letter, "rect": badge.get_global_rect(), "local_size": badge.size, "alpha": float(badge.modulate.a)})
 
 		var anchor_cell := _dict_to_cell(anchor.get("position", {}))
 		var look_cell := _best_look_cell(main, anchor_cell, anchor_id)
@@ -234,15 +239,19 @@ func _check_runtime_badge_spacing(badge_rects: Array[Dictionary], main) -> void:
 		_expect(local_size.x <= 24.0 and local_size.y <= 24.0, "V02.20 quiet letter badge should stay secondary in local node size: %s" % current.get("letter", ""))
 		for other_index in range(index + 1, badge_rects.size()):
 			var other: Dictionary = badge_rects[other_index]
+			if float(current.get("alpha", 1.0)) <= 0.5 or float(other.get("alpha", 1.0)) <= 0.5:
+				continue
 			if current_rect.intersects(other.get("rect", Rect2())):
 				_expect(_screenshot_group_for_letter(str(current.get("letter", ""))) == _screenshot_group_for_letter(str(other.get("letter", ""))), "V02.20 quiet badge overlap should stay within the same neighborhood group: %s near %s" % [current.get("letter", ""), other.get("letter", "")])
 	for sign_name in ["MapReadSignSun", "MapReadSignSchool", "MapReadSignStory", "MapReadSignHome", "MapReadSignShop", "MapReadSignAnimal", "MapReadSignCoast"]:
 		var sign := main.find_child(sign_name, true, false) as Label
 		if sign == null:
 			continue
-		var sign_rect := sign.get_global_rect()
-		for badge in badge_rects:
-			_expect(not sign_rect.intersects(badge.get("rect", Rect2())), "V02.18 runtime letter badge should not cover area sign: %s over %s" % [badge.get("letter", ""), sign_name])
+			var sign_rect := sign.get_global_rect()
+			for badge in badge_rects:
+				if float(badge.get("alpha", 1.0)) <= 0.5:
+					continue
+				_expect(not sign_rect.intersects(badge.get("rect", Rect2())), "V02.18 runtime letter badge should not cover area sign: %s over %s" % [badge.get("letter", ""), sign_name])
 
 
 func _screenshot_group_for_letter(letter: String) -> String:

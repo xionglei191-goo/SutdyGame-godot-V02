@@ -1,0 +1,45 @@
+{
+  "metadata_id": "anim_meta.player.p0_motion",
+  "sheet_asset_id": "anim_sheet.player.p0_motion",
+  "source_png": "res://assets/art/characters/animation/player_p0_motion_v001.png",
+  "frame_size": {"w": 64, "h": 64},
+  "pivot": {"x": 32, "y": 52},
+  "animations": [
+    {
+      "logical_animation_id": "anim.player.idle.down",
+      "row": 0,
+      "frames": [0],
+      "fps": 1,
+      "loop": true,
+      "direction": "down",
+      "fallback_asset_id": "character.player.standing"
+    },
+    {
+      "logical_animation_id": "anim.player.walk.down",
+      "row": 1,
+      "frames": [0, 1, 2, 3],
+      "fps": 8,
+      "loop": true,
+      "direction": "down",
+      "fallback_asset_id": "character.player.standing"
+    },
+    {
+      "logical_animation_id": "anim.player.walk.left",
+      "row": 2,
+      "frames": [0, 1, 2, 3],
+      "fps": 8,
+      "loop": true,
+      "direction": "left",
+      "fallback_asset_id": "character.player.standing"
+    },
+    {
+      "logical_animation_id": "anim.player.walk.up",
+      "row": 3,
+      "frames": [0, 1, 2, 3],
+      "fps": 8,
+      "loop": true,
+      "direction": "up",
+      "fallback_asset_id": "character.player.standing"
+    }
+  ]
+}

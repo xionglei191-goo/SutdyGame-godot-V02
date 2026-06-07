@@ -68,6 +68,13 @@ const V027MapeditorFullRegressionTestScript := preload("res://tests/test_v027_ma
 const V027MapeditorUsabilityDeclutterTestScript := preload("res://tests/test_v027_mapeditor_usability_declutter.gd")
 const V027MapeditorDirectEditDragTestScript := preload("res://tests/test_v027_mapeditor_direct_edit_drag.gd")
 const V028MapdogfoodProductionTestScript := preload("res://tests/test_v028_mapdogfood_production.gd")
+const V0234Artprod001AssetIntegrationTestScript := preload("res://tests/test_v0234_artprod001_asset_integration.gd")
+const V0235RuntimeAnimControlsTestScript := preload("res://tests/test_v0235_runtime_anim_controls.gd")
+const V0236Storyslice001RuntimeTestScript := preload("res://tests/test_v0236_storyslice001_runtime.gd")
+const V0237Storybatch002ContentPackTestScript := preload("res://tests/test_v0237_storybatch002_content_pack.gd")
+const V0237Storybatch003AssetIntegrationTestScript := preload("res://tests/test_v0237_storybatch003_asset_integration.gd")
+const V0237Storybatch004RuntimeSmokeTestScript := preload("res://tests/test_v0237_storybatch004_runtime_smoke.gd")
+const V0238VisualRecoveryRuntimeTestScript := preload("res://tests/test_v0238_visual_recovery_runtime.gd")
 const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
 const ANCHOR_ASSET_IDS: Array[String] = [
 	"anchor.a.apple_tree", "anchor.b.bear_corner", "anchor.c.clock", "anchor.d.dog_corner", "anchor.e.elephant_slide", "anchor.f.fox_topiary", "anchor.g.school_gate", "anchor.h.hat_sign", "anchor.i.ice_cream_cart", "anchor.j.jacket_window", "anchor.k.kite", "anchor.l.lion_fountain", "anchor.m.monkey_tree", "anchor.n.soft_net", "anchor.o.orange_stall", "anchor.p.panda_corner", "anchor.q.queen_poster", "anchor.r.robot_sign", "anchor.s.sun_landmark", "anchor.t.taxi_marker", "anchor.u.beach_umbrella", "anchor.v.violin_corner", "anchor.w.watch_table", "anchor.x.x_mark_box", "anchor.y.yo_yo_corner", "anchor.z.zebra_edge"
@@ -183,6 +190,13 @@ func _init() -> void:
 	_check_v027_mapeditor_usability_declutter()
 	_check_v027_mapeditor_direct_edit_drag()
 	_check_v028_mapdogfood_production()
+	_check_v0234_artprod001_asset_integration()
+	_check_v0235_runtime_anim_controls()
+	_check_v0236_storyslice001_runtime()
+	_check_v0237_storybatch002_content_pack()
+	_check_v0237_storybatch003_asset_integration()
+	_check_v0237_storybatch004_runtime_smoke()
+	_check_v0238_visual_recovery_runtime()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -233,7 +247,6 @@ func _check_asset_resolver() -> void:
 func _check_polish_p0_asset_resolver_records() -> void:
 	var theme_id := "theme_sunshine_town_placeholder"
 	var required_assets := [
-		{"category": "place_assets", "asset_id": "place.world_map.base_1280"},
 		{"category": "place_assets", "asset_id": "place.home.yard"},
 		{"category": "place_assets", "asset_id": "place.home_school_walk.day"},
 		{"category": "place_assets", "asset_id": "place.school_gate.exterior"},
@@ -253,8 +266,33 @@ func _check_polish_p0_asset_resolver_records() -> void:
 		{"category": "pet_assets", "asset_id": "pet.sunny.standing"},
 		{"category": "ui_icon_assets", "asset_id": "ui_icon.coin"},
 		{"category": "ui_icon_assets", "asset_id": "ui_icon.bag"},
+		{"category": "terrain_edge_assets", "asset_id": "tile_edge.grass_path.soft"},
+		{"category": "terrain_tile_assets", "asset_id": "terrain.grass.soft_tile"},
+		{"category": "terrain_tile_assets", "asset_id": "terrain.path.soft_tile"},
+		{"category": "terrain_tile_assets", "asset_id": "terrain.plaza.warm_tile"},
+		{"category": "region_chunk_assets", "asset_id": "region.home.edge_chunk"},
+		{"category": "region_chunk_assets", "asset_id": "region.town_plaza.chunk"},
+		{"category": "region_chunk_assets", "asset_id": "region.shop_street.chunk"},
+		{"category": "region_chunk_assets", "asset_id": "region.school_line.chunk"},
+		{"category": "building_prefab_assets", "asset_id": "building.home.cottage"},
+		{"category": "building_prefab_assets", "asset_id": "building.shop.market"},
+		{"category": "building_prefab_assets", "asset_id": "building.school.gate"},
+		{"category": "world_prop_assets", "asset_id": "world_prop.anchor.apple_basket"},
+		{"category": "world_prop_assets", "asset_id": "world_prop.anchor.clock_corner"},
+		{"category": "world_prop_assets", "asset_id": "world_prop.home.sunny_corner"},
+		{"category": "soft_shadow_assets", "asset_id": "soft_shadow.oval.default"},
+		{"category": "shadow_assets", "asset_id": "soft_shadow.oval.default"},
+		{"category": "actor_sprite_assets", "asset_id": "character.player.standing"},
+		{"category": "actor_animation_assets", "asset_id": "anim_sheet.player.p0_motion"},
+		{"category": "glass_ui_assets", "asset_id": "glass_hud_bar"},
 	]
+	var world_base: Dictionary = AssetResolverScript.get_place_asset("place.world_map.base_1280", theme_id)
+	_expect(world_base.get("ok", false), "V02.38 reference world map base should still resolve in headless runner")
+	_expect(str(world_base.get("placeholder_path", "")).ends_with("world_map_base_1280.png"), "V02.38 world map base should remain reference-only historical asset")
 	var records: Array = AssetResolverScript.get_asset_acceptance_records(theme_id)
+	var world_base_record: Dictionary = _asset_acceptance_record_for(records, "place.world_map.base_1280")
+	_expect(str(world_base_record.get("status", "")) == "reference_only", "V02.38 world map base should be reference-only in asset acceptance")
+	_expect(str(world_base_record.get("acceptance_result", "")) == "reference_only", "V02.38 world map base should not carry current production approval")
 	for anchor_asset_id in ANCHOR_ASSET_IDS:
 		required_assets.append({"category": "anchor_assets", "asset_id": anchor_asset_id})
 	for spec in required_assets:
@@ -552,7 +590,12 @@ func _check_child_experience_and_mobile_acceptance(main: Control) -> void:
 	var runtime_map := main.find_child("RuntimeMap", true, false)
 	_expect(runtime_map != null and runtime_map is Node2D, "RuntimeMap must be a Node2D playfield layer")
 	_expect(runtime_map != null and _count_nodes_of_type(runtime_map, "Sprite2D") >= 30, "RuntimeMap should be built from Sprite2D-style assets")
-	_expect(runtime_map != null and runtime_map.find_child("Ground", true, false) is Sprite2D, "RuntimeMap ground should be a sprite asset")
+	var visual_stage := main.find_child("TownStage", true, false)
+	_expect(visual_stage != null and visual_stage.has_method("get_visual_recovery_snapshot"), "RuntimeMap should expose V02.38 modular visual recovery proof")
+	if visual_stage != null and visual_stage.has_method("get_visual_recovery_snapshot"):
+		var visual_snapshot: Dictionary = visual_stage.call("get_visual_recovery_snapshot")
+		_expect(int(visual_snapshot.get("terrain_tile_count", 0)) >= 100, "RuntimeMap ground should be composed from modular sprite terrain tiles")
+		_expect(not bool(visual_snapshot.get("uses_full_map_background", true)), "RuntimeMap should not use the historical full-map background as final ground")
 	_expect(runtime_map != null and runtime_map.find_child("RoadCell", true, false) is Sprite2D, "RuntimeMap roads should be sprite assets")
 	var player := main.find_child("Player", true, false)
 	_expect(player != null and player is Node2D and not player is Label, "player marker should be a sprite character, not text")
@@ -1339,8 +1382,13 @@ func _check_v0218_map_readability() -> void:
 	for node_name in artpass004_zone_names:
 		var zone := main.find_child(node_name, true, false) as Sprite2D
 		_expect(zone != null and zone.texture != null and zone.texture.get_width() >= 512, "ARTPASS-004 map zone should use production place asset in headless runner: %s" % node_name)
-	var ground := main.find_child("Ground", true, false) as Sprite2D
-	_expect(ground != null and ground.texture != null and ground.texture.get_width() == 1280, "ARTPASS-004 ground should use 1280 world map base asset in headless runner")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_visual_recovery_snapshot"), "V02.38 runner should expose modular visual recovery snapshot")
+	if stage != null and stage.has_method("get_visual_recovery_snapshot"):
+		var visual_snapshot: Dictionary = stage.call("get_visual_recovery_snapshot")
+		_expect(not bool(visual_snapshot.get("uses_full_map_background", true)), "V02.38 runner should not use world_map_base_1280 as final main background")
+		_expect(int(visual_snapshot.get("terrain_tile_count", 0)) >= 100, "V02.38 runner ground should be modular terrain tiles")
+		_expect(int(visual_snapshot.get("region_chunk_count", 0)) >= 4, "V02.38 runner should expose modular region chunks")
 	var groups := {}
 	var interact_button := main.find_child("InteractButton", true, false) as Button
 	_expect(interact_button != null and _control_path_visible(interact_button), "V02.18 map readability should keep visible Interact button")
@@ -1952,6 +2000,17 @@ func _check_town_stage_layered_runtime() -> void:
 	_expect((stage.find_child("CollisionDebugLayer", true, false) as CanvasItem).visible == false, "TownStage runner CollisionDebugLayer should stay hidden")
 	_expect((stage.find_child("RoadVisualLayer", true, false) as Node).get_child_count() > 0, "TownStage runner RoadVisualLayer should contain road visuals")
 	_expect((stage.find_child("PlaceLayer", true, false) as Node).find_child("place_home", true, false) != null, "TownStage runner PlaceLayer should contain Home")
+	_expect(stage.has_method("get_visual_recovery_snapshot"), "TownStage runner should expose V02.38 modular visual recovery snapshot")
+	if stage.has_method("get_visual_recovery_snapshot"):
+		var visual_snapshot: Dictionary = stage.call("get_visual_recovery_snapshot")
+		_expect(int(visual_snapshot.get("terrain_tile_count", 0)) >= 100, "TownStage runner should build first screen from modular terrain tiles")
+		_expect(int(visual_snapshot.get("region_chunk_count", 0)) >= 4, "TownStage runner should render Home / Plaza / Shop / School region chunks")
+		_expect(int(visual_snapshot.get("building_prefab_count", 0)) >= 3, "TownStage runner should render Home, Shop, and School Gate building prefabs")
+		_expect(int(visual_snapshot.get("world_prop_count", 0)) == 3, "TownStage runner should render the three first-screen recovery world props once")
+		_expect(not bool(visual_snapshot.get("uses_full_map_background", true)), "TownStage runner should not use place.world_map.base_1280 as final runtime background")
+		_expect(not bool(visual_snapshot.get("has_legacy_ground_sprite", true)), "TownStage runner should not create a single legacy Ground sprite")
+		_expect(float(visual_snapshot.get("non_prefab_place_max_alpha", 1.0)) <= 0.22, "TownStage runner non-prefab place context markers should stay visually quiet")
+		_expect(float(visual_snapshot.get("anchor_badge_max_alpha", 1.0)) <= 0.5, "TownStage runner anchor badges should be muted helper marks")
 	_expect((stage.find_child("AnchorLayer", true, false) as Node).find_child("anchor_a_apple", true, false) != null, "TownStage runner AnchorLayer should contain A anchor")
 	_expect((stage.find_child("ResourceLayer", true, false) as Node).get_child_count() > 0, "TownStage runner ResourceLayer should contain resources")
 	_expect((stage.find_child("NPCActorLayer", true, false) as Node).find_child("npc_mina", true, false) != null, "TownStage runner NPCActorLayer should contain Mina")
@@ -2482,6 +2541,232 @@ func _check_v028_mapdogfood_production() -> void:
 	var npc_target: Dictionary = main.get_current_interaction_target()
 	_expect(str(npc_target.get("type", "")) == "npc" and str(npc_target.get("target_id", "")) == "shopkeeper", "V02.28 MAPDOGFOOD runner should prompt shopkeeper at moved routine")
 	_expect(main.save_service.clear_for_test(), "V02.28 MAPDOGFOOD runner save should clean")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0234_artprod001_asset_integration() -> void:
+	_expect(V0234Artprod001AssetIntegrationTestScript != null, "V02.34 ARTPROD-001 focused test should compile for headless runner")
+	var theme_id := "theme_sunshine_town_placeholder"
+	var required_assets := [
+		{"category": "story_prop_assets", "asset_id": "story_prop.home.apple_welcome_photo"},
+		{"category": "story_prop_assets", "asset_id": "story_prop.school.yard_net_robot_yoyo_corner"},
+		{"category": "story_prop_assets", "asset_id": "story_prop.shop.hat_ribbon_window"},
+		{"category": "story_prop_assets", "asset_id": "story_prop.plaza.bear_book_branch_bookmark"},
+		{"category": "character_animation_assets", "asset_id": "anim_sheet.player.p0_motion"},
+		{"category": "pet_animation_assets", "asset_id": "anim_sheet.pet.sunny.p0_motion"},
+		{"category": "animation_metadata_assets", "asset_id": "anim_meta.player.p0_motion"},
+		{"category": "animation_metadata_assets", "asset_id": "anim_meta.pet.sunny.p0_motion"},
+		{"category": "ui_feedback_assets", "asset_id": "ui_feedback.prompt_soft_glow"},
+		{"category": "ui_feedback_assets", "asset_id": "ui_feedback.collect_sparkle_soft"},
+		{"category": "ui_feedback_assets", "asset_id": "ui_feedback.tap_ripple_soft"},
+		{"category": "tile_edge_assets", "asset_id": "tile_edge.grass_path.soft"},
+	]
+	var records: Array = AssetResolverScript.get_asset_acceptance_records(theme_id)
+	for spec in required_assets:
+		var category := str(spec.get("category", ""))
+		var asset_id := str(spec.get("asset_id", ""))
+		var resolved: Dictionary = AssetResolverScript.resolve_asset(theme_id, category, asset_id)
+		_expect(resolved.get("ok", false), "V02.34 ARTPROD-001 runner asset should resolve: %s" % asset_id)
+		var asset_path := str(resolved.get("placeholder_path", ""))
+		_expect(FileAccess.file_exists(asset_path), "V02.34 ARTPROD-001 runner asset path should exist: %s" % asset_path)
+		if category != "animation_metadata_assets":
+			var record: Dictionary = _asset_acceptance_record_for(records, asset_id)
+			_expect(str(record.get("status", "")) == "production", "V02.34 ARTPROD-001 runner asset should be production: %s" % asset_id)
+			_expect(str(record.get("viewport_evidence", "")) == "pending_1280_runtime_proof", "V02.34 ARTPROD-001 runner should keep runtime proof pending: %s" % asset_id)
+	var map_result: Dictionary = RuntimeMapBuilderScript.load_world_map()
+	var story_result: Dictionary = MapEditorSyncServiceScript.load_json_dictionary(MapEditorSyncServiceScript.STORY_PROPS_PATH)
+	_expect(story_result.get("ok", false), "V02.34 ARTPROD-001 runner story_props.json should load")
+	var story_errors: Array[String] = MapEditorSyncServiceScript.validate_story_props(story_result.get("data", {}), map_result.get("data", {}))
+	_expect(story_errors.is_empty(), "V02.34 ARTPROD-001 runner story props should validate: %s" % [story_errors])
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	_expect(int(scene.call("build_from_world_map").get("story_prop_marker_count", 0)) >= 4, "V02.34 ARTPROD-001 runner Map Editor should keep exposing story prop markers")
+	_expect(scene.call("select_marker", "story_prop", "story_prop_marker_home_apple_welcome_photo").get("ok", false), "V02.34 ARTPROD-001 runner should select story prop marker")
+	var inspector: Dictionary = scene.call("get_inspector_summary")
+	_expect((inspector.get("editable_fields", []) as Array).has("child_label"), "V02.34 ARTPROD-001 runner story prop inspector should expose child_label")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v0235_runtime_anim_controls() -> void:
+	_expect(V0235RuntimeAnimControlsTestScript != null, "V02.35 RUNTIME-ANIM focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0235_runtime_anim_controls.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.35 runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var request: Dictionary = main.request_player_walk_to_cell(main.player_cell + Vector2i(1, 0))
+	_expect(request.get("ok", false), "V02.35 runner should start a short walk")
+	main.call("_advance_player_walk", 1.0 / 30.0)
+	var moving_snapshot: Dictionary = main.get_runtime_motion_snapshot()
+	var player: Dictionary = (moving_snapshot.get("stage", {}) as Dictionary).get("player", {})
+	_expect(bool(player.get("uses_motion_sheet", false)), "V02.35 runner should use player motion sheet")
+	_expect(bool(player.get("walking", false)), "V02.35 runner should report walking state")
+	main.finish_player_walk_for_test()
+	var prompt_walk: Dictionary = main.request_player_walk_to_cell(Vector2i(38, 22))
+	_expect(prompt_walk.get("ok", false), "V02.35 runner should walk to Mina prompt")
+	main.finish_player_walk_for_test()
+	var prompt_snapshot: Dictionary = main.get_runtime_motion_snapshot()
+	_expect(bool(prompt_snapshot.get("prompt_glow_visible", false)), "V02.35 runner should show prompt glow near target")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("show_tap_feedback_at_cell"), "V02.35 runner should expose tap feedback")
+	if stage != null and stage.has_method("show_tap_feedback_at_cell"):
+		stage.call("show_tap_feedback_at_cell", main.player_cell)
+	var feedback_snapshot: Dictionary = main.get_runtime_motion_snapshot().get("stage", {})
+	_expect(int(feedback_snapshot.get("tap_feedback_count", 0)) >= 1, "V02.35 runner should record tap feedback")
+	_expect(service.clear_for_test(), "V02.35 runner save should clean")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0236_storyslice001_runtime() -> void:
+	_expect(V0236Storyslice001RuntimeTestScript != null, "V02.36 STORYSLICE-001 focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0236_storyslice001_runtime.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.36 runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_004")
+	root.add_child(main)
+	main.call("_ready")
+	var render_snapshot: Dictionary = main.get_story_slice_snapshot()
+	_expect(int(render_snapshot.get("story_prop_count", 0)) >= 4, "V02.36 runner should keep rendering first-batch P0 story props")
+	_expect(main.inventory_service.collect_item("branch", 1).get("ok", false), "V02.36 runner should prepare branch resource context")
+	for step in [
+		{"story_prop_id": "story_prop_marker_home_apple_welcome_photo", "cell": Vector2i(8, 17)},
+		{"story_prop_id": "story_prop_marker_plaza_bear_book_branch", "cell": Vector2i(13, 20)},
+		{"story_prop_id": "story_prop_marker_school_yard_net_robot_yoyo", "cell": Vector2i(19, 17)},
+		{"story_prop_id": "story_prop_marker_shop_hat_ribbon_window", "cell": Vector2i(50, 13)},
+	]:
+		_expect(main.move_player_to_cell(step.get("cell", Vector2i.ZERO)).get("ok", false), "V02.36 runner should move to story prop: %s" % step.get("story_prop_id", ""))
+		var target: Dictionary = main.get_current_interaction_target()
+		_expect(str(target.get("type", "")) == "story_prop", "V02.36 runner prompt should target story prop: %s" % step.get("story_prop_id", ""))
+		var result: Dictionary = main.interact_nearby()
+		_expect(result.get("ok", false), "V02.36 runner story prop should interact: %s" % step.get("story_prop_id", ""))
+	var snapshot: Dictionary = main.get_story_slice_snapshot()
+	_expect(int(snapshot.get("story_record_count", 0)) >= 4, "V02.36 runner should persist first-batch story prop records")
+	_expect((snapshot.get("seen_anchor_ids", []) as Array).size() >= 6, "V02.36 runner should land at least six A-Z anchor records")
+	var plaza_record: Dictionary = (snapshot.get("story_records", {}) as Dictionary).get("story_prop_marker_plaza_bear_book_branch", {})
+	_expect(str(plaza_record.get("npc_id", "")) == "story_bear", "V02.36 runner plaza story prop should link Story Bear")
+	_expect(str(plaza_record.get("resource_item_id", "")) == "branch", "V02.36 runner plaza story prop should link branch")
+	_expect(int(plaza_record.get("resource_count", 0)) >= 1, "V02.36 runner plaza story prop should see branch inventory")
+	_expect(service.clear_for_test(), "V02.36 runner save should clean")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0237_storybatch002_content_pack() -> void:
+	_expect(V0237Storybatch002ContentPackTestScript != null, "V02.37 STORYBATCH-002 content pack focused test should compile for headless runner")
+	var path := "res://docs/collaboration/Round152_V02.37_STORYBATCH-002第二批story_prop与AZ回访内容包.md"
+	var file := FileAccess.open(path, FileAccess.READ)
+	_expect(file != null, "V02.37 runner should open STORYBATCH-002 content pack doc")
+	if file == null:
+		return
+	var doc := file.get_as_text()
+	for candidate_id in [
+		"story_prop_candidate_home_clock_chair",
+		"story_prop_candidate_home_sunny_towel_dog",
+		"story_prop_candidate_home_watch_wall_charm",
+		"story_prop_candidate_school_gate_bell",
+		"story_prop_candidate_walk_kite_leaf",
+		"story_prop_candidate_shop_orange_bowl",
+		"story_prop_candidate_sun_flower_patch",
+	]:
+		_expect(doc.contains(candidate_id), "V02.37 runner should keep STORYBATCH-002 candidate: %s" % candidate_id)
+	for anchor_id in ["anchor_c_clock", "anchor_d_dog", "anchor_w_watch", "anchor_g_gate", "anchor_k_kite", "anchor_o_orange", "anchor_s_sun"]:
+		_expect(doc.contains(anchor_id), "V02.37 runner should keep STORYBATCH-002 anchor binding: %s" % anchor_id)
+	_expect(doc.contains("不生成图片") and doc.contains("不改 runtime") and doc.contains("不写正式 JSON"), "V02.37 runner should keep STORYBATCH-002 planning-only boundary")
+	_expect(doc.contains("/home/xionglei/GameProject/tools/image_generator.js"), "V02.37 runner should keep bitmap provenance handoff")
+
+
+func _check_v0237_storybatch003_asset_integration() -> void:
+	_expect(V0237Storybatch003AssetIntegrationTestScript != null, "V02.37 STORYBATCH-003 asset integration focused test should compile for headless runner")
+	for asset_id in [
+		"story_prop.home.clock_chair_corner",
+		"story_prop.home.sunny_towel_dog_corner",
+		"story_prop.home.watch_wall_charm",
+		"story_prop.school.gate_bell_sign",
+		"story_prop.walk.kite_leaf_path",
+		"story_prop.shop.orange_bowl_window",
+		"story_prop.plaza.sun_flower_patch",
+	]:
+		var resolved: Dictionary = AssetResolverScript.get_story_prop_asset(asset_id)
+		_expect(resolved.get("ok", false), "V02.37 runner should resolve second-batch story prop asset: %s" % asset_id)
+		_expect(FileAccess.file_exists(str(resolved.get("placeholder_path", ""))), "V02.37 runner should find second-batch story prop file: %s" % asset_id)
+	var story_result: Dictionary = MapEditorSyncServiceScript.load_json_dictionary(MapEditorSyncServiceScript.STORY_PROPS_PATH)
+	_expect(story_result.get("ok", false), "V02.37 runner should load second-batch story props")
+	_expect((story_result.get("data", {}).get("story_props", []) as Array).size() == 11, "V02.37 runner should keep eleven story prop markers after second batch")
+
+
+func _check_v0237_storybatch004_runtime_smoke() -> void:
+	_expect(V0237Storybatch004RuntimeSmokeTestScript != null, "V02.37 STORYBATCH-004 runtime smoke focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0237_storybatch004_runtime_smoke.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.37 runner STORYBATCH-004 save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_004")
+	root.add_child(main)
+	main.call("_ready")
+	var snapshot: Dictionary = main.get_story_slice_snapshot()
+	_expect(int(snapshot.get("story_prop_count", 0)) == 11, "V02.37 runner should render eleven story props")
+	var names: Array = snapshot.get("story_prop_names", [])
+	for story_prop_id in [
+		"story_prop_marker_home_clock_chair_corner",
+		"story_prop_marker_home_sunny_towel_dog_corner",
+		"story_prop_marker_home_watch_wall_charm",
+		"story_prop_marker_school_gate_bell_sign",
+		"story_prop_marker_walk_kite_leaf_path",
+		"story_prop_marker_shop_orange_bowl_window",
+		"story_prop_marker_sun_flower_patch",
+	]:
+		_expect(names.has(story_prop_id), "V02.37 runner should render second-batch story prop: %s" % story_prop_id)
+	_expect(service.clear_for_test(), "V02.37 runner STORYBATCH-004 save should clean")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0238_visual_recovery_runtime() -> void:
+	_expect(V0238VisualRecoveryRuntimeTestScript != null, "V02.38 VISUALRECOVERY runtime focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0238_visual_recovery_runtime.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.38 runner visual recovery save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_004")
+	root.add_child(main)
+	main.call("_ready")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_visual_recovery_snapshot"), "V02.38 runner TownStage should expose visual recovery snapshot")
+	if stage != null and stage.has_method("get_visual_recovery_snapshot"):
+		var snapshot: Dictionary = stage.call("get_visual_recovery_snapshot")
+		_expect(not bool(snapshot.get("uses_full_map_background", true)), "V02.38 runner should not use world_map_base_1280 as final runtime background")
+		_expect(not bool(snapshot.get("has_legacy_ground_sprite", true)), "V02.38 runner should not create one legacy Ground sprite")
+		_expect(int(snapshot.get("terrain_tile_count", 0)) >= 100, "V02.38 runner should render modular terrain tiles")
+		_expect(int(snapshot.get("region_chunk_count", 0)) >= 4, "V02.38 runner should render region chunks")
+		_expect(int(snapshot.get("building_prefab_count", 0)) >= 3, "V02.38 runner should render building prefabs")
+		_expect(int(snapshot.get("world_prop_count", 0)) == 3, "V02.38 runner should render each first-screen recovery world prop once")
+		_expect((snapshot.get("region_logical_ids", []) as Array).has("region.school_line.chunk"), "V02.38 runner should resolve School line chunk")
+		_expect((snapshot.get("building_prefab_logical_ids", []) as Array).has("building.home.cottage"), "V02.38 runner should resolve Home prefab")
+		_expect(float(snapshot.get("non_prefab_place_max_alpha", 1.0)) <= 0.22, "V02.38 runner non-prefab place markers should be denoised")
+		_expect(float(snapshot.get("anchor_badge_max_alpha", 1.0)) <= 0.5, "V02.38 runner A-Z badge alpha should be denoised")
+	_expect(main.move_player_to_cell(Vector2i(31, 19)).get("ok", false), "V02.38 runner Home entry cell should remain reachable")
+	_expect(main.interact_nearby().get("ok", false), "V02.38 runner Home real entry should still work")
+	_expect(bool(main.get_expapproval_home_snapshot().get("home_visible", false)), "V02.38 runner Home entry should show Home view")
+	main.show_town_view()
+	_expect(main.move_player_to_cell(Vector2i(41, 11)).get("ok", false), "V02.38 runner Shop entry cell should remain reachable")
+	_expect(main.interact_nearby().get("ok", false), "V02.38 runner Shop real entry should still work")
+	_expect(bool(main.get_expapproval_shop_settings_snapshot().get("shop_visible", false)), "V02.38 runner Shop entry should show Shop panel")
+	main.show_town_view()
+	_expect(main.move_player_to_cell(Vector2i(21, 12)).get("ok", false), "V02.38 runner School Gate look cell should remain reachable")
+	_expect(main.interact_nearby().get("ok", false), "V02.38 runner School look interaction should still work")
+	_expect(int(main.get_expapproval_school_snapshot().get("school_child_text_banned_count", -1)) == 0, "V02.38 runner School child-facing text should stay safe")
+	_expect(service.clear_for_test(), "V02.38 runner visual recovery save should clean")
 	root.remove_child(main)
 	main.queue_free()
 

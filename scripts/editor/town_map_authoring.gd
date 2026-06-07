@@ -14,8 +14,9 @@ const TOOL_PAINT_COLLISION := "paint_collision"
 const TOOL_PAINT_INTERACTION := "paint_interaction"
 const TOOL_PLACE_RESOURCE := "place_resource"
 const TOOL_PLACE_NPC_ROUTINE := "place_npc_routine"
+const TOOL_PLACE_STORY_PROP := "place_story_prop"
 const TOOL_MOVE_ANCHOR := "move_anchor"
-const LAYER_KEYS: Array[String] = ["road", "collision", "interaction", "place", "anchor", "resource", "npc"]
+const LAYER_KEYS: Array[String] = ["road", "collision", "interaction", "place", "anchor", "resource", "npc", "story_prop"]
 const LOCKED_ANCHOR_FIELDS: Array[String] = [
 	"anchor_id",
 	"letter",
@@ -30,6 +31,7 @@ var world_map: Dictionary = {}
 var editor_state: Dictionary = {}
 var resource_points_state: Dictionary = {"schema_version": 1, "resource_points": []}
 var npc_routine_state: Dictionary = {"schema_version": 1, "routine_days": []}
+var story_props_state: Dictionary = {"schema_version": 1, "story_props": []}
 var current_tool_mode := TOOL_SELECT
 var current_day_key := "local_day_001"
 var selected_runtime_type := ""
@@ -46,6 +48,7 @@ var place_marker_layer: Control
 var anchor_marker_layer: Control
 var resource_marker_layer: Control
 var npc_spawn_layer: Control
+var story_prop_marker_layer: Control
 var export_validation_panel: Control
 var validate_export_button: Button
 var validation_status_label: Label
@@ -79,6 +82,7 @@ func build_from_world_map(path: String = RuntimeMapBuilderScript.WORLD_MAP_PATH)
 	editor_state = world_map.duplicate(true)
 	_load_resource_points()
 	_load_npc_routines()
+	_load_story_props()
 	_rebuild_layers()
 	_refresh_validation_panel(false, ["not_validated"])
 	_refresh_side_status()
@@ -89,6 +93,7 @@ func build_from_world_map(path: String = RuntimeMapBuilderScript.WORLD_MAP_PATH)
 		"anchor_marker_count": anchor_marker_layer.get_child_count(),
 		"resource_marker_count": resource_marker_layer.get_child_count(),
 		"npc_marker_count": npc_spawn_layer.get_child_count(),
+		"story_prop_marker_count": story_prop_marker_layer.get_child_count(),
 		"road_cell_count": road_layer.get_child_count(),
 	}
 
@@ -174,6 +179,8 @@ func update_selected_field(field_name: String, value: Variant) -> Dictionary:
 		return _update_resource_field(selected_stable_id, field_name, value)
 	if selected_runtime_type == "npc_routine":
 		return _update_npc_field(selected_stable_id, field_name, value)
+	if selected_runtime_type == "story_prop":
+		return _update_story_prop_field(selected_stable_id, field_name, value)
 	if selected_runtime_type == "anchor":
 		if field_name in ["cell_x", "cell_y"]:
 			return _update_anchor_cell_field(selected_stable_id, field_name, value)
@@ -237,6 +244,16 @@ func validate_routines_candidate() -> Dictionary:
 	}
 	_refresh_side_status()
 	return last_routine_validation_result.duplicate(true)
+
+
+func validate_story_props_candidate() -> Dictionary:
+	var errors: Array[String] = MapEditorSyncServiceScript.validate_story_props(story_props_state, editor_state)
+	return {
+		"ok": errors.is_empty(),
+		"errors": errors,
+		"error_count": errors.size(),
+		"wrote_file": false,
+	}
 
 
 func save_map_candidate(target_path: String = RuntimeMapBuilderScript.WORLD_MAP_PATH, options: Dictionary = {}) -> Dictionary:
@@ -439,6 +456,29 @@ func move_npc_routine_candidate(routine_id: String, cell: Vector2i, day_key: Str
 	_refresh_side_status()
 	_refresh_inspector()
 	return {"ok": true, "routine_id": routine_id, "day_key": target_day, "cell": _cell_to_dict(cell)}
+
+
+func move_story_prop_marker_candidate(story_prop_id: String, cell: Vector2i) -> Dictionary:
+	var candidate := story_props_state.duplicate(true)
+	var props: Array = candidate.get("story_props", [])
+	for index in range(props.size()):
+		var prop: Dictionary = props[index]
+		if str(prop.get("story_prop_id", "")) != story_prop_id:
+			continue
+		var old_cell := _dict_to_cell(prop.get("cell", {}))
+		prop["cell"] = _cell_to_dict(cell)
+		props[index] = prop
+		candidate["story_props"] = props
+		var errors: Array[String] = MapEditorSyncServiceScript.validate_story_props(candidate, editor_state)
+		if not errors.is_empty():
+			return {"ok": false, "reason": "validation_failed", "story_prop_id": story_prop_id, "errors": errors, "cell": _cell_to_dict(old_cell)}
+		story_props_state = candidate
+		var marker := _find_marker("story_prop", story_prop_id)
+		if marker != null:
+			marker.call("set_cell", cell)
+		_refresh_inspector()
+		return {"ok": true, "story_prop_id": story_prop_id, "cell": _cell_to_dict(cell)}
+	return {"ok": false, "reason": "unknown_story_prop_id", "story_prop_id": story_prop_id}
 
 
 func move_anchor_marker_candidate(anchor_id: String, cell: Vector2i) -> Dictionary:
@@ -650,6 +690,7 @@ func _bind_layers() -> void:
 	anchor_marker_layer = get_node("AnchorMarkerLayer") as Control
 	resource_marker_layer = get_node("ResourceMarkerLayer") as Control
 	npc_spawn_layer = get_node("NPCSpawnLayer") as Control
+	story_prop_marker_layer = get_node("StoryPropMarkerLayer") as Control
 	export_validation_panel = get_node("ExportValidationPanel") as Control
 	validate_export_button = get_node("ExportValidationPanel/VBox/ValidateExportButton") as Button
 	validation_status_label = get_node("ExportValidationPanel/VBox/ValidationStatusLabel") as Label
@@ -661,7 +702,7 @@ func _bind_layers() -> void:
 
 
 func _rebuild_layers() -> void:
-	for layer in [road_layer, collision_layer, interaction_layer, place_marker_layer, anchor_marker_layer, resource_marker_layer, npc_spawn_layer]:
+	for layer in [road_layer, collision_layer, interaction_layer, place_marker_layer, anchor_marker_layer, resource_marker_layer, npc_spawn_layer, story_prop_marker_layer]:
 		for child in layer.get_children():
 			layer.remove_child(child)
 			child.queue_free()
@@ -672,6 +713,7 @@ func _rebuild_layers() -> void:
 		anchor_marker_layer.add_child(_marker("anchor", str(anchor.get("anchor_id", "")), str(anchor.get("letter", "")), _dict_to_cell(anchor.get("position", {})), Vector2i.ONE))
 	_rebuild_resource_layer()
 	_rebuild_npc_layer()
+	_rebuild_story_prop_layer()
 
 
 func _rebuild_map_cell_layers() -> void:
@@ -707,6 +749,15 @@ func _rebuild_npc_layer() -> void:
 			npc_spawn_layer.add_child(_marker("npc_routine", str((npc as Dictionary).get("routine_id", "")), str((npc as Dictionary).get("npc_id", "")), _dict_to_cell((npc as Dictionary).get("cell", {})), Vector2i.ONE))
 
 
+func _rebuild_story_prop_layer() -> void:
+	for child in story_prop_marker_layer.get_children():
+		story_prop_marker_layer.remove_child(child)
+		child.queue_free()
+	for prop in story_props_state.get("story_props", []):
+		if prop is Dictionary:
+			story_prop_marker_layer.add_child(_marker("story_prop", str((prop as Dictionary).get("story_prop_id", "")), str((prop as Dictionary).get("child_label", "")), _dict_to_cell((prop as Dictionary).get("cell", {})), _size_to_footprint((prop as Dictionary).get("size", {}))))
+
+
 func _marker(runtime_type: String, stable_id: String, label: String, cell: Vector2i, footprint: Vector2i) -> Control:
 	var marker := MapAuthoringMarkerScene.instantiate() as Control
 	marker.set("runtime_type", runtime_type)
@@ -721,6 +772,8 @@ func _marker(runtime_type: String, stable_id: String, label: String, cell: Vecto
 		marker.z_index = 30
 	elif runtime_type == "resource":
 		marker.z_index = 25
+	elif runtime_type == "story_prop":
+		marker.z_index = 22
 	elif runtime_type == "place":
 		marker.z_index = 10
 	if marker.has_signal("marker_selected"):
@@ -799,7 +852,7 @@ func _ensure_editor_ui() -> void:
 
 
 func _apply_declutter_layout() -> void:
-	for layer in [ground_preview_layer, road_layer, collision_layer, interaction_layer, place_marker_layer, anchor_marker_layer, resource_marker_layer, npc_spawn_layer]:
+	for layer in [ground_preview_layer, road_layer, collision_layer, interaction_layer, place_marker_layer, anchor_marker_layer, resource_marker_layer, npc_spawn_layer, story_prop_marker_layer]:
 		if layer != null:
 			layer.position = MAP_VIEW_ORIGIN
 			layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -811,6 +864,8 @@ func _apply_declutter_layout() -> void:
 		resource_marker_layer.mouse_filter = Control.MOUSE_FILTER_PASS
 	if npc_spawn_layer != null:
 		npc_spawn_layer.mouse_filter = Control.MOUSE_FILTER_PASS
+	if story_prop_marker_layer != null:
+		story_prop_marker_layer.mouse_filter = Control.MOUSE_FILTER_PASS
 
 	if export_validation_panel != null:
 		_set_panel_rect(export_validation_panel, Rect2(12, 12, 228, 116))
@@ -1021,11 +1076,13 @@ func _layer_label(layer_key: String) -> String:
 		return "look"
 	if layer_key == "resource":
 		return "res"
+	if layer_key == "story_prop":
+		return "prop"
 	return layer_key
 
 
 func _valid_tool_modes() -> Array[String]:
-	return [TOOL_SELECT, TOOL_MOVE_PLACE, TOOL_PAINT_ROAD, TOOL_PAINT_COLLISION, TOOL_PAINT_INTERACTION, TOOL_PLACE_RESOURCE, TOOL_PLACE_NPC_ROUTINE, TOOL_MOVE_ANCHOR]
+	return [TOOL_SELECT, TOOL_MOVE_PLACE, TOOL_PAINT_ROAD, TOOL_PAINT_COLLISION, TOOL_PAINT_INTERACTION, TOOL_PLACE_RESOURCE, TOOL_PLACE_NPC_ROUTINE, TOOL_PLACE_STORY_PROP, TOOL_MOVE_ANCHOR]
 
 
 func _marker_layer_for_type(runtime_type: String) -> Control:
@@ -1037,6 +1094,8 @@ func _marker_layer_for_type(runtime_type: String) -> Control:
 		return resource_marker_layer
 	if runtime_type == "npc_routine":
 		return npc_spawn_layer
+	if runtime_type == "story_prop":
+		return story_prop_marker_layer
 	return null
 
 
@@ -1055,6 +1114,8 @@ func _layer_for_key(layer_key: String) -> Control:
 		return resource_marker_layer
 	if layer_key == "npc":
 		return npc_spawn_layer
+	if layer_key == "story_prop":
+		return story_prop_marker_layer
 	return null
 
 
@@ -1165,6 +1226,14 @@ func _load_npc_routines() -> void:
 	else:
 		npc_routine_state = {"schema_version": 1, "routine_days": []}
 		last_routine_validation_result = {"ok": false, "errors": result.get("errors", []), "wrote_file": false}
+
+
+func _load_story_props() -> void:
+	var result: Dictionary = MapEditorSyncServiceScript.load_json_dictionary(MapEditorSyncServiceScript.STORY_PROPS_PATH)
+	if result.get("ok", false):
+		story_props_state = result.get("data", {}).duplicate(true)
+	else:
+		story_props_state = {"schema_version": 1, "story_props": []}
 
 
 func _is_core_az_anchor(anchor: Dictionary) -> bool:
@@ -1300,6 +1369,8 @@ func _editable_fields_for_selection() -> Array[String]:
 		return ["display_name", "quantity", "item_id"]
 	if selected_runtime_type == "npc_routine":
 		return ["label"]
+	if selected_runtime_type == "story_prop":
+		return ["child_label"]
 	if selected_runtime_type == "anchor":
 		return ["cell_x", "cell_y"]
 	return []
@@ -1391,6 +1462,28 @@ func _update_npc_field(routine_id: String, field_name: String, value: Variant) -
 	return {"ok": true, "routine_id": routine_id, "field": field_name}
 
 
+func _update_story_prop_field(story_prop_id: String, field_name: String, value: Variant) -> Dictionary:
+	if field_name != "child_label":
+		return {"ok": false, "reason": "unsupported_field", "field": field_name}
+	var candidate := story_props_state.duplicate(true)
+	var props: Array = candidate.get("story_props", [])
+	for index in range(props.size()):
+		var prop: Dictionary = props[index]
+		if str(prop.get("story_prop_id", "")) != story_prop_id:
+			continue
+		prop["child_label"] = str(value)
+		props[index] = prop
+		candidate["story_props"] = props
+		var errors: Array[String] = MapEditorSyncServiceScript.validate_story_props(candidate, editor_state)
+		if not errors.is_empty():
+			return {"ok": false, "reason": "validation_failed", "errors": errors}
+		story_props_state = candidate
+		_rebuild_story_prop_layer()
+		select_marker("story_prop", story_prop_id)
+		return {"ok": true, "story_prop_id": story_prop_id, "field": field_name}
+	return {"ok": false, "reason": "unknown_story_prop_id", "story_prop_id": story_prop_id}
+
+
 func _update_anchor_cell_field(anchor_id: String, field_name: String, value: Variant) -> Dictionary:
 	var anchor := _anchor_by_id(anchor_id)
 	if anchor.is_empty():
@@ -1480,6 +1573,9 @@ func _field_value_for_selection(field_name: String) -> Variant:
 	if selected_runtime_type == "npc_routine":
 		var npc := _routine_by_id(selected_stable_id, current_day_key)
 		return npc.get(field_name, "")
+	if selected_runtime_type == "story_prop":
+		var prop := _story_prop_by_id(selected_stable_id)
+		return prop.get(field_name, "")
 	if selected_runtime_type == "anchor":
 		var anchor := _anchor_by_id(selected_stable_id)
 		var cell := _dict_to_cell(anchor.get("position", {}))
@@ -1500,6 +1596,9 @@ func _selection_body_text() -> String:
 	if selected_runtime_type == "npc_routine":
 		var npc := _routine_by_id(selected_stable_id, current_day_key)
 		return "day_key=%s\nnpc_id=%s\nlabel=%s\ncell=%s\nfields=%s" % [current_day_key, npc.get("npc_id", ""), npc.get("label", ""), str(npc.get("cell", {})), ", ".join(_editable_fields_for_selection())]
+	if selected_runtime_type == "story_prop":
+		var prop := _story_prop_by_id(selected_stable_id)
+		return "place_id=%s\nasset=%s\nlabel=%s\ncell=%s\nfields=%s" % [prop.get("place_id", ""), prop.get("logical_asset_id", ""), prop.get("child_label", ""), str(prop.get("cell", {})), ", ".join(_editable_fields_for_selection())]
 	if selected_runtime_type == "anchor":
 		var anchor := _anchor_by_id(selected_stable_id)
 		return "letter=%s\ncore_word=%s\nroute_order=%s\ncell=%s\nlocked=%s" % [anchor.get("letter", ""), anchor.get("core_word", ""), str(anchor.get("route_order", "")), str(anchor.get("position", {})), ", ".join(LOCKED_ANCHOR_FIELDS)]
@@ -1578,6 +1677,8 @@ func _commit_marker_drag(runtime_type: String, stable_id: String, from_cell: Vec
 		result = move_resource_marker_candidate(stable_id, to_cell)
 	elif runtime_type == "npc_routine":
 		result = move_npc_routine_candidate(stable_id, to_cell)
+	elif runtime_type == "story_prop":
+		result = move_story_prop_marker_candidate(stable_id, to_cell)
 	elif runtime_type == "anchor":
 		result = move_anchor_marker_candidate(stable_id, to_cell)
 	else:
@@ -1594,7 +1695,7 @@ func _commit_marker_drag(runtime_type: String, stable_id: String, from_cell: Vec
 
 
 func _clear_marker_selection() -> void:
-	for layer in [place_marker_layer, anchor_marker_layer, resource_marker_layer, npc_spawn_layer]:
+	for layer in [place_marker_layer, anchor_marker_layer, resource_marker_layer, npc_spawn_layer, story_prop_marker_layer]:
 		for child in layer.get_children():
 			if child.has_method("set_selected"):
 				child.call("set_selected", false)
@@ -1604,6 +1705,13 @@ func _resource_by_id(point_id: String) -> Dictionary:
 	for point in resource_points_state.get("resource_points", []):
 		if point is Dictionary and str((point as Dictionary).get("point_id", "")) == point_id:
 			return point
+	return {}
+
+
+func _story_prop_by_id(story_prop_id: String) -> Dictionary:
+	for prop in story_props_state.get("story_props", []):
+		if prop is Dictionary and str((prop as Dictionary).get("story_prop_id", "")) == story_prop_id:
+			return prop
 	return {}
 
 

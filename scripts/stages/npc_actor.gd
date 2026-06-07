@@ -31,6 +31,8 @@ func _configure_sprite(sprite_name: String, sprite_position: Vector2, sprite_siz
 	sprite.texture = built.texture
 	sprite.scale = built.scale
 	sprite.modulate = built.modulate
+	for meta_key in built.get_meta_list():
+		sprite.set_meta(str(meta_key), built.get_meta(str(meta_key)))
 	sprite.visible = true
 	built.free()
 
