@@ -1,6 +1,6 @@
 # StudyGame V02 开发经验记录
 
-> 最后更新：2026-06-06
+> 最后更新：2026-06-07
 > 本文件只记录已经实际发生并确认的问题。潜在风险记录在项目计划或 `todo.md`，不作为开发经验。
 
 ## 记录规则
@@ -110,6 +110,35 @@
 | 2026-06-06 | Round 98 V02.19 ARTPASS-009 branch 漏项补齐收口 | 无新增已验证教训 | 使用外部生成脚本覆盖 `place.resource.branch` 对应的 96x96 透明 PNG；JSON、mapped PNG、orphan import、AssetResolver、全量 headless runner 和 Godot 启动验证均通过，未形成新的故障类型 |
 | 2026-06-06 | Round 99 V02.19 ARTPASS-010 运行时视觉验收与发布候选整理收口 | 无新增已验证教训 | 1280x720 runtime proof 覆盖 Town、Home、Shop、Album、Settings；旧辅助层降噪和 Album overlay 穿层在本轮内修复；focused/full headless、Godot 启动和残留进程检查均通过，未形成新的故障类型 |
 | 2026-06-06 | Round 101 V02.20 PLAYGATE-002..009 文档队列收口 | 无新增已验证教训 | 调用智能体完成首屏审计、自由生活 smoke 规格、空间 / UI / 文本返修方案、旧路径矩阵、1280 approved 判定和 V02.20 收口决策；缺口均作为 V02.21 返修输入记录，未复现新的故障类型 |
+| 2026-06-06 | Round 102 V02.21 LIVEGATE-001 热点优先级返修收口 | 无新增已验证教训 | `看看` 目标优先级显式化，focused V02.21、V02.18 anchor 可读性、V02.20 controls、main check-only 和全量 headless runner 均通过；过程中发现的 exact anchor 被 NPC 抢焦点属于 LESSON-011 既有热点优先级规则内回归，已在本轮修复并覆盖测试，未形成新的故障类型 |
+| 2026-06-06 | Round 105 V02.21 LIVEGATE-004 自由生活 smoke 收口 | 无新增已验证教训 | 3-5 分钟真实入口 smoke、热点优先级、Shop / School 到达感、Playable UI、main check-only、全量 headless runner 和 Godot 启动均通过；测试路线按实际道路 waypoint 返回 Mina，属于 smoke 脚本修正，未形成新的故障类型 |
+| 2026-06-06 | Round 106 V02.21 LIVEGATE-005 1280 RC 截图与判定收口 | 无新增已验证教训 | 同轮 1280 proof、二次 approved / needs_fix 判定、capture 脚本、focused smoke、全量 headless runner 和 Godot 启动均通过；六项保留 needs_fix 是阶段判定结论，不是新故障类型 |
+| 2026-06-06 | Round 108 V02.22 HIDDENGRID-002 TownStage scene 抽离收口 | 无新增已验证教训 | TownStage scene 抽离后，main / TownStage check-only、V02.20 controls、V02.21 free life smoke、V02.18 map readability、V02.17 anchor runtime、Playable UI、Shop / School arrival、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-06 | Round 109 V02.22 HIDDENGRID-003 Actor / Interactable scene 抽离收口 | 无新增已验证教训 | Player / NPC / Resource / Anchor / Place hotspot prefab 化后，actor prefab focused test、热点优先级、A-Z runtime、地图可读性、free life smoke、Playable UI、全量 headless runner 和 Godot 启动均通过；测试中复用 LESSON-003 显式类型标注规则，未形成新的故障类型 |
+| 2026-06-06 | Round 110 V02.22 HIDDENGRID-004 UI scenes 抽离收口 | 无新增已验证教训 | TownHUD / TownFooter scene 化后，UI scene focused test、Playable UI 和全量 headless runner 均通过；相册关闭断言按既有可见返回按钮修正测试口径，未形成新的故障类型 |
+| 2026-06-06 | Round 111 V02.22 HIDDENGRID-005 户外装饰、资源 2.0 与 NPC routine 收口 | 无新增已验证教训 | 户外装饰、资源 2.0 摘要和 NPC routine fallback 接入后，hidden-grid life systems focused test、热点优先级、free life smoke、Playable UI、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-06 | Round 113 V02.22 HIDDENGRID-007 Scene-native map + UI panel refactor 收口 | 无新增已验证教训 | 地图 authoring export、TownStage runtime fixed layers、Backpack / Settings / Shop / MemoryAlbumOverlay / HomeRoom panel scene split、旧可见入口、A-Z runtime、地图可读性、Playable UI、全量 headless runner 和 Godot 启动均通过；authoring export 与旧 Header 断言均在本轮内按既有合同 / 测试口径修正，未形成新的故障类型 |
+| 2026-06-06 | Round 114 V02.23 EXPAPPROVAL-001 体验批准线规划收口 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、接管计划、任务包和 `todo.md`，固定 Album-only approved、六项 needs_fix、V02.23-V02.26 任务队列和 `V02-EXPAPPROVAL-002` 唯一 Ready；静态一致性检查和 Godot 启动通过，未形成新的故障类型 |
+| 2026-06-06 | Round 115 V02.23 EXPAPPROVAL-002 Town Plaza 首屏生活密度与 anchor 降噪收口 | 无新增已验证教训 | TownStage 新增 PlazaLifeLayer、anchor badge 降噪、focused density test、full headless runner、Godot 启动和非 headless 1280 proof 均通过；headless 截图空纹理属于 LESSON-010 既有工具链边界，未形成新的故障类型 |
+| 2026-06-06 | Round 116 V02.23 EXPAPPROVAL-003 Home 居住密度与小屋视觉批准返修收口 | 无新增已验证教训 | HomeRoom 新增 HomeLifeLayer、默认生活细节、孩子端小角落文案、focused Home proof、full headless runner、Godot 启动和非 headless 1280 proof 均通过；headless 截图限制仍属 LESSON-010 既有工具链边界，未形成新的故障类型 |
+| 2026-06-06 | Round 117 V02.23 EXPAPPROVAL-004 Shop / Settings glass UI 可读可触批准返修收口 | 无新增已验证教训 | Shop / Settings glass panel 可读触控返修、focused proof、full headless runner、Godot 启动和非 headless 1280 proof 均通过；headless 截图限制仍属 LESSON-010 既有工具链边界，未形成新的故障类型 |
+| 2026-06-07 | Round 118 V02.23 EXPAPPROVAL-005 School Gate / School Yard 生活地点化与噪声返修收口 | 无新增已验证教训 | School Gate / School Yard 生活细节、短到达 proof、School-line anchor 降噪 snapshot、focused proof、full headless runner、Godot 启动和非 headless 1280 proof 均通过；headless 截图限制仍属 LESSON-010 既有工具链边界，未形成新的故障类型 |
+| 2026-06-07 | Round 119 V02.23 EXPAPPROVAL-006 1280 RC 截图包、真实入口 smoke 与逐项判定收口 | 无新增已验证教训 | 同轮 16 张 1280x720 RC proof、真实入口 smoke、headless runner、Godot 启动和非 headless capture 均通过；Album 回归保持 approved，六个返修视图逐项升级 approved；未形成新的故障类型 |
+| 2026-06-07 | Round 120 V02.24 HOMEPLAZA-001 PM 路线与禁改边界收口 | 无新增已验证教训 | 仅更新 PM 文档、内容基线、接管计划和 `todo.md`，固定 V02.24 Home / Town Plaza 居住感加固队列、禁改边界、验收矩阵和 `V02-HOMEPLAZA-002` Ready；未改 runtime、tests、assets 或 data，未形成新的故障类型 |
+| 2026-06-07 | Round 121 V02.24 HOMEPLAZA-002 HomeRoom 居住感加固收口 | 无新增已验证教训 | HomeRoom 默认生活角、Sunny 反馈和家具状态加固通过 focused / headless 验证；默认生活细节仍不写入 `placed_furniture`，未改 HomeDecorationService 存档结构，未形成新的故障类型 |
+| 2026-06-07 | Round 122 V02.24 HOMEPLAZA-003 Town Plaza 停留点与户外装饰规则收口 | 无新增已验证教训 | Town Plaza stay points、outdoor allowed zones、footprint 和禁覆盖核心目标规则通过 focused / headless 验证；未改 A-Z anchor / route_order / 相册语义，未形成新的故障类型 |
+| 2026-06-07 | Round 123 V02.24 HOMEPLAZA-004 NPC routine 与广场到达感收口 | 无新增已验证教训 | NPC routine arrival safety、blocked fallback、plaza arrival feedback 和 P0 prompt 回归通过 focused / headless 验证；未改 A-Z anchor / route_order / 相册语义，未形成新的故障类型 |
+| 2026-06-07 | Round 124 V02.24 HOMEPLAZA-005 回归、截图与收口 | 无新增已验证教训 | V02.24 living contract、outdoor decor rules、NPC routine safety、RC smoke、全量 headless runner、Godot 启动和非 headless 1280 proof 均通过；headless capture 空纹理仍属 LESSON-010 既有工具链边界，未形成新的故障类型 |
+| 2026-06-07 | Round 125 V02.25 MAPAUTH-001 错误列表与验证按钮收口 | 无新增已验证教训 | TownMapAuthoring validation panel、Validate button、错误列表、无写回保护、既有 authoring export、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-07 | Round 126 V02.25 MAPAUTH-002 安全写回 JSON 服务收口 | 无新增已验证教训 | MapEditorSyncService write-if-valid、temp / backup / swap、非法不写、模拟失败不毁文件、A-Z runtime、map readability、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-07 | Round 127 V02.25 MAPAUTH-003 Place marker 新增 / 删除最小闭环收口 | 无新增已验证教训 | TownMapAuthoring place candidate add / delete、anchor-owned place 删除保护、focused MAPAUTH-003、MAPAUTH-001/002 回归、A-Z runtime、map readability、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-07 | Round 128 V02.25 MAPAUTH-004 A-Z anchor 删除保护与编辑限制收口 | 无新增已验证教训 | TownMapAuthoring A-Z anchor 删除保护、关键字段编辑锁、focused MAPAUTH-004、MAPAUTH-001/002/003 回归、A-Z runtime、map readability、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-07 | Round 129 V02.25 MAPAUTH-005 Place 移动联动策略收口 | 无新增已验证教训 | TownMapAuthoring Place guarded move、position / occupied / interaction / collision 联动、focused MAPAUTH-005、MAPAUTH-001/002/003/004 回归、authoring export、A-Z runtime、map readability、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-07 | Round 130 V02.25 MAPAUTH-006 回归与 runner 集成收口 | 无新增已验证教训 | Authoring export guarded move 回归、MAPAUTH-006 临时写回 regression pack、MAPAUTH-001..005 回归、A-Z runtime、map readability、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-07 | Round 131 V02.26 CONTENTBATCH-001 NPC routine 小批量收口 | 无新增已验证教训 | 7 天 NPC routine 小批量、fallback 坏数据保护、CONTENTBATCH-001 focused、V02.24 NPC routine safety、content contracts、全量 headless runner 和 Godot 启动均通过；未形成新的故障类型 |
+| 2026-06-07 | Round 132 V02.26 CONTENTBATCH-002 资源刷新点小批量收口 | 无新增已验证教训 | 4 个资源点、4 个材料条目、CONTENTBATCH-002 focused、content contracts、daily services、热点优先级、全量 headless runner 和 Godot 启动均通过；旧 V02.22 routine fallback 断言按 Round131 后默认数据完整状态同步，未形成新的故障类型 |
+| 2026-06-07 | Round 133 V02.26 CONTENTBATCH-003 A-Z 生活物件回访收口 | 无新增已验证教训 | A/D/K/H/M/U 六条生活物件回访、CONTENTBATCH-003 focused、memory palace 回归、content contracts、全量 headless runner 和 Godot 启动均通过；新增唯一 `core_anchor_id` 检查覆盖 AnchorInteractionService 一对一映射风险，未形成新的故障类型 |
+| 2026-06-07 | Round 134 V02.26 CONTENTBATCH-004 Shop front / School Yard 小事件 smoke 收口 | 无新增已验证教训 | 2 个真实入口看一眼事件、CONTENTBATCH-004 focused、V02.14 homeschool 回归、CONTENTBATCH-002/003 回归、content contracts、全量 headless runner 和 Godot 启动均通过；测试捕获并修正了安全说明中的压力词，属于既有儿童安全规则内收敛，未形成新的故障类型 |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 

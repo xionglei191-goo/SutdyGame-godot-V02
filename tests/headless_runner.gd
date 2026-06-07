@@ -16,6 +16,7 @@ const DailyRequestServiceScript := preload("res://scripts/systems/daily_request_
 const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.gd")
 const DailyGreetingServiceScript := preload("res://scripts/systems/daily_greeting_service.gd")
 const ResourceRefreshServiceScript := preload("res://scripts/systems/resource_refresh_service.gd")
+const NPCRoutineServiceScript := preload("res://scripts/systems/npc_routine_service.gd")
 const TodayStatusServiceScript := preload("res://scripts/systems/today_status_service.gd")
 const AnchorInteractionServiceScript := preload("res://scripts/systems/anchor_interaction_service.gd")
 const AccountAdapterScript := preload("res://scripts/systems/account_adapter.gd")
@@ -28,6 +29,35 @@ const AZWorldPlanContractScript := preload("res://scripts/data/az_world_plan_con
 const TextbookWorldContractScript := preload("res://scripts/data/textbook_world_contract.gd")
 const V0218MapReadabilityTestScript := preload("res://tests/test_v0218_map_readability.gd")
 const V0220PlaygateControlsTestScript := preload("res://tests/test_v0220_playgate_controls.gd")
+const V0221LivegateHotspotPriorityTestScript := preload("res://tests/test_v0221_livegate_hotspot_priority.gd")
+const V0221LivegateShopSchoolArrivalTestScript := preload("res://tests/test_v0221_livegate_shop_school_arrival.gd")
+const V0221LivegateFreeLifeSmokeTestScript := preload("res://tests/test_v0221_livegate_free_life_smoke.gd")
+const V0222ActorPrefabSplitTestScript := preload("res://tests/test_v0222_actor_prefab_split.gd")
+const V0222UISceneSplitTestScript := preload("res://tests/test_v0222_ui_scene_split.gd")
+const V0222HiddenGridLifeSystemsTestScript := preload("res://tests/test_v0222_hidden_grid_life_systems.gd")
+const V0222HiddengridFinalSmokeTestScript := preload("res://tests/test_v0222_hiddengrid_final_smoke.gd")
+const TownMapAuthoringExportTestScript := preload("res://tests/test_town_map_authoring_export.gd")
+const V0225Mapauth001ValidationPanelTestScript := preload("res://tests/test_v0225_mapauth001_validation_panel.gd")
+const V0225Mapauth002WriteBackServiceTestScript := preload("res://tests/test_v0225_mapauth002_write_back_service.gd")
+const V0225Mapauth003PlaceMarkerLoopTestScript := preload("res://tests/test_v0225_mapauth003_place_marker_loop.gd")
+const V0225Mapauth004AnchorProtectionTestScript := preload("res://tests/test_v0225_mapauth004_anchor_protection.gd")
+const V0225Mapauth005PlaceMoveLinkageTestScript := preload("res://tests/test_v0225_mapauth005_place_move_linkage.gd")
+const V0225Mapauth006RegressionPackTestScript := preload("res://tests/test_v0225_mapauth006_regression_pack.gd")
+const TownStageLayeredRuntimeTestScript := preload("res://tests/test_town_stage_layered_runtime.gd")
+const V0223UIPanelSceneSplitTestScript := preload("res://tests/test_v0223_ui_panel_scene_split.gd")
+const V0223ExpapprovalTownPlazaDensityTestScript := preload("res://tests/test_v0223_expapproval_town_plaza_density.gd")
+const V0223ExpapprovalHomeLivingDensityTestScript := preload("res://tests/test_v0223_expapproval_home_living_density.gd")
+const V0223ExpapprovalShopSettingsGlassTestScript := preload("res://tests/test_v0223_expapproval_shop_settings_glass.gd")
+const V0223ExpapprovalSchoolGateYardLifeNoiseTestScript := preload("res://tests/test_v0223_expapproval_school_gate_yard_life_noise.gd")
+const V0223Expapproval006RCSmokeTestScript := preload("res://tests/test_v0223_expapproval006_rc_smoke.gd")
+const V0224HomeRoomLivingContractTestScript := preload("res://tests/test_v0224_home_room_living_contract.gd")
+const V0224TownPlazaOutdoorDecorRulesTestScript := preload("res://tests/test_v0224_town_plaza_outdoor_decor_rules.gd")
+const V0224NPCRoutineArrivalSafetyTestScript := preload("res://tests/test_v0224_npc_routine_arrival_safety.gd")
+const V0224Homeplaza005RCSmokeTestScript := preload("res://tests/test_v0224_homeplaza005_rc_smoke.gd")
+const V026Contentbatch001NPCRoutineBatchTestScript := preload("res://tests/test_v026_contentbatch001_npc_routine_batch.gd")
+const V026Contentbatch002ResourcePointsTestScript := preload("res://tests/test_v026_contentbatch002_resource_points.gd")
+const V026Contentbatch003AnchorRevisitsTestScript := preload("res://tests/test_v026_contentbatch003_anchor_revisits.gd")
+const V026Contentbatch004LookEventsTestScript := preload("res://tests/test_v026_contentbatch004_look_events.gd")
 const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
 const ANCHOR_ASSET_IDS: Array[String] = [
 	"anchor.a.apple_tree", "anchor.b.bear_corner", "anchor.c.clock", "anchor.d.dog_corner", "anchor.e.elephant_slide", "anchor.f.fox_topiary", "anchor.g.school_gate", "anchor.h.hat_sign", "anchor.i.ice_cream_cart", "anchor.j.jacket_window", "anchor.k.kite", "anchor.l.lion_fountain", "anchor.m.monkey_tree", "anchor.n.soft_net", "anchor.o.orange_stall", "anchor.p.panda_corner", "anchor.q.queen_poster", "anchor.r.robot_sign", "anchor.s.sun_landmark", "anchor.t.taxi_marker", "anchor.u.beach_umbrella", "anchor.v.violin_corner", "anchor.w.watch_table", "anchor.x.x_mark_box", "anchor.y.yo_yo_corner", "anchor.z.zebra_edge"
@@ -38,6 +68,7 @@ const MapEditorSyncServiceScript := preload("res://scripts/editor/map_editor_syn
 const WorldMapContractScript := preload("res://scripts/data/world_map_contract.gd")
 const MainScene := preload("res://scenes/main.tscn")
 const WorldOverviewScene := preload("res://scenes/map_editor/world_overview.tscn")
+const TownMapAuthoringScene := preload("res://scenes/map_editor/town_map_authoring.tscn")
 
 var failures: Array[String] = []
 
@@ -103,6 +134,35 @@ func _init() -> void:
 	_check_v0216_playable_rc_gate()
 	_check_v0218_map_readability()
 	_check_v0220_playgate_controls()
+	_check_v0221_livegate_hotspot_priority()
+	_check_v0221_livegate_shop_school_arrival()
+	_check_v0221_livegate_free_life_smoke()
+	_check_v0222_actor_prefab_split()
+	_check_v0222_ui_scene_split()
+	_check_v0222_hidden_grid_life_systems()
+	_check_v0222_hiddengrid_final_smoke()
+	_check_town_map_authoring_export()
+	_check_v0225_mapauth001_validation_panel()
+	_check_v0225_mapauth002_write_back_service()
+	_check_v0225_mapauth003_place_marker_loop()
+	_check_v0225_mapauth004_anchor_protection()
+	_check_v0225_mapauth005_place_move_linkage()
+	_check_v0225_mapauth006_regression_pack()
+	_check_town_stage_layered_runtime()
+	_check_v0223_ui_panel_scene_split()
+	_check_v0223_expapproval_town_plaza_density()
+	_check_v0223_expapproval_home_living_density()
+	_check_v0223_expapproval_shop_settings_glass()
+	_check_v0223_expapproval_school_gate_yard_life_noise()
+	_check_v0223_expapproval006_rc_smoke()
+	_check_v0224_home_room_living_contract()
+	_check_v0224_town_plaza_outdoor_decor_rules()
+	_check_v0224_npc_routine_arrival_safety()
+	_check_v0224_homeplaza005_rc_smoke()
+	_check_v026_contentbatch001_npc_routine_batch()
+	_check_v026_contentbatch002_resource_points()
+	_check_v026_contentbatch003_anchor_revisits()
+	_check_v026_contentbatch004_look_events()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -446,7 +506,8 @@ func _check_child_experience_and_mobile_acceptance(main: Control) -> void:
 	var pet_state := main.find_child("PetState", true, false) as Label
 	_expect(coin_state != null and coin_state.get_theme_stylebox("normal") != null and str(coin_state.text).is_valid_int(), "coin HUD state should be a compact icon-plus-number badge")
 	_expect(pet_state != null and pet_state.get_theme_stylebox("normal") != null and str(pet_state.text).contains("心") and not str(pet_state.text).contains("金币"), "pet HUD state should keep Sunny snack and happy separate from coins")
-	_expect(main.find_child("Header", true, false) == null, "town title should be folded into the single-line HUD, not a second top banner")
+	_expect(main.get_node_or_null("Header") == null, "town title should not return as a root-level second top banner")
+	_expect(hud != null and hud.find_child("Title", true, false) != null, "town title should stay folded into the single-line HUD")
 	_expect(hud != null and hud is Control and (hud as Control).offset_bottom <= 52.0, "town HUD should stay compact enough to leave the playfield visible")
 	var footer := main.find_child("TownFooter", true, false)
 	_expect(footer != null and footer is Control and (footer as Control).anchor_top == 1.0, "main actions should sit in a bottom button bar")
@@ -1340,6 +1401,1004 @@ func _check_v0220_playgate_controls() -> void:
 	main.queue_free()
 
 
+func _check_v0221_livegate_hotspot_priority() -> void:
+	_expect(V0221LivegateHotspotPriorityTestScript != null, "V02.21 livegate hotspot priority focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0221_livegate_hotspot_priority.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.21 livegate hotspot priority save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	_expect(main.move_player_to_cell(Vector2i(38, 22)).get("ok", false), "V02.21 livegate should reach Mina priority cell")
+	var mina_target: Dictionary = main.get_current_interaction_target()
+	_expect(str(mina_target.get("type", "")) == "npc" and str(mina_target.get("target_id", "")) == "mina", "V02.21 livegate should prompt Mina over nearby anchor")
+	var mina_result: Dictionary = main.interact_nearby()
+	_expect(str(mina_result.get("interaction_type", "")) == "npc" and str(mina_result.get("npc_id", "")) == "mina", "V02.21 livegate should interact with Mina over nearby anchor")
+
+	_expect(main.move_player_to_cell(Vector2i(34, 20)).get("ok", false), "V02.21 livegate should reach exact Taxi anchor cell")
+	var anchor_target: Dictionary = main.get_current_interaction_target()
+	_expect(str(anchor_target.get("type", "")) == "anchor" and str(anchor_target.get("target_id", "")) == "anchor_t_taxi", "V02.21 livegate exact Taxi cell should stay an anchor prompt")
+	var anchor_result: Dictionary = main.interact_nearby()
+	_expect(str(anchor_result.get("interaction_type", "")) == "anchor" and str(anchor_result.get("anchor_id", "")) == "anchor_t_taxi", "V02.21 livegate exact Taxi cell should collect anchor")
+
+	_expect(main.move_player_to_cell(Vector2i(36, 21)).get("ok", false), "V02.21 livegate should reach Bus Helper priority cell")
+	var bus_target: Dictionary = main.get_current_interaction_target()
+	_expect(str(bus_target.get("type", "")) == "npc" and str(bus_target.get("target_id", "")) == "bus_helper", "V02.21 livegate should prompt Bus Helper over nearby resource")
+	var bus_result: Dictionary = main.interact_nearby()
+	_expect(str(bus_result.get("interaction_type", "")) == "npc" and str(bus_result.get("npc_id", "")) == "bus_helper", "V02.21 livegate should interact with Bus Helper over nearby resource")
+
+	_expect(main.move_player_to_cell(Vector2i(35, 22)).get("ok", false), "V02.21 livegate should reach exact stone resource cell")
+	var resource_target: Dictionary = main.get_current_interaction_target()
+	_expect(str(resource_target.get("type", "")) == "resource", "V02.21 livegate exact resource should remain a resource prompt")
+	var resource_result: Dictionary = main.interact_nearby()
+	_expect(str(resource_result.get("interaction_type", "")) == "resource" and str(resource_result.get("item_id", "")) == "stone", "V02.21 livegate exact resource should collect stone")
+
+	_expect(main.move_player_to_cell(Vector2i(31, 19)).get("ok", false), "V02.21 livegate should reach exact Home entry cell")
+	var place_target: Dictionary = main.get_current_interaction_target()
+	_expect(str(place_target.get("type", "")) == "place" and str(place_target.get("target_id", "")) == "interaction_home_entry", "V02.21 livegate exact Home entry should stay stable")
+	var place_result: Dictionary = main.interact_nearby()
+	_expect(str(place_result.get("interaction_type", "")) == "place_entry" and str(place_result.get("place_id", "")) == "place_home", "V02.21 livegate exact Home entry should open Home")
+
+	_expect(main.save_service.clear_for_test(), "V02.21 livegate hotspot priority save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0221_livegate_shop_school_arrival() -> void:
+	_expect(V0221LivegateShopSchoolArrivalTestScript != null, "V02.21 livegate Shop/School arrival focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0221_livegate_shop_school_arrival.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.21 Shop/School arrival save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	for node_name in ["ArrivalProofPanel", "ArrivalProofShop", "ArrivalProofSchoolGate", "ArrivalProofSchoolYard"]:
+		_expect(main.find_child(node_name, true, false) != null, "V02.21 arrival proof node should exist: %s" % node_name)
+
+	_expect(main.move_player_to_cell(Vector2i(41, 11)).get("ok", false), "V02.21 runner should reach Shop arrival cell")
+	_expect(_arrival_proof_visible(main, "ArrivalProofShop"), "V02.21 runner should show Shop arrival proof")
+	var shop_result: Dictionary = main.interact_nearby()
+	_expect(str(shop_result.get("interaction_type", "")) == "place_entry" and str(shop_result.get("place_id", "")) == "place_supermarket", "V02.21 runner should enter Shop from arrival")
+
+	_expect(main.move_player_to_cell(Vector2i(21, 12)).get("ok", false), "V02.21 runner should reach School Gate arrival cell")
+	_expect(_arrival_proof_visible(main, "ArrivalProofSchoolGate"), "V02.21 runner should show School Gate arrival proof")
+	var gate_result: Dictionary = main.interact_nearby()
+	_expect(str(gate_result.get("interaction_type", "")) == "homeschool_event" and str(gate_result.get("stage", "")) == "school_gate", "V02.21 runner should trigger School Gate arrival event")
+
+	_expect(main.move_player_to_cell(Vector2i(19, 15)).get("ok", false), "V02.21 runner should reach School Yard arrival cell")
+	_expect(_arrival_proof_visible(main, "ArrivalProofSchoolYard"), "V02.21 runner should show School Yard arrival proof")
+	var yard_result: Dictionary = main.interact_nearby()
+	_expect(str(yard_result.get("interaction_type", "")) == "homeschool_event" and str(yard_result.get("stage", "")) == "school_yard", "V02.21 runner should trigger School Yard arrival event")
+
+	_expect(main.save_service.clear_for_test(), "V02.21 Shop/School arrival save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0221_livegate_free_life_smoke() -> void:
+	_expect(V0221LivegateFreeLifeSmokeTestScript != null, "V02.21 livegate free life smoke focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0221_livegate_free_life_smoke.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.21 free life smoke save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	_expect(main.request_player_walk_to_cell(Vector2i(38, 22)).get("ok", false), "V02.21 free smoke runner should walk to Mina")
+	main.finish_player_walk_for_test(420)
+	_press_visible_button(interact_button, "V02.21 free smoke runner should greet Mina")
+	_press_visible_button(interact_button, "V02.21 free smoke runner should start Mina request")
+	_expect(main.request_player_walk_to_cell(Vector2i(19, 18)).get("ok", false), "V02.21 free smoke runner should walk to branch")
+	main.finish_player_walk_for_test(420)
+	_press_visible_button(interact_button, "V02.21 free smoke runner should collect branch")
+	_expect(main.request_player_walk_to_cell(Vector2i(19, 22)).get("ok", false), "V02.21 free smoke runner should return to the animal road")
+	main.finish_player_walk_for_test(420)
+	_expect(main.request_player_walk_to_cell(Vector2i(38, 22)).get("ok", false), "V02.21 free smoke runner should return to Mina")
+	main.finish_player_walk_for_test(420)
+	_press_visible_button(interact_button, "V02.21 free smoke runner should complete Mina request")
+
+	var state: Dictionary = main.save_service.load_game_state()
+	state["coins"] = max(int(state.get("coins", 0)), 12)
+	_expect(main.save_service.save_game_state(state), "V02.21 free smoke runner should prepare shop coins")
+	_expect(main.request_player_walk_to_cell(Vector2i(41, 11)).get("ok", false), "V02.21 free smoke runner should walk to Shop")
+	main.finish_player_walk_for_test(420)
+	_press_visible_button(interact_button, "V02.21 free smoke runner should open Shop")
+	_press_visible_button(main.find_child("ShopBuyWoodenChairButton", true, false) as Button, "V02.21 free smoke runner should buy chair")
+	_press_visible_button(main.find_child("CloseShopButton", true, false) as Button, "V02.21 free smoke runner should close Shop")
+	_press_visible_button(main.find_child("HomeNavButton", true, false) as Button, "V02.21 free smoke runner should open Home")
+	_press_visible_button(main.find_child("HomePlaceWoodenChairButton", true, false) as Button, "V02.21 free smoke runner should place chair")
+	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() >= 1, "V02.21 free smoke runner should persist Home furniture")
+	_press_visible_button(main.find_child("TownNavButton", true, false) as Button, "V02.21 free smoke runner should return Town")
+	_expect(main.request_player_walk_to_cell(Vector2i(21, 12)).get("ok", false), "V02.21 free smoke runner should walk to School Gate")
+	main.finish_player_walk_for_test(420)
+	_press_visible_button(interact_button, "V02.21 free smoke runner should look School Gate")
+	_press_visible_button(main.find_child("SettingsButton", true, false) as Button, "V02.21 free smoke runner should open Settings")
+	_press_visible_button(main.find_child("RequestRestButton", true, false) as Button, "V02.21 free smoke runner should request rest")
+	_press_visible_button(main.find_child("CancelRestButton", true, false) as Button, "V02.21 free smoke runner should cancel rest")
+	_press_visible_button(main.find_child("SafePlaceButton", true, false) as Button, "V02.21 free smoke runner should return safe place")
+
+	var saved: Dictionary = main.save_service.load_game_state()
+	_expect(saved.get("player_cell") is Dictionary, "V02.21 free smoke runner should persist player cell")
+	_expect(not saved.get("daily_requests", {}).is_empty(), "V02.21 free smoke runner should persist daily request state")
+	_expect(not saved.get("homeschool_events", {}).is_empty(), "V02.21 free smoke runner should persist School look state")
+	_expect(main.save_service.clear_for_test(), "V02.21 free smoke save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0222_actor_prefab_split() -> void:
+	_expect(V0222ActorPrefabSplitTestScript != null, "V02.22 actor prefab split focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0222_actor_prefab_split.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.22 actor prefab split save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	_expect(_script_path(main.find_child("Player", true, false)).ends_with("player_actor.gd"), "V02.22 runner Player should use PlayerActor")
+	_expect(_script_path(main.find_child("npc_mina", true, false)).ends_with("npc_actor.gd"), "V02.22 runner Mina should use NPCActor")
+	_expect(_script_path(main.find_child("resource_branch", true, false)).ends_with("resource_object.gd"), "V02.22 runner branch should use ResourceObject")
+	_expect(_script_path(main.find_child("anchor_a_apple", true, false)).ends_with("anchor_object.gd"), "V02.22 runner A anchor should use AnchorObject")
+	_expect(_script_path(main.find_child("place_home", true, false)).ends_with("interactable_object.gd"), "V02.22 runner Home place should use InteractableObject")
+	_expect(_script_path(main.find_child("interaction_home_entry", true, false)).ends_with("interactable_object.gd"), "V02.22 runner Home hotspot should use InteractableObject")
+	_expect(main.request_player_walk_to_cell(Vector2i(38, 22)).get("ok", false), "V02.22 runner actor split should keep walk facade")
+	main.finish_player_walk_for_test(420)
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "npc" and str(target.get("target_id", "")) == "mina", "V02.22 runner actor split should keep interaction priority")
+
+	_expect(main.save_service.clear_for_test(), "V02.22 actor prefab split save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0222_ui_scene_split() -> void:
+	_expect(V0222UISceneSplitTestScript != null, "V02.22 UI scene split focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0222_ui_scene_split.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.22 UI scene split save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	_expect(_script_path(main.find_child("TownHUD", true, false)).ends_with("town_hud.gd"), "V02.22 runner TownHUD should use scene script")
+	_expect(_script_path(main.find_child("TownFooter", true, false)).ends_with("town_footer.gd"), "V02.22 runner TownFooter should use scene script")
+	_expect(main.status_label != null and main.coin_label != null and main.pet_label != null, "V02.22 runner TownHUD should keep Main label facades")
+	_press_visible_button(main.find_child("BackpackNavButton", true, false) as Button, "V02.22 runner UI scene split should open backpack")
+	_expect((main.find_child("BackpackBubble", true, false) as Control).visible, "V02.22 runner UI scene split should show backpack")
+	_press_visible_button(main.find_child("SettingsButton", true, false) as Button, "V02.22 runner UI scene split should open settings")
+	_expect((main.find_child("SettingsPanel", true, false) as Control).visible, "V02.22 runner UI scene split should show settings")
+
+	_expect(main.save_service.clear_for_test(), "V02.22 UI scene split save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0222_hidden_grid_life_systems() -> void:
+	_expect(V0222HiddenGridLifeSystemsTestScript != null, "V02.22 hidden grid life systems focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0222_hidden_grid_life_systems.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.22 hidden grid life systems save should clear")
+	var inventory = InventoryServiceScript.new(service)
+	_expect(inventory.collect_item("flower_pot", 1).get("ok", false), "V02.22 runner should seed outdoor decor")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+
+	var place_result: Dictionary = main.place_outdoor_item("flower_pot", Vector2i(32, 21))
+	_expect(place_result.get("ok", false), "V02.22 runner should place outdoor decor")
+	var instance_id := str(place_result.get("outdoor_item", {}).get("instance_id", ""))
+	_expect(main.find_child("outdoor_%s" % instance_id, true, false) != null, "V02.22 runner should render outdoor decor marker")
+	_expect(main.move_outdoor_item(instance_id, Vector2i(33, 21)).get("ok", false), "V02.22 runner should move outdoor decor")
+	_expect(main.pickup_outdoor_item(instance_id).get("ok", false), "V02.22 runner should pick up outdoor decor")
+	var resource_summary: Dictionary = main.resource_refresh_service.get_refresh_summary()
+	_expect(resource_summary.get("ok", false) and int(resource_summary.get("available_count", 0)) >= 3, "V02.22 runner should expose resource 2.0 summary")
+	var routine_snapshot: Dictionary = main.get_npc_routine_snapshot()
+	_expect(routine_snapshot.get("ok", false), "V02.22 runner should expose NPC routine snapshot")
+	_expect(int(routine_snapshot.get("blocked_count", -1)) == 0, "V02.26 complete routine data should keep V02.22 default NPC routines unblocked")
+
+	_expect(main.save_service.clear_for_test(), "V02.22 hidden grid life systems save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0222_hiddengrid_final_smoke() -> void:
+	_expect(V0222HiddengridFinalSmokeTestScript != null, "V02.22 hiddengrid final smoke focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0222_hiddengrid_final_smoke.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.22 final smoke save should clear")
+	var inventory = InventoryServiceScript.new(service)
+	_expect(inventory.collect_item("flower_pot", 1).get("ok", false), "V02.22 final smoke runner should seed outdoor decor")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	_expect(_script_path(main.find_child("TownStage", true, false)).ends_with("town_stage.gd"), "V02.22 final smoke runner should use TownStage")
+	_expect(main.request_player_walk_to_cell(Vector2i(38, 22)).get("ok", false), "V02.22 final smoke runner should walk to Mina")
+	main.finish_player_walk_for_test(420)
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "npc" and str(target.get("target_id", "")) == "mina", "V02.22 final smoke runner should keep NPC target")
+	var outdoor: Dictionary = main.place_outdoor_item("flower_pot", Vector2i(32, 21))
+	_expect(outdoor.get("ok", false), "V02.22 final smoke runner should place outdoor decor")
+	_expect(main.resource_refresh_service.get_refresh_summary().get("ok", false), "V02.22 final smoke runner should keep resource summary")
+	_expect(main.get_npc_routine_snapshot().get("ok", false), "V02.22 final smoke runner should keep NPC routine snapshot")
+
+	_expect(main.save_service.clear_for_test(), "V02.22 final smoke save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_town_map_authoring_export() -> void:
+	_expect(TownMapAuthoringExportTestScript != null, "Town map authoring export focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var summary: Dictionary = scene.call("get_layer_summary")
+	for key in ["has_ground_preview", "has_road_layer", "has_collision_layer", "has_interaction_layer", "has_place_marker_layer", "has_anchor_marker_layer", "has_resource_marker_layer", "has_npc_spawn_layer", "has_export_validation_panel"]:
+		_expect(bool(summary.get(key, false)), "TownMapAuthoring runner should expose layer: %s" % key)
+	_expect(_v0223_has_authoring_marker(scene, "place", "place_home"), "TownMapAuthoring runner should create Home place marker")
+	_expect(_v0223_has_authoring_marker(scene, "anchor", "anchor_a_apple"), "TownMapAuthoring runner should create A anchor marker")
+	var moved: Dictionary = scene.call("set_marker_cell_for_test", "place", "place_home", Vector2i(30, 17))
+	_expect(moved.get("ok", false), "TownMapAuthoring runner should move a place marker by cell")
+	var exported: Dictionary = MapEditorSyncServiceScript.export_authoring_scene(scene)
+	_expect(exported.get("ok", false), "TownMapAuthoring runner export should pass world map contract: %s" % [exported.get("errors", [])])
+	_expect(exported.get("data", {}).get("memory_anchors", []).size() == 26, "TownMapAuthoring runner export should preserve 26 A-Z anchors")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v0225_mapauth001_validation_panel() -> void:
+	_expect(V0225Mapauth001ValidationPanelTestScript != null, "V02.25 MAPAUTH-001 validation panel focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var summary: Dictionary = scene.call("get_layer_summary")
+	_expect(bool(summary.get("has_validate_export_button", false)), "V02.25 MAPAUTH-001 runner should expose Validate button")
+	var validation: Dictionary = scene.call("validate_export_candidate")
+	_expect(validation.get("ok", false), "V02.25 MAPAUTH-001 runner valid candidate should pass")
+	_expect(int(validation.get("error_count", -1)) == 0, "V02.25 MAPAUTH-001 runner valid candidate should show no errors")
+	_expect(not bool(validation.get("wrote_file", true)), "V02.25 MAPAUTH-001 runner should not write JSON")
+	_expect(scene.call("set_marker_cell_for_test", "place", "place_home", Vector2i(-5, -5)).get("ok", false), "V02.25 MAPAUTH-001 runner should move a marker for invalid validation")
+	validation = scene.call("validate_export_candidate")
+	_expect(not validation.get("ok", true), "V02.25 MAPAUTH-001 runner invalid candidate should fail")
+	_expect(int(validation.get("error_count", 0)) > 0, "V02.25 MAPAUTH-001 runner invalid candidate should show errors")
+	var validation_summary: Dictionary = scene.call("get_validation_summary")
+	_expect(str(validation_summary.get("error_text", "")).contains("place position outside district"), "V02.25 MAPAUTH-001 runner should list contract errors")
+	_expect(not bool(validation_summary.get("wrote_file", true)), "V02.25 MAPAUTH-001 runner invalid validation should not write JSON")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v0225_mapauth002_write_back_service() -> void:
+	_expect(V0225Mapauth002WriteBackServiceTestScript != null, "V02.25 MAPAUTH-002 write-back service focused test should compile for headless runner")
+	var source_result: Dictionary = RuntimeMapBuilderScript.load_world_map()
+	_expect(source_result.get("ok", false), "V02.25 MAPAUTH-002 runner should load source world_map")
+	var source_map: Dictionary = source_result.get("data", {}).duplicate(true)
+	var target_path := "user://headless_runner_mapauth002_world_map.json"
+	_runner_cleanup_mapauth002_paths(target_path)
+	var seed_result: Dictionary = MapEditorSyncServiceScript.write_valid_dictionary(source_map, target_path)
+	_expect(seed_result.get("ok", false), "V02.25 MAPAUTH-002 runner should seed valid temp target")
+	var valid_candidate := source_map.duplicate(true)
+	valid_candidate["version"] = "headless_mapauth002_valid"
+	var write_result: Dictionary = MapEditorSyncServiceScript.write_if_valid(valid_candidate, target_path)
+	_expect(write_result.get("ok", false) and bool(write_result.get("written", false)), "V02.25 MAPAUTH-002 runner valid write should succeed")
+	_expect(int(write_result.get("anchor_count", 0)) == 26, "V02.25 MAPAUTH-002 runner valid write should preserve 26 anchors")
+	_expect(RuntimeMapBuilderScript.load_world_map(target_path).get("ok", false), "V02.25 MAPAUTH-002 runner written file should load")
+	var before_invalid := _runner_read_text(target_path)
+	var invalid_candidate := source_map.duplicate(true)
+	var anchors: Array = invalid_candidate.get("memory_anchors", [])
+	if not anchors.is_empty() and anchors[0] is Dictionary:
+		(anchors[0] as Dictionary)["route_order"] = 99
+	invalid_candidate["memory_anchors"] = anchors
+	write_result = MapEditorSyncServiceScript.write_if_valid(invalid_candidate, target_path)
+	_expect(not write_result.get("ok", true), "V02.25 MAPAUTH-002 runner invalid write should fail")
+	_expect(str(write_result.get("reason", "")) == "validation_failed", "V02.25 MAPAUTH-002 runner invalid write should fail before disk write")
+	_expect(_runner_read_text(target_path) == before_invalid, "V02.25 MAPAUTH-002 runner invalid write should preserve target")
+	write_result = MapEditorSyncServiceScript.write_if_valid(valid_candidate, target_path, {"simulate_commit_failure": true})
+	_expect(not write_result.get("ok", true), "V02.25 MAPAUTH-002 runner simulated failure should fail")
+	_expect(_runner_read_text(target_path) == before_invalid, "V02.25 MAPAUTH-002 runner simulated failure should preserve target")
+	_runner_cleanup_mapauth002_paths(target_path)
+
+
+func _check_v0225_mapauth003_place_marker_loop() -> void:
+	_expect(V0225Mapauth003PlaceMarkerLoopTestScript != null, "V02.25 MAPAUTH-003 place marker loop focused test should compile for headless runner")
+	var original_text := _runner_read_text(RuntimeMapBuilderScript.WORLD_MAP_PATH)
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var before_summary: Dictionary = scene.call("get_authoring_place_summary")
+	var before_count := int(before_summary.get("place_count", 0))
+	var added: Dictionary = scene.call(
+		"add_place_marker_candidate",
+		"place_authoring_picnic_runner",
+		"Picnic Runner",
+		"district_sun_scene",
+		"landmark",
+		Vector2i(3, 1),
+		Vector2i.ONE
+	)
+	_expect(added.get("ok", false), "V02.25 MAPAUTH-003 runner should add a place candidate")
+	_expect(int(added.get("place_count", 0)) == before_count + 1, "V02.25 MAPAUTH-003 runner add should increase place count")
+	var duplicate: Dictionary = scene.call(
+		"add_place_marker_candidate",
+		"place_authoring_picnic_runner",
+		"Picnic Runner",
+		"district_sun_scene",
+		"landmark",
+		Vector2i(4, 1),
+		Vector2i.ONE
+	)
+	_expect(not duplicate.get("ok", true), "V02.25 MAPAUTH-003 runner should reject duplicate place ids")
+	var exported: Dictionary = MapEditorSyncServiceScript.export_authoring_scene(scene)
+	_expect(exported.get("ok", false), "V02.25 MAPAUTH-003 runner added candidate should validate: %s" % [exported.get("errors", [])])
+	_expect(exported.get("data", {}).get("memory_anchors", []).size() == 26, "V02.25 MAPAUTH-003 runner should preserve 26 A-Z anchors")
+	_expect(scene.call("validate_export_candidate").get("ok", false), "V02.25 MAPAUTH-003 runner valid add should pass visible validation")
+	var protected_delete: Dictionary = scene.call("delete_place_marker_candidate", "place_home")
+	_expect(not protected_delete.get("ok", true), "V02.25 MAPAUTH-003 runner should reject deleting anchor-owned place")
+	_expect(str(protected_delete.get("reason", "")) == "place_has_anchors", "V02.25 MAPAUTH-003 runner protected delete should name reason")
+	var deleted: Dictionary = scene.call("delete_place_marker_candidate", "place_authoring_picnic_runner")
+	_expect(deleted.get("ok", false), "V02.25 MAPAUTH-003 runner should delete the added place candidate")
+	_expect(int(deleted.get("place_count", -1)) == before_count, "V02.25 MAPAUTH-003 runner delete should restore place count")
+	exported = MapEditorSyncServiceScript.export_authoring_scene(scene)
+	_expect(exported.get("ok", false), "V02.25 MAPAUTH-003 runner deleted candidate should leave valid export: %s" % [exported.get("errors", [])])
+	_expect(_runner_read_text(RuntimeMapBuilderScript.WORLD_MAP_PATH) == original_text, "V02.25 MAPAUTH-003 runner should not mutate runtime world_map.json")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v0225_mapauth004_anchor_protection() -> void:
+	_expect(V0225Mapauth004AnchorProtectionTestScript != null, "V02.25 MAPAUTH-004 anchor protection focused test should compile for headless runner")
+	var original_text := _runner_read_text(RuntimeMapBuilderScript.WORLD_MAP_PATH)
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var summary: Dictionary = scene.call("get_authoring_anchor_summary")
+	_expect(int(summary.get("anchor_count", 0)) == 26, "V02.25 MAPAUTH-004 runner should start with 26 anchors")
+	_expect(int(summary.get("protected_anchor_count", 0)) == 26, "V02.25 MAPAUTH-004 runner should protect all 26 A-Z anchors")
+	var delete_result: Dictionary = scene.call("delete_anchor_marker_candidate", "anchor_a_apple")
+	_expect(not delete_result.get("ok", true), "V02.25 MAPAUTH-004 runner should reject deleting A anchor")
+	_expect(str(delete_result.get("reason", "")) == "protected_core_anchor", "V02.25 MAPAUTH-004 runner delete rejection should name reason")
+	var unknown_delete: Dictionary = scene.call("delete_anchor_marker_candidate", "anchor_missing_runner")
+	_expect(not unknown_delete.get("ok", true), "V02.25 MAPAUTH-004 runner should reject unknown anchor delete")
+	for field_name in ["anchor_id", "letter", "core_word", "route_order", "place_id", "card_id", "audio_id"]:
+		var edit_result: Dictionary = scene.call("edit_anchor_field_candidate", "anchor_a_apple", field_name, "bad_runner_value")
+		_expect(not edit_result.get("ok", true), "V02.25 MAPAUTH-004 runner should reject locked field: %s" % field_name)
+		_expect(str(edit_result.get("reason", "")) == "anchor_field_locked", "V02.25 MAPAUTH-004 runner locked field should name reason: %s" % field_name)
+	var moved: Dictionary = scene.call("set_marker_cell_for_test", "anchor", "anchor_a_apple", Vector2i(29, 16))
+	_expect(moved.get("ok", false), "V02.25 MAPAUTH-004 runner should still allow anchor marker position candidate")
+	var exported: Dictionary = MapEditorSyncServiceScript.export_authoring_scene(scene)
+	_expect(exported.get("ok", false), "V02.25 MAPAUTH-004 runner export should stay valid: %s" % [exported.get("errors", [])])
+	_expect(exported.get("data", {}).get("memory_anchors", []).size() == 26, "V02.25 MAPAUTH-004 runner export should keep 26 anchors")
+	_expect(_letters(exported.get("data", {})) == _az_letters(), "V02.25 MAPAUTH-004 runner export should preserve A-Z order")
+	_expect(scene.call("validate_export_candidate").get("ok", false), "V02.25 MAPAUTH-004 runner validation should pass")
+	_expect(_runner_read_text(RuntimeMapBuilderScript.WORLD_MAP_PATH) == original_text, "V02.25 MAPAUTH-004 runner should not mutate runtime world_map.json")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v0225_mapauth005_place_move_linkage() -> void:
+	_expect(V0225Mapauth005PlaceMoveLinkageTestScript != null, "V02.25 MAPAUTH-005 place move linkage focused test should compile for headless runner")
+	var original_text := _runner_read_text(RuntimeMapBuilderScript.WORLD_MAP_PATH)
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var moved: Dictionary = scene.call("move_place_marker_candidate", "place_home", Vector2i(30, 17))
+	_expect(moved.get("ok", false), "V02.25 MAPAUTH-005 runner should move Home with linkage")
+	_expect(_runner_cell_key(moved.get("interaction_cell", {})) == "32,19", "V02.25 MAPAUTH-005 runner should preserve Home interaction offset")
+	_expect(int(moved.get("interaction_update_count", 0)) >= 1, "V02.25 MAPAUTH-005 runner should update primary interaction")
+	_expect(int(moved.get("collision_update_count", 0)) >= 6, "V02.25 MAPAUTH-005 runner should update linked collision cells")
+	var exported: Dictionary = MapEditorSyncServiceScript.export_authoring_scene(scene)
+	_expect(exported.get("ok", false), "V02.25 MAPAUTH-005 runner export should pass after move: %s" % [exported.get("errors", [])])
+	var home_place: Dictionary = _runner_place_by_id(exported.get("data", {}), "place_home")
+	_expect(_runner_cell_key(home_place.get("position", {})) == "30,17", "V02.25 MAPAUTH-005 runner should export moved Home position")
+	_expect(_runner_cell_key(home_place.get("interaction_cell", {})) == "32,19", "V02.25 MAPAUTH-005 runner should export moved Home interaction")
+	_expect(_runner_has_occupied_cell(home_place, "30,17"), "V02.25 MAPAUTH-005 runner should shift Home occupied cells")
+	var invalid_move: Dictionary = scene.call("move_place_marker_candidate", "place_home", Vector2i(-5, -5))
+	_expect(not invalid_move.get("ok", true), "V02.25 MAPAUTH-005 runner should reject invalid move")
+	exported = MapEditorSyncServiceScript.export_authoring_scene(scene)
+	home_place = _runner_place_by_id(exported.get("data", {}), "place_home")
+	_expect(_runner_cell_key(home_place.get("position", {})) == "30,17", "V02.25 MAPAUTH-005 runner rejected move should keep previous valid position")
+	_expect(scene.call("validate_export_candidate").get("ok", false), "V02.25 MAPAUTH-005 runner validation should pass after move checks")
+	_expect(_runner_read_text(RuntimeMapBuilderScript.WORLD_MAP_PATH) == original_text, "V02.25 MAPAUTH-005 runner should not mutate runtime world_map.json")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v0225_mapauth006_regression_pack() -> void:
+	_expect(V0225Mapauth006RegressionPackTestScript != null, "V02.25 MAPAUTH-006 regression pack focused test should compile for headless runner")
+	var original_text := _runner_read_text(RuntimeMapBuilderScript.WORLD_MAP_PATH)
+	var target_path := "user://headless_runner_mapauth006_world_map.json"
+	_runner_cleanup_mapauth002_paths(target_path)
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var moved: Dictionary = scene.call("move_place_marker_candidate", "place_home", Vector2i(30, 17))
+	_expect(moved.get("ok", false), "V02.25 MAPAUTH-006 runner should prepare linked move candidate")
+	var write_result: Dictionary = MapEditorSyncServiceScript.write_authoring_scene_if_valid(scene, target_path)
+	_expect(write_result.get("ok", false), "V02.25 MAPAUTH-006 runner valid authoring write should pass: %s" % [write_result.get("errors", [])])
+	_expect(bool(write_result.get("written", false)), "V02.25 MAPAUTH-006 runner valid write should report written")
+	_expect(int(write_result.get("anchor_count", 0)) == 26, "V02.25 MAPAUTH-006 runner valid write should preserve anchors")
+	var loaded: Dictionary = RuntimeMapBuilderScript.load_world_map(target_path)
+	_expect(loaded.get("ok", false), "V02.25 MAPAUTH-006 runner written temp map should load")
+	var home_place: Dictionary = _runner_place_by_id(loaded.get("data", {}), "place_home")
+	_expect(_runner_cell_key(home_place.get("position", {})) == "30,17", "V02.25 MAPAUTH-006 runner written map should include moved Home")
+	var before_invalid := _runner_read_text(target_path)
+	_expect(scene.call("set_marker_cell_for_test", "place", "place_home", Vector2i(-5, -5)).get("ok", false), "V02.25 MAPAUTH-006 runner should prepare invalid raw candidate")
+	write_result = MapEditorSyncServiceScript.write_authoring_scene_if_valid(scene, target_path)
+	_expect(not write_result.get("ok", true), "V02.25 MAPAUTH-006 runner invalid authoring write should fail")
+	_expect(str(write_result.get("reason", "")) == "validation_failed", "V02.25 MAPAUTH-006 runner invalid write should fail at validation")
+	_expect(_runner_read_text(target_path) == before_invalid, "V02.25 MAPAUTH-006 runner invalid write should preserve temp target")
+	_expect(_runner_read_text(RuntimeMapBuilderScript.WORLD_MAP_PATH) == original_text, "V02.25 MAPAUTH-006 runner should not mutate runtime world_map.json")
+	root.remove_child(scene)
+	scene.queue_free()
+	_runner_cleanup_mapauth002_paths(target_path)
+
+
+func _runner_read_text(path: String) -> String:
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return ""
+	return file.get_as_text()
+
+
+func _runner_world_map() -> Dictionary:
+	var result: Dictionary = RuntimeMapBuilderScript.load_world_map()
+	_expect(result.get("ok", false), "Headless runner should load world map for service checks")
+	return result.get("data", {}).duplicate(true)
+
+
+func _runner_place_by_id(map_data: Dictionary, place_id: String) -> Dictionary:
+	for place in map_data.get("places", []):
+		if str(place.get("place_id", "")) == place_id:
+			return place
+	return {}
+
+
+func _runner_has_occupied_cell(place: Dictionary, key: String) -> bool:
+	for cell in place.get("occupied_cells", []):
+		if _runner_cell_key(cell) == key:
+			return true
+	return false
+
+
+func _runner_cell_key(cell: Dictionary) -> String:
+	return "%s,%s" % [int(cell.get("x", -1)), int(cell.get("y", -1))]
+
+
+func _runner_cleanup_mapauth002_paths(target_path: String) -> void:
+	for path in [target_path, target_path + ".tmp", target_path + ".bak"]:
+		if FileAccess.file_exists(path):
+			DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
+
+
+func _check_town_stage_layered_runtime() -> void:
+	_expect(TownStageLayeredRuntimeTestScript != null, "TownStage layered runtime focused test should compile for headless runner")
+	var save_path := "user://headless_runner_town_stage_layered_runtime.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "TownStage layered runtime save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null, "TownStage runner should exist")
+	for layer_name in ["GroundLayer", "RoadVisualLayer", "PlaceLayer", "PlazaLifeLayer", "HotspotLayer", "CollisionDebugLayer", "AnchorLayer", "ResourceLayer", "NPCActorLayer", "OutdoorDecorLayer", "PlayerLayer"]:
+		_expect(stage.find_child(layer_name, true, false) != null, "TownStage runner should expose runtime layer: %s" % layer_name)
+	_expect((stage.find_child("CollisionDebugLayer", true, false) as CanvasItem).visible == false, "TownStage runner CollisionDebugLayer should stay hidden")
+	_expect((stage.find_child("RoadVisualLayer", true, false) as Node).get_child_count() > 0, "TownStage runner RoadVisualLayer should contain road visuals")
+	_expect((stage.find_child("PlaceLayer", true, false) as Node).find_child("place_home", true, false) != null, "TownStage runner PlaceLayer should contain Home")
+	_expect((stage.find_child("AnchorLayer", true, false) as Node).find_child("anchor_a_apple", true, false) != null, "TownStage runner AnchorLayer should contain A anchor")
+	_expect((stage.find_child("ResourceLayer", true, false) as Node).get_child_count() > 0, "TownStage runner ResourceLayer should contain resources")
+	_expect((stage.find_child("NPCActorLayer", true, false) as Node).find_child("npc_mina", true, false) != null, "TownStage runner NPCActorLayer should contain Mina")
+	_expect((stage.find_child("PlayerLayer", true, false) as Node).find_child("Player", true, false) != null, "TownStage runner PlayerLayer should contain Player")
+	_expect(main.runtime_map_node != null and main.runtime_map_input != null and main.player_marker != null, "TownStage runner should keep Main runtime facades")
+	_expect(main.save_service.clear_for_test(), "TownStage layered runtime save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0223_ui_panel_scene_split() -> void:
+	_expect(V0223UIPanelSceneSplitTestScript != null, "V02.23 UI panel scene split focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0223_ui_panel_scene_split.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.23 UI panel scene split save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	_expect(_script_path(main.find_child("BackpackBubble", true, false)).ends_with("backpack_bubble.gd"), "V02.23 runner BackpackBubble should use scene script")
+	_expect(_script_path(main.find_child("SettingsPanel", true, false)).ends_with("settings_panel.gd"), "V02.23 runner SettingsPanel should use scene script")
+	_expect(_script_path(main.find_child("ShopPanel", true, false)).ends_with("shop_panel.gd"), "V02.23 runner ShopPanel should use scene script")
+	_expect(_script_path(main.find_child("MemoryAlbumOverlay", true, false)).ends_with("memory_album_overlay.gd"), "V02.23 runner MemoryAlbumOverlay should use scene script")
+	_expect(_script_path(main.find_child("HomeRoom", true, false)).ends_with("home_room.gd"), "V02.23 runner HomeRoom should use scene script")
+	for node_name in ["BackpackTitle", "BackpackSummary", "BackpackItems", "BackpackCollection", "OpenMemoryAlbumButton", "OpenLetterSnakeButton", "SettingsStatus", "SoundToggleButton", "SafePlaceButton", "RequestRestButton", "CancelRestButton", "ConfirmExitButton", "CloseSettingsButton", "ShopStatus", "ShopItemsList", "CloseShopButton", "MemoryAlbum", "CloseMemoryAlbumButton", "HomeRoomStage", "HomeFurnitureLayer", "HomeSunny", "SunnyHomeFeedback", "HomeActionPanel", "HomeInventoryList", "HomeRotateFirstFurnitureButton"]:
+		_expect(main.find_child(node_name, true, false) != null, "V02.23 runner UI panel scene should expose node: %s" % node_name)
+	_press_visible_button(main.find_child("BackpackNavButton", true, false) as Button, "V02.23 runner should open Backpack")
+	_expect((main.find_child("BackpackBubble", true, false) as Control).visible, "V02.23 runner BackpackBubble should become visible")
+	_press_visible_button(main.find_child("OpenMemoryAlbumButton", true, false) as Button, "V02.23 runner should open Album from Backpack")
+	_expect((main.find_child("MemoryAlbumOverlay", true, false) as Control).visible, "V02.23 runner MemoryAlbumOverlay should become visible")
+	_press_visible_button(main.find_child("CloseMemoryAlbumButton", true, false) as Button, "V02.23 runner should close Album")
+	_expect(main.open_shop_panel().get("ok", false), "V02.23 runner Shop facade should still open")
+	_expect((main.find_child("ShopPanel", true, false) as Control).visible, "V02.23 runner ShopPanel should become visible")
+	_press_visible_button(main.find_child("CloseShopButton", true, false) as Button, "V02.23 runner should close Shop")
+	main.show_home_view()
+	_expect((main.find_child("HomeRoom", true, false) as Control).visible, "V02.23 runner HomeRoom should become visible")
+	_expect(main.save_service.clear_for_test(), "V02.23 UI panel scene split save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0223_expapproval_town_plaza_density() -> void:
+	_expect(V0223ExpapprovalTownPlazaDensityTestScript != null, "V02.23 EXPAPPROVAL town plaza density focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0223_expapproval_town_plaza_density.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.23 EXPAPPROVAL density save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_expapproval_snapshot"), "V02.23 EXPAPPROVAL runner should expose TownStage snapshot")
+	if stage != null and stage.has_method("get_expapproval_snapshot"):
+		var snapshot: Dictionary = stage.call("get_expapproval_snapshot")
+		_expect(int(snapshot.get("plaza_life_detail_count", 0)) >= 5, "V02.23 EXPAPPROVAL runner should keep plaza life details")
+		_expect(int(snapshot.get("anchor_count", 0)) == 26, "V02.23 EXPAPPROVAL runner should keep all A-Z anchors")
+		_expect(int(snapshot.get("muted_anchor_badge_count", 0)) == int(snapshot.get("anchor_badge_count", -1)), "V02.23 EXPAPPROVAL runner should keep anchor badges muted")
+	_expect(main.move_player_to_cell(Vector2i(38, 22)).get("ok", false), "V02.23 EXPAPPROVAL runner should reach Mina")
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "npc" and str(target.get("target_id", "")) == "mina", "V02.23 EXPAPPROVAL runner should keep resident priority")
+	_expect(main.save_service.clear_for_test(), "V02.23 EXPAPPROVAL density save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0223_expapproval_home_living_density() -> void:
+	_expect(V0223ExpapprovalHomeLivingDensityTestScript != null, "V02.23 EXPAPPROVAL Home living density focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0223_expapproval_home_living_density.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.23 EXPAPPROVAL Home save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	main.show_home_view()
+	_expect(main.has_method("get_expapproval_home_snapshot"), "V02.23 EXPAPPROVAL runner should expose Home snapshot")
+	if main.has_method("get_expapproval_home_snapshot"):
+		var snapshot: Dictionary = main.get_expapproval_home_snapshot()
+		_expect(int(snapshot.get("home_life_detail_count", 0)) >= 6, "V02.23 EXPAPPROVAL runner should keep Home lived-in details")
+		_expect(int(snapshot.get("child_text_banned_count", -1)) == 0, "V02.23 EXPAPPROVAL runner should keep Home child text free of grid and coordinate terms")
+		_expect(int(snapshot.get("placed_furniture_count", -1)) == 0, "V02.23 EXPAPPROVAL default Home details should not be saved furniture")
+	var collected: Dictionary = main.inventory_service.collect_item("wooden_chair", 1)
+	_expect(collected.get("ok", false), "V02.23 EXPAPPROVAL runner should seed Home furniture")
+	main.show_home_view()
+	_press_visible_button(main.find_child("HomePlaceWoodenChairButton", true, false) as Button, "V02.23 EXPAPPROVAL runner should keep visible Home place button")
+	if main.has_method("get_expapproval_home_snapshot"):
+		var placed_snapshot: Dictionary = main.get_expapproval_home_snapshot()
+		_expect(int(placed_snapshot.get("placed_furniture_count", 0)) == 1, "V02.23 EXPAPPROVAL runner should keep visible furniture placement")
+		_expect(int(placed_snapshot.get("child_text_banned_count", -1)) == 0, "V02.23 EXPAPPROVAL placed Home text should remain child-facing")
+	_expect(main.save_service.clear_for_test(), "V02.23 EXPAPPROVAL Home save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0224_home_room_living_contract() -> void:
+	_expect(V0224HomeRoomLivingContractTestScript != null, "V02.24 HomeRoom living contract focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0224_home_room_living_contract.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.24 HomeRoom runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	main.show_home_view()
+	_expect(main.has_method("get_expapproval_home_snapshot"), "V02.24 HomeRoom runner should expose Home snapshot")
+	if main.has_method("get_expapproval_home_snapshot"):
+		var snapshot: Dictionary = main.get_expapproval_home_snapshot()
+		_expect(str(snapshot.get("home_living_contract_version", "")) == "v02.24_homeplaza_002", "V02.24 HomeRoom runner should expose living contract version")
+		_expect(int(snapshot.get("home_life_detail_count", 0)) >= 9, "V02.24 HomeRoom runner should keep reinforced default living details")
+		_expect((snapshot.get("home_life_detail_names", []) as Array).has("HomeDefaultBookStack"), "V02.24 HomeRoom runner should keep default book stack visible")
+		_expect((snapshot.get("home_life_detail_names", []) as Array).has("HomeDefaultSunnyToy"), "V02.24 HomeRoom runner should keep Sunny toy visible")
+		_expect((snapshot.get("home_life_detail_names", []) as Array).has("HomeDefaultWarmCup"), "V02.24 HomeRoom runner should keep warm cup visible")
+		_expect(int(snapshot.get("placed_furniture_count", -1)) == 0, "V02.24 HomeRoom runner default details should not be saved furniture")
+		_expect(int(snapshot.get("child_text_banned_count", -1)) == 0, "V02.24 HomeRoom runner child text should stay free of technical terms")
+	var game_state: Dictionary = main.save_service.load_game_state()
+	game_state["inventory"] = {"pet_bowl": 1, "sunny_bed": 1}
+	game_state["home_state"] = {"placed_furniture": [], "stowed_furniture": {}}
+	_expect(main.save_service.save_game_state(game_state), "V02.24 HomeRoom runner should seed Sunny furniture")
+	main.show_home_view()
+	_press_visible_button(main.find_child("HomePlacePetBowlButton", true, false) as Button, "V02.24 HomeRoom runner should place pet bowl through visible button")
+	_press_visible_button(main.find_child("HomePlaceSunnyBedButton", true, false) as Button, "V02.24 HomeRoom runner should place Sunny bed through visible button")
+	if main.has_method("get_expapproval_home_snapshot"):
+		var placed_snapshot: Dictionary = main.get_expapproval_home_snapshot()
+		_expect(int(placed_snapshot.get("placed_furniture_count", 0)) == 2, "V02.24 HomeRoom runner should save real placed furniture only")
+		_expect(int(placed_snapshot.get("home_life_detail_count", 0)) >= 9, "V02.24 HomeRoom runner default details should remain after placement")
+		_expect(str(placed_snapshot.get("sunny_feedback_text", "")).contains("Sunny"), "V02.24 HomeRoom runner should keep Sunny feedback after placement")
+		_expect(int(placed_snapshot.get("child_text_banned_count", -1)) == 0, "V02.24 HomeRoom runner placed text should stay child-facing")
+	_expect(main.save_service.clear_for_test(), "V02.24 HomeRoom runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0224_town_plaza_outdoor_decor_rules() -> void:
+	_expect(V0224TownPlazaOutdoorDecorRulesTestScript != null, "V02.24 Town Plaza outdoor decor rules focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0224_town_plaza_outdoor_decor_rules.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.24 Town Plaza runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var summary: Dictionary = main.outdoor_decoration_service.get_allowed_place_summary()
+	_expect(int(summary.get("allowed_zone_count", 0)) >= 2, "V02.24 Town Plaza runner should define allowed decor zones")
+	_expect(int(summary.get("protected_anchor_count", 0)) == 26, "V02.24 Town Plaza runner should protect all anchors")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_expapproval_snapshot"), "V02.24 Town Plaza runner should expose TownStage snapshot")
+	if stage != null and stage.has_method("get_expapproval_snapshot"):
+		var snapshot: Dictionary = stage.call("get_expapproval_snapshot")
+		_expect(int(snapshot.get("plaza_stay_point_count", 0)) >= 4, "V02.24 Town Plaza runner should keep plaza stay points")
+		_expect((snapshot.get("plaza_stay_point_names", []) as Array).has("PlazaChatStool"), "V02.24 Town Plaza runner should include chat stay point")
+		_expect((snapshot.get("plaza_stay_point_names", []) as Array).has("PlazaSnackCrate"), "V02.24 Town Plaza runner should include snack stay point")
+	var inventory = InventoryServiceScript.new(main.save_service)
+	_expect(inventory.collect_item("flower_pot", 1).get("ok", false), "V02.24 Town Plaza runner should seed safe outdoor decor")
+	var placed: Dictionary = main.place_outdoor_item("flower_pot", Vector2i(32, 21))
+	_expect(placed.get("ok", false), "V02.24 Town Plaza runner should place decor in a safe corner")
+	var blocked: Dictionary = main.place_outdoor_item("flower_pot", Vector2i(34, 20))
+	_expect(not blocked.get("ok", true), "V02.24 Town Plaza runner should reject decor on Taxi anchor")
+	_expect(str(blocked.get("reason", "")) == "covers_core_target", "V02.24 Town Plaza runner should report protected target")
+	_expect(str(blocked.get("protected_kind", "")) == "anchor", "V02.24 Town Plaza runner should identify protected anchor")
+	_expect(main.save_service.clear_for_test(), "V02.24 Town Plaza runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0224_npc_routine_arrival_safety() -> void:
+	_expect(V0224NPCRoutineArrivalSafetyTestScript != null, "V02.24 NPC routine arrival safety focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0224_npc_routine_arrival_safety.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.24 NPC routine runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var snapshot: Dictionary = main.get_npc_routine_snapshot()
+	_expect(snapshot.get("ok", false), "V02.24 NPC routine runner should expose snapshot")
+	_expect(int(snapshot.get("plaza_arrival_count", 0)) >= 2, "V02.24 NPC routine runner should report plaza arrivals")
+	var npcs: Array = snapshot.get("npcs", [])
+	var mina := _runner_npc_by_id(npcs, "mina")
+	_expect(str(mina.get("arrival_zone", "")) == "town_plaza", "V02.24 NPC routine runner should keep Mina at plaza arrival")
+	_expect(str(mina.get("arrival_text", "")).contains("Mina"), "V02.24 NPC routine runner should expose Mina arrival text")
+	_expect(main.move_player_to_cell(Vector2i(38, 22)).get("ok", false), "V02.24 NPC routine runner should reach Mina")
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "npc" and str(target.get("target_id", "")) == "mina", "V02.24 NPC routine runner should keep Mina prompt")
+	_expect(main.move_player_to_cell(Vector2i(43, 12)).get("ok", false), "V02.24 NPC routine runner should reach Shopkeeper")
+	target = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "npc" and str(target.get("target_id", "")) == "shopkeeper", "V02.24 NPC routine runner should keep Shopkeeper prompt")
+	_expect(main.save_service.clear_for_test(), "V02.24 NPC routine runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _runner_npc_by_id(npcs: Array, npc_id: String) -> Dictionary:
+	for value in npcs:
+		if value is Dictionary and str((value as Dictionary).get("npc_id", "")) == npc_id:
+			return value
+	_expect(false, "NPC routine runner snapshot should include %s" % npc_id)
+	return {}
+
+
+func _check_v0224_homeplaza005_rc_smoke() -> void:
+	_expect(V0224Homeplaza005RCSmokeTestScript != null, "V02.24 HOMEPLAZA-005 RC smoke focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0224_homeplaza005_rc_smoke.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.24 HOMEPLAZA-005 runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	main.show_home_view()
+	var home_snapshot: Dictionary = main.get_expapproval_home_snapshot()
+	_expect(int(home_snapshot.get("home_life_detail_count", 0)) >= 9, "V02.24 HOMEPLAZA-005 runner should keep Home living details")
+	_expect(int(home_snapshot.get("placed_furniture_count", -1)) == 0, "V02.24 HOMEPLAZA-005 runner should keep default Home details out of save state")
+	main.show_town_view()
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_expapproval_snapshot"), "V02.24 HOMEPLAZA-005 runner should expose TownStage snapshot")
+	if stage != null and stage.has_method("get_expapproval_snapshot"):
+		var plaza_snapshot: Dictionary = stage.call("get_expapproval_snapshot")
+		_expect(int(plaza_snapshot.get("plaza_stay_point_count", 0)) >= 4, "V02.24 HOMEPLAZA-005 runner should keep plaza stay points")
+		_expect(int(plaza_snapshot.get("anchor_count", 0)) == 26, "V02.24 HOMEPLAZA-005 runner should keep 26 A-Z anchors")
+	var game_state: Dictionary = main.save_service.load_game_state()
+	game_state["inventory"] = {"flower_pot": 1}
+	_expect(main.save_service.save_game_state(game_state), "V02.24 HOMEPLAZA-005 runner should seed outdoor decor")
+	_expect(main.place_outdoor_item("flower_pot", Vector2i(32, 21)).get("ok", false), "V02.24 HOMEPLAZA-005 runner should place safe outdoor decor")
+	var routine_snapshot: Dictionary = main.get_npc_routine_snapshot()
+	_expect(int(routine_snapshot.get("plaza_arrival_count", 0)) >= 2, "V02.24 HOMEPLAZA-005 runner should keep NPC plaza arrivals")
+	_expect(main.move_player_to_cell(Vector2i(38, 22)).get("ok", false), "V02.24 HOMEPLAZA-005 runner should reach Mina")
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "npc" and str(target.get("target_id", "")) == "mina", "V02.24 HOMEPLAZA-005 runner should keep Mina prompt")
+	_expect(main.save_service.clear_for_test(), "V02.24 HOMEPLAZA-005 runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v026_contentbatch001_npc_routine_batch() -> void:
+	_expect(V026Contentbatch001NPCRoutineBatchTestScript != null, "V02.26 CONTENTBATCH-001 NPC routine batch focused test should compile for headless runner")
+	var routine_service = NPCRoutineServiceScript.new(LocalDayServiceScript.new("local_day_007"), NPCRoutineServiceScript.ROUTINES_PATH, _runner_world_map())
+	_expect(routine_service.is_loaded(), "V02.26 CONTENTBATCH-001 runner should load NPC routine data")
+	_expect(routine_service.routines_by_day.size() == 7, "V02.26 CONTENTBATCH-001 runner should load seven routine days")
+	var save_path := "user://headless_runner_v026_contentbatch001_npc_routine_batch.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.26 CONTENTBATCH-001 runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_007")
+	root.add_child(main)
+	main.call("_ready")
+	var snapshot: Dictionary = main.get_npc_routine_snapshot()
+	_expect(snapshot.get("ok", false), "V02.26 CONTENTBATCH-001 runner snapshot should succeed")
+	_expect(int(snapshot.get("blocked_count", -1)) == 0, "V02.26 CONTENTBATCH-001 runner should have no blocked default routines")
+	var mina := _runner_npc_by_id(snapshot.get("npcs", []), "mina")
+	_expect(_runner_cell_key(mina.get("cell", {})) == "38,21", "V02.26 CONTENTBATCH-001 runner should apply day 7 Mina cell")
+	_expect(main.move_player_to_cell(Vector2i(38, 21)).get("ok", false), "V02.26 CONTENTBATCH-001 runner should reach day 7 Mina")
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "npc" and str(target.get("target_id", "")) == "mina", "V02.26 CONTENTBATCH-001 runner should keep Mina prompt")
+	_expect(main.save_service.clear_for_test(), "V02.26 CONTENTBATCH-001 runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v026_contentbatch002_resource_points() -> void:
+	_expect(V026Contentbatch002ResourcePointsTestScript != null, "V02.26 CONTENTBATCH-002 resource focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v026_contentbatch002_resource_points.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.26 CONTENTBATCH-002 runner save should clear")
+	var inventory = InventoryServiceScript.new(service)
+	var resources = ResourceRefreshServiceScript.new(service, inventory, LocalDayServiceScript.new("local_day_002"))
+	_expect(resources.is_loaded(), "V02.26 CONTENTBATCH-002 runner should load resource data")
+	_expect(resources.points_by_id.size() >= 7, "V02.26 CONTENTBATCH-002 runner should include baseline plus new resource points")
+	for point_id in ["resource_shell_coast_edge", "resource_leaf_school_walk", "resource_pinecone_animal_park", "resource_ribbon_shop_street"]:
+		var point: Dictionary = resources.get_point(point_id)
+		_expect(point.get("ok", false), "V02.26 CONTENTBATCH-002 runner should resolve point: %s" % point_id)
+		_expect(str(point.get("refresh_rule", {}).get("mode", "")) == "daily_soft", "V02.26 CONTENTBATCH-002 runner point should stay daily_soft: %s" % point_id)
+		_expect(str(point.get("refresh_rule", {}).get("player_pressure", "")) == "none", "V02.26 CONTENTBATCH-002 runner point should carry no pressure: %s" % point_id)
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_002")
+	root.add_child(main)
+	main.call("_ready")
+	_expect(main.move_player_to_cell(Vector2i(53, 28)).get("ok", false), "V02.26 CONTENTBATCH-002 runner should reach coast shell")
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "resource" and str(target.get("target_id", "")) == "resource_shell_coast_edge", "V02.26 CONTENTBATCH-002 runner should prompt coast shell")
+	var result: Dictionary = main.interact_nearby()
+	_expect(str(result.get("interaction_type", "")) == "resource" and str(result.get("item_id", "")) == "shell", "V02.26 CONTENTBATCH-002 runner should collect shell")
+	_expect(main.save_service.clear_for_test(), "V02.26 CONTENTBATCH-002 runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v026_contentbatch003_anchor_revisits() -> void:
+	_expect(V026Contentbatch003AnchorRevisitsTestScript != null, "V02.26 CONTENTBATCH-003 anchor revisit focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v026_contentbatch003_anchor_revisits.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.26 CONTENTBATCH-003 runner save should clear")
+	var card_service = MemoryCardServiceScript.new(service)
+	var anchor_service = AnchorInteractionServiceScript.new(service, card_service)
+	_expect(anchor_service.is_loaded(), "V02.26 CONTENTBATCH-003 runner should load revisit data")
+	_expect(anchor_service.get_all_stories().size() >= 12, "V02.26 CONTENTBATCH-003 runner should expose expanded revisit batch")
+	for anchor_id in ["anchor_a_apple", "anchor_d_dog", "anchor_k_kite", "anchor_h_hat", "anchor_m_monkey", "anchor_u_umbrella"]:
+		var story: Dictionary = anchor_service.get_story_for_anchor(anchor_id)
+		_expect(not story.is_empty(), "V02.26 CONTENTBATCH-003 runner should resolve story: %s" % anchor_id)
+		_expect(str(story.get("core_anchor_id", "")) == anchor_id, "V02.26 CONTENTBATCH-003 runner story should preserve anchor id: %s" % anchor_id)
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_003")
+	root.add_child(main)
+	main.call("_ready")
+	_expect(main.move_player_to_cell(Vector2i(43, 8)).get("ok", false), "V02.26 CONTENTBATCH-003 runner should reach Hat ribbon anchor")
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "anchor" and str(target.get("target_id", "")) == "anchor_h_hat", "V02.26 CONTENTBATCH-003 runner should prompt Hat anchor")
+	var result: Dictionary = main.interact_nearby()
+	_expect(str(result.get("interaction_type", "")) == "anchor" and str(result.get("story", {}).get("word", "")) == "ribbon", "V02.26 CONTENTBATCH-003 runner should return ribbon story")
+	_expect(main.save_service.clear_for_test(), "V02.26 CONTENTBATCH-003 runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v026_contentbatch004_look_events() -> void:
+	_expect(V026Contentbatch004LookEventsTestScript != null, "V02.26 CONTENTBATCH-004 look events focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v026_contentbatch004_look_events.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.26 CONTENTBATCH-004 runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var interact_button := main.find_child("InteractButton", true, false) as Button
+	var path: Array[Dictionary] = [
+		{"event_id": "homeschool_shop_front_window_001", "cell": Vector2i(42, 9), "stage": "shop_front", "text": "Hat", "cards": ["card_h_hat_core", "card_i_ice_cream_core", "card_o_orange_core"]},
+		{"event_id": "homeschool_school_yard_chalk_flower_001", "cell": Vector2i(18, 14), "stage": "school_yard_extra", "text": "Yo-yo", "cards": ["card_n_net_core", "card_y_yo_yo_core", "card_r_robot_core"]},
+	]
+	for step in path:
+		var event_id := str(step.get("event_id", ""))
+		_expect(main.find_child(event_id, true, false) != null, "V02.26 CONTENTBATCH-004 runner hotspot should exist: %s" % event_id)
+		_expect(main.move_player_to_cell(step.get("cell", Vector2i.ZERO)).get("ok", false), "V02.26 CONTENTBATCH-004 runner should reach event: %s" % event_id)
+		_press_visible_button(interact_button, "V02.26 CONTENTBATCH-004 runner visible Interact should trigger: %s" % event_id)
+		_expect(str(main.life_status_label.text).contains(str(step.get("text", ""))), "V02.26 CONTENTBATCH-004 runner feedback should be visible: %s" % event_id)
+		var record: Dictionary = main.save_service.load_game_state().get("homeschool_events", {}).get(event_id, {})
+		_expect(bool(record.get("seen", false)) and str(record.get("stage", "")) == str(step.get("stage", "")), "V02.26 CONTENTBATCH-004 runner event should persist: %s" % event_id)
+		for card_id in step.get("cards", []):
+			var card_state: Dictionary = main.memory_card_service.get_card_state(str(card_id))
+			_expect(bool(card_state.get("collected", false)), "V02.26 CONTENTBATCH-004 runner card should be collected: %s" % card_id)
+	_expect(main.move_player_to_cell(Vector2i(41, 11)).get("ok", false), "V02.26 CONTENTBATCH-004 runner should keep shop entry reachable")
+	_press_visible_button(interact_button, "V02.26 CONTENTBATCH-004 runner visible Interact should still open shop")
+	var shop_panel := main.find_child("ShopPanel", true, false) as Control
+	_expect(shop_panel != null and shop_panel.visible, "V02.26 CONTENTBATCH-004 runner should keep shop panel available")
+	_expect(main.save_service.clear_for_test(), "V02.26 CONTENTBATCH-004 runner save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0223_expapproval_shop_settings_glass() -> void:
+	_expect(V0223ExpapprovalShopSettingsGlassTestScript != null, "V02.23 EXPAPPROVAL Shop / Settings glass focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0223_expapproval_shop_settings_glass.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.23 EXPAPPROVAL Shop / Settings save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	_expect(main.has_method("get_expapproval_shop_settings_snapshot"), "V02.23 EXPAPPROVAL runner should expose Shop / Settings snapshot")
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.23 EXPAPPROVAL runner should reach Shop hotspot")
+	_press_visible_button(main.find_child("InteractButton", true, false) as Button, "V02.23 EXPAPPROVAL runner should open Shop from visible Interact")
+	var shop_snapshot: Dictionary = main.get_expapproval_shop_settings_snapshot()
+	_expect(bool(shop_snapshot.get("shop_visible", false)), "V02.23 EXPAPPROVAL runner should keep Shop visible")
+	_expect(int(shop_snapshot.get("shop_panel_size", {}).get("width", 0)) >= 390, "V02.23 EXPAPPROVAL runner should keep Shop panel wide")
+	_expect(int(shop_snapshot.get("shop_min_touch_height", 0)) >= 46, "V02.23 EXPAPPROVAL runner should keep Shop buttons touchable")
+	_expect(int(shop_snapshot.get("shop_child_text_banned_count", -1)) == 0, "V02.23 EXPAPPROVAL runner should keep Shop text child-facing")
+	var game_state: Dictionary = main.save_service.load_game_state()
+	game_state["coins"] = 30
+	_expect(main.save_service.save_game_state(game_state), "V02.23 EXPAPPROVAL runner should seed coins")
+	main.open_shop_panel()
+	_press_visible_button(main.find_child("ShopBuyWoodenChairButton", true, false) as Button, "V02.23 EXPAPPROVAL runner should keep visible Shop buy button")
+	var after_purchase: Dictionary = main.save_service.load_game_state()
+	_expect(int(after_purchase.get("inventory", {}).get("wooden_chair", 0)) == 1, "V02.23 EXPAPPROVAL runner should keep visible Shop purchase")
+	_expect(int(after_purchase.get("coins", -1)) == 22, "V02.23 EXPAPPROVAL runner should keep Shop price deduction")
+	_press_visible_button(main.find_child("SettingsButton", true, false) as Button, "V02.23 EXPAPPROVAL runner should open Settings from top button")
+	var settings_snapshot: Dictionary = main.get_expapproval_shop_settings_snapshot()
+	_expect(bool(settings_snapshot.get("settings_visible", false)), "V02.23 EXPAPPROVAL runner should keep Settings visible")
+	_expect(int(settings_snapshot.get("settings_panel_size", {}).get("width", 0)) >= 390, "V02.23 EXPAPPROVAL runner should keep Settings panel wide")
+	_expect(int(settings_snapshot.get("settings_min_touch_height", 0)) >= 46, "V02.23 EXPAPPROVAL runner should keep Settings buttons touchable")
+	_expect(int(settings_snapshot.get("settings_child_text_banned_count", -1)) == 0, "V02.23 EXPAPPROVAL runner should keep Settings text child-facing")
+	_expect(not bool(settings_snapshot.get("settings_confirm_visible", true)), "V02.23 EXPAPPROVAL runner should hide rest confirm first")
+	_press_visible_button(main.find_child("RequestRestButton", true, false) as Button, "V02.23 EXPAPPROVAL runner should keep visible rest request")
+	settings_snapshot = main.get_expapproval_shop_settings_snapshot()
+	_expect(bool(settings_snapshot.get("settings_confirm_visible", false)), "V02.23 EXPAPPROVAL runner should show confirm after rest request")
+	_press_visible_button(main.find_child("SafePlaceButton", true, false) as Button, "V02.23 EXPAPPROVAL runner should keep visible safe-place button")
+	_expect(main.player_cell == Vector2i(31, 19), "V02.23 EXPAPPROVAL runner should return to safe place")
+	_expect(main.save_service.clear_for_test(), "V02.23 EXPAPPROVAL Shop / Settings save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0223_expapproval_school_gate_yard_life_noise() -> void:
+	_expect(V0223ExpapprovalSchoolGateYardLifeNoiseTestScript != null, "V02.23 EXPAPPROVAL School Gate / Yard focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0223_expapproval_school_gate_yard_life_noise.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.23 EXPAPPROVAL School save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	_expect(main.has_method("get_expapproval_school_snapshot"), "V02.23 EXPAPPROVAL runner should expose School snapshot")
+	var snapshot: Dictionary = main.get_expapproval_school_snapshot()
+	_expect(int(snapshot.get("school_gate_life_detail_count", 0)) >= 2, "V02.23 EXPAPPROVAL runner should keep School Gate life details")
+	_expect(int(snapshot.get("school_yard_life_detail_count", 0)) >= 4, "V02.23 EXPAPPROVAL runner should keep School Yard life details")
+	_expect(int(snapshot.get("anchor_count", 0)) == 26, "V02.23 EXPAPPROVAL runner should keep all A-Z anchors near School proof")
+	_expect(int(snapshot.get("muted_school_line_badge_count", 0)) == int(snapshot.get("school_line_anchor_count", -1)), "V02.23 EXPAPPROVAL runner should keep School-line badges muted")
+	_expect(int(snapshot.get("school_child_text_banned_count", -1)) == 0, "V02.23 EXPAPPROVAL runner should keep School text child-facing")
+	_expect(main.request_player_walk_to_cell(Vector2i(21, 12)).get("ok", false), "V02.23 EXPAPPROVAL runner should walk to School Gate")
+	_expect(main.finish_player_walk_for_test().get("ok", false), "V02.23 EXPAPPROVAL runner should finish School Gate walk")
+	snapshot = main.get_expapproval_school_snapshot()
+	_expect(bool(snapshot.get("arrival_school_gate_visible", false)), "V02.23 EXPAPPROVAL runner should show School Gate arrival proof")
+	_press_visible_button(main.find_child("InteractButton", true, false) as Button, "V02.23 EXPAPPROVAL runner should trigger School Gate from visible Interact")
+	_expect(main.request_player_walk_to_cell(Vector2i(19, 15)).get("ok", false), "V02.23 EXPAPPROVAL runner should walk to School Yard")
+	_expect(main.finish_player_walk_for_test().get("ok", false), "V02.23 EXPAPPROVAL runner should finish School Yard walk")
+	snapshot = main.get_expapproval_school_snapshot()
+	_expect(bool(snapshot.get("arrival_school_yard_visible", false)), "V02.23 EXPAPPROVAL runner should show School Yard arrival proof")
+	_press_visible_button(main.find_child("InteractButton", true, false) as Button, "V02.23 EXPAPPROVAL runner should trigger School Yard from visible Interact")
+	var state: Dictionary = main.save_service.load_game_state()
+	_expect(state.get("homeschool_events", {}).has("homeschool_school_gate_hello_001"), "V02.23 EXPAPPROVAL runner should persist School Gate look")
+	_expect(state.get("homeschool_events", {}).has("homeschool_school_yard_play_001"), "V02.23 EXPAPPROVAL runner should persist School Yard look")
+	_expect(main.save_service.clear_for_test(), "V02.23 EXPAPPROVAL School save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0223_expapproval006_rc_smoke() -> void:
+	_expect(V0223Expapproval006RCSmokeTestScript != null, "V02.23 EXPAPPROVAL-006 RC smoke focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0223_expapproval006_rc_smoke.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.23 EXPAPPROVAL-006 RC smoke save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_001")
+	root.add_child(main)
+	main.call("_ready")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_expapproval_snapshot"), "V02.23 EXPAPPROVAL-006 runner should expose TownStage snapshot")
+	if stage != null and stage.has_method("get_expapproval_snapshot"):
+		var stage_snapshot: Dictionary = stage.call("get_expapproval_snapshot")
+		_expect(int(stage_snapshot.get("anchor_count", 0)) == 26, "V02.23 EXPAPPROVAL-006 runner should keep 26 A-Z anchors")
+		_expect(int(stage_snapshot.get("muted_anchor_badge_count", 0)) == int(stage_snapshot.get("anchor_badge_count", -1)), "V02.23 EXPAPPROVAL-006 runner should keep anchor badges muted")
+	main.show_home_view()
+	_expect(main.has_method("get_expapproval_home_snapshot"), "V02.23 EXPAPPROVAL-006 runner should expose Home snapshot")
+	var home_snapshot: Dictionary = main.get_expapproval_home_snapshot()
+	_expect(int(home_snapshot.get("home_life_detail_count", 0)) >= 6, "V02.23 EXPAPPROVAL-006 runner should keep Home details")
+	_press_visible_button(main.find_child("TownNavButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should return to Town")
+	_expect(main.move_player_to_cell(Vector2i(24, 9)).get("ok", false), "V02.23 EXPAPPROVAL-006 runner should reach Shop hotspot")
+	_press_visible_button(main.find_child("InteractButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should open Shop")
+	var shop_snapshot: Dictionary = main.get_expapproval_shop_settings_snapshot()
+	_expect(bool(shop_snapshot.get("shop_visible", false)), "V02.23 EXPAPPROVAL-006 runner should show Shop")
+	_press_visible_button(main.find_child("CloseShopButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should close Shop")
+	_press_visible_button(main.find_child("BackpackNavButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should open Backpack")
+	_press_visible_button(main.find_child("OpenMemoryAlbumButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should open Album")
+	_expect((main.find_child("MemoryAlbumOverlay", true, false) as Control).visible, "V02.23 EXPAPPROVAL-006 runner should show Album")
+	_press_visible_button(main.find_child("CloseMemoryAlbumButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should close Album")
+	_press_visible_button(main.find_child("SettingsButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should open Settings")
+	var settings_snapshot: Dictionary = main.get_expapproval_shop_settings_snapshot()
+	_expect(bool(settings_snapshot.get("settings_visible", false)), "V02.23 EXPAPPROVAL-006 runner should show Settings")
+	_press_visible_button(main.find_child("CloseSettingsButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should close Settings")
+	_expect(main.request_player_walk_to_cell(Vector2i(21, 12)).get("ok", false), "V02.23 EXPAPPROVAL-006 runner should walk to School Gate")
+	_expect(main.finish_player_walk_for_test().get("ok", false), "V02.23 EXPAPPROVAL-006 runner should finish School Gate walk")
+	_press_visible_button(main.find_child("InteractButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should look at School Gate")
+	_expect(main.request_player_walk_to_cell(Vector2i(19, 15)).get("ok", false), "V02.23 EXPAPPROVAL-006 runner should walk to School Yard")
+	_expect(main.finish_player_walk_for_test().get("ok", false), "V02.23 EXPAPPROVAL-006 runner should finish School Yard walk")
+	_press_visible_button(main.find_child("InteractButton", true, false) as Button, "V02.23 EXPAPPROVAL-006 runner should look at School Yard")
+	var school_snapshot: Dictionary = main.get_expapproval_school_snapshot()
+	_expect(int(school_snapshot.get("school_child_text_banned_count", -1)) == 0, "V02.23 EXPAPPROVAL-006 runner should keep School text child-facing")
+	_expect(main.save_service.clear_for_test(), "V02.23 EXPAPPROVAL-006 RC smoke save should clean up")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _v0223_has_authoring_marker(scene: Node, runtime_type: String, stable_id: String) -> bool:
+	for child in scene.find_children("*", "PanelContainer", true, false):
+		if str(child.get("runtime_type")) == runtime_type and str(child.get("stable_id")) == stable_id:
+			return true
+	return false
+
+
+func _arrival_proof_visible(main, node_name: String) -> bool:
+	var panel := main.find_child("ArrivalProofPanel", true, false) as Control
+	var label := main.find_child(node_name, true, false) as Label
+	return panel != null and panel.visible and label != null and label.visible
+
+
 func _v0218_best_look_cell(main, anchor_cell: Vector2i, anchor_id: String) -> Vector2i:
 	var candidates: Array[Vector2i] = [
 		anchor_cell,
@@ -1469,6 +2528,15 @@ func _collect_visible_child_text(node: Node) -> String:
 	for child in node.get_children():
 		text += _collect_visible_child_text(child)
 	return text
+
+
+func _script_path(node: Node) -> String:
+	if node == null:
+		return ""
+	var script := node.get_script() as Script
+	if script == null:
+		return ""
+	return script.resource_path
 
 
 func _first_place_with_occupied_cells(places: Array) -> int:

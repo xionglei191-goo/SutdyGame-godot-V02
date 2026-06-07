@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/town_hud.gd" id="1_town_hud"]
+
+[node name="TownHUD" type="PanelContainer"]
+script = ExtResource("1_town_hud")
+
+[node name="Margin" type="MarginContainer" parent="."]
+
+[node name="Row" type="HBoxContainer" parent="Margin"]
+
+[node name="Title" type="Label" parent="Margin/Row"]
+custom_minimum_size = Vector2(106, 0)
+text = "阳光小镇"
+vertical_alignment = 1
+
+[node name="Status" type="Label" parent="Margin/Row"]
+custom_minimum_size = Vector2(62, 26)
+text = "开放"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LifeStatus" type="Label" parent="Margin/Row"]
+size_flags_horizontal = 3
+text = "今天适合慢慢散步。"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="LoopStatus" type="Label" parent="Margin/Row"]
+custom_minimum_size = Vector2(96, 0)
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="OptionalActivityStatus" type="Label" parent="Margin/Row"]
+visible = false
+text = "相册和 Letter Snake 是可以慢慢玩的收藏活动。"
+
+[node name="CoinIcon" type="TextureRect" parent="Margin/Row"]
+custom_minimum_size = Vector2(26, 26)
+stretch_mode = 5
+
+[node name="CoinState" type="Label" parent="Margin/Row"]
+custom_minimum_size = Vector2(52, 26)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PetState" type="Label" parent="Margin/Row"]
+custom_minimum_size = Vector2(104, 26)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="Margin/Row"]
+custom_minimum_size = Vector2(38, 30)
+expand_icon = true
+
+[node name="CardState" type="Label" parent="Margin/Row"]
+visible = false

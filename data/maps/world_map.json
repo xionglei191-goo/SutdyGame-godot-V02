@@ -2104,6 +2104,26 @@
 			"event_id": "homeschool_return_sunny_story_001"
 		},
 		{
+			"interaction_id": "homeschool_shop_front_window_001",
+			"place_id": "place_supermarket",
+			"cell": {
+				"x": 42,
+				"y": 9
+			},
+			"action": "look_homeschool_event",
+			"event_id": "homeschool_shop_front_window_001"
+		},
+		{
+			"interaction_id": "homeschool_school_yard_chalk_flower_001",
+			"place_id": "place_school_yard",
+			"cell": {
+				"x": 18,
+				"y": 14
+			},
+			"action": "look_homeschool_event",
+			"event_id": "homeschool_school_yard_chalk_flower_001"
+		},
+		{
 			"interaction_id": "p1_entry_story_bear_bookshop_door",
 			"place_id": "place_town_start",
 			"cell": {

@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/editor/town_map_authoring.gd" id="1_authoring"]
+
+[node name="TownMapAuthoring" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_authoring")
+
+[node name="GroundPreviewLayer" type="Control" parent="."]
+layout_mode = 0
+
+[node name="RoadLayer" type="Control" parent="."]
+layout_mode = 0
+
+[node name="CollisionLayer" type="Control" parent="."]
+layout_mode = 0
+
+[node name="InteractionLayer" type="Control" parent="."]
+layout_mode = 0
+
+[node name="PlaceMarkerLayer" type="Control" parent="."]
+layout_mode = 0
+
+[node name="AnchorMarkerLayer" type="Control" parent="."]
+layout_mode = 0
+
+[node name="ResourceMarkerLayer" type="Control" parent="."]
+layout_mode = 0
+
+[node name="NPCSpawnLayer" type="Control" parent="."]
+layout_mode = 0
+
+[node name="ExportValidationPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 392.0
+offset_bottom = 172.0
+
+[node name="VBox" type="VBoxContainer" parent="ExportValidationPanel"]
+layout_mode = 2
+
+[node name="ValidationStatusLabel" type="Label" parent="ExportValidationPanel/VBox"]
+layout_mode = 2
+text = "Export not validated yet"
+
+[node name="ValidateExportButton" type="Button" parent="ExportValidationPanel/VBox"]
+layout_mode = 2
+text = "Validate"
+
+[node name="ValidationErrorsLabel" type="Label" parent="ExportValidationPanel/VBox"]
+layout_mode = 2
+text = "Press Validate to review the candidate map."
+autowrap_mode = 3

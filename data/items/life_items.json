@@ -62,6 +62,86 @@
 			}
 		},
 		{
+			"item_id": "shell",
+			"display_name": "Shell",
+			"localized_display_name": "小贝壳",
+			"item_type": "material",
+			"stackable": true,
+			"source": "town_resource",
+			"pickup_feedback": {
+				"default": "捡到一枚小贝壳，像海边寄来的小扣子。",
+				"near_anchor": "Umbrella 海边旁的小贝壳亮亮的，轻轻放进背包。"
+			},
+			"memory_story": {
+				"letter": "U",
+				"core_anchor_id": "anchor_u_umbrella",
+				"world_place_id": "place_coast_edge",
+				"story_memory": "A shell rests near the beach Umbrella and keeps a tiny sea sound for Sunny.",
+				"visual_hook": "a shell beside the Umbrella beach path",
+				"review_path": "Walk to the coast edge and look near the Umbrella anchor."
+			}
+		},
+		{
+			"item_id": "leaf",
+			"display_name": "Leaf",
+			"localized_display_name": "小叶子",
+			"item_type": "material",
+			"stackable": true,
+			"source": "town_resource",
+			"pickup_feedback": {
+				"default": "捡到一片小叶子，叶脉像一条软软的小路。",
+				"near_anchor": "Kite 路旁飘下一片 Leaf，像给风写的小便条。"
+			},
+			"memory_story": {
+				"letter": "K",
+				"core_anchor_id": "anchor_k_kite",
+				"world_place_id": "place_home_school_walk",
+				"story_memory": "A leaf slides along the Kite road and points the way back to the school yard.",
+				"visual_hook": "a leaf turning under the Kite sky",
+				"review_path": "Walk the Home-School path and notice the leaf near the Kite place."
+			}
+		},
+		{
+			"item_id": "pinecone",
+			"display_name": "Pinecone",
+			"localized_display_name": "小松果",
+			"item_type": "material",
+			"stackable": true,
+			"source": "town_resource",
+			"pickup_feedback": {
+				"default": "捡到一颗小松果，圆圆的纹路像小小楼梯。",
+				"near_anchor": "Monkey 树下的小松果安静躺着，像给动物公园的小纪念。"
+			},
+			"memory_story": {
+				"letter": "M",
+				"core_anchor_id": "anchor_m_monkey",
+				"world_place_id": "place_animal_park",
+				"story_memory": "A pinecone waits under the Monkey tree and looks like a tiny climbing tower.",
+				"visual_hook": "a pinecone below the Monkey tree",
+				"review_path": "Visit Animal Park and look along the path under the Monkey anchor."
+			}
+		},
+		{
+			"item_id": "ribbon",
+			"display_name": "Ribbon",
+			"localized_display_name": "小丝带",
+			"item_type": "material",
+			"stackable": true,
+			"source": "town_resource",
+			"pickup_feedback": {
+				"default": "捡到一条小丝带，颜色像店门口的晴天招牌。",
+				"near_anchor": "Hat 招牌旁的小丝带轻轻晃着，像在和小店打招呼。"
+			},
+			"memory_story": {
+				"letter": "H",
+				"core_anchor_id": "anchor_h_hat",
+				"world_place_id": "place_supermarket",
+				"story_memory": "A ribbon curls beside the Hat sign and makes the shop window feel friendly.",
+				"visual_hook": "a ribbon tied near the Hat shop sign",
+				"review_path": "Walk down Shop Street and notice the ribbon near the Hat anchor."
+			}
+		},
+		{
 			"item_id": "wooden_chair",
 			"display_name": "Wooden Chair",
 			"localized_display_name": "小木椅",

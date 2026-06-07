@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/town_footer.gd" id="1_town_footer"]
+
+[node name="TownFooter" type="PanelContainer"]
+script = ExtResource("1_town_footer")
+
+[node name="Margin" type="MarginContainer" parent="."]
+
+[node name="FooterVisibleActions" type="HBoxContainer" parent="Margin"]
+alignment = 1
+
+[node name="InteractButton" type="Button" parent="Margin/FooterVisibleActions"]
+custom_minimum_size = Vector2(84, 40)
+text = "看看"
+
+[node name="TownNavButton" type="Button" parent="Margin/FooterVisibleActions"]
+custom_minimum_size = Vector2(84, 40)
+text = "小镇"
+
+[node name="HomeNavButton" type="Button" parent="Margin/FooterVisibleActions"]
+custom_minimum_size = Vector2(84, 40)
+text = "小屋"
+
+[node name="BackpackNavButton" type="Button" parent="Margin/FooterVisibleActions"]
+custom_minimum_size = Vector2(84, 40)
+text = "背包"
+
+[node name="FooterContractButtons" type="Control" parent="."]
+visible = false
+
+[node name="StartButton" type="Button" parent="FooterContractButtons"]
+custom_minimum_size = Vector2(112, 38)
+text = "开始"
+
+[node name="HelpNeighborButton" type="Button" parent="FooterContractButtons"]
+custom_minimum_size = Vector2(112, 38)
+text = "帮邻居"
+
+[node name="BuyFoodButton" type="Button" parent="FooterContractButtons"]
+custom_minimum_size = Vector2(112, 38)
+text = "买点心"
+
+[node name="FeedSunnyButton" type="Button" parent="FooterContractButtons"]
+custom_minimum_size = Vector2(112, 38)
+text = "喂 Sunny"
+
+[node name="MemoryAlbumButton" type="Button" parent="FooterContractButtons"]
+custom_minimum_size = Vector2(112, 38)
+text = "记忆相册"
+
+[node name="LetterSnakeButton" type="Button" parent="FooterContractButtons"]
+custom_minimum_size = Vector2(112, 38)
+text = "Letter Snake"

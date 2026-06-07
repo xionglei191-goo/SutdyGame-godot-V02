@@ -1,0 +1,133 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/stages/home_room.gd" id="1_home"]
+
+[node name="HomeRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_home")
+
+[node name="HomeRoomBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HomeRoomStage" type="Node2D" parent="."]
+
+[node name="HomeFloor" type="Sprite2D" parent="HomeRoomStage"]
+
+[node name="HomeBackWall" type="Sprite2D" parent="HomeRoomStage"]
+
+[node name="HomeSunlightPatch" type="Sprite2D" parent="HomeRoomStage"]
+
+[node name="HomeWindow" type="Sprite2D" parent="HomeRoomStage"]
+
+[node name="HomeWallClock" type="Sprite2D" parent="HomeRoomStage"]
+
+[node name="HomeShelf" type="Sprite2D" parent="HomeRoomStage"]
+
+[node name="HomeWelcomeMat" type="Sprite2D" parent="HomeRoomStage"]
+
+[node name="HomePetCornerBase" type="Sprite2D" parent="HomeRoomStage"]
+
+[node name="HomeLifeLayer" type="Node2D" parent="HomeRoomStage"]
+
+[node name="HomeDefaultRug" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeDefaultTeaTable" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeDefaultPlant" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeDefaultWallStory" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeDefaultSunnyBowl" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeDefaultSunnyBed" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeDefaultBookStack" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeDefaultSunnyToy" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeDefaultWarmCup" type="Sprite2D" parent="HomeRoomStage/HomeLifeLayer"]
+
+[node name="HomeFurnitureLayer" type="Node2D" parent="HomeRoomStage"]
+
+[node name="HomeSunny" type="Node2D" parent="HomeRoomStage"]
+position = Vector2(400, 235)
+
+[node name="Shadow" type="Sprite2D" parent="HomeRoomStage/HomeSunny"]
+
+[node name="Body" type="Sprite2D" parent="HomeRoomStage/HomeSunny"]
+
+[node name="Head" type="Sprite2D" parent="HomeRoomStage/HomeSunny"]
+
+[node name="SunnyHomeFeedbackPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.12
+anchor_right = 0.38
+anchor_bottom = 0.12
+offset_bottom = 68.0
+
+[node name="Margin" type="MarginContainer" parent="SunnyHomeFeedbackPanel"]
+layout_mode = 2
+
+[node name="SunnyHomeFeedback" type="Label" parent="SunnyHomeFeedbackPanel/Margin"]
+layout_mode = 2
+text = "Sunny 在小屋里慢慢摇尾巴。"
+autowrap_mode = 3
+
+[node name="HomeActionPanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.68
+anchor_top = 0.14
+anchor_right = 0.94
+anchor_bottom = 0.14
+offset_bottom = 250.0
+
+[node name="Margin" type="MarginContainer" parent="HomeActionPanel"]
+layout_mode = 2
+
+[node name="HomeActionStack" type="VBoxContainer" parent="HomeActionPanel/Margin"]
+layout_mode = 2
+
+[node name="HomeActionTitle" type="Label" parent="HomeActionPanel/Margin/HomeActionStack"]
+layout_mode = 2
+text = "小屋物件"
+
+[node name="HomeActionStatus" type="Label" parent="HomeActionPanel/Margin/HomeActionStack"]
+layout_mode = 2
+text = "背包里的家具会出现在这里。"
+autowrap_mode = 3
+
+[node name="HomeSelectedFurnitureLabel" type="Label" parent="HomeActionPanel/Margin/HomeActionStack"]
+layout_mode = 2
+text = "当前小角落：还没摆家具。"
+autowrap_mode = 3
+
+[node name="HomeInventoryList" type="VBoxContainer" parent="HomeActionPanel/Margin/HomeActionStack"]
+layout_mode = 2
+
+[node name="HomePlacedActions" type="HBoxContainer" parent="HomeActionPanel/Margin/HomeActionStack"]
+layout_mode = 2
+
+[node name="HomeRotateFirstFurnitureButton" type="Button" parent="HomeActionPanel/Margin/HomeActionStack/HomePlacedActions"]
+layout_mode = 2
+text = "旋转"
+
+[node name="HomeMoveFirstFurnitureButton" type="Button" parent="HomeActionPanel/Margin/HomeActionStack/HomePlacedActions"]
+layout_mode = 2
+text = "挪动"
+
+[node name="HomePickupFirstFurnitureButton" type="Button" parent="HomeActionPanel/Margin/HomeActionStack/HomePlacedActions"]
+layout_mode = 2
+text = "收起"

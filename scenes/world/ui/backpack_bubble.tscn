@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/backpack_bubble.gd" id="1_backpack"]
+
+[node name="BackpackBubble" type="PanelContainer"]
+script = ExtResource("1_backpack")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="Stack" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="BackpackTitle" type="Label" parent="Margin/Stack"]
+layout_mode = 2
+text = "小背包"
+
+[node name="BackpackSummary" type="Label" parent="Margin/Stack"]
+layout_mode = 2
+
+[node name="BackpackItems" type="Label" parent="Margin/Stack"]
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="BackpackCollection" type="Label" parent="Margin/Stack"]
+layout_mode = 2
+text = "收藏：相册、小游戏"
+
+[node name="BackpackCollectionActions" type="HBoxContainer" parent="Margin/Stack"]
+layout_mode = 2
+
+[node name="OpenMemoryAlbumButton" type="Button" parent="Margin/Stack/BackpackCollectionActions"]
+layout_mode = 2
+text = "相册"
+
+[node name="OpenLetterSnakeButton" type="Button" parent="Margin/Stack/BackpackCollectionActions"]
+layout_mode = 2
+text = "小游戏"

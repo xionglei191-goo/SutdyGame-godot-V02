@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/stages/anchor_object.gd" id="1_anchor_object"]
+
+[node name="AnchorObject" type="Node2D"]
+script = ExtResource("1_anchor_object")
+
+[node name="ObjectSprite" type="Sprite2D" parent="."]
+
+[node name="FutureObject" type="Sprite2D" parent="."]
+visible = false
+
+[node name="LetterBadge" type="Label" parent="."]
+custom_minimum_size = Vector2(22, 22)
+offset_right = 22.0
+offset_bottom = 22.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ObjectLabel" type="Node2D" parent="."]

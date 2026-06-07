@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/stages/town_stage.gd" id="1_town_stage"]
+
+[node name="TownStage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_town_stage")
+
+[node name="RuntimeMapFrame" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RuntimeMapInput" type="Control" parent="RuntimeMapFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="RuntimeMap" type="Node2D" parent="RuntimeMapFrame"]
+
+[node name="GroundLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="RoadVisualLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="PlaceLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="PlazaLifeLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="HotspotLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="CollisionDebugLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+visible = false
+
+[node name="AnchorLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="ResourceLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="NPCActorLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="OutdoorDecorLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]
+
+[node name="PlayerLayer" type="Node2D" parent="RuntimeMapFrame/RuntimeMap"]

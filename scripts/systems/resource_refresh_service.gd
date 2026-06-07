@@ -55,6 +55,29 @@ func get_available_points() -> Array:
 	return available
 
 
+func get_refresh_summary() -> Dictionary:
+	var available := get_available_points()
+	var day_key: String = local_day_service.get_day_key()
+	var collected: Dictionary = _get_day_state(day_key)
+	var refresh_modes: Dictionary = {}
+	for point_id in points_by_id.keys():
+		var point: Dictionary = points_by_id[point_id]
+		var rule: Dictionary = point.get("refresh_rule", {"mode": "daily_soft"})
+		refresh_modes[str(point_id)] = {
+			"mode": str(rule.get("mode", "daily_soft")),
+			"baseline_available": bool(rule.get("baseline_available", true)),
+			"player_pressure": str(rule.get("player_pressure", "none")),
+		}
+	return {
+		"ok": true,
+		"day_key": day_key,
+		"available_count": available.size(),
+		"collected_count": collected.size(),
+		"refresh_modes": refresh_modes,
+		"weather_event_id": today_status_service.get_today_status().get("weather_event_id", "") if today_status_service != null else "",
+	}
+
+
 func get_nearest_resource(cell: Vector2i, radius: int) -> Dictionary:
 	var nearest: Dictionary = {}
 	var best_distance := radius + 1

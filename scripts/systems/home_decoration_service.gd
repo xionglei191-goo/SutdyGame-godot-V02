@@ -140,7 +140,7 @@ func validate_placement(item_id: String, cell: Vector2i, rotation: int = 0, igno
 			"item_id": item_id,
 			"cell": {"x": cell.x, "y": cell.y},
 			"size": size,
-			"feedback": "这里放不下，换个更宽的小格子吧。",
+			"feedback": "这里放不下，换个更宽的小角落吧。",
 		}
 	for record in get_home_state().get("placed_furniture", []):
 		if not record is Dictionary:

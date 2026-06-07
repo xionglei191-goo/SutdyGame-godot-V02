@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/stages/npc_actor.gd" id="1_npc_actor"]
+
+[node name="NPCActor" type="Node2D"]
+script = ExtResource("1_npc_actor")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="Head" type="Sprite2D" parent="."]
+
+[node name="EarLeft" type="Sprite2D" parent="."]
+
+[node name="EarRight" type="Sprite2D" parent="."]
+
+[node name="FaceDotLeft" type="Sprite2D" parent="."]
+
+[node name="FaceDotRight" type="Sprite2D" parent="."]

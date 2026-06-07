@@ -81,6 +81,32 @@
 			"safety_note": "不出现课堂、老师训导、作业、测试、背诵或分数。"
 		},
 		{
+			"event_id": "homeschool_shop_front_window_001",
+			"stage": "shop_front",
+			"tier": "P0",
+			"place_id": "place_supermarket",
+			"entry_label": "Shop front window",
+			"display_prefix": "Shop Street",
+			"text": "小店窗边的 Hat 小牌和 Ice cream 贴纸在阳光里轻轻发亮。",
+			"anchor_ids": ["anchor_h_hat", "anchor_i_ice_cream", "anchor_o_orange"],
+			"environment_words": ["shop", "hat", "ice cream", "orange"],
+			"next_hint": "看一眼就好，想买东西也可以慢慢进店。",
+			"safety_note": "店门口只是生活小发现，保持轻松观察和自由进店。"
+		},
+		{
+			"event_id": "homeschool_school_yard_chalk_flower_001",
+			"stage": "school_yard_extra",
+			"tier": "P0",
+			"place_id": "place_school_yard",
+			"entry_label": "School Yard chalk flower",
+			"display_prefix": "School Yard",
+			"text": "操场边的小粉笔花贴着软网，Yo-yo 彩绳在旁边安静卷好。",
+			"anchor_ids": ["anchor_n_net", "anchor_y_yo_yo", "anchor_r_robot"],
+			"environment_words": ["play", "net", "yo-yo", "look"],
+			"next_hint": "这里像课间的小角落，只要看一眼就能记住。",
+			"safety_note": "保持生活角落表达，只做温和观察和地点记忆。"
+		},
+		{
 			"event_id": "homeschool_return_sunny_story_001",
 			"stage": "return_home",
 			"tier": "P0",

@@ -123,12 +123,17 @@ func _check_visible_home_decoration_path(main) -> void:
 	var town_stage := main.find_child("TownStage", true, false) as Control
 	_expect(home_room != null and home_room.visible, "Visible Home button should open the home room")
 	_expect(town_stage != null and not town_stage.visible, "Home room should replace the town playfield while open")
+	for node_name in ["HomeWindow", "HomeSunlightPatch", "HomeWallClock", "HomeShelf", "HomeWelcomeMat", "HomePetCornerBase"]:
+		_expect(main.find_child(node_name, true, false) != null, "V02.21 Home should show cozy lived-in room detail: %s" % node_name)
+	var selected_label := main.find_child("HomeSelectedFurnitureLabel", true, false) as Label
+	_expect(selected_label != null and str(selected_label.text).contains("还没摆家具"), "V02.21 Home should show empty selected furniture state")
 
 	var place_button := main.find_child("HomePlaceWoodenChairButton", true, false) as Button
 	_press(place_button, "Home room should expose a visible place-furniture button for bought furniture")
 	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).size() == 1, "Visible home button should place furniture")
 	var sunny_feedback := main.find_child("SunnyHomeFeedback", true, false) as Label
 	_expect(sunny_feedback != null and str(sunny_feedback.text).contains("Sunny"), "Home room should show Sunny feedback after visible furniture placement")
+	_expect(selected_label != null and str(selected_label.text).contains("小木椅") and str(selected_label.text).contains("旋转"), "V02.21 Home should name the selected placed furniture")
 	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) == 0, "Visible home placement should consume the bought chair from backpack")
 	var first_furniture: Dictionary = main.home_decoration_service.get_home_state().get("placed_furniture", [])[0]
 	var first_cell: Dictionary = first_furniture.get("cell", {})
@@ -141,6 +146,7 @@ func _check_visible_home_decoration_path(main) -> void:
 	var moved_furniture: Dictionary = after_move_state.get("placed_furniture", [])[0]
 	var moved_cell: Dictionary = moved_furniture.get("cell", {})
 	_expect(int(moved_cell.get("x", -1)) != int(first_cell.get("x", -1)) or int(moved_cell.get("y", -1)) != int(first_cell.get("y", -1)), "Visible move button should change furniture cell")
+	_expect(selected_label != null and str(selected_label.text).contains("小角落") and not str(selected_label.text).contains("("), "V02.23 Home selected furniture state should update without visible coordinates")
 	var reloaded_home_state: Dictionary = main.home_decoration_service.get_home_state()
 	var reloaded_cell: Dictionary = reloaded_home_state.get("placed_furniture", [])[0].get("cell", {})
 	_expect(int(reloaded_cell.get("x", -1)) == int(moved_cell.get("x", -2)) and int(reloaded_cell.get("y", -1)) == int(moved_cell.get("y", -2)), "Moved furniture cell should persist in saved home state")
@@ -148,6 +154,7 @@ func _check_visible_home_decoration_path(main) -> void:
 	_press(pickup_button, "Home room should expose a visible pickup button")
 	_expect(main.home_decoration_service.get_home_state().get("placed_furniture", []).is_empty(), "Visible pickup button should remove placed furniture")
 	_expect(int(main.save_service.load_game_state().get("inventory", {}).get("wooden_chair", 0)) == 1, "Visible pickup button should return furniture to backpack")
+	_expect(selected_label != null and str(selected_label.text).contains("还没摆家具"), "V02.21 Home selected furniture state should reset after pickup")
 
 	var town_button := main.find_child("TownNavButton", true, false) as Button
 	_press(town_button, "Town button should be a visible return path")

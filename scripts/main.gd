@@ -11,6 +11,8 @@ const DailyRequestServiceScript := preload("res://scripts/systems/daily_request_
 const LocalDayServiceScript := preload("res://scripts/systems/local_day_service.gd")
 const DailyGreetingServiceScript := preload("res://scripts/systems/daily_greeting_service.gd")
 const ResourceRefreshServiceScript := preload("res://scripts/systems/resource_refresh_service.gd")
+const OutdoorDecorationServiceScript := preload("res://scripts/systems/outdoor_decoration_service.gd")
+const NPCRoutineServiceScript := preload("res://scripts/systems/npc_routine_service.gd")
 const TodayStatusServiceScript := preload("res://scripts/systems/today_status_service.gd")
 const SchoolDayStateServiceScript := preload("res://scripts/systems/school_day_state_service.gd")
 const AnchorInteractionServiceScript := preload("res://scripts/systems/anchor_interaction_service.gd")
@@ -19,6 +21,14 @@ const LLMClientScript := preload("res://scripts/systems/llm_client.gd")
 const RuntimeMapBuilderScript := preload("res://scripts/systems/runtime_map_builder.gd")
 const AssetResolverScript := preload("res://scripts/systems/asset_resolver.gd")
 const MemoryAlbumScene := preload("res://scenes/memory_album/memory_album.tscn")
+const TownStageScene := preload("res://scenes/world/town_stage.tscn")
+const TownHUDScene := preload("res://scenes/world/ui/town_hud.tscn")
+const TownFooterScene := preload("res://scenes/world/ui/town_footer.tscn")
+const BackpackBubbleScene := preload("res://scenes/world/ui/backpack_bubble.tscn")
+const SettingsPanelScene := preload("res://scenes/world/ui/settings_panel.tscn")
+const ShopPanelScene := preload("res://scenes/world/ui/shop_panel.tscn")
+const MemoryAlbumOverlayScene := preload("res://scenes/world/ui/memory_album_overlay.tscn")
+const HomeRoomScene := preload("res://scenes/world/home/home_room.tscn")
 const AZ_ANCHORS_PATH := "res://data/anchors/az_core_anchors.json"
 const HOMESCHOOL_EVENTS_PATH := "res://data/life/homeschool_events.json"
 const VIEWPORT_SIZE := Vector2i(1280, 720)
@@ -94,6 +104,8 @@ var daily_request_service
 var local_day_service
 var daily_greeting_service
 var resource_refresh_service
+var outdoor_decoration_service
+var npc_routine_service
 var today_status_service
 var school_day_state_service
 var anchor_interaction_service
@@ -119,10 +131,14 @@ var shop_items_list: VBoxContainer
 var shop_status_label: Label
 var town_stage: Control
 var home_room_layer: Control
+var home_life_layer: Node2D
 var home_furniture_layer: Node2D
 var sunny_home_feedback_label: Label
 var home_inventory_list: VBoxContainer
 var home_action_status_label: Label
+var home_selected_furniture_label: Label
+var arrival_proof_panel: Control
+var arrival_proof_labels: Dictionary = {}
 var runtime_map_frame: Control
 var runtime_map_input: Control
 var runtime_map_node: Node2D
@@ -134,6 +150,7 @@ var player_facing := Vector2i(0, 1)
 var player_walk_path: Array[Vector2i] = []
 var player_walk_target_cell := PLAYER_START_CELL
 var player_is_walking := false
+var runtime_npcs: Array = []
 var _texture_cache: Dictionary = {}
 var _logical_asset_texture_keys: Dictionary = {
 	"ground": {"category": "place_assets", "asset_id": "place.world_map.base_1280"},
@@ -249,7 +266,10 @@ func _init_services() -> void:
 	daily_request_service = DailyRequestServiceScript.new(save_service, inventory_service, local_day_service)
 	daily_greeting_service = DailyGreetingServiceScript.new(save_service, local_day_service)
 	resource_refresh_service = ResourceRefreshServiceScript.new(save_service, inventory_service, local_day_service)
+	outdoor_decoration_service = OutdoorDecorationServiceScript.new(save_service, inventory_service, world_map, resource_refresh_service.get_available_points(), FIRST_NPCS)
 	today_status_service = TodayStatusServiceScript.new(local_day_service)
+	npc_routine_service = NPCRoutineServiceScript.new(local_day_service, NPCRoutineServiceScript.ROUTINES_PATH, world_map)
+	runtime_npcs = npc_routine_service.get_npcs_for_day(FIRST_NPCS)
 	school_day_state_service = SchoolDayStateServiceScript.new(local_day_service)
 	anchor_interaction_service = AnchorInteractionServiceScript.new(save_service, memory_card_service)
 	npc_memory_store = NPCMemoryStoreScript.new(save_service)
@@ -300,15 +320,9 @@ func _create_body() -> Control:
 	content.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	body.add_child(content)
 
-	var stage := Control.new()
-	stage.name = "TownStage"
-	stage.set_anchors_preset(Control.PRESET_FULL_RECT)
-	town_stage = stage
-	content.add_child(stage)
-
-	var map_frame := _create_map_canvas()
-	map_frame.set_anchors_preset(Control.PRESET_FULL_RECT)
-	stage.add_child(map_frame)
+	town_stage = _create_map_canvas()
+	town_stage.set_anchors_preset(Control.PRESET_FULL_RECT)
+	content.add_child(town_stage)
 
 	home_room_layer = _create_home_room_view()
 	home_room_layer.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -324,11 +338,11 @@ func _create_body() -> Control:
 	content.add_child(hud)
 
 	settings_panel = _create_settings_panel()
-	settings_panel.anchor_left = 0.68
+	settings_panel.anchor_left = 0.62
 	settings_panel.anchor_top = 0.08
 	settings_panel.anchor_right = 0.97
 	settings_panel.anchor_bottom = 0.08
-	settings_panel.offset_bottom = 236
+	settings_panel.offset_bottom = 292
 	content.add_child(settings_panel)
 
 	var footer := _create_bottom_action_bar()
@@ -350,11 +364,11 @@ func _create_body() -> Control:
 	content.add_child(backpack_bubble)
 
 	shop_panel = _create_shop_panel()
-	shop_panel.anchor_left = 0.62
-	shop_panel.anchor_top = 0.15
+	shop_panel.anchor_left = 0.59
+	shop_panel.anchor_top = 0.13
 	shop_panel.anchor_right = 0.96
-	shop_panel.anchor_bottom = 0.15
-	shop_panel.offset_bottom = 330
+	shop_panel.anchor_bottom = 0.13
+	shop_panel.offset_bottom = 382
 	content.add_child(shop_panel)
 
 	memory_album_layer = _create_memory_album_overlay()
@@ -375,10 +389,22 @@ func _create_body() -> Control:
 	hint.add_theme_font_size_override("font_size", 13)
 	content.add_child(hint)
 
+	arrival_proof_panel = _create_arrival_proof_panel()
+	arrival_proof_panel.anchor_left = 0.04
+	arrival_proof_panel.anchor_top = 0.68
+	arrival_proof_panel.anchor_right = 0.34
+	arrival_proof_panel.anchor_bottom = 0.68
+	arrival_proof_panel.offset_bottom = 126
+	content.add_child(arrival_proof_panel)
+
 	return body
 
 
 func _create_top_message_bar() -> Control:
+	var scene := TownHUDScene.instantiate() as Control
+	scene.call("configure", self)
+	return scene
+
 	var panel := PanelContainer.new()
 	panel.name = "TownHUD"
 	panel.add_theme_stylebox_override("panel", _rounded_box(Color("#f7fbffd8"), 8, Color("#ffffff99")))
@@ -476,6 +502,10 @@ func _create_hud_settings_button() -> Button:
 
 
 func _create_bottom_action_bar() -> Control:
+	var scene := TownFooterScene.instantiate() as Control
+	scene.call("configure", self)
+	return scene
+
 	var bar := PanelContainer.new()
 	bar.name = "TownFooter"
 	bar.add_theme_stylebox_override("panel", _rounded_box(Color("#f7fbffd8"), 8, Color("#ffffff99")))
@@ -538,6 +568,10 @@ func _create_asset_icon(node_name: String, texture_key: String, icon_size: Vecto
 
 
 func _create_backpack_bubble() -> Control:
+	var scene := BackpackBubbleScene.instantiate() as Control
+	scene.call("configure", self)
+	return scene
+
 	var panel := PanelContainer.new()
 	panel.name = "BackpackBubble"
 	panel.visible = false
@@ -592,6 +626,10 @@ func _create_backpack_bubble() -> Control:
 
 
 func _create_settings_panel() -> Control:
+	var scene := SettingsPanelScene.instantiate() as Control
+	scene.call("configure", self)
+	return scene
+
 	var panel := PanelContainer.new()
 	panel.name = "SettingsPanel"
 	panel.visible = false
@@ -650,6 +688,10 @@ func _create_settings_panel() -> Control:
 
 
 func _create_shop_panel() -> Control:
+	var scene := ShopPanelScene.instantiate() as Control
+	scene.call("configure", self)
+	return scene
+
 	var panel := PanelContainer.new()
 	panel.name = "ShopPanel"
 	panel.visible = false
@@ -698,7 +740,47 @@ func _create_shop_panel() -> Control:
 	return panel
 
 
+func _create_arrival_proof_panel() -> Control:
+	var panel := PanelContainer.new()
+	panel.name = "ArrivalProofPanel"
+	panel.visible = false
+	panel.add_theme_stylebox_override("panel", _ui_skin_box("glass_panel_small", _rounded_box(Color("#f7fbffee"), 12, Color("#ffffffaa")), 22))
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 12)
+	margin.add_theme_constant_override("margin_top", 10)
+	margin.add_theme_constant_override("margin_right", 12)
+	margin.add_theme_constant_override("margin_bottom", 10)
+	panel.add_child(margin)
+
+	var stack := VBoxContainer.new()
+	stack.name = "ArrivalProofStack"
+	stack.add_theme_constant_override("separation", 6)
+	margin.add_child(stack)
+
+	for spec in [
+		{"place_id": "place_supermarket", "node_name": "ArrivalProofShop", "text": "街角商店到了：店门和货架在旁边。"},
+		{"place_id": "place_school_gate", "node_name": "ArrivalProofSchoolGate", "text": "校门到了：小铃轻响，hello。"},
+		{"place_id": "place_school_yard", "node_name": "ArrivalProofSchoolYard", "text": "操场到了：风筝和玩具角在旁边。"},
+	]:
+		var label := Label.new()
+		label.name = str(spec.get("node_name", "ArrivalProof"))
+		label.text = str(spec.get("text", "到达小镇地点。"))
+		label.visible = false
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		label.add_theme_color_override("font_color", TEXT_COLOR)
+		label.add_theme_font_size_override("font_size", 13)
+		stack.add_child(label)
+		arrival_proof_labels[str(spec.get("place_id", ""))] = label
+
+	return panel
+
+
 func _create_memory_album_overlay() -> Control:
+	var scene := MemoryAlbumOverlayScene.instantiate() as Control
+	scene.call("configure", self)
+	return scene
+
 	var overlay := Control.new()
 	overlay.name = "MemoryAlbumOverlay"
 	overlay.visible = false
@@ -747,6 +829,10 @@ func _create_interaction_prompt_label() -> Label:
 
 
 func _create_home_room_view() -> Control:
+	var scene := HomeRoomScene.instantiate() as Control
+	scene.call("configure", self)
+	return scene
+
 	var room := Control.new()
 	room.name = "HomeRoom"
 
@@ -763,10 +849,7 @@ func _create_home_room_view() -> Control:
 
 	room_stage.add_child(_create_sprite("HomeFloor", Vector2(210, 155), Vector2(420, 310), "home_floor"))
 	room_stage.add_child(_create_sprite("HomeBackWall", Vector2(210, 38), Vector2(420, 76), "home_wall"))
-	for x in range(6):
-		for y in range(5):
-			var tile := _create_sprite("HomeGridCell", Vector2(70 + x * 56, 78 + y * 48), Vector2(52, 44), "home_grid_cell")
-			room_stage.add_child(tile)
+	_add_home_living_room_details(room_stage)
 
 	home_furniture_layer = Node2D.new()
 	home_furniture_layer.name = "HomeFurnitureLayer"
@@ -816,6 +899,22 @@ func _create_home_room_view() -> Control:
 	return room
 
 
+func _add_home_living_room_details(room_stage: Node2D) -> void:
+	var sunlight := _create_sprite("HomeSunlightPatch", Vector2(150, 172), Vector2(170, 92), "home_sunlight_patch")
+	sunlight.modulate = Color(1, 1, 1, 0.64)
+	room_stage.add_child(sunlight)
+	room_stage.add_child(_create_sprite("HomeWindow", Vector2(116, 36), Vector2(86, 44), "home_window"))
+	room_stage.add_child(_create_sprite("HomeWallClock", Vector2(216, 38), Vector2(38, 38), "home_wall_clock"))
+	room_stage.add_child(_create_sprite("HomeShelf", Vector2(312, 42), Vector2(92, 30), "home_shelf"))
+	room_stage.add_child(_create_sprite("HomeWelcomeMat", Vector2(70, 250), Vector2(78, 36), "home_welcome_mat"))
+	room_stage.add_child(_create_sprite("HomePetCornerBase", Vector2(372, 252), Vector2(96, 54), "home_pet_corner"))
+	for x in range(6):
+		for y in range(5):
+			var tile := _create_sprite("HomeGridCell", Vector2(70 + x * 56, 78 + y * 48), Vector2(42, 34), "home_grid_cell")
+			tile.modulate = Color(1, 1, 1, 0.22)
+			room_stage.add_child(tile)
+
+
 func _create_home_action_panel() -> Control:
 	var panel := PanelContainer.new()
 	panel.name = "HomeActionPanel"
@@ -847,6 +946,15 @@ func _create_home_action_panel() -> Control:
 	home_action_status_label.add_theme_color_override("font_color", MUTED_TEXT_COLOR)
 	home_action_status_label.add_theme_font_size_override("font_size", 13)
 	stack.add_child(home_action_status_label)
+
+	home_selected_furniture_label = Label.new()
+	home_selected_furniture_label.name = "HomeSelectedFurnitureLabel"
+	home_selected_furniture_label.text = "当前小角落：还没摆家具。"
+	home_selected_furniture_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	home_selected_furniture_label.add_theme_color_override("font_color", TEXT_COLOR)
+	home_selected_furniture_label.add_theme_font_size_override("font_size", 13)
+	home_selected_furniture_label.add_theme_stylebox_override("normal", _ui_skin_box("glass_panel_small", _rounded_box(Color("#fff8d9dd"), 10, Color("#ffffff99")), 20))
+	stack.add_child(home_selected_furniture_label)
 
 	home_inventory_list = VBoxContainer.new()
 	home_inventory_list.name = "HomeInventoryList"
@@ -881,7 +989,20 @@ func _refresh_home_room() -> void:
 		var width: int = max(1, int(size_data.get("w", 1)))
 		var height: int = max(1, int(size_data.get("h", 1)))
 		node.position = Vector2(70 + cell.x * 56 + (width - 1) * 28, 78 + cell.y * 48 + (height - 1) * 24)
+		node.add_child(_create_sprite("FurnitureShadow", Vector2(0, 16 + height * 4), Vector2(width * 44, 9), "shadow"))
 		node.add_child(_create_sprite("FurnitureSprite", Vector2.ZERO, Vector2(width * 48, height * 40), "home_item_%s" % str(furniture.get("item_id", "furniture"))))
+		var label := Label.new()
+		label.name = "FurnitureNameLabel"
+		label.text = _item_display_name(inventory_service.get_item(str(furniture.get("item_id", ""))))
+		label.position = Vector2(-38, 24 + height * 10)
+		label.size = Vector2(76, 20)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		label.add_theme_color_override("font_color", Color("#3d4b43"))
+		label.add_theme_font_size_override("font_size", 11)
+		label.add_theme_stylebox_override("normal", _rounded_box(Color("#fffdf4cc"), 6, Color("#ffffffaa")))
+		node.add_child(label)
 		home_furniture_layer.add_child(node)
 	var feedback: Dictionary = home_decoration_service.get_sunny_feedback()
 	if is_instance_valid(sunny_home_feedback_label):
@@ -930,7 +1051,9 @@ func _refresh_home_actions() -> void:
 	if pickup_button != null:
 		pickup_button.disabled = not has_placed
 	if is_instance_valid(home_action_status_label):
-		home_action_status_label.text = "已摆放 %s 件。可以慢慢试位置。" % placed.size() if has_placed else "背包里的家具会出现在这里。"
+		home_action_status_label.text = "已摆放 %s 件。Sunny 会在旁边看你慢慢整理。" % placed.size() if has_placed else "背包里的家具会出现在这里，小屋的小角落已经很暖。"
+	if is_instance_valid(home_selected_furniture_label):
+		home_selected_furniture_label.text = _home_selected_furniture_text(placed)
 
 
 func _on_home_place_item_pressed(item_id: String) -> void:
@@ -980,6 +1103,31 @@ func _first_placed_instance_id() -> String:
 	return str((placed[0] as Dictionary).get("instance_id", ""))
 
 
+func _home_selected_furniture_text(placed: Array) -> String:
+	if placed.is_empty() or not placed[0] is Dictionary:
+		return "当前小角落：还没摆家具，Sunny 的小毯子和故事书先陪着你。"
+	var furniture: Dictionary = placed[0]
+	var item: Dictionary = inventory_service.get_item(str(furniture.get("item_id", "")))
+	var cell := _dict_to_cell(furniture.get("cell", {}))
+	return "当前小角落：%s在%s，可以旋转、挪动或收起。" % [_item_display_name(item), _home_corner_label(cell)]
+
+
+func _home_corner_label(cell: Vector2i) -> String:
+	var horizontal := "中间"
+	if cell.x <= 1:
+		horizontal = "左边"
+	elif cell.x >= 4:
+		horizontal = "右边"
+	var vertical := "中间"
+	if cell.y <= 1:
+		vertical = "靠墙"
+	elif cell.y >= 3:
+		vertical = "靠前"
+	if horizontal == "中间" and vertical == "中间":
+		return "房间中间"
+	return "%s%s" % [horizontal if horizontal != "中间" else "", vertical if vertical != "中间" else ""]
+
+
 func _next_home_cell_for_item(item_id: String) -> Vector2i:
 	for y in range(5):
 		for x in range(6):
@@ -993,7 +1141,7 @@ func _next_home_cell_for_item(item_id: String) -> Vector2i:
 func _home_error_text(reason: String) -> String:
 	match reason:
 		"invalid_cell":
-			return "这里放不下，换个更宽的小格子吧。"
+			return "这里放不下，换个更宽的小角落吧。"
 		"occupied":
 			return "这里已经有家具啦，挪一挪再试试。"
 		"not_enough_items":
@@ -1242,7 +1390,12 @@ func _refresh_shop_panel() -> void:
 		if not offer.get("ok", false):
 			continue
 		var label := "%s  %s币" % [str(offer.get("display_name", item_id)), int(offer.get("price", 0))]
-		var button := _create_bubble_button(label, "", _button_name_from_item("ShopBuy", item_id), 190)
+		var button := _create_bubble_button(label, "", _button_name_from_item("ShopBuy", item_id), 260)
+		button.custom_minimum_size.y = 46
+		button.add_theme_font_size_override("font_size", 15)
+		button.add_theme_stylebox_override("normal", _rounded_box(Color("#fffffffa"), 8, Color("#d5e5e5")))
+		button.add_theme_stylebox_override("hover", _rounded_box(Color("#f4fbf8"), 8, Color("#b7d9cd")))
+		button.add_theme_stylebox_override("pressed", _rounded_box(Color("#dcebe6"), 8, Color("#a9c8bd")))
 		button.pressed.connect(Callable(self, "_on_shop_buy_item_pressed").bind(item_id))
 		shop_items_list.add_child(button)
 
@@ -1409,6 +1562,192 @@ func show_home_view() -> void:
 	_set_life_status(str(feedback.get("text", "Sunny 在小屋里慢慢摇尾巴。")))
 
 
+func get_expapproval_home_snapshot() -> Dictionary:
+	if not is_instance_valid(home_room_layer):
+		return {}
+	_refresh_home_room()
+	var home_state: Dictionary = home_decoration_service.get_home_state()
+	var placed: Array = home_state.get("placed_furniture", [])
+	var life_detail_names: Array[String] = []
+	if is_instance_valid(home_life_layer):
+		for child in home_life_layer.get_children():
+			life_detail_names.append(str(child.name))
+	var child_texts: Array[String] = []
+	_collect_child_facing_texts(home_room_layer, child_texts)
+	return {
+		"home_visible": bool(home_room_layer.visible),
+		"home_living_contract_version": "v02.24_homeplaza_002",
+		"home_life_detail_count": life_detail_names.size(),
+		"home_life_detail_names": life_detail_names,
+		"placed_furniture_count": placed.size(),
+		"home_state_keys": home_state.keys(),
+		"home_state_has_placed_furniture": home_state.has("placed_furniture"),
+		"home_state_has_stowed_furniture": home_state.has("stowed_furniture"),
+		"sunny_feedback_text": sunny_home_feedback_label.text if is_instance_valid(sunny_home_feedback_label) else "",
+		"action_status_text": home_action_status_label.text if is_instance_valid(home_action_status_label) else "",
+		"selected_furniture_text": home_selected_furniture_label.text if is_instance_valid(home_selected_furniture_label) else "",
+		"child_text_banned_count": _count_banned_home_child_texts(child_texts),
+		"child_texts": child_texts,
+	}
+
+
+func get_expapproval_shop_settings_snapshot() -> Dictionary:
+	var shop_texts: Array[String] = []
+	var settings_texts: Array[String] = []
+	if is_instance_valid(shop_panel):
+		_collect_child_facing_texts(shop_panel, shop_texts)
+	if is_instance_valid(settings_panel):
+		_collect_child_facing_texts(settings_panel, settings_texts)
+	return {
+		"shop_visible": bool(shop_panel.visible) if is_instance_valid(shop_panel) else false,
+		"settings_visible": bool(settings_panel.visible) if is_instance_valid(settings_panel) else false,
+		"shop_panel_size": _control_size_dict(shop_panel),
+		"settings_panel_size": _control_size_dict(settings_panel),
+		"shop_button_count": _visible_button_count(shop_panel),
+		"settings_button_count": _visible_button_count(settings_panel),
+		"shop_min_touch_height": _minimum_visible_button_height(shop_panel),
+		"settings_min_touch_height": _minimum_visible_button_height(settings_panel),
+		"settings_confirm_visible": bool((find_child("ConfirmExitButton", true, false) as Button).visible) if find_child("ConfirmExitButton", true, false) is Button else false,
+		"shop_child_text_banned_count": _count_banned_ui_child_texts(shop_texts),
+		"settings_child_text_banned_count": _count_banned_ui_child_texts(settings_texts),
+		"shop_texts": shop_texts,
+		"settings_texts": settings_texts,
+	}
+
+
+func get_expapproval_school_snapshot() -> Dictionary:
+	var stage_snapshot: Dictionary = {}
+	if is_instance_valid(town_stage) and town_stage.has_method("get_expapproval_snapshot"):
+		stage_snapshot = town_stage.call("get_expapproval_snapshot")
+	var proof_texts: Array[String] = []
+	if is_instance_valid(arrival_proof_panel):
+		_collect_child_facing_texts(arrival_proof_panel, proof_texts)
+	var visible_proof_text := ""
+	var gate_label := find_child("ArrivalProofSchoolGate", true, false) as Label
+	var yard_label := find_child("ArrivalProofSchoolYard", true, false) as Label
+	for text in proof_texts:
+		if gate_label != null and text == str(gate_label.text) and _arrival_label_visible("ArrivalProofSchoolGate"):
+			visible_proof_text = text
+		if yard_label != null and text == str(yard_label.text) and _arrival_label_visible("ArrivalProofSchoolYard"):
+			visible_proof_text = text
+	var school_texts: Array[String] = []
+	if is_instance_valid(arrival_proof_panel):
+		_collect_child_facing_texts(arrival_proof_panel, school_texts)
+	if is_instance_valid(life_status_label):
+		school_texts.append(str(life_status_label.text))
+	if is_instance_valid(town_stage):
+		_collect_child_facing_texts(town_stage, school_texts)
+	return {
+		"town_stage_visible": bool(town_stage.visible) if is_instance_valid(town_stage) else false,
+		"school_gate_life_detail_count": int(stage_snapshot.get("school_gate_life_detail_count", 0)),
+		"school_yard_life_detail_count": int(stage_snapshot.get("school_yard_life_detail_count", 0)),
+		"school_life_detail_count": int(stage_snapshot.get("school_life_detail_count", 0)),
+		"school_life_detail_names": stage_snapshot.get("school_life_detail_names", []),
+		"school_line_anchor_count": int(stage_snapshot.get("school_line_anchor_count", 0)),
+		"school_line_letters": stage_snapshot.get("school_line_letters", []),
+		"muted_school_line_badge_count": int(stage_snapshot.get("muted_school_line_badge_count", 0)),
+		"anchor_count": int(stage_snapshot.get("anchor_count", 0)),
+		"collision_debug_visible": bool(stage_snapshot.get("collision_debug_visible", true)),
+		"arrival_panel_visible": bool(arrival_proof_panel.visible) if is_instance_valid(arrival_proof_panel) else false,
+		"arrival_school_gate_visible": _arrival_label_visible("ArrivalProofSchoolGate"),
+		"arrival_school_yard_visible": _arrival_label_visible("ArrivalProofSchoolYard"),
+		"visible_arrival_text": visible_proof_text,
+		"arrival_texts": proof_texts,
+		"life_status_text": life_status_label.text if is_instance_valid(life_status_label) else "",
+		"school_child_text_banned_count": _count_banned_school_child_texts(school_texts),
+	}
+
+
+func _arrival_label_visible(node_name: String) -> bool:
+	var label := find_child(node_name, true, false) as Label
+	return label != null and _is_control_visible_in_tree(label)
+
+
+func _control_size_dict(control: Control) -> Dictionary:
+	if control == null:
+		return {"width": 0, "height": 0}
+	var rect := control.get_global_rect()
+	return {"width": int(round(rect.size.x)), "height": int(round(rect.size.y))}
+
+
+func _visible_button_count(root_node: Node) -> int:
+	if root_node == null:
+		return 0
+	var count := 0
+	for child in root_node.find_children("*", "Button", true, false):
+		var button := child as Button
+		if button != null and _is_control_visible_in_tree(button):
+			count += 1
+	return count
+
+
+func _minimum_visible_button_height(root_node: Node) -> int:
+	if root_node == null:
+		return 0
+	var minimum_height := 9999
+	for child in root_node.find_children("*", "Button", true, false):
+		var button := child as Button
+		if button == null or not _is_control_visible_in_tree(button):
+			continue
+		var height := int(round(max(button.custom_minimum_size.y, button.get_global_rect().size.y)))
+		minimum_height = min(minimum_height, height)
+	return 0 if minimum_height == 9999 else minimum_height
+
+
+func _is_control_visible_in_tree(control: Control) -> bool:
+	var current: Node = control
+	while current != null:
+		if current is Control and not (current as Control).visible:
+			return false
+		current = current.get_parent()
+	return true
+
+
+func _collect_child_facing_texts(node: Node, texts: Array[String]) -> void:
+	if node is Label:
+		texts.append(str((node as Label).text))
+	elif node is Button:
+		texts.append(str((node as Button).text))
+	for child in node.get_children():
+		_collect_child_facing_texts(child, texts)
+
+
+func _count_banned_home_child_texts(texts: Array[String]) -> int:
+	var banned_terms := ["格子", "坐标", "占格", "footprint", "debug", "cell"]
+	var count := 0
+	for text in texts:
+		var lowered := text.to_lower()
+		for term in banned_terms:
+			if lowered.contains(term):
+				count += 1
+				break
+	return count
+
+
+func _count_banned_ui_child_texts(texts: Array[String]) -> int:
+	var banned_terms := ["debug", "cell", "grid", "coord", "坐标", "格子", "占格", "调试", "测试", "评分", "打卡", "倒计时"]
+	var count := 0
+	for text in texts:
+		var lowered := text.to_lower()
+		for term in banned_terms:
+			if lowered.contains(term):
+				count += 1
+				break
+	return count
+
+
+func _count_banned_school_child_texts(texts: Array[String]) -> int:
+	var banned_terms := ["debug", "cell", "grid", "coord", "坐标", "格子", "占格", "调试", "课程", "作业", "测试", "测验", "考试", "背诵", "分数", "正确率", "等级", "打卡", "倒计时", "迟到", "必须"]
+	var count := 0
+	for text in texts:
+		var lowered := text.to_lower()
+		for term in banned_terms:
+			if lowered.contains(term):
+				count += 1
+				break
+	return count
+
+
 func interact_nearby() -> Dictionary:
 	_update_interaction_prompt()
 	var exact_interaction: Dictionary = _find_interaction_at_cell(player_cell)
@@ -1422,6 +1761,22 @@ func interact_nearby() -> Dictionary:
 		resource_result["target_id"] = resource_result.get("item_id", "")
 		_update_loop_status("背包里多了%s" % str(resource_result.get("display_name", "小材料")))
 		return resource_result
+
+	var exact_anchor: Dictionary = _find_nearest_anchor(0)
+	if not exact_anchor.is_empty():
+		var exact_anchor_result: Dictionary = anchor_interaction_service.interact_with_anchor(exact_anchor)
+		var exact_weather_clue: Dictionary = _record_weather_anchor_clue(exact_anchor, exact_anchor_result)
+		if not exact_weather_clue.is_empty():
+			exact_anchor_result["weather_clue"] = exact_weather_clue
+		_set_life_status(str(exact_anchor_result.get("text", "放进相册啦。")))
+		exact_anchor_result["interaction_type"] = "anchor"
+		return exact_anchor_result
+
+	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
+	if not npc.is_empty():
+		var npc_result: Dictionary = interact_with_npc(str(npc.get("npc_id", "")))
+		npc_result["interaction_type"] = "npc"
+		return npc_result
 
 	var anchor: Dictionary = _find_nearest_anchor(1)
 	if not anchor.is_empty():
@@ -1440,12 +1795,6 @@ func interact_nearby() -> Dictionary:
 		resource_result["target_id"] = resource_result.get("item_id", "")
 		_update_loop_status("背包里多了%s" % str(resource_result.get("display_name", "小材料")))
 		return resource_result
-
-	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
-	if not npc.is_empty():
-		var npc_result: Dictionary = interact_with_npc(str(npc.get("npc_id", "")))
-		npc_result["interaction_type"] = "npc"
-		return npc_result
 
 	var nearby_interaction: Dictionary = _find_nearest_interaction(1)
 	if not nearby_interaction.is_empty():
@@ -1528,6 +1877,7 @@ func _look_homeschool_event(interaction: Dictionary) -> Dictionary:
 	var school_day_text := str(school_day_entry.get("child_facing_text", ""))
 	if not school_day_text.is_empty():
 		display_text = "%s 今天的小发现：%s" % [display_text, school_day_text]
+	_update_arrival_proof(str(event.get("place_id", interaction.get("place_id", ""))))
 	_set_life_status("%s：%s" % [prefix, display_text])
 	return {
 		"ok": true,
@@ -1701,6 +2051,7 @@ func _enter_place(interaction: Dictionary) -> Dictionary:
 	game_state["current_place_id"] = place_id
 	save_service.save_game_state(game_state)
 	_set_life_status(message)
+	_update_arrival_proof(place_id)
 	if place_id == "place_home":
 		show_home_view()
 	elif place_id == "place_supermarket":
@@ -1729,6 +2080,20 @@ func _place_entry_message(place_id: String, place_label: String) -> String:
 			return "商店开门啦，货架上有生活小物。"
 		_:
 			return "%s 很安静，可以进去看看。" % place_label
+
+
+func _update_arrival_proof(place_id: String) -> void:
+	if not is_instance_valid(arrival_proof_panel):
+		return
+	var has_visible := false
+	for key in arrival_proof_labels.keys():
+		var label := arrival_proof_labels.get(key) as Label
+		if label == null:
+			continue
+		var is_current := str(key) == place_id
+		label.visible = is_current
+		has_visible = has_visible or is_current
+	arrival_proof_panel.visible = has_visible and (not is_instance_valid(home_room_layer) or not home_room_layer.visible)
 
 
 func _update_loop_status(message: String) -> void:
@@ -1842,79 +2207,37 @@ func _create_placeholder(title_text: String, body_text: String) -> Control:
 
 
 func _create_map_canvas() -> Control:
-	var canvas_size: Dictionary = world_map.get("canvas_size", {"w": 40, "h": 24})
-	var map_width := int(canvas_size.get("w", 40)) * MAP_CELL_SIZE
-	var map_height := int(canvas_size.get("h", 24)) * MAP_CELL_SIZE
-
-	var frame := Control.new()
-	frame.name = "RuntimeMapFrame"
-	frame.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	frame.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	runtime_map_frame = frame
-
-	var input := Control.new()
-	input.name = "RuntimeMapInput"
-	input.set_anchors_preset(Control.PRESET_FULL_RECT)
-	input.custom_minimum_size = Vector2(map_width, map_height)
-	input.mouse_filter = Control.MOUSE_FILTER_STOP
-	input.gui_input.connect(_on_map_gui_input)
-	frame.add_child(input)
-	runtime_map_input = input
-
-	var map := Node2D.new()
-	map.name = "RuntimeMap"
-	map.position = MAP_ORIGIN
-	map.scale = _map_render_scale(map_width, map_height)
-	runtime_map_node = map
-	var ground := _create_sprite("Ground", Vector2(map_width, map_height) * 0.5, Vector2(map_width, map_height), "ground")
-	map.add_child(ground)
-	frame.add_child(map)
-
-	_add_town_scenery(map, map_width, map_height)
-
-	for road in world_map.get("roads", []):
-		for cell in road.get("cells", []):
-			var road_cell := _create_sprite("RoadCell", _cell_center(cell), Vector2(MAP_CELL_SIZE + 6, MAP_CELL_SIZE + 4), "road")
-			road_cell.modulate = Color(1, 1, 1, 0.05)
-			map.add_child(road_cell)
-
-	for place in world_map.get("places", []):
-		map.add_child(_create_place_marker(place))
-
-	for interaction in world_map.get("interaction_cells", []):
-		map.add_child(_create_hotspot_marker(interaction))
-
-	for cell in world_map.get("collision_cells", []):
-		map.add_child(_create_collision_marker(cell))
-
-	for anchor in world_map.get("memory_anchors", []):
-		map.add_child(_create_anchor_marker(anchor))
-
-	for anchor in az_core_data.get("anchors", []):
-		if _map_anchor_letters().has(anchor.get("letter", "")):
-			continue
-		map.add_child(_create_reserved_anchor_marker(anchor))
-
-	for point in resource_refresh_service.get_available_points():
-		map.add_child(_create_resource_marker(point))
-
-	for npc in FIRST_NPCS:
-		map.add_child(_create_npc_marker(npc))
-
 	player_cell = _load_player_cell()
 	player_walk_target_cell = player_cell
 	player_world_position = _cell_center(_cell_to_dict(player_cell))
-	player_marker = _create_player_marker()
-	map.add_child(player_marker)
+
+	var stage := TownStageScene.instantiate() as Control
+	stage.name = "TownStage"
+	var stage_result: Dictionary = stage.call("setup", {
+		"renderer": self,
+		"world_map": world_map,
+		"az_core_data": az_core_data,
+		"resource_points": resource_refresh_service.get_available_points(),
+		"first_npcs": _active_npcs(),
+		"outdoor_items": outdoor_decoration_service.get_placed_items(),
+		"map_cell_size": MAP_CELL_SIZE,
+		"map_render_size": MAP_RENDER_SIZE,
+		"local_camera_scale": LOCAL_CAMERA_SCALE,
+	})
+	stage.connect("map_cell_requested", Callable(self, "_on_town_stage_cell_requested"))
+	runtime_map_frame = stage_result.get("frame", null)
+	runtime_map_input = stage_result.get("input", null)
+	runtime_map_node = stage_result.get("map", null)
+	player_marker = stage_result.get("player_marker", null)
 	_update_player_marker()
 	_update_camera_for_player()
 	_update_interaction_prompt()
 
 	interaction_prompt_label = _create_interaction_prompt_label()
-	frame.add_child(interaction_prompt_label)
+	runtime_map_frame.add_child(interaction_prompt_label)
 	_update_interaction_prompt()
 
-	return frame
+	return stage
 
 
 func _create_place_marker(place: Dictionary) -> Node2D:
@@ -2092,6 +2415,36 @@ func move_player_to_cell(target_cell: Vector2i) -> Dictionary:
 	_set_life_status(_walk_status_for_cell(player_cell))
 	_update_interaction_prompt()
 	return {"ok": true, "cell": _cell_to_dict(player_cell)}
+
+
+func place_outdoor_item(item_id: String, cell: Vector2i) -> Dictionary:
+	var result: Dictionary = outdoor_decoration_service.place_item(item_id, cell)
+	if result.get("ok", false):
+		_refresh_outdoor_decor_layer()
+		_set_life_status("小镇角落多了一个小物件。")
+	return result
+
+
+func move_outdoor_item(instance_id: String, cell: Vector2i) -> Dictionary:
+	var result: Dictionary = outdoor_decoration_service.move_item(instance_id, cell)
+	if result.get("ok", false):
+		_refresh_outdoor_decor_layer()
+		_set_life_status("把小物件挪到新的角落啦。")
+	return result
+
+
+func pickup_outdoor_item(instance_id: String) -> Dictionary:
+	var result: Dictionary = outdoor_decoration_service.pickup_item(instance_id)
+	if result.get("ok", false):
+		_refresh_outdoor_decor_layer()
+		_update_loop_status("小物件回到背包啦")
+	return result
+
+
+func get_npc_routine_snapshot() -> Dictionary:
+	if npc_routine_service == null:
+		return {"ok": false, "reason": "routine_service_missing"}
+	return npc_routine_service.get_routine_snapshot(FIRST_NPCS)
 
 
 func interact_with_npc(npc_id: String) -> Dictionary:
@@ -2330,18 +2683,42 @@ func _texture_colors(texture_key: String) -> Dictionary:
 		return {"fill": Color("#8f6244"), "edge": Color("#67452f"), "accent": Color("#d8b174")}
 	if texture_key.begins_with("window_"):
 		return {"fill": Color("#dff7ff"), "edge": Color("#78aac1"), "accent": Color("#ffffff")}
+	if texture_key == "plaza_stool":
+		return {"fill": Color("#b98258"), "edge": Color("#73503a"), "accent": Color("#e5bd82")}
+	if texture_key == "plaza_snack_crate":
+		return {"fill": Color("#d6a45d"), "edge": Color("#8f6844"), "accent": Color("#fff2a8")}
 	if texture_key == "anchor_shop_sign":
 		return {"fill": Color("#f5c85c"), "edge": Color("#a76f3c"), "accent": Color("#fff2a8")}
-	if texture_key == "plaza_flag":
-		return {"fill": Color("#f0a34f"), "edge": Color("#8f6a45"), "accent": Color("#fff2a8")}
-	if texture_key == "hotspot_glow":
-		return {"fill": Color("#fff0a877"), "edge": Color("#fff0a822"), "accent": Color("#ffffffaa")}
+		if texture_key == "plaza_flag":
+			return {"fill": Color("#f0a34f"), "edge": Color("#8f6a45"), "accent": Color("#fff2a8")}
+		if texture_key == "plaza_bench":
+			return {"fill": Color("#b98258"), "edge": Color("#73503a"), "accent": Color("#e5bd82")}
+		if texture_key == "plaza_flower_basket":
+			return {"fill": Color("#d88f57"), "edge": Color("#8f5c3f"), "accent": Color("#f5d86f")}
+		if texture_key == "plaza_notice_board":
+			return {"fill": Color("#f3d48a"), "edge": Color("#8c6844"), "accent": Color("#fff8d5")}
+		if texture_key == "plaza_tiny_lamp":
+			return {"fill": Color("#f6e4a2"), "edge": Color("#76634c"), "accent": Color("#fff9cf")}
+		if texture_key == "hotspot_glow":
+			return {"fill": Color("#fff0a877"), "edge": Color("#fff0a822"), "accent": Color("#ffffffaa")}
 	if texture_key == "home_floor":
 		return {"fill": Color("#f0d49c"), "edge": Color("#c9a46b"), "accent": Color("#ffe6ad")}
 	if texture_key == "home_wall":
 		return {"fill": Color("#ffe8bd"), "edge": Color("#d7b06f"), "accent": Color("#fff4d9")}
 	if texture_key == "home_grid_cell":
-		return {"fill": Color("#f8e8c288"), "edge": Color("#d1ae7388"), "accent": Color("#fff8df88")}
+		return {"fill": Color("#f8e8c244"), "edge": Color("#d1ae7344"), "accent": Color("#fff8df55")}
+	if texture_key == "home_sunlight_patch":
+		return {"fill": Color("#fff0a866"), "edge": Color("#fff6cf22"), "accent": Color("#fffce0aa")}
+	if texture_key == "home_window":
+		return {"fill": Color("#dff7ff"), "edge": Color("#8db8c8"), "accent": Color("#ffffff")}
+	if texture_key == "home_wall_clock":
+		return {"fill": Color("#f6e2a6"), "edge": Color("#8f7350"), "accent": Color("#5d6b6d")}
+	if texture_key == "home_shelf":
+		return {"fill": Color("#b77d52"), "edge": Color("#765139"), "accent": Color("#f1d19b")}
+	if texture_key == "home_welcome_mat":
+		return {"fill": Color("#9ec7a4"), "edge": Color("#5d8d67"), "accent": Color("#f5e9b4")}
+	if texture_key == "home_pet_corner":
+		return {"fill": Color("#f4d58d"), "edge": Color("#c09a51"), "accent": Color("#fff4d0")}
 	if texture_key.begins_with("home_item_"):
 		return _home_item_texture_colors(texture_key.trim_prefix("home_item_"))
 	if texture_key.begins_with("npc_"):
@@ -2374,6 +2751,12 @@ func _home_item_texture_colors(item_id: String) -> Dictionary:
 			return {"fill": Color("#f2c76a"), "edge": Color("#b98539"), "accent": Color("#fff0b5")}
 		"wall_decoration":
 			return {"fill": Color("#d9c484"), "edge": Color("#7c6f4b"), "accent": Color("#fff5c7")}
+		"book_stack":
+			return {"fill": Color("#8fb9c9"), "edge": Color("#557a8e"), "accent": Color("#fff5c7")}
+		"sunny_toy":
+			return {"fill": Color("#f2a86f"), "edge": Color("#b56a43"), "accent": Color("#fff0b5")}
+		"warm_cup":
+			return {"fill": Color("#f7f0d8"), "edge": Color("#b68e62"), "accent": Color("#d9b78a")}
 		_:
 			return {"fill": Color("#d8c7a3"), "edge": Color("#8f7b5d"), "accent": Color("#fff5d8")}
 
@@ -2446,15 +2829,16 @@ func _create_anchor_letter_badge(anchor: Dictionary) -> Label:
 	badge.name = "LetterBadge"
 	badge.text = letter
 	badge.custom_minimum_size = Vector2(22, 22)
-	badge.size = Vector2(22, 22)
+	badge.size = Vector2(20, 20)
 	badge.position = _anchor_badge_offset(route_order, letter)
+	badge.modulate = Color(1, 1, 1, 0.68)
 	badge.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	badge.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	badge.z_index = 8
-	badge.add_theme_color_override("font_color", Color("#44584f"))
+	badge.z_index = 4
+	badge.add_theme_color_override("font_color", Color("#44584fcc"))
 	badge.add_theme_font_size_override("font_size", 12)
-	badge.add_theme_stylebox_override("normal", _rounded_box(Color("#fff8cf88"), 8, Color("#9f7a2e66")))
+	badge.add_theme_stylebox_override("normal", _rounded_box(Color("#fff8cf55"), 7, Color("#9f7a2e33")))
 	return badge
 
 
@@ -2763,7 +3147,9 @@ func _remap_legacy_runtime_cell(cell: Vector2i) -> Vector2i:
 
 
 func _update_player_marker() -> void:
-	if is_instance_valid(player_marker):
+	if is_instance_valid(town_stage) and town_stage.has_method("update_player_marker"):
+		town_stage.call("update_player_marker", player_world_position)
+	elif is_instance_valid(player_marker):
 		player_marker.position = player_world_position
 	_update_camera_for_player()
 
@@ -2794,6 +3180,10 @@ func _current_place_for_cell(cell: Vector2i) -> String:
 
 func _walk_status_for_cell(cell: Vector2i) -> String:
 	var place_id := _current_place_for_cell(cell)
+	var exact_interaction := _find_interaction_at_cell(cell)
+	if not exact_interaction.is_empty():
+		place_id = str(exact_interaction.get("place_id", place_id))
+	_update_arrival_proof(place_id)
 	match place_id:
 		"place_home":
 			return "走到小屋旁边啦。"
@@ -2801,6 +3191,10 @@ func _walk_status_for_cell(cell: Vector2i) -> String:
 			return "来到阳光小镇广场。"
 		"place_supermarket":
 			return "来到街角商店旁边。"
+		"place_school_gate":
+			return "来到 School Gate，校门旁很安静。"
+		"place_school_yard":
+			return "来到 School Yard，操场角落可以慢慢看看。"
 		_:
 			return "正在阳光小镇散步。"
 
@@ -2870,6 +3264,9 @@ func _update_player_facing_for_next_step() -> void:
 
 
 func _update_camera_for_player() -> void:
+	if is_instance_valid(town_stage) and town_stage.has_method("update_camera_for_player"):
+		town_stage.call("update_camera_for_player", player_world_position)
+		return
 	if not is_instance_valid(runtime_map_node) or not is_instance_valid(runtime_map_frame):
 		return
 	var canvas_size: Dictionary = world_map.get("canvas_size", {"w": 40, "h": 24})
@@ -2886,9 +3283,15 @@ func _update_camera_for_player() -> void:
 
 
 func _screen_to_map_position(screen_position: Vector2) -> Vector2:
+	if is_instance_valid(town_stage) and town_stage.has_method("screen_to_map_position"):
+		return town_stage.call("screen_to_map_position", screen_position)
 	if not is_instance_valid(runtime_map_node):
 		return screen_position
 	return (screen_position - runtime_map_node.position) / runtime_map_node.scale
+
+
+func _on_town_stage_cell_requested(cell: Vector2i) -> void:
+	request_player_walk_to_cell(cell)
 
 
 func _on_map_gui_input(event: InputEvent) -> void:
@@ -2913,7 +3316,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _find_npc(npc_id: String) -> Dictionary:
-	for npc in FIRST_NPCS:
+	for npc in _active_npcs():
 		if npc.get("npc_id", "") == npc_id:
 			return npc
 	return {}
@@ -2961,12 +3364,23 @@ func _localized_npc_name(npc_id: String, fallback: String) -> String:
 func _find_nearest_npc(radius: int) -> Dictionary:
 	var nearest: Dictionary = {}
 	var nearest_distance := radius + 1
-	for npc in FIRST_NPCS:
+	for npc in _active_npcs():
 		var distance := _manhattan_distance(player_cell, _dict_to_cell(npc.get("cell", {})))
 		if distance <= radius and distance < nearest_distance:
 			nearest = npc
 			nearest_distance = distance
 	return nearest
+
+
+func _active_npcs() -> Array:
+	if runtime_npcs.is_empty():
+		return FIRST_NPCS.duplicate(true)
+	return runtime_npcs
+
+
+func _refresh_outdoor_decor_layer() -> void:
+	if is_instance_valid(town_stage) and town_stage.has_method("render_outdoor_items"):
+		town_stage.call("render_outdoor_items", outdoor_decoration_service.get_placed_items())
 
 
 func _find_interaction_at_cell(cell: Vector2i) -> Dictionary:
@@ -3016,6 +3430,28 @@ func get_current_interaction_target() -> Dictionary:
 			"prompt": "看看 %s" % _resource_display_name(str(resource_point.get("item_id", "resource"))),
 		}
 
+	var exact_anchor: Dictionary = _find_nearest_anchor(0)
+	if not exact_anchor.is_empty():
+		var exact_core_word := str(exact_anchor.get("core_word", exact_anchor.get("letter", "")))
+		return {
+			"ok": true,
+			"type": "anchor",
+			"target_id": str(exact_anchor.get("anchor_id", "")),
+			"display_name": exact_core_word,
+			"prompt": "看看 %s" % exact_core_word,
+		}
+
+	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
+	if not npc.is_empty():
+		var npc_name := _npc_display_name(str(npc.get("npc_id", "")))
+		return {
+			"ok": true,
+			"type": "npc",
+			"target_id": str(npc.get("npc_id", "")),
+			"display_name": npc_name,
+			"prompt": "和 %s 打招呼" % npc_name,
+		}
+
 	var anchor: Dictionary = _find_nearest_anchor(1)
 	if not anchor.is_empty():
 		var core_word := str(anchor.get("core_word", anchor.get("letter", "")))
@@ -3035,17 +3471,6 @@ func get_current_interaction_target() -> Dictionary:
 			"target_id": str(resource_point.get("point_id", resource_point.get("item_id", ""))),
 			"display_name": _resource_display_name(str(resource_point.get("item_id", "resource"))),
 			"prompt": "捡起 %s" % _resource_display_name(str(resource_point.get("item_id", "resource"))),
-		}
-
-	var npc: Dictionary = _find_nearest_npc(INTERACTION_RADIUS)
-	if not npc.is_empty():
-		var npc_name := _npc_display_name(str(npc.get("npc_id", "")))
-		return {
-			"ok": true,
-			"type": "npc",
-			"target_id": str(npc.get("npc_id", "")),
-			"display_name": npc_name,
-			"prompt": "和 %s 打招呼" % npc_name,
 		}
 
 	var nearby_interaction: Dictionary = _find_nearest_interaction(1)

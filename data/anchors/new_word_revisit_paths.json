@@ -60,6 +60,66 @@
 			"story_memory": "A wall charm hangs below the Watch sign to remind the room that cozy time can be slow.",
 			"visual_hook": "a wall decoration under a Watch sign",
 			"review_path": "Walk by the Watch Sign, then look at the home wall decoration."
+		},
+		{
+			"story_id": "story_photo_apple_welcome",
+			"word": "photo",
+			"letter": "A",
+			"core_anchor_id": "anchor_a_apple",
+			"world_place_id": "place_home",
+			"story_memory": "A tiny photo with an Apple sticker waits by the home welcome box.",
+			"visual_hook": "a small photo frame beside the Apple welcome sign",
+			"review_path": "Start at Home, look at the Apple corner, then open the album photo page."
+		},
+		{
+			"story_id": "story_towel_dog_corner",
+			"word": "towel",
+			"letter": "D",
+			"core_anchor_id": "anchor_d_dog",
+			"world_place_id": "place_home",
+			"story_memory": "A soft towel rests near Sunny's Dog corner after a slow walk.",
+			"visual_hook": "a folded towel with one paw print beside the Dog corner",
+			"review_path": "Return Home, visit Sunny's Dog corner, then look for the folded towel."
+		},
+		{
+			"story_id": "story_leaf_kite_path",
+			"word": "leaf",
+			"letter": "K",
+			"core_anchor_id": "anchor_k_kite",
+			"world_place_id": "place_home_school_walk",
+			"story_memory": "A leaf turns under the Kite sky and points back to the school path.",
+			"visual_hook": "a small leaf spinning under the Kite ribbon",
+			"review_path": "Walk the Home-School path, look up at Kite, then notice the leaf by the road."
+		},
+		{
+			"story_id": "story_ribbon_hat_window",
+			"word": "ribbon",
+			"letter": "H",
+			"core_anchor_id": "anchor_h_hat",
+			"world_place_id": "place_supermarket",
+			"story_memory": "A ribbon curls beside the Hat sign and makes the shop window feel friendly.",
+			"visual_hook": "a ribbon loop tied near the Hat shop sign",
+			"review_path": "Walk down Shop Street, look at the Hat sign, then find the ribbon near the window."
+		},
+		{
+			"story_id": "story_pinecone_monkey_tree",
+			"word": "pinecone",
+			"letter": "M",
+			"core_anchor_id": "anchor_m_monkey",
+			"world_place_id": "place_animal_park",
+			"story_memory": "A pinecone waits below the Monkey tree like a tiny climbing tower.",
+			"visual_hook": "a pinecone under the Monkey tree path",
+			"review_path": "Visit Animal Park, look for Monkey, then find the pinecone on the path."
+		},
+		{
+			"story_id": "story_shell_umbrella_coast",
+			"word": "shell",
+			"letter": "U",
+			"core_anchor_id": "anchor_u_umbrella",
+			"world_place_id": "place_coast_edge",
+			"story_memory": "A shell rests near the Umbrella coast path and keeps a tiny sea sound.",
+			"visual_hook": "a shell beside the Umbrella beach edge",
+			"review_path": "Walk to the coast edge, look at Umbrella, then notice the shell by the path."
 		}
 	]
 }
