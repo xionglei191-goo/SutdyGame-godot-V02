@@ -1,103 +1,152 @@
 {
-	"schema_version": 1,
 	"resource_points": [
 		{
-			"point_id": "resource_branch_bear_corner",
-			"item_id": "branch",
-			"display_name": "树枝",
-			"quantity": 1,
-			"refresh_rule": {"mode": "daily_soft", "baseline_available": true, "player_pressure": "none"},
-			"cell": {"x": 19, "y": 18},
+			"cell": {
+				"x": 19.0,
+				"y": 18.0
+			},
 			"collect_text": "捡到一根小树枝，像故事书里的书签。",
 			"collected_text": "熊角落今天已经整理干净啦。",
+			"display_name": "树枝",
+			"item_id": "branch",
+			"point_id": "resource_branch_bear_corner",
+			"quantity": 1.0,
+			"refresh_rule": {
+				"baseline_available": true,
+				"mode": "daily_soft",
+				"player_pressure": "none"
+			},
 			"weather_hints": {
 				"event_weather_breezy_kite_001": "小风把树枝轻轻吹到路边，但数量还是和平常一样。",
 				"event_weather_light_rain_001": "小雨让树枝颜色深了一点，捡起来还是轻轻的。"
 			}
 		},
 		{
-			"point_id": "resource_flower_sun_plaza",
-			"item_id": "flower",
-			"display_name": "小花",
-			"quantity": 2,
-			"refresh_rule": {"mode": "daily_soft", "baseline_available": true, "player_pressure": "none"},
-			"cell": {"x": 9, "y": 5},
+			"cell": {
+				"x": 9.0,
+				"y": 5.0
+			},
 			"collect_text": "摘到一朵小花，香味轻轻的。",
 			"collected_text": "这片花丛今天已经休息啦。",
+			"display_name": "小花",
+			"item_id": "flower",
+			"point_id": "resource_flower_sun_plaza",
+			"quantity": 2.0,
+			"refresh_rule": {
+				"baseline_available": true,
+				"mode": "daily_soft",
+				"player_pressure": "none"
+			},
 			"weather_hints": {
-				"event_weather_sunny_soft_001": "阳光让花瓣看起来软软的，花丛照常开放。",
-				"event_weather_after_rain_001": "雨后的小花醒了过来，香味轻轻飘出来。"
+				"event_weather_after_rain_001": "雨后的小花醒了过来，香味轻轻飘出来。",
+				"event_weather_sunny_soft_001": "阳光让花瓣看起来软软的，花丛照常开放。"
 			}
 		},
 		{
-			"point_id": "resource_stone_taxi_stop",
-			"item_id": "stone",
-			"display_name": "小石子",
-			"quantity": 1,
-			"refresh_rule": {"mode": "daily_soft", "baseline_available": true, "player_pressure": "none"},
-			"cell": {"x": 35, "y": 22},
+			"cell": {
+				"x": 35.0,
+				"y": 22.0
+			},
 			"collect_text": "捡到一颗圆圆的小石子，适合压住故事纸。",
 			"collected_text": "站牌旁今天没有新的小石子。",
+			"display_name": "小石子",
+			"item_id": "stone",
+			"point_id": "resource_stone_taxi_stop",
+			"quantity": 1.0,
+			"refresh_rule": {
+				"baseline_available": true,
+				"mode": "daily_soft",
+				"player_pressure": "none"
+			},
 			"weather_hints": {
-				"event_weather_breezy_kite_001": "小风从站牌旁走过，小石子还是稳稳待在原地。",
-				"event_weather_after_rain_001": "雨后的小石子亮亮的，像藏了一点阳光。"
+				"event_weather_after_rain_001": "雨后的小石子亮亮的，像藏了一点阳光。",
+				"event_weather_breezy_kite_001": "小风从站牌旁走过，小石子还是稳稳待在原地。"
 			}
 		},
 		{
-			"point_id": "resource_shell_coast_edge",
-			"item_id": "shell",
-			"display_name": "小贝壳",
-			"quantity": 1,
-			"refresh_rule": {"mode": "daily_soft", "baseline_available": true, "player_pressure": "none"},
-			"cell": {"x": 53, "y": 28},
+			"cell": {
+				"x": 53.0,
+				"y": 28.0
+			},
 			"collect_text": "捡到一枚小贝壳，像海边寄来的小扣子。",
 			"collected_text": "海边小路今天已经安静整理好啦。",
+			"display_name": "小贝壳",
+			"item_id": "shell",
+			"point_id": "resource_shell_coast_edge",
+			"quantity": 1.0,
+			"refresh_rule": {
+				"baseline_available": true,
+				"mode": "daily_soft",
+				"player_pressure": "none"
+			},
 			"weather_hints": {
 				"event_weather_after_rain_001": "雨后的小贝壳亮亮的，像把天空收在边缘。",
 				"event_weather_light_rain_001": "小雨让贝壳更干净，海边仍然慢慢亮着。"
 			}
 		},
 		{
-			"point_id": "resource_leaf_school_walk",
-			"item_id": "leaf",
-			"display_name": "小叶子",
-			"quantity": 1,
-			"refresh_rule": {"mode": "daily_soft", "baseline_available": true, "player_pressure": "none"},
-			"cell": {"x": 22, "y": 15},
+			"cell": {
+				"x": 22.0,
+				"y": 15.0
+			},
 			"collect_text": "捡到一片小叶子，叶脉像一条软软的小路。",
 			"collected_text": "这段小路今天已经轻轻扫过啦。",
+			"display_name": "小叶子",
+			"item_id": "leaf",
+			"point_id": "resource_leaf_school_walk",
+			"quantity": 1.0,
+			"refresh_rule": {
+				"baseline_available": true,
+				"mode": "daily_soft",
+				"player_pressure": "none"
+			},
 			"weather_hints": {
 				"event_weather_breezy_kite_001": "小风把叶子翻了个身，像在看天上的风筝。",
 				"event_weather_sunny_soft_001": "阳光照着叶子，路边看起来很暖。"
 			}
 		},
 		{
-			"point_id": "resource_pinecone_animal_park",
-			"item_id": "pinecone",
-			"display_name": "小松果",
-			"quantity": 1,
-			"refresh_rule": {"mode": "daily_soft", "baseline_available": true, "player_pressure": "none"},
-			"cell": {"x": 48, "y": 25},
+			"cell": {
+				"x": 48.0,
+				"y": 25.0
+			},
 			"collect_text": "捡到一颗小松果，圆圆的纹路像小小楼梯。",
 			"collected_text": "动物公园的小路今天已经收拾好啦。",
+			"display_name": "小松果",
+			"item_id": "pinecone",
+			"point_id": "resource_pinecone_animal_park",
+			"quantity": 1.0,
+			"refresh_rule": {
+				"baseline_available": true,
+				"mode": "daily_soft",
+				"player_pressure": "none"
+			},
 			"weather_hints": {
-				"event_weather_breezy_kite_001": "小风从动物公园走过，松果还是稳稳待着。",
-				"event_weather_after_rain_001": "雨后的松果颜色深了一点，看起来很温柔。"
+				"event_weather_after_rain_001": "雨后的松果颜色深了一点，看起来很温柔。",
+				"event_weather_breezy_kite_001": "小风从动物公园走过，松果还是稳稳待着。"
 			}
 		},
 		{
-			"point_id": "resource_ribbon_shop_street",
-			"item_id": "ribbon",
-			"display_name": "小丝带",
-			"quantity": 1,
-			"refresh_rule": {"mode": "daily_soft", "baseline_available": true, "player_pressure": "none"},
-			"cell": {"x": 52, "y": 12},
+			"cell": {
+				"x": 50,
+				"y": 14
+			},
 			"collect_text": "捡到一条小丝带，颜色像店门口的晴天招牌。",
 			"collected_text": "小店旁今天已经没有新的小丝带啦。",
+			"display_name": "小丝带",
+			"item_id": "ribbon",
+			"point_id": "resource_ribbon_shop_street",
+			"quantity": 1,
+			"refresh_rule": {
+				"baseline_available": true,
+				"mode": "daily_soft",
+				"player_pressure": "none"
+			},
 			"weather_hints": {
-				"event_weather_sunny_soft_001": "阳光让丝带颜色更亮，小店门口还是慢慢的。",
-				"event_weather_light_rain_001": "小雨停在屋檐边，丝带安静地贴着路旁。"
+				"event_weather_light_rain_001": "小雨停在屋檐边，丝带安静地贴着路旁。",
+				"event_weather_sunny_soft_001": "阳光让丝带颜色更亮，小店门口还是慢慢的。"
 			}
 		}
-	]
+	],
+	"schema_version": 1.0
 }

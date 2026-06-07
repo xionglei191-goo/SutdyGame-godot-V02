@@ -2,8 +2,8 @@
 
 > 最后更新：2026-06-07
 > 状态事实来源：本文件
-> 当前阶段：V02.26 内容生产小批量收口
-> 当前里程碑：Round134 CONTENTBATCH-004 Shop front / School Yard 小事件 smoke 已完成
+> 当前阶段：V02.28 Map Editor 实战生产验证
+> 当前里程碑：Round140 V02.28 MAPDOGFOOD-002..005 Map Editor 实战生产验证完成
 
 ## 维护规则
 
@@ -19,11 +19,11 @@
 
 | 项目 | 当前状态 |
 |---|---|
-| 当前轮次 | Round 134：V02.26 CONTENTBATCH-004 Shop front / School Yard 小事件 smoke 已完成 |
-| 本轮目标 | Shop front / School Yard 看一眼事件来自真实入口，不课程化，不阻断 P0 |
+| 当前轮次 | Round 140：V02.28 MAPDOGFOOD-002..005 Map Editor 实战生产验证完成 |
+| 本轮目标 | 已用 Map Editor 完成小批量真实生产、孩子端复核、生产手册和阶段收口 |
 | 进行中 | 无 |
 | Ready | 无 |
-| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架、Round 48 真实可玩路径修复、Round 49 美术与策划路线更新、V02.5 美术素材生产线文档清单、V02.6 策划内容生产线、V02-POLISH-001、V02-POLISH-002、V02-POLISH-003、V02-POLISH-004、V02.7A 美术基线重建、V02-DAILYLIFE-001、V02-DAILYLIFE-002、V02-DAILYLIFE-003、V02-DAILYLIFE-004、V02-DAILYLIFE-005、V02.8 每日小镇生活纵切、V02-WEEKLY-001、V02-WEEKLY-002、V02-WEEKLY-003、V02-WEEKLY-004、V02.9 一周回访节奏、V02-P1RETURN-001、V02-P1RETURN-002、V02-P1RETURN-003、V02-P1RETURN-004、V02.10 P1 居民回访扩展、V02-WEATHER-001、V02-WEATHER-002、V02-WEATHER-003、V02-WEATHER-004、V02.11 天气与小镇轻事件纵切、V02-AZWORLD-001、V02-AZWORLD-002、V02-AZWORLD-003、V02-AZWORLD-004、V02-AZWORLD-005、V02.12 学校-家庭中心世界地图与 A-Z 锚点规划、V02-TEXTBOOK-001、V02-TEXTBOOK-002、V02-TEXTBOOK-003、V02-TEXTBOOK-004、V02-TEXTBOOK-005、V02.13 全量课本内容世界化主线策划、V02-HOMESCHOOL-001、V02-HOMESCHOOL-002、V02-HOMESCHOOL-003、V02-HOMESCHOOL-004、V02-HOMESCHOOL-005、V02-SCHOOLDAILY-001、V02-SCHOOLDAILY-002、V02-SCHOOLDAILY-003、V02-SCHOOLDAILY-004、V02-SCHOOLDAILY-005、V02.15 Home / School 日常回访与学校生活轻循环、V02-PRODUCTION-001、V02-PRODUCTION-002、V02-PRODUCTION-003、V02-PRODUCTION-004、V02-PRODUCTION-005、V02.16 可制作内容与体验抛光 / Playable RC Gate、V02-WORLDMAP-001、V02-WORLDMAP-002、V02-WORLDMAP-003、V02-WORLDMAP-004、V02-WORLDMAP-005、V02.17 世界地图运行时落地与 26 Anchor 可视布局、V02-MAPREAD-001、V02-MAPREAD-002、V02-MAPREAD-003、V02-MAPREAD-004、V02-MAPREAD-005、V02.18 世界地图视觉可读性与探索体验抛光、V02-ARTPASS-001、V02-ARTPASS-002、V02-ARTPASS-003、V02-ARTPASS-004、V02-ARTPASS-005、V02-ARTPASS-006、V02-ARTPASS-007、V02-ARTPASS-008、V02-ARTPASS-009、V02-ARTPASS-010、V02.19 1280 art baseline、V02-PLAYGATE-001、V02-PLAYGATE-002、V02-PLAYGATE-003、V02-PLAYGATE-004、V02-PLAYGATE-005、V02-PLAYGATE-006、V02-PLAYGATE-007、V02-PLAYGATE-008、V02-PLAYGATE-009、V02.20 playgate 文档收口、V02-LIVEGATE-001、V02-LIVEGATE-002、V02-LIVEGATE-003、V02-LIVEGATE-004、V02-LIVEGATE-005、V02.21 可居住小镇返修实现、V02-HIDDENGRID-001、V02-HIDDENGRID-002、V02-HIDDENGRID-003、V02-HIDDENGRID-004、V02-HIDDENGRID-005、V02-HIDDENGRID-006、V02-HIDDENGRID-007、V02.22 隐藏网格生活小镇与 scenes 组件化阶段收口、V02-EXPAPPROVAL-001、V02-EXPAPPROVAL-002、V02-EXPAPPROVAL-003、V02-EXPAPPROVAL-004、V02-EXPAPPROVAL-005、V02-EXPAPPROVAL-006、V02-HOMEPLAZA-001、V02-HOMEPLAZA-002、V02-HOMEPLAZA-003、V02-HOMEPLAZA-004、V02-HOMEPLAZA-005、V02-MAPAUTH-001、V02-MAPAUTH-002、V02-MAPAUTH-003、V02-MAPAUTH-004、V02-MAPAUTH-005、V02-MAPAUTH-006、V02-CONTENTBATCH-001、V02-CONTENTBATCH-002、V02-CONTENTBATCH-003、V02-CONTENTBATCH-004 |
+| 汇合任务 | 已完成：地图编辑层、运行时小镇体验、远期本地 stub、QA 汇合、主界面视觉修正、首屏 Playfield 化、Sprite2D 小镇资产化、孩子端中文界面、HUD 顶底栏收纳、顶部 HUD 单行压缩、底部操作栏精简、底部按钮儿童化视觉、背包气泡内容恢复、V02.1 每日小镇、V02.2 我的小屋、V02.3 小镇记忆宫殿、V02.4 内容生产框架、Round 48 真实可玩路径修复、Round 49 美术与策划路线更新、V02.5 美术素材生产线文档清单、V02.6 策划内容生产线、V02-POLISH-001、V02-POLISH-002、V02-POLISH-003、V02-POLISH-004、V02.7A 美术基线重建、V02-DAILYLIFE-001、V02-DAILYLIFE-002、V02-DAILYLIFE-003、V02-DAILYLIFE-004、V02-DAILYLIFE-005、V02.8 每日小镇生活纵切、V02-WEEKLY-001、V02-WEEKLY-002、V02-WEEKLY-003、V02-WEEKLY-004、V02.9 一周回访节奏、V02-P1RETURN-001、V02-P1RETURN-002、V02-P1RETURN-003、V02-P1RETURN-004、V02.10 P1 居民回访扩展、V02-WEATHER-001、V02-WEATHER-002、V02-WEATHER-003、V02-WEATHER-004、V02.11 天气与小镇轻事件纵切、V02-AZWORLD-001、V02-AZWORLD-002、V02-AZWORLD-003、V02-AZWORLD-004、V02-AZWORLD-005、V02.12 学校-家庭中心世界地图与 A-Z 锚点规划、V02-TEXTBOOK-001、V02-TEXTBOOK-002、V02-TEXTBOOK-003、V02-TEXTBOOK-004、V02-TEXTBOOK-005、V02.13 全量课本内容世界化主线策划、V02-HOMESCHOOL-001、V02-HOMESCHOOL-002、V02-HOMESCHOOL-003、V02-HOMESCHOOL-004、V02-HOMESCHOOL-005、V02-SCHOOLDAILY-001、V02-SCHOOLDAILY-002、V02-SCHOOLDAILY-003、V02-SCHOOLDAILY-004、V02-SCHOOLDAILY-005、V02.15 Home / School 日常回访与学校生活轻循环、V02-PRODUCTION-001、V02-PRODUCTION-002、V02-PRODUCTION-003、V02-PRODUCTION-004、V02-PRODUCTION-005、V02.16 可制作内容与体验抛光 / Playable RC Gate、V02-WORLDMAP-001、V02-WORLDMAP-002、V02-WORLDMAP-003、V02-WORLDMAP-004、V02-WORLDMAP-005、V02.17 世界地图运行时落地与 26 Anchor 可视布局、V02-MAPREAD-001、V02-MAPREAD-002、V02-MAPREAD-003、V02-MAPREAD-004、V02-MAPREAD-005、V02.18 世界地图视觉可读性与探索体验抛光、V02-ARTPASS-001、V02-ARTPASS-002、V02-ARTPASS-003、V02-ARTPASS-004、V02-ARTPASS-005、V02-ARTPASS-006、V02-ARTPASS-007、V02-ARTPASS-008、V02-ARTPASS-009、V02-ARTPASS-010、V02.19 1280 art baseline、V02-PLAYGATE-001、V02-PLAYGATE-002、V02-PLAYGATE-003、V02-PLAYGATE-004、V02-PLAYGATE-005、V02-PLAYGATE-006、V02-PLAYGATE-007、V02-PLAYGATE-008、V02-PLAYGATE-009、V02.20 playgate 文档收口、V02-LIVEGATE-001、V02-LIVEGATE-002、V02-LIVEGATE-003、V02-LIVEGATE-004、V02-LIVEGATE-005、V02.21 可居住小镇返修实现、V02-HIDDENGRID-001、V02-HIDDENGRID-002、V02-HIDDENGRID-003、V02-HIDDENGRID-004、V02-HIDDENGRID-005、V02-HIDDENGRID-006、V02-HIDDENGRID-007、V02.22 隐藏网格生活小镇与 scenes 组件化阶段收口、V02-EXPAPPROVAL-001、V02-EXPAPPROVAL-002、V02-EXPAPPROVAL-003、V02-EXPAPPROVAL-004、V02-EXPAPPROVAL-005、V02-EXPAPPROVAL-006、V02-HOMEPLAZA-001、V02-HOMEPLAZA-002、V02-HOMEPLAZA-003、V02-HOMEPLAZA-004、V02-HOMEPLAZA-005、V02-MAPAUTH-001、V02-MAPAUTH-002、V02-MAPAUTH-003、V02-MAPAUTH-004、V02-MAPAUTH-005、V02-MAPAUTH-006、V02-CONTENTBATCH-001、V02-CONTENTBATCH-002、V02-CONTENTBATCH-003、V02-CONTENTBATCH-004、V02-MAPEDITOR-010、V02.27 Map Editor 完整化、V02-MAPDOGFOOD-001、V02-MAPDOGFOOD-002、V02-MAPDOGFOOD-003、V02-MAPDOGFOOD-004、V02-MAPDOGFOOD-005、V02.28 Map Editor 实战生产验证 |
 | 阻塞项 | 无 |
 | 待确认决策 | 无 |
 | 临时默认值 | V02.19 / V02.20 / V02.21 均不等同 product complete；V02.22 架构完成不等同 product approved；V02.23 已用同轮 1280 RC proof 和 PM / Art Direction 逐项判定收口，Album、Town Plaza / World Map、Home、Shop、School Gate、School Yard、Settings 当前均为 approved；底层保留 cell / footprint / occupied cells，孩子端不显示格子、瓦块、坐标或调试术语；Apple-like translucent glass UI；不采用绘本 / storybook / picture-book 作为正式生产方向；素材必须有逻辑 asset ID；后续所有未完成验收只看 1280x720，960x540 等全部开发完成后再做版本适配；Home/Town Plaza/Shop；Mina/Shopkeeper/Pet Buddy；家具 `wooden_chair`；材料 `branch`；A-Z 锚点常驻地图；Letter Snake 仅可选；账号/云存档/语音/AI/社交均为本地 stub |
@@ -153,6 +153,21 @@
 | Economy / Map / QA | V02-CONTENTBATCH-002 资源刷新点小批量 | 完成 | Round132 已完成；4 个资源点、温和反馈、每日软刷新和 full runner 通过 |
 | Memory Palace / Narrative / QA | V02-CONTENTBATCH-003 A-Z 生活物件回访 | 完成 | Round133 已完成；6 条回访、唯一 core_anchor_id 和 full runner 通过 |
 | Narrative / QA / Godot | V02-CONTENTBATCH-004 Shop front / School Yard 小事件 smoke | 完成 | Round134 已完成；2 个看一眼事件来自真实入口，不课程化，full runner 通过 |
+| PM / Tooling / QA | V02-MAPEDITOR-001 PM 路线、禁改边界、任务包与 ledger 同步 | 完成 | Round135 已同步 V02.27 Map Editor 完整化队列、分文件保存边界和验收矩阵 |
+| Tooling / UI / QA | V02-MAPEDITOR-002 图层开关、选择态、Inspector 基础 | 完成 | 场景内工具，不做 EditorPlugin，不进入孩子端 runtime |
+| Tooling / Map / QA | V02-MAPEDITOR-003 Place 拖动、属性编辑、Save Map | 完成 | 保存前强制 Validate，写 map 目标并备份 |
+| Tooling / Map / QA | V02-MAPEDITOR-004 Road / Collision / Interaction 绘制与地图保存验证 | 完成 | 单 cell 画笔 / 橡皮，不覆盖 protected cells |
+| Tooling / Economy / QA | V02-MAPEDITOR-005 Resource marker 编辑与 resource_points 分文件保存 | 完成 | item_id 必须来自 `life_items.json`，资源点不覆盖核心目标 |
+| Tooling / NPC / QA | V02-MAPEDITOR-006 NPC routine day selector、marker 编辑与 npc_routines 分文件保存 | 完成 | routine 到达点必须通过 arrival safety |
+| Tooling / Memory Palace / QA | V02-MAPEDITOR-007 A-Z anchor 迁移模式、保护验证、全量回归收口 | 完成 | 只允许专门模式移动位置，不改稳定 ID / letter / route_order / core_word |
+| Tooling / UX / QA | V02-MAPEDITOR-008 Map Editor 可用性降噪 | 完成 | 固定编辑器打开时的顶部/右侧工作区、缩短 marker 标签、降低面板遮挡；不改保存合同、不进孩子端 runtime |
+| Tooling / UX / QA | V02-MAPEDITOR-009 Map Editor 视觉布局二次整理 | 完成 | 左侧分组栏、固定高度侧栏、15px cell 地图画布和 panel text clip 通过 focused/full 回归；不改保存合同、不进孩子端 runtime |
+| Tooling / UX / QA | V02-MAPEDITOR-010 Map Editor 直接拖拽编辑与字母可见性返修 | 完成 | 已修复鼠标拖拽坐标计算，补 Inspector 字段编辑控件，提高 A-Z 字母 marker 字号/对比/z 顺序；不改保存合同、不进孩子端 runtime |
+| PM / Tooling / QA | V02-MAPDOGFOOD-001 PM 路线、禁改边界和任务包 | 完成 | 已固定 V02.28 Map Editor 实战生产验证队列、禁止范围、验收矩阵和下一项 Ready；本轮不改 runtime/data/tests |
+| Tooling / Map / QA | V02-MAPDOGFOOD-002 Map Editor 小批量生产实战 | 完成 | Round140 已用场景内编辑器完成 Story Bench / Ribbon Corner、moved ribbon resource 和 Shopkeeper routine；Validate、安全写回、runtime load 通过 |
+| QA / UX / Child Safety | V02-MAPDOGFOOD-003 孩子端真实入口复核 | 完成 | 新内容通过真实移动 / `看看` / resource / NPC 路径验证可见可达，不遮挡 A-Z，不出现编辑器术语 |
+| Tooling / PM / Content | V02-MAPDOGFOOD-004 内容生产手册与操作边界 | 完成 | Round140 收口记录已写明 Place / resource / NPC routine 生产流程、验证保存、备份清理和 A-Z 锁定字段 |
+| QA / PM | V02-MAPDOGFOOD-005 回归、1280 proof 与阶段收口 | 完成 | focused dogfood、V02.27 编辑器回归、full runner、Godot 启动、1280 proof 和 diff 检查通过；阶段收口但不标 product complete |
 
 ## Round 80 小组推进计划
 
@@ -1017,6 +1032,48 @@
 - [x] **V02-CONTENTBATCH-004 Shop front / School Yard 小事件 smoke**
   Owner：Narrative / QA / Godot Agent；依赖：V02-CONTENTBATCH-003；交付物：Shop front / School Yard 看一眼事件、focused smoke 和 full runner 回归；验收：事件来自真实入口，不课程化，不阻断 P0。完成记录：`data/life/homeschool_events.json` 新增 `homeschool_shop_front_window_001` 与 `homeschool_school_yard_chalk_flower_001` 两个生活化看一眼事件；`data/maps/world_map.json` 在 Shop Street `42,9` 和 School Yard `18,14` 新增真实 `look_homeschool_event` 入口，均落在可达道路且避开已有 exact anchor / resource / interaction / collision；新增 `tests/test_v026_contentbatch004_look_events.gd` 并注册进 `tests/headless_runner.gd`，覆盖 JSON、可达性、protected cell 避让、儿童安全文本、主场景真实 `看看`、保存落账、相册 card state 和 Shop P0 入口不阻断；focused、V02.14 homeschool 回归、CONTENTBATCH-002/003 回归、content contracts、全量 headless runner 和 Godot 启动均通过；V02.26 内容生产小批量阶段收口。
 
+### V02.27 Map Editor 完整化
+
+> 本阶段完善 `scenes/map_editor/town_map_authoring.tscn` 作为场景内 Godot 地图编辑工具，不做 EditorPlugin，不进入孩子端 runtime。编辑器支持 Place、road、collision、interaction、resource、NPC routine 和 A-Z anchor 位置的候选编辑；保存采用分文件按钮，分别写 `data/maps/world_map.json`、`data/life/resource_points.json`、`data/life/npc_routines.json`。每次保存前强制 Validate，写入使用 temp / backup / post-load 验证，失败不得破坏原文件。Round136-Round138 已补充打开场景后的 UI 可用性降噪、左侧控制栏整理、直接拖拽编辑、Inspector 输入控件和 A-Z 字母可见性返修。
+
+- [x] **V02-MAPEDITOR-001 PM 路线、禁改边界、任务包与 ledger 同步**
+  Owner：PM / Tooling / QA Agent；依赖：V02-CONTENTBATCH-004；交付物：V02.27 Map Editor 完整化路线、V02-MAPEDITOR-001..009 队列、禁改边界、分文件保存策略和验收矩阵；验收：`todo.md`、docs 12-15 和协作记录同步；不改孩子端 runtime 体验，不把编辑器入口暴露给孩子端。完成记录：见 Round135、Round136 与 Round137 验收记录。
+- [x] **V02-MAPEDITOR-002 图层开关、选择态、Inspector 基础**
+  Owner：Tooling / UI / QA Agent；依赖：V02-MAPEDITOR-001；交付物：顶部工具栏、图层开关、工具模式、右侧 Inspector 和底部状态区；验收：road / collision / interaction / place / anchor / resource / npc 图层可独立显示隐藏；点选 marker 后 Inspector 可读；不写任何 JSON。
+- [x] **V02-MAPEDITOR-003 Place 拖动、属性编辑、Save Map**
+  Owner：Tooling / Map / QA Agent；依赖：V02-MAPEDITOR-002；交付物：Place 选择、拖动、label / place_type / district_id / size 编辑和 Save Map；验收：Place 移动继续联动 occupied / interaction / collision；保存前强制 Validate；合法才写 map 目标，非法 / 模拟失败不写且保留备份。
+- [x] **V02-MAPEDITOR-004 Road / Collision / Interaction 绘制与地图保存验证**
+  Owner：Tooling / Map / QA Agent；依赖：V02-MAPEDITOR-003；交付物：road / collision / interaction 单 cell 画笔与橡皮；验收：绘制只改候选 state；禁止覆盖 A-Z anchor、核心 place footprint、资源和 NPC routine cell；保存回归通过。
+- [x] **V02-MAPEDITOR-005 Resource marker 编辑与 resource_points 分文件保存**
+  Owner：Tooling / Economy / QA Agent；依赖：V02-MAPEDITOR-004；交付物：resource marker 显示、移动、display_name / quantity / item_id 编辑、Validate Resources 和 Save Resources；验收：item_id 必须存在于 `life_items.json`；资源点不覆盖 anchor / place / interaction / NPC；合法才写 `resource_points.json` 目标。
+- [x] **V02-MAPEDITOR-006 NPC routine day selector、marker 编辑与 npc_routines 分文件保存**
+  Owner：Tooling / NPC / QA Agent；依赖：V02-MAPEDITOR-005；交付物：day selector、NPC routine marker 显示、移动、label 编辑、Validate Routines 和 Save Routines；验收：npc_id 必须来自已知 runtime NPC；arrival cell 通过 safety；合法才写 `npc_routines.json` 目标。
+- [x] **V02-MAPEDITOR-007 A-Z anchor 迁移模式、保护验证、全量回归收口**
+  Owner：Tooling / Memory Palace / QA Agent；依赖：V02-MAPEDITOR-006；交付物：Move Anchor 专门模式、A-Z anchor 位置迁移、保护验证和全量回归；验收：26 个 A-Z anchor 保持完整，`anchor_id` / `letter` / `core_word` / `route_order` / `card_id` / `audio_id` 永远不可编辑；V02.17 / V02.18 / V02.25 / V02.26 和 full runner 通过；阶段收口。
+- [x] **V02-MAPEDITOR-008 Map Editor 可用性降噪**
+  Owner：Tooling / UX / QA Agent；依赖：V02-MAPEDITOR-007；交付物：固定地图画布、顶部工具工作带、右侧 Inspector / 状态工作栏、compact marker badge 和 focused test；验收：打开 `town_map_authoring.tscn` 时面板分区清楚、marker 标签不再长文本堆叠；保存合同、默认图层可见性和孩子端 runtime 边界不变。完成记录：见 Round136 验收记录。
+
+- [x] **V02-MAPEDITOR-009 Map Editor 视觉布局二次整理**
+  Owner：Tooling / UX / QA Agent；依赖：V02-MAPEDITOR-008；交付物：左侧控制侧栏、右侧完整地图画布、固定高度验证 / 工具 / Inspector / 状态面板、sidebar label clipping 和布局回归断言；验收：`town_map_authoring.tscn` 以 1280x720 打开时工具不横向溢出，侧栏不扩成超高黑块，地图 canvas 不被裁切；保存合同、A-Z anchor 保护、resource / NPC routine 分文件保存和孩子端 runtime 边界不变。完成记录：见 Round137 验收记录。
+
+- [x] **V02-MAPEDITOR-010 Map Editor 直接拖拽编辑与字母可见性返修**
+  Owner：Tooling / UX / QA Agent；依赖：V02-MAPEDITOR-009；交付物：marker 直接拖拽事件提交、Inspector 可填写输入框与 Apply、A-Z 字母 marker 字号 / 对比 / z 顺序增强和 MAPEDITOR-010 focused test；验收：Place / resource / NPC marker 拖拽可通过候选验证提交，A-Z anchor 仍必须进入 Move A-Z 专门模式，Inspector 字段可从场景内直接编辑，字母 A-Z 在 1280x720 下可读；保存合同、A-Z 锁定字段、三份 JSON 分文件边界和孩子端 runtime 边界不变。完成记录：见 Round138 验收记录。
+
+- [x] **V02-MAPDOGFOOD-001 PM 路线、禁改边界和任务包**
+  Owner：PM / Tooling / QA Agent；依赖：V02-MAPEDITOR-010；交付物：V02.28 Map Editor 实战生产验证路线、禁改边界、任务包和验收矩阵；验收：docs 12-15、`todo.md` 和协作记录同步，下一轮 Ready 明确；不改 runtime、data、tests 或 assets。完成记录：见 Round139 验收记录。
+
+- [x] **V02-MAPDOGFOOD-002 Map Editor 小批量生产实战**
+  Owner：Tooling / Map / QA Agent；依赖：V02-MAPDOGFOOD-001；交付物：2 个 Place、1 个 resource、1 个 NPC routine 的正式 dogfood 内容改动；验收：改动来自场景内 Map Editor 候选 state、Validate 和 `MapEditorSyncService` 安全写回；正式 JSON 可 load；A-Z 不退化。完成记录：见 Round140 验收记录。
+
+- [x] **V02-MAPDOGFOOD-003 孩子端真实入口复核**
+  Owner：QA / UX / Child Safety Agent；依赖：V02-MAPDOGFOOD-002；交付物：dogfood 内容的真实移动 / `看看` / resource / NPC 路径复核；验收：新内容可见可达，不遮挡 A-Z，不显示坐标、格子、编辑器、调试或课程压力文案。完成记录：见 Round140 验收记录。
+
+- [x] **V02-MAPDOGFOOD-004 内容生产手册与操作边界**
+  Owner：Tooling / PM / Content Agent；依赖：V02-MAPDOGFOOD-002；交付物：Map Editor 内容生产手册、保存流程、回滚注意和 A-Z 锁定字段清单；验收：后续内容生产者可按手册执行 Place / resource / NPC routine 增改、验证、保存和回归。完成记录：见 Round140 验收记录。
+
+- [x] **V02-MAPDOGFOOD-005 回归、1280 proof 与阶段收口**
+  Owner：QA / PM Agent；依赖：V02-MAPDOGFOOD-002、V02-MAPDOGFOOD-003、V02-MAPDOGFOOD-004；交付物：focused dogfood test、V02.27 editor 回归、full runner、Godot 启动、1280 proof 和阶段收口记录；验收：工具链证明生产可用，但不标 product complete；960x540 保留到版本适配专项。完成记录：见 Round140 验收记录。
+
 ## 阶段 0：框架与管理基线
 
 - [x] **V02-BASE-001 产品定位与体验原则**
@@ -1311,3 +1368,9 @@
 | 2026-06-07 | Round 132 验收 / Ready | V02-CONTENTBATCH-002 资源刷新点小批量收口 | `data/life/resource_points.json` 新增 coast shell、school walk leaf、animal park pinecone、shop street ribbon 四个每日软刷新点；`data/items/life_items.json` 新增对应材料和 A-Z 记忆故事；新增 `tests/test_v026_contentbatch002_resource_points.gd` 并注册进 `tests/headless_runner.gd`，覆盖加载、目录、可达道路、protected cell 避让、无压力词、同日去重、跨日刷新和主场景真实 prompt；同步修正 `tests/test_v0222_hidden_grid_life_systems.gd` 旧 fallback 断言；focused、content contracts、daily services、资源 / 热点回归、全量 headless runner 和 Godot 启动通过；下一轮 Ready 为 `V02-CONTENTBATCH-003 A-Z 生活物件回访`；无新增已验证教训 |
 | 2026-06-07 | Round 133 验收 / Ready | V02-CONTENTBATCH-003 A-Z 生活物件回访收口 | `data/anchors/new_word_revisit_paths.json` 新增 A/D/K/H/M/U 六条生活物件回访，分别绑定 photo、towel、leaf、ribbon、pinecone、shell；新增 `tests/test_v026_contentbatch003_anchor_revisits.gd` 并注册进 `tests/headless_runner.gd`，覆盖必填字段、story_id 唯一、`core_anchor_id` 全局唯一、核心 anchor / letter 匹配、儿童安全文案、service lookup、card state 和主场景六个真实 anchor prompt；memory palace 回归、content contracts、全量 headless runner 和 Godot 启动通过；下一轮 Ready 为 `V02-CONTENTBATCH-004 Shop front / School Yard 小事件 smoke`；无新增已验证教训 |
 | 2026-06-07 | Round 134 验收 / 阶段收口 | V02-CONTENTBATCH-004 Shop front / School Yard 小事件 smoke 收口 | `data/life/homeschool_events.json` 新增 `homeschool_shop_front_window_001` 与 `homeschool_school_yard_chalk_flower_001` 两个生活化看一眼事件；`data/maps/world_map.json` 在 Shop Street `42,9` 与 School Yard `18,14` 新增真实 `look_homeschool_event` 入口，避开已有 exact anchor / resource / interaction / collision；新增 `tests/test_v026_contentbatch004_look_events.gd` 并注册进 `tests/headless_runner.gd`，覆盖 JSON、可达性、protected cell、儿童安全文本、主场景真实 `看看`、保存落账、相册 card state 和 Shop P0 入口不阻断；focused、V02.14 homeschool 回归、CONTENTBATCH-002/003 回归、content contracts、全量 headless runner 和 Godot 启动通过；V02.26 内容生产小批量阶段收口，当前无 Ready；无新增已验证教训 |
+| 2026-06-07 | Round 135 验收 / 阶段收口 | V02-MAPEDITOR-001..007 Map Editor 完整化收口 | `TownMapAuthoring` 增加 toolbar、七类图层开关、tool mode、Inspector、底部状态、Place 属性编辑 / 拖动 / Save Map、road / collision / interaction 单 cell 画笔、resource marker 编辑与 Save Resources、NPC routine day selector / marker 编辑与 Save Routines、A-Z anchor `move_anchor` 专门迁移模式；`MapEditorSyncService` 增加 resource_points / npc_routines 分文件 validate 与安全写入；新增 `tests/test_v027_mapeditor_layers_inspector.gd`、`test_v027_mapeditor_place_save.gd`、`test_v027_mapeditor_cell_painting.gd`、`test_v027_mapeditor_resource_save.gd`、`test_v027_mapeditor_npc_routine_save.gd`、`test_v027_mapeditor_anchor_migration_guard.gd`、`test_v027_mapeditor_full_regression.gd` 并注册进 `tests/headless_runner.gd`；同步 docs 12-15 和 `docs/collaboration/Round135_V02.27_MAPEDITOR-001-007验收记录.md`；focused、全量 headless runner 和 Godot 启动通过；V02.27 阶段收口，当前无 Ready；无新增已验证教训 |
+| 2026-06-07 | Round 136 验收 / 返修收口 | V02-MAPEDITOR-008 Map Editor 可用性降噪收口 | `scenes/map_editor/town_map_authoring.tscn` 和 `TownMapAuthoring` 固定地图画布 origin、顶部验证 / 工具工作带、右侧 Inspector / 状态工作栏，缩短 toolbar 按钮和 layer toggle 文案；`MapAuthoringMarker` 改为短 badge 标签和类型配色，降低 resource / NPC / A-Z / place marker 长文本重叠；新增 `tests/test_v027_mapeditor_usability_declutter.gd` 并注册进 `tests/headless_runner.gd`，覆盖布局 origin、工作栏位置、marker label 长度和既有默认图层可见性；`scripts/editor/town_map_authoring.gd`、`scripts/editor/map_authoring_marker.gd` check-only、V02.27 focused tests、`tests/headless_runner.gd`、`godot --headless --path . --quit`、`git diff --check` 和 `.tmp/.bak` 残留检查均通过；不改三份 JSON 保存合同，不进入孩子端 runtime；当前无 Ready；无新增已验证教训 |
+| 2026-06-07 | Round 137 验收 / 返修收口 | V02-MAPEDITOR-009 Map Editor 视觉布局二次整理收口 | `TownMapAuthoring` 改为左侧控制侧栏 + 右侧地图画布布局，`MAP_CELL_SIZE` 保持 15px，地图 origin 为 `(252, 52)`，60x34 canvas 在 1280x720 内完整显示；验证、工具、Inspector、状态面板固定高度并启用 `clip_contents`，sidebar label 限制行数，避免面板扩成超高黑块；`tests/test_v027_mapeditor_usability_declutter.gd` 增加 validation / toolbar / inspector / status 高度与 viewport 断言；MCP runtime 测量确认 `ExportValidationPanel=228x116`、`EditorToolbar=228x272`、`InspectorPanel=228x130`、`EditorStatusPanel=228x142`，截图返回 1280x720；check-only、V02.27 focused tests、`tests/headless_runner.gd`、`godot --headless --path . --quit` 和 `git diff --check` 均通过；不改三份 JSON 保存合同，不进入孩子端 runtime；当前无 Ready；无新增已验证教训 |
+| 2026-06-07 | Round 138 验收 / 返修收口 | V02-MAPEDITOR-010 Map Editor 直接拖拽编辑与字母可见性返修收口 | `MapAuthoringMarker` 改为按下后全局追踪拖拽和释放，避免鼠标离开小 marker 后拖拽中断；`TownMapAuthoring` 将 marker drag finish 接入候选 move 验证，并新增场景内 Inspector 输入框 / Apply，可直接编辑 Place / resource / NPC routine 字段；A-Z marker 字号增大、颜色不透明、z 顺序提高并保持 Move A-Z 专门模式保护；新增 `tests/test_v027_mapeditor_direct_edit_drag.gd` 并注册进 `tests/headless_runner.gd`，更新 `tests/test_v027_mapeditor_usability_declutter.gd` 覆盖字母可见性；check-only、focused tests、`tests/headless_runner.gd`、`godot --headless --path . --quit` 和 `git diff --check` 均通过；不改三份 JSON 保存合同，不进入孩子端 runtime；当前无 Ready；无新增已验证教训 |
+| 2026-06-07 | Round 139 规划 / Ready | V02-MAPDOGFOOD-001 PM 路线、禁改边界和任务包收口 | 新增 `docs/collaboration/Round139_V02.28_MAPDOGFOOD-001_PM路线与任务包.md`；同步 `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md` 和 `todo.md`；固定 V02.28 Map Editor 实战生产验证队列、禁改边界、验收矩阵和下一轮 Ready；明确正式 dogfood 必须通过场景内 Map Editor 候选 state、Validate、`MapEditorSyncService` 安全写回、post-load verify 和孩子端真实入口证明，手工 JSON 调试不能算交付；本轮未改 runtime、data、tests 或 assets；下一轮 Ready 为 `V02-MAPDOGFOOD-002 Map Editor 小批量生产实战`；无新增已验证教训 |
+| 2026-06-07 | Round 140 验收 / 阶段收口 | V02-MAPDOGFOOD-002..005 Map Editor 实战生产验证收口 | 用场景内 `TownMapAuthoring` 候选 API 完成 Story Bench / Ribbon Corner 两个 Place、`resource_ribbon_shop_street` 移动和 `routine_shopkeeper_shop_003` 微调，经 Validate 和 `MapEditorSyncService` 安全写回正式 JSON；`TownMapAuthoring` 补齐 `place_action` Inspector 编辑并同步 interaction action；新增 `tests/test_v028_mapdogfood_production.gd` 并注册进 `tests/headless_runner.gd`，覆盖正式数据、孩子端真实移动 / `看看` / resource / NPC 路径、禁用文本和 26 A-Z 稳定；新增 `docs/collaboration/Round140_V02.28_MAPDOGFOOD-002-005实战生产验证收口.md`；`godot --headless --path . --script tests/test_v028_mapdogfood_production.gd`、`godot --headless --path . --check-only --script tests/headless_runner.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 和 `git diff --check` 均通过；非 headless 1280 proof 曾导出并复核，临时 PNG / capture / apply 脚本已按仓库清理要求移除；V02.28 阶段收口但不标 product complete；新增 `LESSON-012` |

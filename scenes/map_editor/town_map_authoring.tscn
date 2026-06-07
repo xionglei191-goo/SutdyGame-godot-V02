@@ -13,47 +13,147 @@ script = ExtResource("1_authoring")
 
 [node name="GroundPreviewLayer" type="Control" parent="."]
 layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
 
 [node name="RoadLayer" type="Control" parent="."]
 layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
 
 [node name="CollisionLayer" type="Control" parent="."]
 layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
 
 [node name="InteractionLayer" type="Control" parent="."]
 layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
 
 [node name="PlaceMarkerLayer" type="Control" parent="."]
 layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
 
 [node name="AnchorMarkerLayer" type="Control" parent="."]
 layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
 
 [node name="ResourceMarkerLayer" type="Control" parent="."]
 layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
 
 [node name="NPCSpawnLayer" type="Control" parent="."]
 layout_mode = 0
+offset_left = 252.0
+offset_top = 52.0
 
 [node name="ExportValidationPanel" type="PanelContainer" parent="."]
+clip_contents = true
 layout_mode = 0
 offset_left = 12.0
 offset_top = 12.0
-offset_right = 392.0
-offset_bottom = 172.0
+offset_right = 240.0
+offset_bottom = 128.0
+custom_minimum_size = Vector2(228, 116)
 
 [node name="VBox" type="VBoxContainer" parent="ExportValidationPanel"]
 layout_mode = 2
 
 [node name="ValidationStatusLabel" type="Label" parent="ExportValidationPanel/VBox"]
+custom_minimum_size = Vector2(204, 20)
 layout_mode = 2
 text = "Export not validated yet"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 1
 
 [node name="ValidateExportButton" type="Button" parent="ExportValidationPanel/VBox"]
 layout_mode = 2
 text = "Validate"
 
 [node name="ValidationErrorsLabel" type="Label" parent="ExportValidationPanel/VBox"]
+custom_minimum_size = Vector2(204, 44)
 layout_mode = 2
 text = "Press Validate to review the candidate map."
 autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="EditorToolbar" type="PanelContainer" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 140.0
+offset_right = 240.0
+offset_bottom = 412.0
+custom_minimum_size = Vector2(228, 272)
+
+[node name="ToolbarBox" type="GridContainer" parent="EditorToolbar"]
+layout_mode = 2
+columns = 2
+
+[node name="InspectorPanel" type="PanelContainer" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 424.0
+offset_right = 240.0
+offset_bottom = 554.0
+custom_minimum_size = Vector2(228, 130)
+
+[node name="InspectorBox" type="VBoxContainer" parent="InspectorPanel"]
+layout_mode = 2
+
+[node name="InspectorTitleLabel" type="Label" parent="InspectorPanel/InspectorBox"]
+custom_minimum_size = Vector2(204, 20)
+layout_mode = 2
+text = "No selection"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 1
+
+[node name="InspectorBodyLabel" type="Label" parent="InspectorPanel/InspectorBox"]
+custom_minimum_size = Vector2(204, 82)
+layout_mode = 2
+text = "Select a marker to inspect editable fields."
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 4
+
+[node name="EditorStatusPanel" type="PanelContainer" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 566.0
+offset_right = 240.0
+offset_bottom = 708.0
+custom_minimum_size = Vector2(228, 142)
+
+[node name="EditorStatusBox" type="VBoxContainer" parent="EditorStatusPanel"]
+layout_mode = 2
+
+[node name="EditorStatusLabel" type="Label" parent="EditorStatusPanel/EditorStatusBox"]
+custom_minimum_size = Vector2(204, 22)
+layout_mode = 2
+text = "Editor ready"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 1
+
+[node name="ResourceStatusLabel" type="Label" parent="EditorStatusPanel/EditorStatusBox"]
+custom_minimum_size = Vector2(204, 44)
+layout_mode = 2
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="RoutineStatusLabel" type="Label" parent="EditorStatusPanel/EditorStatusBox"]
+custom_minimum_size = Vector2(204, 44)
+layout_mode = 2
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2

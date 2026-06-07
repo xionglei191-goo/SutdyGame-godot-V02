@@ -1,75 +1,355 @@
 {
-	"schema_version": 1,
 	"routine_days": [
 		{
 			"day_key": "local_day_001",
 			"npcs": [
-				{"routine_id": "routine_mina_plaza_001", "npc_id": "mina", "cell": {"x": 38, "y": 22}, "label": "米娜在广场旁看小花。"},
-				{"routine_id": "routine_shopkeeper_shop_001", "npc_id": "shopkeeper", "cell": {"x": 43, "y": 12}, "label": "店长在商店门口整理小货架。"},
-				{"routine_id": "routine_sunny_home_001", "npc_id": "pet_buddy", "cell": {"x": 26, "y": 20}, "label": "Sunny 在小屋旁慢慢摇尾巴。"},
-				{"routine_id": "routine_bus_helper_plaza_001", "npc_id": "bus_helper", "cell": {"x": 36, "y": 20}, "label": "巴士哥哥在广场边擦小车牌。"},
-				{"routine_id": "routine_story_bear_town_001", "npc_id": "story_bear", "cell": {"x": 16, "y": 18}, "label": "故事熊抱着小书在树影旁。"}
+				{
+					"cell": {
+						"x": 38.0,
+						"y": 22.0
+					},
+					"label": "米娜在广场旁看小花。",
+					"npc_id": "mina",
+					"routine_id": "routine_mina_plaza_001"
+				},
+				{
+					"cell": {
+						"x": 43.0,
+						"y": 12.0
+					},
+					"label": "店长在商店门口整理小货架。",
+					"npc_id": "shopkeeper",
+					"routine_id": "routine_shopkeeper_shop_001"
+				},
+				{
+					"cell": {
+						"x": 26.0,
+						"y": 20.0
+					},
+					"label": "Sunny 在小屋旁慢慢摇尾巴。",
+					"npc_id": "pet_buddy",
+					"routine_id": "routine_sunny_home_001"
+				},
+				{
+					"cell": {
+						"x": 36.0,
+						"y": 20.0
+					},
+					"label": "巴士哥哥在广场边擦小车牌。",
+					"npc_id": "bus_helper",
+					"routine_id": "routine_bus_helper_plaza_001"
+				},
+				{
+					"cell": {
+						"x": 16.0,
+						"y": 18.0
+					},
+					"label": "故事熊抱着小书在树影旁。",
+					"npc_id": "story_bear",
+					"routine_id": "routine_story_bear_town_001"
+				}
 			]
 		},
 		{
 			"day_key": "local_day_002",
 			"npcs": [
-				{"routine_id": "routine_mina_plaza_002", "npc_id": "mina", "cell": {"x": 37, "y": 22}, "label": "米娜在广场旁听风铃。"},
-				{"routine_id": "routine_shopkeeper_shop_002", "npc_id": "shopkeeper", "cell": {"x": 42, "y": 12}, "label": "店长把门口的小篮子摆整齐。"},
-				{"routine_id": "routine_sunny_home_002", "npc_id": "pet_buddy", "cell": {"x": 27, "y": 21}, "label": "Sunny 在门边闻闻软软的小草。"},
-				{"routine_id": "routine_bus_helper_plaza_002", "npc_id": "bus_helper", "cell": {"x": 36, "y": 21}, "label": "巴士哥哥在广场旁看云影。"},
-				{"routine_id": "routine_story_bear_town_002", "npc_id": "story_bear", "cell": {"x": 15, "y": 18}, "label": "故事熊给书签换了新颜色。"}
+				{
+					"cell": {
+						"x": 37.0,
+						"y": 22.0
+					},
+					"label": "米娜在广场旁听风铃。",
+					"npc_id": "mina",
+					"routine_id": "routine_mina_plaza_002"
+				},
+				{
+					"cell": {
+						"x": 42.0,
+						"y": 12.0
+					},
+					"label": "店长把门口的小篮子摆整齐。",
+					"npc_id": "shopkeeper",
+					"routine_id": "routine_shopkeeper_shop_002"
+				},
+				{
+					"cell": {
+						"x": 27.0,
+						"y": 21.0
+					},
+					"label": "Sunny 在门边闻闻软软的小草。",
+					"npc_id": "pet_buddy",
+					"routine_id": "routine_sunny_home_002"
+				},
+				{
+					"cell": {
+						"x": 36.0,
+						"y": 21.0
+					},
+					"label": "巴士哥哥在广场旁看云影。",
+					"npc_id": "bus_helper",
+					"routine_id": "routine_bus_helper_plaza_002"
+				},
+				{
+					"cell": {
+						"x": 15.0,
+						"y": 18.0
+					},
+					"label": "故事熊给书签换了新颜色。",
+					"npc_id": "story_bear",
+					"routine_id": "routine_story_bear_town_002"
+				}
 			]
 		},
 		{
 			"day_key": "local_day_003",
 			"npcs": [
-				{"routine_id": "routine_mina_plaza_003", "npc_id": "mina", "cell": {"x": 38, "y": 21}, "label": "米娜在广场旁轻轻挥手。"},
-				{"routine_id": "routine_shopkeeper_shop_003", "npc_id": "shopkeeper", "cell": {"x": 43, "y": 13}, "label": "店长在门口擦亮小招牌。"},
-				{"routine_id": "routine_sunny_home_003", "npc_id": "pet_buddy", "cell": {"x": 26, "y": 20}, "label": "Sunny 趴在小屋边晒太阳。"},
-				{"routine_id": "routine_bus_helper_plaza_003", "npc_id": "bus_helper", "cell": {"x": 37, "y": 20}, "label": "巴士哥哥在广场边数小石子。"},
-				{"routine_id": "routine_story_bear_town_003", "npc_id": "story_bear", "cell": {"x": 16, "y": 18}, "label": "故事熊在安静角落翻到新一页。"}
+				{
+					"cell": {
+						"x": 38.0,
+						"y": 21.0
+					},
+					"label": "米娜在广场旁轻轻挥手。",
+					"npc_id": "mina",
+					"routine_id": "routine_mina_plaza_003"
+				},
+				{
+					"cell": {
+						"x": 43,
+						"y": 14
+					},
+					"label": "店长在 Ribbon Corner 旁整理小篮子。",
+					"npc_id": "shopkeeper",
+					"routine_id": "routine_shopkeeper_shop_003"
+				},
+				{
+					"cell": {
+						"x": 26.0,
+						"y": 20.0
+					},
+					"label": "Sunny 趴在小屋边晒太阳。",
+					"npc_id": "pet_buddy",
+					"routine_id": "routine_sunny_home_003"
+				},
+				{
+					"cell": {
+						"x": 37.0,
+						"y": 20.0
+					},
+					"label": "巴士哥哥在广场边数小石子。",
+					"npc_id": "bus_helper",
+					"routine_id": "routine_bus_helper_plaza_003"
+				},
+				{
+					"cell": {
+						"x": 16.0,
+						"y": 18.0
+					},
+					"label": "故事熊在安静角落翻到新一页。",
+					"npc_id": "story_bear",
+					"routine_id": "routine_story_bear_town_003"
+				}
 			]
 		},
 		{
 			"day_key": "local_day_004",
 			"npcs": [
-				{"routine_id": "routine_mina_plaza_004", "npc_id": "mina", "cell": {"x": 37, "y": 21}, "label": "米娜在广场边看看小路。"},
-				{"routine_id": "routine_shopkeeper_shop_004", "npc_id": "shopkeeper", "cell": {"x": 42, "y": 13}, "label": "店长把门口的小铃擦干净。"},
-				{"routine_id": "routine_sunny_home_004", "npc_id": "pet_buddy", "cell": {"x": 27, "y": 21}, "label": "Sunny 在小屋旁听脚步声。"},
-				{"routine_id": "routine_bus_helper_plaza_004", "npc_id": "bus_helper", "cell": {"x": 36, "y": 20}, "label": "巴士哥哥在广场旁摆好小路牌。"},
-				{"routine_id": "routine_story_bear_town_004", "npc_id": "story_bear", "cell": {"x": 15, "y": 18}, "label": "故事熊把小书靠在怀里。"}
+				{
+					"cell": {
+						"x": 37.0,
+						"y": 21.0
+					},
+					"label": "米娜在广场边看看小路。",
+					"npc_id": "mina",
+					"routine_id": "routine_mina_plaza_004"
+				},
+				{
+					"cell": {
+						"x": 42.0,
+						"y": 13.0
+					},
+					"label": "店长把门口的小铃擦干净。",
+					"npc_id": "shopkeeper",
+					"routine_id": "routine_shopkeeper_shop_004"
+				},
+				{
+					"cell": {
+						"x": 27.0,
+						"y": 21.0
+					},
+					"label": "Sunny 在小屋旁听脚步声。",
+					"npc_id": "pet_buddy",
+					"routine_id": "routine_sunny_home_004"
+				},
+				{
+					"cell": {
+						"x": 36.0,
+						"y": 20.0
+					},
+					"label": "巴士哥哥在广场旁摆好小路牌。",
+					"npc_id": "bus_helper",
+					"routine_id": "routine_bus_helper_plaza_004"
+				},
+				{
+					"cell": {
+						"x": 15.0,
+						"y": 18.0
+					},
+					"label": "故事熊把小书靠在怀里。",
+					"npc_id": "story_bear",
+					"routine_id": "routine_story_bear_town_004"
+				}
 			]
 		},
 		{
 			"day_key": "local_day_005",
 			"npcs": [
-				{"routine_id": "routine_mina_plaza_005", "npc_id": "mina", "cell": {"x": 38, "y": 22}, "label": "米娜在广场旁看彩色小旗。"},
-				{"routine_id": "routine_shopkeeper_shop_005", "npc_id": "shopkeeper", "cell": {"x": 43, "y": 12}, "label": "店长在商店门口轻轻点头。"},
-				{"routine_id": "routine_sunny_home_005", "npc_id": "pet_buddy", "cell": {"x": 26, "y": 20}, "label": "Sunny 在小屋边守着温暖角落。"},
-				{"routine_id": "routine_bus_helper_plaza_005", "npc_id": "bus_helper", "cell": {"x": 37, "y": 21}, "label": "巴士哥哥在广场旁看小车铃。"},
-				{"routine_id": "routine_story_bear_town_005", "npc_id": "story_bear", "cell": {"x": 16, "y": 18}, "label": "故事熊把书角的小灯点亮。"}
+				{
+					"cell": {
+						"x": 38.0,
+						"y": 22.0
+					},
+					"label": "米娜在广场旁看彩色小旗。",
+					"npc_id": "mina",
+					"routine_id": "routine_mina_plaza_005"
+				},
+				{
+					"cell": {
+						"x": 43.0,
+						"y": 12.0
+					},
+					"label": "店长在商店门口轻轻点头。",
+					"npc_id": "shopkeeper",
+					"routine_id": "routine_shopkeeper_shop_005"
+				},
+				{
+					"cell": {
+						"x": 26.0,
+						"y": 20.0
+					},
+					"label": "Sunny 在小屋边守着温暖角落。",
+					"npc_id": "pet_buddy",
+					"routine_id": "routine_sunny_home_005"
+				},
+				{
+					"cell": {
+						"x": 37.0,
+						"y": 21.0
+					},
+					"label": "巴士哥哥在广场旁看小车铃。",
+					"npc_id": "bus_helper",
+					"routine_id": "routine_bus_helper_plaza_005"
+				},
+				{
+					"cell": {
+						"x": 16.0,
+						"y": 18.0
+					},
+					"label": "故事熊把书角的小灯点亮。",
+					"npc_id": "story_bear",
+					"routine_id": "routine_story_bear_town_005"
+				}
 			]
 		},
 		{
 			"day_key": "local_day_006",
 			"npcs": [
-				{"routine_id": "routine_mina_plaza_006", "npc_id": "mina", "cell": {"x": 37, "y": 22}, "label": "米娜在广场旁看雨后小亮点。"},
-				{"routine_id": "routine_shopkeeper_shop_006", "npc_id": "shopkeeper", "cell": {"x": 42, "y": 12}, "label": "店长把小伞放在门口。"},
-				{"routine_id": "routine_sunny_home_006", "npc_id": "pet_buddy", "cell": {"x": 27, "y": 21}, "label": "Sunny 在小屋旁闻到清新的风。"},
-				{"routine_id": "routine_bus_helper_plaza_006", "npc_id": "bus_helper", "cell": {"x": 36, "y": 21}, "label": "巴士哥哥在广场边看小水珠。"},
-				{"routine_id": "routine_story_bear_town_006", "npc_id": "story_bear", "cell": {"x": 15, "y": 18}, "label": "故事熊把书签夹回书页里。"}
+				{
+					"cell": {
+						"x": 37.0,
+						"y": 22.0
+					},
+					"label": "米娜在广场旁看雨后小亮点。",
+					"npc_id": "mina",
+					"routine_id": "routine_mina_plaza_006"
+				},
+				{
+					"cell": {
+						"x": 42.0,
+						"y": 12.0
+					},
+					"label": "店长把小伞放在门口。",
+					"npc_id": "shopkeeper",
+					"routine_id": "routine_shopkeeper_shop_006"
+				},
+				{
+					"cell": {
+						"x": 27.0,
+						"y": 21.0
+					},
+					"label": "Sunny 在小屋旁闻到清新的风。",
+					"npc_id": "pet_buddy",
+					"routine_id": "routine_sunny_home_006"
+				},
+				{
+					"cell": {
+						"x": 36.0,
+						"y": 21.0
+					},
+					"label": "巴士哥哥在广场边看小水珠。",
+					"npc_id": "bus_helper",
+					"routine_id": "routine_bus_helper_plaza_006"
+				},
+				{
+					"cell": {
+						"x": 15.0,
+						"y": 18.0
+					},
+					"label": "故事熊把书签夹回书页里。",
+					"npc_id": "story_bear",
+					"routine_id": "routine_story_bear_town_006"
+				}
 			]
 		},
 		{
 			"day_key": "local_day_007",
 			"npcs": [
-				{"routine_id": "routine_mina_plaza_007", "npc_id": "mina", "cell": {"x": 38, "y": 21}, "label": "米娜在广场旁准备一句问候。"},
-				{"routine_id": "routine_shopkeeper_shop_007", "npc_id": "shopkeeper", "cell": {"x": 43, "y": 13}, "label": "店长在门口看看新贴纸。"},
-				{"routine_id": "routine_sunny_home_007", "npc_id": "pet_buddy", "cell": {"x": 26, "y": 20}, "label": "Sunny 在小屋旁等一阵暖风。"},
-				{"routine_id": "routine_bus_helper_plaza_007", "npc_id": "bus_helper", "cell": {"x": 37, "y": 20}, "label": "巴士哥哥在广场旁整理小贴纸。"},
-				{"routine_id": "routine_story_bear_town_007", "npc_id": "story_bear", "cell": {"x": 16, "y": 18}, "label": "故事熊在树影旁读完一小页。"}
+				{
+					"cell": {
+						"x": 38.0,
+						"y": 21.0
+					},
+					"label": "米娜在广场旁准备一句问候。",
+					"npc_id": "mina",
+					"routine_id": "routine_mina_plaza_007"
+				},
+				{
+					"cell": {
+						"x": 43.0,
+						"y": 13.0
+					},
+					"label": "店长在门口看看新贴纸。",
+					"npc_id": "shopkeeper",
+					"routine_id": "routine_shopkeeper_shop_007"
+				},
+				{
+					"cell": {
+						"x": 26.0,
+						"y": 20.0
+					},
+					"label": "Sunny 在小屋旁等一阵暖风。",
+					"npc_id": "pet_buddy",
+					"routine_id": "routine_sunny_home_007"
+				},
+				{
+					"cell": {
+						"x": 37.0,
+						"y": 20.0
+					},
+					"label": "巴士哥哥在广场旁整理小贴纸。",
+					"npc_id": "bus_helper",
+					"routine_id": "routine_bus_helper_plaza_007"
+				},
+				{
+					"cell": {
+						"x": 16.0,
+						"y": 18.0
+					},
+					"label": "故事熊在树影旁读完一小页。",
+					"npc_id": "story_bear",
+					"routine_id": "routine_story_bear_town_007"
+				}
 			]
 		}
-	]
+	],
+	"schema_version": 1.0
 }

@@ -1,1320 +1,784 @@
 {
-	"map_id": "world_map_sunshine_town_v02_min",
-	"version": 2,
 	"canvas_size": {
-		"w": 60,
-		"h": 34
+		"h": 34.0,
+		"w": 60.0
 	},
 	"cell_size": {
-		"w": 32,
-		"h": 32
+		"h": 32.0,
+		"w": 32.0
 	},
-	"theme_id": "theme_sunshine_town_placeholder",
+	"collision_cells": [
+		{
+			"x": 29.0,
+			"y": 17.0
+		},
+		{
+			"x": 30.0,
+			"y": 17.0
+		},
+		{
+			"x": 31.0,
+			"y": 17.0
+		},
+		{
+			"x": 29.0,
+			"y": 18.0
+		},
+		{
+			"x": 30.0,
+			"y": 18.0
+		},
+		{
+			"x": 31.0,
+			"y": 18.0
+		},
+		{
+			"x": 44.0,
+			"y": 9.0
+		},
+		{
+			"x": 45.0,
+			"y": 9.0
+		},
+		{
+			"x": 46.0,
+			"y": 9.0
+		},
+		{
+			"x": 47.0,
+			"y": 9.0
+		},
+		{
+			"x": 44.0,
+			"y": 10.0
+		},
+		{
+			"x": 45.0,
+			"y": 10.0
+		},
+		{
+			"x": 46.0,
+			"y": 10.0
+		},
+		{
+			"x": 47.0,
+			"y": 10.0
+		},
+		{
+			"x": 44.0,
+			"y": 11.0
+		},
+		{
+			"x": 45.0,
+			"y": 11.0
+		},
+		{
+			"x": 46.0,
+			"y": 11.0
+		},
+		{
+			"x": 47.0,
+			"y": 11.0
+		}
+	],
 	"districts": [
 		{
+			"allowed_place_types": [
+				"landmark"
+			],
 			"district_id": "district_sun_scene",
 			"label": "Sun Scene",
 			"rect_cells": {
-				"x": 3,
-				"y": 1,
-				"w": 10,
-				"h": 4
+				"h": 4.0,
+				"w": 10.0,
+				"x": 3.0,
+				"y": 1.0
 			},
-			"tile_id": "tile_town_plaza",
-			"allowed_place_types": [
-				"landmark"
-			]
+			"tile_id": "tile_town_plaza"
 		},
 		{
-			"district_id": "district_school_morning",
-			"label": "School / Morning Walk",
-			"rect_cells": {
-				"x": 10,
-				"y": 5,
-				"w": 14,
-				"h": 12
-			},
-			"tile_id": "tile_school_yard",
 			"allowed_place_types": [
 				"school",
 				"playground",
 				"walk"
-			]
+			],
+			"district_id": "district_school_morning",
+			"label": "School / Morning Walk",
+			"rect_cells": {
+				"h": 12.0,
+				"w": 14.0,
+				"x": 10.0,
+				"y": 5.0
+			},
+			"tile_id": "tile_school_yard"
 		},
 		{
-			"district_id": "district_story_culture",
-			"label": "Story + Culture Bridge",
-			"rect_cells": {
-				"x": 9,
-				"y": 17,
-				"w": 13,
-				"h": 10
-			},
-			"tile_id": "tile_town_plaza",
 			"allowed_place_types": [
 				"bookshop",
 				"town_start"
-			]
+			],
+			"district_id": "district_story_culture",
+			"label": "Story + Culture Bridge",
+			"rect_cells": {
+				"h": 10.0,
+				"w": 13.0,
+				"x": 9.0,
+				"y": 17.0
+			},
+			"tile_id": "tile_town_plaza"
 		},
 		{
-			"district_id": "district_home_core",
-			"label": "Home Core",
-			"rect_cells": {
-				"x": 25,
-				"y": 12,
-				"w": 12,
-				"h": 12
-			},
-			"tile_id": "tile_home_grass",
 			"allowed_place_types": [
 				"home",
 				"home_room",
 				"pet",
 				"transport"
-			]
+			],
+			"district_id": "district_home_core",
+			"label": "Home Core",
+			"rect_cells": {
+				"h": 12.0,
+				"w": 12.0,
+				"x": 25.0,
+				"y": 12.0
+			},
+			"tile_id": "tile_home_grass"
 		},
 		{
-			"district_id": "district_shop_street",
-			"label": "Shop Street",
-			"rect_cells": {
-				"x": 40,
-				"y": 5,
-				"w": 16,
-				"h": 11
-			},
-			"tile_id": "tile_town_plaza",
 			"allowed_place_types": [
 				"shop",
 				"food"
-			]
+			],
+			"district_id": "district_shop_street",
+			"label": "Shop Street",
+			"rect_cells": {
+				"h": 11.0,
+				"w": 16.0,
+				"x": 40.0,
+				"y": 5.0
+			},
+			"tile_id": "tile_town_plaza"
 		},
 		{
-			"district_id": "district_animal_park",
-			"label": "Animal Park + Zoo Corner",
-			"rect_cells": {
-				"x": 39,
-				"y": 19,
-				"w": 17,
-				"h": 12
-			},
-			"tile_id": "tile_home_grass",
 			"allowed_place_types": [
 				"park",
 				"playground"
-			]
+			],
+			"district_id": "district_animal_park",
+			"label": "Animal Park + Zoo Corner",
+			"rect_cells": {
+				"h": 12.0,
+				"w": 17.0,
+				"x": 39.0,
+				"y": 19.0
+			},
+			"tile_id": "tile_home_grass"
 		},
 		{
-			"district_id": "district_coast_edge",
-			"label": "Beach / Coast Edge",
-			"rect_cells": {
-				"x": 52,
-				"y": 28,
-				"w": 7,
-				"h": 4
-			},
-			"tile_id": "tile_transport_pavement",
 			"allowed_place_types": [
 				"coast",
 				"transport"
-			]
+			],
+			"district_id": "district_coast_edge",
+			"label": "Beach / Coast Edge",
+			"rect_cells": {
+				"h": 4.0,
+				"w": 7.0,
+				"x": 52.0,
+				"y": 28.0
+			},
+			"tile_id": "tile_transport_pavement"
 		}
 	],
-	"roads": [
+	"interaction_cells": [
 		{
-			"road_id": "road_home_plaza_ring",
-			"label": "Home Plaza Ring",
-			"road_type": "home_loop",
-			"cells": [
-				{
-					"x": 28,
-					"y": 16
-				},
-				{
-					"x": 29,
-					"y": 16
-				},
-				{
-					"x": 30,
-					"y": 16
-				},
-				{
-					"x": 31,
-					"y": 16
-				},
-				{
-					"x": 31,
-					"y": 15
-				},
-				{
-					"x": 31,
-					"y": 17
-				},
-				{
-					"x": 32,
-					"y": 17
-				},
-				{
-					"x": 32,
-					"y": 18
-				},
-				{
-					"x": 33,
-					"y": 18
-				},
-				{
-					"x": 33,
-					"y": 19
-				},
-				{
-					"x": 34,
-					"y": 19
-				},
-				{
-					"x": 34,
-					"y": 20
-				},
-				{
-					"x": 33,
-					"y": 20
-				},
-				{
-					"x": 32,
-					"y": 20
-				},
-				{
-					"x": 31,
-					"y": 20
-				},
-				{
-					"x": 31,
-					"y": 19
-				},
-				{
-					"x": 30,
-					"y": 19
-				},
-				{
-					"x": 29,
-					"y": 19
-				},
-				{
-					"x": 28,
-					"y": 19
-				},
-				{
-					"x": 27,
-					"y": 19
-				},
-				{
-					"x": 27,
-					"y": 20
-				},
-				{
-					"x": 27,
-					"y": 18
-				},
-				{
-					"x": 27,
-					"y": 17
-				},
-				{
-					"x": 28,
-					"y": 17
-				}
-			],
-			"connects_to": [
-				"road_morning_school",
-				"road_shop_branch",
-				"road_animal_branch",
-				"road_story_bridge"
-			]
+			"action": "enter_home",
+			"cell": {
+				"x": 31.0,
+				"y": 19.0
+			},
+			"interaction_id": "interaction_home_entry",
+			"place_id": "place_home"
 		},
 		{
-			"road_id": "road_morning_school",
-			"label": "Morning School Road",
-			"road_type": "p0_main",
-			"cells": [
-				{
-					"x": 31,
-					"y": 19
-				},
-				{
-					"x": 30,
-					"y": 19
-				},
-				{
-					"x": 29,
-					"y": 19
-				},
-				{
-					"x": 28,
-					"y": 19
-				},
-				{
-					"x": 27,
-					"y": 19
-				},
-				{
-					"x": 27,
-					"y": 18
-				},
-				{
-					"x": 26,
-					"y": 18
-				},
-				{
-					"x": 26,
-					"y": 17
-				},
-				{
-					"x": 25,
-					"y": 17
-				},
-				{
-					"x": 25,
-					"y": 16
-				},
-				{
-					"x": 24,
-					"y": 16
-				},
-				{
-					"x": 24,
-					"y": 15
-				},
-				{
-					"x": 24,
-					"y": 14
-				},
-				{
-					"x": 23,
-					"y": 14
-				},
-				{
-					"x": 23,
-					"y": 13
-				},
-				{
-					"x": 22,
-					"y": 13
-				},
-				{
-					"x": 22,
-					"y": 12
-				},
-				{
-					"x": 21,
-					"y": 12
-				},
-				{
-					"x": 21,
-					"y": 11
-				},
-				{
-					"x": 20,
-					"y": 11
-				},
-				{
-					"x": 19,
-					"y": 11
-				},
-				{
-					"x": 18,
-					"y": 11
-				},
-				{
-					"x": 18,
-					"y": 10
-				},
-				{
-					"x": 17,
-					"y": 10
-				},
-				{
-					"x": 17,
-					"y": 9
-				},
-				{
-					"x": 16,
-					"y": 9
-				},
-				{
-					"x": 16,
-					"y": 8
-				},
-				{
-					"x": 15,
-					"y": 8
-				},
-				{
-					"x": 14,
-					"y": 8
-				},
-				{
-					"x": 13,
-					"y": 8
-				},
-				{
-					"x": 12,
-					"y": 8
-				},
-				{
-					"x": 11,
-					"y": 8
-				},
-				{
-					"x": 11,
-					"y": 7
-				},
-				{
-					"x": 10,
-					"y": 7
-				},
-				{
-					"x": 10,
-					"y": 6
-				},
-				{
-					"x": 9,
-					"y": 6
-				},
-				{
-					"x": 9,
-					"y": 5
-				},
-				{
-					"x": 8,
-					"y": 5
-				},
-				{
-					"x": 8,
-					"y": 4
-				},
-				{
-					"x": 7,
-					"y": 4
-				},
-				{
-					"x": 7,
-					"y": 3
-				}
-			],
-			"connects_to": [
-				"road_home_plaza_ring",
-				"road_school_yard_loop",
-				"road_story_bridge"
-			]
+			"action": "open_town_start",
+			"cell": {
+				"x": 17.0,
+				"y": 19.0
+			},
+			"interaction_id": "interaction_town_start",
+			"place_id": "place_town_start"
 		},
 		{
-			"road_id": "road_school_yard_loop",
-			"label": "School Yard Loop",
-			"road_type": "school",
-			"cells": [
-				{
-					"x": 21,
-					"y": 11
-				},
-				{
-					"x": 20,
-					"y": 11
-				},
-				{
-					"x": 19,
-					"y": 11
-				},
-				{
-					"x": 18,
-					"y": 11
-				},
-				{
-					"x": 18,
-					"y": 10
-				},
-				{
-					"x": 17,
-					"y": 10
-				},
-				{
-					"x": 17,
-					"y": 9
-				},
-				{
-					"x": 16,
-					"y": 9
-				},
-				{
-					"x": 16,
-					"y": 8
-				},
-				{
-					"x": 16,
-					"y": 10
-				},
-				{
-					"x": 16,
-					"y": 11
-				},
-				{
-					"x": 15,
-					"y": 11
-				},
-				{
-					"x": 15,
-					"y": 12
-				},
-				{
-					"x": 14,
-					"y": 12
-				},
-				{
-					"x": 14,
-					"y": 13
-				},
-				{
-					"x": 15,
-					"y": 13
-				},
-				{
-					"x": 16,
-					"y": 13
-				},
-				{
-					"x": 17,
-					"y": 13
-				},
-				{
-					"x": 18,
-					"y": 13
-				},
-				{
-					"x": 19,
-					"y": 13
-				},
-				{
-					"x": 20,
-					"y": 13
-				},
-				{
-					"x": 20,
-					"y": 14
-				},
-				{
-					"x": 19,
-					"y": 14
-				},
-				{
-					"x": 18,
-					"y": 14
-				},
-				{
-					"x": 17,
-					"y": 14
-				},
-				{
-					"x": 17,
-					"y": 15
-				},
-				{
-					"x": 18,
-					"y": 15
-				},
-				{
-					"x": 20,
-					"y": 12
-				},
-				{
-					"x": 21,
-					"y": 12
-				}
-			],
-			"connects_to": [
-				"road_morning_school"
-			]
+			"action": "enter_supermarket",
+			"cell": {
+				"x": 41.0,
+				"y": 11.0
+			},
+			"interaction_id": "interaction_supermarket_entry",
+			"place_id": "place_supermarket"
 		},
 		{
-			"road_id": "road_story_bridge",
-			"label": "Story Bridge Lane",
-			"road_type": "story_bridge",
-			"cells": [
-				{
-					"x": 24,
-					"y": 15
-				},
-				{
-					"x": 23,
-					"y": 15
-				},
-				{
-					"x": 22,
-					"y": 15
-				},
-				{
-					"x": 21,
-					"y": 15
-				},
-				{
-					"x": 20,
-					"y": 15
-				},
-				{
-					"x": 20,
-					"y": 16
-				},
-				{
-					"x": 19,
-					"y": 16
-				},
-				{
-					"x": 19,
-					"y": 17
-				},
-				{
-					"x": 18,
-					"y": 17
-				},
-				{
-					"x": 18,
-					"y": 18
-				},
-				{
-					"x": 18,
-					"y": 19
-				},
-				{
-					"x": 17,
-					"y": 19
-				},
-				{
-					"x": 17,
-					"y": 20
-				},
-				{
-					"x": 16,
-					"y": 20
-				},
-				{
-					"x": 16,
-					"y": 21
-				},
-				{
-					"x": 15,
-					"y": 21
-				},
-				{
-					"x": 15,
-					"y": 22
-				},
-				{
-					"x": 14,
-					"y": 22
-				},
-				{
-					"x": 14,
-					"y": 23
-				},
-				{
-					"x": 15,
-					"y": 23
-				},
-				{
-					"x": 16,
-					"y": 23
-				},
-				{
-					"x": 17,
-					"y": 23
-				},
-				{
-					"x": 18,
-					"y": 23
-				},
-				{
-					"x": 18,
-					"y": 24
-				},
-				{
-					"x": 19,
-					"y": 24
-				},
-				{
-					"x": 19,
-					"y": 25
-				},
-				{
-					"x": 20,
-					"y": 25
-				},
-				{
-					"x": 21,
-					"y": 25
-				},
-				{
-					"x": 22,
-					"y": 25
-				},
-				{
-					"x": 23,
-					"y": 25
-				},
-				{
-					"x": 24,
-					"y": 25
-				},
-				{
-					"x": 25,
-					"y": 25
-				},
-				{
-					"x": 26,
-					"y": 25
-				},
-				{
-					"x": 26,
-					"y": 24
-				},
-				{
-					"x": 27,
-					"y": 24
-				},
-				{
-					"x": 27,
-					"y": 23
-				},
-				{
-					"x": 28,
-					"y": 23
-				},
-				{
-					"x": 28,
-					"y": 22
-				},
-				{
-					"x": 29,
-					"y": 22
-				},
-				{
-					"x": 29,
-					"y": 21
-				},
-				{
-					"x": 30,
-					"y": 21
-				},
-				{
-					"x": 30,
-					"y": 20
-				},
-				{
-					"x": 31,
-					"y": 20
-				},
-				{
-					"x": 31,
-					"y": 19
-				}
-			],
-			"connects_to": [
-				"road_home_plaza_ring",
-				"road_morning_school"
-			]
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 28.0,
+				"y": 17.0
+			},
+			"event_id": "homeschool_home_morning_bag_001",
+			"interaction_id": "homeschool_home_morning_bag_001",
+			"place_id": "place_home"
 		},
 		{
-			"road_id": "road_shop_branch",
-			"label": "Shop Street Branch",
-			"road_type": "shop",
-			"cells": [
-				{
-					"x": 31,
-					"y": 19
-				},
-				{
-					"x": 32,
-					"y": 19
-				},
-				{
-					"x": 33,
-					"y": 19
-				},
-				{
-					"x": 34,
-					"y": 19
-				},
-				{
-					"x": 34,
-					"y": 18
-				},
-				{
-					"x": 35,
-					"y": 18
-				},
-				{
-					"x": 35,
-					"y": 17
-				},
-				{
-					"x": 36,
-					"y": 17
-				},
-				{
-					"x": 36,
-					"y": 16
-				},
-				{
-					"x": 37,
-					"y": 16
-				},
-				{
-					"x": 37,
-					"y": 15
-				},
-				{
-					"x": 38,
-					"y": 15
-				},
-				{
-					"x": 38,
-					"y": 14
-				},
-				{
-					"x": 39,
-					"y": 14
-				},
-				{
-					"x": 39,
-					"y": 13
-				},
-				{
-					"x": 39,
-					"y": 12
-				},
-				{
-					"x": 40,
-					"y": 12
-				},
-				{
-					"x": 40,
-					"y": 11
-				},
-				{
-					"x": 41,
-					"y": 11
-				},
-				{
-					"x": 41,
-					"y": 10
-				},
-				{
-					"x": 42,
-					"y": 10
-				},
-				{
-					"x": 42,
-					"y": 9
-				},
-				{
-					"x": 43,
-					"y": 9
-				},
-				{
-					"x": 43,
-					"y": 8
-				},
-				{
-					"x": 44,
-					"y": 8
-				},
-				{
-					"x": 45,
-					"y": 8
-				},
-				{
-					"x": 46,
-					"y": 8
-				},
-				{
-					"x": 47,
-					"y": 8
-				},
-				{
-					"x": 48,
-					"y": 8
-				},
-				{
-					"x": 49,
-					"y": 8
-				},
-				{
-					"x": 50,
-					"y": 8
-				},
-				{
-					"x": 50,
-					"y": 9
-				},
-				{
-					"x": 51,
-					"y": 9
-				},
-				{
-					"x": 51,
-					"y": 10
-				},
-				{
-					"x": 51,
-					"y": 11
-				},
-				{
-					"x": 52,
-					"y": 11
-				},
-				{
-					"x": 52,
-					"y": 12
-				},
-				{
-					"x": 53,
-					"y": 12
-				},
-				{
-					"x": 53,
-					"y": 13
-				}
-			],
-			"connects_to": [
-				"road_home_plaza_ring",
-				"road_home_shop_service"
-			]
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 28.0,
+				"y": 20.0
+			},
+			"event_id": "homeschool_home_sunny_good_morning_001",
+			"interaction_id": "homeschool_home_sunny_good_morning_001",
+			"place_id": "place_home"
 		},
 		{
-			"road_id": "road_animal_branch",
-			"label": "Animal Park Branch",
-			"road_type": "animal",
-			"cells": [
-				{
-					"x": 31,
-					"y": 19
-				},
-				{
-					"x": 32,
-					"y": 19
-				},
-				{
-					"x": 33,
-					"y": 19
-				},
-				{
-					"x": 34,
-					"y": 19
-				},
-				{
-					"x": 35,
-					"y": 19
-				},
-				{
-					"x": 36,
-					"y": 19
-				},
-				{
-					"x": 37,
-					"y": 19
-				},
-				{
-					"x": 37,
-					"y": 20
-				},
-				{
-					"x": 38,
-					"y": 20
-				},
-				{
-					"x": 38,
-					"y": 21
-				},
-				{
-					"x": 39,
-					"y": 21
-				},
-				{
-					"x": 39,
-					"y": 22
-				},
-				{
-					"x": 40,
-					"y": 22
-				},
-				{
-					"x": 41,
-					"y": 22
-				},
-				{
-					"x": 42,
-					"y": 22
-				},
-				{
-					"x": 43,
-					"y": 22
-				},
-				{
-					"x": 43,
-					"y": 21
-				},
-				{
-					"x": 44,
-					"y": 21
-				},
-				{
-					"x": 44,
-					"y": 20
-				},
-				{
-					"x": 45,
-					"y": 21
-				},
-				{
-					"x": 45,
-					"y": 22
-				},
-				{
-					"x": 46,
-					"y": 22
-				},
-				{
-					"x": 46,
-					"y": 23
-				},
-				{
-					"x": 47,
-					"y": 23
-				},
-				{
-					"x": 47,
-					"y": 24
-				},
-				{
-					"x": 48,
-					"y": 24
-				},
-				{
-					"x": 49,
-					"y": 24
-				},
-				{
-					"x": 50,
-					"y": 24
-				},
-				{
-					"x": 51,
-					"y": 24
-				},
-				{
-					"x": 52,
-					"y": 24
-				},
-				{
-					"x": 48,
-					"y": 25
-				},
-				{
-					"x": 47,
-					"y": 25
-				},
-				{
-					"x": 47,
-					"y": 26
-				},
-				{
-					"x": 46,
-					"y": 26
-				},
-				{
-					"x": 46,
-					"y": 27
-				},
-				{
-					"x": 45,
-					"y": 27
-				},
-				{
-					"x": 45,
-					"y": 28
-				},
-				{
-					"x": 44,
-					"y": 28
-				},
-				{
-					"x": 43,
-					"y": 28
-				},
-				{
-					"x": 42,
-					"y": 28
-				},
-				{
-					"x": 41,
-					"y": 28
-				},
-				{
-					"x": 41,
-					"y": 27
-				},
-				{
-					"x": 41,
-					"y": 26
-				},
-				{
-					"x": 41,
-					"y": 25
-				},
-				{
-					"x": 41,
-					"y": 24
-				},
-				{
-					"x": 41,
-					"y": 23
-				}
-			],
-			"connects_to": [
-				"road_home_plaza_ring",
-				"road_home_animal_garden",
-				"road_coast_preview"
-			]
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 24.0,
+				"y": 15.0
+			},
+			"event_id": "homeschool_walk_gate_sign_001",
+			"interaction_id": "homeschool_walk_gate_sign_001",
+			"place_id": "place_home_school_walk"
 		},
 		{
-			"road_id": "road_coast_preview",
-			"label": "Coast Preview Spur",
-			"road_type": "coast_optional",
-			"cells": [
-				{
-					"x": 52,
-					"y": 24
-				},
-				{
-					"x": 52,
-					"y": 25
-				},
-				{
-					"x": 52,
-					"y": 26
-				},
-				{
-					"x": 52,
-					"y": 27
-				},
-				{
-					"x": 52,
-					"y": 28
-				},
-				{
-					"x": 53,
-					"y": 28
-				},
-				{
-					"x": 53,
-					"y": 29
-				},
-				{
-					"x": 54,
-					"y": 29
-				},
-				{
-					"x": 54,
-					"y": 30
-				},
-				{
-					"x": 55,
-					"y": 30
-				},
-				{
-					"x": 56,
-					"y": 30
-				},
-				{
-					"x": 57,
-					"y": 30
-				}
-			],
-			"connects_to": [
-				"road_animal_branch"
-			]
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 16.0,
+				"y": 9.0
+			},
+			"event_id": "homeschool_walk_kite_sky_001",
+			"interaction_id": "homeschool_walk_kite_sky_001",
+			"place_id": "place_home_school_walk"
 		},
 		{
-			"road_id": "road_home_shop_service",
-			"label": "Home-Shop Service Path",
-			"road_type": "secondary",
-			"cells": [
-				{
-					"x": 34,
-					"y": 20
-				},
-				{
-					"x": 34,
-					"y": 19
-				},
-				{
-					"x": 34,
-					"y": 18
-				},
-				{
-					"x": 35,
-					"y": 18
-				},
-				{
-					"x": 35,
-					"y": 17
-				},
-				{
-					"x": 36,
-					"y": 17
-				},
-				{
-					"x": 36,
-					"y": 16
-				},
-				{
-					"x": 37,
-					"y": 16
-				},
-				{
-					"x": 37,
-					"y": 15
-				},
-				{
-					"x": 38,
-					"y": 15
-				},
-				{
-					"x": 38,
-					"y": 14
-				},
-				{
-					"x": 39,
-					"y": 14
-				},
-				{
-					"x": 39,
-					"y": 13
-				}
-			],
-			"connects_to": [
-				"road_shop_branch"
-			]
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 21.0,
+				"y": 12.0
+			},
+			"event_id": "homeschool_school_gate_hello_001",
+			"interaction_id": "homeschool_school_gate_hello_001",
+			"place_id": "place_school_gate"
 		},
 		{
-			"road_id": "road_home_animal_garden",
-			"label": "Home-Animal Garden Path",
-			"road_type": "secondary",
-			"cells": [
-				{
-					"x": 34,
-					"y": 20
-				},
-				{
-					"x": 35,
-					"y": 20
-				},
-				{
-					"x": 36,
-					"y": 20
-				},
-				{
-					"x": 37,
-					"y": 20
-				},
-				{
-					"x": 38,
-					"y": 20
-				},
-				{
-					"x": 38,
-					"y": 21
-				},
-				{
-					"x": 39,
-					"y": 21
-				},
-				{
-					"x": 39,
-					"y": 22
-				}
-			],
-			"connects_to": [
-				"road_animal_branch"
-			]
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 19.0,
+				"y": 15.0
+			},
+			"event_id": "homeschool_school_yard_play_001",
+			"interaction_id": "homeschool_school_yard_play_001",
+			"place_id": "place_school_yard"
+		},
+		{
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 31.0,
+				"y": 20.0
+			},
+			"event_id": "homeschool_return_sunny_story_001",
+			"interaction_id": "homeschool_return_sunny_story_001",
+			"place_id": "place_home"
+		},
+		{
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 42.0,
+				"y": 9.0
+			},
+			"event_id": "homeschool_shop_front_window_001",
+			"interaction_id": "homeschool_shop_front_window_001",
+			"place_id": "place_supermarket"
+		},
+		{
+			"action": "look_homeschool_event",
+			"cell": {
+				"x": 18.0,
+				"y": 14.0
+			},
+			"event_id": "homeschool_school_yard_chalk_flower_001",
+			"interaction_id": "homeschool_school_yard_chalk_flower_001",
+			"place_id": "place_school_yard"
+		},
+		{
+			"action": "look_p1_return_entry",
+			"cell": {
+				"x": 17.0,
+				"y": 18.0
+			},
+			"entry_kind": "bookshop_door",
+			"entry_label": "Bookshop 门口",
+			"interaction_id": "p1_entry_story_bear_bookshop_door",
+			"linked_anchor_id": "anchor_b_bear",
+			"npc_id": "story_bear",
+			"place_id": "place_town_start",
+			"text": "书店门口很安静，故事熊在里面留了一盏小灯。"
+		},
+		{
+			"action": "look_p1_return_entry",
+			"cell": {
+				"x": 18.0,
+				"y": 19.0
+			},
+			"entry_kind": "bear_corner",
+			"entry_label": "Bear Corner",
+			"interaction_id": "p1_entry_story_bear_corner",
+			"linked_anchor_id": "anchor_b_bear",
+			"npc_id": "story_bear",
+			"place_id": "place_town_start",
+			"text": "熊形书牌记住了你的脚步声。故事可以慢慢读。"
+		},
+		{
+			"action": "look_p1_return_entry",
+			"cell": {
+				"x": 35.0,
+				"y": 20.0
+			},
+			"entry_kind": "bus_stop_sign",
+			"entry_label": "家门口接送牌",
+			"interaction_id": "p1_entry_bus_helper_stop_sign",
+			"linked_anchor_id": "anchor_t_taxi",
+			"npc_id": "bus_helper",
+			"place_id": "place_home",
+			"text": "家门口的小车牌在这里等风，我们只在门口旁边看看。"
+		},
+		{
+			"action": "look_p1_return_entry",
+			"cell": {
+				"x": 34.0,
+				"y": 21.0
+			},
+			"entry_kind": "taxi_marker",
+			"entry_label": "Taxi marker",
+			"interaction_id": "p1_entry_bus_helper_taxi_marker",
+			"linked_anchor_id": "anchor_t_taxi",
+			"npc_id": "bus_helper",
+			"place_id": "place_home",
+			"text": "黄色小标记还在，家门口看起来很安心。"
+		},
+		{
+			"action": "open_town_start",
+			"cell": {
+				"x": 12,
+				"y": 20
+			},
+			"interaction_id": "interaction_place_plaza_story_bench_authoring",
+			"label": "Story Bench",
+			"place_id": "place_plaza_story_bench"
+		},
+		{
+			"action": "open_town_start",
+			"cell": {
+				"x": 49,
+				"y": 13
+			},
+			"interaction_id": "interaction_place_shop_ribbon_corner_authoring",
+			"label": "Ribbon Corner",
+			"place_id": "place_shop_ribbon_corner"
+		}
+	],
+	"map_id": "world_map_sunshine_town_v02_min",
+	"memory_anchors": [
+		{
+			"anchor_id": "anchor_a_apple",
+			"audio_id": "audio_word_apple",
+			"card_id": "card_a_apple_core",
+			"core_word": "Apple",
+			"letter": "A",
+			"place_id": "place_home",
+			"position": {
+				"x": 28,
+				"y": 16
+			},
+			"route_order": 1.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_b_bear",
+			"audio_id": "audio_word_bear",
+			"card_id": "card_b_bear_core",
+			"core_word": "Bear",
+			"letter": "B",
+			"place_id": "place_town_start",
+			"position": {
+				"x": 18,
+				"y": 18
+			},
+			"route_order": 2.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_c_clock",
+			"audio_id": "audio_word_clock",
+			"card_id": "card_c_clock_core",
+			"core_word": "Clock",
+			"letter": "C",
+			"place_id": "place_home",
+			"position": {
+				"x": 31,
+				"y": 15
+			},
+			"route_order": 3.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_d_dog",
+			"audio_id": "audio_word_dog",
+			"card_id": "card_d_dog_core",
+			"core_word": "Dog",
+			"letter": "D",
+			"place_id": "place_home",
+			"position": {
+				"x": 27,
+				"y": 20
+			},
+			"route_order": 4.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_e_elephant",
+			"audio_id": "audio_word_elephant",
+			"card_id": "card_e_elephant_core",
+			"core_word": "Elephant",
+			"letter": "E",
+			"place_id": "place_animal_park",
+			"position": {
+				"x": 41,
+				"y": 22
+			},
+			"route_order": 5.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_f_fox",
+			"audio_id": "audio_word_fox",
+			"card_id": "card_f_fox_core",
+			"core_word": "Fox",
+			"letter": "F",
+			"place_id": "place_animal_park",
+			"position": {
+				"x": 44,
+				"y": 20
+			},
+			"route_order": 6.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_g_gate",
+			"audio_id": "audio_word_gate",
+			"card_id": "card_g_gate_core",
+			"core_word": "Gate",
+			"letter": "G",
+			"place_id": "place_school_gate",
+			"position": {
+				"x": 21,
+				"y": 11
+			},
+			"route_order": 7.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_h_hat",
+			"audio_id": "audio_word_hat",
+			"card_id": "card_h_hat_core",
+			"core_word": "Hat",
+			"letter": "H",
+			"place_id": "place_supermarket",
+			"position": {
+				"x": 43,
+				"y": 8
+			},
+			"route_order": 8.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_i_ice_cream",
+			"audio_id": "audio_word_ice_cream",
+			"card_id": "card_i_ice_cream_core",
+			"core_word": "Ice cream",
+			"letter": "I",
+			"place_id": "place_supermarket",
+			"position": {
+				"x": 47,
+				"y": 8
+			},
+			"route_order": 9.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_j_jacket",
+			"audio_id": "audio_word_jacket",
+			"card_id": "card_j_jacket_core",
+			"core_word": "Jacket",
+			"letter": "J",
+			"place_id": "place_supermarket",
+			"position": {
+				"x": 53,
+				"y": 13
+			},
+			"route_order": 10.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_k_kite",
+			"audio_id": "audio_word_kite",
+			"card_id": "card_k_kite_core",
+			"core_word": "Kite",
+			"letter": "K",
+			"place_id": "place_school_yard",
+			"position": {
+				"x": 16,
+				"y": 8
+			},
+			"route_order": 11.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_l_lion",
+			"audio_id": "audio_word_lion",
+			"card_id": "card_l_lion_core",
+			"core_word": "Lion",
+			"letter": "L",
+			"place_id": "place_animal_park",
+			"position": {
+				"x": 47,
+				"y": 24
+			},
+			"route_order": 12.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_m_monkey",
+			"audio_id": "audio_word_monkey",
+			"card_id": "card_m_monkey_core",
+			"core_word": "Monkey",
+			"letter": "M",
+			"place_id": "place_animal_park",
+			"position": {
+				"x": 41,
+				"y": 28
+			},
+			"route_order": 13.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_n_net",
+			"audio_id": "audio_word_net",
+			"card_id": "card_n_net_core",
+			"core_word": "Net",
+			"letter": "N",
+			"place_id": "place_school_yard",
+			"position": {
+				"x": 14,
+				"y": 13
+			},
+			"route_order": 14.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_o_orange",
+			"audio_id": "audio_word_orange",
+			"card_id": "card_o_orange_core",
+			"core_word": "Orange",
+			"letter": "O",
+			"place_id": "place_supermarket",
+			"position": {
+				"x": 51,
+				"y": 10
+			},
+			"route_order": 15.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_p_panda",
+			"audio_id": "audio_word_panda",
+			"card_id": "card_p_panda_core",
+			"core_word": "Panda",
+			"letter": "P",
+			"place_id": "place_animal_park",
+			"position": {
+				"x": 45,
+				"y": 28
+			},
+			"route_order": 16.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_q_queen",
+			"audio_id": "audio_word_queen",
+			"card_id": "card_q_queen_core",
+			"core_word": "Queen",
+			"letter": "Q",
+			"place_id": "place_town_start",
+			"position": {
+				"x": 14,
+				"y": 23
+			},
+			"route_order": 17.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_r_robot",
+			"audio_id": "audio_word_robot",
+			"card_id": "card_r_robot_core",
+			"core_word": "Robot",
+			"letter": "R",
+			"place_id": "place_school_yard",
+			"position": {
+				"x": 20,
+				"y": 14
+			},
+			"route_order": 18.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_s_sun",
+			"audio_id": "audio_word_sun",
+			"card_id": "card_s_sun_core",
+			"core_word": "Sun",
+			"letter": "S",
+			"place_id": "place_sun_scene",
+			"position": {
+				"x": 7,
+				"y": 3
+			},
+			"route_order": 19.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_t_taxi",
+			"audio_id": "audio_word_taxi",
+			"card_id": "card_t_taxi_core",
+			"core_word": "Taxi",
+			"letter": "T",
+			"place_id": "place_home",
+			"position": {
+				"x": 34,
+				"y": 20
+			},
+			"route_order": 20.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_u_umbrella",
+			"audio_id": "audio_word_umbrella",
+			"card_id": "card_u_umbrella_core",
+			"core_word": "Umbrella",
+			"letter": "U",
+			"place_id": "place_coast_edge",
+			"position": {
+				"x": 54,
+				"y": 30
+			},
+			"route_order": 21.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_v_violin",
+			"audio_id": "audio_word_violin",
+			"card_id": "card_v_violin_core",
+			"core_word": "Violin",
+			"letter": "V",
+			"place_id": "place_town_start",
+			"position": {
+				"x": 19,
+				"y": 25
+			},
+			"route_order": 22.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_w_watch",
+			"audio_id": "audio_word_watch",
+			"card_id": "card_w_watch_core",
+			"core_word": "Watch",
+			"letter": "W",
+			"place_id": "place_home",
+			"position": {
+				"x": 32,
+				"y": 18
+			},
+			"route_order": 23.0,
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"anchor_id": "anchor_x_x_mark_box",
+			"audio_id": "audio_word_x_mark_box",
+			"card_id": "card_x_x_mark_box_core",
+			"core_word": "X-mark Box",
+			"letter": "X",
+			"place_id": "place_coast_edge",
+			"position": {
+				"x": 57,
+				"y": 30
+			},
+			"route_order": 24.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_y_yo_yo",
+			"audio_id": "audio_word_yo_yo",
+			"card_id": "card_y_yo_yo_core",
+			"core_word": "Yo-yo",
+			"letter": "Y",
+			"place_id": "place_school_yard",
+			"position": {
+				"x": 17,
+				"y": 15
+			},
+			"route_order": 25.0,
+			"unlock_rule": "reserved_memory_anchor"
+		},
+		{
+			"anchor_id": "anchor_z_zebra",
+			"audio_id": "audio_word_zebra",
+			"card_id": "card_z_zebra_core",
+			"core_word": "Zebra",
+			"letter": "Z",
+			"place_id": "place_animal_park",
+			"position": {
+				"x": 52,
+				"y": 24
+			},
+			"route_order": 26.0,
+			"unlock_rule": "reserved_memory_anchor"
 		}
 	],
 	"places": [
 		{
-			"place_id": "place_sun_scene",
-			"label": "Sun Scene",
-			"place_type": "landmark",
+			"card_actions": [
+				"card_s_sun_core"
+			],
 			"district_id": "district_sun_scene",
+			"interaction_cell": {
+				"x": 7.0,
+				"y": 4.0
+			},
+			"label": "Sun Scene",
+			"landmark_asset_id": "landmark_sun_scene_placeholder",
+			"occupied_cells": [],
+			"place_action": "open_town_start",
+			"place_id": "place_sun_scene",
+			"place_type": "landmark",
 			"position": {
 				"x": 5,
 				"y": 2
 			},
 			"size": {
-				"w": 5,
-				"h": 3
+				"h": 3.0,
+				"w": 5.0
 			},
-			"landmark_asset_id": "landmark_sun_scene_placeholder",
-			"occupied_cells": [],
-			"interaction_cell": {
-				"x": 7,
-				"y": 4
-			},
-			"place_action": "open_town_start",
-			"card_actions": [
-				"card_s_sun_core"
-			],
 			"unlock_rule": "default_unlocked"
 		},
 		{
-			"place_id": "place_home",
-			"label": "Home",
-			"place_type": "home",
-			"district_id": "district_home_core",
-			"position": {
-				"x": 29,
-				"y": 17
-			},
-			"size": {
-				"w": 3,
-				"h": 2
-			},
-			"landmark_asset_id": "landmark_home_placeholder",
-			"occupied_cells": [
-				{
-					"x": 29,
-					"y": 17
-				},
-				{
-					"x": 30,
-					"y": 17
-				},
-				{
-					"x": 31,
-					"y": 17
-				},
-				{
-					"x": 29,
-					"y": 18
-				},
-				{
-					"x": 30,
-					"y": 18
-				},
-				{
-					"x": 31,
-					"y": 18
-				}
-			],
-			"interaction_cell": {
-				"x": 31,
-				"y": 19
-			},
-			"place_action": "enter_home",
 			"card_actions": [
 				"card_a_apple_core",
 				"card_c_clock_core",
@@ -1322,212 +786,237 @@
 				"card_w_watch_core",
 				"card_t_taxi_core"
 			],
+			"district_id": "district_home_core",
+			"interaction_cell": {
+				"x": 31.0,
+				"y": 19.0
+			},
+			"label": "Home",
+			"landmark_asset_id": "landmark_home_placeholder",
+			"occupied_cells": [
+				{
+					"x": 29.0,
+					"y": 17.0
+				},
+				{
+					"x": 30.0,
+					"y": 17.0
+				},
+				{
+					"x": 31.0,
+					"y": 17.0
+				},
+				{
+					"x": 29.0,
+					"y": 18.0
+				},
+				{
+					"x": 30.0,
+					"y": 18.0
+				},
+				{
+					"x": 31.0,
+					"y": 18.0
+				}
+			],
+			"place_action": "enter_home",
+			"place_id": "place_home",
+			"place_type": "home",
+			"position": {
+				"x": 29,
+				"y": 17
+			},
+			"size": {
+				"h": 2.0,
+				"w": 3.0
+			},
 			"unlock_rule": "default_unlocked"
 		},
 		{
-			"place_id": "place_home_school_walk",
-			"label": "Morning School Walk",
-			"place_type": "walk",
-			"district_id": "district_school_morning",
-			"position": {
-				"x": 23,
-				"y": 14
-			},
-			"size": {
-				"w": 2,
-				"h": 2
-			},
-			"landmark_asset_id": "landmark_home_school_walk_placeholder",
-			"occupied_cells": [],
-			"interaction_cell": {
-				"x": 24,
-				"y": 15
-			},
-			"place_action": "look_homeschool_event",
 			"card_actions": [
 				"card_g_gate_core",
 				"card_k_kite_core",
 				"card_s_sun_core"
 			],
+			"district_id": "district_school_morning",
+			"interaction_cell": {
+				"x": 24.0,
+				"y": 15.0
+			},
+			"label": "Morning School Walk",
+			"landmark_asset_id": "landmark_home_school_walk_placeholder",
+			"occupied_cells": [],
+			"place_action": "look_homeschool_event",
+			"place_id": "place_home_school_walk",
+			"place_type": "walk",
+			"position": {
+				"x": 23,
+				"y": 14
+			},
+			"size": {
+				"h": 2.0,
+				"w": 2.0
+			},
 			"unlock_rule": "default_unlocked"
 		},
 		{
-			"place_id": "place_school_gate",
-			"label": "School Gate",
-			"place_type": "school",
+			"card_actions": [
+				"card_g_gate_core"
+			],
 			"district_id": "district_school_morning",
+			"interaction_cell": {
+				"x": 21.0,
+				"y": 12.0
+			},
+			"label": "School Gate",
+			"landmark_asset_id": "landmark_school_gate_placeholder",
+			"occupied_cells": [],
+			"place_action": "look_homeschool_event",
+			"place_id": "place_school_gate",
+			"place_type": "school",
 			"position": {
 				"x": 20,
 				"y": 10
 			},
 			"size": {
-				"w": 3,
-				"h": 2
+				"h": 2.0,
+				"w": 3.0
 			},
-			"landmark_asset_id": "landmark_school_gate_placeholder",
-			"occupied_cells": [],
-			"interaction_cell": {
-				"x": 21,
-				"y": 12
-			},
-			"place_action": "look_homeschool_event",
-			"card_actions": [
-				"card_g_gate_core"
-			],
 			"unlock_rule": "default_unlocked"
 		},
 		{
-			"place_id": "place_school_yard",
-			"label": "School Yard",
-			"place_type": "playground",
-			"district_id": "district_school_morning",
-			"position": {
-				"x": 15,
-				"y": 9
-			},
-			"size": {
-				"w": 8,
-				"h": 7
-			},
-			"landmark_asset_id": "landmark_school_yard_placeholder",
-			"occupied_cells": [],
-			"interaction_cell": {
-				"x": 19,
-				"y": 15
-			},
-			"place_action": "look_homeschool_event",
 			"card_actions": [
 				"card_k_kite_core",
 				"card_n_net_core",
 				"card_r_robot_core",
 				"card_y_yo_yo_core"
 			],
+			"district_id": "district_school_morning",
+			"interaction_cell": {
+				"x": 19.0,
+				"y": 15.0
+			},
+			"label": "School Yard",
+			"landmark_asset_id": "landmark_school_yard_placeholder",
+			"occupied_cells": [],
+			"place_action": "look_homeschool_event",
+			"place_id": "place_school_yard",
+			"place_type": "playground",
+			"position": {
+				"x": 15,
+				"y": 9
+			},
+			"size": {
+				"h": 7.0,
+				"w": 8.0
+			},
 			"unlock_rule": "default_unlocked"
 		},
 		{
-			"place_id": "place_town_start",
-			"label": "Story + Culture Bridge",
-			"place_type": "bookshop",
-			"district_id": "district_story_culture",
-			"position": {
-				"x": 16,
-				"y": 19
-			},
-			"size": {
-				"w": 4,
-				"h": 3
-			},
-			"landmark_asset_id": "landmark_town_start_placeholder",
-			"occupied_cells": [],
-			"interaction_cell": {
-				"x": 18,
-				"y": 19
-			},
-			"place_action": "open_town_start",
 			"card_actions": [
 				"card_b_bear_core",
 				"card_q_queen_core",
 				"card_v_violin_core"
 			],
+			"district_id": "district_story_culture",
+			"interaction_cell": {
+				"x": 18.0,
+				"y": 19.0
+			},
+			"label": "Story + Culture Bridge",
+			"landmark_asset_id": "landmark_town_start_placeholder",
+			"occupied_cells": [],
+			"place_action": "open_town_start",
+			"place_id": "place_town_start",
+			"place_type": "bookshop",
+			"position": {
+				"x": 16,
+				"y": 19
+			},
+			"size": {
+				"h": 3.0,
+				"w": 4.0
+			},
 			"unlock_rule": "default_unlocked"
 		},
 		{
-			"place_id": "place_supermarket",
-			"label": "Shop Street",
-			"place_type": "shop",
-			"district_id": "district_shop_street",
-			"position": {
-				"x": 44,
-				"y": 9
-			},
-			"size": {
-				"w": 4,
-				"h": 3
-			},
-			"landmark_asset_id": "landmark_supermarket_placeholder",
-			"occupied_cells": [
-				{
-					"x": 44,
-					"y": 9
-				},
-				{
-					"x": 45,
-					"y": 9
-				},
-				{
-					"x": 46,
-					"y": 9
-				},
-				{
-					"x": 47,
-					"y": 9
-				},
-				{
-					"x": 44,
-					"y": 10
-				},
-				{
-					"x": 45,
-					"y": 10
-				},
-				{
-					"x": 46,
-					"y": 10
-				},
-				{
-					"x": 47,
-					"y": 10
-				},
-				{
-					"x": 44,
-					"y": 11
-				},
-				{
-					"x": 45,
-					"y": 11
-				},
-				{
-					"x": 46,
-					"y": 11
-				},
-				{
-					"x": 47,
-					"y": 11
-				}
-			],
-			"interaction_cell": {
-				"x": 41,
-				"y": 11
-			},
-			"place_action": "enter_supermarket",
 			"card_actions": [
 				"card_h_hat_core",
 				"card_i_ice_cream_core",
 				"card_o_orange_core",
 				"card_j_jacket_core"
 			],
+			"district_id": "district_shop_street",
+			"interaction_cell": {
+				"x": 41.0,
+				"y": 11.0
+			},
+			"label": "Shop Street",
+			"landmark_asset_id": "landmark_supermarket_placeholder",
+			"occupied_cells": [
+				{
+					"x": 44.0,
+					"y": 9.0
+				},
+				{
+					"x": 45.0,
+					"y": 9.0
+				},
+				{
+					"x": 46.0,
+					"y": 9.0
+				},
+				{
+					"x": 47.0,
+					"y": 9.0
+				},
+				{
+					"x": 44.0,
+					"y": 10.0
+				},
+				{
+					"x": 45.0,
+					"y": 10.0
+				},
+				{
+					"x": 46.0,
+					"y": 10.0
+				},
+				{
+					"x": 47.0,
+					"y": 10.0
+				},
+				{
+					"x": 44.0,
+					"y": 11.0
+				},
+				{
+					"x": 45.0,
+					"y": 11.0
+				},
+				{
+					"x": 46.0,
+					"y": 11.0
+				},
+				{
+					"x": 47.0,
+					"y": 11.0
+				}
+			],
+			"place_action": "enter_supermarket",
+			"place_id": "place_supermarket",
+			"place_type": "shop",
+			"position": {
+				"x": 44,
+				"y": 9
+			},
+			"size": {
+				"h": 3.0,
+				"w": 4.0
+			},
 			"unlock_rule": "default_unlocked"
 		},
 		{
-			"place_id": "place_animal_park",
-			"label": "Animal Park",
-			"place_type": "park",
-			"district_id": "district_animal_park",
-			"position": {
-				"x": 40,
-				"y": 21
-			},
-			"size": {
-				"w": 14,
-				"h": 9
-			},
-			"landmark_asset_id": "landmark_town_start_placeholder",
-			"occupied_cells": [],
-			"interaction_cell": {
-				"x": 39,
-				"y": 22
-			},
-			"place_action": "open_town_start",
 			"card_actions": [
 				"card_e_elephant_core",
 				"card_f_fox_core",
@@ -1536,648 +1025,1235 @@
 				"card_m_monkey_core",
 				"card_z_zebra_core"
 			],
+			"district_id": "district_animal_park",
+			"interaction_cell": {
+				"x": 39.0,
+				"y": 22.0
+			},
+			"label": "Animal Park",
+			"landmark_asset_id": "landmark_town_start_placeholder",
+			"occupied_cells": [],
+			"place_action": "open_town_start",
+			"place_id": "place_animal_park",
+			"place_type": "park",
+			"position": {
+				"x": 40,
+				"y": 21
+			},
+			"size": {
+				"h": 9.0,
+				"w": 14.0
+			},
 			"unlock_rule": "default_unlocked"
 		},
 		{
-			"place_id": "place_coast_edge",
-			"label": "Beach / Coast Edge",
-			"place_type": "coast",
+			"card_actions": [
+				"card_u_umbrella_core",
+				"card_x_x_mark_box_core"
+			],
 			"district_id": "district_coast_edge",
+			"interaction_cell": {
+				"x": 52.0,
+				"y": 27.0
+			},
+			"label": "Beach / Coast Edge",
+			"landmark_asset_id": "landmark_town_start_placeholder",
+			"occupied_cells": [],
+			"place_action": "open_town_start",
+			"place_id": "place_coast_edge",
+			"place_type": "coast",
 			"position": {
 				"x": 53,
 				"y": 29
 			},
 			"size": {
-				"w": 6,
-				"h": 3
+				"h": 3.0,
+				"w": 6.0
 			},
-			"landmark_asset_id": "landmark_town_start_placeholder",
-			"occupied_cells": [],
+			"unlock_rule": "default_unlocked"
+		},
+		{
+			"card_actions": [],
+			"district_id": "district_story_culture",
 			"interaction_cell": {
-				"x": 52,
-				"y": 27
+				"x": 12,
+				"y": 20
 			},
-			"place_action": "open_town_start",
-			"card_actions": [
-				"card_u_umbrella_core",
-				"card_x_x_mark_box_core"
+			"label": "Story Bench",
+			"landmark_asset_id": "authoring_placeholder",
+			"occupied_cells": [
+				{
+					"x": 12,
+					"y": 19
+				}
 			],
-			"unlock_rule": "default_unlocked"
-		}
-	],
-	"memory_anchors": [
-		{
-			"anchor_id": "anchor_a_apple",
-			"letter": "A",
-			"core_word": "Apple",
-			"route_order": 1,
-			"place_id": "place_home",
+			"place_action": "open_town_start",
+			"place_id": "place_plaza_story_bench",
+			"place_type": "town_start",
 			"position": {
-				"x": 28,
-				"y": 16
-			},
-			"card_id": "card_a_apple_core",
-			"audio_id": "audio_word_apple",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_b_bear",
-			"letter": "B",
-			"core_word": "Bear",
-			"route_order": 2,
-			"place_id": "place_town_start",
-			"position": {
-				"x": 18,
-				"y": 18
-			},
-			"card_id": "card_b_bear_core",
-			"audio_id": "audio_word_bear",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_c_clock",
-			"letter": "C",
-			"core_word": "Clock",
-			"route_order": 3,
-			"place_id": "place_home",
-			"position": {
-				"x": 31,
-				"y": 15
-			},
-			"card_id": "card_c_clock_core",
-			"audio_id": "audio_word_clock",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_d_dog",
-			"letter": "D",
-			"core_word": "Dog",
-			"route_order": 4,
-			"place_id": "place_home",
-			"position": {
-				"x": 27,
-				"y": 20
-			},
-			"card_id": "card_d_dog_core",
-			"audio_id": "audio_word_dog",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_e_elephant",
-			"letter": "E",
-			"core_word": "Elephant",
-			"route_order": 5,
-			"place_id": "place_animal_park",
-			"position": {
-				"x": 41,
-				"y": 22
-			},
-			"card_id": "card_e_elephant_core",
-			"audio_id": "audio_word_elephant",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_f_fox",
-			"letter": "F",
-			"core_word": "Fox",
-			"route_order": 6,
-			"place_id": "place_animal_park",
-			"position": {
-				"x": 44,
-				"y": 20
-			},
-			"card_id": "card_f_fox_core",
-			"audio_id": "audio_word_fox",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_g_gate",
-			"letter": "G",
-			"core_word": "Gate",
-			"route_order": 7,
-			"place_id": "place_school_gate",
-			"position": {
-				"x": 21,
-				"y": 11
-			},
-			"card_id": "card_g_gate_core",
-			"audio_id": "audio_word_gate",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_h_hat",
-			"letter": "H",
-			"core_word": "Hat",
-			"route_order": 8,
-			"place_id": "place_supermarket",
-			"position": {
-				"x": 43,
-				"y": 8
-			},
-			"card_id": "card_h_hat_core",
-			"audio_id": "audio_word_hat",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_i_ice_cream",
-			"letter": "I",
-			"core_word": "Ice cream",
-			"route_order": 9,
-			"place_id": "place_supermarket",
-			"position": {
-				"x": 47,
-				"y": 8
-			},
-			"card_id": "card_i_ice_cream_core",
-			"audio_id": "audio_word_ice_cream",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_j_jacket",
-			"letter": "J",
-			"core_word": "Jacket",
-			"route_order": 10,
-			"place_id": "place_supermarket",
-			"position": {
-				"x": 53,
-				"y": 13
-			},
-			"card_id": "card_j_jacket_core",
-			"audio_id": "audio_word_jacket",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_k_kite",
-			"letter": "K",
-			"core_word": "Kite",
-			"route_order": 11,
-			"place_id": "place_school_yard",
-			"position": {
-				"x": 16,
-				"y": 8
-			},
-			"card_id": "card_k_kite_core",
-			"audio_id": "audio_word_kite",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_l_lion",
-			"letter": "L",
-			"core_word": "Lion",
-			"route_order": 12,
-			"place_id": "place_animal_park",
-			"position": {
-				"x": 47,
-				"y": 24
-			},
-			"card_id": "card_l_lion_core",
-			"audio_id": "audio_word_lion",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_m_monkey",
-			"letter": "M",
-			"core_word": "Monkey",
-			"route_order": 13,
-			"place_id": "place_animal_park",
-			"position": {
-				"x": 41,
-				"y": 28
-			},
-			"card_id": "card_m_monkey_core",
-			"audio_id": "audio_word_monkey",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_n_net",
-			"letter": "N",
-			"core_word": "Net",
-			"route_order": 14,
-			"place_id": "place_school_yard",
-			"position": {
-				"x": 14,
-				"y": 13
-			},
-			"card_id": "card_n_net_core",
-			"audio_id": "audio_word_net",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_o_orange",
-			"letter": "O",
-			"core_word": "Orange",
-			"route_order": 15,
-			"place_id": "place_supermarket",
-			"position": {
-				"x": 51,
-				"y": 10
-			},
-			"card_id": "card_o_orange_core",
-			"audio_id": "audio_word_orange",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_p_panda",
-			"letter": "P",
-			"core_word": "Panda",
-			"route_order": 16,
-			"place_id": "place_animal_park",
-			"position": {
-				"x": 45,
-				"y": 28
-			},
-			"card_id": "card_p_panda_core",
-			"audio_id": "audio_word_panda",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_q_queen",
-			"letter": "Q",
-			"core_word": "Queen",
-			"route_order": 17,
-			"place_id": "place_town_start",
-			"position": {
-				"x": 14,
-				"y": 23
-			},
-			"card_id": "card_q_queen_core",
-			"audio_id": "audio_word_queen",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_r_robot",
-			"letter": "R",
-			"core_word": "Robot",
-			"route_order": 18,
-			"place_id": "place_school_yard",
-			"position": {
-				"x": 20,
-				"y": 14
-			},
-			"card_id": "card_r_robot_core",
-			"audio_id": "audio_word_robot",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_s_sun",
-			"letter": "S",
-			"core_word": "Sun",
-			"route_order": 19,
-			"place_id": "place_sun_scene",
-			"position": {
-				"x": 7,
-				"y": 3
-			},
-			"card_id": "card_s_sun_core",
-			"audio_id": "audio_word_sun",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_t_taxi",
-			"letter": "T",
-			"core_word": "Taxi",
-			"route_order": 20,
-			"place_id": "place_home",
-			"position": {
-				"x": 34,
-				"y": 20
-			},
-			"card_id": "card_t_taxi_core",
-			"audio_id": "audio_word_taxi",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_u_umbrella",
-			"letter": "U",
-			"core_word": "Umbrella",
-			"route_order": 21,
-			"place_id": "place_coast_edge",
-			"position": {
-				"x": 54,
-				"y": 30
-			},
-			"card_id": "card_u_umbrella_core",
-			"audio_id": "audio_word_umbrella",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_v_violin",
-			"letter": "V",
-			"core_word": "Violin",
-			"route_order": 22,
-			"place_id": "place_town_start",
-			"position": {
-				"x": 19,
-				"y": 25
-			},
-			"card_id": "card_v_violin_core",
-			"audio_id": "audio_word_violin",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_w_watch",
-			"letter": "W",
-			"core_word": "Watch",
-			"route_order": 23,
-			"place_id": "place_home",
-			"position": {
-				"x": 32,
-				"y": 18
-			},
-			"card_id": "card_w_watch_core",
-			"audio_id": "audio_word_watch",
-			"unlock_rule": "default_unlocked"
-		},
-		{
-			"anchor_id": "anchor_x_x_mark_box",
-			"letter": "X",
-			"core_word": "X-mark Box",
-			"route_order": 24,
-			"place_id": "place_coast_edge",
-			"position": {
-				"x": 57,
-				"y": 30
-			},
-			"card_id": "card_x_x_mark_box_core",
-			"audio_id": "audio_word_x_mark_box",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_y_yo_yo",
-			"letter": "Y",
-			"core_word": "Yo-yo",
-			"route_order": 25,
-			"place_id": "place_school_yard",
-			"position": {
-				"x": 17,
-				"y": 15
-			},
-			"card_id": "card_y_yo_yo_core",
-			"audio_id": "audio_word_yo_yo",
-			"unlock_rule": "reserved_memory_anchor"
-		},
-		{
-			"anchor_id": "anchor_z_zebra",
-			"letter": "Z",
-			"core_word": "Zebra",
-			"route_order": 26,
-			"place_id": "place_animal_park",
-			"position": {
-				"x": 52,
-				"y": 24
-			},
-			"card_id": "card_z_zebra_core",
-			"audio_id": "audio_word_zebra",
-			"unlock_rule": "reserved_memory_anchor"
-		}
-	],
-	"collision_cells": [
-		{
-			"x": 29,
-			"y": 17
-		},
-		{
-			"x": 30,
-			"y": 17
-		},
-		{
-			"x": 31,
-			"y": 17
-		},
-		{
-			"x": 29,
-			"y": 18
-		},
-		{
-			"x": 30,
-			"y": 18
-		},
-		{
-			"x": 31,
-			"y": 18
-		},
-		{
-			"x": 44,
-			"y": 9
-		},
-		{
-			"x": 45,
-			"y": 9
-		},
-		{
-			"x": 46,
-			"y": 9
-		},
-		{
-			"x": 47,
-			"y": 9
-		},
-		{
-			"x": 44,
-			"y": 10
-		},
-		{
-			"x": 45,
-			"y": 10
-		},
-		{
-			"x": 46,
-			"y": 10
-		},
-		{
-			"x": 47,
-			"y": 10
-		},
-		{
-			"x": 44,
-			"y": 11
-		},
-		{
-			"x": 45,
-			"y": 11
-		},
-		{
-			"x": 46,
-			"y": 11
-		},
-		{
-			"x": 47,
-			"y": 11
-		}
-	],
-	"interaction_cells": [
-		{
-			"interaction_id": "interaction_home_entry",
-			"place_id": "place_home",
-			"cell": {
-				"x": 31,
+				"x": 12,
 				"y": 19
 			},
-			"action": "enter_home"
-		},
-		{
-			"interaction_id": "interaction_town_start",
-			"place_id": "place_town_start",
-			"cell": {
-				"x": 17,
-				"y": 19
+			"size": {
+				"h": 1,
+				"w": 1
 			},
-			"action": "open_town_start"
+			"unlock_rule": "default_unlocked"
 		},
 		{
-			"interaction_id": "interaction_supermarket_entry",
-			"place_id": "place_supermarket",
-			"cell": {
-				"x": 41,
-				"y": 11
+			"card_actions": [],
+			"district_id": "district_shop_street",
+			"interaction_cell": {
+				"x": 49,
+				"y": 13
 			},
-			"action": "enter_supermarket"
-		},
-		{
-			"interaction_id": "homeschool_home_morning_bag_001",
-			"place_id": "place_home",
-			"cell": {
-				"x": 28,
-				"y": 17
-			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_home_morning_bag_001"
-		},
-		{
-			"interaction_id": "homeschool_home_sunny_good_morning_001",
-			"place_id": "place_home",
-			"cell": {
-				"x": 28,
-				"y": 20
-			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_home_sunny_good_morning_001"
-		},
-		{
-			"interaction_id": "homeschool_walk_gate_sign_001",
-			"place_id": "place_home_school_walk",
-			"cell": {
-				"x": 24,
-				"y": 15
-			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_walk_gate_sign_001"
-		},
-		{
-			"interaction_id": "homeschool_walk_kite_sky_001",
-			"place_id": "place_home_school_walk",
-			"cell": {
-				"x": 16,
-				"y": 9
-			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_walk_kite_sky_001"
-		},
-		{
-			"interaction_id": "homeschool_school_gate_hello_001",
-			"place_id": "place_school_gate",
-			"cell": {
-				"x": 21,
+			"label": "Ribbon Corner",
+			"landmark_asset_id": "authoring_placeholder",
+			"occupied_cells": [
+				{
+					"x": 49,
+					"y": 12
+				}
+			],
+			"place_action": "open_town_start",
+			"place_id": "place_shop_ribbon_corner",
+			"place_type": "food",
+			"position": {
+				"x": 49,
 				"y": 12
 			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_school_gate_hello_001"
-		},
-		{
-			"interaction_id": "homeschool_school_yard_play_001",
-			"place_id": "place_school_yard",
-			"cell": {
-				"x": 19,
-				"y": 15
+			"size": {
+				"h": 1,
+				"w": 1
 			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_school_yard_play_001"
-		},
-		{
-			"interaction_id": "homeschool_return_sunny_story_001",
-			"place_id": "place_home",
-			"cell": {
-				"x": 31,
-				"y": 20
-			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_return_sunny_story_001"
-		},
-		{
-			"interaction_id": "homeschool_shop_front_window_001",
-			"place_id": "place_supermarket",
-			"cell": {
-				"x": 42,
-				"y": 9
-			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_shop_front_window_001"
-		},
-		{
-			"interaction_id": "homeschool_school_yard_chalk_flower_001",
-			"place_id": "place_school_yard",
-			"cell": {
-				"x": 18,
-				"y": 14
-			},
-			"action": "look_homeschool_event",
-			"event_id": "homeschool_school_yard_chalk_flower_001"
-		},
-		{
-			"interaction_id": "p1_entry_story_bear_bookshop_door",
-			"place_id": "place_town_start",
-			"cell": {
-				"x": 17,
-				"y": 18
-			},
-			"action": "look_p1_return_entry",
-			"entry_label": "Bookshop 门口",
-			"entry_kind": "bookshop_door",
-			"npc_id": "story_bear",
-			"linked_anchor_id": "anchor_b_bear",
-			"text": "书店门口很安静，故事熊在里面留了一盏小灯。"
-		},
-		{
-			"interaction_id": "p1_entry_story_bear_corner",
-			"place_id": "place_town_start",
-			"cell": {
-				"x": 18,
-				"y": 19
-			},
-			"action": "look_p1_return_entry",
-			"entry_label": "Bear Corner",
-			"entry_kind": "bear_corner",
-			"npc_id": "story_bear",
-			"linked_anchor_id": "anchor_b_bear",
-			"text": "熊形书牌记住了你的脚步声。故事可以慢慢读。"
-		},
-		{
-			"interaction_id": "p1_entry_bus_helper_stop_sign",
-			"place_id": "place_home",
-			"cell": {
-				"x": 35,
-				"y": 20
-			},
-			"action": "look_p1_return_entry",
-			"entry_label": "家门口接送牌",
-			"entry_kind": "bus_stop_sign",
-			"npc_id": "bus_helper",
-			"linked_anchor_id": "anchor_t_taxi",
-			"text": "家门口的小车牌在这里等风，我们只在门口旁边看看。"
-		},
-		{
-			"interaction_id": "p1_entry_bus_helper_taxi_marker",
-			"place_id": "place_home",
-			"cell": {
-				"x": 34,
-				"y": 21
-			},
-			"action": "look_p1_return_entry",
-			"entry_label": "Taxi marker",
-			"entry_kind": "taxi_marker",
-			"npc_id": "bus_helper",
-			"linked_anchor_id": "anchor_t_taxi",
-			"text": "黄色小标记还在，家门口看起来很安心。"
+			"unlock_rule": "default_unlocked"
 		}
-	]
+	],
+	"roads": [
+		{
+			"cells": [
+				{
+					"x": 28.0,
+					"y": 16.0
+				},
+				{
+					"x": 29.0,
+					"y": 16.0
+				},
+				{
+					"x": 30.0,
+					"y": 16.0
+				},
+				{
+					"x": 31.0,
+					"y": 16.0
+				},
+				{
+					"x": 31.0,
+					"y": 15.0
+				},
+				{
+					"x": 31.0,
+					"y": 17.0
+				},
+				{
+					"x": 32.0,
+					"y": 17.0
+				},
+				{
+					"x": 32.0,
+					"y": 18.0
+				},
+				{
+					"x": 33.0,
+					"y": 18.0
+				},
+				{
+					"x": 33.0,
+					"y": 19.0
+				},
+				{
+					"x": 34.0,
+					"y": 19.0
+				},
+				{
+					"x": 34.0,
+					"y": 20.0
+				},
+				{
+					"x": 33.0,
+					"y": 20.0
+				},
+				{
+					"x": 32.0,
+					"y": 20.0
+				},
+				{
+					"x": 31.0,
+					"y": 20.0
+				},
+				{
+					"x": 31.0,
+					"y": 19.0
+				},
+				{
+					"x": 30.0,
+					"y": 19.0
+				},
+				{
+					"x": 29.0,
+					"y": 19.0
+				},
+				{
+					"x": 28.0,
+					"y": 19.0
+				},
+				{
+					"x": 27.0,
+					"y": 19.0
+				},
+				{
+					"x": 27.0,
+					"y": 20.0
+				},
+				{
+					"x": 27.0,
+					"y": 18.0
+				},
+				{
+					"x": 27.0,
+					"y": 17.0
+				},
+				{
+					"x": 28.0,
+					"y": 17.0
+				}
+			],
+			"connects_to": [
+				"road_morning_school",
+				"road_shop_branch",
+				"road_animal_branch",
+				"road_story_bridge"
+			],
+			"label": "Home Plaza Ring",
+			"road_id": "road_home_plaza_ring",
+			"road_type": "home_loop"
+		},
+		{
+			"cells": [
+				{
+					"x": 31.0,
+					"y": 19.0
+				},
+				{
+					"x": 30.0,
+					"y": 19.0
+				},
+				{
+					"x": 29.0,
+					"y": 19.0
+				},
+				{
+					"x": 28.0,
+					"y": 19.0
+				},
+				{
+					"x": 27.0,
+					"y": 19.0
+				},
+				{
+					"x": 27.0,
+					"y": 18.0
+				},
+				{
+					"x": 26.0,
+					"y": 18.0
+				},
+				{
+					"x": 26.0,
+					"y": 17.0
+				},
+				{
+					"x": 25.0,
+					"y": 17.0
+				},
+				{
+					"x": 25.0,
+					"y": 16.0
+				},
+				{
+					"x": 24.0,
+					"y": 16.0
+				},
+				{
+					"x": 24.0,
+					"y": 15.0
+				},
+				{
+					"x": 24.0,
+					"y": 14.0
+				},
+				{
+					"x": 23.0,
+					"y": 14.0
+				},
+				{
+					"x": 23.0,
+					"y": 13.0
+				},
+				{
+					"x": 22.0,
+					"y": 13.0
+				},
+				{
+					"x": 22.0,
+					"y": 12.0
+				},
+				{
+					"x": 21.0,
+					"y": 12.0
+				},
+				{
+					"x": 21.0,
+					"y": 11.0
+				},
+				{
+					"x": 20.0,
+					"y": 11.0
+				},
+				{
+					"x": 19.0,
+					"y": 11.0
+				},
+				{
+					"x": 18.0,
+					"y": 11.0
+				},
+				{
+					"x": 18.0,
+					"y": 10.0
+				},
+				{
+					"x": 17.0,
+					"y": 10.0
+				},
+				{
+					"x": 17.0,
+					"y": 9.0
+				},
+				{
+					"x": 16.0,
+					"y": 9.0
+				},
+				{
+					"x": 16.0,
+					"y": 8.0
+				},
+				{
+					"x": 15.0,
+					"y": 8.0
+				},
+				{
+					"x": 14.0,
+					"y": 8.0
+				},
+				{
+					"x": 13.0,
+					"y": 8.0
+				},
+				{
+					"x": 12.0,
+					"y": 8.0
+				},
+				{
+					"x": 11.0,
+					"y": 8.0
+				},
+				{
+					"x": 11.0,
+					"y": 7.0
+				},
+				{
+					"x": 10.0,
+					"y": 7.0
+				},
+				{
+					"x": 10.0,
+					"y": 6.0
+				},
+				{
+					"x": 9.0,
+					"y": 6.0
+				},
+				{
+					"x": 9.0,
+					"y": 5.0
+				},
+				{
+					"x": 8.0,
+					"y": 5.0
+				},
+				{
+					"x": 8.0,
+					"y": 4.0
+				},
+				{
+					"x": 7.0,
+					"y": 4.0
+				},
+				{
+					"x": 7.0,
+					"y": 3.0
+				}
+			],
+			"connects_to": [
+				"road_home_plaza_ring",
+				"road_school_yard_loop",
+				"road_story_bridge"
+			],
+			"label": "Morning School Road",
+			"road_id": "road_morning_school",
+			"road_type": "p0_main"
+		},
+		{
+			"cells": [
+				{
+					"x": 21.0,
+					"y": 11.0
+				},
+				{
+					"x": 20.0,
+					"y": 11.0
+				},
+				{
+					"x": 19.0,
+					"y": 11.0
+				},
+				{
+					"x": 18.0,
+					"y": 11.0
+				},
+				{
+					"x": 18.0,
+					"y": 10.0
+				},
+				{
+					"x": 17.0,
+					"y": 10.0
+				},
+				{
+					"x": 17.0,
+					"y": 9.0
+				},
+				{
+					"x": 16.0,
+					"y": 9.0
+				},
+				{
+					"x": 16.0,
+					"y": 8.0
+				},
+				{
+					"x": 16.0,
+					"y": 10.0
+				},
+				{
+					"x": 16.0,
+					"y": 11.0
+				},
+				{
+					"x": 15.0,
+					"y": 11.0
+				},
+				{
+					"x": 15.0,
+					"y": 12.0
+				},
+				{
+					"x": 14.0,
+					"y": 12.0
+				},
+				{
+					"x": 14.0,
+					"y": 13.0
+				},
+				{
+					"x": 15.0,
+					"y": 13.0
+				},
+				{
+					"x": 16.0,
+					"y": 13.0
+				},
+				{
+					"x": 17.0,
+					"y": 13.0
+				},
+				{
+					"x": 18.0,
+					"y": 13.0
+				},
+				{
+					"x": 19.0,
+					"y": 13.0
+				},
+				{
+					"x": 20.0,
+					"y": 13.0
+				},
+				{
+					"x": 20.0,
+					"y": 14.0
+				},
+				{
+					"x": 19.0,
+					"y": 14.0
+				},
+				{
+					"x": 18.0,
+					"y": 14.0
+				},
+				{
+					"x": 17.0,
+					"y": 14.0
+				},
+				{
+					"x": 17.0,
+					"y": 15.0
+				},
+				{
+					"x": 18.0,
+					"y": 15.0
+				},
+				{
+					"x": 20.0,
+					"y": 12.0
+				},
+				{
+					"x": 21.0,
+					"y": 12.0
+				}
+			],
+			"connects_to": [
+				"road_morning_school"
+			],
+			"label": "School Yard Loop",
+			"road_id": "road_school_yard_loop",
+			"road_type": "school"
+		},
+		{
+			"cells": [
+				{
+					"x": 24.0,
+					"y": 15.0
+				},
+				{
+					"x": 23.0,
+					"y": 15.0
+				},
+				{
+					"x": 22.0,
+					"y": 15.0
+				},
+				{
+					"x": 21.0,
+					"y": 15.0
+				},
+				{
+					"x": 20.0,
+					"y": 15.0
+				},
+				{
+					"x": 20.0,
+					"y": 16.0
+				},
+				{
+					"x": 19.0,
+					"y": 16.0
+				},
+				{
+					"x": 19.0,
+					"y": 17.0
+				},
+				{
+					"x": 18.0,
+					"y": 17.0
+				},
+				{
+					"x": 18.0,
+					"y": 18.0
+				},
+				{
+					"x": 18.0,
+					"y": 19.0
+				},
+				{
+					"x": 17.0,
+					"y": 19.0
+				},
+				{
+					"x": 17.0,
+					"y": 20.0
+				},
+				{
+					"x": 16.0,
+					"y": 20.0
+				},
+				{
+					"x": 16.0,
+					"y": 21.0
+				},
+				{
+					"x": 15.0,
+					"y": 21.0
+				},
+				{
+					"x": 15.0,
+					"y": 22.0
+				},
+				{
+					"x": 14.0,
+					"y": 22.0
+				},
+				{
+					"x": 14.0,
+					"y": 23.0
+				},
+				{
+					"x": 15.0,
+					"y": 23.0
+				},
+				{
+					"x": 16.0,
+					"y": 23.0
+				},
+				{
+					"x": 17.0,
+					"y": 23.0
+				},
+				{
+					"x": 18.0,
+					"y": 23.0
+				},
+				{
+					"x": 18.0,
+					"y": 24.0
+				},
+				{
+					"x": 19.0,
+					"y": 24.0
+				},
+				{
+					"x": 19.0,
+					"y": 25.0
+				},
+				{
+					"x": 20.0,
+					"y": 25.0
+				},
+				{
+					"x": 21.0,
+					"y": 25.0
+				},
+				{
+					"x": 22.0,
+					"y": 25.0
+				},
+				{
+					"x": 23.0,
+					"y": 25.0
+				},
+				{
+					"x": 24.0,
+					"y": 25.0
+				},
+				{
+					"x": 25.0,
+					"y": 25.0
+				},
+				{
+					"x": 26.0,
+					"y": 25.0
+				},
+				{
+					"x": 26.0,
+					"y": 24.0
+				},
+				{
+					"x": 27.0,
+					"y": 24.0
+				},
+				{
+					"x": 27.0,
+					"y": 23.0
+				},
+				{
+					"x": 28.0,
+					"y": 23.0
+				},
+				{
+					"x": 28.0,
+					"y": 22.0
+				},
+				{
+					"x": 29.0,
+					"y": 22.0
+				},
+				{
+					"x": 29.0,
+					"y": 21.0
+				},
+				{
+					"x": 30.0,
+					"y": 21.0
+				},
+				{
+					"x": 30.0,
+					"y": 20.0
+				},
+				{
+					"x": 31.0,
+					"y": 20.0
+				},
+				{
+					"x": 31.0,
+					"y": 19.0
+				}
+			],
+			"connects_to": [
+				"road_home_plaza_ring",
+				"road_morning_school"
+			],
+			"label": "Story Bridge Lane",
+			"road_id": "road_story_bridge",
+			"road_type": "story_bridge"
+		},
+		{
+			"cells": [
+				{
+					"x": 31.0,
+					"y": 19.0
+				},
+				{
+					"x": 32.0,
+					"y": 19.0
+				},
+				{
+					"x": 33.0,
+					"y": 19.0
+				},
+				{
+					"x": 34.0,
+					"y": 19.0
+				},
+				{
+					"x": 34.0,
+					"y": 18.0
+				},
+				{
+					"x": 35.0,
+					"y": 18.0
+				},
+				{
+					"x": 35.0,
+					"y": 17.0
+				},
+				{
+					"x": 36.0,
+					"y": 17.0
+				},
+				{
+					"x": 36.0,
+					"y": 16.0
+				},
+				{
+					"x": 37.0,
+					"y": 16.0
+				},
+				{
+					"x": 37.0,
+					"y": 15.0
+				},
+				{
+					"x": 38.0,
+					"y": 15.0
+				},
+				{
+					"x": 38.0,
+					"y": 14.0
+				},
+				{
+					"x": 39.0,
+					"y": 14.0
+				},
+				{
+					"x": 39.0,
+					"y": 13.0
+				},
+				{
+					"x": 39.0,
+					"y": 12.0
+				},
+				{
+					"x": 40.0,
+					"y": 12.0
+				},
+				{
+					"x": 40.0,
+					"y": 11.0
+				},
+				{
+					"x": 41.0,
+					"y": 11.0
+				},
+				{
+					"x": 41.0,
+					"y": 10.0
+				},
+				{
+					"x": 42.0,
+					"y": 10.0
+				},
+				{
+					"x": 42.0,
+					"y": 9.0
+				},
+				{
+					"x": 43.0,
+					"y": 9.0
+				},
+				{
+					"x": 43.0,
+					"y": 8.0
+				},
+				{
+					"x": 44.0,
+					"y": 8.0
+				},
+				{
+					"x": 45.0,
+					"y": 8.0
+				},
+				{
+					"x": 46.0,
+					"y": 8.0
+				},
+				{
+					"x": 47.0,
+					"y": 8.0
+				},
+				{
+					"x": 48.0,
+					"y": 8.0
+				},
+				{
+					"x": 49.0,
+					"y": 8.0
+				},
+				{
+					"x": 50.0,
+					"y": 8.0
+				},
+				{
+					"x": 50.0,
+					"y": 9.0
+				},
+				{
+					"x": 51.0,
+					"y": 9.0
+				},
+				{
+					"x": 51.0,
+					"y": 10.0
+				},
+				{
+					"x": 51.0,
+					"y": 11.0
+				},
+				{
+					"x": 52.0,
+					"y": 11.0
+				},
+				{
+					"x": 52.0,
+					"y": 12.0
+				},
+				{
+					"x": 53.0,
+					"y": 12.0
+				},
+				{
+					"x": 53.0,
+					"y": 13.0
+				}
+			],
+			"connects_to": [
+				"road_home_plaza_ring",
+				"road_home_shop_service"
+			],
+			"label": "Shop Street Branch",
+			"road_id": "road_shop_branch",
+			"road_type": "shop"
+		},
+		{
+			"cells": [
+				{
+					"x": 31.0,
+					"y": 19.0
+				},
+				{
+					"x": 32.0,
+					"y": 19.0
+				},
+				{
+					"x": 33.0,
+					"y": 19.0
+				},
+				{
+					"x": 34.0,
+					"y": 19.0
+				},
+				{
+					"x": 35.0,
+					"y": 19.0
+				},
+				{
+					"x": 36.0,
+					"y": 19.0
+				},
+				{
+					"x": 37.0,
+					"y": 19.0
+				},
+				{
+					"x": 37.0,
+					"y": 20.0
+				},
+				{
+					"x": 38.0,
+					"y": 20.0
+				},
+				{
+					"x": 38.0,
+					"y": 21.0
+				},
+				{
+					"x": 39.0,
+					"y": 21.0
+				},
+				{
+					"x": 39.0,
+					"y": 22.0
+				},
+				{
+					"x": 40.0,
+					"y": 22.0
+				},
+				{
+					"x": 41.0,
+					"y": 22.0
+				},
+				{
+					"x": 42.0,
+					"y": 22.0
+				},
+				{
+					"x": 43.0,
+					"y": 22.0
+				},
+				{
+					"x": 43.0,
+					"y": 21.0
+				},
+				{
+					"x": 44.0,
+					"y": 21.0
+				},
+				{
+					"x": 44.0,
+					"y": 20.0
+				},
+				{
+					"x": 45.0,
+					"y": 21.0
+				},
+				{
+					"x": 45.0,
+					"y": 22.0
+				},
+				{
+					"x": 46.0,
+					"y": 22.0
+				},
+				{
+					"x": 46.0,
+					"y": 23.0
+				},
+				{
+					"x": 47.0,
+					"y": 23.0
+				},
+				{
+					"x": 47.0,
+					"y": 24.0
+				},
+				{
+					"x": 48.0,
+					"y": 24.0
+				},
+				{
+					"x": 49.0,
+					"y": 24.0
+				},
+				{
+					"x": 50.0,
+					"y": 24.0
+				},
+				{
+					"x": 51.0,
+					"y": 24.0
+				},
+				{
+					"x": 52.0,
+					"y": 24.0
+				},
+				{
+					"x": 48.0,
+					"y": 25.0
+				},
+				{
+					"x": 47.0,
+					"y": 25.0
+				},
+				{
+					"x": 47.0,
+					"y": 26.0
+				},
+				{
+					"x": 46.0,
+					"y": 26.0
+				},
+				{
+					"x": 46.0,
+					"y": 27.0
+				},
+				{
+					"x": 45.0,
+					"y": 27.0
+				},
+				{
+					"x": 45.0,
+					"y": 28.0
+				},
+				{
+					"x": 44.0,
+					"y": 28.0
+				},
+				{
+					"x": 43.0,
+					"y": 28.0
+				},
+				{
+					"x": 42.0,
+					"y": 28.0
+				},
+				{
+					"x": 41.0,
+					"y": 28.0
+				},
+				{
+					"x": 41.0,
+					"y": 27.0
+				},
+				{
+					"x": 41.0,
+					"y": 26.0
+				},
+				{
+					"x": 41.0,
+					"y": 25.0
+				},
+				{
+					"x": 41.0,
+					"y": 24.0
+				},
+				{
+					"x": 41.0,
+					"y": 23.0
+				}
+			],
+			"connects_to": [
+				"road_home_plaza_ring",
+				"road_home_animal_garden",
+				"road_coast_preview"
+			],
+			"label": "Animal Park Branch",
+			"road_id": "road_animal_branch",
+			"road_type": "animal"
+		},
+		{
+			"cells": [
+				{
+					"x": 52.0,
+					"y": 24.0
+				},
+				{
+					"x": 52.0,
+					"y": 25.0
+				},
+				{
+					"x": 52.0,
+					"y": 26.0
+				},
+				{
+					"x": 52.0,
+					"y": 27.0
+				},
+				{
+					"x": 52.0,
+					"y": 28.0
+				},
+				{
+					"x": 53.0,
+					"y": 28.0
+				},
+				{
+					"x": 53.0,
+					"y": 29.0
+				},
+				{
+					"x": 54.0,
+					"y": 29.0
+				},
+				{
+					"x": 54.0,
+					"y": 30.0
+				},
+				{
+					"x": 55.0,
+					"y": 30.0
+				},
+				{
+					"x": 56.0,
+					"y": 30.0
+				},
+				{
+					"x": 57.0,
+					"y": 30.0
+				}
+			],
+			"connects_to": [
+				"road_animal_branch"
+			],
+			"label": "Coast Preview Spur",
+			"road_id": "road_coast_preview",
+			"road_type": "coast_optional"
+		},
+		{
+			"cells": [
+				{
+					"x": 34.0,
+					"y": 20.0
+				},
+				{
+					"x": 34.0,
+					"y": 19.0
+				},
+				{
+					"x": 34.0,
+					"y": 18.0
+				},
+				{
+					"x": 35.0,
+					"y": 18.0
+				},
+				{
+					"x": 35.0,
+					"y": 17.0
+				},
+				{
+					"x": 36.0,
+					"y": 17.0
+				},
+				{
+					"x": 36.0,
+					"y": 16.0
+				},
+				{
+					"x": 37.0,
+					"y": 16.0
+				},
+				{
+					"x": 37.0,
+					"y": 15.0
+				},
+				{
+					"x": 38.0,
+					"y": 15.0
+				},
+				{
+					"x": 38.0,
+					"y": 14.0
+				},
+				{
+					"x": 39.0,
+					"y": 14.0
+				},
+				{
+					"x": 39.0,
+					"y": 13.0
+				}
+			],
+			"connects_to": [
+				"road_shop_branch"
+			],
+			"label": "Home-Shop Service Path",
+			"road_id": "road_home_shop_service",
+			"road_type": "secondary"
+		},
+		{
+			"cells": [
+				{
+					"x": 34.0,
+					"y": 20.0
+				},
+				{
+					"x": 35.0,
+					"y": 20.0
+				},
+				{
+					"x": 36.0,
+					"y": 20.0
+				},
+				{
+					"x": 37.0,
+					"y": 20.0
+				},
+				{
+					"x": 38.0,
+					"y": 20.0
+				},
+				{
+					"x": 38.0,
+					"y": 21.0
+				},
+				{
+					"x": 39.0,
+					"y": 21.0
+				},
+				{
+					"x": 39.0,
+					"y": 22.0
+				}
+			],
+			"connects_to": [
+				"road_animal_branch"
+			],
+			"label": "Home-Animal Garden Path",
+			"road_id": "road_home_animal_garden",
+			"road_type": "secondary"
+		}
+	],
+	"theme_id": "theme_sunshine_town_placeholder",
+	"version": 2.0
 }

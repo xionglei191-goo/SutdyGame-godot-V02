@@ -139,6 +139,12 @@
 | 2026-06-07 | Round 132 V02.26 CONTENTBATCH-002 资源刷新点小批量收口 | 无新增已验证教训 | 4 个资源点、4 个材料条目、CONTENTBATCH-002 focused、content contracts、daily services、热点优先级、全量 headless runner 和 Godot 启动均通过；旧 V02.22 routine fallback 断言按 Round131 后默认数据完整状态同步，未形成新的故障类型 |
 | 2026-06-07 | Round 133 V02.26 CONTENTBATCH-003 A-Z 生活物件回访收口 | 无新增已验证教训 | A/D/K/H/M/U 六条生活物件回访、CONTENTBATCH-003 focused、memory palace 回归、content contracts、全量 headless runner 和 Godot 启动均通过；新增唯一 `core_anchor_id` 检查覆盖 AnchorInteractionService 一对一映射风险，未形成新的故障类型 |
 | 2026-06-07 | Round 134 V02.26 CONTENTBATCH-004 Shop front / School Yard 小事件 smoke 收口 | 无新增已验证教训 | 2 个真实入口看一眼事件、CONTENTBATCH-004 focused、V02.14 homeschool 回归、CONTENTBATCH-002/003 回归、content contracts、全量 headless runner 和 Godot 启动均通过；测试捕获并修正了安全说明中的压力词，属于既有儿童安全规则内收敛，未形成新的故障类型 |
+| 2026-06-07 | Round 135 V02.27 MAPEDITOR-001..007 Map Editor 完整化收口 | 无新增已验证教训 | 场景内 Map Editor 完整化、分文件保存、A-Z anchor 迁移保护、V02.27 focused tests、全量 headless runner 和 Godot 启动均通过；测试坐标按正式地图事实修正，未形成新的故障类型 |
+| 2026-06-07 | Round 136 V02.27 MAPEDITOR-008 可用性降噪收口 | 无新增已验证教训 | 地图编辑器面板布局和 marker badge 降噪通过 focused/full headless、Godot 启动和 diff 检查；属于用户反馈后的可用性返修，未形成新的故障类型 |
+| 2026-06-07 | Round 137 V02.27 MAPEDITOR-009 视觉布局二次整理收口 | 无新增已验证教训 | 左侧控制栏、固定高度 panel、完整地图画布和 sidebar text clipping 通过 MCP runtime 几何复核、focused/full headless、Godot 启动和 diff 检查；属于用户反馈后的可用性返修，未形成新的故障类型 |
+| 2026-06-07 | Round 138 V02.27 MAPEDITOR-010 直接拖拽编辑与字母可见性返修收口 | 无新增已验证教训 | marker 全局拖拽追踪、Inspector 输入控件和 A-Z 字母可见性增强通过 focused/full headless、Godot 启动和 diff 检查；属于用户反馈后的可操作性返修，未形成新的故障类型 |
+| 2026-06-07 | Round 139 V02.28 MAPDOGFOOD-001 路线与任务包收口 | 无新增已验证教训 | 仅更新 PM 路线、内容基线、接管计划、协作任务包和 `todo.md`，建立 Map Editor 实战生产验证队列与下一轮 Ready；未改 runtime、data、tests 或 assets，未形成新的故障类型 |
+| 2026-06-07 | Round 140 V02.28 MAPDOGFOOD-002..005 实战生产验证收口 | LESSON-012 | Dogfood 发现 Place 合同通过不等于孩子端 action 一定支持；已补 Place `place_action` Inspector 编辑、interaction action 同步和真实入口 focused/full 验证 |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -281,3 +287,17 @@
   - 资源、NPC、地点 hotspot 和 A-Z anchor 半径重叠时，要明确 exact 与 nearby 的优先级，并验证相册落账和资源收集都仍可达。
   - 迁移 anchor 坐标后，同步更新天气、P1、截图和历史 smoke 的固定 look cell，或改为从 `world_map.memory_anchors` 读取。
 - **验证依据：** `godot --headless --path . --script tests/test_v0217_worldmap_anchor_runtime.gd`、`godot --headless --path . --script tests/test_v0211_weather_slice_smoke.gd`、`godot --headless --path . --script tests/test_v028_daily_life_slice.gd`、`godot --headless --path . --script tests/test_v0216_playable_rc_gate.gd`、`godot --headless --path . --script tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过。
+
+## LESSON-012：编辑器合同通过后仍必须验证孩子端支持动作
+
+- **日期：** 2026-06-07
+- **关联任务：** `V02-MAPDOGFOOD-002` 至 `V02-MAPDOGFOOD-005`
+- **现象：** V02.28 dogfood 新增 Place 初期使用默认 `place_action=look`，Map Editor 候选可以写出 Place / interaction 数据，但孩子端 runtime 没有对应 `look` place entry 处理；首次 Place 类型也曾使用不在合同内的 `landmark`，被 validate 拦截。
+- **影响：** 只验证 JSON 合同和安全写回，可能让“数据合法但孩子端无法触发”的地点进入正式内容，降低 Map Editor 生产可信度。
+- **根因：** Place Inspector 之前未暴露 `place_action`，新增 Place 的 action 默认值缺少 runtime-supported 校验；dogfood 前的工具测试更偏保存合同，没有覆盖真实 `看看` 入口。
+- **解决方式：** `TownMapAuthoring` 增加 `place_action` Inspector 字段，更新 Place action 时同步对应 `interaction_cells.action`；dogfood 数据改用 runtime 已支持的 `open_town_start`；新增 `tests/test_v028_mapdogfood_production.gd` 和 runner 断言，覆盖 Story Bench / Ribbon Corner 的真实入口。
+- **预防规则：**
+  - 新增或批量生产 Place 时，验收必须同时检查 `place_action` 与对应 interaction action，并从孩子端真实移动 / `看看` 路径触发。
+  - Map Editor 生产脚本可以读取 JSON 复核，但正式交付必须能追溯到候选 state、Validate 和安全写回。
+  - 若合同只验证 schema / 地图关系，focused test 还必须补 runtime-supported action 和可见文本安全。
+- **验证依据：** `godot --headless --path . --script tests/test_v028_mapdogfood_production.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit`、`git diff --check` 和非 headless 1280 proof 均通过。

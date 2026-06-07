@@ -58,6 +58,16 @@ const V026Contentbatch001NPCRoutineBatchTestScript := preload("res://tests/test_
 const V026Contentbatch002ResourcePointsTestScript := preload("res://tests/test_v026_contentbatch002_resource_points.gd")
 const V026Contentbatch003AnchorRevisitsTestScript := preload("res://tests/test_v026_contentbatch003_anchor_revisits.gd")
 const V026Contentbatch004LookEventsTestScript := preload("res://tests/test_v026_contentbatch004_look_events.gd")
+const V027MapeditorLayersInspectorTestScript := preload("res://tests/test_v027_mapeditor_layers_inspector.gd")
+const V027MapeditorPlaceSaveTestScript := preload("res://tests/test_v027_mapeditor_place_save.gd")
+const V027MapeditorCellPaintingTestScript := preload("res://tests/test_v027_mapeditor_cell_painting.gd")
+const V027MapeditorResourceSaveTestScript := preload("res://tests/test_v027_mapeditor_resource_save.gd")
+const V027MapeditorNPCRoutineSaveTestScript := preload("res://tests/test_v027_mapeditor_npc_routine_save.gd")
+const V027MapeditorAnchorMigrationGuardTestScript := preload("res://tests/test_v027_mapeditor_anchor_migration_guard.gd")
+const V027MapeditorFullRegressionTestScript := preload("res://tests/test_v027_mapeditor_full_regression.gd")
+const V027MapeditorUsabilityDeclutterTestScript := preload("res://tests/test_v027_mapeditor_usability_declutter.gd")
+const V027MapeditorDirectEditDragTestScript := preload("res://tests/test_v027_mapeditor_direct_edit_drag.gd")
+const V028MapdogfoodProductionTestScript := preload("res://tests/test_v028_mapdogfood_production.gd")
 const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
 const ANCHOR_ASSET_IDS: Array[String] = [
 	"anchor.a.apple_tree", "anchor.b.bear_corner", "anchor.c.clock", "anchor.d.dog_corner", "anchor.e.elephant_slide", "anchor.f.fox_topiary", "anchor.g.school_gate", "anchor.h.hat_sign", "anchor.i.ice_cream_cart", "anchor.j.jacket_window", "anchor.k.kite", "anchor.l.lion_fountain", "anchor.m.monkey_tree", "anchor.n.soft_net", "anchor.o.orange_stall", "anchor.p.panda_corner", "anchor.q.queen_poster", "anchor.r.robot_sign", "anchor.s.sun_landmark", "anchor.t.taxi_marker", "anchor.u.beach_umbrella", "anchor.v.violin_corner", "anchor.w.watch_table", "anchor.x.x_mark_box", "anchor.y.yo_yo_corner", "anchor.z.zebra_edge"
@@ -163,6 +173,16 @@ func _init() -> void:
 	_check_v026_contentbatch002_resource_points()
 	_check_v026_contentbatch003_anchor_revisits()
 	_check_v026_contentbatch004_look_events()
+	_check_v027_mapeditor_layers_inspector()
+	_check_v027_mapeditor_place_save()
+	_check_v027_mapeditor_cell_painting()
+	_check_v027_mapeditor_resource_save()
+	_check_v027_mapeditor_npc_routine_save()
+	_check_v027_mapeditor_anchor_migration_guard()
+	_check_v027_mapeditor_full_regression()
+	_check_v027_mapeditor_usability_declutter()
+	_check_v027_mapeditor_direct_edit_drag()
+	_check_v028_mapdogfood_production()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -1876,6 +1896,35 @@ func _runner_has_occupied_cell(place: Dictionary, key: String) -> bool:
 	return false
 
 
+func _has_place_at(map_data: Dictionary, place_id: String, key: String) -> bool:
+	var place := _runner_place_by_id(map_data, place_id)
+	return not place.is_empty() and _runner_cell_key(place.get("position", {})) == key
+
+
+func _interaction_action_for_place(map_data: Dictionary, place_id: String) -> String:
+	for interaction in map_data.get("interaction_cells", []):
+		if interaction is Dictionary and str((interaction as Dictionary).get("place_id", "")) == place_id:
+			return str((interaction as Dictionary).get("action", ""))
+	return ""
+
+
+func _resource_cell(data: Dictionary, point_id: String) -> String:
+	for point in data.get("resource_points", []):
+		if point is Dictionary and str((point as Dictionary).get("point_id", "")) == point_id:
+			return _runner_cell_key((point as Dictionary).get("cell", {}))
+	return ""
+
+
+func _routine_cell(data: Dictionary, day_key: String, routine_id: String) -> String:
+	for day in data.get("routine_days", []):
+		if not day is Dictionary or str((day as Dictionary).get("day_key", "")) != day_key:
+			continue
+		for npc in (day as Dictionary).get("npcs", []):
+			if npc is Dictionary and str((npc as Dictionary).get("routine_id", "")) == routine_id:
+				return _runner_cell_key((npc as Dictionary).get("cell", {}))
+	return ""
+
+
 func _runner_cell_key(cell: Dictionary) -> String:
 	return "%s,%s" % [int(cell.get("x", -1)), int(cell.get("y", -1))]
 
@@ -2261,6 +2310,182 @@ func _check_v026_contentbatch004_look_events() -> void:
 	main.queue_free()
 
 
+func _check_v027_mapeditor_layers_inspector() -> void:
+	_expect(V027MapeditorLayersInspectorTestScript != null, "V02.27 MAPEDITOR-002 layers inspector focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var summary: Dictionary = scene.call("get_tool_summary")
+	_expect(bool(summary.get("has_toolbar", false)), "V02.27 MAPEDITOR-002 runner should expose toolbar")
+	_expect(bool(summary.get("has_inspector", false)), "V02.27 MAPEDITOR-002 runner should expose inspector")
+	_expect(scene.call("toggle_layer", "resource", false).get("ok", false), "V02.27 MAPEDITOR-002 runner should toggle resource layer")
+	_expect(not bool(scene.call("get_tool_summary").get("layer_visibility", {}).get("resource", true)), "V02.27 MAPEDITOR-002 runner should report resource layer hidden")
+	_expect(scene.call("select_marker", "resource", "resource_branch_bear_corner").get("ok", false), "V02.27 MAPEDITOR-002 runner should select resource marker")
+	_expect(str(scene.call("get_inspector_summary").get("body", "")).contains("item_id"), "V02.27 MAPEDITOR-002 runner inspector should expose resource item_id")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v027_mapeditor_place_save() -> void:
+	_expect(V027MapeditorPlaceSaveTestScript != null, "V02.27 MAPEDITOR-003 place save focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var moved: Dictionary = scene.call("move_place_marker_candidate", "place_home", Vector2i(30, 17))
+	_expect(moved.get("ok", false), "V02.27 MAPEDITOR-003 runner should move place candidate")
+	var saved: Dictionary = scene.call("save_map_candidate", "user://headless_runner_v027_mapeditor_place_world_map.json")
+	_expect(saved.get("ok", false), "V02.27 MAPEDITOR-003 runner should save map candidate: %s" % [saved.get("errors", [])])
+	_cleanup_paths(["user://headless_runner_v027_mapeditor_place_world_map.json", "user://headless_runner_v027_mapeditor_place_world_map.json.tmp", "user://headless_runner_v027_mapeditor_place_world_map.json.bak"])
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v027_mapeditor_cell_painting() -> void:
+	_expect(V027MapeditorCellPaintingTestScript != null, "V02.27 MAPEDITOR-004 cell painting focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	_expect(scene.call("paint_cell_candidate", "road", Vector2i(2, 2), false).get("ok", false), "V02.27 MAPEDITOR-004 runner should paint road candidate")
+	_expect(scene.call("paint_cell_candidate", "road", Vector2i(28, 16), false).get("reason", "") == "protected_cell", "V02.27 MAPEDITOR-004 runner should protect anchor cell")
+	_expect(scene.call("validate_export_candidate").get("ok", false), "V02.27 MAPEDITOR-004 runner painted candidate should validate")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v027_mapeditor_resource_save() -> void:
+	_expect(V027MapeditorResourceSaveTestScript != null, "V02.27 MAPEDITOR-005 resource save focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	_expect(scene.call("move_resource_marker_candidate", "resource_branch_bear_corner", Vector2i(1, 1)).get("ok", false), "V02.27 MAPEDITOR-005 runner should move resource candidate")
+	var saved: Dictionary = scene.call("save_resources_candidate", "user://headless_runner_v027_mapeditor_resource_points.json")
+	_expect(saved.get("ok", false), "V02.27 MAPEDITOR-005 runner should save resource candidate: %s" % [saved.get("errors", [])])
+	_cleanup_paths(["user://headless_runner_v027_mapeditor_resource_points.json", "user://headless_runner_v027_mapeditor_resource_points.json.tmp", "user://headless_runner_v027_mapeditor_resource_points.json.bak"])
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v027_mapeditor_npc_routine_save() -> void:
+	_expect(V027MapeditorNPCRoutineSaveTestScript != null, "V02.27 MAPEDITOR-006 NPC routine save focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	_expect(scene.call("set_current_day_key", "local_day_002").get("ok", false), "V02.27 MAPEDITOR-006 runner should switch day")
+	_expect(scene.call("move_npc_routine_candidate", "routine_mina_plaza_002", Vector2i(39, 22)).get("ok", false), "V02.27 MAPEDITOR-006 runner should move NPC routine candidate")
+	var saved: Dictionary = scene.call("save_routines_candidate", "user://headless_runner_v027_mapeditor_npc_routines.json")
+	_expect(saved.get("ok", false), "V02.27 MAPEDITOR-006 runner should save routine candidate: %s" % [saved.get("errors", [])])
+	_cleanup_paths(["user://headless_runner_v027_mapeditor_npc_routines.json", "user://headless_runner_v027_mapeditor_npc_routines.json.tmp", "user://headless_runner_v027_mapeditor_npc_routines.json.bak"])
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v027_mapeditor_anchor_migration_guard() -> void:
+	_expect(V027MapeditorAnchorMigrationGuardTestScript != null, "V02.27 MAPEDITOR-007 anchor migration focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	_expect(scene.call("move_anchor_marker_candidate", "anchor_a_apple", Vector2i(6, 3)).get("reason", "") == "anchor_move_mode_required", "V02.27 MAPEDITOR-007 runner should require anchor move mode")
+	_expect(scene.call("set_tool_mode", "move_anchor").get("ok", false), "V02.27 MAPEDITOR-007 runner should enter anchor move mode")
+	_expect(scene.call("move_anchor_marker_candidate", "anchor_a_apple", Vector2i(6, 3)).get("ok", false), "V02.27 MAPEDITOR-007 runner should move anchor candidate")
+	_expect(not scene.call("edit_anchor_field_candidate", "anchor_a_apple", "letter", "Q").get("ok", true), "V02.27 MAPEDITOR-007 runner should lock anchor letter")
+	_expect(scene.call("validate_export_candidate").get("ok", false), "V02.27 MAPEDITOR-007 runner moved anchor candidate should validate")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v027_mapeditor_full_regression() -> void:
+	_expect(V027MapeditorFullRegressionTestScript != null, "V02.27 MAPEDITOR full regression focused test should compile for headless runner")
+	var result: Dictionary = RuntimeMapBuilderScript.load_world_map()
+	_expect(result.get("ok", false), "V02.27 MAPEDITOR full regression runner should still load runtime world_map")
+	_expect(int(result.get("data", {}).get("memory_anchors", []).size()) == 26, "V02.27 MAPEDITOR full regression runner should preserve runtime 26 anchors")
+	var resources: Dictionary = MapEditorSyncServiceScript.load_json_dictionary(MapEditorSyncServiceScript.RESOURCE_POINTS_PATH)
+	var routines: Dictionary = MapEditorSyncServiceScript.load_json_dictionary(MapEditorSyncServiceScript.NPC_ROUTINES_PATH)
+	_expect(resources.get("ok", false) and (resources.get("data", {}) as Dictionary).get("resource_points", []).size() >= 7, "V02.27 MAPEDITOR full regression runner should load resource points")
+	_expect(routines.get("ok", false) and (routines.get("data", {}) as Dictionary).get("routine_days", []).size() == 7, "V02.27 MAPEDITOR full regression runner should load routine days")
+
+
+func _check_v027_mapeditor_usability_declutter() -> void:
+	_expect(V027MapeditorUsabilityDeclutterTestScript != null, "V02.27 MAPEDITOR-008 usability focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	var layout: Dictionary = scene.call("get_editor_layout_summary")
+	var origin: Dictionary = layout.get("map_origin", {})
+	var extent: Dictionary = layout.get("map_extent", {})
+	_expect(int(origin.get("x", 0)) == 252 and int(origin.get("y", 0)) == 52, "V02.27 MAPEDITOR-009 runner should use left-rail map origin")
+	_expect(int(extent.get("right", 9999)) <= 1268 and int(extent.get("bottom", 9999)) <= 708, "V02.27 MAPEDITOR-009 runner should keep full map inside 1280x720")
+	_expect(str(layout.get("anchor_label", "")).length() <= 2, "V02.27 MAPEDITOR-008 runner should compact anchor marker labels")
+	var anchor_visual: Dictionary = layout.get("anchor_visual", {})
+	_expect(int(anchor_visual.get("font_size", 0)) >= 22, "V02.27 MAPEDITOR-010 runner should keep anchor letters readable")
+	_expect(int(anchor_visual.get("z_index", 0)) >= 80, "V02.27 MAPEDITOR-010 runner should draw anchor letters above marker clutter")
+	_expect(str(layout.get("resource_label", "")).length() <= 2, "V02.27 MAPEDITOR-008 runner should compact resource marker labels")
+	_expect(str(layout.get("npc_label", "")).length() <= 2, "V02.27 MAPEDITOR-008 runner should compact NPC marker labels")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v027_mapeditor_direct_edit_drag() -> void:
+	_expect(V027MapeditorDirectEditDragTestScript != null, "V02.27 MAPEDITOR-010 direct edit/drag focused test should compile for headless runner")
+	var scene: Control = TownMapAuthoringScene.instantiate()
+	root.add_child(scene)
+	scene.call("_ready")
+	_expect(scene.call("select_marker", "place", "place_home").get("ok", false), "V02.27 MAPEDITOR-010 runner should select a place marker")
+	var inspector: Dictionary = scene.call("get_inspector_summary")
+	_expect(bool(inspector.get("has_apply_button", false)), "V02.27 MAPEDITOR-010 runner should expose inspector Apply")
+	_expect(int(inspector.get("visible_input_count", 0)) >= 3, "V02.27 MAPEDITOR-010 runner should expose real inspector inputs")
+	_expect(scene.call("apply_inspector_field_values", {"label": "Runner Direct Edit"}).get("ok", false), "V02.27 MAPEDITOR-010 runner should apply inspector edits")
+	var drag_result: Dictionary = scene.call("commit_marker_drag_for_test", "place", "place_home", Vector2i(30, 17))
+	_expect(drag_result.get("ok", false), "V02.27 MAPEDITOR-010 runner should commit marker drag through move validation: %s" % [drag_result.get("errors", [])])
+	_expect(scene.call("commit_marker_drag_for_test", "anchor", "anchor_a_apple", Vector2i(6, 3)).get("reason", "") == "anchor_move_mode_required", "V02.27 MAPEDITOR-010 runner should keep A-Z move mode guard")
+	_expect(scene.call("set_tool_mode", "move_anchor").get("ok", false), "V02.27 MAPEDITOR-010 runner should enter Move A-Z mode")
+	_expect(scene.call("commit_marker_drag_for_test", "anchor", "anchor_a_apple", Vector2i(6, 3)).get("ok", false), "V02.27 MAPEDITOR-010 runner should commit A-Z drag in Move A-Z mode")
+	_expect(scene.call("select_marker", "anchor", "anchor_a_apple").get("ok", false), "V02.27 MAPEDITOR-010 runner should select an anchor marker")
+	inspector = scene.call("get_inspector_summary")
+	_expect((inspector.get("editable_fields", []) as Array).has("cell_x"), "V02.27 MAPEDITOR-010 runner should expose anchor cell_x input")
+	_expect((inspector.get("editable_fields", []) as Array).has("cell_y"), "V02.27 MAPEDITOR-010 runner should expose anchor cell_y input")
+	_expect(scene.call("apply_inspector_field_values", {"cell_x": "6", "cell_y": "3"}).get("ok", false), "V02.27 MAPEDITOR-010 runner should apply anchor coordinate edits in Move A-Z mode")
+	root.remove_child(scene)
+	scene.queue_free()
+
+
+func _check_v028_mapdogfood_production() -> void:
+	_expect(V028MapdogfoodProductionTestScript != null, "V02.28 MAPDOGFOOD focused test should compile for headless runner")
+	var map_result: Dictionary = RuntimeMapBuilderScript.load_world_map()
+	_expect(map_result.get("ok", false), "V02.28 MAPDOGFOOD runner world map should load")
+	var map_data: Dictionary = map_result.get("data", {})
+	_expect(_has_place_at(map_data, "place_plaza_story_bench", "12,19"), "V02.28 MAPDOGFOOD runner should keep Story Bench dogfood place")
+	_expect(_has_place_at(map_data, "place_shop_ribbon_corner", "49,12"), "V02.28 MAPDOGFOOD runner should keep Ribbon Corner dogfood place")
+	_expect(_interaction_action_for_place(map_data, "place_plaza_story_bench") == "open_town_start", "V02.28 MAPDOGFOOD runner Story Bench should use supported action")
+	_expect(_interaction_action_for_place(map_data, "place_shop_ribbon_corner") == "open_town_start", "V02.28 MAPDOGFOOD runner Ribbon Corner should use supported action")
+	var resources: Dictionary = MapEditorSyncServiceScript.load_json_dictionary(MapEditorSyncServiceScript.RESOURCE_POINTS_PATH).get("data", {})
+	_expect(_resource_cell(resources, "resource_ribbon_shop_street") == "50,14", "V02.28 MAPDOGFOOD runner should keep ribbon resource dogfood cell")
+	var routines: Dictionary = MapEditorSyncServiceScript.load_json_dictionary(MapEditorSyncServiceScript.NPC_ROUTINES_PATH).get("data", {})
+	_expect(_routine_cell(routines, "local_day_003", "routine_shopkeeper_shop_003") == "43,14", "V02.28 MAPDOGFOOD runner should keep shopkeeper routine dogfood cell")
+
+	var save_path := "user://headless_runner_v028_mapdogfood.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.28 MAPDOGFOOD runner save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	main.set_day_key_for_test("local_day_003")
+	root.add_child(main)
+	main.call("_ready")
+	_expect(main.move_player_to_cell(Vector2i(49, 13)).get("ok", false), "V02.28 MAPDOGFOOD runner should reach Ribbon Corner")
+	var target: Dictionary = main.get_current_interaction_target()
+	_expect(str(target.get("type", "")) == "place" and str(target.get("target_id", "")) == "interaction_place_shop_ribbon_corner_authoring", "V02.28 MAPDOGFOOD runner should prompt Ribbon Corner")
+	var place_result: Dictionary = main.interact_nearby()
+	_expect(str(place_result.get("interaction_type", "")) == "place_entry" and str(place_result.get("place_id", "")) == "place_shop_ribbon_corner", "V02.28 MAPDOGFOOD runner should enter Ribbon Corner")
+	_expect(main.move_player_to_cell(Vector2i(50, 14)).get("ok", false), "V02.28 MAPDOGFOOD runner should reach moved ribbon resource")
+	var resource_result: Dictionary = main.interact_nearby()
+	_expect(str(resource_result.get("interaction_type", "")) == "resource" and str(resource_result.get("item_id", "")) == "ribbon", "V02.28 MAPDOGFOOD runner should collect moved ribbon")
+	_expect(main.move_player_to_cell(Vector2i(43, 14)).get("ok", false), "V02.28 MAPDOGFOOD runner should reach moved shopkeeper routine")
+	var npc_target: Dictionary = main.get_current_interaction_target()
+	_expect(str(npc_target.get("type", "")) == "npc" and str(npc_target.get("target_id", "")) == "shopkeeper", "V02.28 MAPDOGFOOD runner should prompt shopkeeper at moved routine")
+	_expect(main.save_service.clear_for_test(), "V02.28 MAPDOGFOOD runner save should clean")
+	root.remove_child(main)
+	main.queue_free()
+
+
 func _check_v0223_expapproval_shop_settings_glass() -> void:
 	_expect(V0223ExpapprovalShopSettingsGlassTestScript != null, "V02.23 EXPAPPROVAL Shop / Settings glass focused test should compile for headless runner")
 	var save_path := "user://headless_runner_v0223_expapproval_shop_settings_glass.json"
@@ -2567,6 +2792,12 @@ func _check_voice_ai_social_stubs() -> void:
 	_expect(visits.approve_local_friend({"friend_id": "friend_headless", "display_name": "Headless Friend"}, true).get("ok", false), "FriendVisitService should allow parent-approved local friend")
 	_expect(visits.send_preset_phrase("friend_headless", "Hi!").get("ok", false), "FriendVisitService should allow preset phrase")
 	_expect(not visits.send_preset_phrase("friend_headless", "come to my school").get("ok", true), "FriendVisitService should block free text")
+
+
+func _cleanup_paths(paths: Array[String]) -> void:
+	for path in paths:
+		if FileAccess.file_exists(path):
+			DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
 
 
 func _expect(condition: bool, message: String) -> void:
