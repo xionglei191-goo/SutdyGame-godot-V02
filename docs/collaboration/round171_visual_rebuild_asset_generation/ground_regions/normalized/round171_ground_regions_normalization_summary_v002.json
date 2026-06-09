@@ -1,0 +1,479 @@
+[
+  {
+    "status": "normalized_candidate",
+    "runtime_boundary": "proof_only_not_mapped_to_asset_resolver_or_theme_profile",
+    "category": "ground_meadow_region",
+    "source": "docs/collaboration/round171_visual_rebuild_asset_generation/ground_regions/raw/round171_ground_meadow_chunks_raw_sheet_v001.png",
+    "atlas": "assets/art/visual_rebuild/round171/ground_regions/ground_meadow_chunks_256x256_atlas_v002.png",
+    "tile_proof": "assets/art/visual_rebuild/round171/ground_regions/ground_meadow_chunks_256x256_tile_proof_v002.png",
+    "source_grid": {
+      "columns": 2,
+      "rows": 2
+    },
+    "source_cell_size": [
+      512,
+      512
+    ],
+    "cell_size": [
+      256,
+      256
+    ],
+    "key_color": "#ff00ff",
+    "normalization": "source quadrant chroma-keyed to transparent RGBA, alpha bbox contained into fixed output cell with 8px margin, post-resize magenta despill and alpha-edge color repair applied",
+    "residue_gate": "visible_key_pixel_count == 0, magenta_fringe_pixel_count == 0, and suspicious_edge_pixel_count == 0 for every item",
+    "recommended_use": "visual layout proof overlays for larger meadow/path regions to reduce visible 64px grid rhythm",
+    "items": [
+      {
+        "index": 1,
+        "id": "ground_region.meadow_chunk.01",
+        "source_cell": {
+          "row": 0,
+          "column": 0,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          256,
+          256
+        ],
+        "placed_bbox": [
+          8,
+          22,
+          248,
+          234
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 182,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 2,
+        "id": "ground_region.meadow_chunk.02",
+        "source_cell": {
+          "row": 0,
+          "column": 1,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          256,
+          256
+        ],
+        "placed_bbox": [
+          8,
+          25,
+          248,
+          231
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 188,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 3,
+        "id": "ground_region.meadow_chunk.03",
+        "source_cell": {
+          "row": 1,
+          "column": 0,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          256,
+          256
+        ],
+        "placed_bbox": [
+          9,
+          24,
+          247,
+          231
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 195,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 4,
+        "id": "ground_region.meadow_chunk.04",
+        "source_cell": {
+          "row": 1,
+          "column": 1,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          256,
+          256
+        ],
+        "placed_bbox": [
+          8,
+          24,
+          247,
+          232
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 192,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      }
+    ],
+    "overall_gate": "pass"
+  },
+  {
+    "status": "normalized_candidate",
+    "runtime_boundary": "proof_only_not_mapped_to_asset_resolver_or_theme_profile",
+    "category": "ground_soft_path_band",
+    "source": "docs/collaboration/round171_visual_rebuild_asset_generation/ground_regions/raw/round171_ground_soft_path_bands_raw_sheet_v001.png",
+    "atlas": "assets/art/visual_rebuild/round171/ground_regions/ground_soft_path_bands_512x256_atlas_v002.png",
+    "tile_proof": "assets/art/visual_rebuild/round171/ground_regions/ground_soft_path_bands_512x256_tile_proof_v002.png",
+    "source_grid": {
+      "columns": 2,
+      "rows": 2
+    },
+    "source_cell_size": [
+      512,
+      512
+    ],
+    "cell_size": [
+      512,
+      256
+    ],
+    "key_color": "#ff00ff",
+    "normalization": "source quadrant chroma-keyed to transparent RGBA, alpha bbox contained into fixed output cell with 8px margin, post-resize magenta despill and alpha-edge color repair applied",
+    "residue_gate": "visible_key_pixel_count == 0, magenta_fringe_pixel_count == 0, and suspicious_edge_pixel_count == 0 for every item",
+    "recommended_use": "visual layout proof overlays for larger meadow/path regions to reduce visible 64px grid rhythm",
+    "items": [
+      {
+        "index": 1,
+        "id": "ground_region.soft_path_band.01",
+        "source_cell": {
+          "row": 0,
+          "column": 0,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          512,
+          256
+        ],
+        "placed_bbox": [
+          8,
+          58,
+          504,
+          198
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 160,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 2,
+        "id": "ground_region.soft_path_band.02",
+        "source_cell": {
+          "row": 0,
+          "column": 1,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          512,
+          256
+        ],
+        "placed_bbox": [
+          8,
+          50,
+          504,
+          206
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 184,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 3,
+        "id": "ground_region.soft_path_band.03",
+        "source_cell": {
+          "row": 1,
+          "column": 0,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          512,
+          256
+        ],
+        "placed_bbox": [
+          8,
+          9,
+          504,
+          247
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 182,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 4,
+        "id": "ground_region.soft_path_band.04",
+        "source_cell": {
+          "row": 1,
+          "column": 1,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          512,
+          256
+        ],
+        "placed_bbox": [
+          56,
+          9,
+          456,
+          248
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 204,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      }
+    ],
+    "overall_gate": "pass"
+  },
+  {
+    "status": "normalized_candidate",
+    "runtime_boundary": "proof_only_not_mapped_to_asset_resolver_or_theme_profile",
+    "category": "ground_grass_path_edge",
+    "source": "docs/collaboration/round171_visual_rebuild_asset_generation/ground_regions/raw/round171_ground_grass_path_edges_raw_sheet_v001.png",
+    "atlas": "assets/art/visual_rebuild/round171/ground_regions/ground_grass_path_edges_256x256_atlas_v002.png",
+    "tile_proof": "assets/art/visual_rebuild/round171/ground_regions/ground_grass_path_edges_256x256_tile_proof_v002.png",
+    "source_grid": {
+      "columns": 2,
+      "rows": 2
+    },
+    "source_cell_size": [
+      512,
+      512
+    ],
+    "cell_size": [
+      256,
+      256
+    ],
+    "key_color": "#ff00ff",
+    "normalization": "source quadrant chroma-keyed to transparent RGBA, alpha bbox contained into fixed output cell with 8px margin, post-resize magenta despill and alpha-edge color repair applied",
+    "residue_gate": "visible_key_pixel_count == 0, magenta_fringe_pixel_count == 0, and suspicious_edge_pixel_count == 0 for every item",
+    "recommended_use": "visual layout proof overlays for larger meadow/path regions to reduce visible 64px grid rhythm",
+    "items": [
+      {
+        "index": 1,
+        "id": "ground_region.grass_path_edge.01",
+        "source_cell": {
+          "row": 0,
+          "column": 0,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          256,
+          256
+        ],
+        "placed_bbox": [
+          12,
+          9,
+          247,
+          247
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 205,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 2,
+        "id": "ground_region.grass_path_edge.02",
+        "source_cell": {
+          "row": 0,
+          "column": 1,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          256,
+          256
+        ],
+        "placed_bbox": [
+          9,
+          19,
+          247,
+          237
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 227,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 3,
+        "id": "ground_region.grass_path_edge.03",
+        "source_cell": {
+          "row": 1,
+          "column": 0,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          256,
+          256
+        ],
+        "placed_bbox": [
+          8,
+          40,
+          248,
+          216
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 199,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      },
+      {
+        "index": 4,
+        "id": "ground_region.grass_path_edge.04",
+        "source_cell": {
+          "row": 1,
+          "column": 1,
+          "size": [
+            512,
+            512
+          ]
+        },
+        "cell_size": [
+          256,
+          256
+        ],
+        "placed_bbox": [
+          8,
+          16,
+          247,
+          240
+        ],
+        "edge_alpha_touch_count": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "components": 192,
+        "visible_key_pixel_count": 0,
+        "magenta_fringe_pixel_count": 0,
+        "suspicious_edge_pixel_count": 0,
+        "status": "pass"
+      }
+    ],
+    "overall_gate": "pass"
+  }
+]

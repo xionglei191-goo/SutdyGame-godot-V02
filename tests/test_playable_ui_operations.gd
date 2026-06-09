@@ -50,7 +50,7 @@ func _check_visible_settings_path(main) -> void:
 	var settings_panel := main.find_child("SettingsPanel", true, false) as Control
 	_expect(settings_panel != null and settings_panel.visible, "Settings panel should open from the visible top entry")
 	var footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
-	_expect(footer_actions != null and footer_actions.get_child_count() == 4, "Settings should not add quit or settings into the bottom action bar")
+	_expect(footer_actions != null and footer_actions.get_child_count() == 5, "Settings should not add quit or settings into the bottom action bar")
 	var status := main.find_child("SettingsStatus", true, false) as Label
 	_expect(status != null and str(status.text).contains("安全位置"), "Settings panel should use child-facing safety copy")
 

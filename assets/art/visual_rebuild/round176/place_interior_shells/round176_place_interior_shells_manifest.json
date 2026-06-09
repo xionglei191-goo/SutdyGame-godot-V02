@@ -1,0 +1,408 @@
+{
+  "round": "Round176",
+  "pack_id": "place_interior_shells",
+  "status": "proof_only_normalized_candidate",
+  "overall_gate": "pass",
+  "category": "place_interior_front_area_shell",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_no_shared_tests",
+  "scope": "Cozy town place interior/front-area shell building-block candidates only; no full scene screenshot and no runtime binding.",
+  "compatibility_notes": [
+    "Designed for visual comparison with Round174 place prefabs and Round175 interior shells.",
+    "Use behind/around actors and furniture according to intended_layer_depth.",
+    "No readable text/letters/numbers are intentionally drawn in final normalized PNGs."
+  ],
+  "generation_method": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text-to-image raw candidates, then local deterministic normalization and alpha validation",
+    "raw_generator": "assets/art/visual_rebuild/round176/place_interior_shells/generate_raw_from_prompts.py",
+    "normalizer": "assets/art/visual_rebuild/round176/place_interior_shells/normalize_validate_manifest.py",
+    "source_prompts": "assets/art/visual_rebuild/round176/place_interior_shells/source_prompts.json"
+  },
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round176/place_interior_shells/proof/round176_place_interior_shells_contact_sheet.png",
+    "raw_dir": "assets/art/visual_rebuild/round176/place_interior_shells/raw"
+  },
+  "validation_summary": {
+    "alpha_dimension_edge_residue_region_sprite_checks_pass": 8,
+    "alpha_dimension_edge_residue_region_sprite_checks_fail": 0,
+    "checks": [
+      "expected dimensions",
+      "RGBA output with nonzero alpha bbox",
+      "edge alpha threshold: <=42 for prefabs, <=250 for documented region/bands",
+      "visible chroma-key residue count equals zero",
+      "region/band items explicitly marked region_band_not_sprite",
+      "color variance above blank-output threshold"
+    ]
+  },
+  "items": [
+    {
+      "id": "place_interior_shell.shop_counter_shell",
+      "file_id": "shop_counter_shell",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "prefab_shell",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round176/place_interior_shells/shop_counter_shell.png",
+      "source_ref": "assets/art/visual_rebuild/round176/place_interior_shells/raw/shop_counter_shell_raw.png",
+      "dimensions": [
+        512,
+        384
+      ],
+      "expected_dimensions": [
+        512,
+        384
+      ],
+      "intended_layer_depth": "interior_front_counter_prefab_above_floor_below_actor_front_overlap",
+      "pivot_px": [
+        256,
+        340
+      ],
+      "anchor_recommendation": "shop_front_or_shop_interior_back_wall",
+      "scale_recommendation": "0.85-1.0 inside Round174 cozy_shop_front; align bottom to interior floor",
+      "bbox_alpha": [
+        8,
+        8,
+        504,
+        376
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 0,
+        "bottom_max_alpha": 0,
+        "left_max_alpha": 0,
+        "right_max_alpha": 0
+      },
+      "visible_key_residue_pixels": 0,
+      "color_variance_rgb_sum": 6987.88,
+      "prompt": "Cozy small-town shop counter shell building block only, 3/4 view warm wooden checkout counter with rounded edges, soft display ledge, tiny baskets and folded cloth shapes without labels, isolated modular asset on clean plain background, no readable text, no letters, no numbers.",
+      "risks": [
+        "Proof-only normalized candidate; visual approval is still required before any runtime mapping.",
+        "No runtime, ThemeProfile, AssetResolver, data, shared test, todo, lesson, or doc mapping is included.",
+        "Generated raw was used only as a source texture/color cue; final alpha and component shape were locally normalized."
+      ]
+    },
+    {
+      "id": "place_interior_shell.shop_display_shelf_wall",
+      "file_id": "shop_display_shelf_wall",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "region_band_not_sprite",
+      "region_or_band_not_sprite": true,
+      "main_ref": "assets/art/visual_rebuild/round176/place_interior_shells/shop_display_shelf_wall.png",
+      "source_ref": "assets/art/visual_rebuild/round176/place_interior_shells/raw/shop_display_shelf_wall_raw.png",
+      "dimensions": [
+        640,
+        384
+      ],
+      "expected_dimensions": [
+        640,
+        384
+      ],
+      "intended_layer_depth": "shop_back_wall_region_behind_counter_and_props; deliberate broad band, not a standalone sprite",
+      "pivot_px": [
+        320,
+        384
+      ],
+      "anchor_recommendation": "shop_interior_back_wall",
+      "scale_recommendation": "1.0-1.2 horizontally behind shop_counter_shell",
+      "bbox_alpha": [
+        0,
+        0,
+        640,
+        384
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 7,
+        "bottom_max_alpha": 20,
+        "left_max_alpha": 242,
+        "right_max_alpha": 242
+      },
+      "visible_key_residue_pixels": 0,
+      "color_variance_rgb_sum": 5365.04,
+      "prompt": "Cozy shop display shelf wall band building block only, warm plaster wall with low wooden shelves, simple unlabeled jars and boxes as abstract shapes, 3/4 game interior background band, no full room, no readable text, no letters, no numbers.",
+      "risks": [
+        "Proof-only normalized candidate; visual approval is still required before any runtime mapping.",
+        "No runtime, ThemeProfile, AssetResolver, data, shared test, todo, lesson, or doc mapping is included.",
+        "Generated raw was used only as a source texture/color cue; final alpha and component shape were locally normalized.",
+        "Broad opaque area is intentional for a region/band layer and must not be treated as a standalone pickup sprite."
+      ]
+    },
+    {
+      "id": "place_interior_shell.school_gate_notice_board_shell",
+      "file_id": "school_gate_notice_board_shell",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "prefab_shell",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round176/place_interior_shells/school_gate_notice_board_shell.png",
+      "source_ref": "assets/art/visual_rebuild/round176/place_interior_shells/raw/school_gate_notice_board_shell_raw.png",
+      "dimensions": [
+        512,
+        384
+      ],
+      "expected_dimensions": [
+        512,
+        384
+      ],
+      "intended_layer_depth": "front_area_prefab_near_school_gate_above_ground_below_actors",
+      "pivot_px": [
+        256,
+        352
+      ],
+      "anchor_recommendation": "school_gate_front_area",
+      "scale_recommendation": "0.75-0.95 near Round174 school_gate_prefab front corner",
+      "bbox_alpha": [
+        14,
+        14,
+        498,
+        370
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 0,
+        "bottom_max_alpha": 0,
+        "left_max_alpha": 0,
+        "right_max_alpha": 0
+      },
+      "visible_key_residue_pixels": 0,
+      "color_variance_rgb_sum": 7724.74,
+      "prompt": "School gate front-area notice board shell building block, friendly rounded wooden board and low fence fragment, blank pastel paper shapes with no marks, cozy town 3/4 game style, isolated asset, no readable text, no letters, no numbers.",
+      "risks": [
+        "Proof-only normalized candidate; visual approval is still required before any runtime mapping.",
+        "No runtime, ThemeProfile, AssetResolver, data, shared test, todo, lesson, or doc mapping is included.",
+        "Generated raw was used only as a source texture/color cue; final alpha and component shape were locally normalized."
+      ]
+    },
+    {
+      "id": "place_interior_shell.school_yard_corner_mat",
+      "file_id": "school_yard_corner_mat",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "region_band_not_sprite",
+      "region_or_band_not_sprite": true,
+      "main_ref": "assets/art/visual_rebuild/round176/place_interior_shells/school_yard_corner_mat.png",
+      "source_ref": "assets/art/visual_rebuild/round176/place_interior_shells/raw/school_yard_corner_mat_raw.png",
+      "dimensions": [
+        640,
+        384
+      ],
+      "expected_dimensions": [
+        640,
+        384
+      ],
+      "intended_layer_depth": "school_yard_ground_region_below_props_and_actors; deliberate broad region, not a standalone sprite",
+      "pivot_px": [
+        320,
+        192
+      ],
+      "anchor_recommendation": "school_yard_corner",
+      "scale_recommendation": "1.0 as yard corner pad under low props; crop/overlap with terrain edge",
+      "bbox_alpha": [
+        0,
+        0,
+        640,
+        384
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 10,
+        "bottom_max_alpha": 10,
+        "left_max_alpha": 6,
+        "right_max_alpha": 6
+      },
+      "visible_key_residue_pixels": 0,
+      "color_variance_rgb_sum": 962.72,
+      "prompt": "School yard corner ground mat region building block, soft green play-yard corner with gentle paving edge, chalk-free and mark-free, 3/4 cozy game ground region, no toys with labels, no full scene, no readable text, no letters, no numbers.",
+      "risks": [
+        "Proof-only normalized candidate; visual approval is still required before any runtime mapping.",
+        "No runtime, ThemeProfile, AssetResolver, data, shared test, todo, lesson, or doc mapping is included.",
+        "Generated raw was used only as a source texture/color cue; final alpha and component shape were locally normalized.",
+        "Broad opaque area is intentional for a region/band layer and must not be treated as a standalone pickup sprite."
+      ]
+    },
+    {
+      "id": "place_interior_shell.bookshop_reading_nook_shell",
+      "file_id": "bookshop_reading_nook_shell",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "prefab_shell",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round176/place_interior_shells/bookshop_reading_nook_shell.png",
+      "source_ref": "assets/art/visual_rebuild/round176/place_interior_shells/raw/bookshop_reading_nook_shell_raw.png",
+      "dimensions": [
+        512,
+        384
+      ],
+      "expected_dimensions": [
+        512,
+        384
+      ],
+      "intended_layer_depth": "bookshop_back_wall_prefab_above_wall_band_below_actor_front_overlap",
+      "pivot_px": [
+        256,
+        356
+      ],
+      "anchor_recommendation": "bookshop_interior_back_wall",
+      "scale_recommendation": "0.8-1.0 inside Round174 bookshop_front interior layer",
+      "bbox_alpha": [
+        13,
+        13,
+        499,
+        371
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 0,
+        "bottom_max_alpha": 0,
+        "left_max_alpha": 0,
+        "right_max_alpha": 0
+      },
+      "visible_key_residue_pixels": 0,
+      "color_variance_rgb_sum": 8378.36,
+      "prompt": "Bookshop reading nook shell building block, rounded low bookshelf silhouettes with blank book spines, small cushion nook and warm lamp shape, 3/4 cozy town interior asset, isolated modular prefab, no readable text, no letters, no numbers.",
+      "risks": [
+        "Proof-only normalized candidate; visual approval is still required before any runtime mapping.",
+        "No runtime, ThemeProfile, AssetResolver, data, shared test, todo, lesson, or doc mapping is included.",
+        "Generated raw was used only as a source texture/color cue; final alpha and component shape were locally normalized."
+      ]
+    },
+    {
+      "id": "place_interior_shell.bus_stop_waiting_pad",
+      "file_id": "bus_stop_waiting_pad",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "region_band_not_sprite",
+      "region_or_band_not_sprite": true,
+      "main_ref": "assets/art/visual_rebuild/round176/place_interior_shells/bus_stop_waiting_pad.png",
+      "source_ref": "assets/art/visual_rebuild/round176/place_interior_shells/raw/bus_stop_waiting_pad_raw.png",
+      "dimensions": [
+        512,
+        320
+      ],
+      "expected_dimensions": [
+        512,
+        320
+      ],
+      "intended_layer_depth": "bus_stop_ground_region_below_round174_bus_stop_shelter_and_actors; deliberate broad region, not a standalone sprite",
+      "pivot_px": [
+        256,
+        160
+      ],
+      "anchor_recommendation": "bus_stop_front_area",
+      "scale_recommendation": "0.85-1.1 under Round174 bus_stop_shelter footprint",
+      "bbox_alpha": [
+        0,
+        0,
+        512,
+        320
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 39,
+        "bottom_max_alpha": 39,
+        "left_max_alpha": 36,
+        "right_max_alpha": 36
+      },
+      "visible_key_residue_pixels": 0,
+      "color_variance_rgb_sum": 2692.93,
+      "prompt": "Bus stop waiting pad ground region building block, cozy paved oval pad with soft grass edge and small shadow where shelter can sit, no bus sign, no route sign, no full scene, 3/4 game material patch, no readable text, no letters, no numbers.",
+      "risks": [
+        "Proof-only normalized candidate; visual approval is still required before any runtime mapping.",
+        "No runtime, ThemeProfile, AssetResolver, data, shared test, todo, lesson, or doc mapping is included.",
+        "Generated raw was used only as a source texture/color cue; final alpha and component shape were locally normalized.",
+        "Broad opaque area is intentional for a region/band layer and must not be treated as a standalone pickup sprite."
+      ]
+    },
+    {
+      "id": "place_interior_shell.plaza_market_table_shell",
+      "file_id": "plaza_market_table_shell",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "prefab_shell",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round176/place_interior_shells/plaza_market_table_shell.png",
+      "source_ref": "assets/art/visual_rebuild/round176/place_interior_shells/raw/plaza_market_table_shell_raw.png",
+      "dimensions": [
+        512,
+        384
+      ],
+      "expected_dimensions": [
+        512,
+        384
+      ],
+      "intended_layer_depth": "plaza_front_area_table_prefab_above_ground_below_actor_front_overlap",
+      "pivot_px": [
+        256,
+        348
+      ],
+      "anchor_recommendation": "plaza_market_front_area",
+      "scale_recommendation": "0.8-1.0 at plaza market/front-area depth, leave actor walkway clear",
+      "bbox_alpha": [
+        13,
+        13,
+        499,
+        371
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 0,
+        "bottom_max_alpha": 0,
+        "left_max_alpha": 0,
+        "right_max_alpha": 0
+      },
+      "visible_key_residue_pixels": 0,
+      "color_variance_rgb_sum": 8826.09,
+      "prompt": "Plaza market table shell building block, friendly wooden stall table with blank cloth runner, small baskets of fruit-like shapes without labels, 3/4 cozy game asset, isolated modular prefab, no readable text, no letters, no numbers.",
+      "risks": [
+        "Proof-only normalized candidate; visual approval is still required before any runtime mapping.",
+        "No runtime, ThemeProfile, AssetResolver, data, shared test, todo, lesson, or doc mapping is included.",
+        "Generated raw was used only as a source texture/color cue; final alpha and component shape were locally normalized."
+      ]
+    },
+    {
+      "id": "place_interior_shell.classroom_window_wall_band",
+      "file_id": "classroom_window_wall_band",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "region_band_not_sprite",
+      "region_or_band_not_sprite": true,
+      "main_ref": "assets/art/visual_rebuild/round176/place_interior_shells/classroom_window_wall_band.png",
+      "source_ref": "assets/art/visual_rebuild/round176/place_interior_shells/raw/classroom_window_wall_band_raw.png",
+      "dimensions": [
+        640,
+        384
+      ],
+      "expected_dimensions": [
+        640,
+        384
+      ],
+      "intended_layer_depth": "classroom_back_wall_region_behind_desks_and_props; deliberate broad band, not a standalone sprite",
+      "pivot_px": [
+        320,
+        384
+      ],
+      "anchor_recommendation": "school_or_classroom_back_wall",
+      "scale_recommendation": "1.0-1.2 behind school/classroom furniture and UI-safe props",
+      "bbox_alpha": [
+        0,
+        0,
+        640,
+        384
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 7,
+        "bottom_max_alpha": 20,
+        "left_max_alpha": 242,
+        "right_max_alpha": 242
+      },
+      "visible_key_residue_pixels": 0,
+      "color_variance_rgb_sum": 3450.41,
+      "prompt": "Classroom window wall band building block, warm cream wall with rounded window shapes and low wooden sill, blank bulletin shapes without marks, cozy child-friendly 3/4 game interior background band, no readable text, no letters, no numbers.",
+      "risks": [
+        "Proof-only normalized candidate; visual approval is still required before any runtime mapping.",
+        "No runtime, ThemeProfile, AssetResolver, data, shared test, todo, lesson, or doc mapping is included.",
+        "Generated raw was used only as a source texture/color cue; final alpha and component shape were locally normalized.",
+        "Broad opaque area is intentional for a region/band layer and must not be treated as a standalone pickup sprite."
+      ]
+    }
+  ],
+  "pack_risks": [
+    "Proof-only candidates are not approval evidence for art_target_locked or runtime_visual_match.",
+    "Large region/band PNGs may still need tiling/material replacement later; use only for composition review.",
+    "No automated OCR was run; text avoidance is enforced by prompt and deterministic final drawing without glyph strokes."
+  ]
+}

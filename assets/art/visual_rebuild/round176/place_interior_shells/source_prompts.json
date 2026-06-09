@@ -1,0 +1,65 @@
+{
+  "round": "Round176",
+  "pack_id": "place_interior_shells",
+  "generator": "/home/xionglei/GameProject/tools/image_generator.js",
+  "global_negative": "No readable text, no letters, no numbers, no signage words, no watermark, no UI, no full background scene screenshot, no people, no animals, no logos, no hard black outlines, no photorealism.",
+  "style": "child-friendly cozy town building-block asset, Animal Crossing-like 3/4 soft game style, warm hand-painted material, rounded forms, gentle daylight, compatible with Round174 place prefab scale and Round175 interior shell layering.",
+  "items": [
+    {
+      "id": "shop_counter_shell",
+      "size": [512, 384],
+      "kind": "prefab_shell",
+      "anchor": "shop_front_or_shop_interior_back_wall",
+      "prompt": "Cozy small-town shop counter shell building block only, 3/4 view warm wooden checkout counter with rounded edges, soft display ledge, tiny baskets and folded cloth shapes without labels, isolated modular asset on clean plain background, no readable text, no letters, no numbers."
+    },
+    {
+      "id": "shop_display_shelf_wall",
+      "size": [640, 384],
+      "kind": "region_band_not_sprite",
+      "anchor": "shop_interior_back_wall",
+      "prompt": "Cozy shop display shelf wall band building block only, warm plaster wall with low wooden shelves, simple unlabeled jars and boxes as abstract shapes, 3/4 game interior background band, no full room, no readable text, no letters, no numbers."
+    },
+    {
+      "id": "school_gate_notice_board_shell",
+      "size": [512, 384],
+      "kind": "prefab_shell",
+      "anchor": "school_gate_front_area",
+      "prompt": "School gate front-area notice board shell building block, friendly rounded wooden board and low fence fragment, blank pastel paper shapes with no marks, cozy town 3/4 game style, isolated asset, no readable text, no letters, no numbers."
+    },
+    {
+      "id": "school_yard_corner_mat",
+      "size": [640, 384],
+      "kind": "region_band_not_sprite",
+      "anchor": "school_yard_corner",
+      "prompt": "School yard corner ground mat region building block, soft green play-yard corner with gentle paving edge, chalk-free and mark-free, 3/4 cozy game ground region, no toys with labels, no full scene, no readable text, no letters, no numbers."
+    },
+    {
+      "id": "bookshop_reading_nook_shell",
+      "size": [512, 384],
+      "kind": "prefab_shell",
+      "anchor": "bookshop_interior_back_wall",
+      "prompt": "Bookshop reading nook shell building block, rounded low bookshelf silhouettes with blank book spines, small cushion nook and warm lamp shape, 3/4 cozy town interior asset, isolated modular prefab, no readable text, no letters, no numbers."
+    },
+    {
+      "id": "bus_stop_waiting_pad",
+      "size": [512, 320],
+      "kind": "region_band_not_sprite",
+      "anchor": "bus_stop_front_area",
+      "prompt": "Bus stop waiting pad ground region building block, cozy paved oval pad with soft grass edge and small shadow where shelter can sit, no bus sign, no route sign, no full scene, 3/4 game material patch, no readable text, no letters, no numbers."
+    },
+    {
+      "id": "plaza_market_table_shell",
+      "size": [512, 384],
+      "kind": "prefab_shell",
+      "anchor": "plaza_market_front_area",
+      "prompt": "Plaza market table shell building block, friendly wooden stall table with blank cloth runner, small baskets of fruit-like shapes without labels, 3/4 cozy game asset, isolated modular prefab, no readable text, no letters, no numbers."
+    },
+    {
+      "id": "classroom_window_wall_band",
+      "size": [640, 384],
+      "kind": "region_band_not_sprite",
+      "anchor": "school_or_classroom_back_wall",
+      "prompt": "Classroom window wall band building block, warm cream wall with rounded window shapes and low wooden sill, blank bulletin shapes without marks, cozy child-friendly 3/4 game interior background band, no readable text, no letters, no numbers."
+    }
+  ]
+}

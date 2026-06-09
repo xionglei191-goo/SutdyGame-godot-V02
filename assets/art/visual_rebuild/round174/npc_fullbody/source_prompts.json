@@ -1,0 +1,48 @@
+{
+  "generation_tool": "/home/xionglei/GameProject/tools/image_generator.js",
+  "generation_mode": "text 1024x1024 flat #ff00ff chroma-key background",
+  "chroma_key_color": "#ff00ff",
+  "shared_constraints": "Cozy town life-sim full-body standing sprite candidate; original rounded chibi proportions; soft 3/4 front standing pose; children-safe; perfectly flat solid #ff00ff chroma-key background only; do not use #ff00ff in the subject; no text, labels, UI card, scene background, shadow, gradient, floor plane, or watermark; centered with generous padding; compatible with Round171 160x192 actor scale.",
+  "items": [
+    {
+      "id": "player_child_neutral",
+      "target_height_px": 150,
+      "prompt": "Cozy town life-sim full-body standing sprite candidate of a cheerful child player, soft 3/4 front view, neutral relaxed pose, rounded chibi proportions, warm practical play clothes, simple sneakers, gentle friendly face, children-safe game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no scene, no shadow, no gradient, centered with generous padding."
+    },
+    {
+      "id": "mina_neighbor",
+      "target_height_px": 158,
+      "prompt": "Cozy town life-sim full-body standing sprite candidate of Mina, a friendly animal neighbor with soft rounded ears and a warm cardigan, soft 3/4 front view, relaxed standing pose, rounded chibi proportions compatible with a child-friendly cozy town RPG, gentle face, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no scene, no shadow, no gradient, centered with generous padding."
+    },
+    {
+      "id": "shopkeeper_warm",
+      "target_height_px": 158,
+      "prompt": "Cozy town life-sim full-body standing sprite candidate of a warm shopkeeper neighbor, friendly adult animal resident wearing a small apron and simple shirt, soft 3/4 front view, relaxed standing pose, rounded chibi proportions, children-safe cozy town game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no shop background, no shadow, no gradient, centered with generous padding."
+    },
+    {
+      "id": "sunny_companion",
+      "target_height_px": 96,
+      "prompt": "Cozy town life-sim full-body standing sprite candidate of Sunny, a small golden companion pet, puppy-like friendly creature with rounded ears and tiny scarf, soft 3/4 front view, standing alert pose, compact scale for companion character, children-safe game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no scene, no shadow, no gradient, centered with generous padding."
+    },
+    {
+      "id": "story_bear_friend",
+      "target_height_px": 154,
+      "prompt": "Cozy town life-sim full-body standing sprite candidate of Story Bear, a kind bear friend with a small satchel and soft sweater, soft 3/4 front view, relaxed standing pose, rounded chibi proportions, warm friendly face for children, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no book cover, no scene, no shadow, no gradient, centered with generous padding."
+    },
+    {
+      "id": "bus_brother_helper",
+      "target_height_px": 158,
+      "prompt": "Cozy town life-sim full-body standing sprite candidate of a helpful bus brother neighbor, friendly older animal resident with simple vest and cap, soft 3/4 front view, relaxed standing pose, rounded chibi proportions, gentle child-safe expression, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no bus background, no shadow, no gradient, centered with generous padding."
+    },
+    {
+      "id": "school_friend",
+      "target_height_px": 150,
+      "prompt": "Cozy town life-sim full-body standing sprite candidate of a school friend, cheerful child neighbor with small backpack and tidy play clothes, soft 3/4 front view, neutral standing pose, rounded chibi proportions, child-safe cozy town game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no classroom background, no shadow, no gradient, centered with generous padding."
+    },
+    {
+      "id": "gardener_neighbor",
+      "target_height_px": 156,
+      "prompt": "Cozy town life-sim full-body standing sprite candidate of a gardener neighbor, friendly animal resident wearing a sun hat and simple overalls, holding no readable sign, soft 3/4 front view, relaxed standing pose, rounded chibi proportions, warm child-safe cozy town game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no garden background, no shadow, no gradient, centered with generous padding."
+    }
+  ]
+}

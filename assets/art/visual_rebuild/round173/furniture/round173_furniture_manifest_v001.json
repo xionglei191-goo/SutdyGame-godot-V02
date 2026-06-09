@@ -1,0 +1,316 @@
+{
+  "round": "Round173",
+  "pack_id": "furniture",
+  "status": "normalized_candidate",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "category": "furniture_prop",
+  "source": "docs/collaboration/round173_visual_rebuild_asset_generation/furniture/round173_furniture_raw_chroma_ff00ff_4x2_v002.png",
+  "raw_file": "docs/collaboration/round173_visual_rebuild_asset_generation/furniture/round173_furniture_raw_chroma_ff00ff_4x2_v002.png",
+  "generated_item_sources_dir": "docs/collaboration/round173_visual_rebuild_asset_generation/furniture/raw_items",
+  "atlas": "assets/art/visual_rebuild/round173/furniture/round173_furniture_128x128_atlas_v001.png",
+  "proof": "assets/art/visual_rebuild/round173/furniture/round173_furniture_128x128_proof_v001.png",
+  "normalized_dir": "assets/art/visual_rebuild/round173/furniture/normalized_128x128",
+  "source_grid": {
+    "columns": 4,
+    "rows": 2
+  },
+  "cell_size": [
+    128,
+    128
+  ],
+  "atlas_size": [
+    512,
+    256
+  ],
+  "key_color": "#ff00ff",
+  "gate_checks": {
+    "fixed_cell": true,
+    "alpha": true,
+    "bbox": true,
+    "visible_key_pixels": 0,
+    "visible_key_pixels_zero": true
+  },
+  "overall_gate": "pass",
+  "items": [
+    {
+      "index": 1,
+      "id": "small_table",
+      "display_name": "Small Table",
+      "logical_asset_id": "furniture.small_table.placed",
+      "normalized_png": "assets/art/visual_rebuild/round173/furniture/normalized_128x128/small_table_128x128.png",
+      "atlas_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        29,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 69,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "id": "wooden_chair",
+      "display_name": "Wooden Chair",
+      "logical_asset_id": "furniture.wooden_chair.placed",
+      "normalized_png": "assets/art/visual_rebuild/round173/furniture/normalized_128x128/wooden_chair_128x128.png",
+      "atlas_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        21,
+        8,
+        107,
+        120
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 63,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "id": "round_rug",
+      "display_name": "Round Rug",
+      "logical_asset_id": "furniture.rug_round.placed",
+      "normalized_png": "assets/art/visual_rebuild/round173/furniture/normalized_128x128/round_rug_128x128.png",
+      "atlas_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        63,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 60,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "id": "flower_pot",
+      "display_name": "Flower Pot",
+      "logical_asset_id": "furniture.flower_pot.placed",
+      "normalized_png": "assets/art/visual_rebuild/round173/furniture/normalized_128x128/flower_pot_128x128.png",
+      "atlas_cell": {
+        "row": 0,
+        "column": 3
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        12,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 75,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "id": "pet_bowl",
+      "display_name": "Pet Bowl",
+      "logical_asset_id": "furniture.pet_bowl.placed",
+      "normalized_png": "assets/art/visual_rebuild/round173/furniture/normalized_128x128/pet_bowl_128x128.png",
+      "atlas_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        47,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 52,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "id": "sunny_bed",
+      "display_name": "Sunny Bed",
+      "logical_asset_id": "furniture.sunny_bed.placed",
+      "normalized_png": "assets/art/visual_rebuild/round173/furniture/normalized_128x128/sunny_bed_128x128.png",
+      "atlas_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        40,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 64,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 7,
+      "id": "book_stack",
+      "display_name": "Book Stack",
+      "logical_asset_id": "furniture.book_stack.placed",
+      "normalized_png": "assets/art/visual_rebuild/round173/furniture/normalized_128x128/book_stack_128x128.png",
+      "atlas_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        10,
+        8,
+        118,
+        120
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 93,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 8,
+      "id": "wall_art",
+      "display_name": "Wall Art",
+      "logical_asset_id": "furniture.wall_art.placed",
+      "normalized_png": "assets/art/visual_rebuild/round173/furniture/normalized_128x128/wall_art_128x128.png",
+      "atlas_cell": {
+        "row": 1,
+        "column": 3
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        36,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 1,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    }
+  ]
+}

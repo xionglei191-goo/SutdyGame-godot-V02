@@ -1,0 +1,228 @@
+{
+  "layout_id": "sunshine_town_p0_1280_round180_v001",
+  "task_id": "V02-VISUALREBUILD-002",
+  "round": "Round180",
+  "status": "art_target_locked_whitebox_by_user_instruction",
+  "runtime_boundary": "locked_whitebox_target_no_themeprofile_no_assetresolver_no_data_changes",
+  "approval_scope": "whitebox_composition_and_runtime_match_lock_not_final_bitmap_art_approval",
+  "target_viewport": {
+    "w": 1280,
+    "h": 720
+  },
+  "canonical_reference": "docs/collaboration/artpass003_visual_direction/artpass003_main_gameplay_direction_1280.png",
+  "target_frame_output": "docs/collaboration/round180_v0239_mainline_visual_layout_target/round180_v0239_visual_layout_target_1280x720_v001.png",
+  "camera": {
+    "mode": "fixed_home_centered_first_screen",
+    "focus_cell": {
+      "x": 31,
+      "y": 20
+    },
+    "logic_cell_screen_px": 28,
+    "camera_scale_max": 1.6,
+    "child_runtime_grid_visibility": "hidden"
+  },
+  "layers": [
+    {
+      "layer_id": "sky_hud_safe",
+      "z_base": -120,
+      "purpose": "top safe-area atmosphere and HUD chips"
+    },
+    {
+      "layer_id": "terrain_regions",
+      "z_base": -80,
+      "purpose": "large grass chunks and walkable open regions without visible grid"
+    },
+    {
+      "layer_id": "path_water",
+      "z_base": -60,
+      "purpose": "curved 2-3 cell path, pond/coast hint, path pebbles"
+    },
+    {
+      "layer_id": "background_places",
+      "z_base": -35,
+      "purpose": "school and shop as destination hints, not full world index"
+    },
+    {
+      "layer_id": "home_midground",
+      "z_base": -10,
+      "purpose": "primary Home cottage, yard, fence, garden"
+    },
+    {
+      "layer_id": "props_anchors",
+      "z_base": 15,
+      "purpose": "daily props and prop-first A-Z subset"
+    },
+    {
+      "layer_id": "actors",
+      "z_base": 40,
+      "purpose": "player and Sunny companion feet-baseline scale proof"
+    },
+    {
+      "layer_id": "glass_ui",
+      "z_base": 120,
+      "purpose": "Apple-like translucent top status and five-button bottom dock"
+    }
+  ],
+  "visual_nodes": [
+    {
+      "visual_id": "vis_grass_base_home_center",
+      "bind": {
+        "type": "visual_region",
+        "id": "home_center_grass"
+      },
+      "layer_id": "terrain_regions",
+      "position_px": {
+        "x": 640,
+        "y": 356
+      },
+      "size_px": {
+        "w": 1280,
+        "h": 536
+      },
+      "rule": "composed from large terrain chunks; no child-facing grid"
+    },
+    {
+      "visual_id": "vis_path_home_curve",
+      "bind": {
+        "type": "logic_path",
+        "id": "p0_home_center_path"
+      },
+      "layer_id": "path_water",
+      "tile_contract": {
+        "width_cell_min": 2,
+        "width_cell_max": 3,
+        "runtime_blockout_tile_min": 30
+      },
+      "walkable_open_zones": [
+        "home_front_yard",
+        "center_grass_pause"
+      ]
+    },
+    {
+      "visual_id": "vis_home_cottage_primary",
+      "bind": {
+        "type": "place",
+        "id": "place_home"
+      },
+      "layer_id": "home_midground",
+      "position_px": {
+        "x": 604,
+        "y": 404
+      },
+      "size_cell": {
+        "w": 3.2,
+        "h": 2.55
+      },
+      "footprint_cell": {
+        "w": 4,
+        "h": 3
+      },
+      "priority": "primary_focus",
+      "asset_contract": "building prefab composed from body, roof, door, windows, steps, chimney, flower box, and separate soft shadow"
+    },
+    {
+      "visual_id": "vis_school_background_hint",
+      "bind": {
+        "type": "place",
+        "id": "place_school_gate"
+      },
+      "layer_id": "background_places",
+      "position_px": {
+        "x": 632,
+        "y": 226
+      },
+      "rule": "visible destination hint; no classroom, test, score, or homework motifs"
+    },
+    {
+      "visual_id": "vis_shop_background_hint",
+      "bind": {
+        "type": "place",
+        "id": "place_supermarket"
+      },
+      "layer_id": "background_places",
+      "position_px": {
+        "x": 244,
+        "y": 310
+      },
+      "rule": "visible daily-life shop hint; no price text"
+    },
+    {
+      "visual_id": "vis_water_edge_right",
+      "bind": {
+        "type": "visual_region",
+        "id": "right_edge_water"
+      },
+      "layer_id": "path_water",
+      "position_px": {
+        "x": 1098,
+        "y": 610
+      },
+      "tile_contract": {
+        "piece_min": 3,
+        "edge_role": "pond_or_coast_hint"
+      }
+    },
+    {
+      "visual_id": "vis_anchor_a_apple_prop",
+      "bind": {
+        "type": "anchor",
+        "id": "anchor_a_apple"
+      },
+      "layer_id": "props_anchors",
+      "rule": "prop-first home clue; badge hidden until focus"
+    },
+    {
+      "visual_id": "vis_anchor_c_clock_prop",
+      "bind": {
+        "type": "anchor",
+        "id": "anchor_c_clock"
+      },
+      "layer_id": "props_anchors",
+      "rule": "home daily object clue; no full A-Z index"
+    },
+    {
+      "visual_id": "vis_actor_player_scale",
+      "bind": {
+        "type": "actor",
+        "id": "player"
+      },
+      "layer_id": "actors",
+      "size_cell": {
+        "w": 0.72,
+        "h": 1.08
+      },
+      "rule": "smaller than Home and grounded on path"
+    },
+    {
+      "visual_id": "vis_sunny_companion_scale",
+      "bind": {
+        "type": "companion",
+        "id": "sunny"
+      },
+      "layer_id": "actors",
+      "rule": "composed companion proxy with contact shadow"
+    },
+    {
+      "visual_id": "vis_bottom_dock_five_buttons",
+      "bind": {
+        "type": "ui",
+        "id": "town_footer"
+      },
+      "layer_id": "glass_ui",
+      "button_count": 5,
+      "rule": "five icon-first dock buttons inside translucent glass"
+    }
+  ],
+  "constraints": {
+    "story_batch_status": "pending_until_round181_gate",
+    "full_map_background": "forbidden_as_final_runtime",
+    "visible_grid": "forbidden_in_child_runtime",
+    "a_z_first_screen": "prop_first_subset_only",
+    "ui": "apple_like_translucent_glass_with_five_bottom_buttons",
+    "approval": "grants_art_target_locked_for_whitebox_runtime_match_only"
+  },
+  "handoff_to_next_tasks": {
+    "V02-VISUALREBUILD-004": "produce unified environment asset kit only after PM/User locks this target",
+    "V02-VISUALREBUILD-005": "match TownStage 1280 runtime screenshot to the locked target after asset kit"
+  }
+}

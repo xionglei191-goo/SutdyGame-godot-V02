@@ -1,0 +1,305 @@
+{
+  "source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/path_fence_flower_home_pipeline_v002/raw/round169_fence_ai_raw_sheet_v002.png",
+  "alpha_source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/path_fence_flower_home_pipeline_v002/fence_normalized_v002/round169_fence_ai_raw_sheet_v002_chroma_alpha.png",
+  "atlas": "assets/art/visual_rebuild/round169/fence/fence_segments_256x128_sheet_v002.png",
+  "pivot_proof": "assets/art/visual_rebuild/round169/fence/fence_segments_256x128_pivot_proof_v002.png",
+  "source_grid": {
+    "columns": 3,
+    "rows": 2
+  },
+  "cell_size": [
+    256,
+    128
+  ],
+  "fit_box": [
+    224,
+    96
+  ],
+  "pivot_px": [
+    128,
+    118
+  ],
+  "key_color": "#00ffff",
+  "key_family": "exact",
+  "items": [
+    {
+      "index": 1,
+      "id": "fence_segment.01",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        34,
+        214,
+        341,
+        424
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/fence/normalized_256x128/fence_segment_01_256x128.png",
+      "cell_size": [
+        256,
+        128
+      ],
+      "pivot_px": [
+        128,
+        118
+      ],
+      "placed_bbox": [
+        58,
+        22,
+        198,
+        118
+      ],
+      "margins_px": {
+        "left": 58,
+        "top": 22,
+        "right": 58,
+        "bottom": 10
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.45714285714285713,
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "id": "fence_segment.02",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        0,
+        210,
+        341,
+        424
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/fence/normalized_256x128/fence_segment_02_256x128.png",
+      "cell_size": [
+        256,
+        128
+      ],
+      "pivot_px": [
+        128,
+        118
+      ],
+      "placed_bbox": [
+        52,
+        22,
+        205,
+        118
+      ],
+      "margins_px": {
+        "left": 52,
+        "top": 22,
+        "right": 51,
+        "bottom": 10
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 2,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.4485981308411215,
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "id": "fence_segment.03",
+      "source_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        0,
+        212,
+        293,
+        424
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/fence/normalized_256x128/fence_segment_03_256x128.png",
+      "cell_size": [
+        256,
+        128
+      ],
+      "pivot_px": [
+        128,
+        118
+      ],
+      "placed_bbox": [
+        62,
+        22,
+        195,
+        118
+      ],
+      "margins_px": {
+        "left": 62,
+        "top": 22,
+        "right": 61,
+        "bottom": 10
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.4528301886792453,
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "id": "fence_segment.04",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        28,
+        73,
+        304,
+        278
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/fence/normalized_256x128/fence_segment_04_256x128.png",
+      "cell_size": [
+        256,
+        128
+      ],
+      "pivot_px": [
+        128,
+        118
+      ],
+      "placed_bbox": [
+        64,
+        22,
+        193,
+        118
+      ],
+      "margins_px": {
+        "left": 64,
+        "top": 22,
+        "right": 63,
+        "bottom": 10
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.4682926829268293,
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "id": "fence_segment.05",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        30,
+        89,
+        317,
+        301
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/fence/normalized_256x128/fence_segment_05_256x128.png",
+      "cell_size": [
+        256,
+        128
+      ],
+      "pivot_px": [
+        128,
+        118
+      ],
+      "placed_bbox": [
+        63,
+        22,
+        192,
+        118
+      ],
+      "margins_px": {
+        "left": 63,
+        "top": 22,
+        "right": 64,
+        "bottom": 10
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.4528301886792453,
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "id": "fence_segment.06",
+      "source_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        29,
+        84,
+        317,
+        281
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/fence/normalized_256x128/fence_segment_06_256x128.png",
+      "cell_size": [
+        256,
+        128
+      ],
+      "pivot_px": [
+        128,
+        118
+      ],
+      "placed_bbox": [
+        58,
+        22,
+        198,
+        118
+      ],
+      "margins_px": {
+        "left": 58,
+        "top": 22,
+        "right": 58,
+        "bottom": 10
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.4873096446700508,
+      "status": "pass"
+    }
+  ],
+  "overall_gate": "pass",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "category": "fence_segment"
+}

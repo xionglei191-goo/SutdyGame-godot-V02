@@ -1,0 +1,50 @@
+{
+  "round": "Round175",
+  "pack_id": "motion_sheets",
+  "generation_tool": "/home/xionglei/GameProject/tools/image_generator.js",
+  "generation_mode": "text 1024x1024 transparent PNG requested, normalized to 960x768",
+  "cell_size": [160, 192],
+  "baseline_y_px": 176,
+  "pivot_px": [80, 176],
+  "directions": ["down", "left", "right", "up"],
+  "frames_per_direction": 3,
+  "style_anchor": "Round174 fullbody cozy-town character style and Round171 actor scale: rounded chibi proportions, soft clean silhouettes, warm life-sim colors, child-safe, game sprite readable at small size.",
+  "items": [
+    {
+      "id": "player_child_walk_4dir",
+      "character_key": "player_child",
+      "target_height_px": 150,
+      "prompt": "Create a transparent PNG sprite sheet for a cozy town life-sim child player walking animation. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Rounded chibi proportions compatible with 160x192 actor cells, cheerful child in practical warm play clothes and simple sneakers, clean silhouette, gentle face, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark."
+    },
+    {
+      "id": "mina_neighbor_walk_4dir",
+      "character_key": "mina_neighbor",
+      "target_height_px": 158,
+      "prompt": "Create a transparent PNG sprite sheet for Mina, a friendly animal neighbor, walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Mina has soft rounded ears, a warm cardigan, friendly gentle face, rounded chibi proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark."
+    },
+    {
+      "id": "shopkeeper_warm_walk_4dir",
+      "character_key": "shopkeeper_warm",
+      "target_height_px": 158,
+      "prompt": "Create a transparent PNG sprite sheet for a warm shopkeeper animal resident walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Friendly adult animal resident wearing a small apron and simple shirt, rounded chibi proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no shop background, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark."
+    },
+    {
+      "id": "sunny_companion_walk_4dir",
+      "character_key": "sunny_companion",
+      "target_height_px": 96,
+      "prompt": "Create a transparent PNG sprite sheet for Sunny, a small sunny companion pet, walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Small rounded companion pet with a sunny warm personality, soft ears, tiny paws, rounded proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching the fullbody actor style. Keep every frame centered in its cell, paws on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark."
+    },
+    {
+      "id": "story_bear_walk_4dir",
+      "character_key": "story_bear",
+      "target_height_px": 158,
+      "prompt": "Create a transparent PNG sprite sheet for Story Bear, a gentle bear friend, walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Gentle rounded bear friend with cozy storyteller warmth, simple soft clothing detail, rounded chibi proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark."
+    },
+    {
+      "id": "bus_brother_walk_4dir",
+      "character_key": "bus_brother",
+      "target_height_px": 158,
+      "prompt": "Create a transparent PNG sprite sheet for Bus Brother, a kind helper older animal resident, walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Kind helper older brother feeling, simple travel jacket or vest, rounded chibi proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no bus background, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark."
+    }
+  ]
+}

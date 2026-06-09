@@ -1,0 +1,531 @@
+{
+  "asset_pack_id": "round172.town_props",
+  "round": "round172",
+  "category": "town_props",
+  "status": "normalized_candidate",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "approval_boundary": "proof_only_not_final_approved",
+  "style_target": "cozy mobile life RPG town props, warm hand-painted 3/4 view, fixed-cell transparent-ready atlas",
+  "raw_generation": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text",
+    "output": "docs/collaboration/round172_visual_rebuild_asset_generation/town_props/round172_town_props_raw_chroma_4x2_v002.png",
+    "size": "1024x512",
+    "chroma_key": "#ff00ff"
+  },
+  "source": "docs/collaboration/round172_visual_rebuild_asset_generation/town_props/round172_town_props_raw_chroma_4x2_v002.png",
+  "source_note": "Raw sheet was not used as a strict crop grid because generated wide props crossed implied cell boundaries; manual source bboxes preserve the same raw sheet while producing clean fixed cells.",
+  "alpha_source": "assets/art/visual_rebuild/round172/town_props/round172_town_props_raw_chroma_4x2_v002_chroma_alpha.png",
+  "atlas": "assets/art/visual_rebuild/round172/town_props/round172_town_props_raw_chroma_4x2_v002_128x128_atlas.png",
+  "pivot_proof": "assets/art/visual_rebuild/round172/town_props/round172_town_props_raw_chroma_4x2_v002_128x128_pivot_proof.png",
+  "source_grid": {
+    "columns": 4,
+    "rows": 2
+  },
+  "cell_size": [
+    128,
+    128
+  ],
+  "fit_box": [
+    112,
+    116
+  ],
+  "pivot_px": [
+    64,
+    122
+  ],
+  "key_color": "#ff00ff",
+  "key_family": "magenta",
+  "item_catalog": [
+    {
+      "index": 1,
+      "logical_candidate_id": "round172.town_props.mailbox",
+      "label": "mailbox",
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_01_128x128.png"
+    },
+    {
+      "index": 2,
+      "logical_candidate_id": "round172.town_props.warm_street_lamp",
+      "label": "warm street lamp",
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_02_128x128.png"
+    },
+    {
+      "index": 3,
+      "logical_candidate_id": "round172.town_props.wood_signpost",
+      "label": "wood signpost",
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_03_128x128.png"
+    },
+    {
+      "index": 4,
+      "logical_candidate_id": "round172.town_props.wood_crate_stack",
+      "label": "wood crate stack",
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_04_128x128.png"
+    },
+    {
+      "index": 5,
+      "logical_candidate_id": "round172.town_props.small_notice_board",
+      "label": "small notice board",
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_05_128x128.png"
+    },
+    {
+      "index": 6,
+      "logical_candidate_id": "round172.town_props.round_stone",
+      "label": "round stone",
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_06_128x128.png"
+    },
+    {
+      "index": 7,
+      "logical_candidate_id": "round172.town_props.small_wooden_bench",
+      "label": "small wooden bench",
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_07_128x128.png"
+    },
+    {
+      "index": 8,
+      "logical_candidate_id": "round172.town_props.market_basket",
+      "label": "market basket",
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_08_128x128.png"
+    }
+  ],
+  "gate_requirements": {
+    "fixed_cell": "128x128 for every normalized PNG and atlas cell",
+    "alpha": "RGBA normalized PNG / atlas with transparent background",
+    "bbox": "each item must have a non-empty placed_bbox",
+    "visible_key_pixels": 0,
+    "overall_gate_policy": "pass only when fixed cell, alpha, bbox, and visible key pixels=0 all pass"
+  },
+  "items": [
+    {
+      "index": 1,
+      "id": "round172_town_prop.01",
+      "logical_candidate_id": "round172.town_props.mailbox",
+      "label": "mailbox",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "source_bbox_full": [
+        62,
+        50,
+        224,
+        210
+      ],
+      "source_bbox_in_crop": [
+        9,
+        12,
+        150,
+        153
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_01_128x128.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        122
+      ],
+      "placed_bbox": [
+        8,
+        10,
+        120,
+        122
+      ],
+      "margins_px": {
+        "left": 8,
+        "top": 10,
+        "right": 8,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.7943262411347518,
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "id": "round172_town_prop.02",
+      "logical_candidate_id": "round172.town_props.warm_street_lamp",
+      "label": "warm street lamp",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "source_bbox_full": [
+        272,
+        8,
+        450,
+        214
+      ],
+      "source_bbox_in_crop": [
+        7,
+        10,
+        131,
+        200
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_02_128x128.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        122
+      ],
+      "placed_bbox": [
+        26,
+        6,
+        102,
+        122
+      ],
+      "margins_px": {
+        "left": 26,
+        "top": 6,
+        "right": 26,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.6105263157894737,
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "id": "round172_town_prop.03",
+      "logical_candidate_id": "round172.town_props.wood_signpost",
+      "label": "wood signpost",
+      "source_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "source_bbox_full": [
+        490,
+        40,
+        685,
+        210
+      ],
+      "source_bbox_in_crop": [
+        0,
+        7,
+        168,
+        163
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_03_128x128.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        122
+      ],
+      "placed_bbox": [
+        8,
+        18,
+        120,
+        122
+      ],
+      "margins_px": {
+        "left": 8,
+        "top": 18,
+        "right": 8,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.6666666666666666,
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "id": "round172_town_prop.04",
+      "logical_candidate_id": "round172.town_props.wood_crate_stack",
+      "label": "wood crate stack",
+      "source_cell": {
+        "row": 0,
+        "column": 3
+      },
+      "source_bbox_full": [
+        680,
+        50,
+        955,
+        215
+      ],
+      "source_bbox_in_crop": [
+        25,
+        8,
+        260,
+        157
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_04_128x128.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        122
+      ],
+      "placed_bbox": [
+        8,
+        51,
+        120,
+        122
+      ],
+      "margins_px": {
+        "left": 8,
+        "top": 51,
+        "right": 8,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.4765957446808511,
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "id": "round172_town_prop.05",
+      "logical_candidate_id": "round172.town_props.small_notice_board",
+      "label": "small notice board",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "source_bbox_full": [
+        45,
+        280,
+        255,
+        425
+      ],
+      "source_bbox_in_crop": [
+        10,
+        7,
+        201,
+        139
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_05_128x128.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        122
+      ],
+      "placed_bbox": [
+        8,
+        45,
+        120,
+        122
+      ],
+      "margins_px": {
+        "left": 8,
+        "top": 45,
+        "right": 8,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.5863874345549738,
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "id": "round172_town_prop.06",
+      "logical_candidate_id": "round172.town_props.round_stone",
+      "label": "round stone",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "source_bbox_full": [
+        280,
+        295,
+        480,
+        405
+      ],
+      "source_bbox_in_crop": [
+        11,
+        38,
+        158,
+        106
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_06_128x128.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        122
+      ],
+      "placed_bbox": [
+        8,
+        70,
+        120,
+        122
+      ],
+      "margins_px": {
+        "left": 8,
+        "top": 70,
+        "right": 8,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.7619047619047619,
+      "status": "pass"
+    },
+    {
+      "index": 7,
+      "id": "round172_town_prop.07",
+      "logical_candidate_id": "round172.town_props.small_wooden_bench",
+      "label": "small wooden bench",
+      "source_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "source_bbox_full": [
+        485,
+        300,
+        730,
+        435
+      ],
+      "source_bbox_in_crop": [
+        0,
+        28,
+        217,
+        115
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_07_128x128.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        122
+      ],
+      "placed_bbox": [
+        8,
+        77,
+        120,
+        122
+      ],
+      "margins_px": {
+        "left": 8,
+        "top": 77,
+        "right": 8,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.5161290322580645,
+      "status": "pass"
+    },
+    {
+      "index": 8,
+      "id": "round172_town_prop.08",
+      "logical_candidate_id": "round172.town_props.market_basket",
+      "label": "market basket",
+      "source_cell": {
+        "row": 1,
+        "column": 3
+      },
+      "source_bbox_full": [
+        735,
+        270,
+        970,
+        440
+      ],
+      "source_bbox_in_crop": [
+        14,
+        35,
+        206,
+        149
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round172/town_props/normalized_128x128/round172_town_prop_08_128x128.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        122
+      ],
+      "placed_bbox": [
+        8,
+        56,
+        120,
+        122
+      ],
+      "margins_px": {
+        "left": 8,
+        "top": 56,
+        "right": 8,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.5833333333333334,
+      "status": "pass"
+    }
+  ],
+  "overall_gate": "pass"
+}

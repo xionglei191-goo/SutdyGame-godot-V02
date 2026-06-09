@@ -19,6 +19,8 @@ var outdoor_items: Array = []
 var map_cell_size := 16
 var map_render_size := Vector2(1280, 720)
 var local_camera_scale := Vector2(2.05, 2.05)
+var visual_rebuild_camera_scale := Vector2(1.55, 1.55)
+var visual_rebuild_focus_cell := Vector2(31.0, 20.0)
 
 var runtime_map_frame: Control
 var runtime_map_input: Control
@@ -26,6 +28,7 @@ var runtime_map_node: Node2D
 var player_marker: Node2D
 var ground_layer: Node2D
 var road_visual_layer: Node2D
+var visual_rebuild_blockout_layer: Node2D
 var place_layer: Node2D
 var plaza_life_layer: Node2D
 var hotspot_layer: Node2D
@@ -89,6 +92,8 @@ func setup(config: Dictionary) -> Dictionary:
 			road_cell.z_index = -1
 			road_visual_layer.add_child(road_cell)
 
+	_render_visual_rebuild_blockout()
+
 	for place in world_map.get("places", []):
 		place_layer.add_child(_create_place_object(place))
 
@@ -121,9 +126,11 @@ func setup(config: Dictionary) -> Dictionary:
 		npc_actor_layer.add_child(_create_npc_actor(npc))
 
 	render_outdoor_items(outdoor_items)
+	_apply_visual_rebuild_first_screen_gate()
 
 	player_marker = _create_player_actor()
 	player_layer.add_child(player_marker)
+	_apply_visual_rebuild_camera()
 
 	return {
 		"frame": runtime_map_frame,
@@ -252,6 +259,35 @@ func get_expapproval_snapshot() -> Dictionary:
 	}
 
 
+func get_visual_rebuild_blockout_snapshot() -> Dictionary:
+	return {
+		"layer_exists": is_instance_valid(visual_rebuild_blockout_layer),
+		"blockout_tile_path_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_path_tile"),
+		"blockout_grass_base_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_grass_base"),
+		"blockout_open_space_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_open_space"),
+		"blockout_house_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_small_house"),
+		"blockout_house_detail_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_house_detail"),
+		"blockout_tree_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_tree"),
+		"blockout_flower_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_flower"),
+		"blockout_fence_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_fence"),
+		"blockout_garden_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_garden"),
+		"blockout_water_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_water_edge"),
+		"blockout_detail_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_ground_detail"),
+		"blockout_companion_detail_count": _count_visual_role(visual_rebuild_blockout_layer, "blockout_companion_detail"),
+		"blockout_avatar_scale_cell": Vector2(0.72, 1.08),
+		"blockout_house_scale_cell": Vector2(3.2, 2.55),
+		"has_walkable_center": visual_rebuild_blockout_layer.find_child("BlockoutCenterWalkableGrass", true, false) != null if is_instance_valid(visual_rebuild_blockout_layer) else false,
+		"bottom_dock_button_target_count": 5,
+		"legacy_visual_layers_hidden": _legacy_visual_layers_hidden(),
+		"assetized_texture_count": _count_texture_key_prefix(visual_rebuild_blockout_layer, "v0239_"),
+		"resolver_mapped_v0239_count": _count_resolver_mapped_v0239_nodes(visual_rebuild_blockout_layer),
+		"camera_scale": runtime_map_node.scale if is_instance_valid(runtime_map_node) else Vector2.ZERO,
+		"camera_position": runtime_map_node.position if is_instance_valid(runtime_map_node) else Vector2.ZERO,
+		"visual_focus_cell": visual_rebuild_focus_cell,
+		"player_layer_above_blockout": player_layer.z_index > visual_rebuild_blockout_layer.z_index if is_instance_valid(player_layer) and is_instance_valid(visual_rebuild_blockout_layer) else false,
+	}
+
+
 func get_visual_recovery_snapshot() -> Dictionary:
 	var prefab_logical_ids := _collect_visible_logical_asset_ids(place_layer, "building_prefab_assets")
 	var terrain_ids := _collect_visible_logical_asset_ids(ground_layer, "terrain_tile_assets")
@@ -287,6 +323,12 @@ func get_visual_recovery_snapshot() -> Dictionary:
 func _bind_runtime_layers() -> void:
 	ground_layer = runtime_map_node.get_node("GroundLayer") as Node2D
 	road_visual_layer = runtime_map_node.get_node("RoadVisualLayer") as Node2D
+	visual_rebuild_blockout_layer = runtime_map_node.get_node_or_null("VisualRebuildBlockoutLayer") as Node2D
+	if visual_rebuild_blockout_layer == null:
+		visual_rebuild_blockout_layer = Node2D.new()
+		visual_rebuild_blockout_layer.name = "VisualRebuildBlockoutLayer"
+		runtime_map_node.add_child(visual_rebuild_blockout_layer)
+	visual_rebuild_blockout_layer.z_index = 1
 	place_layer = runtime_map_node.get_node("PlaceLayer") as Node2D
 	plaza_life_layer = runtime_map_node.get_node("PlazaLifeLayer") as Node2D
 	hotspot_layer = runtime_map_node.get_node("HotspotLayer") as Node2D
@@ -297,6 +339,7 @@ func _bind_runtime_layers() -> void:
 	npc_actor_layer = runtime_map_node.get_node("NPCActorLayer") as Node2D
 	outdoor_decor_layer = runtime_map_node.get_node("OutdoorDecorLayer") as Node2D
 	player_layer = runtime_map_node.get_node("PlayerLayer") as Node2D
+	player_layer.z_index = 8
 	collision_debug_layer.visible = false
 
 
@@ -304,6 +347,7 @@ func _clear_runtime_layers() -> void:
 	for layer in [
 		ground_layer,
 		road_visual_layer,
+		visual_rebuild_blockout_layer,
 		place_layer,
 		plaza_life_layer,
 		hotspot_layer,
@@ -321,6 +365,25 @@ func _clear_runtime_layers() -> void:
 
 
 func update_camera_for_player(player_world_position: Vector2) -> void:
+	if not is_instance_valid(runtime_map_node) or not is_instance_valid(runtime_map_frame):
+		return
+	_apply_visual_rebuild_camera()
+
+
+func _apply_visual_rebuild_camera() -> void:
+	if not is_instance_valid(runtime_map_node) or not is_instance_valid(runtime_map_frame):
+		return
+	var frame_size := runtime_map_frame.size
+	if frame_size.x <= 1.0 or frame_size.y <= 1.0:
+		frame_size = map_render_size
+	runtime_map_node.scale = visual_rebuild_camera_scale
+	var focus_world := visual_rebuild_focus_cell * float(map_cell_size)
+	runtime_map_node.position = frame_size * 0.5 - focus_world * visual_rebuild_camera_scale
+	desired_camera_position = runtime_map_node.position
+	camera_initialized = true
+
+
+func _update_camera_for_player_scrolling(player_world_position: Vector2) -> void:
 	if not is_instance_valid(runtime_map_node) or not is_instance_valid(runtime_map_frame):
 		return
 	var canvas_size: Dictionary = world_map.get("canvas_size", {"w": 40, "h": 24})
@@ -431,6 +494,138 @@ func _render_region_chunks() -> void:
 		ground_layer.add_child(sprite)
 
 
+func _render_visual_rebuild_blockout() -> void:
+	for grass in _v0239_grass_base_specs():
+		visual_rebuild_blockout_layer.add_child(_create_blockout_sprite(
+			str(grass.get("name", "BlockoutGrassBase")),
+			grass.get("cell", Vector2.ZERO),
+			grass.get("size", Vector2.ONE),
+			"v0239_grass_patch",
+			"blockout_grass_base",
+			-7,
+			grass.get("modulate", Color("#e6f5d4f2"))
+		))
+	visual_rebuild_blockout_layer.add_child(_create_blockout_sprite(
+		"BlockoutCenterWalkableGrass",
+		Vector2(31.0, 20.8),
+		Vector2(13.5, 7.2),
+		"v0239_grass_patch",
+		"blockout_open_space",
+		-4,
+		Color(1, 1, 1, 0.88)
+	))
+	visual_rebuild_blockout_layer.add_child(_create_blockout_sprite(
+		"BlockoutHomeYardSoftTile",
+		Vector2(29.5, 16.3),
+		Vector2(8.2, 4.8),
+		"v0239_grass_patch",
+		"blockout_open_space",
+		-4,
+		Color("#f0f8d8ee")
+	))
+	var path_cells := _v0239_first_screen_path_cells()
+	for index in range(path_cells.size()):
+		var cell: Vector2 = path_cells[index]
+		var path_tile := _create_blockout_sprite(
+			"BlockoutPathTile_%02d" % index,
+			Vector2(cell.x + 0.5, cell.y + 0.5),
+			Vector2(1.52, 1.12),
+			"v0239_path_tile",
+			"blockout_path_tile",
+			-2,
+			Color(1, 1, 1, 0.98)
+		)
+		(path_tile.get_child(0) as CanvasItem).rotation = 0.12 if index % 2 == 0 else -0.09
+		visual_rebuild_blockout_layer.add_child(path_tile)
+	visual_rebuild_blockout_layer.add_child(_create_blockout_house())
+	for tree_cell in [Vector2(24.1, 22.1), Vector2(28.3, 15.7), Vector2(36.3, 16.3), Vector2(38.4, 23.2)]:
+		visual_rebuild_blockout_layer.add_child(_create_blockout_tree(tree_cell))
+	for flower_cell in [Vector2(25.5, 20.8), Vector2(27.0, 18.4), Vector2(34.8, 18.0), Vector2(36.7, 21.0)]:
+		visual_rebuild_blockout_layer.add_child(_create_blockout_sprite("BlockoutFlowerPatch", flower_cell, Vector2(1.15, 0.8), "v0239_flower_patch", "blockout_flower", 5, Color(1, 1, 1, 0.96)))
+	for fence in [
+		{"name": "BlockoutFenceHome", "cell": Vector2(32.4, 15.2), "size": Vector2(2.8, 0.42)},
+		{"name": "BlockoutFenceGardenTop", "cell": Vector2(36.2, 18.0), "size": Vector2(2.35, 0.42)},
+		{"name": "BlockoutFenceRight", "cell": Vector2(38.2, 19.8), "size": Vector2(2.6, 0.42)},
+	]:
+		visual_rebuild_blockout_layer.add_child(_create_blockout_sprite(str(fence.get("name")), fence.get("cell", Vector2.ZERO), fence.get("size", Vector2.ONE), "v0239_fence", "blockout_fence", 5, Color(1, 1, 1, 0.96)))
+	visual_rebuild_blockout_layer.add_child(_create_blockout_mailbox())
+	for garden in [
+		{"name": "BlockoutHomeGardenBed", "cell": Vector2(27.5, 16.8), "size": Vector2(1.55, 0.86)},
+		{"name": "BlockoutVegetablePatchA", "cell": Vector2(36.2, 18.8), "size": Vector2(1.35, 0.86)},
+		{"name": "BlockoutVegetablePatchB", "cell": Vector2(37.35, 18.8), "size": Vector2(1.35, 0.86)},
+	]:
+		visual_rebuild_blockout_layer.add_child(_create_blockout_sprite(str(garden.get("name")), garden.get("cell", Vector2.ZERO), garden.get("size", Vector2.ONE), "v0239_garden_bed", "blockout_garden", 5, Color(1, 1, 1, 0.94)))
+	for water in [
+		{"name": "BlockoutPondCornerA", "cell": Vector2(39.2, 20.8), "size": Vector2(2.4, 1.5)},
+		{"name": "BlockoutPondCornerB", "cell": Vector2(40.0, 21.9), "size": Vector2(2.8, 1.6)},
+		{"name": "BlockoutPondCornerC", "cell": Vector2(38.9, 22.8), "size": Vector2(2.0, 1.15)},
+	]:
+		visual_rebuild_blockout_layer.add_child(_create_blockout_sprite(str(water.get("name")), water.get("cell", Vector2.ZERO), water.get("size", Vector2.ONE), "v0239_pond_edge", "blockout_water_edge", 3, Color(1, 1, 1, 0.86)))
+	_render_v0239_first_screen_details()
+
+
+func _v0239_grass_base_specs() -> Array[Dictionary]:
+	return [
+		{"name": "BlockoutGrassBaseHome", "cell": Vector2(28.4, 16.2), "size": Vector2(10.5, 5.2), "modulate": Color("#e8f6d5f4")},
+		{"name": "BlockoutGrassBaseCenter", "cell": Vector2(31.7, 20.7), "size": Vector2(12.5, 6.2), "modulate": Color("#e2f3cff0")},
+		{"name": "BlockoutGrassBaseLeft", "cell": Vector2(24.3, 22.2), "size": Vector2(6.0, 5.3), "modulate": Color("#dff0c8ee")},
+		{"name": "BlockoutGrassBaseRight", "cell": Vector2(38.0, 19.2), "size": Vector2(7.6, 6.0), "modulate": Color("#e7f6d3f2")},
+		{"name": "BlockoutGrassBaseWaterBank", "cell": Vector2(38.7, 23.0), "size": Vector2(5.8, 3.1), "modulate": Color("#d8edc4ea")},
+		{"name": "BlockoutGrassBaseTopPath", "cell": Vector2(33.7, 15.2), "size": Vector2(6.0, 4.0), "modulate": Color("#e9f7d6f2")},
+	]
+
+
+func _v0239_first_screen_path_cells() -> Array[Vector2]:
+	return [
+		Vector2(23.0, 25.0), Vector2(24.0, 24.0), Vector2(25.0, 23.0), Vector2(26.0, 22.0),
+		Vector2(27.0, 21.0), Vector2(28.0, 20.0), Vector2(29.0, 19.0), Vector2(30.0, 19.0),
+		Vector2(31.0, 19.0), Vector2(32.0, 19.0), Vector2(33.0, 19.0), Vector2(34.0, 20.0),
+		Vector2(35.0, 21.0), Vector2(30.0, 18.0), Vector2(30.0, 17.0), Vector2(30.0, 16.0),
+		Vector2(31.0, 15.0), Vector2(32.0, 14.0), Vector2(33.0, 13.0), Vector2(34.0, 12.0),
+		Vector2(34.8, 11.0), Vector2(31.0, 20.0), Vector2(31.0, 21.0), Vector2(31.0, 22.0),
+		Vector2(31.0, 23.0), Vector2(32.0, 20.0), Vector2(33.0, 20.0), Vector2(34.0, 20.0),
+		Vector2(35.0, 20.0), Vector2(36.0, 20.0), Vector2(37.0, 20.0), Vector2(38.0, 20.5),
+	]
+
+
+func _render_v0239_first_screen_details() -> void:
+	for index in range(_v0239_ground_detail_specs().size()):
+		var detail: Dictionary = _v0239_ground_detail_specs()[index]
+		var marker := _create_blockout_sprite(
+			str(detail.get("name", "BlockoutGroundDetail_%02d" % index)),
+			detail.get("cell", Vector2.ZERO),
+			detail.get("size", Vector2.ONE),
+			str(detail.get("texture", "v0239_grass_tuft")),
+			"blockout_ground_detail",
+			int(detail.get("z", 4)),
+			detail.get("modulate", Color(1, 1, 1, 0.92))
+		)
+		var child := marker.get_child(0) as CanvasItem
+		child.rotation = float(detail.get("rotation", 0.0))
+		visual_rebuild_blockout_layer.add_child(marker)
+
+
+func _v0239_ground_detail_specs() -> Array[Dictionary]:
+	return [
+		{"name": "BlockoutGrassTuftLeftA", "cell": Vector2(24.6, 19.0), "size": Vector2(0.42, 0.32), "texture": "v0239_grass_tuft", "rotation": -0.18},
+		{"name": "BlockoutGrassTuftLeftB", "cell": Vector2(26.2, 22.4), "size": Vector2(0.46, 0.34), "texture": "v0239_grass_tuft", "rotation": 0.12},
+		{"name": "BlockoutGrassTuftHomeA", "cell": Vector2(28.2, 17.9), "size": Vector2(0.38, 0.3), "texture": "v0239_grass_tuft", "rotation": 0.08},
+		{"name": "BlockoutGrassTuftHomeB", "cell": Vector2(33.6, 16.4), "size": Vector2(0.44, 0.32), "texture": "v0239_grass_tuft", "rotation": -0.1},
+		{"name": "BlockoutGrassTuftCenterA", "cell": Vector2(30.1, 21.7), "size": Vector2(0.38, 0.3), "texture": "v0239_grass_tuft", "rotation": 0.18},
+		{"name": "BlockoutGrassTuftCenterB", "cell": Vector2(34.4, 21.9), "size": Vector2(0.46, 0.34), "texture": "v0239_grass_tuft", "rotation": -0.16},
+		{"name": "BlockoutPebblePathA", "cell": Vector2(29.8, 19.8), "size": Vector2(0.34, 0.2), "texture": "v0239_path_pebble", "z": 0},
+		{"name": "BlockoutPebblePathB", "cell": Vector2(32.8, 19.6), "size": Vector2(0.36, 0.22), "texture": "v0239_path_pebble", "z": 0, "rotation": 0.2},
+		{"name": "BlockoutPebblePathC", "cell": Vector2(35.8, 20.4), "size": Vector2(0.32, 0.2), "texture": "v0239_path_pebble", "z": 0, "rotation": -0.1},
+		{"name": "BlockoutPondRockA", "cell": Vector2(38.1, 20.5), "size": Vector2(0.58, 0.38), "texture": "v0239_bank_stone", "z": 5},
+		{"name": "BlockoutPondRockB", "cell": Vector2(39.8, 20.2), "size": Vector2(0.52, 0.36), "texture": "v0239_bank_stone", "z": 5, "rotation": 0.12},
+		{"name": "BlockoutPondLilyA", "cell": Vector2(40.1, 21.5), "size": Vector2(0.5, 0.32), "texture": "v0239_lily_pad", "z": 6},
+		{"name": "BlockoutPondLilyB", "cell": Vector2(39.2, 22.3), "size": Vector2(0.42, 0.28), "texture": "v0239_lily_pad", "z": 6, "rotation": -0.18},
+		{"name": "BlockoutCropLeafA", "cell": Vector2(36.0, 18.45), "size": Vector2(0.38, 0.42), "texture": "v0239_crop_leaf", "z": 6},
+		{"name": "BlockoutCropLeafB", "cell": Vector2(36.55, 18.95), "size": Vector2(0.36, 0.4), "texture": "v0239_crop_leaf", "z": 6, "rotation": 0.2},
+		{"name": "BlockoutCropLeafC", "cell": Vector2(37.35, 18.5), "size": Vector2(0.38, 0.42), "texture": "v0239_crop_leaf", "z": 6, "rotation": -0.12},
+	]
+
+
 func _create_place_object(place: Dictionary) -> Node2D:
 	var object := InteractableObjectScene.instantiate() as Node2D
 	object.call("configure_place", {
@@ -439,6 +634,136 @@ func _create_place_object(place: Dictionary) -> Node2D:
 		"map_cell_size": map_cell_size,
 	})
 	return object
+
+
+func _create_blockout_house() -> Node2D:
+	var house := Node2D.new()
+	house.name = "BlockoutSmallHome"
+	house.position = cell_center({"x": 29, "y": 15})
+	house.set_meta("visual_role", "blockout_small_house")
+	house.add_child(_call_renderer("_create_sprite", ["HouseSoftShadow", Vector2(4, map_cell_size * 1.18), Vector2(map_cell_size * 3.0, 9), "shadow"]) as Node)
+	var body := _call_renderer("_create_sprite", ["HouseBody", Vector2(0, map_cell_size * 0.28), Vector2(map_cell_size * 3.2, map_cell_size * 1.8), "v0239_house_body"]) as CanvasItem
+	body.modulate = Color(1, 1, 1, 0.96)
+	house.add_child(body)
+	var roof := _call_renderer("_create_sprite", ["HouseFlatRoof", Vector2(0, -map_cell_size * 0.72), Vector2(map_cell_size * 3.35, map_cell_size * 0.95), "v0239_house_roof"]) as CanvasItem
+	roof.modulate = Color(1, 1, 1, 0.96)
+	house.add_child(roof)
+	house.add_child(_create_house_detail("HouseChimney", Vector2(map_cell_size * 1.08, -map_cell_size * 1.17), Vector2(map_cell_size * 0.42, map_cell_size * 0.64), "v0239_house_chimney", 1))
+	house.add_child(_create_house_detail("HouseRoundWindow", Vector2(0, -map_cell_size * 0.88), Vector2(map_cell_size * 0.5, map_cell_size * 0.44), "v0239_house_round_window", 2))
+	house.add_child(_create_house_detail("HouseLeftWindow", Vector2(-map_cell_size * 0.92, map_cell_size * 0.22), Vector2(map_cell_size * 0.62, map_cell_size * 0.62), "v0239_house_window", 3))
+	house.add_child(_create_house_detail("HouseRightLantern", Vector2(map_cell_size * 0.95, map_cell_size * 0.2), Vector2(map_cell_size * 0.3, map_cell_size * 0.46), "v0239_house_lantern", 4))
+	house.add_child(_create_house_detail("HouseFlowerBox", Vector2(-map_cell_size * 0.92, map_cell_size * 0.58), Vector2(map_cell_size * 0.78, map_cell_size * 0.28), "v0239_flower_box", 5))
+	var door := _call_renderer("_create_sprite", ["HouseDoor", Vector2(0, map_cell_size * 0.72), Vector2(map_cell_size * 0.55, map_cell_size * 0.92), "v0239_house_door"]) as CanvasItem
+	door.modulate = Color(1, 1, 1, 0.96)
+	house.add_child(door)
+	house.add_child(_create_house_detail("HouseFrontSteps", Vector2(0, map_cell_size * 1.29), Vector2(map_cell_size * 1.22, map_cell_size * 0.42), "v0239_house_steps", 0))
+	return house
+
+
+func _create_house_detail(detail_name: String, offset: Vector2, size: Vector2, texture_key: String, z: int) -> Node2D:
+	var detail := Node2D.new()
+	detail.name = detail_name
+	detail.position = offset
+	detail.z_index = z
+	detail.set_meta("visual_role", "blockout_house_detail")
+	var sprite := _call_renderer("_create_sprite", ["DetailSprite", Vector2.ZERO, size, texture_key]) as CanvasItem
+	sprite.modulate = Color(1, 1, 1, 0.96)
+	detail.add_child(sprite)
+	return detail
+
+
+func _create_blockout_mailbox() -> Node2D:
+	var mailbox := _create_blockout_sprite("BlockoutMailbox", Vector2(32.2, 17.2), Vector2(0.78, 1.02), "v0239_mailbox", "blockout_ground_detail", 6, Color(1, 1, 1, 0.96))
+	return mailbox
+
+
+func _create_blockout_tree(cell: Vector2) -> Node2D:
+	var tree := Node2D.new()
+	tree.name = "BlockoutRoundTree"
+	tree.position = cell * map_cell_size
+	tree.set_meta("visual_role", "blockout_tree")
+	tree.add_child(_call_renderer("_create_sprite", ["TreeShadow", Vector2(0, 17), Vector2(map_cell_size * 1.4, 8), "shadow"]) as Node)
+	tree.add_child(_call_renderer("_create_sprite", ["TreeTrunk", Vector2(0, 13), Vector2(8, 18), "v0239_tree_trunk"]) as Node)
+	tree.add_child(_call_renderer("_create_sprite", ["TreeCrown", Vector2(0, -3), Vector2(map_cell_size * 1.62, map_cell_size * 1.46), "v0239_tree_crown"]) as Node)
+	return tree
+
+
+func _create_blockout_sprite(sprite_name: String, center_cell: Vector2, size_cells: Vector2, texture_key: String, visual_role: String, z: int, modulate_color: Color) -> Node2D:
+	var marker := Node2D.new()
+	marker.name = sprite_name
+	marker.position = center_cell * map_cell_size
+	marker.z_index = z
+	marker.set_meta("visual_role", visual_role)
+	var sprite := _call_renderer("_create_sprite", ["Sprite", Vector2.ZERO, size_cells * map_cell_size, texture_key]) as CanvasItem
+	sprite.modulate = modulate_color
+	marker.add_child(sprite)
+	return marker
+
+
+func _apply_visual_rebuild_first_screen_gate() -> void:
+	for layer in [
+		road_visual_layer,
+		place_layer,
+		plaza_life_layer,
+		hotspot_layer,
+		story_prop_layer,
+		anchor_layer,
+		resource_layer,
+		npc_actor_layer,
+		outdoor_decor_layer,
+	]:
+		if layer is CanvasItem:
+			(layer as CanvasItem).visible = false
+	var mapread_layer := ground_layer.find_child("MapReadabilityLayer", true, false) as CanvasItem
+	if mapread_layer != null:
+		mapread_layer.visible = false
+	visual_rebuild_blockout_layer.add_child(_create_blockout_companion())
+
+
+func _create_blockout_companion() -> Node2D:
+	var companion := Node2D.new()
+	companion.name = "BlockoutTinyCompanion"
+	companion.position = Vector2(32.4, 20.2) * map_cell_size
+	companion.set_meta("visual_role", "blockout_companion")
+	companion.add_child(_call_renderer("_create_sprite", ["CompanionShadow", Vector2(0, 10), Vector2(18, 6), "shadow"]) as Node)
+	companion.add_child(_create_companion_detail("CompanionTail", Vector2(10, -1), Vector2(9, 8), "v0239_companion_tail", 1))
+	companion.add_child(_create_companion_detail("CompanionLeftEar", Vector2(-6, -8), Vector2(8, 8), "v0239_companion_ear", 3))
+	companion.add_child(_create_companion_detail("CompanionRightEar", Vector2(5, -8), Vector2(8, 8), "v0239_companion_ear", 3))
+	var body := _call_renderer("_create_sprite", ["CompanionBody", Vector2(0, 0), Vector2(20, 19), "v0239_companion"]) as CanvasItem
+	body.modulate = Color(1, 1, 1, 0.95)
+	companion.add_child(body)
+	companion.add_child(_create_companion_detail("CompanionCollar", Vector2(0, 4), Vector2(15, 4), "v0239_companion_collar", 5))
+	return companion
+
+
+func _create_companion_detail(detail_name: String, offset: Vector2, size: Vector2, texture_key: String, z: int) -> Node2D:
+	var detail := Node2D.new()
+	detail.name = detail_name
+	detail.position = offset
+	detail.z_index = z
+	detail.set_meta("visual_role", "blockout_companion_detail")
+	var sprite := _call_renderer("_create_sprite", ["CompanionDetailSprite", Vector2.ZERO, size, texture_key]) as CanvasItem
+	sprite.modulate = Color(1, 1, 1, 0.95)
+	detail.add_child(sprite)
+	return detail
+
+
+func _legacy_visual_layers_hidden() -> bool:
+	for layer in [
+		road_visual_layer,
+		place_layer,
+		plaza_life_layer,
+		hotspot_layer,
+		story_prop_layer,
+		anchor_layer,
+		resource_layer,
+		npc_actor_layer,
+		outdoor_decor_layer,
+	]:
+		if layer is CanvasItem and (layer as CanvasItem).visible:
+			return false
+	var mapread_layer := ground_layer.find_child("MapReadabilityLayer", true, false) as CanvasItem
+	return mapread_layer == null or not mapread_layer.visible
 
 
 func _render_plaza_life_details() -> void:
@@ -619,6 +944,32 @@ func _count_visual_role(root_node: Node, visual_role: String) -> int:
 			if str((child as Node).get_meta("visual_role", "")) == visual_role:
 				count += 1
 			count += _count_visual_role(child, visual_role)
+	return count
+
+
+func _count_texture_key_prefix(root_node: Node, texture_key_prefix: String) -> int:
+	var count := 0
+	if not is_instance_valid(root_node):
+		return count
+	for child in root_node.get_children():
+		if child is CanvasItem and str((child as CanvasItem).get_meta("texture_key", "")).begins_with(texture_key_prefix):
+			count += 1
+		if child is Node:
+			count += _count_texture_key_prefix(child as Node, texture_key_prefix)
+	return count
+
+
+func _count_resolver_mapped_v0239_nodes(root_node: Node) -> int:
+	var count := 0
+	if not is_instance_valid(root_node):
+		return count
+	for child in root_node.get_children():
+		if child is CanvasItem:
+			var logical_asset_id := str((child as CanvasItem).get_meta("logical_asset_id", ""))
+			if logical_asset_id.begins_with("terrain.v0239.") or logical_asset_id.begins_with("building_part.v0239.") or logical_asset_id.begins_with("world_prop.v0239.") or logical_asset_id.begins_with("pet.v0239."):
+				count += 1
+		if child is Node:
+			count += _count_resolver_mapped_v0239_nodes(child as Node)
 	return count
 
 

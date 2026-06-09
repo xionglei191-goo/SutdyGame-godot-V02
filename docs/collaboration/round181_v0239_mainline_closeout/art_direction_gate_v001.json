@@ -1,0 +1,40 @@
+{
+  "gate_id": "sunshine_town_p0_v0239_mainline_gate_round181_v001",
+  "task_id": "V02-VISUALREBUILD-006",
+  "round": "Round181",
+  "status": "gate_pass_for_storybatch_unlock",
+  "target_lock": {
+    "art_target_locked": true,
+    "lock_scope": "whitebox_composition_and_runtime_static_frame",
+    "source": "user_requested_remaining_task_closeout",
+    "target_contract": "docs/collaboration/round180_v0239_mainline_visual_layout_target/visual_layout_contract_v001.json",
+    "target_frame": "docs/collaboration/round180_v0239_mainline_visual_layout_target/round180_v0239_visual_layout_target_1280x720_v001.png"
+  },
+  "runtime_gate": {
+    "runtime_visual_match": true,
+    "runtime_match_report": "docs/collaboration/round181_v0239_mainline_closeout/runtime_visual_match_report_v001.json",
+    "composition_kit": "docs/collaboration/round181_v0239_mainline_closeout/unified_environment_composition_kit_v001.json",
+    "side_by_side_evidence": "docs/collaboration/round181_v0239_mainline_closeout/round181_v0239_runtime_match_side_by_side_1280x720_v001.png"
+  },
+  "safety_gate": {
+    "real_entry_home_interaction": true,
+    "five_button_footer": true,
+    "a_z_stable_count": 26,
+    "a_z_first_screen_policy": "prop_first_subset_only",
+    "child_runtime_grid_terms_visible": false,
+    "full_map_background_as_final_runtime": false,
+    "course_pressure_ui_visible": false
+  },
+  "storybatch_decision": {
+    "V02-STORYBATCH-004": "ready_after_round181_gate",
+    "V02-STORYBATCH-005": "ready_after_storybatch004_runtime_smoke",
+    "notes": "Unlock only resumes story prop runtime integration against the locked whitebox composition; it does not approve old rejected generated target frames or proof-only asset packs as final runtime art."
+  },
+  "not_claimed": [
+    "final_approved product art",
+    "new polished bitmap environment asset kit",
+    "ThemeProfile mapping for Round169-Round179 proof-only candidates",
+    "AssetResolver mapping for rejected V02.39 generated scene-like PNG samples",
+    "960x540 adaptation"
+  ]
+}

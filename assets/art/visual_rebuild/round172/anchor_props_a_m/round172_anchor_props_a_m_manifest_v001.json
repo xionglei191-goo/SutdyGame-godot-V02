@@ -1,0 +1,475 @@
+{
+  "round": "Round172",
+  "pack_id": "round172_anchor_props_a_m",
+  "status": "normalized_candidate",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "source_data": [
+    "data/maps/az_world_plan.json",
+    "data/anchors/az_core_anchors.json",
+    "data/cards/az_core_cards.json",
+    "data/maps/world_map.json"
+  ],
+  "source_raw": "docs/collaboration/round172_visual_rebuild_asset_generation/anchor_props_a_m/round172_anchor_props_a_m_raw_chroma_sheet_v001.png",
+  "atlas": "assets/art/visual_rebuild/round172/anchor_props_a_m/round172_anchor_props_a_m_128x128_atlas_v001.png",
+  "proof": "assets/art/visual_rebuild/round172/anchor_props_a_m/round172_anchor_props_a_m_128x128_proof_v001.png",
+  "cell_size": {
+    "w": 128,
+    "h": 128
+  },
+  "atlas_grid": {
+    "columns": 4,
+    "rows": 4,
+    "used_cells": 13,
+    "empty_cells": 3
+  },
+  "normalization": {
+    "method": "4x4 source cell crop, chroma-key alpha removal, bbox fit, bottom-centered 128x128 fixed cell",
+    "key_color": "#00ff00",
+    "max_subject_px": 112
+  },
+  "gate_checks": {
+    "fixed_cell": true,
+    "alpha": true,
+    "all_items_have_bbox": true,
+    "visible_key_pixels": 0
+  },
+  "overall_gate": "pass",
+  "items": [
+    {
+      "letter": "A",
+      "anchor_id": "anchor_a_apple",
+      "core_word": "Apple",
+      "visual_hook": "apple welcome box with low apple sapling and red apple sticker shape",
+      "az_world_place_id": "place_home",
+      "runtime_place_id": "place_home",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_a_apple_128x128.png",
+      "atlas_cell": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          23,
+          8,
+          105,
+          120
+        ],
+        "opaque_pixels": 6548,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": false
+    },
+    {
+      "letter": "B",
+      "anchor_id": "anchor_b_bear",
+      "core_word": "Bear",
+      "visual_hook": "bear-shaped bookshop story sign with warm lamp and open book",
+      "az_world_place_id": "place_bookshop",
+      "runtime_place_id": "place_town_start",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_b_bear_128x128.png",
+      "atlas_cell": {
+        "x": 1,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 1,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          17,
+          8,
+          110,
+          120
+        ],
+        "opaque_pixels": 8488,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "C",
+      "anchor_id": "anchor_c_clock",
+      "core_word": "Clock",
+      "visual_hook": "round morning clock on small cozy table with sun tick shapes",
+      "az_world_place_id": "place_home_watch_table",
+      "runtime_place_id": "place_home",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_c_clock_128x128.png",
+      "atlas_cell": {
+        "x": 2,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 2,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          18,
+          8,
+          110,
+          120
+        ],
+        "opaque_pixels": 6761,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "D",
+      "anchor_id": "anchor_d_dog",
+      "core_word": "Dog",
+      "visual_hook": "Sunny dog corner with small pet bed, bowl, paw prints, and low fence",
+      "az_world_place_id": "place_home_sunny_corner",
+      "runtime_place_id": "place_home",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_d_dog_128x128.png",
+      "atlas_cell": {
+        "x": 3,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 3,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          15,
+          8,
+          112,
+          120
+        ],
+        "opaque_pixels": 8571,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "E",
+      "anchor_id": "anchor_e_elephant",
+      "core_word": "Elephant",
+      "visual_hook": "elephant playground slide with round ears and safe mat",
+      "az_world_place_id": "place_playground",
+      "runtime_place_id": "place_animal_park",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_e_elephant_128x128.png",
+      "atlas_cell": {
+        "x": 0,
+        "y": 1,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 0,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          29,
+          120,
+          120
+        ],
+        "opaque_pixels": 7335,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "F",
+      "anchor_id": "anchor_f_fox",
+      "core_word": "Fox",
+      "visual_hook": "fox topiary bush beside small flowers",
+      "az_world_place_id": "place_garden",
+      "runtime_place_id": "place_animal_park",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_f_fox_128x128.png",
+      "atlas_cell": {
+        "x": 1,
+        "y": 1,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 1,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          15,
+          8,
+          112,
+          120
+        ],
+        "opaque_pixels": 7205,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "G",
+      "anchor_id": "anchor_g_gate",
+      "core_word": "Gate",
+      "visual_hook": "rounded school gate arch with tiny bell and bunting",
+      "az_world_place_id": "place_school_gate",
+      "runtime_place_id": "place_school_gate",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_g_gate_128x128.png",
+      "atlas_cell": {
+        "x": 2,
+        "y": 1,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 2,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          27,
+          120,
+          120
+        ],
+        "opaque_pixels": 6407,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": false
+    },
+    {
+      "letter": "H",
+      "anchor_id": "anchor_h_hat",
+      "core_word": "Hat",
+      "visual_hook": "giant hat shop awning prop with ribbon and hat display",
+      "az_world_place_id": "place_clothes_shop",
+      "runtime_place_id": "place_supermarket",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_h_hat_128x128.png",
+      "atlas_cell": {
+        "x": 3,
+        "y": 1,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 3,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          12,
+          120,
+          120
+        ],
+        "opaque_pixels": 9166,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "I",
+      "anchor_id": "anchor_i_ice_cream",
+      "core_word": "Ice cream",
+      "visual_hook": "ice cream cart with umbrella and cone icon shape",
+      "az_world_place_id": "place_shop_street",
+      "runtime_place_id": "place_supermarket",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_i_ice_cream_128x128.png",
+      "atlas_cell": {
+        "x": 0,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 0,
+        "y": 2,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          20,
+          8,
+          107,
+          120
+        ],
+        "opaque_pixels": 6764,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "J",
+      "anchor_id": "anchor_j_jacket",
+      "core_word": "Jacket",
+      "visual_hook": "jacket shop-window display with hanger and raindrop stickers",
+      "az_world_place_id": "place_clothes_shop",
+      "runtime_place_id": "place_supermarket",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_j_jacket_128x128.png",
+      "atlas_cell": {
+        "x": 1,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 1,
+        "y": 2,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          11,
+          8,
+          117,
+          120
+        ],
+        "opaque_pixels": 11170,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "K",
+      "anchor_id": "anchor_k_kite",
+      "core_word": "Kite",
+      "visual_hook": "kite on short display pole with colorful streamers and wind flag",
+      "az_world_place_id": "place_school_yard",
+      "runtime_place_id": "place_school_yard",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_k_kite_128x128.png",
+      "atlas_cell": {
+        "x": 2,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 2,
+        "y": 2,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          14,
+          8,
+          114,
+          120
+        ],
+        "opaque_pixels": 6030,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": false
+    },
+    {
+      "letter": "L",
+      "anchor_id": "anchor_l_lion",
+      "core_word": "Lion",
+      "visual_hook": "lion fountain statue with book-page-shaped water motif",
+      "az_world_place_id": "place_bookshop",
+      "runtime_place_id": "place_animal_park",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_l_lion_128x128.png",
+      "atlas_cell": {
+        "x": 3,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 3,
+        "y": 2,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          8,
+          119,
+          120
+        ],
+        "opaque_pixels": 8199,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "M",
+      "anchor_id": "anchor_m_monkey",
+      "core_word": "Monkey",
+      "visual_hook": "park tree monkey installation hugging a branch with low wooden base",
+      "az_world_place_id": "place_park",
+      "runtime_place_id": "place_animal_park",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_a_m/normalized_128x128/anchor_prop_m_monkey_128x128.png",
+      "atlas_cell": {
+        "x": 0,
+        "y": 3,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 0,
+        "y": 3,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          15,
+          8,
+          113,
+          120
+        ],
+        "opaque_pixels": 8302,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    }
+  ],
+  "anchor_mismatch_risk": "present_for_place_granularity_only",
+  "notes": [
+    "Proof-only candidate pack; no runtime, ThemeProfile, AssetResolver, data, or test mapping.",
+    "No bare letter signs or in-image text were intentionally generated; items are prop-first visual hooks.",
+    "A-Z stable anchor_id, letter, core_word, and route_order are sourced from public project data."
+  ],
+  "category": "anchor_prop_a_m"
+}

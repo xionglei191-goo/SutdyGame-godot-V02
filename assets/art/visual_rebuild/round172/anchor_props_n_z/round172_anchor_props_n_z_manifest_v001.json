@@ -1,0 +1,473 @@
+{
+  "round": "Round172",
+  "pack_id": "round172_anchor_props_n_z",
+  "status": "normalized_candidate",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "source_data": [
+    "data/maps/az_world_plan.json",
+    "data/maps/world_map.json"
+  ],
+  "source_raw": "docs/collaboration/round172_visual_rebuild_asset_generation/anchor_props_n_z/round172_anchor_props_n_z_raw_chroma_ff00ff_4x4_v001.png",
+  "atlas": "assets/art/visual_rebuild/round172/anchor_props_n_z/round172_anchor_props_n_z_128x128_atlas_v001.png",
+  "proof": "assets/art/visual_rebuild/round172/anchor_props_n_z/round172_anchor_props_n_z_128x128_proof_v001.png",
+  "cell_size": {
+    "w": 128,
+    "h": 128
+  },
+  "atlas_grid": {
+    "columns": 4,
+    "rows": 4,
+    "used_cells": 13,
+    "empty_cells": 3
+  },
+  "normalization": {
+    "method": "4x4 generated source sheet, chroma-key alpha removal, connected-component assignment, bbox fit, bottom-centered 128x128 fixed cell",
+    "key_color": "#ff00ff",
+    "max_subject_px": 112
+  },
+  "gate_checks": {
+    "fixed_cell": true,
+    "alpha": true,
+    "all_items_have_bbox": true,
+    "visible_key_pixels": 0
+  },
+  "overall_gate": "pass",
+  "items": [
+    {
+      "letter": "N",
+      "anchor_id": "anchor_n_net",
+      "core_word": "Net",
+      "visual_hook": "soft sports net with leaves and low rounded supports",
+      "az_world_place_id": "place_sports_corner",
+      "runtime_place_id": "place_school_yard",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_n_net_128x128.png",
+      "atlas_cell": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 0,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          27,
+          120,
+          120
+        ],
+        "opaque_pixels": 5787,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "O",
+      "anchor_id": "anchor_o_orange",
+      "core_word": "Orange",
+      "visual_hook": "orange basket with juice bottle and round orange shop token",
+      "az_world_place_id": "place_supermarket",
+      "runtime_place_id": "place_supermarket",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_o_orange_128x128.png",
+      "atlas_cell": {
+        "x": 1,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 1,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          10,
+          120,
+          120
+        ],
+        "opaque_pixels": 9045,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": false
+    },
+    {
+      "letter": "P",
+      "anchor_id": "anchor_p_panda",
+      "core_word": "Panda",
+      "visual_hook": "panda cushion with bamboo leaf coaster and tiny tea table",
+      "az_world_place_id": "place_bookshop",
+      "runtime_place_id": "place_animal_park",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_p_panda_128x128.png",
+      "atlas_cell": {
+        "x": 2,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 2,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          24,
+          120,
+          120
+        ],
+        "opaque_pixels": 7941,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "Q",
+      "anchor_id": "anchor_q_queen",
+      "core_word": "Queen",
+      "visual_hook": "crown-shaped theatre prop with star stickers and folded curtain swatch",
+      "az_world_place_id": "place_theatre",
+      "runtime_place_id": "place_town_start",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_q_queen_128x128.png",
+      "atlas_cell": {
+        "x": 3,
+        "y": 0,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 3,
+        "y": 0,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          13,
+          119,
+          120
+        ],
+        "opaque_pixels": 7779,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "R",
+      "anchor_id": "anchor_r_robot",
+      "core_word": "Robot",
+      "visual_hook": "friendly rounded robot direction prop with small chest light and toolbox",
+      "az_world_place_id": "place_school_yard",
+      "runtime_place_id": "place_school_yard",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_r_robot_128x128.png",
+      "atlas_cell": {
+        "x": 0,
+        "y": 1,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 0,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          10,
+          8,
+          118,
+          120
+        ],
+        "opaque_pixels": 7145,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": false
+    },
+    {
+      "letter": "S",
+      "anchor_id": "anchor_s_sun",
+      "core_word": "Sun",
+      "visual_hook": "warm sun patch ornament with soft ground cushion and tiny sun decor",
+      "az_world_place_id": "place_park",
+      "runtime_place_id": "place_sun_scene",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_s_sun_128x128.png",
+      "atlas_cell": {
+        "x": 1,
+        "y": 1,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 1,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          11,
+          8,
+          117,
+          120
+        ],
+        "opaque_pixels": 6874,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "T",
+      "anchor_id": "anchor_t_taxi",
+      "core_word": "Taxi",
+      "visual_hook": "toy-like yellow taxi waiting marker with bus-stop pole shape",
+      "az_world_place_id": "place_bus_stop",
+      "runtime_place_id": "place_home",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_t_taxi_128x128.png",
+      "atlas_cell": {
+        "x": 2,
+        "y": 1,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 2,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          33,
+          8,
+          94,
+          120
+        ],
+        "opaque_pixels": 4115,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "U",
+      "anchor_id": "anchor_u_umbrella",
+      "core_word": "Umbrella",
+      "visual_hook": "park umbrella with bench and small rain and sun charms",
+      "az_world_place_id": "place_park",
+      "runtime_place_id": "place_coast_edge",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_u_umbrella_128x128.png",
+      "atlas_cell": {
+        "x": 3,
+        "y": 1,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 3,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          15,
+          8,
+          113,
+          120
+        ],
+        "opaque_pixels": 6740,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "V",
+      "anchor_id": "anchor_v_violin",
+      "core_word": "Violin",
+      "visual_hook": "violin leaning on tiny stage rug with note-shaped lamp",
+      "az_world_place_id": "place_music_corner",
+      "runtime_place_id": "place_town_start",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_v_violin_128x128.png",
+      "atlas_cell": {
+        "x": 0,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 0,
+        "y": 2,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          11,
+          8,
+          117,
+          120
+        ],
+        "opaque_pixels": 7107,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "W",
+      "anchor_id": "anchor_w_watch",
+      "core_word": "Watch",
+      "visual_hook": "small watch on cozy home note paper without readable text",
+      "az_world_place_id": "place_home_watch_table",
+      "runtime_place_id": "place_home",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_w_watch_128x128.png",
+      "atlas_cell": {
+        "x": 1,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 1,
+        "y": 2,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          16,
+          120,
+          120
+        ],
+        "opaque_pixels": 8004,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "X",
+      "anchor_id": "anchor_x_x_mark_box",
+      "core_word": "X-mark Box",
+      "visual_hook": "rounded lost-and-found box with crossed tape shape and stickers",
+      "az_world_place_id": "place_airport_cargo",
+      "runtime_place_id": "place_coast_edge",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_x_x_mark_box_128x128.png",
+      "atlas_cell": {
+        "x": 2,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 2,
+        "y": 2,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          21,
+          120,
+          120
+        ],
+        "opaque_pixels": 9148,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    },
+    {
+      "letter": "Y",
+      "anchor_id": "anchor_y_yo_yo",
+      "core_word": "Yo-yo",
+      "visual_hook": "hanging yo-yo with colorful string and storage box",
+      "az_world_place_id": "place_school_yard",
+      "runtime_place_id": "place_school_yard",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_y_yo_yo_128x128.png",
+      "atlas_cell": {
+        "x": 3,
+        "y": 2,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 3,
+        "y": 2,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          13,
+          120,
+          120
+        ],
+        "opaque_pixels": 7119,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": false
+    },
+    {
+      "letter": "Z",
+      "anchor_id": "anchor_z_zebra",
+      "core_word": "Zebra",
+      "visual_hook": "zebra-pattern garden prop with curved stripe marker and flower bed",
+      "az_world_place_id": "place_zoo_edge",
+      "runtime_place_id": "place_animal_park",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round172/anchor_props_n_z/normalized_128x128/anchor_prop_z_zebra_128x128.png",
+      "atlas_cell": {
+        "x": 0,
+        "y": 3,
+        "w": 128,
+        "h": 128
+      },
+      "source_cell": {
+        "x": 0,
+        "y": 3,
+        "w": 256,
+        "h": 256
+      },
+      "metrics": {
+        "bbox": [
+          8,
+          22,
+          119,
+          120
+        ],
+        "opaque_pixels": 8632,
+        "visible_key_pixels": 0
+      },
+      "anchor_place_mismatch_risk": true
+    }
+  ],
+  "anchor_mismatch_risk": "present_for_place_granularity_only",
+  "notes": [
+    "Proof-only N-Z candidate pack; no runtime, ThemeProfile, AssetResolver, data, or test mapping.",
+    "No bare letter plaques or intentional in-image text; props are visual hooks for stable memory-palace anchors.",
+    "Stable anchor_id, letter, core_word, and route identity were read from public project map data."
+  ],
+  "category": "anchor_prop_n_z"
+}

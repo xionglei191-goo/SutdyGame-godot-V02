@@ -70,7 +70,7 @@ func _check_startup_text_and_layout(main) -> void:
 	_expect(main.find_child("TownHUD", true, false) != null, "V02.16 RC should show top HUD")
 	_expect(main.find_child("TownFooter", true, false) != null, "V02.16 RC should show bottom footer")
 	var footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
-	_expect(footer_actions != null and footer_actions.get_child_count() == 4, "V02.16 RC footer should keep four child-facing actions")
+	_expect(footer_actions != null and footer_actions.get_child_count() == 5, "V02.39 footer should keep five compact child-facing dock actions")
 	var hint := main.find_child("TownFooterText", true, false) as Label
 	_expect(hint != null and str(hint.text).contains("看看"), "V02.16 RC startup should explain the visible look action")
 	_check_visible_text_is_child_safe(main, "startup")

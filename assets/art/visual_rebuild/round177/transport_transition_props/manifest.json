@@ -1,0 +1,671 @@
+{
+  "pack_id": "round177.transport_transition_props",
+  "round": "Round177",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "transport_transition_props",
+  "scope": "Transparent cozy town transport / transition prop candidates only; no readable text, letters, numbers, full scenes, symbols, logos, or brands.",
+  "compatibility_notes": [
+    "Normalized to 320x320 to sit near Round174 place prefabs and scale down for Round170 path/water composition tests.",
+    "Bridge, stepping stones, crosswalk, and pier are intended as overlays above existing Round170 water/path/terrain rather than replacement tiles."
+  ],
+  "generation_method": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text-to-image 1024x1024 with --transparent requested plus local alpha normalization",
+    "postprocess": "assets/art/visual_rebuild/round177/transport_transition_props/normalize_validate_manifest.py",
+    "notes": "Per LESSON-022, raw transparency is not trusted; final gate is based on actual RGBA pixel audit after local normalization."
+  },
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round177/transport_transition_props/proof/round177_transport_transition_props_contact_sheet.png",
+    "raw_dir": "assets/art/visual_rebuild/round177/transport_transition_props/raw",
+    "normalized_dir": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320"
+  },
+  "validation_summary": {
+    "checks": [
+      "RGBA alpha channel",
+      "expected normalized 320x320 dimensions",
+      "non-empty alpha content",
+      "transparent corner alpha",
+      "edge residue / edge-touch scan",
+      "green/magenta chroma-key residue scan",
+      "dark pinhole residue scan",
+      "large opaque background block risk scan"
+    ],
+    "pass_count": 10,
+    "fail_count": 0,
+    "raw_rgb_or_opaque_source_count": 10
+  },
+  "items": [
+    {
+      "id": "transport_transition_props.small_bus_side",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/small_bus_side.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/small_bus_side_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        272
+      ],
+      "footprint_recommendation": "3x1 tiles, blocking only on vehicle body footprint; leave sidewalk clearance around doors",
+      "layer_recommendation": "large transport prop above path/ground, below actors when actor y is in front",
+      "prompt": "single cozy town transport prop only: small rounded community bus side view, warm cream and soft teal paint, cute toy-like proportions, 3/4 prefab game asset style with slight top visibility, blank windows, no driver, no passengers, no readable text, no letters, no numbers, no route marks, no symbols, no logos, no brand, no full scene, no road, no background objects, centered with generous padding, transparent background requested, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          23,
+          40,
+          297,
+          277
+        ],
+        "nonzero_alpha_pixels": 55259,
+        "visible_alpha_coverage": 0.53964,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.34667,
+          "largest_opaque_component_ratio": 0.17227,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Vehicle scale must be checked against full-body NPC candidates before runtime use.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.tiny_taxi_marker_blank",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/tiny_taxi_marker_blank.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/tiny_taxi_marker_blank_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        276
+      ],
+      "footprint_recommendation": "1x1 tile, tiny blocking post/base only",
+      "layer_recommendation": "small sign prop above path/ground, below tall prefabs",
+      "prompt": "single cozy town transport marker prop only: tiny taxi waiting marker sign on a short rounded post with a blank smooth face, small soft base, warm yellow accent, 3/4 prefab game asset style, no readable text, no letters, no numbers, no taxi word, no symbols, no logos, no brand, no full scene, no vehicles, centered with generous padding, transparent background requested, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          67,
+          40,
+          256,
+          273
+        ],
+        "nonzero_alpha_pixels": 35491,
+        "visible_alpha_coverage": 0.34659,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.12803,
+          "largest_opaque_component_ratio": 0.12548,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Blank marker must remain non-readable; any accidental letters disqualify runtime mapping.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.bicycle_rack_empty",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/bicycle_rack_empty.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/bicycle_rack_empty_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        266
+      ],
+      "footprint_recommendation": "2x1 tiles, low blocking rack loops only",
+      "layer_recommendation": "low street prop above terrain/path, below actors and tall props",
+      "prompt": "single cozy town street prop only: empty bicycle rack made of rounded pale wood and soft metal loops, compact 3/4 prefab game asset, no bicycles, no readable text, no letters, no numbers, no symbols, no logos, no brand, no full scene, no pavement tile sheet, centered with generous padding, transparent background requested, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          34,
+          40,
+          286,
+          257
+        ],
+        "nonzero_alpha_pixels": 44195,
+        "visible_alpha_coverage": 0.43159,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.16571,
+          "largest_opaque_component_ratio": 0.15372,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Thin rack loops need small-scale readability review.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.wooden_bridge_short",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/wooden_bridge_short.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/wooden_bridge_short_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        250
+      ],
+      "footprint_recommendation": "3x1 tiles, walkable center; collision only on side rails if used",
+      "layer_recommendation": "transition prefab above Round170 water/path, below actors when crossed",
+      "prompt": "single cozy town transition prop only: short low wooden footbridge segment for crossing a narrow stream, rounded planks and simple side rails, 3/4 prefab game asset with warm wood, no readable text, no letters, no numbers, no symbols, no logos, no full scene, no water background, no grass background, centered with generous padding, transparent background requested, compatible with soft path and water tiles, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          62,
+          137,
+          258,
+          245
+        ],
+        "nonzero_alpha_pixels": 13545,
+        "visible_alpha_coverage": 0.13228,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.08635,
+          "largest_opaque_component_ratio": 0.08635,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Must be tested over Round170 water edge to confirm no opaque water/grass patch remains.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.stepping_stone_curve",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/stepping_stone_curve.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/stepping_stone_curve_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        252
+      ],
+      "footprint_recommendation": "3x2 tiles, mostly non-blocking traversal hint",
+      "layer_recommendation": "ground transition prop above water/path, below actors",
+      "prompt": "single cozy town transition prop only: curved set of five rounded stepping stones, soft gray and mossy edges, 3/4 prefab game asset, no readable text, no letters, no numbers, no symbols, no logos, no full scene, no water background, no path background, centered with generous padding, transparent background requested, compatible with soft path and water tiles, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          25,
+          50,
+          294,
+          276
+        ],
+        "nonzero_alpha_pixels": 39628,
+        "visible_alpha_coverage": 0.38699,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.16703,
+          "largest_opaque_component_ratio": 0.08159,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Low contrast stones may need a composition proof over water and path before mapping.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.path_signpost_blank",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/path_signpost_blank.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/path_signpost_blank_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        278
+      ],
+      "footprint_recommendation": "1x1 tile, blocking at post/base only",
+      "layer_recommendation": "small-tall sign prop above ground decor, below buildings/archways",
+      "prompt": "single cozy town wayfinding prop only: small wooden path signpost with two blank arrow boards, rounded handcrafted wood, tiny leaf detail that is not a symbol, 3/4 prefab game asset, sign faces completely blank, no readable text, no letters, no numbers, no icons, no symbols, no logos, no brand, no full scene, centered with generous padding, transparent background requested, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          78,
+          118,
+          245,
+          287
+        ],
+        "nonzero_alpha_pixels": 14291,
+        "visible_alpha_coverage": 0.13956,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.09864,
+          "largest_opaque_component_ratio": 0.09834,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Arrow boards are directional shapes; review so they read as blank wood, not UI symbols.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.garden_gate_open",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/garden_gate_open.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/garden_gate_open_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        276
+      ],
+      "footprint_recommendation": "2x1 tiles, walk-through center; collision on side posts/panels only",
+      "layer_recommendation": "transition prop above fence/path, below actors when actor y is in front",
+      "prompt": "single cozy town transition prop only: open garden gate with two short rounded fence posts and open hinged panels, pale painted wood with gentle flower-free greenery at base, 3/4 prefab game asset, clear walk-through opening, no readable text, no letters, no numbers, no symbols, no logos, no full scene, no path background, centered with generous padding, transparent background requested, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          22,
+          68,
+          298,
+          221
+        ],
+        "nonzero_alpha_pixels": 37556,
+        "visible_alpha_coverage": 0.36676,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.19931,
+          "largest_opaque_component_ratio": 0.19745,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Opening width and hinge orientation need gameplay-scale review.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.school_crosswalk_soft",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/school_crosswalk_soft.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/school_crosswalk_soft_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        246
+      ],
+      "footprint_recommendation": "3x2 ground overlay, non-blocking traversal marker",
+      "layer_recommendation": "ground overlay above Round170 path/terrain, below actors and props",
+      "prompt": "single cozy town ground transition prop only: soft rounded school-area crosswalk prefab made of several pale cream stripe blocks on transparent background, slightly curved 3/4 top-down view, no readable text, no letters, no numbers, no traffic symbols, no logos, no brand, no full road scene, no asphalt rectangle background, centered with generous padding, transparent background requested, compatible with Round170 path tiles, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          22,
+          120,
+          298,
+          276
+        ],
+        "nonzero_alpha_pixels": 31412,
+        "visible_alpha_coverage": 0.30676,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.14227,
+          "largest_opaque_component_ratio": 0.14124,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Stripe blocks can feel tile-grid-like; composition proof must keep it soft and non-instructional.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.plaza_archway_small",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/plaza_archway_small.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/plaza_archway_small_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        286
+      ],
+      "footprint_recommendation": "3x1 tiles, walk-through center; collision on posts only",
+      "layer_recommendation": "tall transition prop above ground/path, depth-sort with actors through opening",
+      "prompt": "single cozy town transition prop only: small plaza archway with rounded wooden posts and a blank curved top beam, warm wood and pastel trim, clear walk-through opening, 3/4 prefab game asset, no readable text, no letters, no numbers, no symbols, no logos, no brand marks, no full scene, no plaza background, centered with generous padding, transparent background requested, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          40,
+          47,
+          276,
+          282
+        ],
+        "nonzero_alpha_pixels": 41361,
+        "visible_alpha_coverage": 0.40392,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.16284,
+          "largest_opaque_component_ratio": 0.09821,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Arch opening and top beam must be reviewed for actor occlusion and blank-surface safety.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    },
+    {
+      "id": "transport_transition_props.ferry_pier_stub",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/transport_transition_props/normalized_320x320/ferry_pier_stub.png",
+      "source_ref": "assets/art/visual_rebuild/round177/transport_transition_props/raw/ferry_pier_stub_raw.png",
+      "dimensions": [
+        320,
+        320
+      ],
+      "pivot_recommendation_px": [
+        160,
+        258
+      ],
+      "footprint_recommendation": "2x2 tiles, walkable dock; collision only on post edges if needed",
+      "layer_recommendation": "waterfront transition prop above Round170 water/shore, below actors when standing on pier",
+      "prompt": "single cozy town waterfront transition prop only: tiny ferry pier stub with rounded wooden dock planks and two short posts, compact 3/4 prefab game asset, no boat, no water background, no readable text, no letters, no numbers, no symbols, no logos, no brand, no full scene, centered with generous padding, transparent background requested, compatible with Round170 water edges, child-friendly Animal Crossing-like cozy town style",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          320,
+          320
+        ],
+        "alpha_bbox": [
+          82,
+          111,
+          245,
+          264
+        ],
+        "nonzero_alpha_pixels": 13746,
+        "visible_alpha_coverage": 0.13424,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.09413,
+          "largest_opaque_component_ratio": 0.09413,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Needs Round170 shoreline proof so dock does not imply a full ferry scene.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "No readable text/letters/numbers/symbols/logos are requested; final visual review is still required before approval."
+      ]
+    }
+  ]
+}

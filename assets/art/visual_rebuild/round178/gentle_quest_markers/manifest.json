@@ -1,0 +1,740 @@
+{
+  "pack_id": "round178.gentle_quest_markers",
+  "round": "Round178",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "gentle_quest_interaction_marker_overlay",
+  "scope": "Child-safe cozy interaction / gentle task marker candidates for StudyGame V02 visual rebuild; no visible text labels, no harsh punctuation, no school/test vibes.",
+  "generation_method": {
+    "tool": "local PIL synthesis in asset pack script",
+    "mode": "pure #00ff00 chroma raw evidence plus local RGBA normalized transparent PNG output",
+    "postprocess": "assets/art/visual_rebuild/round178/gentle_quest_markers/generate_validate_manifest.py",
+    "alpha_source": "Actual normalized PNG RGBA channels validated after synthesis; raw chroma files retained as provenance.",
+    "notes": "Per LESSON-022, transparency is verified from real pixels. White-background glass cleanup was not used."
+  },
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round178/gentle_quest_markers/proof/round178_gentle_quest_markers_contact_sheet.png",
+    "raw_dir": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw",
+    "normalized_dir": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192"
+  },
+  "validation_summary": {
+    "checks": [
+      "RGBA alpha channel",
+      "expected 192x192 dimensions",
+      "non-empty alpha content",
+      "transparent corners",
+      "edge alpha/touch scan",
+      "green/magenta residue scan",
+      "dark pinhole residue scan",
+      "opaque white residue scan",
+      "large opaque background block risk scan"
+    ],
+    "pass_count": 10,
+    "fail_count": 0,
+    "raw_chroma_source_count": 10,
+    "raw_chroma_color": "#00ff00"
+  },
+  "items": [
+    {
+      "id": "interaction_marker.look_sparkle_ring",
+      "slug": "look_sparkle_ring",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/look_sparkle_ring.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/look_sparkle_ring_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "gentle optional look / inspect cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          15,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18819,
+        "visible_alpha_coverage": 0.5105,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Sparkle density should stay calm and not become a reward burst.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.small_talk_bubble_blank",
+      "slug": "small_talk_bubble_blank",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/small_talk_bubble_blank.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/small_talk_bubble_blank_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "quiet resident chat available cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Blank bubble must remain text-free and avoid looking like a lesson prompt.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.lost_item_glow_leaf",
+      "slug": "lost_item_glow_leaf",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/lost_item_glow_leaf.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/lost_item_glow_leaf_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "found/lost small item nearby cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Glow should not imply urgent collection pressure.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.gift_ready_soft_wrap",
+      "slug": "gift_ready_soft_wrap",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/gift_ready_soft_wrap.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/gift_ready_soft_wrap_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "soft gift-ready cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Ribbon marks must not form label-like text.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.helper_hand_soft_icon",
+      "slug": "helper_hand_soft_icon",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/helper_hand_soft_icon.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/helper_hand_soft_icon_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "gentle helping interaction cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Hand should read as friendly help, not a command button.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.revisit_memory_twinkle",
+      "slug": "revisit_memory_twinkle",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/revisit_memory_twinkle.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/revisit_memory_twinkle_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "memory palace revisit cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Twinkles should support A-Z revisit without becoming school/test feedback.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.shop_available_coin_leaf",
+      "slug": "shop_available_coin_leaf",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/shop_available_coin_leaf.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/shop_available_coin_leaf_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "shop has something gentle/available cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Coin cue should stay cozy and non-monetization-heavy.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.album_new_card_glow",
+      "slug": "album_new_card_glow",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/album_new_card_glow.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/album_new_card_glow_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "new album card cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Card face must remain blank with no letter, number, or score-like symbol.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.home_ready_lantern",
+      "slug": "home_ready_lantern",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/home_ready_lantern.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/home_ready_lantern_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "home is ready / cozy return cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Lantern glow should not overpower nearby warm window lights.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    },
+    {
+      "id": "interaction_marker.calm_question_leaf",
+      "slug": "calm_question_leaf",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/normalized_192x192/calm_question_leaf.png",
+      "source_ref": "assets/art/visual_rebuild/round178/gentle_quest_markers/raw/calm_question_leaf_raw_chroma.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_layer": "world-space interaction marker overlay above nearby actor/object, below modal/dialogue UI",
+      "offset_recommendation_px": [
+        0,
+        -72
+      ],
+      "opacity_recommendation": "70-88%; slow pulse/twinkle only, no urgent flashing",
+      "visual_cue": "gentle curiosity / ask cue",
+      "prompt_design_notes": [
+        "no visible text labels",
+        "no exclamation-heavy UX",
+        "no school, homework, quiz, score, badge, or test motifs",
+        "cozy town proportions with soft rounded forms"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          25,
+          18,
+          168,
+          173
+        ],
+        "nonzero_alpha_pixels": 18729,
+        "visible_alpha_coverage": 0.50806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_chroma_source_to_rgba_alpha_safe_synthesis"
+      },
+      "risks": [
+        "Curled leaf should imply curiosity without a harsh punctuation mark.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against future approved actor/object scale before approval."
+      ]
+    }
+  ]
+}

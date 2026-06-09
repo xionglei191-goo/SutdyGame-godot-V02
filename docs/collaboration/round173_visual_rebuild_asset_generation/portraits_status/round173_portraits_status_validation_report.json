@@ -1,0 +1,245 @@
+{
+  "round": "round173",
+  "category": "character_pet_portrait_status",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "cell_px": [
+    192,
+    192
+  ],
+  "atlas_columns": 4,
+  "atlas_rows": 2,
+  "chroma_key": "#ff00ff",
+  "atlas": "assets/art/visual_rebuild/round173/portraits_status/round173_portraits_status_atlas_192x192.png",
+  "proof": "assets/art/visual_rebuild/round173/portraits_status/round173_portraits_status_proof_192x192.png",
+  "raw_sheet": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/round173_portraits_status_raw_chroma_ff00ff_sheet.png",
+  "normalized_png_dir": "assets/art/visual_rebuild/round173/portraits_status/normalized_png",
+  "generation_tool": "/home/xionglei/GameProject/tools/image_generator.js",
+  "docs10_basis": "docs/10_美术风格与换肤预留.md V02-ART-003 character and Sunny list",
+  "overall_gate": "pass",
+  "overall_gate_criteria": "pass only when fixed cell, alpha, bbox, and visible key pixels=0 for every normalized PNG",
+  "candidates": [
+    {
+      "id": "player_portrait",
+      "logical_asset_id": "character.player.portrait",
+      "role": "child player avatar portrait",
+      "identity_notes": "warm child self-projection; not adult, combat, school, grade, or report themed",
+      "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/raw/player_portrait_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round173/portraits_status/normalized_png/player_portrait.png",
+      "cell_px": [
+        192,
+        192
+      ],
+      "source_bbox_px": [
+        85,
+        42,
+        422,
+        512
+      ],
+      "normalized_bbox_px": [
+        38,
+        16,
+        153,
+        176
+      ],
+      "has_alpha": true,
+      "visible_key_pixels": 0,
+      "gate": "pass"
+    },
+    {
+      "id": "mina_portrait",
+      "logical_asset_id": "character.mina.portrait",
+      "role": "Mina friend portrait",
+      "identity_notes": "Mina is a town friend and companion, not a teacher",
+      "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/raw/mina_portrait_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round173/portraits_status/normalized_png/mina_portrait.png",
+      "cell_px": [
+        192,
+        192
+      ],
+      "source_bbox_px": [
+        109,
+        26,
+        418,
+        512
+      ],
+      "normalized_bbox_px": [
+        45,
+        16,
+        147,
+        176
+      ],
+      "has_alpha": true,
+      "visible_key_pixels": 0,
+      "gate": "pass"
+    },
+    {
+      "id": "mina_happy",
+      "logical_asset_id": "character.mina.happy",
+      "role": "Mina happy status portrait",
+      "identity_notes": "same Mina friend identity; happy/welcoming only",
+      "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/raw/mina_happy_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round173/portraits_status/normalized_png/mina_happy.png",
+      "cell_px": [
+        192,
+        192
+      ],
+      "source_bbox_px": [
+        66,
+        75,
+        427,
+        512
+      ],
+      "normalized_bbox_px": [
+        30,
+        16,
+        162,
+        176
+      ],
+      "has_alpha": true,
+      "visible_key_pixels": 0,
+      "gate": "pass"
+    },
+    {
+      "id": "shopkeeper_portrait",
+      "logical_asset_id": "character.shopkeeper.portrait",
+      "role": "patient small-town shopkeeper portrait",
+      "identity_notes": "gentle resident shopkeeper; no sales pressure or money stress",
+      "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/raw/shopkeeper_portrait_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round173/portraits_status/normalized_png/shopkeeper_portrait.png",
+      "cell_px": [
+        192,
+        192
+      ],
+      "source_bbox_px": [
+        94,
+        24,
+        420,
+        502
+      ],
+      "normalized_bbox_px": [
+        41,
+        16,
+        150,
+        176
+      ],
+      "has_alpha": true,
+      "visible_key_pixels": 0,
+      "gate": "pass"
+    },
+    {
+      "id": "sunny_portrait",
+      "logical_asset_id": "pet.sunny.portrait",
+      "role": "Sunny pet portrait",
+      "identity_notes": "friendly safe pet companion; not dangerous, sick, or scared",
+      "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/raw/sunny_portrait_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round173/portraits_status/normalized_png/sunny_portrait.png",
+      "cell_px": [
+        192,
+        192
+      ],
+      "source_bbox_px": [
+        59,
+        76,
+        442,
+        435
+      ],
+      "normalized_bbox_px": [
+        16,
+        21,
+        176,
+        171
+      ],
+      "has_alpha": true,
+      "visible_key_pixels": 0,
+      "gate": "pass"
+    },
+    {
+      "id": "sunny_happy",
+      "logical_asset_id": "pet.sunny.happy",
+      "role": "Sunny happy status",
+      "identity_notes": "same Sunny pet identity; warm positive care feedback",
+      "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/raw/sunny_happy_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round173/portraits_status/normalized_png/sunny_happy.png",
+      "cell_px": [
+        192,
+        192
+      ],
+      "source_bbox_px": [
+        85,
+        53,
+        445,
+        456
+      ],
+      "normalized_bbox_px": [
+        24,
+        16,
+        167,
+        176
+      ],
+      "has_alpha": true,
+      "visible_key_pixels": 0,
+      "gate": "pass"
+    },
+    {
+      "id": "sunny_waiting",
+      "logical_asset_id": "pet.sunny.waiting",
+      "role": "Sunny gentle waiting status",
+      "identity_notes": "same Sunny pet identity; waiting to play or be cared for, not emergency",
+      "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/raw/sunny_waiting_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round173/portraits_status/normalized_png/sunny_waiting.png",
+      "cell_px": [
+        192,
+        192
+      ],
+      "source_bbox_px": [
+        96,
+        37,
+        382,
+        446
+      ],
+      "normalized_bbox_px": [
+        40,
+        16,
+        152,
+        176
+      ],
+      "has_alpha": true,
+      "visible_key_pixels": 0,
+      "gate": "pass"
+    },
+    {
+      "id": "story_bear_portrait",
+      "logical_asset_id": "character.story_bear.portrait",
+      "role": "Story Bear portrait",
+      "identity_notes": "gentle story companion; not teacher, quiz, or classroom role",
+      "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/portraits_status/raw/story_bear_portrait_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round173/portraits_status/normalized_png/story_bear_portrait.png",
+      "cell_px": [
+        192,
+        192
+      ],
+      "source_bbox_px": [
+        61,
+        30,
+        472,
+        512
+      ],
+      "normalized_bbox_px": [
+        28,
+        16,
+        164,
+        176
+      ],
+      "has_alpha": true,
+      "visible_key_pixels": 0,
+      "gate": "pass"
+    }
+  ],
+  "identity_confusion_notes": {
+    "player_portrait": "distinct child player avatar; not a school/report icon",
+    "mina_portrait_and_happy": "Mina variants are intended as the same town friend; visual similarity still requires art-direction review before production use",
+    "shopkeeper_portrait": "shopkeeper uses apron/shopkeeper cues; no pressure-sales expression",
+    "sunny_portrait_happy_waiting": "Sunny portrait/happy read as one golden puppy identity; sunny_waiting has a slight pointy-ear fox/cat risk and needs art-direction review or regeneration before production mapping",
+    "story_bear_portrait": "bear story companion is deliberately separate from Sunny pet identity"
+  }
+}

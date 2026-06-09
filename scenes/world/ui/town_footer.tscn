@@ -26,6 +26,10 @@ text = "小屋"
 custom_minimum_size = Vector2(84, 40)
 text = "背包"
 
+[node name="AlbumNavButton" type="Button" parent="Margin/FooterVisibleActions"]
+custom_minimum_size = Vector2(84, 40)
+text = "相册"
+
 [node name="FooterContractButtons" type="Control" parent="."]
 visible = false
 

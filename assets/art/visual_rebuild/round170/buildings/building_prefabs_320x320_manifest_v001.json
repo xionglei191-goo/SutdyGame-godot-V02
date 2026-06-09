@@ -1,0 +1,244 @@
+{
+  "status": "normalized_candidate",
+  "overall_gate": "pass",
+  "source": "docs/collaboration/round170_visual_rebuild_asset_generation/buildings/raw/round170_building_prefabs_ai_raw_sheet_v001.png",
+  "alpha_source": "docs/collaboration/round170_visual_rebuild_asset_generation/buildings/round170_building_prefabs_ai_raw_sheet_v001_chroma_alpha.png",
+  "atlas": "assets/art/visual_rebuild/round170/buildings/building_prefabs_320x320_atlas_v001.png",
+  "pivot_proof": "assets/art/visual_rebuild/round170/buildings/building_prefabs_320x320_pivot_proof_v001.png",
+  "asset_tree_atlas": "assets/art/visual_rebuild/round170/buildings/building_prefabs_320x320_atlas_v001.png",
+  "asset_tree_pivot_proof": "assets/art/visual_rebuild/round170/buildings/building_prefabs_320x320_pivot_proof_v001.png",
+  "source_grid": {
+    "columns": 2,
+    "rows": 2
+  },
+  "cell_size": [
+    320,
+    320
+  ],
+  "fit_box": [
+    286,
+    282
+  ],
+  "pivot_px": [
+    160,
+    302
+  ],
+  "key_color": "#ff00ff",
+  "items": [
+    {
+      "index": 1,
+      "id": "building_prefab.01_home_red_roof",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        64,
+        66,
+        471,
+        487
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/buildings/normalized_320x320/building_prefab_01_320x320.png",
+      "cell_size": [
+        320,
+        320
+      ],
+      "fit_box": [
+        286,
+        282
+      ],
+      "pivot_px": [
+        160,
+        302
+      ],
+      "placed_bbox": [
+        24,
+        20,
+        297,
+        302
+      ],
+      "margins_px": {
+        "left": 24,
+        "top": 20,
+        "right": 23,
+        "bottom": 18
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 1,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.669833729216152,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "building_prefab"
+    },
+    {
+      "index": 2,
+      "id": "building_prefab.02_shop_green_awning",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        0,
+        105,
+        441,
+        492
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/buildings/normalized_320x320/building_prefab_02_320x320.png",
+      "cell_size": [
+        320,
+        320
+      ],
+      "fit_box": [
+        286,
+        282
+      ],
+      "pivot_px": [
+        160,
+        302
+      ],
+      "placed_bbox": [
+        17,
+        51,
+        303,
+        302
+      ],
+      "margins_px": {
+        "left": 17,
+        "top": 51,
+        "right": 17,
+        "bottom": 18
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 1,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.6485260770975056,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "building_prefab"
+    },
+    {
+      "index": 3,
+      "id": "building_prefab.03_garden_blue_roof",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        44,
+        48,
+        490,
+        444
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/buildings/normalized_320x320/building_prefab_03_320x320.png",
+      "cell_size": [
+        320,
+        320
+      ],
+      "fit_box": [
+        286,
+        282
+      ],
+      "pivot_px": [
+        160,
+        302
+      ],
+      "placed_bbox": [
+        17,
+        48,
+        303,
+        302
+      ],
+      "margins_px": {
+        "left": 17,
+        "top": 48,
+        "right": 17,
+        "bottom": 18
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 1,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.6412556053811659,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "building_prefab"
+    },
+    {
+      "index": 4,
+      "id": "building_prefab.04_community_yellow_roof",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        14,
+        22,
+        470,
+        445
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/buildings/normalized_320x320/building_prefab_04_320x320.png",
+      "cell_size": [
+        320,
+        320
+      ],
+      "fit_box": [
+        286,
+        282
+      ],
+      "pivot_px": [
+        160,
+        302
+      ],
+      "placed_bbox": [
+        17,
+        37,
+        303,
+        302
+      ],
+      "margins_px": {
+        "left": 17,
+        "top": 37,
+        "right": 17,
+        "bottom": 18
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 1,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.6271929824561403,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "building_prefab"
+    }
+  ],
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "category": "building_prefab",
+  "asset_status": "normalized_candidate"
+}

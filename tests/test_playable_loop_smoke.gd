@@ -17,7 +17,7 @@ func _init() -> void:
 	_expect(main.find_child("TownHUD", true, false) != null, "main scene should expose top message HUD")
 	_expect(main.find_child("TownFooter", true, false) != null, "main scene should expose bottom action bar")
 	var visible_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
-	_expect(visible_actions != null and visible_actions.get_child_count() == 4, "bottom bar should expose only four child-facing controls")
+	_expect(visible_actions != null and visible_actions.get_child_count() == 5, "bottom bar should expose five compact child-facing dock controls")
 	var backpack_bubble := main.find_child("BackpackBubble", true, false) as Control
 	_expect(backpack_bubble != null, "backpack button should have a child-facing content bubble")
 	_expect(backpack_bubble != null and not backpack_bubble.visible, "backpack bubble should stay hidden until opened")

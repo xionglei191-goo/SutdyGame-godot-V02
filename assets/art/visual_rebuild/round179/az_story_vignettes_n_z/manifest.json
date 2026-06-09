@@ -1,0 +1,617 @@
+{
+  "round": 179,
+  "pack": "az_story_vignettes_n_z",
+  "category": "proof_only_az_memory_story_vignette_overlay_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "proof": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/proof/round179_az_story_vignettes_n_z_contact_sheet.png",
+  "normalization": {
+    "canvas_px": [
+      256,
+      192
+    ],
+    "format": "PNG RGBA",
+    "lesson_021_background_block_policy": "Contact sheet checker proof and per-item visual_background_block_count gate are included.",
+    "lesson_022_alpha_policy": "Actual file alpha is validated; transparent corners and alpha extrema are recorded per item."
+  },
+  "coverage_check": {
+    "letters_required": [
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "anchors_required": [
+      "anchor_n_net",
+      "anchor_o_orange",
+      "anchor_p_panda",
+      "anchor_q_queen",
+      "anchor_r_robot",
+      "anchor_s_sun",
+      "anchor_t_taxi",
+      "anchor_u_umbrella",
+      "anchor_v_violin",
+      "anchor_w_watch",
+      "anchor_x_x_mark_box",
+      "anchor_y_yo_yo",
+      "anchor_z_zebra"
+    ],
+    "world_map_source": "data/maps/world_map.json",
+    "result": "pass"
+  },
+  "counts": {
+    "items_total": 13,
+    "items_pass": 13,
+    "items_fail": 0
+  },
+  "items": [
+    {
+      "id": "az_story_vignette.anchor_n_net",
+      "letter": "N",
+      "anchor_id": "anchor_n_net",
+      "core_word": "Net",
+      "place_label": "School Yard",
+      "place_id": "place_school_yard",
+      "story_hook": "A soft bug net leans by the school-yard flower patch, catching one floating leaf instead of an insect.",
+      "revisit_path_note": "Return to School Yard after the morning walk and look near the play corner where the net waits by flowers.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_n_net_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_n_net_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 7440,
+        "visible_coverage_ratio": 0.1514,
+        "semi_transparent_pixel_count": 4949,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_o_orange",
+      "letter": "O",
+      "anchor_id": "anchor_o_orange",
+      "core_word": "Orange",
+      "place_label": "Shop Street",
+      "place_id": "place_supermarket",
+      "story_hook": "A round orange sits in a tiny shop basket with a leaf tag, a snack remembered from the storefront.",
+      "revisit_path_note": "Walk back to Shop Street and check the small basket near the supermarket entrance.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_o_orange_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_o_orange_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 10419,
+        "visible_coverage_ratio": 0.212,
+        "semi_transparent_pixel_count": 1903,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_p_panda",
+      "letter": "P",
+      "anchor_id": "anchor_p_panda",
+      "core_word": "Panda",
+      "place_label": "Animal Park",
+      "place_id": "place_animal_park",
+      "story_hook": "A panda-faced picnic mat and bamboo sprout mark the Animal Park corner without adding a full character.",
+      "revisit_path_note": "Revisit Animal Park and look by the cozy picnic patch where animal-memory props gather.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_p_panda_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_p_panda_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 13306,
+        "visible_coverage_ratio": 0.2707,
+        "semi_transparent_pixel_count": 1534,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_q_queen",
+      "letter": "Q",
+      "anchor_id": "anchor_q_queen",
+      "core_word": "Queen",
+      "place_label": "Story + Culture Bridge",
+      "place_id": "place_town_start",
+      "story_hook": "A story crown rests on a blank picture book at the bridge, like a make-believe queen tale.",
+      "revisit_path_note": "Return to Story + Culture Bridge and look beside the bookshop/story bench area.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_q_queen_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_q_queen_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 8458,
+        "visible_coverage_ratio": 0.1721,
+        "semi_transparent_pixel_count": 1876,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_r_robot",
+      "letter": "R",
+      "anchor_id": "anchor_r_robot",
+      "core_word": "Robot",
+      "place_label": "School Yard",
+      "place_id": "place_school_yard",
+      "story_hook": "A friendly toy robot holds a tiny chalk star near the School Yard playthings.",
+      "revisit_path_note": "Revisit School Yard and check near the robot play corner after yard time.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_r_robot_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_r_robot_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 9729,
+        "visible_coverage_ratio": 0.1979,
+        "semi_transparent_pixel_count": 2688,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_s_sun",
+      "letter": "S",
+      "anchor_id": "anchor_s_sun",
+      "core_word": "Sun",
+      "place_label": "Sun Scene",
+      "place_id": "place_sun_scene",
+      "story_hook": "A warm smiling sun rises behind a small town-sign hill, echoing the Sun Scene landmark.",
+      "revisit_path_note": "Start at Sun Scene or pass the Morning School Walk and notice the same warm sun memory.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_s_sun_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_s_sun_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 12447,
+        "visible_coverage_ratio": 0.2532,
+        "semi_transparent_pixel_count": 2602,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_t_taxi",
+      "letter": "T",
+      "anchor_id": "anchor_t_taxi",
+      "core_word": "Taxi",
+      "place_label": "Home",
+      "place_id": "place_home",
+      "story_hook": "A tiny taxi key charm rests on the home mat, suggesting the safe town ride connection.",
+      "revisit_path_note": "Return Home and look by the entry mat where the small taxi charm is kept.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_t_taxi_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_t_taxi_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 11026,
+        "visible_coverage_ratio": 0.2243,
+        "semi_transparent_pixel_count": 2314,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_u_umbrella",
+      "letter": "U",
+      "anchor_id": "anchor_u_umbrella",
+      "core_word": "Umbrella",
+      "place_label": "Beach / Coast Edge",
+      "place_id": "place_coast_edge",
+      "story_hook": "A folded beach umbrella shelters two shells from a gentle coast drizzle.",
+      "revisit_path_note": "Walk to Beach / Coast Edge and look beside the shoreline shells.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_u_umbrella_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_u_umbrella_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 8932,
+        "visible_coverage_ratio": 0.1817,
+        "semi_transparent_pixel_count": 2776,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_v_violin",
+      "letter": "V",
+      "anchor_id": "anchor_v_violin",
+      "core_word": "Violin",
+      "place_label": "Story + Culture Bridge",
+      "place_id": "place_town_start",
+      "story_hook": "A tiny violin leans against the story bench, ready for a quiet bridge melody.",
+      "revisit_path_note": "Return to Story + Culture Bridge and check the bench/bookshop music corner.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_v_violin_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_v_violin_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 8072,
+        "visible_coverage_ratio": 0.1642,
+        "semi_transparent_pixel_count": 1671,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_w_watch",
+      "letter": "W",
+      "anchor_id": "anchor_w_watch",
+      "core_word": "Watch",
+      "place_label": "Home",
+      "place_id": "place_home",
+      "story_hook": "A round watch hangs from a cozy home peg beside a small morning ribbon.",
+      "revisit_path_note": "Return Home and look by the entry wall where morning things are hung.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_w_watch_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_w_watch_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 11254,
+        "visible_coverage_ratio": 0.229,
+        "semi_transparent_pixel_count": 1622,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_x_x_mark_box",
+      "letter": "X",
+      "anchor_id": "anchor_x_x_mark_box",
+      "core_word": "X-mark Box",
+      "place_label": "Beach / Coast Edge",
+      "place_id": "place_coast_edge",
+      "story_hook": "A small wooden keepsake box has a soft X stitch and a shell, like a coast treasure clue.",
+      "revisit_path_note": "Walk to Beach / Coast Edge and find the stitched box near the shells.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_x_x_mark_box_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_x_x_mark_box_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 11885,
+        "visible_coverage_ratio": 0.2418,
+        "semi_transparent_pixel_count": 2710,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_y_yo_yo",
+      "letter": "Y",
+      "anchor_id": "anchor_y_yo_yo",
+      "core_word": "Yo-yo",
+      "place_label": "School Yard",
+      "place_id": "place_school_yard",
+      "story_hook": "A bright yo-yo rests on a chalk swirl in the School Yard play area.",
+      "revisit_path_note": "Revisit School Yard and look near the toy corner after playtime.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_y_yo_yo_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_y_yo_yo_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 7013,
+        "visible_coverage_ratio": 0.1427,
+        "semi_transparent_pixel_count": 2859,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_z_zebra",
+      "letter": "Z",
+      "anchor_id": "anchor_z_zebra",
+      "core_word": "Zebra",
+      "place_label": "Animal Park",
+      "place_id": "place_animal_park",
+      "story_hook": "A zebra-striped cozy sign and grass tuft mark the Animal Park edge.",
+      "revisit_path_note": "Return to Animal Park and check the striped sign near the soft grass path.",
+      "status": "pass",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_z_zebra_256x192.png",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_n_z/normalized_256x192/anchor_z_zebra_256x192.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "format": "PNG RGBA",
+      "checks": {
+        "dimensions": [
+          256,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 11603,
+        "visible_coverage_ratio": 0.2361,
+        "semi_transparent_pixel_count": 2687,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "visual_background_block_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+      "risks": [
+        "Proof-only locally synthesized visual candidate; style must be art-directed before production use.",
+        "No runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    }
+  ]
+}

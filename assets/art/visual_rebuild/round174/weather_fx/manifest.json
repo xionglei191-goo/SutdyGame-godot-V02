@@ -1,0 +1,173 @@
+{
+  "pack_id": "round174.weather_fx",
+  "round": "Round174",
+  "status": "proof_only/normalized_candidate",
+  "overall_gate": "pass",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "category": "weather_environment_fx",
+  "scope": "Weather and environment FX candidates for 1280x720 cozy town proof composition only.",
+  "generation_method": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text-to-image keyed source, local chroma-key alpha removal",
+    "postprocess": "/home/xionglei/.codex/skills/.system/imagegen/scripts/remove_chroma_key.py",
+    "notes": "The fallback generator's --transparent request returned RGB for initial samples, so final deliverables were generated as flat chroma-key sources and normalized to RGBA PNG."
+  },
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round174/weather_fx/proofs/round174_weather_fx_contact_sheet.png",
+    "keyed_sources_dir": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/"
+  },
+  "validation_summary": {
+    "basic_alpha_dimension_corner_residue_pass": 8,
+    "basic_alpha_dimension_corner_residue_fail": 0,
+    "checks": [
+      "RGBA mode",
+      "expected dimensions",
+      "nonzero alpha content",
+      "transparent corners",
+      "visible magenta/green key residue scan"
+    ]
+  },
+  "items": [
+    {
+      "id": "weather_fx.sunny_sparkles",
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round174/weather_fx/sunny_sparkles.png"
+    },
+    {
+      "id": "weather_fx.soft_cloud_shadow",
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round174/weather_fx/soft_cloud_shadow.png",
+      "risks": [
+        "Visual review should confirm shadow shape is not too faint."
+      ]
+    },
+    {
+      "id": "weather_fx.gentle_rain_streaks",
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round174/weather_fx/gentle_rain_streaks.png"
+    },
+    {
+      "id": "weather_fx.puddle_round",
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round174/weather_fx/puddle_round.png"
+    },
+    {
+      "id": "weather_fx.leaf_swirl",
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round174/weather_fx/leaf_swirl.png"
+    },
+    {
+      "id": "weather_fx.wind_lines_soft",
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round174/weather_fx/wind_lines_soft.png"
+    },
+    {
+      "id": "weather_fx.market_day_bunting",
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round174/weather_fx/market_day_bunting.png"
+    },
+    {
+      "id": "weather_fx.night_firefly_glow",
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round174/weather_fx/night_firefly_glow.png"
+    }
+  ],
+  "assets": [
+    {
+      "id": "weather_fx.sunny_sparkles",
+      "status": "proof_only/normalized_candidate",
+      "main_ref": "assets/art/visual_rebuild/round174/weather_fx/sunny_sparkles.png",
+      "source_ref": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/sunny_sparkles_keyed.png",
+      "dimensions": [1280, 720],
+      "intended_layer_order": "above terrain and broad ground regions; below actors, tall props, and UI",
+      "opacity_recommendation": "18-35%",
+      "prompt": "Very sparse warm sun glints and tiny soft translucent sparkle flecks drifting diagonally, child-friendly, gentle Apple-like translucent glass-compatible style; no text, no letters, no symbols, not noisy.",
+      "risks": "Contains a few opaque sparkle cores; keep opacity low and avoid stacking with bright UI glass."
+    },
+    {
+      "id": "weather_fx.soft_cloud_shadow",
+      "status": "proof_only/normalized_candidate",
+      "main_ref": "assets/art/visual_rebuild/round174/weather_fx/soft_cloud_shadow.png",
+      "source_ref": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/soft_cloud_shadow_keyed_green.png",
+      "dimensions": [1280, 720],
+      "intended_layer_order": "above terrain and below paths, props, actors, and UI",
+      "opacity_recommendation": "18-28%",
+      "prompt": "A few broad feathered cloud-shadow patches, translucent cool gray-blue, calm and non-dramatic, Apple-like frosted translucent softness, child-friendly, minimal noise.",
+      "risks": "Replacement source did not preserve a perfectly flat green key; final alpha audit passes, but visual review should confirm shadow shape is not too faint."
+    },
+    {
+      "id": "weather_fx.gentle_rain_streaks",
+      "status": "proof_only/normalized_candidate",
+      "main_ref": "assets/art/visual_rebuild/round174/weather_fx/gentle_rain_streaks.png",
+      "source_ref": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/gentle_rain_streaks_keyed.png",
+      "dimensions": [1280, 720],
+      "intended_layer_order": "above actors and props; below UI and dialogue/prompt overlays",
+      "opacity_recommendation": "35-55%",
+      "prompt": "Sparse fine diagonal rain lines, soft rounded ends, light blue-white translucent strokes, soothing child-friendly drizzle, evenly distributed but not dense.",
+      "risks": "Very sparse alpha coverage; may need duplication or scrolling animation in a live proof."
+    },
+    {
+      "id": "weather_fx.puddle_round",
+      "status": "proof_only/normalized_candidate",
+      "main_ref": "assets/art/visual_rebuild/round174/weather_fx/puddle_round.png",
+      "source_ref": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/puddle_round_keyed_green.png",
+      "dimensions": [512, 512],
+      "intended_layer_order": "ground prop above terrain/path; below actors, furniture, tall props, and UI",
+      "opacity_recommendation": "80-100%",
+      "prompt": "One round shallow rain puddle with soft reflective blue and white highlights, gentle child-friendly look, no scene, no ground patch, Apple-like translucent water.",
+      "risks": "Prop is relatively dense/opaque compared with overlays; scale down or tint in composition if it draws too much attention."
+    },
+    {
+      "id": "weather_fx.leaf_swirl",
+      "status": "proof_only/normalized_candidate",
+      "main_ref": "assets/art/visual_rebuild/round174/weather_fx/leaf_swirl.png",
+      "source_ref": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/leaf_swirl_keyed.png",
+      "dimensions": [768, 768],
+      "intended_layer_order": "above ground props and actors as a brief wind/event overlay; below UI",
+      "opacity_recommendation": "55-85%",
+      "prompt": "A loose swirl of a few small rounded autumn-green and warm yellow leaves with a soft motion arc, playful but calm, child-friendly, lots of empty space.",
+      "risks": "Some leaves are fully opaque; use as a localized effect rather than a repeating full-screen layer."
+    },
+    {
+      "id": "weather_fx.wind_lines_soft",
+      "status": "proof_only/normalized_candidate",
+      "main_ref": "assets/art/visual_rebuild/round174/weather_fx/wind_lines_soft.png",
+      "source_ref": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/wind_lines_soft_keyed.png",
+      "dimensions": [1280, 720],
+      "intended_layer_order": "above terrain, props, and actors; below UI",
+      "opacity_recommendation": "25-45%",
+      "prompt": "Sparse soft curved breeze lines, pale white-blue translucent strokes, a few small motion wisps, gentle breezy day, no comic speed marks.",
+      "risks": "Best used with slow drift animation; static placement may read as decorative strokes."
+    },
+    {
+      "id": "weather_fx.market_day_bunting",
+      "status": "proof_only/normalized_candidate",
+      "main_ref": "assets/art/visual_rebuild/round174/weather_fx/market_day_bunting.png",
+      "source_ref": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/market_day_bunting_keyed.png",
+      "dimensions": [1024, 256],
+      "intended_layer_order": "event prop above buildings/market stall facade; below UI",
+      "opacity_recommendation": "85-100%",
+      "prompt": "One gentle string of small rounded triangular fabric flags for a cozy town market day, pastel coral, mint, butter yellow, sky blue, translucent fabric highlights.",
+      "risks": "Wide prop may need manual anchor points and depth sorting before any runtime use."
+    },
+    {
+      "id": "weather_fx.night_firefly_glow",
+      "status": "proof_only/normalized_candidate",
+      "main_ref": "assets/art/visual_rebuild/round174/weather_fx/night_firefly_glow.png",
+      "source_ref": "assets/art/visual_rebuild/round174/weather_fx/proofs/source_keyed/night_firefly_glow_keyed.png",
+      "dimensions": [1280, 720],
+      "intended_layer_order": "above terrain, props, and actors in night proof; below UI",
+      "opacity_recommendation": "45-75%",
+      "prompt": "Sparse tiny warm firefly dots with soft circular halos, magical but quiet, child-friendly, no insects drawn in detail, clustered lightly near lower half and sides.",
+      "risks": "A few bright cores are opaque; avoid combining with sunny sparkle overlay in the same proof."
+    }
+  ]
+}

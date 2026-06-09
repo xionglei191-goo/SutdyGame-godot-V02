@@ -1,0 +1,715 @@
+{
+  "pack_id": "round179.home_decor_surfaces",
+  "round": "Round179",
+  "worker": "Worker A",
+  "status": "proof_only_home_decor_surface_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "home_decor_surfaces",
+  "scope": "12 cozy child-safe home decor surface candidates only: wallpapers, floor mats, rugs, curtains, window light overlay, and shelf backing swatch.",
+  "non_scope": [
+    "no runtime wiring",
+    "no ThemeProfile",
+    "no AssetResolver",
+    "no data mapping",
+    "no art_target_locked",
+    "no runtime_visual_match",
+    "no runtime/data/shared test/todo/lessons changes"
+  ],
+  "generation_method": {
+    "tool": "assets/art/visual_rebuild/round179/home_decor_surfaces/generate_validate_pack.py",
+    "mode": "local proof-only RGB/RGBA synthesis",
+    "postprocess": "same script writes PNGs, validates pixel opacity/alpha, and builds contact sheet",
+    "notes": "Per LESSON-022, final gate is based on actual pixel properties. Opaque swatches record intentional_opaque_surface=true; overlays require real RGBA alpha."
+  },
+  "proof": "assets/art/visual_rebuild/round179/home_decor_surfaces/proof/round179_home_decor_surfaces_contact_sheet.png",
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round179/home_decor_surfaces/proof/round179_home_decor_surfaces_contact_sheet.png",
+    "candidate_dir": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256"
+  },
+  "validation_summary": {
+    "checks": [
+      "expected 256x256 dimensions",
+      "opaque swatches: all pixels opaque and intentional_opaque_surface=true",
+      "overlays: PNG mode RGBA with real transparent pixels and nonzero visible alpha",
+      "overlays: transparent corners",
+      "overlays: no edge-touching alpha over 1 percent per side",
+      "overlays: no green/magenta chroma-key residue",
+      "no runtime tiling or repeatability claim"
+    ],
+    "pass_count": 12,
+    "fail_count": 0,
+    "opaque_surface_count": 5,
+    "real_alpha_overlay_count": 7
+  },
+  "items": [
+    {
+      "id": "home_decor_surfaces.wallpaper_sun_dots",
+      "suggested_id": "wallpaper_sun_dots",
+      "logical_asset_id": null,
+      "slug": "wallpaper_sun_dots",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "opaque_surface_swatch",
+      "alpha_expectation": "intentional_opaque_surface",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/wallpaper_sun_dots.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/wallpaper_sun_dots.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "wallpaper candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "opaque_surface_swatch",
+        "alpha_expectation": "intentional_opaque_surface",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": false,
+        "real_alpha_channel": false,
+        "intentional_opaque_surface": true,
+        "all_pixels_opaque": true,
+        "opaque_pixel_count": 65536,
+        "transparent_pixel_count": 0,
+        "pass": true
+      },
+      "risks": [
+        "Dot rhythm is decorative only; repeatability has not been audited.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.wallpaper_leaf_trail",
+      "suggested_id": "wallpaper_leaf_trail",
+      "logical_asset_id": null,
+      "slug": "wallpaper_leaf_trail",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "opaque_surface_swatch",
+      "alpha_expectation": "intentional_opaque_surface",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/wallpaper_leaf_trail.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/wallpaper_leaf_trail.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "wallpaper candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "opaque_surface_swatch",
+        "alpha_expectation": "intentional_opaque_surface",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": false,
+        "real_alpha_channel": false,
+        "intentional_opaque_surface": true,
+        "all_pixels_opaque": true,
+        "opaque_pixel_count": 65536,
+        "transparent_pixel_count": 0,
+        "pass": true
+      },
+      "risks": [
+        "Leaf trail spacing is organic and proof-only; no tile seam/repeat claim.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.wallpaper_cloud_soft",
+      "suggested_id": "wallpaper_cloud_soft",
+      "logical_asset_id": null,
+      "slug": "wallpaper_cloud_soft",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "opaque_surface_swatch",
+      "alpha_expectation": "intentional_opaque_surface",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/wallpaper_cloud_soft.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/wallpaper_cloud_soft.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "wallpaper candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "opaque_surface_swatch",
+        "alpha_expectation": "intentional_opaque_surface",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": false,
+        "real_alpha_channel": false,
+        "intentional_opaque_surface": true,
+        "all_pixels_opaque": true,
+        "opaque_pixel_count": 65536,
+        "transparent_pixel_count": 0,
+        "pass": true
+      },
+      "risks": [
+        "Large cloud shapes need room-scale review before use behind furniture.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.floor_wood_honey",
+      "suggested_id": "floor_wood_honey",
+      "logical_asset_id": null,
+      "slug": "floor_wood_honey",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "opaque_surface_swatch",
+      "alpha_expectation": "intentional_opaque_surface",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/floor_wood_honey.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/floor_wood_honey.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "floor surface candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "opaque_surface_swatch",
+        "alpha_expectation": "intentional_opaque_surface",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": false,
+        "real_alpha_channel": false,
+        "intentional_opaque_surface": true,
+        "all_pixels_opaque": true,
+        "opaque_pixel_count": 65536,
+        "transparent_pixel_count": 0,
+        "pass": true
+      },
+      "risks": [
+        "Wood planks are hand-drawn proof swatches; runtime tiling was not audited.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.floor_soft_green_mat",
+      "suggested_id": "floor_soft_green_mat",
+      "logical_asset_id": null,
+      "slug": "floor_soft_green_mat",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "transparent_cutout_mat",
+      "alpha_expectation": "requires_real_rgba_alpha",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/floor_soft_green_mat.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/floor_soft_green_mat.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "floor mat overlay candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "transparent_cutout_mat",
+        "alpha_expectation": "requires_real_rgba_alpha",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": true,
+        "real_alpha_channel": true,
+        "alpha_bbox": [
+          22,
+          48,
+          235,
+          209
+        ],
+        "nonzero_alpha_pixels": 33404,
+        "transparent_pixel_count": 32132,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "visible_alpha_coverage": 0.5097,
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "chroma_key_residue_pixels": 0,
+        "intentional_opaque_surface": false,
+        "pass": true
+      },
+      "risks": [
+        "Rounded mat footprint may need scale review against home furniture.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.floor_blue_woven_mat",
+      "suggested_id": "floor_blue_woven_mat",
+      "logical_asset_id": null,
+      "slug": "floor_blue_woven_mat",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "transparent_cutout_mat",
+      "alpha_expectation": "requires_real_rgba_alpha",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/floor_blue_woven_mat.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/floor_blue_woven_mat.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "floor mat overlay candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "transparent_cutout_mat",
+        "alpha_expectation": "requires_real_rgba_alpha",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": true,
+        "real_alpha_channel": true,
+        "alpha_bbox": [
+          18,
+          56,
+          239,
+          203
+        ],
+        "nonzero_alpha_pixels": 31903,
+        "transparent_pixel_count": 33633,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "visible_alpha_coverage": 0.4868,
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "chroma_key_residue_pixels": 0,
+        "intentional_opaque_surface": false,
+        "pass": true
+      },
+      "risks": [
+        "Woven strokes are soft proof marks, not audited for repeat/tile use.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.rug_round_sun",
+      "suggested_id": "rug_round_sun",
+      "logical_asset_id": null,
+      "slug": "rug_round_sun",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "transparent_cutout_rug",
+      "alpha_expectation": "requires_real_rgba_alpha",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/rug_round_sun.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/rug_round_sun.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "rug overlay candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "transparent_cutout_rug",
+        "alpha_expectation": "requires_real_rgba_alpha",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": true,
+        "real_alpha_channel": true,
+        "alpha_bbox": [
+          31,
+          31,
+          226,
+          226
+        ],
+        "nonzero_alpha_pixels": 29926,
+        "transparent_pixel_count": 35610,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "visible_alpha_coverage": 0.45663,
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "chroma_key_residue_pixels": 0,
+        "intentional_opaque_surface": false,
+        "pass": true
+      },
+      "risks": [
+        "Circular rug needs runtime collision and furniture overlap review later.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.rug_leaf_runner",
+      "suggested_id": "rug_leaf_runner",
+      "logical_asset_id": null,
+      "slug": "rug_leaf_runner",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "transparent_cutout_rug",
+      "alpha_expectation": "requires_real_rgba_alpha",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/rug_leaf_runner.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/rug_leaf_runner.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "rug runner overlay candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "transparent_cutout_rug",
+        "alpha_expectation": "requires_real_rgba_alpha",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": true,
+        "real_alpha_channel": true,
+        "alpha_bbox": [
+          24,
+          72,
+          233,
+          185
+        ],
+        "nonzero_alpha_pixels": 22730,
+        "transparent_pixel_count": 42806,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "visible_alpha_coverage": 0.34683,
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "chroma_key_residue_pixels": 0,
+        "intentional_opaque_surface": false,
+        "pass": true
+      },
+      "risks": [
+        "Runner length is a visual proof size only; no placement footprint is mapped.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.curtain_morning_yellow",
+      "suggested_id": "curtain_morning_yellow",
+      "logical_asset_id": null,
+      "slug": "curtain_morning_yellow",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "transparent_cutout_curtain",
+      "alpha_expectation": "requires_real_rgba_alpha",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/curtain_morning_yellow.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/curtain_morning_yellow.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "curtain overlay candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "transparent_cutout_curtain",
+        "alpha_expectation": "requires_real_rgba_alpha",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": true,
+        "real_alpha_channel": true,
+        "alpha_bbox": [
+          34,
+          29,
+          223,
+          225
+        ],
+        "nonzero_alpha_pixels": 33947,
+        "transparent_pixel_count": 31589,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "visible_alpha_coverage": 0.51799,
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "chroma_key_residue_pixels": 0,
+        "intentional_opaque_surface": false,
+        "pass": true
+      },
+      "risks": [
+        "Needs future window-size matching before runtime placement.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.curtain_mint_stripe",
+      "suggested_id": "curtain_mint_stripe",
+      "logical_asset_id": null,
+      "slug": "curtain_mint_stripe",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "transparent_cutout_curtain",
+      "alpha_expectation": "requires_real_rgba_alpha",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/curtain_mint_stripe.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/curtain_mint_stripe.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "curtain overlay candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "transparent_cutout_curtain",
+        "alpha_expectation": "requires_real_rgba_alpha",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": true,
+        "real_alpha_channel": true,
+        "alpha_bbox": [
+          35,
+          28,
+          222,
+          225
+        ],
+        "nonzero_alpha_pixels": 33743,
+        "transparent_pixel_count": 31793,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "visible_alpha_coverage": 0.51488,
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "chroma_key_residue_pixels": 0,
+        "intentional_opaque_surface": false,
+        "pass": true
+      },
+      "risks": [
+        "Soft stripes are decorative only and contain no text or lesson marks.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.window_light_square",
+      "suggested_id": "window_light_square",
+      "logical_asset_id": null,
+      "slug": "window_light_square",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "transparent_light_overlay",
+      "alpha_expectation": "requires_real_rgba_alpha",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/window_light_square.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/window_light_square.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "window light overlay candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "transparent_light_overlay",
+        "alpha_expectation": "requires_real_rgba_alpha",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": true,
+        "real_alpha_channel": true,
+        "alpha_bbox": [
+          33,
+          33,
+          223,
+          223
+        ],
+        "nonzero_alpha_pixels": 30894,
+        "transparent_pixel_count": 34642,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "visible_alpha_coverage": 0.47141,
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "chroma_key_residue_pixels": 0,
+        "intentional_opaque_surface": false,
+        "pass": true
+      },
+      "risks": [
+        "Blend mode and room exposure need later runtime visual review.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "home_decor_surfaces.shelf_backing_flower",
+      "suggested_id": "shelf_backing_flower",
+      "logical_asset_id": null,
+      "slug": "shelf_backing_flower",
+      "status": "pass",
+      "asset_status": "proof_only_candidate",
+      "asset_kind": "opaque_surface_swatch",
+      "alpha_expectation": "intentional_opaque_surface",
+      "main_ref": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/shelf_backing_flower.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/home_decor_surfaces/candidates_256x256/shelf_backing_flower.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "surface_role": "shelf backing swatch candidate",
+      "visual_style_notes": "child-safe cozy home decor surface candidate, no text, no classroom/test motif, no hard grid; future home decoration proof only",
+      "generation_provenance": {
+        "method": "local Pillow RGBA/RGB synthesis",
+        "alpha_note": "Alpha/opacity is verified from actual emitted pixels per LESSON-022."
+      },
+      "validation": {
+        "dimensions": [
+          256,
+          256
+        ],
+        "asset_kind": "opaque_surface_swatch",
+        "alpha_expectation": "intentional_opaque_surface",
+        "repeatability_audited": false,
+        "runtime_tiling_claim": false,
+        "rgba_alpha": false,
+        "real_alpha_channel": false,
+        "intentional_opaque_surface": true,
+        "all_pixels_opaque": true,
+        "opaque_pixel_count": 65536,
+        "transparent_pixel_count": 0,
+        "pass": true
+      },
+      "risks": [
+        "Small flowers must remain low contrast behind shelf contents.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, art_target_locked, runtime_visual_match, or shared-test mapping.",
+        "Final art direction and room-scale composition review are required before any production/runtime use."
+      ]
+    }
+  ]
+}

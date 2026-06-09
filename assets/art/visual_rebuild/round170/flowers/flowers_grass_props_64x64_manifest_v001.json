@@ -1,0 +1,489 @@
+{
+  "status": "normalized_candidate",
+  "round": "Round170",
+  "worker": "C",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "source": "docs/collaboration/round170_visual_rebuild_asset_generation/flowers/raw/round170_flowers_grass_ai_raw_sheet_v001.png",
+  "alpha_source": "docs/collaboration/round170_visual_rebuild_asset_generation/flowers/round170_flowers_grass_ai_raw_sheet_v001_chroma_alpha.png",
+  "atlas": "assets/art/visual_rebuild/round170/flowers/flowers_grass_props_64x64_atlas_v001.png",
+  "asset_tree_atlas": "assets/art/visual_rebuild/round170/flowers/flowers_grass_props_64x64_atlas_v001.png",
+  "pivot_proof": "assets/art/visual_rebuild/round170/flowers/flowers_grass_props_64x64_pivot_proof_v001.png",
+  "asset_tree_pivot_proof": "assets/art/visual_rebuild/round170/flowers/flowers_grass_props_64x64_pivot_proof_v001.png",
+  "source_grid": {
+    "columns": 4,
+    "rows": 2
+  },
+  "source_image_size": [
+    1024,
+    1024
+  ],
+  "cell_size": [
+    64,
+    64
+  ],
+  "fit_box": [
+    54,
+    50
+  ],
+  "pivot_px": [
+    32,
+    58
+  ],
+  "key_color": "#0000ff",
+  "key_family": "distance_threshold",
+  "alpha_source_edge_touch_count": {
+    "top": 0,
+    "bottom": 0,
+    "left": 0,
+    "right": 0
+  },
+  "items": [
+    {
+      "index": 1,
+      "id": "flower_grass_patch.01_pink_flowers",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        35,
+        266,
+        232,
+        437
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/flowers/normalized_64x64/flower_grass_patch_01_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        54,
+        50
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        5,
+        11,
+        59,
+        58
+      ],
+      "margins_px": {
+        "left": 5,
+        "top": 11,
+        "right": 5,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 3,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.27411167512690354,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "flower_grass_prop"
+    },
+    {
+      "index": 2,
+      "id": "flower_grass_patch.02_yellow_daisies",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        32,
+        250,
+        228,
+        436
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/flowers/normalized_64x64/flower_grass_patch_02_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        54,
+        50
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        6,
+        8,
+        59,
+        58
+      ],
+      "margins_px": {
+        "left": 6,
+        "top": 8,
+        "right": 5,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 3,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26881720430107525,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "flower_grass_prop"
+    },
+    {
+      "index": 3,
+      "id": "flower_grass_patch.03_white_wildflowers",
+      "source_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        24,
+        243,
+        229,
+        432
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/flowers/normalized_64x64/flower_grass_patch_03_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        54,
+        50
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        5,
+        8,
+        59,
+        58
+      ],
+      "margins_px": {
+        "left": 5,
+        "top": 8,
+        "right": 5,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 3,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.2634146341463415,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "flower_grass_prop"
+    },
+    {
+      "index": 4,
+      "id": "flower_grass_patch.04_purple_flowers",
+      "source_cell": {
+        "row": 0,
+        "column": 3
+      },
+      "source_bbox_in_cell": [
+        28,
+        270,
+        223,
+        433
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/flowers/normalized_64x64/flower_grass_patch_04_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        54,
+        50
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        5,
+        13,
+        59,
+        58
+      ],
+      "margins_px": {
+        "left": 5,
+        "top": 13,
+        "right": 5,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 3,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.27692307692307694,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "flower_grass_prop"
+    },
+    {
+      "index": 5,
+      "id": "flower_grass_patch.05_short_grass",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        40,
+        112,
+        222,
+        248
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/flowers/normalized_64x64/flower_grass_patch_05_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        54,
+        50
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        5,
+        18,
+        59,
+        58
+      ],
+      "margins_px": {
+        "left": 5,
+        "top": 18,
+        "right": 5,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 3,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.2967032967032967,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "flower_grass_prop"
+    },
+    {
+      "index": 6,
+      "id": "flower_grass_patch.06_tall_grass",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        29,
+        33,
+        222,
+        249
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/flowers/normalized_64x64/flower_grass_patch_06_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        54,
+        50
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        10,
+        8,
+        55,
+        58
+      ],
+      "margins_px": {
+        "left": 10,
+        "top": 8,
+        "right": 9,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 3,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.23148148148148148,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "flower_grass_prop"
+    },
+    {
+      "index": 7,
+      "id": "flower_grass_patch.07_mixed_meadow",
+      "source_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        33,
+        46,
+        219,
+        254
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/flowers/normalized_64x64/flower_grass_patch_07_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        54,
+        50
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        10,
+        8,
+        55,
+        58
+      ],
+      "margins_px": {
+        "left": 10,
+        "top": 8,
+        "right": 9,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 3,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.2403846153846154,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "flower_grass_prop"
+    },
+    {
+      "index": 8,
+      "id": "flower_grass_patch.08_leafy_ground_cover",
+      "source_cell": {
+        "row": 1,
+        "column": 3
+      },
+      "source_bbox_in_cell": [
+        22,
+        137,
+        223,
+        251
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/flowers/normalized_64x64/flower_grass_patch_08_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        54,
+        50
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        5,
+        27,
+        59,
+        58
+      ],
+      "margins_px": {
+        "left": 5,
+        "top": 27,
+        "right": 5,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 3,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26865671641791045,
+      "status": "pass",
+      "reasons": [],
+      "asset_status": "normalized_candidate",
+      "category": "flower_grass_prop"
+    }
+  ],
+  "gate": {
+    "result": "pass",
+    "total_items": 8,
+    "pass_items": 8,
+    "warn_items": 0,
+    "fail_items": 0,
+    "atlas_has_alpha": true,
+    "atlas_visible_key_pixel_count": 0,
+    "atlas_edge_touch_count": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    }
+  },
+  "risks": [
+    "AI sheet contents are proof candidates and may need art-direction review for species/readability.",
+    "64x64 cells are suitable for dense layout previews, not final production approval.",
+    "No runtime mapping, logical asset registration, ThemeProfile, or AssetResolver changes were made."
+  ],
+  "overall_gate": "pass",
+  "category": "flower_grass_prop",
+  "asset_status": "normalized_candidate"
+}

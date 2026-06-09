@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "round": "Round182",
+  "task_id": "V02-STORYBATCH-005",
+  "status": "storybatch005_stage_closeout_pass",
+  "date": "2026-06-08",
+  "approval_scope": "1280 runtime proof and PM / Art Direction status decision for story props",
+  "final_bitmap_art_approval": false,
+  "global_decision": {
+    "storybatch004_runtime_smoke": "pass",
+    "round181_visual_gate": "runtime_visual_match_whitebox_pass",
+    "asset_acceptance_records": "remain_production_with_round182_viewport_evidence",
+    "final_approved_policy": "deferred_until_bitmap_art_review",
+    "proof_only_visual_rebuild_packs": "not_promoted"
+  },
+  "story_prop_decisions": [
+    {"logical_asset_id": "story_prop.home.apple_welcome_photo", "story_prop_id": "story_prop_marker_home_apple_welcome_photo", "batch": "first", "decision": "functional_pass", "final_approved": false, "reason": "first-batch runtime path remains covered; no new bitmap final-art approval in Round182"},
+    {"logical_asset_id": "story_prop.school.yard_net_robot_yoyo_corner", "story_prop_id": "story_prop_marker_school_yard_net_robot_yoyo", "batch": "first", "decision": "functional_pass", "final_approved": false, "reason": "first-batch runtime path remains covered; no new bitmap final-art approval in Round182"},
+    {"logical_asset_id": "story_prop.shop.hat_ribbon_window", "story_prop_id": "story_prop_marker_shop_hat_ribbon_window", "batch": "first", "decision": "functional_pass", "final_approved": false, "reason": "first-batch runtime path remains covered; no new bitmap final-art approval in Round182"},
+    {"logical_asset_id": "story_prop.plaza.bear_book_branch_bookmark", "story_prop_id": "story_prop_marker_plaza_bear_book_branch", "batch": "first", "decision": "functional_pass", "final_approved": false, "reason": "first-batch runtime path remains covered; no new bitmap final-art approval in Round182"},
+    {"logical_asset_id": "story_prop.home.clock_chair_corner", "story_prop_id": "story_prop_marker_home_clock_chair_corner", "batch": "second", "decision": "runtime_visual_match", "final_approved": false, "proof": "docs/collaboration/round182_storybatch005_rc/shot_round182_storybatch005_home_clock_chair_1280.png"},
+    {"logical_asset_id": "story_prop.home.sunny_towel_dog_corner", "story_prop_id": "story_prop_marker_home_sunny_towel_dog_corner", "batch": "second", "decision": "runtime_visual_match", "final_approved": false, "proof": "docs/collaboration/round182_storybatch005_rc/shot_round182_storybatch005_home_sunny_towel_1280.png"},
+    {"logical_asset_id": "story_prop.home.watch_wall_charm", "story_prop_id": "story_prop_marker_home_watch_wall_charm", "batch": "second", "decision": "runtime_visual_match", "final_approved": false, "proof": "docs/collaboration/round182_storybatch005_rc/shot_round182_storybatch005_home_watch_charm_1280.png"},
+    {"logical_asset_id": "story_prop.school.gate_bell_sign", "story_prop_id": "story_prop_marker_school_gate_bell_sign", "batch": "second", "decision": "runtime_visual_match", "final_approved": false, "proof": "docs/collaboration/round182_storybatch005_rc/shot_round182_storybatch005_school_gate_bell_1280.png"},
+    {"logical_asset_id": "story_prop.walk.kite_leaf_path", "story_prop_id": "story_prop_marker_walk_kite_leaf_path", "batch": "second", "decision": "runtime_visual_match", "final_approved": false, "proof": "docs/collaboration/round182_storybatch005_rc/shot_round182_storybatch005_walk_kite_leaf_1280.png"},
+    {"logical_asset_id": "story_prop.shop.orange_bowl_window", "story_prop_id": "story_prop_marker_shop_orange_bowl_window", "batch": "second", "decision": "runtime_visual_match", "final_approved": false, "proof": "docs/collaboration/round182_storybatch005_rc/shot_round182_storybatch005_shop_orange_bowl_1280.png"},
+    {"logical_asset_id": "story_prop.plaza.sun_flower_patch", "story_prop_id": "story_prop_marker_sun_flower_patch", "batch": "second", "decision": "runtime_visual_match", "final_approved": false, "proof": "docs/collaboration/round182_storybatch005_rc/shot_round182_storybatch005_sun_flower_patch_1280.png"}
+  ],
+  "safety_gate": {
+    "child_text_safe": true,
+    "a_z_anchor_count": 26,
+    "story_prop_count": 11,
+    "child_runtime_grid_terms_visible": false
+  },
+  "validation_commands": [
+    "godot --headless --path . --script tests/capture_round182_storybatch005_rc.gd",
+    "godot --headless --path . --script tests/test_v0237_storybatch005_approval_gate.gd",
+    "godot --headless --path . --script tests/test_v0237_storybatch004_runtime_smoke.gd",
+    "godot --headless --path . --script tests/headless_runner.gd",
+    "godot --headless --path . --quit",
+    "git diff --check"
+  ]
+}

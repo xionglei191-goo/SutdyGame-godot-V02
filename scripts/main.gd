@@ -238,6 +238,37 @@ var _logical_asset_texture_keys: Dictionary = {
 	"player_motion_sheet": {"category": "character_animation_assets", "asset_id": "anim_sheet.player.p0_motion"},
 	"ui_feedback_prompt_glow": {"category": "ui_feedback_assets", "asset_id": "ui_feedback.prompt_soft_glow"},
 	"ui_feedback_tap_ripple": {"category": "ui_feedback_assets", "asset_id": "ui_feedback.tap_ripple_soft"},
+	"v0239_grass_patch": {"category": "terrain_tile_assets", "asset_id": "terrain.v0239.grass_patch"},
+	"v0239_path_tile": {"category": "terrain_tile_assets", "asset_id": "terrain.v0239.path_tile"},
+	"v0239_house_body": {"category": "building_prefab_assets", "asset_id": "building_part.v0239.house_body"},
+	"v0239_house_roof": {"category": "building_prefab_assets", "asset_id": "building_part.v0239.house_roof"},
+	"v0239_house_door": {"category": "building_prefab_assets", "asset_id": "building_part.v0239.house_door"},
+	"v0239_house_chimney": {"category": "building_prefab_assets", "asset_id": "building_part.v0239.house_chimney"},
+	"v0239_house_window": {"category": "building_prefab_assets", "asset_id": "building_part.v0239.house_window"},
+	"v0239_house_round_window": {"category": "building_prefab_assets", "asset_id": "building_part.v0239.house_round_window"},
+	"v0239_house_lantern": {"category": "building_prefab_assets", "asset_id": "building_part.v0239.house_lantern"},
+	"v0239_house_steps": {"category": "building_prefab_assets", "asset_id": "building_part.v0239.house_steps"},
+	"v0239_tree_crown": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.tree_crown"},
+	"v0239_tree_trunk": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.tree_trunk"},
+	"v0239_flower_patch": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.flower_patch"},
+	"v0239_fence": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.fence"},
+	"v0239_garden_bed": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.garden_bed"},
+	"v0239_pond_edge": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.pond_edge"},
+	"v0239_grass_tuft": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.grass_tuft"},
+	"v0239_path_pebble": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.path_pebble"},
+	"v0239_bank_stone": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.bank_stone"},
+	"v0239_lily_pad": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.lily_pad"},
+	"v0239_crop_leaf": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.crop_leaf"},
+	"v0239_flower_box": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.flower_box"},
+	"v0239_mailbox": {"category": "world_prop_assets", "asset_id": "world_prop.v0239.mailbox"},
+	"v0239_companion": {"category": "pet_assets", "asset_id": "pet.v0239.companion"},
+	"v0239_companion_ear": {"category": "pet_assets", "asset_id": "pet.v0239.companion_ear"},
+	"v0239_companion_tail": {"category": "pet_assets", "asset_id": "pet.v0239.companion_tail"},
+	"v0239_companion_collar": {"category": "pet_assets", "asset_id": "pet.v0239.companion_collar"},
+	"v0239_icon_look": {"category": "ui_icon_assets", "asset_id": "ui_icon.v0239.look"},
+	"v0239_icon_map": {"category": "ui_icon_assets", "asset_id": "ui_icon.v0239.map"},
+	"v0239_icon_home": {"category": "ui_icon_assets", "asset_id": "ui_icon.v0239.home"},
+	"v0239_icon_album": {"category": "ui_icon_assets", "asset_id": "ui_icon.v0239.album"},
 	"story_prop_story_prop_marker_home_apple_welcome_photo": {"category": "story_prop_assets", "asset_id": "story_prop.home.apple_welcome_photo"},
 	"story_prop_story_prop_marker_school_yard_net_robot_yoyo": {"category": "story_prop_assets", "asset_id": "story_prop.school.yard_net_robot_yoyo_corner"},
 	"story_prop_story_prop_marker_shop_hat_ribbon_window": {"category": "story_prop_assets", "asset_id": "story_prop.shop.hat_ribbon_window"},
@@ -382,11 +413,11 @@ func _create_body() -> Control:
 	content.add_child(settings_panel)
 
 	var footer := _create_bottom_action_bar()
-	footer.anchor_left = 0.31
+	footer.anchor_left = 0.34
 	footer.anchor_top = 1.0
-	footer.anchor_right = 0.69
+	footer.anchor_right = 0.66
 	footer.anchor_bottom = 1.0
-	footer.offset_top = -86
+	footer.offset_top = -82
 	footer.offset_bottom = -22
 	content.add_child(footer)
 
@@ -2799,6 +2830,10 @@ func _get_texture(texture_key: String) -> Texture2D:
 	if resolved_texture != null:
 		_texture_cache[texture_key] = resolved_texture
 		return resolved_texture
+	if texture_key.begins_with("v0239_"):
+		var v0239_texture := _create_v0239_texture(texture_key)
+		_texture_cache[texture_key] = v0239_texture
+		return v0239_texture
 	var colors := _texture_colors(texture_key)
 	var image := Image.create(8, 8, false, Image.FORMAT_RGBA8)
 	image.fill(colors.get("fill", Color.WHITE))
@@ -2817,6 +2852,315 @@ func _get_texture(texture_key: String) -> Texture2D:
 	var texture := ImageTexture.create_from_image(image)
 	_texture_cache[texture_key] = texture
 	return texture
+
+
+func _create_v0239_texture(texture_key: String) -> Texture2D:
+	var colors := _v0239_texture_colors(texture_key)
+	var image := Image.create(64, 64, false, Image.FORMAT_RGBA8)
+	var fill: Color = colors.get("fill", Color.WHITE)
+	var edge: Color = colors.get("edge", fill.darkened(0.12))
+	var accent: Color = colors.get("accent", fill.lightened(0.12))
+	var transparent := Color(0, 0, 0, 0)
+	image.fill(transparent)
+	match texture_key:
+		"v0239_tree_crown":
+			_paint_ellipse_texture(image, Vector2(32, 29), Vector2(27, 23), fill, edge, accent)
+			_paint_ellipse_texture(image, Vector2(21, 34), Vector2(16, 14), fill.darkened(0.03), edge, accent)
+			_paint_ellipse_texture(image, Vector2(43, 34), Vector2(15, 13), fill.lightened(0.03), edge, accent)
+		"v0239_flower_patch":
+			_paint_ellipse_texture(image, Vector2(32, 36), Vector2(25, 11), Color("#7dbb6e"), Color("#579053"), Color("#a4d98f"))
+			for point in [Vector2(20, 28), Vector2(28, 24), Vector2(37, 26), Vector2(45, 30), Vector2(31, 35)]:
+				_paint_ellipse_texture(image, point, Vector2(5, 4), fill, edge, accent)
+		"v0239_pond_edge":
+			_paint_ellipse_texture(image, Vector2(35, 35), Vector2(29, 19), fill, edge, accent)
+			_paint_ellipse_texture(image, Vector2(18, 26), Vector2(14, 8), Color("#dff3d3"), Color("#b9d9b1"), Color("#edf9df"))
+		"v0239_path_tile":
+			_paint_ellipse_texture(image, Vector2(32, 32), Vector2(30, 21), fill, edge, accent)
+			_paint_dots(image, Color("#d6b66f88"), 9)
+		"v0239_grass_tuft":
+			_paint_grass_tuft_texture(image, fill, edge, accent)
+		"v0239_path_pebble":
+			_paint_ellipse_texture(image, Vector2(30, 34), Vector2(18, 10), fill, edge, accent)
+			_paint_ellipse_texture(image, Vector2(44, 30), Vector2(9, 6), fill.lightened(0.04), edge, accent)
+		"v0239_bank_stone":
+			_paint_ellipse_texture(image, Vector2(31, 34), Vector2(25, 15), fill, edge, accent)
+			_paint_ellipse_texture(image, Vector2(44, 29), Vector2(11, 8), fill.lightened(0.05), edge, accent)
+		"v0239_lily_pad":
+			_paint_ellipse_texture(image, Vector2(32, 34), Vector2(24, 12), fill, edge, accent)
+			for x in range(32, 50):
+				var y := int(34 - (x - 32) * 0.42)
+				if Rect2i(Vector2i.ZERO, image.get_size()).has_point(Vector2i(x, y)):
+					image.set_pixel(x, y, edge.darkened(0.08))
+		"v0239_crop_leaf":
+			_paint_crop_leaf_texture(image, fill, edge, accent)
+		"v0239_house_window":
+			_paint_window_texture(image, fill, edge, accent, false)
+		"v0239_house_round_window":
+			_paint_window_texture(image, fill, edge, accent, true)
+		"v0239_house_lantern":
+			_paint_lantern_texture(image, fill, edge, accent)
+		"v0239_flower_box":
+			_paint_flower_box_texture(image, fill, edge, accent)
+		"v0239_house_steps":
+			_paint_steps_texture(image, fill, edge, accent)
+		"v0239_mailbox":
+			_paint_mailbox_texture(image, fill, edge, accent)
+		"v0239_companion_ear":
+			_paint_ellipse_texture(image, Vector2(32, 32), Vector2(18, 22), fill, edge, accent)
+		"v0239_companion_tail":
+			_paint_ellipse_texture(image, Vector2(29, 34), Vector2(22, 12), fill, edge, accent)
+		"v0239_companion_collar":
+			_paint_rounded_rect_texture(image, Rect2i(8, 25, 48, 16), 5, fill, edge, accent)
+		"v0239_icon_look":
+			_paint_icon_disc_texture(image, fill, edge, accent, "look")
+		"v0239_icon_map":
+			_paint_icon_disc_texture(image, fill, edge, accent, "map")
+		"v0239_icon_home":
+			_paint_icon_disc_texture(image, fill, edge, accent, "home")
+		"v0239_icon_album":
+			_paint_icon_disc_texture(image, fill, edge, accent, "album")
+		_:
+			_paint_rounded_rect_texture(image, Rect2i(4, 4, 56, 56), 12, fill, edge, accent)
+			if texture_key == "v0239_grass_patch":
+				_paint_dots(image, Color("#c8e8b688"), 11)
+				_paint_grass_blades(image, Color("#b9d99a99"), 13)
+			elif texture_key == "v0239_house_roof":
+				_paint_roof_lines(image, edge.darkened(0.1))
+			elif texture_key == "v0239_house_body":
+				_paint_house_siding(image, Color("#efd7a688"))
+			elif texture_key == "v0239_fence":
+				_paint_fence_texture(image, fill, edge)
+			elif texture_key == "v0239_garden_bed":
+				_paint_dots(image, Color("#79b96a"), 7)
+	var texture := ImageTexture.create_from_image(image)
+	return texture
+
+
+func _v0239_texture_colors(texture_key: String) -> Dictionary:
+	match texture_key:
+		"v0239_grass_patch":
+			return {"fill": Color("#dff2cf"), "edge": Color("#c5e2b6"), "accent": Color("#eef9df")}
+		"v0239_path_tile":
+			return {"fill": Color("#dfc079"), "edge": Color("#c6a663"), "accent": Color("#efd59a")}
+		"v0239_house_body":
+			return {"fill": Color("#f6dfad"), "edge": Color("#c99a63"), "accent": Color("#fff1cb")}
+		"v0239_house_roof":
+			return {"fill": Color("#e99059"), "edge": Color("#b86443"), "accent": Color("#f4b07b")}
+		"v0239_house_door":
+			return {"fill": Color("#8f6042"), "edge": Color("#5e3e2d"), "accent": Color("#d3a572")}
+		"v0239_tree_crown":
+			return {"fill": Color("#74b86a"), "edge": Color("#4f8c4f"), "accent": Color("#9fd58a")}
+		"v0239_tree_trunk":
+			return {"fill": Color("#9a6848"), "edge": Color("#6d4a36"), "accent": Color("#bd8359")}
+		"v0239_flower_patch":
+			return {"fill": Color("#ee88a6"), "edge": Color("#bf5d7e"), "accent": Color("#ffe0a2")}
+		"v0239_fence":
+			return {"fill": Color("#f1d495"), "edge": Color("#b98555"), "accent": Color("#fff1c2")}
+		"v0239_signpost":
+			return {"fill": Color("#eed28a"), "edge": Color("#9a6a45"), "accent": Color("#fff6cf")}
+		"v0239_garden_bed":
+			return {"fill": Color("#b87952"), "edge": Color("#7d513a"), "accent": Color("#e6b77c")}
+		"v0239_pond_edge":
+			return {"fill": Color("#9fdce2"), "edge": Color("#66aeb8"), "accent": Color("#dcf6f4")}
+		"v0239_companion":
+			return {"fill": Color("#f2c671"), "edge": Color("#b98539"), "accent": Color("#fff0b5")}
+		"v0239_grass_tuft":
+			return {"fill": Color("#83bf66"), "edge": Color("#4f8e48"), "accent": Color("#b7dc7a")}
+		"v0239_path_pebble":
+			return {"fill": Color("#d0aa68"), "edge": Color("#a8824e"), "accent": Color("#efd28f")}
+		"v0239_bank_stone":
+			return {"fill": Color("#bfb69b"), "edge": Color("#8f876f"), "accent": Color("#ddd6bd")}
+		"v0239_lily_pad":
+			return {"fill": Color("#64a95b"), "edge": Color("#3e7e43"), "accent": Color("#a4d35e")}
+		"v0239_crop_leaf":
+			return {"fill": Color("#71b85f"), "edge": Color("#4f8847"), "accent": Color("#f3a143")}
+		"v0239_house_chimney":
+			return {"fill": Color("#b7a28e"), "edge": Color("#766758"), "accent": Color("#ddd1bc")}
+		"v0239_house_window":
+			return {"fill": Color("#6fb5d6"), "edge": Color("#8a5f39"), "accent": Color("#f9df89")}
+		"v0239_house_round_window":
+			return {"fill": Color("#72b7d8"), "edge": Color("#8a5f39"), "accent": Color("#f9df89")}
+		"v0239_house_lantern":
+			return {"fill": Color("#ffd36b"), "edge": Color("#9a623b"), "accent": Color("#fff0b5")}
+		"v0239_flower_box":
+			return {"fill": Color("#c07b43"), "edge": Color("#7d513a"), "accent": Color("#f3d35f")}
+		"v0239_house_steps":
+			return {"fill": Color("#c9b99d"), "edge": Color("#8f806a"), "accent": Color("#ebe0c9")}
+		"v0239_mailbox":
+			return {"fill": Color("#d95745"), "edge": Color("#8e3e34"), "accent": Color("#fff0cf")}
+		"v0239_companion_ear":
+			return {"fill": Color("#f0a65f"), "edge": Color("#b98539"), "accent": Color("#fff0b5")}
+		"v0239_companion_tail":
+			return {"fill": Color("#f0a65f"), "edge": Color("#b98539"), "accent": Color("#fff0b5")}
+		"v0239_companion_collar":
+			return {"fill": Color("#7fc36d"), "edge": Color("#4f8847"), "accent": Color("#dff2cf")}
+		"v0239_icon_look":
+			return {"fill": Color("#f2c671"), "edge": Color("#b98539"), "accent": Color("#fff0b5")}
+		"v0239_icon_map":
+			return {"fill": Color("#8ac6a8"), "edge": Color("#4d8c70"), "accent": Color("#ffe08a")}
+		"v0239_icon_home":
+			return {"fill": Color("#e99059"), "edge": Color("#8a5f39"), "accent": Color("#fff1cb")}
+		"v0239_icon_album":
+			return {"fill": Color("#ef8da0"), "edge": Color("#b95368"), "accent": Color("#fff1cb")}
+		_:
+			return {"fill": Color("#ffffff"), "edge": Color("#d8d8d8"), "accent": Color("#f4f4f4")}
+
+
+func _paint_rounded_rect_texture(image: Image, rect: Rect2i, radius: int, fill: Color, edge: Color, accent: Color) -> void:
+	for y in range(rect.position.y, rect.position.y + rect.size.y):
+		for x in range(rect.position.x, rect.position.x + rect.size.x):
+			var dx: int = max(rect.position.x + radius - x, 0, x - (rect.position.x + rect.size.x - radius - 1))
+			var dy: int = max(rect.position.y + radius - y, 0, y - (rect.position.y + rect.size.y - radius - 1))
+			if dx * dx + dy * dy > radius * radius:
+				continue
+			var is_edge := x <= rect.position.x + 2 or y <= rect.position.y + 2 or x >= rect.position.x + rect.size.x - 3 or y >= rect.position.y + rect.size.y - 3
+			image.set_pixel(x, y, edge if is_edge else fill)
+	for x in range(rect.position.x + 12, rect.position.x + rect.size.x - 12):
+		image.set_pixel(x, rect.position.y + 12, accent)
+
+
+func _paint_ellipse_texture(image: Image, center: Vector2, radius: Vector2, fill: Color, edge: Color, accent: Color) -> void:
+	for y in range(image.get_height()):
+		for x in range(image.get_width()):
+			var normalized := Vector2((float(x) - center.x) / max(radius.x, 1.0), (float(y) - center.y) / max(radius.y, 1.0))
+			var distance := normalized.length_squared()
+			if distance > 1.0:
+				continue
+			image.set_pixel(x, y, edge if distance > 0.78 else fill)
+	for x in range(int(center.x - radius.x * 0.45), int(center.x + radius.x * 0.45)):
+		var y := int(center.y - radius.y * 0.32)
+		if Rect2i(Vector2i.ZERO, image.get_size()).has_point(Vector2i(x, y)):
+			image.set_pixel(x, y, accent)
+
+
+func _paint_dots(image: Image, dot_color: Color, step: int) -> void:
+	for y in range(10, image.get_height() - 8, step):
+		for x in range(8 + (y % 3), image.get_width() - 8, step + 3):
+			if image.get_pixel(x, y).a > 0.0:
+				image.set_pixel(x, y, dot_color)
+
+
+func _paint_grass_blades(image: Image, blade_color: Color, step: int) -> void:
+	for y in range(12, image.get_height() - 9, step):
+		for x in range(10 + (y % 5), image.get_width() - 10, step + 2):
+			for offset in range(3):
+				var point := Vector2i(x + offset, y - offset)
+				if Rect2i(Vector2i.ZERO, image.get_size()).has_point(point) and image.get_pixel(point.x, point.y).a > 0.0:
+					image.set_pixel(point.x, point.y, blade_color)
+
+
+func _paint_grass_tuft_texture(image: Image, fill: Color, edge: Color, accent: Color) -> void:
+	for blade in [
+		[Vector2i(16, 50), Vector2i(25, 18)],
+		[Vector2i(26, 51), Vector2i(31, 13)],
+		[Vector2i(36, 51), Vector2i(37, 17)],
+		[Vector2i(47, 50), Vector2i(40, 22)],
+	]:
+		_paint_line_texture(image, blade[0], blade[1], edge, 2)
+		_paint_line_texture(image, blade[0] + Vector2i(1, 0), blade[1] + Vector2i(1, 0), fill, 1)
+	_paint_ellipse_texture(image, Vector2(32, 51), Vector2(22, 6), fill.darkened(0.08), edge, accent)
+
+
+func _paint_crop_leaf_texture(image: Image, fill: Color, edge: Color, accent: Color) -> void:
+	_paint_ellipse_texture(image, Vector2(24, 34), Vector2(14, 22), fill, edge, accent)
+	_paint_ellipse_texture(image, Vector2(40, 32), Vector2(13, 20), fill.lightened(0.05), edge, accent)
+	_paint_ellipse_texture(image, Vector2(32, 42), Vector2(8, 8), accent, edge.darkened(0.08), accent.lightened(0.1))
+	_paint_line_texture(image, Vector2i(32, 52), Vector2i(32, 22), edge.darkened(0.05), 1)
+
+
+func _paint_line_texture(image: Image, from: Vector2i, to: Vector2i, color: Color, width: int) -> void:
+	var delta := to - from
+	var steps: int = maxi(maxi(abs(delta.x), abs(delta.y)), 1)
+	for i in range(steps + 1):
+		var t := float(i) / float(steps)
+		var point := Vector2i(roundi(lerpf(from.x, to.x, t)), roundi(lerpf(from.y, to.y, t)))
+		for oy in range(-width, width + 1):
+			for ox in range(-width, width + 1):
+				var pixel := point + Vector2i(ox, oy)
+				if Rect2i(Vector2i.ZERO, image.get_size()).has_point(pixel):
+					image.set_pixel(pixel.x, pixel.y, color)
+
+
+func _paint_window_texture(image: Image, fill: Color, edge: Color, accent: Color, round_window: bool) -> void:
+	if round_window:
+		_paint_ellipse_texture(image, Vector2(32, 32), Vector2(23, 21), fill, edge, accent)
+	else:
+		_paint_rounded_rect_texture(image, Rect2i(11, 10, 42, 42), 6, fill, edge, accent)
+	for x in range(18, 47):
+		if Rect2i(Vector2i.ZERO, image.get_size()).has_point(Vector2i(x, 32)) and image.get_pixel(x, 32).a > 0.0:
+			image.set_pixel(x, 32, edge)
+	for y in range(17, 48):
+		if Rect2i(Vector2i.ZERO, image.get_size()).has_point(Vector2i(32, y)) and image.get_pixel(32, y).a > 0.0:
+			image.set_pixel(32, y, edge)
+
+
+func _paint_lantern_texture(image: Image, fill: Color, edge: Color, accent: Color) -> void:
+	_paint_line_texture(image, Vector2i(32, 8), Vector2i(32, 18), edge, 1)
+	_paint_ellipse_texture(image, Vector2(32, 35), Vector2(15, 20), fill, edge, accent)
+	_paint_ellipse_texture(image, Vector2(26, 30), Vector2(5, 8), accent, edge, accent.lightened(0.05))
+
+
+func _paint_flower_box_texture(image: Image, fill: Color, edge: Color, accent: Color) -> void:
+	_paint_rounded_rect_texture(image, Rect2i(8, 31, 48, 18), 5, fill, edge, fill.lightened(0.08))
+	for point in [Vector2(17, 27), Vector2(27, 24), Vector2(37, 26), Vector2(46, 27)]:
+		_paint_ellipse_texture(image, point, Vector2(5, 5), Color("#ee88a6"), Color("#bf5d7e"), accent)
+
+
+func _paint_steps_texture(image: Image, fill: Color, edge: Color, accent: Color) -> void:
+	_paint_rounded_rect_texture(image, Rect2i(8, 15, 48, 14), 4, fill.lightened(0.08), edge, accent)
+	_paint_rounded_rect_texture(image, Rect2i(5, 29, 54, 16), 5, fill, edge, accent)
+	_paint_rounded_rect_texture(image, Rect2i(2, 44, 60, 12), 5, fill.darkened(0.04), edge, accent)
+
+
+func _paint_mailbox_texture(image: Image, fill: Color, edge: Color, accent: Color) -> void:
+	_paint_rounded_rect_texture(image, Rect2i(13, 12, 38, 27), 8, fill, edge, accent)
+	for x in range(21, 43):
+		image.set_pixel(x, 25, accent)
+	_paint_rounded_rect_texture(image, Rect2i(28, 39, 8, 20), 2, Color("#7d513a"), Color("#5b3b2a"), Color("#a86a42"))
+
+
+func _paint_icon_disc_texture(image: Image, fill: Color, edge: Color, accent: Color, icon_kind: String) -> void:
+	_paint_rounded_rect_texture(image, Rect2i(6, 6, 52, 52), 12, Color("#fffaf0"), Color("#e6d7bd"), Color("#ffffff"))
+	match icon_kind:
+		"look":
+			_paint_ellipse_texture(image, Vector2(32, 31), Vector2(19, 13), fill, edge, accent)
+			_paint_ellipse_texture(image, Vector2(32, 31), Vector2(7, 7), edge.darkened(0.05), edge, accent)
+		"map":
+			_paint_rounded_rect_texture(image, Rect2i(16, 16, 32, 32), 4, fill, edge, accent)
+			_paint_ellipse_texture(image, Vector2(36, 28), Vector2(7, 9), accent, edge, accent.lightened(0.08))
+		"home":
+			_paint_rounded_rect_texture(image, Rect2i(18, 29, 28, 18), 4, accent, edge, accent.lightened(0.06))
+			_paint_line_texture(image, Vector2i(16, 30), Vector2i(32, 17), edge, 2)
+			_paint_line_texture(image, Vector2i(32, 17), Vector2i(48, 30), edge, 2)
+		"album":
+			_paint_rounded_rect_texture(image, Rect2i(18, 14, 28, 36), 5, fill, edge, accent)
+			_paint_ellipse_texture(image, Vector2(32, 32), Vector2(10, 10), accent, edge, accent.lightened(0.06))
+
+
+func _paint_roof_lines(image: Image, line_color: Color) -> void:
+	for y in range(16, 54, 10):
+		for x in range(10, 54):
+			if image.get_pixel(x, y).a > 0.0:
+				image.set_pixel(x, y, line_color)
+
+
+func _paint_house_siding(image: Image, line_color: Color) -> void:
+	for y in range(18, 50, 12):
+		for x in range(12, 52):
+			if image.get_pixel(x, y).a > 0.0:
+				image.set_pixel(x, y, line_color)
+
+
+func _paint_fence_texture(image: Image, fill: Color, edge: Color) -> void:
+	image.fill(Color(0, 0, 0, 0))
+	for post_x in [8, 24, 40, 56]:
+		for y in range(10, 54):
+			for x in range(post_x - 3, post_x + 4):
+				image.set_pixel(clampi(x, 0, 63), y, edge if abs(x - post_x) == 3 else fill)
+	for y in [22, 39]:
+		for x in range(6, 59):
+			image.set_pixel(x, y, edge)
+			image.set_pixel(x, y + 1, fill)
 
 
 func _can_resolve_texture_key(texture_key: String) -> bool:

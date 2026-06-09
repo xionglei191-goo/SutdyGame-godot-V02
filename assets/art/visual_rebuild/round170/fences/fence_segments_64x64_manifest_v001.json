@@ -1,0 +1,347 @@
+{
+  "source": "docs/collaboration/round170_visual_rebuild_asset_generation/fences/raw/round170_fence_ai_raw_sheet_v001.png",
+  "alpha_source": "docs/collaboration/round170_visual_rebuild_asset_generation/fences/normalized_64x64/round170_fence_ai_raw_sheet_v001_chroma_alpha.png",
+  "atlas": "assets/art/visual_rebuild/round170/fences/fence_segments_64x64_sheet_v001.png",
+  "pivot_proof": "assets/art/visual_rebuild/round170/fences/fence_segments_64x64_pivot_proof_v001.png",
+  "source_grid": {
+    "columns": 3,
+    "rows": 2
+  },
+  "cell_size": [
+    64,
+    64
+  ],
+  "fit_box": [
+    56,
+    46
+  ],
+  "pivot_px": [
+    32,
+    58
+  ],
+  "key_color": "#00ffff",
+  "items": [
+    {
+      "index": 1,
+      "id": "fence_segment.01",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        52,
+        275,
+        341,
+        422
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/fences/normalized_64x64/fence_segment_01_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        56,
+        46
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        4,
+        30,
+        60,
+        58
+      ],
+      "margins_px": {
+        "left": 4,
+        "top": 30,
+        "right": 4,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "cleared_key_pixel_count_after_resize": 45,
+      "scale_from_source_crop": 0.19377162629757785,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "category": "fence_segment"
+    },
+    {
+      "index": 2,
+      "id": "fence_segment.02",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        0,
+        272,
+        341,
+        422
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/fences/normalized_64x64/fence_segment_02_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        56,
+        46
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        4,
+        33,
+        60,
+        58
+      ],
+      "margins_px": {
+        "left": 4,
+        "top": 33,
+        "right": 4,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "cleared_key_pixel_count_after_resize": 58,
+      "scale_from_source_crop": 0.16422287390029325,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "category": "fence_segment"
+    },
+    {
+      "index": 3,
+      "id": "fence_segment.03",
+      "source_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        0,
+        253,
+        318,
+        458
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/fences/normalized_64x64/fence_segment_03_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        56,
+        46
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        4,
+        22,
+        60,
+        58
+      ],
+      "margins_px": {
+        "left": 4,
+        "top": 22,
+        "right": 4,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 2,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "cleared_key_pixel_count_after_resize": 44,
+      "scale_from_source_crop": 0.1761006289308176,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "category": "fence_segment"
+    },
+    {
+      "index": 4,
+      "id": "fence_segment.04",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        40,
+        35,
+        338,
+        241
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/fences/normalized_64x64/fence_segment_04_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        56,
+        46
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        4,
+        19,
+        60,
+        58
+      ],
+      "margins_px": {
+        "left": 4,
+        "top": 19,
+        "right": 4,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "cleared_key_pixel_count_after_resize": 24,
+      "scale_from_source_crop": 0.18791946308724833,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "category": "fence_segment"
+    },
+    {
+      "index": 5,
+      "id": "fence_segment.05",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        78,
+        23,
+        341,
+        251
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/fences/normalized_64x64/fence_segment_05_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        56,
+        46
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        6,
+        12,
+        59,
+        58
+      ],
+      "margins_px": {
+        "left": 6,
+        "top": 12,
+        "right": 5,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 2,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "cleared_key_pixel_count_after_resize": 32,
+      "scale_from_source_crop": 0.20175438596491227,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "category": "fence_segment"
+    },
+    {
+      "index": 6,
+      "id": "fence_segment.06",
+      "source_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        0,
+        91,
+        311,
+        243
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round170/fences/normalized_64x64/fence_segment_06_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        56,
+        46
+      ],
+      "pivot_px": [
+        32,
+        58
+      ],
+      "placed_bbox": [
+        4,
+        31,
+        60,
+        58
+      ],
+      "margins_px": {
+        "left": 4,
+        "top": 31,
+        "right": 4,
+        "bottom": 6
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "cleared_key_pixel_count_after_resize": 50,
+      "scale_from_source_crop": 0.18006430868167203,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "category": "fence_segment"
+    }
+  ],
+  "overall_gate": "pass",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "category": "fence_segment",
+  "asset_status": "normalized_candidate"
+}

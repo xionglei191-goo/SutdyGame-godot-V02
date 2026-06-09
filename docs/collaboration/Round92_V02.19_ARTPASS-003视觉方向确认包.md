@@ -4,6 +4,7 @@
 > 任务：`V02-ARTPASS-003 视觉方向确认包`  
 > 状态：方向包建立，供 `V02-ARTPASS-004` 起的 production 资产生成与接入使用。  
 > 验收视口：本轮只以 `1280x720` 作为阻塞性视觉确认；`960x540` 留到全部开发完成后的版本适配专项。
+> 2026-06-07 追加锁定：`docs/collaboration/artpass003_visual_direction/` 已补充目录级 `README.md`。后续视觉任务必须以 Animal Crossing-like cozy town life-sim 为项目级硬门槛；错误截图、拼贴图或用户驳回图不得复制进本目录作为参考素材，也不得作为 target、production 资产依据或 approval proof。
 
 ## 1. 方向结论
 
@@ -13,6 +14,13 @@ V02.19 后续正式资产生产方向固定为：
 - UI 视觉：Apple-like translucent glass UI。落地表达为轻透明、柔和模糊、清晰边界、稳定触控态、图标 + 短文本组合和足够对比。
 - Anchor 表达：A-Z anchor 首先是生活物件、地点装置或环境线索，字母徽章只能辅助识别，不能变成大字母牌、课程入口或打卡目标。
 - 英文表达：继续作为环境层、物件名、短句和相册标签，不成为课程页、练习、测试、评分或主流程门槛。
+
+动物森友会式方向在本项目中的可执行定义：
+
+- 第一眼必须像一个孩子可以停留、走动、回家、拜访居民、照看 Sunny、收集和装饰的温暖生活小镇，而不是学习地图、功能菜单、编辑器视图或资产拼贴板。
+- 画面必须有统一相机、统一光源、统一比例和统一阴影；terrain、building、prop、actor、A-Z anchor 和 glass UI 不能来自互相不匹配的角度 / 材质 / 渲染代际。
+- Home-centered 首屏必须保留生活动线：家门、道路、居民 / Sunny、可看物件、轻 prompt、HUD / footer 都要像真实 gameplay 同屏元素，而不是后期贴上去的系统标记。
+- `art_target_locked` 必须通过“像真实游戏画面”的复核；概念插画、宣传图、不可拆分整图、逻辑地图截图或拼贴图不能进入资产包生产。
 
 正式生产禁用方向：
 
@@ -31,6 +39,8 @@ V02.19 后续正式资产生产方向固定为：
 
 三张样张都只是 visual direction reference，不是 runtime 资产，不标记为 `production` 或 `approved`。后续若生成可接入素材，必须另存到资产目录并通过 `ThemeProfile` / `AssetResolver` 映射。
 
+目录内 `README.md` 是后续 agent 的第一入口：正向方向、硬性偏移拦截、参考文件角色和资产生产前置条件均以该 manifest 为准。
+
 ## 3. 风格规则
 
 ### 世界地图
@@ -40,6 +50,8 @@ V02.19 后续正式资产生产方向固定为：
 - 区域层级：Home Core 最清楚；Home-School Walk 是安全主路；Shop Street 和 Story Bridge 是第一圈生活地点；Animal Park / Coast Edge 是回访或边界预览。
 - 材质：干净圆润、柔和阴影、边缘清楚；避免纸质纹理、涂抹笔触或插画页装饰。
 - 配色：暖但不泛黄，绿地、屋顶、道路、水边、UI 高光需要分层；不得让整屏读成单一奶油 / 棕橙色。
+- 风格一致性：禁止把多张不同生成来源的建筑、居民、物件、背景和 UI 直接拼在同一画面里；若相机、光源、比例、地面接触阴影或边缘清晰度不一致，应判定为 style drift。
+- Gameplay 感：首屏必须能解释“玩家现在能走到哪里、能看什么、能回哪里、谁在附近”；如果更像功能点索引或地图标注板，即使素材好看也不能通过。
 
 ### UI / HUD
 
@@ -73,6 +85,7 @@ V02.19 后续正式资产生产方向固定为：
 - 每批接入后先做 1280x720 截图判断：不遮挡 HUD / 底栏、不压住玩家和热点、不退回裸字母牌、不出现课程化视觉。
 - `production` 只表示可集成；`approved` 需要 1280x720 证据和 PM / Art Direction 判断。
 - 若生成资产与本方向包冲突，以本方向包的禁用方向和 `todo.md` 的生活 RPG / 小镇养成边界为准。
+- 若 runtime proof 呈现拼贴 / 系统索引 / 逻辑地图叠层观感，必须返修，不能标 `visual_candidate`、`runtime_visual_match` 或 `final_approved`。
 
 ## 5. 生成记录
 

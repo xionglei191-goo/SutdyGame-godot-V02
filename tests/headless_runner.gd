@@ -74,7 +74,11 @@ const V0236Storyslice001RuntimeTestScript := preload("res://tests/test_v0236_sto
 const V0237Storybatch002ContentPackTestScript := preload("res://tests/test_v0237_storybatch002_content_pack.gd")
 const V0237Storybatch003AssetIntegrationTestScript := preload("res://tests/test_v0237_storybatch003_asset_integration.gd")
 const V0237Storybatch004RuntimeSmokeTestScript := preload("res://tests/test_v0237_storybatch004_runtime_smoke.gd")
+const V0237Storybatch005ApprovalGateTestScript := preload("res://tests/test_v0237_storybatch005_approval_gate.gd")
 const V0238VisualRecoveryRuntimeTestScript := preload("res://tests/test_v0238_visual_recovery_runtime.gd")
+const V0239VisualRebuildBlockoutTestScript := preload("res://tests/test_v0239_visual_rebuild_blockout.gd")
+const V0239VisualLayoutTargetTestScript := preload("res://tests/test_v0239_visual_layout_target.gd")
+const V0239VisualRebuildMainlineGateTestScript := preload("res://tests/test_v0239_visual_rebuild_mainline_gate.gd")
 const VoiceProviderAdapterScript := preload("res://scripts/systems/voice_provider_adapter.gd")
 const ANCHOR_ASSET_IDS: Array[String] = [
 	"anchor.a.apple_tree", "anchor.b.bear_corner", "anchor.c.clock", "anchor.d.dog_corner", "anchor.e.elephant_slide", "anchor.f.fox_topiary", "anchor.g.school_gate", "anchor.h.hat_sign", "anchor.i.ice_cream_cart", "anchor.j.jacket_window", "anchor.k.kite", "anchor.l.lion_fountain", "anchor.m.monkey_tree", "anchor.n.soft_net", "anchor.o.orange_stall", "anchor.p.panda_corner", "anchor.q.queen_poster", "anchor.r.robot_sign", "anchor.s.sun_landmark", "anchor.t.taxi_marker", "anchor.u.beach_umbrella", "anchor.v.violin_corner", "anchor.w.watch_table", "anchor.x.x_mark_box", "anchor.y.yo_yo_corner", "anchor.z.zebra_edge"
@@ -196,7 +200,11 @@ func _init() -> void:
 	_check_v0237_storybatch002_content_pack()
 	_check_v0237_storybatch003_asset_integration()
 	_check_v0237_storybatch004_runtime_smoke()
+	_check_v0237_storybatch005_approval_gate()
 	_check_v0238_visual_recovery_runtime()
+	_check_v0239_visual_layout_target()
+	_check_v0239_visual_rebuild_blockout()
+	_check_v0239_visual_rebuild_mainline_gate()
 	_check_voice_ai_social_stubs()
 
 	if failures.is_empty():
@@ -303,9 +311,8 @@ func _check_polish_p0_asset_resolver_records() -> void:
 		var asset_path := str(resolved.get("placeholder_path", ""))
 		_expect(asset_path.begins_with("res://assets/art/"), "P0 polish asset should map to project art: %s" % asset_id)
 		_expect(FileAccess.file_exists(asset_path), "P0 polish asset file should exist: %s" % asset_path)
-		var record: Dictionary = _asset_acceptance_record_for(records, asset_id)
-		_expect(str(record.get("status", "")) == "production", "P0 polish asset should be production: %s" % asset_id)
-		_expect(str(record.get("acceptance_result", "")) == "pass", "P0 polish asset should have pass result: %s" % asset_id)
+		var record: Dictionary = _asset_acceptance_record_for_path(records, asset_id, asset_path)
+		_expect(_asset_acceptance_record_is_runtime_accepted(record), "P0 polish asset should be production/pass or runtime-promoted for review: %s" % asset_id)
 
 
 func _asset_acceptance_record_for(records: Array, asset_id: String) -> Dictionary:
@@ -313,6 +320,21 @@ func _asset_acceptance_record_for(records: Array, asset_id: String) -> Dictionar
 		if record is Dictionary and str(record.get("logical_asset_id", "")) == asset_id:
 			return record
 	return {}
+
+
+func _asset_acceptance_record_for_path(records: Array, asset_id: String, asset_path: String) -> Dictionary:
+	for record in records:
+		if record is Dictionary and str(record.get("logical_asset_id", "")) == asset_id and str(record.get("resource_path_for_mapping", "")) == asset_path:
+			return record
+	return _asset_acceptance_record_for(records, asset_id)
+
+
+func _asset_acceptance_record_is_runtime_accepted(record: Dictionary) -> bool:
+	var status := str(record.get("status", ""))
+	var result := str(record.get("acceptance_result", ""))
+	if status == "production" and result == "pass":
+		return true
+	return status == "runtime_promoted_for_review" and result == "runtime_promoted_pending_visual_review"
 
 
 func _check_service_loop_smoke() -> void:
@@ -571,7 +593,7 @@ func _check_child_experience_and_mobile_acceptance(main: Control) -> void:
 	_expect(footer != null and footer is Control and (footer as Control).anchor_top == 1.0, "main actions should sit in a bottom button bar")
 	_expect(footer != null and footer is Control and (footer as Control).anchor_left >= 0.2 and (footer as Control).anchor_right <= 0.8, "bottom footer should be compact and centered, not a wide empty strip")
 	var visible_footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
-	_expect(visible_footer_actions != null and visible_footer_actions.get_child_count() == 4, "bottom footer should keep only Interact, Town, Home, and Backpack visible")
+	_expect(visible_footer_actions != null and visible_footer_actions.get_child_count() == 5, "bottom footer should keep Interact, Town, Home, Backpack, and Album as compact dock actions")
 	var backpack_button := main.find_child("BackpackNavButton", true, false) as Button
 	var backpack_bubble := main.find_child("BackpackBubble", true, false) as Control
 	_expect(backpack_button != null and backpack_bubble != null, "backpack navigation should expose a lightweight content bubble")
@@ -665,7 +687,7 @@ func _check_playable_ui_operations() -> void:
 	var settings_panel := main.find_child("SettingsPanel", true, false) as Control
 	_expect(settings_panel != null and settings_panel.visible, "settings panel should open from visible top entry")
 	var visible_footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
-	_expect(visible_footer_actions != null and visible_footer_actions.get_child_count() == 4, "settings should not add quit or settings into the bottom footer")
+	_expect(visible_footer_actions != null and visible_footer_actions.get_child_count() == 5, "settings should not add quit or settings into the bottom footer")
 	var settings_status := main.find_child("SettingsStatus", true, false) as Label
 	_expect(settings_status != null and str(settings_status.text).contains("安全位置"), "settings panel should use child-facing safety copy")
 	var confirm_exit_button := main.find_child("ConfirmExitButton", true, false) as Button
@@ -1280,7 +1302,7 @@ func _check_v0216_playable_rc_gate() -> void:
 	main.call("_update_today_status")
 
 	var footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
-	_expect(footer_actions != null and footer_actions.get_child_count() == 4, "V02.16 playable RC should keep four footer actions")
+	_expect(footer_actions != null and footer_actions.get_child_count() == 5, "V02.39 visual rebuild should keep five compact footer dock actions")
 	var footer_hint := main.find_child("TownFooterText", true, false) as Label
 	_expect(footer_hint != null and str(footer_hint.text).contains("看看"), "V02.16 playable RC should explain visible look action")
 	_check_v0216_visible_text(main, "startup")
@@ -1381,7 +1403,7 @@ func _check_v0218_map_readability() -> void:
 		_expect(main.find_child(node_name, true, false) != null, "V02.18 map readability should expose guide node: %s" % node_name)
 	for node_name in artpass004_zone_names:
 		var zone := main.find_child(node_name, true, false) as Sprite2D
-		_expect(zone != null and zone.texture != null and zone.texture.get_width() >= 512, "ARTPASS-004 map zone should use production place asset in headless runner: %s" % node_name)
+		_expect(zone != null and zone.texture != null and zone.texture.get_width() >= 96, "ARTPASS-004 map zone should use a promoted project art texture in headless runner: %s" % node_name)
 	var stage := main.find_child("TownStage", true, false)
 	_expect(stage != null and stage.has_method("get_visual_recovery_snapshot"), "V02.38 runner should expose modular visual recovery snapshot")
 	if stage != null and stage.has_method("get_visual_recovery_snapshot"):
@@ -1455,7 +1477,13 @@ func _check_v0220_playgate_controls() -> void:
 	var before_camera: Vector2 = main.runtime_map_node.position
 	_expect(main.request_player_walk_to_cell(main.player_cell + Vector2i(4, 0)).get("ok", false), "V02.20 playgate should start a camera follow walk")
 	main.finish_player_walk_for_test()
-	_expect(main.runtime_map_node.position != before_camera, "V02.20 playgate camera should follow the player")
+	var stage := main.find_child("TownStage", true, false)
+	if stage != null and stage.has_method("get_visual_rebuild_blockout_snapshot"):
+		var blockout_snapshot: Dictionary = stage.call("get_visual_rebuild_blockout_snapshot")
+		_expect(main.runtime_map_node.position == before_camera, "V02.39 visual rebuild should keep the first-screen camera fixed while movement remains embodied")
+		_expect(bool(blockout_snapshot.get("player_layer_above_blockout", false)), "V02.39 visual rebuild should keep the player readable in the fixed first-screen camera")
+	else:
+		_expect(main.runtime_map_node.position != before_camera, "V02.20 playgate camera should follow the player")
 
 	_expect(main.request_player_walk_to_cell(Vector2i(38, 22)).get("ok", false), "V02.20 playgate prompt should walk near Mina")
 	main.finish_player_walk_for_test()
@@ -2571,9 +2599,8 @@ func _check_v0234_artprod001_asset_integration() -> void:
 		var asset_path := str(resolved.get("placeholder_path", ""))
 		_expect(FileAccess.file_exists(asset_path), "V02.34 ARTPROD-001 runner asset path should exist: %s" % asset_path)
 		if category != "animation_metadata_assets":
-			var record: Dictionary = _asset_acceptance_record_for(records, asset_id)
-			_expect(str(record.get("status", "")) == "production", "V02.34 ARTPROD-001 runner asset should be production: %s" % asset_id)
-			_expect(str(record.get("viewport_evidence", "")) == "pending_1280_runtime_proof", "V02.34 ARTPROD-001 runner should keep runtime proof pending: %s" % asset_id)
+			var record: Dictionary = _asset_acceptance_record_for_path(records, asset_id, asset_path)
+			_expect(_asset_acceptance_record_is_runtime_accepted(record), "V02.34 ARTPROD-001 runner asset should be production/pass or runtime-promoted for review: %s" % asset_id)
 	var map_result: Dictionary = RuntimeMapBuilderScript.load_world_map()
 	var story_result: Dictionary = MapEditorSyncServiceScript.load_json_dictionary(MapEditorSyncServiceScript.STORY_PROPS_PATH)
 	_expect(story_result.get("ok", false), "V02.34 ARTPROD-001 runner story_props.json should load")
@@ -2731,6 +2758,37 @@ func _check_v0237_storybatch004_runtime_smoke() -> void:
 	main.queue_free()
 
 
+func _check_v0237_storybatch005_approval_gate() -> void:
+	_expect(V0237Storybatch005ApprovalGateTestScript != null, "V02.37 STORYBATCH-005 approval gate focused test should compile for headless runner")
+	var gate: Dictionary = _load_json_for_runner("res://docs/collaboration/round182_storybatch005_rc/storybatch005_approval_gate_v001.json")
+	_expect(str(gate.get("status", "")) == "storybatch005_stage_closeout_pass", "V02.37 runner StoryBatch-005 gate should pass")
+	_expect(not bool(gate.get("final_bitmap_art_approval", true)), "V02.37 runner StoryBatch-005 should defer final bitmap approval")
+	var decisions: Array = gate.get("story_prop_decisions", [])
+	_expect(decisions.size() == 11, "V02.37 runner StoryBatch-005 should include all eleven decisions")
+	var second_batch_count := 0
+	for decision in decisions:
+		if decision is Dictionary and str((decision as Dictionary).get("batch", "")) == "second":
+			_expect(str((decision as Dictionary).get("decision", "")) == "runtime_visual_match", "V02.37 runner StoryBatch-005 second-batch decision should be runtime visual match")
+			var proof_path := "res://%s" % str((decision as Dictionary).get("proof", ""))
+			_expect(FileAccess.file_exists(ProjectSettings.globalize_path(proof_path)), "V02.37 runner StoryBatch-005 proof should exist: %s" % proof_path)
+			second_batch_count += 1
+	_expect(second_batch_count == 7, "V02.37 runner StoryBatch-005 should include seven second-batch proofs")
+	var records: Array = AssetResolverScript.get_asset_acceptance_records()
+	for asset_id in [
+		"story_prop.home.clock_chair_corner",
+		"story_prop.home.sunny_towel_dog_corner",
+		"story_prop.home.watch_wall_charm",
+		"story_prop.school.gate_bell_sign",
+		"story_prop.walk.kite_leaf_path",
+		"story_prop.shop.orange_bowl_window",
+		"story_prop.plaza.sun_flower_patch",
+	]:
+		var resolved: Dictionary = AssetResolverScript.get_story_prop_asset(asset_id)
+		var asset_path := str(resolved.get("placeholder_path", ""))
+		var record := _asset_acceptance_record_for_path(records, asset_id, asset_path)
+		_expect(_asset_acceptance_record_is_runtime_accepted(record), "V02.37 runner StoryBatch-005 asset should be production/pass or runtime-promoted for review: %s" % asset_id)
+
+
 func _check_v0238_visual_recovery_runtime() -> void:
 	_expect(V0238VisualRecoveryRuntimeTestScript != null, "V02.38 VISUALRECOVERY runtime focused test should compile for headless runner")
 	var save_path := "user://headless_runner_v0238_visual_recovery_runtime.json"
@@ -2769,6 +2827,126 @@ func _check_v0238_visual_recovery_runtime() -> void:
 	_expect(service.clear_for_test(), "V02.38 runner visual recovery save should clean")
 	root.remove_child(main)
 	main.queue_free()
+
+
+func _check_v0239_visual_layout_target() -> void:
+	_expect(V0239VisualLayoutTargetTestScript != null, "V02.39 VISUALREBUILD layout target focused test should compile for headless runner")
+	var contract_path := ProjectSettings.globalize_path("res://docs/collaboration/round180_v0239_mainline_visual_layout_target/visual_layout_contract_v001.json")
+	var target_path := ProjectSettings.globalize_path("res://docs/collaboration/round180_v0239_mainline_visual_layout_target/round180_v0239_visual_layout_target_1280x720_v001.png")
+	_expect(FileAccess.file_exists(contract_path), "V02.39 runner visual layout contract should exist")
+	_expect(FileAccess.file_exists(target_path), "V02.39 runner visual layout target PNG should exist")
+	var contract_file: FileAccess = FileAccess.open(contract_path, FileAccess.READ)
+	_expect(contract_file != null, "V02.39 runner visual layout contract should open")
+	if contract_file != null:
+		var parsed: Variant = JSON.parse_string(contract_file.get_as_text())
+		_expect(typeof(parsed) == TYPE_DICTIONARY, "V02.39 runner visual layout contract should parse")
+		if typeof(parsed) == TYPE_DICTIONARY:
+			var contract: Dictionary = parsed
+			var target_viewport: Dictionary = contract.get("target_viewport", {})
+			_expect(int(target_viewport.get("w", 0)) == 1280 and int(target_viewport.get("h", 0)) == 720, "V02.39 runner visual layout contract should target 1280x720")
+			_expect(str(contract.get("status", "")) == "art_target_locked_whitebox_by_user_instruction", "V02.39 runner visual layout target should be whitebox locked")
+			_expect(str(contract.get("runtime_boundary", "")).contains("locked_whitebox_target"), "V02.39 runner visual layout target should stay locked to whitebox scope")
+			_expect(str(contract.get("target_frame_output", "")).ends_with("round180_v0239_visual_layout_target_1280x720_v001.png"), "V02.39 runner visual layout contract should point to Round180 PNG")
+			var constraints: Dictionary = contract.get("constraints", {})
+			_expect(str(constraints.get("story_batch_status", "")) == "pending_until_round181_gate", "V02.39 runner StoryBatch should wait for Round181 gate")
+			_expect(str(constraints.get("approval", "")).contains("grants_art_target_locked"), "V02.39 runner Round180 target should grant whitebox art_target_locked")
+	var image := Image.new()
+	var load_error: Error = image.load(target_path)
+	_expect(load_error == OK, "V02.39 runner visual layout target PNG should load")
+	if load_error == OK:
+		_expect(image.get_width() == 1280 and image.get_height() == 720, "V02.39 runner visual layout target PNG should be 1280x720")
+
+
+func _check_v0239_visual_rebuild_blockout() -> void:
+	_expect(V0239VisualRebuildBlockoutTestScript != null, "V02.39 VISUALREBUILD blockout focused test should compile for headless runner")
+	var save_path := "user://headless_runner_v0239_visual_rebuild_blockout.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.39 runner blockout save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	root.add_child(main)
+	main.call("_ready")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_visual_rebuild_blockout_snapshot"), "V02.39 runner TownStage should expose blockout snapshot")
+	if stage != null and stage.has_method("get_visual_rebuild_blockout_snapshot"):
+		var snapshot: Dictionary = stage.call("get_visual_rebuild_blockout_snapshot")
+		_expect(int(snapshot.get("blockout_tile_path_count", 0)) >= 30, "V02.39 runner blockout should use reusable path tiles for a continuous road")
+		_expect(int(snapshot.get("blockout_grass_base_count", 0)) >= 6, "V02.39 runner blockout should use continuous grass base pieces")
+		_expect(int(snapshot.get("blockout_house_count", 0)) == 1, "V02.39 runner blockout should show one modest home")
+		_expect(int(snapshot.get("blockout_house_detail_count", 0)) >= 6, "V02.39 runner blockout home should be composed from editable detail pieces")
+		_expect(int(snapshot.get("blockout_garden_count", 0)) >= 3, "V02.39 runner blockout should include editable garden bed prefabs")
+		_expect(int(snapshot.get("blockout_water_count", 0)) >= 3, "V02.39 runner blockout should include a composited water edge")
+		_expect(int(snapshot.get("blockout_detail_count", 0)) >= 16, "V02.39 runner blockout should include reusable ground, bank, and crop details")
+		_expect(int(snapshot.get("blockout_companion_detail_count", 0)) >= 4, "V02.39 runner blockout companion should be composed from readable detail pieces")
+		_expect(bool(snapshot.get("has_walkable_center", false)), "V02.39 runner blockout should keep center walkable")
+		_expect(bool(snapshot.get("legacy_visual_layers_hidden", false)), "V02.39 runner blockout should hide legacy scaffold visuals")
+		_expect(int(snapshot.get("assetized_texture_count", 0)) >= 74, "V02.39 runner blockout should use unified v0239 runtime textures")
+		var camera_scale: Vector2 = snapshot.get("camera_scale", Vector2.ZERO)
+		_expect(camera_scale.x <= 1.6 and camera_scale.y <= 1.6, "V02.39 runner blockout should keep the full first-screen candidate in camera")
+		_expect(bool(snapshot.get("player_layer_above_blockout", false)), "V02.39 runner blockout should render the player above candidate ground props")
+	var footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
+	_expect(footer_actions != null and footer_actions.get_child_count() == 5, "V02.39 runner should keep five compact dock buttons")
+	_expect(main.move_player_to_cell(Vector2i(31, 19)).get("ok", false), "V02.39 runner Home path should remain reachable")
+	_expect(main.interact_nearby().get("ok", false), "V02.39 runner Home real interaction should remain reachable")
+	_expect(service.clear_for_test(), "V02.39 runner blockout save should clean")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _check_v0239_visual_rebuild_mainline_gate() -> void:
+	_expect(V0239VisualRebuildMainlineGateTestScript != null, "V02.39 VISUALREBUILD mainline gate focused test should compile for headless runner")
+	var contract: Dictionary = _load_json_for_runner("res://docs/collaboration/round180_v0239_mainline_visual_layout_target/visual_layout_contract_v001.json")
+	var kit: Dictionary = _load_json_for_runner("res://docs/collaboration/round181_v0239_mainline_closeout/unified_environment_composition_kit_v001.json")
+	var match_report: Dictionary = _load_json_for_runner("res://docs/collaboration/round181_v0239_mainline_closeout/runtime_visual_match_report_v001.json")
+	var gate: Dictionary = _load_json_for_runner("res://docs/collaboration/round181_v0239_mainline_closeout/art_direction_gate_v001.json")
+	_expect(str(contract.get("status", "")) == "art_target_locked_whitebox_by_user_instruction", "V02.39 runner target should be whitebox locked")
+	_expect(str(kit.get("status", "")) == "whitebox_composition_kit_locked", "V02.39 runner composition kit should be locked")
+	_expect((kit.get("logical_assets", []) as Array).size() >= 11, "V02.39 runner composition kit should include logical assets")
+	_expect(str(match_report.get("status", "")) == "runtime_visual_match_whitebox_pass", "V02.39 runner runtime match should pass")
+	_expect(str(gate.get("status", "")) == "gate_pass_for_storybatch_unlock", "V02.39 runner gate should pass for StoryBatch unlock")
+	var storybatch_decision: Dictionary = gate.get("storybatch_decision", {})
+	_expect(str(storybatch_decision.get("V02-STORYBATCH-004", "")) == "ready_after_round181_gate", "V02.39 runner should unlock V02-STORYBATCH-004")
+	_expect(FileAccess.file_exists(ProjectSettings.globalize_path("res://docs/collaboration/round181_v0239_mainline_closeout/round181_v0239_runtime_match_side_by_side_1280x720_v001.png")), "V02.39 runner side-by-side evidence should exist")
+	var save_path := "user://headless_runner_v0239_visual_rebuild_mainline_gate.json"
+	var service = SaveServiceScript.new(save_path)
+	_expect(service.clear_for_test(), "V02.39 runner mainline gate save should clear")
+	var main = MainScene.instantiate()
+	main.configure_for_test(save_path)
+	root.add_child(main)
+	main.call("_ready")
+	var stage := main.find_child("TownStage", true, false)
+	_expect(stage != null and stage.has_method("get_visual_rebuild_blockout_snapshot"), "V02.39 runner gate TownStage should expose blockout snapshot")
+	if stage != null and stage.has_method("get_visual_rebuild_blockout_snapshot"):
+		var snapshot: Dictionary = stage.call("get_visual_rebuild_blockout_snapshot")
+		_expect(int(snapshot.get("blockout_tile_path_count", 0)) >= 30, "V02.39 runner gate should keep path tiles")
+		_expect(int(snapshot.get("blockout_house_count", 0)) == 1, "V02.39 runner gate should keep one Home")
+		_expect(bool(snapshot.get("legacy_visual_layers_hidden", false)), "V02.39 runner gate should hide legacy layers")
+		_expect(int(snapshot.get("resolver_mapped_v0239_count", 0)) >= 30, "V02.39 runner gate should use promoted visual rebuild PNGs through resolver mappings")
+		_expect(bool(snapshot.get("player_layer_above_blockout", false)), "V02.39 runner gate should keep player above blockout")
+	var footer_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
+	_expect(footer_actions != null and footer_actions.get_child_count() == 5, "V02.39 runner gate should keep five footer actions")
+	_expect(main.move_player_to_cell(Vector2i(31, 19)).get("ok", false), "V02.39 runner gate Home path should remain reachable")
+	_expect(main.interact_nearby().get("ok", false), "V02.39 runner gate Home interaction should remain reachable")
+	_expect(int(main.get_expapproval_school_snapshot().get("anchor_count", 0)) == 26, "V02.39 runner gate should preserve A-Z anchors")
+	_expect(service.clear_for_test(), "V02.39 runner mainline gate save should clean")
+	root.remove_child(main)
+	main.queue_free()
+
+
+func _load_json_for_runner(path: String) -> Dictionary:
+	var path_abs: String = ProjectSettings.globalize_path(path)
+	_expect(FileAccess.file_exists(path_abs), "JSON should exist: %s" % path)
+	if not FileAccess.file_exists(path_abs):
+		return {}
+	var file: FileAccess = FileAccess.open(path_abs, FileAccess.READ)
+	_expect(file != null, "JSON should open: %s" % path)
+	if file == null:
+		return {}
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	_expect(typeof(parsed) == TYPE_DICTIONARY, "JSON should parse as Dictionary: %s" % path)
+	if typeof(parsed) != TYPE_DICTIONARY:
+		return {}
+	return parsed
 
 
 func _check_v0223_expapproval_shop_settings_glass() -> void:

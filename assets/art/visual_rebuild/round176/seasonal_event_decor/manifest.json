@@ -1,0 +1,651 @@
+{
+  "pack_id": "round176.seasonal_event_decor",
+  "round": "Round176",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "seasonal_event_decor",
+  "scope": "Transparent cozy town seasonal/event decor prop candidates only; no readable text, no holiday/religious specifics, no full scenes.",
+  "compatibility_notes": [
+    "Designed as standalone props compatible in scale and warmth with Round172 town/home props.",
+    "Avoids dense full-screen overlays so it can sit under or beside Round174 weather FX."
+  ],
+  "generation_method": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text-to-image with --transparent requested plus local alpha normalization",
+    "postprocess": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalize_validate_manifest.py",
+    "notes": "Per LESSON-022, raw transparency is not trusted; final gate is based on actual RGBA pixel audit after local normalization."
+  },
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round176/seasonal_event_decor/proof/round176_seasonal_event_decor_contact_sheet.png",
+    "raw_dir": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw",
+    "normalized_dir": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256"
+  },
+  "validation_summary": {
+    "checks": [
+      "RGBA alpha channel",
+      "expected normalized 256x256 dimensions",
+      "non-empty alpha content",
+      "transparent corner alpha",
+      "edge residue / edge-touch scan",
+      "green/magenta chroma-key residue scan",
+      "dark pinhole residue scan",
+      "large opaque background block risk scan"
+    ],
+    "pass_count": 10,
+    "fail_count": 0,
+    "raw_rgb_or_opaque_source_count": 10
+  },
+  "items": [
+    {
+      "id": "seasonal_event_decor.spring_flower_arch",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/spring_flower_arch.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/spring_flower_arch_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        224
+      ],
+      "footprint_recommendation": "2x1 tiles, walk-behind arch opening; keep collision to side posts only",
+      "layer_recommendation": "tall prop above ground decor, below actors when actor y is in front",
+      "prompt": "single cozy town prop only: spring flower arch, child-friendly gentle game asset, rounded handcrafted style, pastel blossoms and light wood, centered with generous padding, no readable text, no letters, no numbers, no symbols, no full scene, no characters, perfectly flat solid #ff00ff chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          45,
+          54,
+          211,
+          239
+        ],
+        "nonzero_alpha_pixels": 11045,
+        "visible_alpha_coverage": 0.16853,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.12532,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Needs visual review for walkable opening readability before runtime use.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.summer_pinwheel_stand",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/summer_pinwheel_stand.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/summer_pinwheel_stand_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        230
+      ],
+      "footprint_recommendation": "1x1 tile, narrow decorative stand with no blocking outside base",
+      "layer_recommendation": "small-tall town prop above ground decor, below roof/sign overhangs",
+      "prompt": "single cozy town prop only: a simple toy pinwheel stand, several colorful paper pinwheel wheels on thin sticks in a small plain wooden holder, clearly pinwheels not flowers, child-friendly gentle game asset, rounded cozy town style, no plants, no flowers, no readable text, no letters, no numbers, no symbols, no full scene, no characters, perfectly flat solid #ff00ff chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          69,
+          66,
+          188,
+          235
+        ],
+        "nonzero_alpha_pixels": 8166,
+        "visible_alpha_coverage": 0.1246,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.07393,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Thin pinwheel spokes may need simplification at small scale.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.autumn_leaf_pile",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/autumn_leaf_pile.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/autumn_leaf_pile_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        214
+      ],
+      "footprint_recommendation": "1x1 ground decor; non-blocking",
+      "layer_recommendation": "ground prop above terrain/path, below actors and furniture",
+      "prompt": "single cozy town prop only: soft rounded autumn leaf pile, warm orange yellow red leaves, child-friendly gentle game asset, compact low prop, no readable text, no letters, no numbers, no symbols, no full scene, no characters, perfectly flat solid #00ff00 chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          51,
+          139,
+          205,
+          229
+        ],
+        "nonzero_alpha_pixels": 9955,
+        "visible_alpha_coverage": 0.1519,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.13844,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Low silhouette can disappear on warm terrain; check contrast in town proofs.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.winter_warm_lantern",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/winter_warm_lantern.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/winter_warm_lantern_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        226
+      ],
+      "footprint_recommendation": "1x1 tile, small blocking base only",
+      "layer_recommendation": "small-tall prop above ground decor; optional glow overlay below UI",
+      "prompt": "single cozy town prop only: winter warm lantern on a short wooden post, cozy amber glow, tiny scarf-like fabric wrap with no pattern, child-friendly gentle game asset, no readable text, no letters, no numbers, no symbols, no holiday or religious imagery, no full scene, no characters, perfectly flat solid #00ff00 chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          96,
+          57,
+          161,
+          239
+        ],
+        "nonzero_alpha_pixels": 6646,
+        "visible_alpha_coverage": 0.10141,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.08327,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Glow should remain subtle so it does not fight Round174 weather FX.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.market_crate_stack",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/market_crate_stack.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/market_crate_stack_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        224
+      ],
+      "footprint_recommendation": "1x1 tile, blocking at crate footprint",
+      "layer_recommendation": "market prop above ground, below actors when actor y is in front",
+      "prompt": "single cozy town prop only: stacked wooden market crates with vegetables and folded cloth, child-friendly gentle town-life style, rounded soft forms, no readable text, no letters, no numbers, no symbols, no brand labels, no full scene, no characters, perfectly flat solid #ff00ff chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          51,
+          99,
+          209,
+          238
+        ],
+        "nonzero_alpha_pixels": 15608,
+        "visible_alpha_coverage": 0.23816,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.20471,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Must stay generic market decor, not item-shop UI.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.celebration_paper_flags",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/celebration_paper_flags.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/celebration_paper_flags_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        86
+      ],
+      "footprint_recommendation": "3x1 overhead span; no collision",
+      "layer_recommendation": "overhead event decor above buildings/props, below UI",
+      "prompt": "single cozy town prop only: one curved string of small rounded paper flags in pastel colors, child-friendly general celebration decor, no readable text, no letters, no numbers, no symbols, no holiday or religious imagery, no full scene, no characters, perfectly flat solid #00ff00 chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          33,
+          126,
+          223,
+          179
+        ],
+        "nonzero_alpha_pixels": 2809,
+        "visible_alpha_coverage": 0.04286,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.02208,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Wide asset needs careful anchor placement and depth sorting.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.rainy_day_umbrella_stand",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/rainy_day_umbrella_stand.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/rainy_day_umbrella_stand_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        230
+      ],
+      "footprint_recommendation": "1x1 tile, blocking at stand base",
+      "layer_recommendation": "small-tall prop above ground, compatible with rain overlays",
+      "prompt": "single cozy town prop only: rainy day umbrella stand with closed pastel umbrellas in a round holder, cozy town-life game asset, child-friendly gentle rounded style, no readable text, no letters, no numbers, no symbols, no full scene, no characters, perfectly flat solid #ff00ff chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          81,
+          73,
+          176,
+          229
+        ],
+        "nonzero_alpha_pixels": 13272,
+        "visible_alpha_coverage": 0.20251,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.16814,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Umbrella tips are thin; audit at 128px scale before mapping.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.children_day_kite_display",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/children_day_kite_display.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/children_day_kite_display_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        226
+      ],
+      "footprint_recommendation": "1x1 tile, small display stand; optional non-blocking string area",
+      "layer_recommendation": "town prop above ground decor, below actors when in front",
+      "prompt": "single cozy town prop only: kite display on a small wooden stand, simple diamond kites with soft pastel panels and ribbons, child-friendly general play-day decor, no readable text, no letters, no numbers, no symbols, no national flags, no full scene, no characters, perfectly flat solid #00ff00 chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          67,
+          103,
+          189,
+          231
+        ],
+        "nonzero_alpha_pixels": 10929,
+        "visible_alpha_coverage": 0.16676,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.12689,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Avoid interpretation as a specific national or holiday flag.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.festival_picnic_mat",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/festival_picnic_mat.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/festival_picnic_mat_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        214
+      ],
+      "footprint_recommendation": "2x1 ground decor; mostly non-blocking",
+      "layer_recommendation": "ground prop above terrain/path, below actors and placed items",
+      "prompt": "single cozy town prop only: folded-edge picnic mat with small snack basket and cushions, general town festival picnic decor, child-friendly gentle style, simple color blocks with no patterns that look like letters, no readable text, no letters, no numbers, no symbols, no holiday or religious imagery, no full scene, no characters, perfectly flat solid #ff00ff chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          56,
+          115,
+          215,
+          227
+        ],
+        "nonzero_alpha_pixels": 10085,
+        "visible_alpha_coverage": 0.15388,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.13272,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Mat pattern must be checked to avoid accidental letter-like shapes.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    },
+    {
+      "id": "seasonal_event_decor.tiny_garden_sign_blank",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/normalized_256x256/tiny_garden_sign_blank.png",
+      "source_ref": "assets/art/visual_rebuild/round176/seasonal_event_decor/raw/tiny_garden_sign_blank_raw.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "pivot_recommendation_px": [
+        128,
+        228
+      ],
+      "footprint_recommendation": "1x1 tile, tiny blocking stake only",
+      "layer_recommendation": "small garden prop above flowers/ground decor",
+      "prompt": "single cozy town prop only: tiny blank garden sign on a wooden stake, empty smooth sign face with no marks, flowers and leaves around base, child-friendly gentle style, no readable text, no letters, no numbers, no symbols, no full scene, no characters, perfectly flat solid #ff00ff chroma key background, no shadow on background",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_chroma_key_local_rgba_alpha_safe_local_synthesis",
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          256
+        ],
+        "alpha_bbox": [
+          67,
+          75,
+          191,
+          233
+        ],
+        "nonzero_alpha_pixels": 10889,
+        "visible_alpha_coverage": 0.16615,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.13564,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Sign face must remain blank; do not map if generated marks look like text.",
+        "Proof-only candidate; not approved for runtime until reviewed in 1280x720 town/home composition."
+      ]
+    }
+  ]
+}

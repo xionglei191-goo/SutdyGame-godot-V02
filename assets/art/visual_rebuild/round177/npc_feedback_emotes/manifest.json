@@ -1,0 +1,674 @@
+{
+  "pack_id": "round177.npc_feedback_emotes",
+  "round": "Round177",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "npc_overhead_feedback_emote_overlay",
+  "scope": "Transparent overhead NPC feedback / emote bubble candidates for cozy town life RPG actors; no readable text, letters, numbers, or harsh punctuation marks.",
+  "compatibility_notes": [
+    "192x192 transparent sprites are intended as world-space overhead overlays for Round174 actor scale.",
+    "Glass softness and low-urgency animation recommendations are compatible with Round175 interaction UI feedback.",
+    "Use separate runtime icon/timing logic if approved later; this pack provides proof-only PNG candidates and no mappings."
+  ],
+  "generation_method": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text-to-image with --transparent requested, then local alpha-safe synthesis/normalization",
+    "postprocess": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalize_validate_manifest.py",
+    "notes": "Per LESSON-019/022, raw transparency is not trusted. Final pass is based on actual RGBA pixel checks after local normalization; raw files are retained as source evidence where generation completed."
+  },
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round177/npc_feedback_emotes/proof/round177_npc_feedback_emotes_contact_sheet.png",
+    "raw_dir": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw",
+    "normalized_dir": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192"
+  },
+  "validation_summary": {
+    "checks": [
+      "RGBA alpha channel",
+      "expected 192x192 dimensions",
+      "non-empty alpha content",
+      "transparent corners",
+      "edge alpha/touch scan",
+      "alpha holes inside alpha bbox",
+      "green/magenta residue scan",
+      "dark pinhole residue scan",
+      "opaque white residue scan",
+      "large opaque background block risk scan"
+    ],
+    "pass_count": 10,
+    "fail_count": 0,
+    "raw_rgb_or_opaque_source_count": 10
+  },
+  "items": [
+    {
+      "id": "npc_feedback_emote.friendly_hello_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/friendly_hello_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/friendly_hello_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space overhead feedback above NPC head, below dialogue/modal UI and above actor body",
+      "offset_recommendation_px": [
+        0,
+        -94
+      ],
+      "opacity_recommendation": "78-92% bubble alpha; icon 80-95%; animate fade/float 0.6-1.0s",
+      "prompt": "single overhead NPC feedback emote bubble, friendly hello feeling, tiny open hand wave icon made of rounded shapes, Apple-like translucent glass softness, no readable text, no letters, no numbers, no punctuation marks",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.06228,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Hand silhouette should remain abstract enough not to look like a command button.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.gentle_need_help_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/gentle_need_help_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/gentle_need_help_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space overhead need/help cue above resident, below dialogue/modal UI",
+      "offset_recommendation_px": [
+        0,
+        -96
+      ],
+      "opacity_recommendation": "72-88%; avoid urgent flashing, use slow pulse only",
+      "prompt": "single overhead NPC feedback emote bubble, gentle need-help feeling, two soft helping hands and a glow dot, no question mark, no exclamation mark, no readable text",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.04112,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Could read as task pressure if animated too strongly; keep calm and optional.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.gift_thought_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/gift_thought_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/gift_thought_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space thought cue above NPC, below dialogue/modal UI",
+      "offset_recommendation_px": [
+        0,
+        -98
+      ],
+      "opacity_recommendation": "76-90%; can bob gently when NPC has a gift-related thought",
+      "prompt": "single overhead NPC feedback thought bubble, gift thought, small wrapped gift box with ribbon loops only, no labels, no readable text, no letters, no numbers",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.04091,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Gift shape must stay text-free; avoid label-like ribbon marks.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.sunny_happy_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/sunny_happy_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/sunny_happy_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space mood cue above NPC/Sunny, compatible with Round174 weather FX",
+      "offset_recommendation_px": [
+        0,
+        -94
+      ],
+      "opacity_recommendation": "72-88%; do not overpower separate weather sparkle layers",
+      "prompt": "single overhead NPC feedback emote bubble, sunny happy mood, smiling sun-like circle with rounded rays, child-friendly, no readable text, no letters, no numbers",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.09161,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Sun icon may overlap with weather state semantics; review in rainy/sunny scenes.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.sleepy_soft_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/sleepy_soft_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/sleepy_soft_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space overhead status cue above NPC/pet, below dialogue/modal UI",
+      "offset_recommendation_px": [
+        0,
+        -94
+      ],
+      "opacity_recommendation": "68-84%; slow fade, no attention-grabbing bounce",
+      "prompt": "single overhead NPC feedback emote bubble, sleepy soft mood, crescent moon and soft floating dots only, no Z letters, no readable text, no letters, no numbers",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.10327,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Dots should not form ellipsis punctuation; keep them decorative and offset.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.hungry_snack_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/hungry_snack_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/hungry_snack_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space thought cue above NPC/pet, below dialogue/modal UI",
+      "offset_recommendation_px": [
+        0,
+        -96
+      ],
+      "opacity_recommendation": "74-90%; use as gentle want state, not a warning",
+      "prompt": "single overhead NPC feedback thought bubble, hungry snack thought, small snack bowl and tiny fruit shapes, no labels, no readable text, no letters, no numbers",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.02943,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Snack shapes may need child-safety review for allergy/food specificity before final mapping.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.friendship_heart_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/friendship_heart_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/friendship_heart_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space relationship feedback above NPC, below dialogue/modal UI and above actor body",
+      "offset_recommendation_px": [
+        0,
+        -94
+      ],
+      "opacity_recommendation": "70-88%; can combine with Round175 friendship glow at lower opacity",
+      "prompt": "single overhead NPC feedback emote bubble, friendship feeling, two overlapping soft heart shapes with gentle glow, no readable text, no letters, no numbers",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.03309,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "May duplicate Round175 friendship_heart_glow; treat as overhead cue variant only.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.weather_umbrella_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/weather_umbrella_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/weather_umbrella_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space weather thought above NPC, above actor and below weather foreground overlays",
+      "offset_recommendation_px": [
+        0,
+        -98
+      ],
+      "opacity_recommendation": "72-88%; keep under strong rain overlays if present",
+      "prompt": "single overhead NPC feedback thought bubble, weather rain thought, small rounded umbrella and two soft raindrops, no readable text, no letters, no numbers, no punctuation marks",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.06681,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Raindrops must not be mistaken for collectible item drops.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.found_item_spark_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/found_item_spark_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/found_item_spark_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space discovery cue above NPC/resource helper, below dialogue/modal UI",
+      "offset_recommendation_px": [
+        0,
+        -96
+      ],
+      "opacity_recommendation": "74-90%; sparkles can twinkle separately but stay soft",
+      "prompt": "single overhead NPC feedback emote bubble, found item feeling, tiny leaf-shaped token with abstract sparkles, no star punctuation, no readable text, no letters, no numbers",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.04259,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Sparkles must stay abstract and not become harsh starburst punctuation.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    },
+    {
+      "id": "npc_feedback_emote.calm_question_bubble",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/normalized_192x192/calm_question_bubble.png",
+      "source_ref": "assets/art/visual_rebuild/round177/npc_feedback_emotes/raw/calm_question_bubble_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "world-space gentle curiosity cue above NPC, below dialogue/modal UI",
+      "offset_recommendation_px": [
+        0,
+        -94
+      ],
+      "opacity_recommendation": "68-84%; avoid urgent shake or warning timing",
+      "prompt": "single overhead NPC feedback emote bubble, calm curiosity feeling, soft spiral and small scattered dots, no question mark, no readable text, no letters, no numbers",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          14,
+          7,
+          181,
+          163
+        ],
+        "nonzero_alpha_pixels": 14187,
+        "visible_alpha_coverage": 0.38485,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "alpha_holes_inside_bbox": 5809,
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "opaque_white_residue_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_synthesis"
+      },
+      "risks": [
+        "Spiral should read as curiosity, not dizziness; review with child-facing UX.",
+        "Proof-only candidate; no runtime mapping, no ThemeProfile, no AssetResolver, no data changes.",
+        "Needs in-scene 1280x720 review against Round174 actors and Round175 interaction UI before any approval."
+      ]
+    }
+  ]
+}

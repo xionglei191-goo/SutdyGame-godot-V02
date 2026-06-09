@@ -1,0 +1,158 @@
+{
+  "status": "normalized_candidate_proof_only",
+  "raw_file": "assets/art/visual_rebuild/round171/actors/round171_actors_raw_chroma_sheet.png",
+  "atlas_file": "assets/art/visual_rebuild/round171/actors/round171_actors_scale_reference_atlas_160x192x3.png",
+  "proof_checker_file": "assets/art/visual_rebuild/round171/actors/round171_actors_scale_reference_proof_checker.png",
+  "background_key_rgb_estimate": [
+    3,
+    250,
+    7
+  ],
+  "cell_px": [
+    160,
+    192
+  ],
+  "baseline_y_px": 176,
+  "actors": [
+    {
+      "id": "round171_actor_child_player",
+      "label": "Child player",
+      "file": "assets/art/visual_rebuild/round171/actors/round171_actor_child_player_160x192.png",
+      "cell_px": [
+        160,
+        192
+      ],
+      "source_crop_px": [
+        0,
+        0,
+        341,
+        1024
+      ],
+      "source_bbox_px": [
+        75,
+        236,
+        341,
+        852
+      ],
+      "fit_target_px": [
+        92,
+        150
+      ],
+      "normalized_bbox_px": [
+        47,
+        26,
+        112,
+        176
+      ],
+      "opaque_pixel_count": 7709,
+      "fit_scale_from_trim": 0.2435,
+      "recommended_display_scale": 0.72,
+      "recommended_display_size_px": [
+        115.2,
+        138.2
+      ],
+      "baseline_y_px": 176,
+      "status": "pass",
+      "category": "actor_scale_reference",
+      "asset_status": "normalized_candidate"
+    },
+    {
+      "id": "round171_actor_friendly_resident",
+      "label": "Friendly animal resident",
+      "file": "assets/art/visual_rebuild/round171/actors/round171_actor_friendly_resident_160x192.png",
+      "cell_px": [
+        160,
+        192
+      ],
+      "source_crop_px": [
+        341,
+        0,
+        341,
+        1024
+      ],
+      "source_bbox_px": [
+        0,
+        223,
+        338,
+        850
+      ],
+      "fit_target_px": [
+        110,
+        158
+      ],
+      "normalized_bbox_px": [
+        37,
+        18,
+        122,
+        176
+      ],
+      "opaque_pixel_count": 8035,
+      "fit_scale_from_trim": 0.252,
+      "recommended_display_scale": 0.72,
+      "recommended_display_size_px": [
+        115.2,
+        138.2
+      ],
+      "baseline_y_px": 176,
+      "status": "pass",
+      "category": "actor_scale_reference",
+      "asset_status": "normalized_candidate"
+    },
+    {
+      "id": "round171_actor_sunny_like_pet",
+      "label": "Sunny-like companion pet",
+      "file": "assets/art/visual_rebuild/round171/actors/round171_actor_sunny_like_pet_160x192.png",
+      "cell_px": [
+        160,
+        192
+      ],
+      "source_crop_px": [
+        682,
+        0,
+        342,
+        1024
+      ],
+      "source_bbox_px": [
+        60,
+        595,
+        279,
+        856
+      ],
+      "fit_target_px": [
+        78,
+        96
+      ],
+      "normalized_bbox_px": [
+        41,
+        83,
+        119,
+        176
+      ],
+      "opaque_pixel_count": 4788,
+      "fit_scale_from_trim": 0.3562,
+      "recommended_display_scale": 0.72,
+      "recommended_display_size_px": [
+        115.2,
+        138.2
+      ],
+      "baseline_y_px": 176,
+      "status": "pass",
+      "category": "actor_scale_reference",
+      "asset_status": "normalized_candidate"
+    }
+  ],
+  "gate": {
+    "fixed_cell_size": true,
+    "transparent_rgba": true,
+    "atlas_dimensions_px": [
+      480,
+      192
+    ],
+    "raw_runtime_mapping": false,
+    "proof_only": true
+  },
+  "overall_gate": "pass",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "category": "actor_scale_reference",
+  "asset_status": "normalized_candidate"
+}

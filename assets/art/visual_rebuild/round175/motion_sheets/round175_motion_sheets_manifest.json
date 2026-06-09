@@ -1,0 +1,2613 @@
+{
+  "round": "Round175",
+  "pack_id": "motion_sheets",
+  "status": "normalized_candidate_proof_only",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_asset_resolver_no_themeprofile",
+  "category": "character_motion_walk_4dir_sprite_sheets",
+  "dimensions_px": [
+    480,
+    768
+  ],
+  "cell_size": [
+    160,
+    192
+  ],
+  "baseline_y_px": 176,
+  "pivot_px": [
+    80,
+    176
+  ],
+  "directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "frames_per_direction": 3,
+  "raw_dir": "assets/art/visual_rebuild/round175/motion_sheets/raw_generated",
+  "normalized_dir": "assets/art/visual_rebuild/round175/motion_sheets/normalized_960x768",
+  "proof_contact_sheet": "assets/art/visual_rebuild/round175/motion_sheets/proof/round175_motion_sheets_contact_sheet.png",
+  "source_prompts": "assets/art/visual_rebuild/round175/motion_sheets/source_prompts.json",
+  "generation_tool": "/home/xionglei/GameProject/tools/image_generator.js",
+  "generation_mode": "text 1024x1024 transparent PNG requested, normalized to 960x768",
+  "style_anchor": "Round174 fullbody cozy-town character style and Round171 actor scale: rounded chibi proportions, soft clean silhouettes, warm life-sim colors, child-safe, game sprite readable at small size.",
+  "round171_compatibility": {
+    "cell_size_match": true,
+    "baseline_y_match": true,
+    "sheet_cell_size_px": [
+      160,
+      192
+    ],
+    "recommended_display_scale_reference": 0.72
+  },
+  "gate_checks": {
+    "fixed_dimensions": true,
+    "alpha": true,
+    "transparent_corners": true,
+    "visual_background_block_count": 0,
+    "visual_background_block_free": true,
+    "pass_count": 6,
+    "pass_with_review_risk_count": 0,
+    "fail_count": 0,
+    "item_count": 6,
+    "expected_item_count": 6
+  },
+  "overall_gate": "pass",
+  "items": [
+    {
+      "id": "player_child_walk_4dir",
+      "logical_asset_id": "actor.motion_sheet.player_child.walk_4dir",
+      "raw_png": "assets/art/visual_rebuild/round175/motion_sheets/raw_generated/player_child_walk_4dir_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round175/motion_sheets/normalized_960x768/player_child_walk_4dir.png",
+      "normalization_source": "round174_alpha_reference_synthetic_motion",
+      "raw_generated_gate": "fail",
+      "round174_reference_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/player_child_neutral_160x192.png",
+      "dimensions_px": [
+        480,
+        768
+      ],
+      "cell_size": [
+        160,
+        192
+      ],
+      "directions": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "frames_per_direction": 3,
+      "baseline_y_px": 176,
+      "pivot_px": [
+        80,
+        176
+      ],
+      "target_height_px": 150,
+      "has_alpha": true,
+      "transparent_corners": true,
+      "visual_background_block_count": 0,
+      "cell_results": [
+        {
+          "direction": "down",
+          "frame": "step_left",
+          "bbox_px": [
+            36,
+            26,
+            113,
+            178
+          ],
+          "opaque_pixel_count": 7625,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6515,
+            "top_edge_alpha_ratio": 0.0909,
+            "bottom_edge_alpha_ratio": 0.1299,
+            "left_edge_alpha_ratio": 0.0132,
+            "right_edge_alpha_ratio": 0.0263,
+            "max_edge_alpha_ratio": 0.1299,
+            "perimeter_average_alpha_ratio": 0.0651,
+            "opposing_edge_pair_alpha_ratio": 0.0909,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "neutral",
+          "bbox_px": [
+            42,
+            24,
+            118,
+            174
+          ],
+          "opaque_pixel_count": 7540,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6614,
+            "top_edge_alpha_ratio": 0.0921,
+            "bottom_edge_alpha_ratio": 0.1711,
+            "left_edge_alpha_ratio": 0.02,
+            "right_edge_alpha_ratio": 0.0467,
+            "max_edge_alpha_ratio": 0.1711,
+            "perimeter_average_alpha_ratio": 0.0825,
+            "opposing_edge_pair_alpha_ratio": 0.0921,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "step_right",
+          "bbox_px": [
+            47,
+            26,
+            124,
+            178
+          ],
+          "opaque_pixel_count": 7628,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6517,
+            "top_edge_alpha_ratio": 0.0909,
+            "bottom_edge_alpha_ratio": 0.1299,
+            "left_edge_alpha_ratio": 0.0132,
+            "right_edge_alpha_ratio": 0.0263,
+            "max_edge_alpha_ratio": 0.1299,
+            "perimeter_average_alpha_ratio": 0.0651,
+            "opposing_edge_pair_alpha_ratio": 0.0909,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_left",
+          "bbox_px": [
+            36,
+            26,
+            113,
+            178
+          ],
+          "opaque_pixel_count": 7628,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6517,
+            "top_edge_alpha_ratio": 0.0909,
+            "bottom_edge_alpha_ratio": 0.1299,
+            "left_edge_alpha_ratio": 0.0263,
+            "right_edge_alpha_ratio": 0.0132,
+            "max_edge_alpha_ratio": 0.1299,
+            "perimeter_average_alpha_ratio": 0.0651,
+            "opposing_edge_pair_alpha_ratio": 0.0909,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "neutral",
+          "bbox_px": [
+            42,
+            24,
+            118,
+            174
+          ],
+          "opaque_pixel_count": 7540,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6614,
+            "top_edge_alpha_ratio": 0.0921,
+            "bottom_edge_alpha_ratio": 0.1711,
+            "left_edge_alpha_ratio": 0.0467,
+            "right_edge_alpha_ratio": 0.02,
+            "max_edge_alpha_ratio": 0.1711,
+            "perimeter_average_alpha_ratio": 0.0825,
+            "opposing_edge_pair_alpha_ratio": 0.0921,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_right",
+          "bbox_px": [
+            47,
+            26,
+            124,
+            178
+          ],
+          "opaque_pixel_count": 7622,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6512,
+            "top_edge_alpha_ratio": 0.0909,
+            "bottom_edge_alpha_ratio": 0.1299,
+            "left_edge_alpha_ratio": 0.0263,
+            "right_edge_alpha_ratio": 0.0132,
+            "max_edge_alpha_ratio": 0.1299,
+            "perimeter_average_alpha_ratio": 0.0651,
+            "opposing_edge_pair_alpha_ratio": 0.0909,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_left",
+          "bbox_px": [
+            36,
+            26,
+            113,
+            178
+          ],
+          "opaque_pixel_count": 7625,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6515,
+            "top_edge_alpha_ratio": 0.0909,
+            "bottom_edge_alpha_ratio": 0.1299,
+            "left_edge_alpha_ratio": 0.0132,
+            "right_edge_alpha_ratio": 0.0263,
+            "max_edge_alpha_ratio": 0.1299,
+            "perimeter_average_alpha_ratio": 0.0651,
+            "opposing_edge_pair_alpha_ratio": 0.0909,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "neutral",
+          "bbox_px": [
+            42,
+            24,
+            118,
+            174
+          ],
+          "opaque_pixel_count": 7540,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6614,
+            "top_edge_alpha_ratio": 0.0921,
+            "bottom_edge_alpha_ratio": 0.1711,
+            "left_edge_alpha_ratio": 0.02,
+            "right_edge_alpha_ratio": 0.0467,
+            "max_edge_alpha_ratio": 0.1711,
+            "perimeter_average_alpha_ratio": 0.0825,
+            "opposing_edge_pair_alpha_ratio": 0.0921,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_right",
+          "bbox_px": [
+            47,
+            26,
+            124,
+            178
+          ],
+          "opaque_pixel_count": 7628,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6517,
+            "top_edge_alpha_ratio": 0.0909,
+            "bottom_edge_alpha_ratio": 0.1299,
+            "left_edge_alpha_ratio": 0.0132,
+            "right_edge_alpha_ratio": 0.0263,
+            "max_edge_alpha_ratio": 0.1299,
+            "perimeter_average_alpha_ratio": 0.0651,
+            "opposing_edge_pair_alpha_ratio": 0.0909,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_left",
+          "bbox_px": [
+            36,
+            26,
+            113,
+            178
+          ],
+          "opaque_pixel_count": 7625,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6515,
+            "top_edge_alpha_ratio": 0.0909,
+            "bottom_edge_alpha_ratio": 0.1299,
+            "left_edge_alpha_ratio": 0.0132,
+            "right_edge_alpha_ratio": 0.0263,
+            "max_edge_alpha_ratio": 0.1299,
+            "perimeter_average_alpha_ratio": 0.0651,
+            "opposing_edge_pair_alpha_ratio": 0.0909,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "neutral",
+          "bbox_px": [
+            42,
+            24,
+            118,
+            174
+          ],
+          "opaque_pixel_count": 7540,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6614,
+            "top_edge_alpha_ratio": 0.0921,
+            "bottom_edge_alpha_ratio": 0.1711,
+            "left_edge_alpha_ratio": 0.02,
+            "right_edge_alpha_ratio": 0.0467,
+            "max_edge_alpha_ratio": 0.1711,
+            "perimeter_average_alpha_ratio": 0.0825,
+            "opposing_edge_pair_alpha_ratio": 0.0921,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_right",
+          "bbox_px": [
+            47,
+            26,
+            124,
+            178
+          ],
+          "opaque_pixel_count": 7628,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6517,
+            "top_edge_alpha_ratio": 0.0909,
+            "bottom_edge_alpha_ratio": 0.1299,
+            "left_edge_alpha_ratio": 0.0132,
+            "right_edge_alpha_ratio": 0.0263,
+            "max_edge_alpha_ratio": 0.1299,
+            "perimeter_average_alpha_ratio": 0.0651,
+            "opposing_edge_pair_alpha_ratio": 0.0909,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        }
+      ],
+      "status": "pass",
+      "asset_status": "normalized_candidate_proof_only",
+      "source_prompt": "Create a transparent PNG sprite sheet for a cozy town life-sim child player walking animation. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Rounded chibi proportions compatible with 160x192 actor cells, cheerful child in practical warm play clothes and simple sneakers, clean silhouette, gentle face, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark.",
+      "risks": [
+        "raw generated sheet failed transparent/background gate; normalized proof sheet synthesized from Round174 alpha reference"
+      ]
+    },
+    {
+      "id": "mina_neighbor_walk_4dir",
+      "logical_asset_id": "actor.motion_sheet.mina_neighbor.walk_4dir",
+      "raw_png": "assets/art/visual_rebuild/round175/motion_sheets/raw_generated/mina_neighbor_walk_4dir_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round175/motion_sheets/normalized_960x768/mina_neighbor_walk_4dir.png",
+      "normalization_source": "round174_alpha_reference_synthetic_motion",
+      "raw_generated_gate": "fail",
+      "round174_reference_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/mina_neighbor_160x192.png",
+      "dimensions_px": [
+        480,
+        768
+      ],
+      "cell_size": [
+        160,
+        192
+      ],
+      "directions": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "frames_per_direction": 3,
+      "baseline_y_px": 176,
+      "pivot_px": [
+        80,
+        176
+      ],
+      "target_height_px": 158,
+      "has_alpha": true,
+      "transparent_corners": true,
+      "visual_background_block_count": 0,
+      "cell_results": [
+        {
+          "direction": "down",
+          "frame": "step_left",
+          "bbox_px": [
+            27,
+            18,
+            120,
+            178
+          ],
+          "opaque_pixel_count": 9820,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6599,
+            "top_edge_alpha_ratio": 0.0968,
+            "bottom_edge_alpha_ratio": 0.129,
+            "left_edge_alpha_ratio": 0.0563,
+            "right_edge_alpha_ratio": 0.0688,
+            "max_edge_alpha_ratio": 0.129,
+            "perimeter_average_alpha_ratio": 0.0877,
+            "opposing_edge_pair_alpha_ratio": 0.0968,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "neutral",
+          "bbox_px": [
+            34,
+            16,
+            126,
+            174
+          ],
+          "opaque_pixel_count": 9736,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6698,
+            "top_edge_alpha_ratio": 0.1087,
+            "bottom_edge_alpha_ratio": 0.1413,
+            "left_edge_alpha_ratio": 0.0823,
+            "right_edge_alpha_ratio": 0.0759,
+            "max_edge_alpha_ratio": 0.1413,
+            "perimeter_average_alpha_ratio": 0.1021,
+            "opposing_edge_pair_alpha_ratio": 0.1087,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "step_right",
+          "bbox_px": [
+            38,
+            18,
+            133,
+            178
+          ],
+          "opaque_pixel_count": 9832,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6468,
+            "top_edge_alpha_ratio": 0.0947,
+            "bottom_edge_alpha_ratio": 0.1263,
+            "left_edge_alpha_ratio": 0.0,
+            "right_edge_alpha_ratio": 0.05,
+            "max_edge_alpha_ratio": 0.1263,
+            "perimeter_average_alpha_ratio": 0.0678,
+            "opposing_edge_pair_alpha_ratio": 0.0947,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_left",
+          "bbox_px": [
+            27,
+            18,
+            122,
+            178
+          ],
+          "opaque_pixel_count": 9832,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6468,
+            "top_edge_alpha_ratio": 0.0947,
+            "bottom_edge_alpha_ratio": 0.1263,
+            "left_edge_alpha_ratio": 0.05,
+            "right_edge_alpha_ratio": 0.0,
+            "max_edge_alpha_ratio": 0.1263,
+            "perimeter_average_alpha_ratio": 0.0678,
+            "opposing_edge_pair_alpha_ratio": 0.0947,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "neutral",
+          "bbox_px": [
+            34,
+            16,
+            126,
+            174
+          ],
+          "opaque_pixel_count": 9736,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6698,
+            "top_edge_alpha_ratio": 0.1087,
+            "bottom_edge_alpha_ratio": 0.1413,
+            "left_edge_alpha_ratio": 0.0759,
+            "right_edge_alpha_ratio": 0.0823,
+            "max_edge_alpha_ratio": 0.1413,
+            "perimeter_average_alpha_ratio": 0.1021,
+            "opposing_edge_pair_alpha_ratio": 0.1087,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_right",
+          "bbox_px": [
+            40,
+            18,
+            133,
+            178
+          ],
+          "opaque_pixel_count": 9842,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6614,
+            "top_edge_alpha_ratio": 0.0968,
+            "bottom_edge_alpha_ratio": 0.129,
+            "left_edge_alpha_ratio": 0.0688,
+            "right_edge_alpha_ratio": 0.0563,
+            "max_edge_alpha_ratio": 0.129,
+            "perimeter_average_alpha_ratio": 0.0877,
+            "opposing_edge_pair_alpha_ratio": 0.0968,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_left",
+          "bbox_px": [
+            27,
+            18,
+            120,
+            178
+          ],
+          "opaque_pixel_count": 9842,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6614,
+            "top_edge_alpha_ratio": 0.0968,
+            "bottom_edge_alpha_ratio": 0.129,
+            "left_edge_alpha_ratio": 0.0563,
+            "right_edge_alpha_ratio": 0.0688,
+            "max_edge_alpha_ratio": 0.129,
+            "perimeter_average_alpha_ratio": 0.0877,
+            "opposing_edge_pair_alpha_ratio": 0.0968,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "neutral",
+          "bbox_px": [
+            34,
+            16,
+            126,
+            174
+          ],
+          "opaque_pixel_count": 9736,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6698,
+            "top_edge_alpha_ratio": 0.1087,
+            "bottom_edge_alpha_ratio": 0.1413,
+            "left_edge_alpha_ratio": 0.0823,
+            "right_edge_alpha_ratio": 0.0759,
+            "max_edge_alpha_ratio": 0.1413,
+            "perimeter_average_alpha_ratio": 0.1021,
+            "opposing_edge_pair_alpha_ratio": 0.1087,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_right",
+          "bbox_px": [
+            38,
+            18,
+            133,
+            178
+          ],
+          "opaque_pixel_count": 9832,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6468,
+            "top_edge_alpha_ratio": 0.0947,
+            "bottom_edge_alpha_ratio": 0.1263,
+            "left_edge_alpha_ratio": 0.0,
+            "right_edge_alpha_ratio": 0.05,
+            "max_edge_alpha_ratio": 0.1263,
+            "perimeter_average_alpha_ratio": 0.0678,
+            "opposing_edge_pair_alpha_ratio": 0.0947,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_left",
+          "bbox_px": [
+            27,
+            18,
+            120,
+            178
+          ],
+          "opaque_pixel_count": 9859,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6626,
+            "top_edge_alpha_ratio": 0.0968,
+            "bottom_edge_alpha_ratio": 0.129,
+            "left_edge_alpha_ratio": 0.0563,
+            "right_edge_alpha_ratio": 0.0688,
+            "max_edge_alpha_ratio": 0.129,
+            "perimeter_average_alpha_ratio": 0.0877,
+            "opposing_edge_pair_alpha_ratio": 0.0968,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "neutral",
+          "bbox_px": [
+            34,
+            16,
+            126,
+            174
+          ],
+          "opaque_pixel_count": 9777,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6726,
+            "top_edge_alpha_ratio": 0.1087,
+            "bottom_edge_alpha_ratio": 0.1413,
+            "left_edge_alpha_ratio": 0.0823,
+            "right_edge_alpha_ratio": 0.0759,
+            "max_edge_alpha_ratio": 0.1413,
+            "perimeter_average_alpha_ratio": 0.1021,
+            "opposing_edge_pair_alpha_ratio": 0.1087,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_right",
+          "bbox_px": [
+            38,
+            18,
+            133,
+            178
+          ],
+          "opaque_pixel_count": 9869,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6493,
+            "top_edge_alpha_ratio": 0.0947,
+            "bottom_edge_alpha_ratio": 0.1263,
+            "left_edge_alpha_ratio": 0.0,
+            "right_edge_alpha_ratio": 0.05,
+            "max_edge_alpha_ratio": 0.1263,
+            "perimeter_average_alpha_ratio": 0.0678,
+            "opposing_edge_pair_alpha_ratio": 0.0947,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        }
+      ],
+      "status": "pass",
+      "asset_status": "normalized_candidate_proof_only",
+      "source_prompt": "Create a transparent PNG sprite sheet for Mina, a friendly animal neighbor, walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Mina has soft rounded ears, a warm cardigan, friendly gentle face, rounded chibi proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark.",
+      "risks": [
+        "raw generated sheet failed transparent/background gate; normalized proof sheet synthesized from Round174 alpha reference"
+      ]
+    },
+    {
+      "id": "shopkeeper_warm_walk_4dir",
+      "logical_asset_id": "actor.motion_sheet.shopkeeper_warm.walk_4dir",
+      "raw_png": "assets/art/visual_rebuild/round175/motion_sheets/raw_generated/shopkeeper_warm_walk_4dir_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round175/motion_sheets/normalized_960x768/shopkeeper_warm_walk_4dir.png",
+      "normalization_source": "round174_alpha_reference_synthetic_motion",
+      "raw_generated_gate": "fail",
+      "round174_reference_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/shopkeeper_warm_160x192.png",
+      "dimensions_px": [
+        480,
+        768
+      ],
+      "cell_size": [
+        160,
+        192
+      ],
+      "directions": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "frames_per_direction": 3,
+      "baseline_y_px": 176,
+      "pivot_px": [
+        80,
+        176
+      ],
+      "target_height_px": 158,
+      "has_alpha": true,
+      "transparent_corners": true,
+      "visual_background_block_count": 0,
+      "cell_results": [
+        {
+          "direction": "down",
+          "frame": "step_left",
+          "bbox_px": [
+            17,
+            18,
+            133,
+            178
+          ],
+          "opaque_pixel_count": 12569,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6772,
+            "top_edge_alpha_ratio": 0.1724,
+            "bottom_edge_alpha_ratio": 0.1293,
+            "left_edge_alpha_ratio": 0.05,
+            "right_edge_alpha_ratio": 0.0688,
+            "max_edge_alpha_ratio": 0.1724,
+            "perimeter_average_alpha_ratio": 0.1051,
+            "opposing_edge_pair_alpha_ratio": 0.1293,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "neutral",
+          "bbox_px": [
+            23,
+            16,
+            137,
+            174
+          ],
+          "opaque_pixel_count": 12445,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6909,
+            "top_edge_alpha_ratio": 0.1754,
+            "bottom_edge_alpha_ratio": 0.1053,
+            "left_edge_alpha_ratio": 0.057,
+            "right_edge_alpha_ratio": 0.0696,
+            "max_edge_alpha_ratio": 0.1754,
+            "perimeter_average_alpha_ratio": 0.1018,
+            "opposing_edge_pair_alpha_ratio": 0.1053,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "step_right",
+          "bbox_px": [
+            28,
+            18,
+            143,
+            178
+          ],
+          "opaque_pixel_count": 12568,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.683,
+            "top_edge_alpha_ratio": 0.1739,
+            "bottom_edge_alpha_ratio": 0.1304,
+            "left_edge_alpha_ratio": 0.0375,
+            "right_edge_alpha_ratio": 0.0,
+            "max_edge_alpha_ratio": 0.1739,
+            "perimeter_average_alpha_ratio": 0.0855,
+            "opposing_edge_pair_alpha_ratio": 0.1304,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_left",
+          "bbox_px": [
+            17,
+            18,
+            132,
+            178
+          ],
+          "opaque_pixel_count": 12568,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.683,
+            "top_edge_alpha_ratio": 0.1739,
+            "bottom_edge_alpha_ratio": 0.1304,
+            "left_edge_alpha_ratio": 0.0,
+            "right_edge_alpha_ratio": 0.0375,
+            "max_edge_alpha_ratio": 0.1739,
+            "perimeter_average_alpha_ratio": 0.0855,
+            "opposing_edge_pair_alpha_ratio": 0.1304,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "neutral",
+          "bbox_px": [
+            23,
+            16,
+            137,
+            174
+          ],
+          "opaque_pixel_count": 12445,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6909,
+            "top_edge_alpha_ratio": 0.1754,
+            "bottom_edge_alpha_ratio": 0.1053,
+            "left_edge_alpha_ratio": 0.0696,
+            "right_edge_alpha_ratio": 0.057,
+            "max_edge_alpha_ratio": 0.1754,
+            "perimeter_average_alpha_ratio": 0.1018,
+            "opposing_edge_pair_alpha_ratio": 0.1053,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_right",
+          "bbox_px": [
+            27,
+            18,
+            143,
+            178
+          ],
+          "opaque_pixel_count": 12569,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6772,
+            "top_edge_alpha_ratio": 0.1724,
+            "bottom_edge_alpha_ratio": 0.1293,
+            "left_edge_alpha_ratio": 0.0688,
+            "right_edge_alpha_ratio": 0.05,
+            "max_edge_alpha_ratio": 0.1724,
+            "perimeter_average_alpha_ratio": 0.1051,
+            "opposing_edge_pair_alpha_ratio": 0.1293,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_left",
+          "bbox_px": [
+            17,
+            18,
+            133,
+            178
+          ],
+          "opaque_pixel_count": 12569,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6772,
+            "top_edge_alpha_ratio": 0.1724,
+            "bottom_edge_alpha_ratio": 0.1293,
+            "left_edge_alpha_ratio": 0.05,
+            "right_edge_alpha_ratio": 0.0688,
+            "max_edge_alpha_ratio": 0.1724,
+            "perimeter_average_alpha_ratio": 0.1051,
+            "opposing_edge_pair_alpha_ratio": 0.1293,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "neutral",
+          "bbox_px": [
+            23,
+            16,
+            137,
+            174
+          ],
+          "opaque_pixel_count": 12445,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6909,
+            "top_edge_alpha_ratio": 0.1754,
+            "bottom_edge_alpha_ratio": 0.1053,
+            "left_edge_alpha_ratio": 0.057,
+            "right_edge_alpha_ratio": 0.0696,
+            "max_edge_alpha_ratio": 0.1754,
+            "perimeter_average_alpha_ratio": 0.1018,
+            "opposing_edge_pair_alpha_ratio": 0.1053,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_right",
+          "bbox_px": [
+            28,
+            18,
+            143,
+            178
+          ],
+          "opaque_pixel_count": 12568,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.683,
+            "top_edge_alpha_ratio": 0.1739,
+            "bottom_edge_alpha_ratio": 0.1304,
+            "left_edge_alpha_ratio": 0.0375,
+            "right_edge_alpha_ratio": 0.0,
+            "max_edge_alpha_ratio": 0.1739,
+            "perimeter_average_alpha_ratio": 0.0855,
+            "opposing_edge_pair_alpha_ratio": 0.1304,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_left",
+          "bbox_px": [
+            17,
+            18,
+            133,
+            178
+          ],
+          "opaque_pixel_count": 12569,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6772,
+            "top_edge_alpha_ratio": 0.1724,
+            "bottom_edge_alpha_ratio": 0.1293,
+            "left_edge_alpha_ratio": 0.05,
+            "right_edge_alpha_ratio": 0.0688,
+            "max_edge_alpha_ratio": 0.1724,
+            "perimeter_average_alpha_ratio": 0.1051,
+            "opposing_edge_pair_alpha_ratio": 0.1293,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "neutral",
+          "bbox_px": [
+            23,
+            16,
+            137,
+            174
+          ],
+          "opaque_pixel_count": 12445,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.6909,
+            "top_edge_alpha_ratio": 0.1754,
+            "bottom_edge_alpha_ratio": 0.1053,
+            "left_edge_alpha_ratio": 0.057,
+            "right_edge_alpha_ratio": 0.0696,
+            "max_edge_alpha_ratio": 0.1754,
+            "perimeter_average_alpha_ratio": 0.1018,
+            "opposing_edge_pair_alpha_ratio": 0.1053,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_right",
+          "bbox_px": [
+            28,
+            18,
+            143,
+            178
+          ],
+          "opaque_pixel_count": 12568,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.683,
+            "top_edge_alpha_ratio": 0.1739,
+            "bottom_edge_alpha_ratio": 0.1304,
+            "left_edge_alpha_ratio": 0.0375,
+            "right_edge_alpha_ratio": 0.0,
+            "max_edge_alpha_ratio": 0.1739,
+            "perimeter_average_alpha_ratio": 0.0855,
+            "opposing_edge_pair_alpha_ratio": 0.1304,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        }
+      ],
+      "status": "pass",
+      "asset_status": "normalized_candidate_proof_only",
+      "source_prompt": "Create a transparent PNG sprite sheet for a warm shopkeeper animal resident walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Friendly adult animal resident wearing a small apron and simple shirt, rounded chibi proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no shop background, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark.",
+      "risks": [
+        "raw generated sheet failed transparent/background gate; normalized proof sheet synthesized from Round174 alpha reference"
+      ]
+    },
+    {
+      "id": "sunny_companion_walk_4dir",
+      "logical_asset_id": "actor.motion_sheet.sunny_companion.walk_4dir",
+      "raw_png": "assets/art/visual_rebuild/round175/motion_sheets/raw_generated/sunny_companion_walk_4dir_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round175/motion_sheets/normalized_960x768/sunny_companion_walk_4dir.png",
+      "normalization_source": "round174_alpha_reference_synthetic_motion",
+      "raw_generated_gate": "fail",
+      "round174_reference_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/sunny_companion_160x192.png",
+      "dimensions_px": [
+        480,
+        768
+      ],
+      "cell_size": [
+        160,
+        192
+      ],
+      "directions": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "frames_per_direction": 3,
+      "baseline_y_px": 176,
+      "pivot_px": [
+        80,
+        176
+      ],
+      "target_height_px": 96,
+      "has_alpha": true,
+      "transparent_corners": true,
+      "visual_background_block_count": 0,
+      "cell_results": [
+        {
+          "direction": "down",
+          "frame": "step_left",
+          "bbox_px": [
+            31,
+            80,
+            119,
+            178
+          ],
+          "opaque_pixel_count": 6692,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.776,
+            "top_edge_alpha_ratio": 0.1136,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0306,
+            "right_edge_alpha_ratio": 0.0612,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.0826,
+            "opposing_edge_pair_alpha_ratio": 0.1136,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "neutral",
+          "bbox_px": [
+            37,
+            78,
+            123,
+            174
+          ],
+          "opaque_pixel_count": 6628,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.8028,
+            "top_edge_alpha_ratio": 0.1047,
+            "bottom_edge_alpha_ratio": 0.1744,
+            "left_edge_alpha_ratio": 0.1771,
+            "right_edge_alpha_ratio": 0.1042,
+            "max_edge_alpha_ratio": 0.1771,
+            "perimeter_average_alpha_ratio": 0.1401,
+            "opposing_edge_pair_alpha_ratio": 0.1047,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "step_right",
+          "bbox_px": [
+            41,
+            80,
+            128,
+            178
+          ],
+          "opaque_pixel_count": 6693,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.785,
+            "top_edge_alpha_ratio": 0.1149,
+            "bottom_edge_alpha_ratio": 0.1264,
+            "left_edge_alpha_ratio": 0.0102,
+            "right_edge_alpha_ratio": 0.0204,
+            "max_edge_alpha_ratio": 0.1264,
+            "perimeter_average_alpha_ratio": 0.068,
+            "opposing_edge_pair_alpha_ratio": 0.1149,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_left",
+          "bbox_px": [
+            32,
+            80,
+            119,
+            178
+          ],
+          "opaque_pixel_count": 6693,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.785,
+            "top_edge_alpha_ratio": 0.1149,
+            "bottom_edge_alpha_ratio": 0.1264,
+            "left_edge_alpha_ratio": 0.0204,
+            "right_edge_alpha_ratio": 0.0102,
+            "max_edge_alpha_ratio": 0.1264,
+            "perimeter_average_alpha_ratio": 0.068,
+            "opposing_edge_pair_alpha_ratio": 0.1149,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "neutral",
+          "bbox_px": [
+            37,
+            78,
+            123,
+            174
+          ],
+          "opaque_pixel_count": 6628,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.8028,
+            "top_edge_alpha_ratio": 0.1047,
+            "bottom_edge_alpha_ratio": 0.1744,
+            "left_edge_alpha_ratio": 0.1042,
+            "right_edge_alpha_ratio": 0.1771,
+            "max_edge_alpha_ratio": 0.1771,
+            "perimeter_average_alpha_ratio": 0.1401,
+            "opposing_edge_pair_alpha_ratio": 0.1047,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_right",
+          "bbox_px": [
+            41,
+            80,
+            129,
+            178
+          ],
+          "opaque_pixel_count": 6698,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7767,
+            "top_edge_alpha_ratio": 0.1136,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0612,
+            "right_edge_alpha_ratio": 0.0306,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.0826,
+            "opposing_edge_pair_alpha_ratio": 0.1136,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_left",
+          "bbox_px": [
+            31,
+            80,
+            119,
+            178
+          ],
+          "opaque_pixel_count": 6698,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7767,
+            "top_edge_alpha_ratio": 0.1136,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0306,
+            "right_edge_alpha_ratio": 0.0612,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.0826,
+            "opposing_edge_pair_alpha_ratio": 0.1136,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "neutral",
+          "bbox_px": [
+            37,
+            78,
+            123,
+            174
+          ],
+          "opaque_pixel_count": 6628,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.8028,
+            "top_edge_alpha_ratio": 0.1047,
+            "bottom_edge_alpha_ratio": 0.1744,
+            "left_edge_alpha_ratio": 0.1771,
+            "right_edge_alpha_ratio": 0.1042,
+            "max_edge_alpha_ratio": 0.1771,
+            "perimeter_average_alpha_ratio": 0.1401,
+            "opposing_edge_pair_alpha_ratio": 0.1047,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_right",
+          "bbox_px": [
+            41,
+            80,
+            128,
+            178
+          ],
+          "opaque_pixel_count": 6693,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.785,
+            "top_edge_alpha_ratio": 0.1149,
+            "bottom_edge_alpha_ratio": 0.1264,
+            "left_edge_alpha_ratio": 0.0102,
+            "right_edge_alpha_ratio": 0.0204,
+            "max_edge_alpha_ratio": 0.1264,
+            "perimeter_average_alpha_ratio": 0.068,
+            "opposing_edge_pair_alpha_ratio": 0.1149,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_left",
+          "bbox_px": [
+            31,
+            80,
+            119,
+            178
+          ],
+          "opaque_pixel_count": 6692,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.776,
+            "top_edge_alpha_ratio": 0.1136,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0306,
+            "right_edge_alpha_ratio": 0.0612,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.0826,
+            "opposing_edge_pair_alpha_ratio": 0.1136,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "neutral",
+          "bbox_px": [
+            37,
+            78,
+            123,
+            174
+          ],
+          "opaque_pixel_count": 6628,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.8028,
+            "top_edge_alpha_ratio": 0.1047,
+            "bottom_edge_alpha_ratio": 0.1744,
+            "left_edge_alpha_ratio": 0.1771,
+            "right_edge_alpha_ratio": 0.1042,
+            "max_edge_alpha_ratio": 0.1771,
+            "perimeter_average_alpha_ratio": 0.1401,
+            "opposing_edge_pair_alpha_ratio": 0.1047,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_right",
+          "bbox_px": [
+            41,
+            80,
+            128,
+            178
+          ],
+          "opaque_pixel_count": 6693,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.785,
+            "top_edge_alpha_ratio": 0.1149,
+            "bottom_edge_alpha_ratio": 0.1264,
+            "left_edge_alpha_ratio": 0.0102,
+            "right_edge_alpha_ratio": 0.0204,
+            "max_edge_alpha_ratio": 0.1264,
+            "perimeter_average_alpha_ratio": 0.068,
+            "opposing_edge_pair_alpha_ratio": 0.1149,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        }
+      ],
+      "status": "pass",
+      "asset_status": "normalized_candidate_proof_only",
+      "source_prompt": "Create a transparent PNG sprite sheet for Sunny, a small sunny companion pet, walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Small rounded companion pet with a sunny warm personality, soft ears, tiny paws, rounded proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching the fullbody actor style. Keep every frame centered in its cell, paws on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark.",
+      "risks": [
+        "raw generated sheet failed transparent/background gate; normalized proof sheet synthesized from Round174 alpha reference"
+      ]
+    },
+    {
+      "id": "story_bear_walk_4dir",
+      "logical_asset_id": "actor.motion_sheet.story_bear.walk_4dir",
+      "raw_png": "assets/art/visual_rebuild/round175/motion_sheets/raw_generated/story_bear_walk_4dir_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round175/motion_sheets/normalized_960x768/story_bear_walk_4dir.png",
+      "normalization_source": "round174_alpha_reference_synthetic_motion",
+      "raw_generated_gate": "fail",
+      "round174_reference_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/story_bear_friend_160x192.png",
+      "dimensions_px": [
+        480,
+        768
+      ],
+      "cell_size": [
+        160,
+        192
+      ],
+      "directions": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "frames_per_direction": 3,
+      "baseline_y_px": 176,
+      "pivot_px": [
+        80,
+        176
+      ],
+      "target_height_px": 158,
+      "has_alpha": true,
+      "transparent_corners": true,
+      "visual_background_block_count": 0,
+      "cell_results": [
+        {
+          "direction": "down",
+          "frame": "step_left",
+          "bbox_px": [
+            28,
+            22,
+            118,
+            178
+          ],
+          "opaque_pixel_count": 10204,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7268,
+            "top_edge_alpha_ratio": 0.1111,
+            "bottom_edge_alpha_ratio": 0.1222,
+            "left_edge_alpha_ratio": 0.0449,
+            "right_edge_alpha_ratio": 0.0577,
+            "max_edge_alpha_ratio": 0.1222,
+            "perimeter_average_alpha_ratio": 0.084,
+            "opposing_edge_pair_alpha_ratio": 0.1111,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "neutral",
+          "bbox_px": [
+            35,
+            20,
+            124,
+            174
+          ],
+          "opaque_pixel_count": 10104,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7372,
+            "top_edge_alpha_ratio": 0.1124,
+            "bottom_edge_alpha_ratio": 0.1348,
+            "left_edge_alpha_ratio": 0.0714,
+            "right_edge_alpha_ratio": 0.0649,
+            "max_edge_alpha_ratio": 0.1348,
+            "perimeter_average_alpha_ratio": 0.0959,
+            "opposing_edge_pair_alpha_ratio": 0.1124,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "step_right",
+          "bbox_px": [
+            39,
+            22,
+            131,
+            178
+          ],
+          "opaque_pixel_count": 10219,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.712,
+            "top_edge_alpha_ratio": 0.1087,
+            "bottom_edge_alpha_ratio": 0.1304,
+            "left_edge_alpha_ratio": 0.0,
+            "right_edge_alpha_ratio": 0.0385,
+            "max_edge_alpha_ratio": 0.1304,
+            "perimeter_average_alpha_ratio": 0.0694,
+            "opposing_edge_pair_alpha_ratio": 0.1087,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_left",
+          "bbox_px": [
+            29,
+            22,
+            121,
+            178
+          ],
+          "opaque_pixel_count": 10219,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.712,
+            "top_edge_alpha_ratio": 0.1087,
+            "bottom_edge_alpha_ratio": 0.1304,
+            "left_edge_alpha_ratio": 0.0385,
+            "right_edge_alpha_ratio": 0.0,
+            "max_edge_alpha_ratio": 0.1304,
+            "perimeter_average_alpha_ratio": 0.0694,
+            "opposing_edge_pair_alpha_ratio": 0.1087,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "neutral",
+          "bbox_px": [
+            36,
+            20,
+            125,
+            174
+          ],
+          "opaque_pixel_count": 10104,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7372,
+            "top_edge_alpha_ratio": 0.1124,
+            "bottom_edge_alpha_ratio": 0.1348,
+            "left_edge_alpha_ratio": 0.0649,
+            "right_edge_alpha_ratio": 0.0714,
+            "max_edge_alpha_ratio": 0.1348,
+            "perimeter_average_alpha_ratio": 0.0959,
+            "opposing_edge_pair_alpha_ratio": 0.1124,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_right",
+          "bbox_px": [
+            42,
+            22,
+            132,
+            178
+          ],
+          "opaque_pixel_count": 10209,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7271,
+            "top_edge_alpha_ratio": 0.1111,
+            "bottom_edge_alpha_ratio": 0.1222,
+            "left_edge_alpha_ratio": 0.0577,
+            "right_edge_alpha_ratio": 0.0449,
+            "max_edge_alpha_ratio": 0.1222,
+            "perimeter_average_alpha_ratio": 0.084,
+            "opposing_edge_pair_alpha_ratio": 0.1111,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_left",
+          "bbox_px": [
+            28,
+            22,
+            118,
+            178
+          ],
+          "opaque_pixel_count": 10209,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7271,
+            "top_edge_alpha_ratio": 0.1111,
+            "bottom_edge_alpha_ratio": 0.1222,
+            "left_edge_alpha_ratio": 0.0449,
+            "right_edge_alpha_ratio": 0.0577,
+            "max_edge_alpha_ratio": 0.1222,
+            "perimeter_average_alpha_ratio": 0.084,
+            "opposing_edge_pair_alpha_ratio": 0.1111,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "neutral",
+          "bbox_px": [
+            35,
+            20,
+            124,
+            174
+          ],
+          "opaque_pixel_count": 10104,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7372,
+            "top_edge_alpha_ratio": 0.1124,
+            "bottom_edge_alpha_ratio": 0.1348,
+            "left_edge_alpha_ratio": 0.0714,
+            "right_edge_alpha_ratio": 0.0649,
+            "max_edge_alpha_ratio": 0.1348,
+            "perimeter_average_alpha_ratio": 0.0959,
+            "opposing_edge_pair_alpha_ratio": 0.1124,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_right",
+          "bbox_px": [
+            39,
+            22,
+            131,
+            178
+          ],
+          "opaque_pixel_count": 10219,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.712,
+            "top_edge_alpha_ratio": 0.1087,
+            "bottom_edge_alpha_ratio": 0.1304,
+            "left_edge_alpha_ratio": 0.0,
+            "right_edge_alpha_ratio": 0.0385,
+            "max_edge_alpha_ratio": 0.1304,
+            "perimeter_average_alpha_ratio": 0.0694,
+            "opposing_edge_pair_alpha_ratio": 0.1087,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_left",
+          "bbox_px": [
+            28,
+            22,
+            118,
+            178
+          ],
+          "opaque_pixel_count": 10204,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7268,
+            "top_edge_alpha_ratio": 0.1111,
+            "bottom_edge_alpha_ratio": 0.1222,
+            "left_edge_alpha_ratio": 0.0449,
+            "right_edge_alpha_ratio": 0.0577,
+            "max_edge_alpha_ratio": 0.1222,
+            "perimeter_average_alpha_ratio": 0.084,
+            "opposing_edge_pair_alpha_ratio": 0.1111,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "neutral",
+          "bbox_px": [
+            35,
+            20,
+            124,
+            174
+          ],
+          "opaque_pixel_count": 10104,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7372,
+            "top_edge_alpha_ratio": 0.1124,
+            "bottom_edge_alpha_ratio": 0.1348,
+            "left_edge_alpha_ratio": 0.0714,
+            "right_edge_alpha_ratio": 0.0649,
+            "max_edge_alpha_ratio": 0.1348,
+            "perimeter_average_alpha_ratio": 0.0959,
+            "opposing_edge_pair_alpha_ratio": 0.1124,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_right",
+          "bbox_px": [
+            39,
+            22,
+            131,
+            178
+          ],
+          "opaque_pixel_count": 10219,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.712,
+            "top_edge_alpha_ratio": 0.1087,
+            "bottom_edge_alpha_ratio": 0.1304,
+            "left_edge_alpha_ratio": 0.0,
+            "right_edge_alpha_ratio": 0.0385,
+            "max_edge_alpha_ratio": 0.1304,
+            "perimeter_average_alpha_ratio": 0.0694,
+            "opposing_edge_pair_alpha_ratio": 0.1087,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        }
+      ],
+      "status": "pass",
+      "asset_status": "normalized_candidate_proof_only",
+      "source_prompt": "Create a transparent PNG sprite sheet for Story Bear, a gentle bear friend, walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Gentle rounded bear friend with cozy storyteller warmth, simple soft clothing detail, rounded chibi proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark.",
+      "risks": [
+        "raw generated sheet failed transparent/background gate; normalized proof sheet synthesized from Round174 alpha reference"
+      ]
+    },
+    {
+      "id": "bus_brother_walk_4dir",
+      "logical_asset_id": "actor.motion_sheet.bus_brother.walk_4dir",
+      "raw_png": "assets/art/visual_rebuild/round175/motion_sheets/raw_generated/bus_brother_walk_4dir_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round175/motion_sheets/normalized_960x768/bus_brother_walk_4dir.png",
+      "normalization_source": "round174_alpha_reference_synthetic_motion",
+      "raw_generated_gate": "fail",
+      "round174_reference_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/bus_brother_helper_160x192.png",
+      "dimensions_px": [
+        480,
+        768
+      ],
+      "cell_size": [
+        160,
+        192
+      ],
+      "directions": [
+        "down",
+        "left",
+        "right",
+        "up"
+      ],
+      "frames_per_direction": 3,
+      "baseline_y_px": 176,
+      "pivot_px": [
+        80,
+        176
+      ],
+      "target_height_px": 158,
+      "has_alpha": true,
+      "transparent_corners": true,
+      "visual_background_block_count": 0,
+      "cell_results": [
+        {
+          "direction": "down",
+          "frame": "step_left",
+          "bbox_px": [
+            31,
+            18,
+            119,
+            178
+          ],
+          "opaque_pixel_count": 9960,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7074,
+            "top_edge_alpha_ratio": 0.0795,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0437,
+            "right_edge_alpha_ratio": 0.0437,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.073,
+            "opposing_edge_pair_alpha_ratio": 0.0795,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "neutral",
+          "bbox_px": [
+            36,
+            16,
+            123,
+            174
+          ],
+          "opaque_pixel_count": 9882,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7189,
+            "top_edge_alpha_ratio": 0.069,
+            "bottom_edge_alpha_ratio": 0.1724,
+            "left_edge_alpha_ratio": 0.1329,
+            "right_edge_alpha_ratio": 0.0633,
+            "max_edge_alpha_ratio": 0.1724,
+            "perimeter_average_alpha_ratio": 0.1094,
+            "opposing_edge_pair_alpha_ratio": 0.069,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "down",
+          "frame": "step_right",
+          "bbox_px": [
+            40,
+            18,
+            128,
+            178
+          ],
+          "opaque_pixel_count": 9979,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7087,
+            "top_edge_alpha_ratio": 0.0795,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0688,
+            "right_edge_alpha_ratio": 0.0563,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.0824,
+            "opposing_edge_pair_alpha_ratio": 0.0795,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_left",
+          "bbox_px": [
+            32,
+            18,
+            120,
+            178
+          ],
+          "opaque_pixel_count": 9979,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7087,
+            "top_edge_alpha_ratio": 0.0795,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0563,
+            "right_edge_alpha_ratio": 0.0688,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.0824,
+            "opposing_edge_pair_alpha_ratio": 0.0795,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "neutral",
+          "bbox_px": [
+            37,
+            16,
+            124,
+            174
+          ],
+          "opaque_pixel_count": 9882,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7189,
+            "top_edge_alpha_ratio": 0.069,
+            "bottom_edge_alpha_ratio": 0.1724,
+            "left_edge_alpha_ratio": 0.0633,
+            "right_edge_alpha_ratio": 0.1329,
+            "max_edge_alpha_ratio": 0.1724,
+            "perimeter_average_alpha_ratio": 0.1094,
+            "opposing_edge_pair_alpha_ratio": 0.069,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "left",
+          "frame": "step_right",
+          "bbox_px": [
+            41,
+            18,
+            129,
+            178
+          ],
+          "opaque_pixel_count": 9963,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7076,
+            "top_edge_alpha_ratio": 0.0795,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0437,
+            "right_edge_alpha_ratio": 0.0437,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.073,
+            "opposing_edge_pair_alpha_ratio": 0.0795,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_left",
+          "bbox_px": [
+            31,
+            18,
+            119,
+            178
+          ],
+          "opaque_pixel_count": 9963,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7076,
+            "top_edge_alpha_ratio": 0.0795,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0437,
+            "right_edge_alpha_ratio": 0.0437,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.073,
+            "opposing_edge_pair_alpha_ratio": 0.0795,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "neutral",
+          "bbox_px": [
+            36,
+            16,
+            123,
+            174
+          ],
+          "opaque_pixel_count": 9882,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7189,
+            "top_edge_alpha_ratio": 0.069,
+            "bottom_edge_alpha_ratio": 0.1724,
+            "left_edge_alpha_ratio": 0.1329,
+            "right_edge_alpha_ratio": 0.0633,
+            "max_edge_alpha_ratio": 0.1724,
+            "perimeter_average_alpha_ratio": 0.1094,
+            "opposing_edge_pair_alpha_ratio": 0.069,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "right",
+          "frame": "step_right",
+          "bbox_px": [
+            40,
+            18,
+            128,
+            178
+          ],
+          "opaque_pixel_count": 9979,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7087,
+            "top_edge_alpha_ratio": 0.0795,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0688,
+            "right_edge_alpha_ratio": 0.0563,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.0824,
+            "opposing_edge_pair_alpha_ratio": 0.0795,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_left",
+          "bbox_px": [
+            31,
+            18,
+            119,
+            178
+          ],
+          "opaque_pixel_count": 10083,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7161,
+            "top_edge_alpha_ratio": 0.0795,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0437,
+            "right_edge_alpha_ratio": 0.0437,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.073,
+            "opposing_edge_pair_alpha_ratio": 0.0795,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "neutral",
+          "bbox_px": [
+            36,
+            16,
+            123,
+            174
+          ],
+          "opaque_pixel_count": 9993,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": -2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.727,
+            "top_edge_alpha_ratio": 0.069,
+            "bottom_edge_alpha_ratio": 0.1724,
+            "left_edge_alpha_ratio": 0.1329,
+            "right_edge_alpha_ratio": 0.0633,
+            "max_edge_alpha_ratio": 0.1724,
+            "perimeter_average_alpha_ratio": 0.1094,
+            "opposing_edge_pair_alpha_ratio": 0.069,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        },
+        {
+          "direction": "up",
+          "frame": "step_right",
+          "bbox_px": [
+            40,
+            18,
+            128,
+            178
+          ],
+          "opaque_pixel_count": 10100,
+          "transparent_corners": true,
+          "baseline_contact_delta_px": 2,
+          "edge_touch": {
+            "top": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0
+          },
+          "rectangular_background_check": {
+            "bbox_fill_ratio": 0.7173,
+            "top_edge_alpha_ratio": 0.0795,
+            "bottom_edge_alpha_ratio": 0.125,
+            "left_edge_alpha_ratio": 0.0688,
+            "right_edge_alpha_ratio": 0.0563,
+            "max_edge_alpha_ratio": 0.125,
+            "perimeter_average_alpha_ratio": 0.0824,
+            "opposing_edge_pair_alpha_ratio": 0.0795,
+            "opaque_rectangular_block": false
+          },
+          "status": "pass",
+          "risks": []
+        }
+      ],
+      "status": "pass",
+      "asset_status": "normalized_candidate_proof_only",
+      "source_prompt": "Create a transparent PNG sprite sheet for Bus Brother, a kind helper older animal resident, walking animation for a cozy town life-sim. Exact layout: 4 rows by 3 columns, no gaps, each cell contains one full-body frame. Rows in order: facing down, facing left, facing right, facing up. Columns: step-left, neutral, step-right. Kind helper older brother feeling, simple travel jacket or vest, rounded chibi proportions compatible with 160x192 actor cells, clean silhouette, warm child-safe cozy-town game art matching a fullbody standing sprite style. Keep every frame centered in its cell, feet on the same baseline, generous padding, no cropped body parts. Transparent background only. No text, no labels, no bus background, no grid lines, no rectangular backing, no halo, no shadow, no scene, no UI card, no watermark.",
+      "risks": [
+        "raw generated sheet failed transparent/background gate; normalized proof sheet synthesized from Round174 alpha reference"
+      ]
+    }
+  ],
+  "risks": [
+    "proof-only generated candidates; require animation/art direction review before runtime use",
+    "image model may vary character details across directions and frames",
+    "checker catches rectangular background blocks but cannot prove animation readability by itself"
+  ]
+}

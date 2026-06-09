@@ -1,0 +1,305 @@
+{
+  "source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/path_fence_flower_home_pipeline_v002/raw/round169_flower_ai_raw_sheet_v002.png",
+  "alpha_source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/path_fence_flower_home_pipeline_v002/flower_normalized_v002/round169_flower_ai_raw_sheet_v002_chroma_alpha.png",
+  "atlas": "assets/art/visual_rebuild/round169/flower/flower_patches_192x160_sheet_v002.png",
+  "pivot_proof": "assets/art/visual_rebuild/round169/flower/flower_patches_192x160_pivot_proof_v002.png",
+  "source_grid": {
+    "columns": 3,
+    "rows": 2
+  },
+  "cell_size": [
+    192,
+    160
+  ],
+  "fit_box": [
+    168,
+    124
+  ],
+  "pivot_px": [
+    96,
+    148
+  ],
+  "key_color": "#0000ff",
+  "key_family": "exact",
+  "items": [
+    {
+      "index": 1,
+      "id": "flower_patch.01",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        65,
+        189,
+        270,
+        430
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/flower/normalized_192x160/flower_patch_01_192x160.png",
+      "cell_size": [
+        192,
+        160
+      ],
+      "pivot_px": [
+        96,
+        148
+      ],
+      "placed_bbox": [
+        44,
+        24,
+        149,
+        148
+      ],
+      "margins_px": {
+        "left": 44,
+        "top": 24,
+        "right": 43,
+        "bottom": 12
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.5145228215767634,
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "id": "flower_patch.02",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        10,
+        217,
+        310,
+        426
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/flower/normalized_192x160/flower_patch_02_192x160.png",
+      "cell_size": [
+        192,
+        160
+      ],
+      "pivot_px": [
+        96,
+        148
+      ],
+      "placed_bbox": [
+        12,
+        31,
+        180,
+        148
+      ],
+      "margins_px": {
+        "left": 12,
+        "top": 31,
+        "right": 12,
+        "bottom": 12
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.56,
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "id": "flower_patch.03",
+      "source_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        37,
+        151,
+        286,
+        436
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/flower/normalized_192x160/flower_patch_03_192x160.png",
+      "cell_size": [
+        192,
+        160
+      ],
+      "pivot_px": [
+        96,
+        148
+      ],
+      "placed_bbox": [
+        42,
+        24,
+        150,
+        148
+      ],
+      "margins_px": {
+        "left": 42,
+        "top": 24,
+        "right": 42,
+        "bottom": 12
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.43508771929824563,
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "id": "flower_patch.04",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        0,
+        71,
+        300,
+        512
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/flower/normalized_192x160/flower_patch_04_192x160.png",
+      "cell_size": [
+        192,
+        160
+      ],
+      "pivot_px": [
+        96,
+        148
+      ],
+      "placed_bbox": [
+        65,
+        24,
+        138,
+        100
+      ],
+      "margins_px": {
+        "left": 65,
+        "top": 24,
+        "right": 54,
+        "bottom": 60
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.2811791383219955,
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "id": "flower_patch.05",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        3,
+        21,
+        341,
+        339
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/flower/normalized_192x160/flower_patch_05_192x160.png",
+      "cell_size": [
+        192,
+        160
+      ],
+      "pivot_px": [
+        96,
+        148
+      ],
+      "placed_bbox": [
+        30,
+        24,
+        162,
+        148
+      ],
+      "margins_px": {
+        "left": 30,
+        "top": 24,
+        "right": 30,
+        "bottom": 12
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 2,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.389937106918239,
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "id": "flower_patch.06",
+      "source_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        0,
+        133,
+        342,
+        512
+      ],
+      "normalized_png": "assets/art/visual_rebuild/round169/flower/normalized_192x160/flower_patch_06_192x160.png",
+      "cell_size": [
+        192,
+        160
+      ],
+      "pivot_px": [
+        96,
+        148
+      ],
+      "placed_bbox": [
+        40,
+        24,
+        144,
+        92
+      ],
+      "margins_px": {
+        "left": 40,
+        "top": 24,
+        "right": 48,
+        "bottom": 68
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "max_components": 2,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.32717678100263853,
+      "status": "pass"
+    }
+  ],
+  "overall_gate": "pass",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "category": "flower_patch"
+}

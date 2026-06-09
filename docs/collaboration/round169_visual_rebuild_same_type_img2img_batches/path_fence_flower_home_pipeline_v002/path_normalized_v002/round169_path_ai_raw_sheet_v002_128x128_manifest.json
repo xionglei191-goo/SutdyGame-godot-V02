@@ -1,0 +1,468 @@
+{
+  "source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/path_fence_flower_home_pipeline_v002/raw/round169_path_ai_raw_sheet_v002.png",
+  "alpha_source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/path_fence_flower_home_pipeline_v002/path_normalized_v002/round169_path_ai_raw_sheet_v002_chroma_alpha.png",
+  "atlas": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/path_fence_flower_home_pipeline_v002/path_normalized_v002/round169_path_ai_raw_sheet_v002_128x128_atlas.png",
+  "tile_proof": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/path_fence_flower_home_pipeline_v002/path_normalized_v002/round169_path_ai_raw_sheet_v002_128x128_tile_proof.png",
+  "source_grid": {
+    "columns": 4,
+    "rows": 4
+  },
+  "cell_size": [
+    128,
+    128
+  ],
+  "key_color": "#00ff00",
+  "category": "path_overlay_tile",
+  "validation_mode": "path_tile_edge_connections",
+  "items": [
+    {
+      "index": 1,
+      "id": "path_overlay.01",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        0,
+        0,
+        116,
+        118
+      ],
+      "edge_alpha_touch_count": {
+        "top": 1,
+        "right": 0,
+        "bottom": 0,
+        "left": 1
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "id": "path_overlay.02",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        14,
+        39,
+        115,
+        107
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "id": "path_overlay.03",
+      "source_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        25,
+        16,
+        96,
+        123
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "id": "path_overlay.04",
+      "source_cell": {
+        "row": 0,
+        "column": 3
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        8,
+        0,
+        128,
+        123
+      ],
+      "edge_alpha_touch_count": {
+        "top": 1,
+        "right": 1,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "id": "path_overlay.05",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        24,
+        20,
+        117,
+        118
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "id": "path_overlay.06",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        20,
+        19,
+        113,
+        117
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 7,
+      "id": "path_overlay.07",
+      "source_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        8,
+        22,
+        112,
+        115
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 8,
+      "id": "path_overlay.08",
+      "source_cell": {
+        "row": 1,
+        "column": 3
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        16,
+        15,
+        108,
+        117
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 9,
+      "id": "path_overlay.09",
+      "source_cell": {
+        "row": 2,
+        "column": 0
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        16,
+        17,
+        120,
+        112
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 10,
+      "id": "path_overlay.10",
+      "source_cell": {
+        "row": 2,
+        "column": 1
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        17,
+        14,
+        107,
+        117
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 11,
+      "id": "path_overlay.11",
+      "source_cell": {
+        "row": 2,
+        "column": 2
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        4,
+        9,
+        117,
+        119
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 12,
+      "id": "path_overlay.12",
+      "source_cell": {
+        "row": 2,
+        "column": 3
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        23,
+        15,
+        94,
+        114
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 13,
+      "id": "path_overlay.13",
+      "source_cell": {
+        "row": 3,
+        "column": 0
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        0,
+        24,
+        117,
+        128
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 1,
+        "left": 1
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 14,
+      "id": "path_overlay.14",
+      "source_cell": {
+        "row": 3,
+        "column": 1
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        21,
+        23,
+        108,
+        95
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 2,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 15,
+      "id": "path_overlay.15",
+      "source_cell": {
+        "row": 3,
+        "column": 2
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        15,
+        24,
+        107,
+        99
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    },
+    {
+      "index": 16,
+      "id": "path_overlay.16",
+      "source_cell": {
+        "row": 3,
+        "column": 3
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "placed_bbox": [
+        13,
+        21,
+        128,
+        128
+      ],
+      "edge_alpha_touch_count": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "edge_connection_rule": "edge alpha touch is allowed and recorded for path overlay tiles",
+      "components": 1,
+      "visible_key_pixel_count": 0,
+      "status": "pass"
+    }
+  ],
+  "overall_gate": "pass"
+}

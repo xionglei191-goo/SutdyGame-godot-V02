@@ -1,0 +1,961 @@
+{
+  "pack_id": "round179.school_shop_daily_props",
+  "round": "Round179",
+  "worker": "Worker B",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "school_shop_daily_props",
+  "scope": "Twelve child-safe cozy daily-life prop candidates for school gate, school yard, shop front, bookshop, and bus stop; no runtime mapping or production approval.",
+  "negative_constraints": [
+    "no visible text labels on prop art",
+    "no letters, numbers, currency, scores, route text, or sale labels",
+    "no exclamation-heavy cue",
+    "no class/test/homework pressure",
+    "no ThemeProfile, AssetResolver, data, runtime, shared-test, art_target_locked, or runtime_visual_match changes"
+  ],
+  "generation_method": {
+    "tool": "assets/art/visual_rebuild/round179/school_shop_daily_props/generate_validate_manifest.py",
+    "mode": "local transparent RGBA synthesis",
+    "postprocess": "same script validates alpha/residue/background-block gates and writes manifest/contact sheet",
+    "notes": "Per LESSON-022, final gate is based on actual RGBA alpha audit, not generator flags. Per LESSON-021, a large opaque component background-block risk scan is included."
+  },
+  "proof": "assets/art/visual_rebuild/round179/school_shop_daily_props/proof/round179_school_shop_daily_props_contact_sheet.png",
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round179/school_shop_daily_props/proof/round179_school_shop_daily_props_contact_sheet.png",
+    "normalized_dir": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192"
+  },
+  "validation_summary": {
+    "checks": [
+      "RGBA alpha channel",
+      "expected normalized 192x192 dimensions",
+      "non-empty alpha content",
+      "transparent corner alpha",
+      "edge residue / edge-touch scan",
+      "green/magenta chroma-key residue scan",
+      "dark pinhole residue scan",
+      "large opaque background block risk scan",
+      "manual content-safety declaration: blank/no text/no school pressure"
+    ],
+    "pass_count": 12,
+    "fail_count": 0,
+    "raw_rgb_or_opaque_source_count": 0,
+    "visual_background_block_count": 0,
+    "visible_text_label_count": 0,
+    "class_test_homework_pressure_count": 0
+  },
+  "items": [
+    {
+      "id": "school_shop_daily_props.school_gate_flower_pot",
+      "logical_asset_id": "school_shop_daily_props.school_gate_flower_pot",
+      "slug": "school_gate_flower_pot",
+      "place": "School Gate",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/school_gate_flower_pot.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/school_gate_flower_pot.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        160
+      ],
+      "footprint_recommendation": "1x1 low welcoming gate-side planter prop",
+      "layer_recommendation": "above path/plaza ground, below actors",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          44,
+          42,
+          148,
+          166
+        ],
+        "nonzero_alpha_pixels": 8503,
+        "visible_alpha_coverage": 0.23066,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.18161,
+          "largest_opaque_component_ratio": 0.18161,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Gate association must stay welcoming and decorative, not institutional or test-like.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.shoe_cubby_soft",
+      "logical_asset_id": "school_shop_daily_props.shoe_cubby_soft",
+      "slug": "shoe_cubby_soft",
+      "place": "School Gate",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/shoe_cubby_soft.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/shoe_cubby_soft.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        160
+      ],
+      "footprint_recommendation": "2x1 low entry cubby prop; soft blocking edge",
+      "layer_recommendation": "above entry floor or path edge, below tall signs",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          26,
+          66,
+          166,
+          166
+        ],
+        "nonzero_alpha_pixels": 12256,
+        "visible_alpha_coverage": 0.33247,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.24574,
+          "largest_opaque_component_ratio": 0.21463,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Cubby should read as daily routine storage, not classroom pressure.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.yard_jump_rope_coil",
+      "logical_asset_id": "school_shop_daily_props.yard_jump_rope_coil",
+      "slug": "yard_jump_rope_coil",
+      "place": "School Yard",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/yard_jump_rope_coil.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/yard_jump_rope_coil.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        156
+      ],
+      "footprint_recommendation": "1x1 very low play prop; non-blocking",
+      "layer_recommendation": "above yard ground, below actors",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          22,
+          74,
+          172,
+          158
+        ],
+        "nonzero_alpha_pixels": 5943,
+        "visible_alpha_coverage": 0.16121,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.08724,
+          "largest_opaque_component_ratio": 0.04685,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Thin rope needs mobile readability against grass and plaza floors.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.yard_ball_basket",
+      "logical_asset_id": "school_shop_daily_props.yard_ball_basket",
+      "slug": "yard_ball_basket",
+      "place": "School Yard",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/yard_ball_basket.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/yard_ball_basket.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        160
+      ],
+      "footprint_recommendation": "1x1 low play basket; soft blocking boundary",
+      "layer_recommendation": "above yard ground, below actors",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          42,
+          54,
+          151,
+          164
+        ],
+        "nonzero_alpha_pixels": 9558,
+        "visible_alpha_coverage": 0.25928,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.18351,
+          "largest_opaque_component_ratio": 0.15272,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Ball patches must not look like logos, score marks, or sports-team labels.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.bookshop_window_stack",
+      "logical_asset_id": "school_shop_daily_props.bookshop_window_stack",
+      "slug": "bookshop_window_stack",
+      "place": "Bookshop",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/bookshop_window_stack.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/bookshop_window_stack.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        162
+      ],
+      "footprint_recommendation": "1x1 window display stack; low-front decorative prop",
+      "layer_recommendation": "above shop front floor/window ledge, below characters",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          42,
+          42,
+          151,
+          166
+        ],
+        "nonzero_alpha_pixels": 10023,
+        "visible_alpha_coverage": 0.27189,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.22485,
+          "largest_opaque_component_ratio": 0.22485,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Book covers must remain blank, with no visible text labels or schoolwork cue.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.bookshop_reading_cushion",
+      "logical_asset_id": "school_shop_daily_props.bookshop_reading_cushion",
+      "slug": "bookshop_reading_cushion",
+      "place": "Bookshop",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/bookshop_reading_cushion.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/bookshop_reading_cushion.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        160
+      ],
+      "footprint_recommendation": "1x1 low soft seating prop",
+      "layer_recommendation": "above bookshop floor or outdoor reading nook, below actors",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          34,
+          71,
+          159,
+          164
+        ],
+        "nonzero_alpha_pixels": 9936,
+        "visible_alpha_coverage": 0.26953,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.21281,
+          "largest_opaque_component_ratio": 0.21281,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Needs future scale review beside sitting animation before runtime use.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.shop_fruit_crate",
+      "logical_asset_id": "school_shop_daily_props.shop_fruit_crate",
+      "slug": "shop_fruit_crate",
+      "place": "Shop Front",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/shop_fruit_crate.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/shop_fruit_crate.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        162
+      ],
+      "footprint_recommendation": "1x1 produce display crate; soft blocking boundary",
+      "layer_recommendation": "above shop front ground, below canopy/tall props",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          34,
+          47,
+          158,
+          166
+        ],
+        "nonzero_alpha_pixels": 10627,
+        "visible_alpha_coverage": 0.28828,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.21978,
+          "largest_opaque_component_ratio": 0.21978,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Fruit shapes should stay chunky and safe, not tiny choking-size realism.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.shop_bread_tray",
+      "logical_asset_id": "school_shop_daily_props.shop_bread_tray",
+      "slug": "shop_bread_tray",
+      "place": "Shop Front",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/shop_bread_tray.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/shop_bread_tray.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        160
+      ],
+      "footprint_recommendation": "1x1 bakery display tray; low prop",
+      "layer_recommendation": "above counter/shop ground, below actors",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          35,
+          61,
+          158,
+          162
+        ],
+        "nonzero_alpha_pixels": 9493,
+        "visible_alpha_coverage": 0.25751,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.20209,
+          "largest_opaque_component_ratio": 0.20209,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Bread details should remain abstract and cozy rather than realistic food sales UI.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.shop_small_price_leaf_blank",
+      "logical_asset_id": "school_shop_daily_props.shop_small_price_leaf_blank",
+      "slug": "shop_small_price_leaf_blank",
+      "place": "Shop Front",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/shop_small_price_leaf_blank.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/shop_small_price_leaf_blank.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        158
+      ],
+      "footprint_recommendation": "1x1 tiny blank leaf tag; decorative marker only",
+      "layer_recommendation": "above crate/counter or shop front ground",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          55,
+          64,
+          138,
+          158
+        ],
+        "nonzero_alpha_pixels": 6024,
+        "visible_alpha_coverage": 0.16341,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.09058,
+          "largest_opaque_component_ratio": 0.09058,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Must remain blank; no numbers, currency, sale symbols, or exclamation cue.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.bus_stop_bench_cushion",
+      "logical_asset_id": "school_shop_daily_props.bus_stop_bench_cushion",
+      "slug": "bus_stop_bench_cushion",
+      "place": "Bus Stop",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/bus_stop_bench_cushion.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/bus_stop_bench_cushion.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        162
+      ],
+      "footprint_recommendation": "2x1 low bench cushion prop; soft blocking boundary",
+      "layer_recommendation": "above bus stop paving, below waiting actors",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          20,
+          71,
+          173,
+          166
+        ],
+        "nonzero_alpha_pixels": 11678,
+        "visible_alpha_coverage": 0.31679,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.20527,
+          "largest_opaque_component_ratio": 0.20527,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Bench should feel like a waiting/rest prop, not a UI button or route marker.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.bus_stop_timetable_blank_board",
+      "logical_asset_id": "school_shop_daily_props.bus_stop_timetable_blank_board",
+      "slug": "bus_stop_timetable_blank_board",
+      "place": "Bus Stop",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/bus_stop_timetable_blank_board.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/bus_stop_timetable_blank_board.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        164
+      ],
+      "footprint_recommendation": "1x1 upright blank board; blocking decorative prop",
+      "layer_recommendation": "above bus stop paving, below canopy/tall tree layers",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          34,
+          150,
+          169
+        ],
+        "nonzero_alpha_pixels": 10427,
+        "visible_alpha_coverage": 0.28285,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.21821,
+          "largest_opaque_component_ratio": 0.21821,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Board must stay blank: no route text, numbers, arrows, school schedules, or marks.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "school_shop_daily_props.plaza_notice_leaf_blank",
+      "logical_asset_id": "school_shop_daily_props.plaza_notice_leaf_blank",
+      "slug": "plaza_notice_leaf_blank",
+      "place": "Shop Front / Plaza",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/plaza_notice_leaf_blank.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/school_shop_daily_props/normalized_192x192/plaza_notice_leaf_blank.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        164
+      ],
+      "footprint_recommendation": "1x1 blank leaf notice prop; decorative community board",
+      "layer_recommendation": "above plaza ground, below tall props",
+      "visual_style_notes": "child-safe cozy town daily-life prop, rounded warm Animal Crossing-like proportions, no visible text labels, no test/score/homework pressure",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on each emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          47,
+          38,
+          146,
+          170
+        ],
+        "nonzero_alpha_pixels": 9390,
+        "visible_alpha_coverage": 0.25472,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.14293,
+          "largest_opaque_component_ratio": 0.14293,
+          "large_background_block_risk": false
+        },
+        "content_safety_check": {
+          "visible_text_labels": false,
+          "letters_numbers_currency_or_scores": false,
+          "exclamation_heavy_cue": false,
+          "class_test_homework_pressure": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Blank notice board cannot carry quests, exclamation marks, or readable text yet.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, shared-test, art_target_locked, or runtime_visual_match mapping.",
+        "Final art direction and in-scene scale review are required before any production/runtime use."
+      ]
+    }
+  ]
+}

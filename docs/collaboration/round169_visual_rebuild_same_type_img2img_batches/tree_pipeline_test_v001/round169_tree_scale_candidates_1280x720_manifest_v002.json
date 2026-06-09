@@ -1,0 +1,300 @@
+{
+  "source": "round169_tree_round_objects_256x320_sheet_v002.png",
+  "proof": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/round169_tree_scale_candidates_1280x720_proof_v002.png",
+  "scales": [
+    0.5,
+    0.6,
+    0.7
+  ],
+  "placements": [
+    {
+      "sprite": 1,
+      "scale": 0.5,
+      "pivot_world_px": [
+        170,
+        205
+      ],
+      "draw_origin": [
+        106,
+        55
+      ],
+      "draw_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "sprite": 2,
+      "scale": 0.5,
+      "pivot_world_px": [
+        370,
+        205
+      ],
+      "draw_origin": [
+        306,
+        55
+      ],
+      "draw_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "sprite": 3,
+      "scale": 0.5,
+      "pivot_world_px": [
+        570,
+        205
+      ],
+      "draw_origin": [
+        506,
+        55
+      ],
+      "draw_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "sprite": 4,
+      "scale": 0.5,
+      "pivot_world_px": [
+        770,
+        205
+      ],
+      "draw_origin": [
+        706,
+        55
+      ],
+      "draw_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "sprite": 5,
+      "scale": 0.5,
+      "pivot_world_px": [
+        970,
+        205
+      ],
+      "draw_origin": [
+        906,
+        55
+      ],
+      "draw_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "sprite": 6,
+      "scale": 0.5,
+      "pivot_world_px": [
+        1170,
+        205
+      ],
+      "draw_origin": [
+        1106,
+        55
+      ],
+      "draw_size": [
+        128,
+        160
+      ]
+    },
+    {
+      "sprite": 1,
+      "scale": 0.6,
+      "pivot_world_px": [
+        170,
+        415
+      ],
+      "draw_origin": [
+        93,
+        235
+      ],
+      "draw_size": [
+        154,
+        192
+      ]
+    },
+    {
+      "sprite": 2,
+      "scale": 0.6,
+      "pivot_world_px": [
+        370,
+        415
+      ],
+      "draw_origin": [
+        293,
+        235
+      ],
+      "draw_size": [
+        154,
+        192
+      ]
+    },
+    {
+      "sprite": 3,
+      "scale": 0.6,
+      "pivot_world_px": [
+        570,
+        415
+      ],
+      "draw_origin": [
+        493,
+        235
+      ],
+      "draw_size": [
+        154,
+        192
+      ]
+    },
+    {
+      "sprite": 4,
+      "scale": 0.6,
+      "pivot_world_px": [
+        770,
+        415
+      ],
+      "draw_origin": [
+        693,
+        235
+      ],
+      "draw_size": [
+        154,
+        192
+      ]
+    },
+    {
+      "sprite": 5,
+      "scale": 0.6,
+      "pivot_world_px": [
+        970,
+        415
+      ],
+      "draw_origin": [
+        893,
+        235
+      ],
+      "draw_size": [
+        154,
+        192
+      ]
+    },
+    {
+      "sprite": 6,
+      "scale": 0.6,
+      "pivot_world_px": [
+        1170,
+        415
+      ],
+      "draw_origin": [
+        1093,
+        235
+      ],
+      "draw_size": [
+        154,
+        192
+      ]
+    },
+    {
+      "sprite": 1,
+      "scale": 0.7,
+      "pivot_world_px": [
+        170,
+        635
+      ],
+      "draw_origin": [
+        80,
+        425
+      ],
+      "draw_size": [
+        179,
+        224
+      ]
+    },
+    {
+      "sprite": 2,
+      "scale": 0.7,
+      "pivot_world_px": [
+        370,
+        635
+      ],
+      "draw_origin": [
+        280,
+        425
+      ],
+      "draw_size": [
+        179,
+        224
+      ]
+    },
+    {
+      "sprite": 3,
+      "scale": 0.7,
+      "pivot_world_px": [
+        570,
+        635
+      ],
+      "draw_origin": [
+        480,
+        425
+      ],
+      "draw_size": [
+        179,
+        224
+      ]
+    },
+    {
+      "sprite": 4,
+      "scale": 0.7,
+      "pivot_world_px": [
+        770,
+        635
+      ],
+      "draw_origin": [
+        680,
+        425
+      ],
+      "draw_size": [
+        179,
+        224
+      ]
+    },
+    {
+      "sprite": 5,
+      "scale": 0.7,
+      "pivot_world_px": [
+        970,
+        635
+      ],
+      "draw_origin": [
+        880,
+        425
+      ],
+      "draw_size": [
+        179,
+        224
+      ]
+    },
+    {
+      "sprite": 6,
+      "scale": 0.7,
+      "pivot_world_px": [
+        1170,
+        635
+      ],
+      "draw_origin": [
+        1080,
+        425
+      ],
+      "draw_size": [
+        179,
+        224
+      ]
+    }
+  ],
+  "recommendation": "start runtime visual preview at scale 0.60, compare 0.55-0.62 if nearby houses/characters are visible"
+}

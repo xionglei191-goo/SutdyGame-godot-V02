@@ -1,0 +1,476 @@
+{
+  "round": "Round174",
+  "pack_id": "npc_fullbody",
+  "status": "normalized_candidate_proof_only",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "category": "npc_companion_fullbody_standing",
+  "cell_size": [
+    160,
+    192
+  ],
+  "baseline_y_px": 176,
+  "pivot_px": [
+    80,
+    176
+  ],
+  "atlas": "assets/art/visual_rebuild/round174/npc_fullbody/round174_npc_fullbody_160x192_atlas_v001.png",
+  "proof": "assets/art/visual_rebuild/round174/npc_fullbody/proof/round174_npc_fullbody_checker_proof_v001.png",
+  "raw_dir": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma",
+  "normalized_dir": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192",
+  "source_prompts": "assets/art/visual_rebuild/round174/npc_fullbody/source_prompts.json",
+  "generation_tool": "/home/xionglei/GameProject/tools/image_generator.js",
+  "generation_mode": "text 1024x1024 flat #ff00ff chroma-key background",
+  "style_intent": "original cozy town life-sim full-body standing sprites for children; warm but not storybook/card UI; soft 3/4 front poses; no embedded text",
+  "round171_compatibility": {
+    "cell_size_match": true,
+    "baseline_y_match": true,
+    "recommended_display_scale_reference": 0.72
+  },
+  "gate_checks": {
+    "fixed_cell": true,
+    "atlas_dimensions_px": [
+      1280,
+      192
+    ],
+    "alpha": true,
+    "transparent_corners": true,
+    "suspect_chroma_pixel_total": 3,
+    "visual_background_block_count": 0,
+    "visual_background_block_free": true,
+    "pass_count": 8,
+    "pass_with_review_risk_count": 0,
+    "fail_count": 0
+  },
+  "overall_gate": "pass",
+  "items": [
+    {
+      "id": "player_child_neutral",
+      "logical_asset_id": "actor.fullbody.player_child_neutral",
+      "raw_png": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma/player_child_neutral_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/player_child_neutral_160x192.png",
+      "cell_size": [
+        160,
+        192
+      ],
+      "pivot_px": [
+        80,
+        176
+      ],
+      "baseline_y_px": 176,
+      "target_height_px": 150,
+      "source_bbox_px": [
+        292,
+        55,
+        737,
+        929
+      ],
+      "normalized_bbox_px": [
+        42,
+        26,
+        118,
+        176
+      ],
+      "opaque_pixel_count": 7540,
+      "transparent_corners": true,
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "rectangular_background_check": {
+        "bbox_fill_ratio": 0.6614,
+        "top_edge_alpha_ratio": 0.0921,
+        "bottom_edge_alpha_ratio": 0.1711,
+        "left_edge_alpha_ratio": 0.02,
+        "right_edge_alpha_ratio": 0.0467,
+        "max_edge_alpha_ratio": 0.1711,
+        "perimeter_average_alpha_ratio": 0.0825,
+        "opposing_edge_pair_alpha_ratio": 0.0921,
+        "opaque_rectangular_block": false
+      },
+      "suspect_chroma_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "source_prompt": "Cozy town life-sim full-body standing sprite candidate of a cheerful child player, soft 3/4 front view, neutral relaxed pose, rounded chibi proportions, warm practical play clothes, simple sneakers, gentle friendly face, children-safe game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no scene, no shadow, no gradient, centered with generous padding.",
+      "risks": []
+    },
+    {
+      "id": "mina_neighbor",
+      "logical_asset_id": "actor.fullbody.mina_neighbor",
+      "raw_png": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma/mina_neighbor_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/mina_neighbor_160x192.png",
+      "cell_size": [
+        160,
+        192
+      ],
+      "pivot_px": [
+        80,
+        176
+      ],
+      "baseline_y_px": 176,
+      "target_height_px": 158,
+      "source_bbox_px": [
+        267,
+        50,
+        808,
+        976
+      ],
+      "normalized_bbox_px": [
+        34,
+        18,
+        126,
+        176
+      ],
+      "opaque_pixel_count": 9736,
+      "transparent_corners": true,
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "rectangular_background_check": {
+        "bbox_fill_ratio": 0.6698,
+        "top_edge_alpha_ratio": 0.1087,
+        "bottom_edge_alpha_ratio": 0.1413,
+        "left_edge_alpha_ratio": 0.0823,
+        "right_edge_alpha_ratio": 0.0759,
+        "max_edge_alpha_ratio": 0.1413,
+        "perimeter_average_alpha_ratio": 0.1021,
+        "opposing_edge_pair_alpha_ratio": 0.1087,
+        "opaque_rectangular_block": false
+      },
+      "suspect_chroma_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "source_prompt": "Cozy town life-sim full-body standing sprite candidate of Mina, a friendly animal neighbor with soft rounded ears and a warm cardigan, soft 3/4 front view, relaxed standing pose, rounded chibi proportions compatible with a child-friendly cozy town RPG, gentle face, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no scene, no shadow, no gradient, centered with generous padding.",
+      "risks": []
+    },
+    {
+      "id": "shopkeeper_warm",
+      "logical_asset_id": "actor.fullbody.shopkeeper_warm",
+      "raw_png": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma/shopkeeper_warm_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/shopkeeper_warm_160x192.png",
+      "cell_size": [
+        160,
+        192
+      ],
+      "pivot_px": [
+        80,
+        176
+      ],
+      "baseline_y_px": 176,
+      "target_height_px": 158,
+      "source_bbox_px": [
+        253,
+        111,
+        841,
+        928
+      ],
+      "normalized_bbox_px": [
+        23,
+        18,
+        137,
+        176
+      ],
+      "opaque_pixel_count": 12445,
+      "transparent_corners": true,
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "rectangular_background_check": {
+        "bbox_fill_ratio": 0.6909,
+        "top_edge_alpha_ratio": 0.1754,
+        "bottom_edge_alpha_ratio": 0.1053,
+        "left_edge_alpha_ratio": 0.057,
+        "right_edge_alpha_ratio": 0.0696,
+        "max_edge_alpha_ratio": 0.1754,
+        "perimeter_average_alpha_ratio": 0.1018,
+        "opposing_edge_pair_alpha_ratio": 0.1053,
+        "opaque_rectangular_block": false
+      },
+      "suspect_chroma_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "source_prompt": "Cozy town life-sim full-body standing sprite candidate of a warm shopkeeper neighbor, friendly adult animal resident wearing a small apron and simple shirt, soft 3/4 front view, relaxed standing pose, rounded chibi proportions, children-safe cozy town game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no shop background, no shadow, no gradient, centered with generous padding.",
+      "risks": []
+    },
+    {
+      "id": "sunny_companion",
+      "logical_asset_id": "actor.fullbody.sunny_companion",
+      "raw_png": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma/sunny_companion_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/sunny_companion_160x192.png",
+      "cell_size": [
+        160,
+        192
+      ],
+      "pivot_px": [
+        80,
+        176
+      ],
+      "baseline_y_px": 176,
+      "target_height_px": 96,
+      "source_bbox_px": [
+        264,
+        189,
+        784,
+        769
+      ],
+      "normalized_bbox_px": [
+        37,
+        80,
+        123,
+        176
+      ],
+      "opaque_pixel_count": 6628,
+      "transparent_corners": true,
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "rectangular_background_check": {
+        "bbox_fill_ratio": 0.8028,
+        "top_edge_alpha_ratio": 0.1047,
+        "bottom_edge_alpha_ratio": 0.1744,
+        "left_edge_alpha_ratio": 0.1771,
+        "right_edge_alpha_ratio": 0.1042,
+        "max_edge_alpha_ratio": 0.1771,
+        "perimeter_average_alpha_ratio": 0.1401,
+        "opposing_edge_pair_alpha_ratio": 0.1047,
+        "opaque_rectangular_block": false
+      },
+      "suspect_chroma_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "source_prompt": "Cozy town life-sim full-body standing sprite candidate of Sunny, a small golden companion pet, puppy-like friendly creature with rounded ears and tiny scarf, soft 3/4 front view, standing alert pose, compact scale for companion character, children-safe game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no scene, no shadow, no gradient, centered with generous padding.",
+      "risks": []
+    },
+    {
+      "id": "story_bear_friend",
+      "logical_asset_id": "actor.fullbody.story_bear_friend",
+      "raw_png": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma/story_bear_friend_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/story_bear_friend_160x192.png",
+      "cell_size": [
+        160,
+        192
+      ],
+      "pivot_px": [
+        80,
+        176
+      ],
+      "baseline_y_px": 176,
+      "target_height_px": 154,
+      "source_bbox_px": [
+        266,
+        50,
+        801,
+        976
+      ],
+      "normalized_bbox_px": [
+        35,
+        22,
+        124,
+        176
+      ],
+      "opaque_pixel_count": 10104,
+      "transparent_corners": true,
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "rectangular_background_check": {
+        "bbox_fill_ratio": 0.7372,
+        "top_edge_alpha_ratio": 0.1124,
+        "bottom_edge_alpha_ratio": 0.1348,
+        "left_edge_alpha_ratio": 0.0714,
+        "right_edge_alpha_ratio": 0.0649,
+        "max_edge_alpha_ratio": 0.1348,
+        "perimeter_average_alpha_ratio": 0.0959,
+        "opposing_edge_pair_alpha_ratio": 0.1124,
+        "opaque_rectangular_block": false
+      },
+      "suspect_chroma_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "source_prompt": "Cozy town life-sim full-body standing sprite candidate of Story Bear, a kind bear friend with a small satchel and soft sweater, soft 3/4 front view, relaxed standing pose, rounded chibi proportions, warm friendly face for children, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no book cover, no scene, no shadow, no gradient, centered with generous padding.",
+      "risks": []
+    },
+    {
+      "id": "bus_brother_helper",
+      "logical_asset_id": "actor.fullbody.bus_brother_helper",
+      "raw_png": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma/bus_brother_helper_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/bus_brother_helper_160x192.png",
+      "cell_size": [
+        160,
+        192
+      ],
+      "pivot_px": [
+        80,
+        176
+      ],
+      "baseline_y_px": 176,
+      "target_height_px": 158,
+      "source_bbox_px": [
+        284,
+        76,
+        765,
+        948
+      ],
+      "normalized_bbox_px": [
+        36,
+        18,
+        123,
+        176
+      ],
+      "opaque_pixel_count": 9882,
+      "transparent_corners": true,
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "rectangular_background_check": {
+        "bbox_fill_ratio": 0.7189,
+        "top_edge_alpha_ratio": 0.069,
+        "bottom_edge_alpha_ratio": 0.1724,
+        "left_edge_alpha_ratio": 0.1329,
+        "right_edge_alpha_ratio": 0.0633,
+        "max_edge_alpha_ratio": 0.1724,
+        "perimeter_average_alpha_ratio": 0.1094,
+        "opposing_edge_pair_alpha_ratio": 0.069,
+        "opaque_rectangular_block": false
+      },
+      "suspect_chroma_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "source_prompt": "Cozy town life-sim full-body standing sprite candidate of a helpful bus brother neighbor, friendly older animal resident with simple vest and cap, soft 3/4 front view, relaxed standing pose, rounded chibi proportions, gentle child-safe expression, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no bus background, no shadow, no gradient, centered with generous padding.",
+      "risks": []
+    },
+    {
+      "id": "school_friend",
+      "logical_asset_id": "actor.fullbody.school_friend",
+      "raw_png": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma/school_friend_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/school_friend_160x192.png",
+      "cell_size": [
+        160,
+        192
+      ],
+      "pivot_px": [
+        80,
+        176
+      ],
+      "baseline_y_px": 176,
+      "target_height_px": 150,
+      "source_bbox_px": [
+        300,
+        47,
+        739,
+        969
+      ],
+      "normalized_bbox_px": [
+        44,
+        26,
+        115,
+        176
+      ],
+      "opaque_pixel_count": 6707,
+      "transparent_corners": true,
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "rectangular_background_check": {
+        "bbox_fill_ratio": 0.6298,
+        "top_edge_alpha_ratio": 0.1127,
+        "bottom_edge_alpha_ratio": 0.169,
+        "left_edge_alpha_ratio": 0.04,
+        "right_edge_alpha_ratio": 0.0867,
+        "max_edge_alpha_ratio": 0.169,
+        "perimeter_average_alpha_ratio": 0.1021,
+        "opposing_edge_pair_alpha_ratio": 0.1127,
+        "opaque_rectangular_block": false
+      },
+      "suspect_chroma_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "source_prompt": "Cozy town life-sim full-body standing sprite candidate of a school friend, cheerful child neighbor with small backpack and tidy play clothes, soft 3/4 front view, neutral standing pose, rounded chibi proportions, child-safe cozy town game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no classroom background, no shadow, no gradient, centered with generous padding.",
+      "risks": []
+    },
+    {
+      "id": "gardener_neighbor",
+      "logical_asset_id": "actor.fullbody.gardener_neighbor",
+      "raw_png": "assets/art/visual_rebuild/round174/npc_fullbody/raw_chroma/gardener_neighbor_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/npc_fullbody/normalized_160x192/gardener_neighbor_160x192.png",
+      "cell_size": [
+        160,
+        192
+      ],
+      "pivot_px": [
+        80,
+        176
+      ],
+      "baseline_y_px": 176,
+      "target_height_px": 156,
+      "source_bbox_px": [
+        252,
+        101,
+        739,
+        912
+      ],
+      "normalized_bbox_px": [
+        33,
+        20,
+        127,
+        176
+      ],
+      "opaque_pixel_count": 10722,
+      "transparent_corners": true,
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "rectangular_background_check": {
+        "bbox_fill_ratio": 0.7312,
+        "top_edge_alpha_ratio": 0.1383,
+        "bottom_edge_alpha_ratio": 0.1383,
+        "left_edge_alpha_ratio": 0.0513,
+        "right_edge_alpha_ratio": 0.1154,
+        "max_edge_alpha_ratio": 0.1383,
+        "perimeter_average_alpha_ratio": 0.1108,
+        "opposing_edge_pair_alpha_ratio": 0.1383,
+        "opaque_rectangular_block": false
+      },
+      "suspect_chroma_pixel_count": 3,
+      "has_alpha": true,
+      "status": "pass",
+      "asset_status": "normalized_candidate",
+      "source_prompt": "Cozy town life-sim full-body standing sprite candidate of a gardener neighbor, friendly animal resident wearing a sun hat and simple overalls, holding no readable sign, soft 3/4 front view, relaxed standing pose, rounded chibi proportions, warm child-safe cozy town game art, clean silhouette, perfectly flat solid #ff00ff chroma-key background only, do not use #ff00ff in the subject, no text, no labels, no UI card, no garden background, no shadow, no gradient, centered with generous padding.",
+      "risks": []
+    }
+  ],
+  "risks": [
+    "proof-only generated candidates; require art direction review before runtime use",
+    "single standing pose only, not animation-ready",
+    "generated character details may need consistency pass against final NPC canon"
+  ]
+}

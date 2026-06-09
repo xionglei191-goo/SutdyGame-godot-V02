@@ -1,0 +1,145 @@
+{
+  "kit_id": "sunshine_town_p0_whitebox_composition_kit_round181_v001",
+  "task_id": "V02-VISUALREBUILD-004",
+  "round": "Round181",
+  "status": "whitebox_composition_kit_locked",
+  "source_layout_contract": "docs/collaboration/round180_v0239_mainline_visual_layout_target/visual_layout_contract_v001.json",
+  "target_frame": "docs/collaboration/round180_v0239_mainline_visual_layout_target/round180_v0239_visual_layout_target_1280x720_v001.png",
+  "runtime_policy": "uses_existing_programmatic_v0239_texture_keys_no_themeprofile_no_assetresolver_mapping",
+  "camera_contract": {
+    "viewport": {
+      "w": 1280,
+      "h": 720
+    },
+    "focus_cell": {
+      "x": 31,
+      "y": 20
+    },
+    "camera_scale_max": 1.6,
+    "logic_cell_screen_px": 28,
+    "child_runtime_grid_visibility": "hidden"
+  },
+  "logical_assets": [
+    {
+      "logical_asset_id": "v0239.whitebox.terrain.grass_patch",
+      "runtime_texture_key": "v0239_grass_patch",
+      "layer_id": "terrain_regions",
+      "role": "large grass chunks and walkable open regions",
+      "pivot": "center",
+      "runtime_visual_role": "blockout_grass_base"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.path.soft_tile",
+      "runtime_texture_key": "v0239_path_tile",
+      "layer_id": "path_water",
+      "role": "curved 2-3 cell Home path",
+      "pivot": "center",
+      "runtime_visual_role": "blockout_path_tile"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.home.prefab",
+      "runtime_texture_keys": [
+        "v0239_house_body",
+        "v0239_house_roof",
+        "v0239_house_door",
+        "v0239_house_window",
+        "v0239_house_steps",
+        "v0239_house_chimney",
+        "v0239_house_round_window",
+        "v0239_house_lantern",
+        "v0239_flower_box",
+        "shadow"
+      ],
+      "layer_id": "home_midground",
+      "role": "primary Home cottage composed from editable parts",
+      "pivot": "door_ground_center",
+      "runtime_visual_role": "blockout_small_house"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.tree.round_prefab",
+      "runtime_texture_keys": [
+        "v0239_tree_trunk",
+        "v0239_tree_crown",
+        "shadow"
+      ],
+      "layer_id": "home_midground",
+      "role": "sparse edge trees and soft depth",
+      "pivot": "feet_ground_center",
+      "runtime_visual_role": "blockout_tree"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.yard.fence",
+      "runtime_texture_key": "v0239_fence",
+      "layer_id": "props_anchors",
+      "role": "yard boundary without visible grid",
+      "pivot": "center_ground",
+      "runtime_visual_role": "blockout_fence"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.yard.garden_bed",
+      "runtime_texture_key": "v0239_garden_bed",
+      "layer_id": "props_anchors",
+      "role": "daily-life garden density",
+      "pivot": "center_ground",
+      "runtime_visual_role": "blockout_garden"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.water.pond_edge",
+      "runtime_texture_key": "v0239_pond_edge",
+      "layer_id": "path_water",
+      "role": "right-edge pond or coast hint",
+      "pivot": "center",
+      "runtime_visual_role": "blockout_water_edge"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.props.home_anchor_subset",
+      "runtime_texture_keys": [
+        "v0239_mailbox",
+        "v0239_flower_patch",
+        "v0239_grass_tuft",
+        "v0239_path_pebble",
+        "v0239_crop_leaf"
+      ],
+      "layer_id": "props_anchors",
+      "role": "small daily props and prop-first A/C home cues",
+      "pivot": "center_ground",
+      "runtime_visual_role": "blockout_ground_detail"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.actor.player_scale",
+      "runtime_source": "existing player layer over blockout",
+      "layer_id": "actors",
+      "role": "player remains smaller than Home and readable above blockout",
+      "pivot": "feet_baseline"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.companion.sunny_scale",
+      "runtime_texture_keys": [
+        "v0239_companion",
+        "v0239_companion_tail",
+        "v0239_companion_ear",
+        "v0239_companion_collar",
+        "shadow"
+      ],
+      "layer_id": "actors",
+      "role": "Sunny companion proxy with contact shadow",
+      "pivot": "feet_baseline",
+      "runtime_visual_role": "blockout_companion"
+    },
+    {
+      "logical_asset_id": "v0239.whitebox.ui.glass_footer",
+      "runtime_source": "TownFooter five icon-first dock buttons",
+      "layer_id": "glass_ui",
+      "role": "five-button translucent dock and existing top HUD",
+      "pivot": "screen_safe_area"
+    }
+  ],
+  "acceptance": {
+    "logical_asset_id_count": 11,
+    "old_scene_fragment_policy": "forbidden",
+    "full_map_background_policy": "forbidden_as_final_runtime",
+    "visible_grid_policy": "hidden_from_child_runtime",
+    "a_z_policy": "prop_first_subset_only_on_first_screen",
+    "story_batch_dependency": "requires_round181_runtime_visual_match_gate"
+  }
+}

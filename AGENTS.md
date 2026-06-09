@@ -66,3 +66,14 @@ node /home/xionglei/GameProject/tools/image_generator.js edit "source.png" "prom
 ```
 
 Use `null` for the mask argument when no mask is needed. Save generated project assets under the repo asset tree with stable, descriptive filenames, then register them through logical asset IDs and `AssetResolver` rather than hardcoding paths in runtime code.
+
+## Image-Heavy Task Context Control
+
+Visual production rounds can quickly overload the main conversation context. For image-heavy tasks, prefer local scripts, manifests, and delegated agents/tools over repeatedly loading many bitmap previews in the main chat.
+
+- Do not open or inline large batches of images in the main conversation unless visual inspection is essential.
+- For crop, alpha, margin, size, component, pivot, and atlas checks, use scripts to produce numeric reports, manifests, and proof PNGs first.
+- When multi-agent tooling is available, delegate broad image audits or repetitive visual checks to sub-agents and ask them to return concise findings, paths, and pass/fail tables instead of full image dumps.
+- Keep the main thread focused on decisions, gate results, and a small number of representative proof images.
+- Store generated images, contact sheets, manifests, and previews under stable project paths; summarize them by path rather than embedding every asset in the conversation.
+- If a previous round already contains many images, do not reload them by default. Inspect only the current task's explicitly relevant files.

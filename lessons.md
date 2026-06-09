@@ -1,6 +1,6 @@
 # StudyGame V02 开发经验记录
 
-> 最后更新：2026-06-07
+> 最后更新：2026-06-08
 > 本文件只记录已经实际发生并确认的问题。潜在风险记录在项目计划或 `todo.md`，不作为开发经验。
 
 ## 记录规则
@@ -157,6 +157,17 @@
 | 2026-06-07 | Round 154 V02.38 VISUALRECOVERY-001 全面纠偏与文档重写 | LESSON-014 | 用户复核和文档 / 1280 proof 对照确认：整张世界底图与宽松 approved 口径掩盖了 modular visual system 缺失；已暂停 V02.37 后续 story batch，新增 V02.38 visual recovery gate |
 | 2026-06-07 | Round 155-Round159 V02.38 VISUALRECOVERY-002..006 全面视觉恢复收口 | LESSON-015 | TownStage detail render 调用缩进导致 recovery props 被每个 place 重复渲染；已改为一次性渲染并补 exact-count 断言 |
 | 2026-06-07 | Round 160 V02.39 VISUALREBUILD-001 视觉生产体系重建路线 | LESSON-016 | 用户二次视觉复核确认：no-full-map modular runtime 只能证明工程脚手架，不能证明画面达到 artpass003；已将 V02.38 重解释为 `visual_scaffold` 并阻塞 StoryBatch |
+| 2026-06-07 | Round 161 V02.39 VISUALREBUILD-002 target frame 返修 | LESSON-017 | 用户复核确认 Round161 生图 PNG 不是项目想要的游戏画面；已撤销 `art_target_locked`，暂停资产包生产并要求 target gameplay frame 重做；后续又纠正了把错误截图复制进 artpass003 正向参考目录的误操作 |
+| 2026-06-08 | V02.39 generated runtime PNG rollback | LESSON-018 | 用户截图复核确认：scene-like generated PNG patch 被当作可缩放 tile / prefab 材质会产生方块拼贴感；已从 runtime resolver 解绑 9 张 V02.39 PNG，并补充未绑定回归断言 |
+| 2026-06-08 | Round167 V02.39 img2img style-reference test | LESSON-019 | 使用白底 RGB sheet 做 glass UI 清底会破坏浅色玻璃内部和高光；后续 UI / glass 资产需 chroma-key 或真透明路径 |
+| 2026-06-08 | Round171 V02.39 ground-region proof cleanup | LESSON-020 | 大块区域地面素材仅检查纯 chroma-key 像素会漏掉 post-resize 粉紫 / 粉灰 alpha 边缘；已补 despill、alpha-edge repair 和 manifest locality audit |
+| 2026-06-08 | Round172 V02.39 prop and A-Z anchor proof generation | 无新增已验证教训 | agent-based town / home / A-Z prop-first 候选生成与 manifest / anchor_id 审计通过，未接 runtime |
+| 2026-06-08 | Round173 V02.39 inventory and UI proof generation | 无新增已验证教训 | agent-based furniture / portrait / UI / resources 候选生成与 manifest 审计通过，风险记录在 Round173 summary，未接 runtime |
+| 2026-06-08 | Round174 V02.39 NPC / place / weather proof generation | LESSON-021 | NPC full-body 候选曾以透明角 / alpha / chroma 数字通过，但组合 proof 暴露深色矩形背景块；已重生成 chroma raw 并增加 visual background-block gate |
+| 2026-06-08 | Round175 V02.39 motion / interior / UI proof generation | LESSON-022 | fallback image generator 的 `--transparent` 在 motion / interior / UI 多包中返回 RGB/opaque raw；已要求按实际 alpha 验证并保留 local normalization / synthesis 证据 |
+| 2026-06-08 | Round176 V02.39 place / album / seasonal proof generation | 无新增已验证教训 | agent-based place interior / album-card UI / seasonal decor 候选生成与 manifest 审计通过；继续复用 LESSON-022，不接 runtime |
+| 2026-06-08 | Round180 V02.39 mainline visual layout target | LESSON-003 复用、LESSON-023 | JSON contract 读取复用显式类型标注规则；Image 白盒绘制曾因未裁切边缘像素刷越界错误但仍保存 PNG，已补安全绘制和 focused 合同测试 |
+| 2026-06-08 | Round183 V02.39 runtime bitmap promotion | 无新增已验证教训 | 按用户新指令解除 proof-only 边界，125 个 visual rebuild runtime resolver mappings 与 160 条 promoted acceptance 记录已接入 ThemeProfile / AssetResolver；focused / full runner、Godot 启动、diff check 和持久 1280 proof 导出均通过；后续质量问题进入返修，不形成新 lesson |
 
 ## LESSON-002：并行交付必须在 agent 完成后再固定集成断言
 
@@ -371,3 +382,105 @@
   - `world_map` 继续作为逻辑事实来源，但首屏构图必须由独立 Visual Layout 决定，避免 26 anchors、place labels、NPC、resource 和 HUD 同屏同权展示。
   - StoryBatch 只有在 V02.39 达到 `runtime_visual_match` 且 PM / Art Direction 明确解锁后才能恢复 Ready。
 - **验证依据：** `docs/12_V02开发路线.md`、`docs/13_V02详细开发计划.md`、`docs/14_内容基线整理与首批内容规划.md`、`docs/15_项目经理接管与下一阶段执行计划.md`、`todo.md` 和 `docs/collaboration/Round160_V02.39_VISUALREBUILD-001视觉生产体系重建路线与任务包.md` 已同步 V02.39 视觉生产体系重建事实。
+
+## LESSON-017：概念插画不能替代可执行 gameplay target frame
+
+- **日期：** 2026-06-07
+- **关联任务：** `V02-VISUALREBUILD-002`、`V02-VISUALREBUILD-004`
+- **现象：** Round161 使用 image generation fallback 生成了 `docs/collaboration/round161_visual_rebuild_target/target_frame_v0239_round161_home_centered_1280.png`，并一度把它登记为 `art_target_locked` 证据；用户复核后明确指出该图完全不是项目想要的游戏画面。
+- **影响：** 如果继续让 `V02-VISUALREBUILD-004` 按该图生产资产包，会把资产生产带向概念插画 / 宣传场景方向，而不是 Godot 可执行的真实 gameplay 首屏，造成新一轮资产债务。
+- **根因：** 目标图验收只看了 home-centered、无文字、无 grid、glass safe area 等表层特征，没有检查它是否像当前项目可落地的游戏画面：是否能拆成 Godot layers、是否匹配角色 / UI / 交互尺度、是否可由 Visual Layout 复现、是否符合真实孩子端首屏。
+- **解决方式：** 已将 Round161 PNG 改为 rejected evidence；撤销 `art_target_locked`；`V02-VISUALREBUILD-002` 回到进行中 / 返修；`V02-VISUALREBUILD-004` 从 Ready 撤回，等待新版 target gameplay frame。
+- **预防规则：**
+  - Target frame 必须先通过“像真实游戏画面”的复核，再进入资产生产；漂亮概念图、插画、宣传场景或不可拆分整图不得作为 `art_target_locked`。
+  - `docs/collaboration/artpass003_visual_direction/` 是正向视觉参考目录；不得把用户已驳回的错误截图、拼贴图、逻辑地图截图或临时 target 失败图复制进去作为“负样例”，避免后续 agent 检索素材时误学错误风格。
+  - `V02-VISUALREBUILD-002` 后续应优先使用可执行 blockout、Godot mock frame、现有 runtime paintover 或带 layer / scale / UI / actor / interaction 标注的 target，而不是只依赖通用文生图。
+  - `V02-VISUALREBUILD-004` 只有在用户或 PM / Art Direction 明确恢复 `art_target_locked` 后才能开工；任何被标为 rejected evidence 的图片不得作为资产包依据。
+  - Target frame 复核必须检查可拆分层级、玩家尺度、Sunny / NPC 尺度、HUD / footer 真实占位、交互入口、A-Z prop-first 表达和 Godot runtime 可复现性。
+- **验证依据：** `docs/collaboration/Round161_V02.39_VISUALREBUILD-002_1280TargetFrameVisualContract.md` 已将该 PNG 标为 rejected evidence；`todo.md` 已将 `V02-VISUALREBUILD-002` 改回 `[~]` 并撤回 `V02-VISUALREBUILD-004` Ready；docs 12 / 13 / 15 已同步撤销 `art_target_locked`；错误截图已从 `docs/collaboration/artpass003_visual_direction/` 删除，且该目录 `README.md` 与 Round92 已明确只保存正向参考。
+
+## LESSON-018：生成图样张不能直接当作可缩放 runtime tile
+
+- **日期：** 2026-06-08
+- **关联任务：** `V02-VISUALREBUILD-002`、V02.39 first-screen blockout
+- **现象：** 9 张 `assets/art/visual_rebuild/v0239/` generated PNG 被接入 ThemeProfile 后，运行时把它们当作可缩放地表、路径、房屋部件、花丛、树冠、水边、菜地和 companion 材质使用；用户截图复核显示画面出现明显方块拼贴和贴片感。
+- **影响：** 继续沿用该方法会把视觉生产带向“局部插画块拼接”，破坏 tile / prefab / prop / actor / UI 可编辑生产路线，并让后续资产包在错误材质合同上扩债。
+- **根因：** 图片生成提示产出的是带透视、光影和内置构图的 scene-like patch，不是 seamless tile、透明 cutout prop、可组合 prefab part 或 sprite sheet；同时后续用批量文本替换修改 `asset_acceptance`，误伤了非 V02.39 的历史 production 记录。
+- **解决方式：** 已移除 9 个 V02.39 logical asset 的 live resolver mappings，保留对应文件和 acceptance 记录为 `needs_rework` / `fail_visual_review`；runtime 回到程序化 `v0239_` blockout texture；恢复历史 production acceptance 记录，并在 `tests/test_v0239_visual_rebuild_blockout.gd` 增加 `resolver_mapped_v0239_count == 0` 断言。
+- **预防规则：**
+  - image-generated bitmap 进入 runtime 前必须先确认用途：seamless tile、透明 cutout prop、prefab part、sprite sheet、UI skin 或 reference-only；不得把 scene-like patch 直接缩放铺到 Sprite2D 上。
+  - ThemeProfile 资产状态变更必须按 explicit `record_id` 做结构化 JSON 编辑；禁止用宽泛文本替换批量改 `status`、`viewport_evidence` 或 `acceptance_result`。
+  - V02.39 blockout 可以使用程序化 texture key 验证 layer / scale / composition，但 generated PNG 只有在通过 tileability / transparency / scale / runtime screenshot 复核后才能重新进入 resolver mapping。
+- **验证依据：** `python3 -m json.tool data/themes/theme_sunshine_town_placeholder.json`、`godot --headless --path . --script tests/test_asset_resolver.gd`、`godot --headless --path . --script tests/test_v0239_visual_rebuild_blockout.gd`、`godot --headless --path . --script tests/test_v0222_ui_scene_split.gd`、`godot --headless --path . --script tests/headless_runner.gd`、`godot --headless --path . --quit` 和 `git diff --check` 均通过。
+
+## LESSON-019：白底清底不适合 Apple-like glass UI
+
+- **日期：** 2026-06-08
+- **关联任务：** `V02-VISUALREBUILD-002`、Round167 img2img style-reference test
+- **现象：** 使用用户指定 gameplay mock 作为 style reference，通过 `/home/xionglei/GameProject/tools/image_generator.js edit` 生成 `round167_img2img_ui_icon_sheet_v001.png` 后，原图为 1024x1024 RGB 白底。用 chroma-key helper 按 border auto-key 清底得到 RGBA candidate，但 glass button 内部浅色区域、高光和部分图标浅色细节被一起扣掉，出现破洞和脏边。
+- **影响：** 如果把该 RGBA candidate 直接切片接入 HUD / footer，会破坏 Apple-like translucent glass 观感，并让图标在深色或游戏背景上出现黑洞 / 透明洞。后续 UI 资产即使风格方向正确，也会因透明化方式错误而不合格。
+- **根因：** Apple-like glass UI 本身包含大量白色、暖白、半透明高光和浅色面板；白底或近白底清底无法区分“背景白”和“玻璃材质白”。自动 border key 适合主体颜色远离背景色的 opaque props，不适合浅色 glass UI。
+- **解决方式：** Round167 UI sheet 仅保留为 RGB style reference / failed RGBA candidate，不进入 ThemeProfile / AssetResolver；报告中记录 UI 后续必须改用非主体色 chroma-key 背景或真透明路径。
+- **预防规则：**
+  - 生成 UI glass、浅色图标、半透明面板时，prompt 必须要求非主体色 chroma-key 背景，优先使用 #00ff00 或 #ff00ff，并明确该颜色不得出现在主体内。
+  - 白底 RGB sheet 可作为风格参考，但不得直接自动清底为 production UI。
+  - UI icon / glass button 进入 runtime 前必须在深色、浅色和真实 gameplay 背景上目检 alpha 边缘和内部透明洞。
+  - 对 glass UI 若 chroma-key 清底仍破坏高光，应转为真透明输出路径或手工重绘 / 切片，不得用有瑕疵 alpha 迁就接入。
+- **验证依据：** `file docs/collaboration/round167_visual_rebuild_img2img_style_test/*rgba_candidate.png` 确认 RGBA candidate 已生成；人工查看 `round167_img2img_ui_icon_sheet_v001_rgba_candidate.png` 确认 glass 内部被扣坏；`docs/collaboration/round167_visual_rebuild_img2img_style_test/Round167_V02.39_VISUALREBUILD-002_Img2ImgStyleReferenceTest.md` 和 manifest 已记录该结果。
+
+## LESSON-020：区域地面清底必须检查 alpha 边缘残留
+
+- **日期：** 2026-06-08
+- **关联任务：** `V02-VISUALREBUILD-002`、Round171 ground-region proof cleanup
+- **现象：** Round171 ground-region v001 manifest 中 visible `#ff00ff` chroma-key pixels 为 `0`，但 Home-area 1280 proof 仍能看到 meadow / path 大块地面轮廓上的粉紫、粉灰边缘残留。v002 初版进一步把标准 magenta fringe 计数清零后，人工 proof 仍可见部分浅色边缘轮廓。
+- **影响：** 如果只按纯 key 色或标准 magenta 像素判定 pass，大块 ground-region overlay 会在真实首屏中形成明显贴片边界，虽然数值 gate 通过，却削弱 cozy town 的连续地面观感。
+- **根因：** AI raw sheet 经 chroma-key 和 LANCZOS resize 后，边缘会产生半透明混合色；这些像素不再等于原始 key 色，也可能低于简单 magenta 阈值，但在大面积地面块边缘仍然可见。
+- **解决方式：** 已在 `docs/collaboration/round171_visual_rebuild_asset_generation/ground_regions/scripts/normalize_ground_regions.py` 增加 post-resize magenta despill、alpha-edge color repair、剩余可疑边缘 drop pass，并在 v002 manifest 中记录 `magenta_fringe_pixel_count` 与 `suspicious_edge_pixel_count`；Round171 v002 Home-area proof 已重新导出。
+- **预防规则：**
+  - 大块 terrain / ground-region / path-band 候选不能只检查 pure key pixels；必须检查 post-resize alpha 边缘残留。
+  - 对 chroma-key 生成的 region overlay，manifest gate 至少记录 visible key、magenta fringe 和 suspicious alpha-edge residue。
+  - Proof-only manifest 的 atlas / proof / normalized cell 主引用必须落在 `assets/art/visual_rebuild/` 下；`docs/collaboration/` 只保留 raw、alpha、provenance 或报告证据。
+  - 通过 despill gate 仍不等于 runtime-ready；若 proof 中仍有生成图描边感，应进入下一轮 art-generation / prompt 修正，而不是接入 `AssetResolver`。
+- **验证依据：** `python3 docs/collaboration/round171_visual_rebuild_asset_generation/ground_regions/scripts/normalize_ground_regions.py` 输出三组 `pass`；`godot --headless --path . --script tests/capture_round171_home_area_preview.gd` 导出 v002 proof；`python3 scripts/tools/audit_visual_candidate_manifests.py assets/art/visual_rebuild/round169 assets/art/visual_rebuild/round170 assets/art/visual_rebuild/round171` 返回 `17` 个 manifest、`failed_count: 0`、`locality_violation_count: 0`。
+
+## LESSON-021：Sprite 清底不能只看透明角和 alpha 存在
+
+- **日期：** 2026-06-08
+- **关联任务：** `V02-VISUALREBUILD-002`、Round174 NPC full-body proof generation
+- **现象：** Round174 NPC full-body sprites 首版 normalized PNG 在尺寸、alpha、透明角和 chroma 像素检查上通过，但组合 1280 proof 中多个角色仍带明显深色矩形背景 / halo block。
+- **影响：** 如果只用结构性 alpha gate 判定通过，角色候选会在首屏合成时出现贴片背景，破坏角色与地面的融合；这类问题在单张透明角检查中不一定暴露。
+- **根因：** fallback generator 曾忽略透明输出或生成带阴影背景的 subject plate；后处理只清掉角落 / key 色，没有检测 sprite bbox 内部的大面积近均匀背景块。
+- **解决方式：** 已重生成 8 个 NPC raw，改用显式 flat chroma-key prompt；重新 normalize atlas / proof / manifest，并在 `assets/art/visual_rebuild/round174/npc_fullbody/normalize_and_manifest.py` 增加 `visual_background_block_count` gate。修复后组合 proof 中深色矩形背景消失。
+- **预防规则：**
+  - 角色 / NPC / companion 候选必须有组合 proof，不得只凭透明角、alpha 存在和 chroma pixel count 通过。
+  - Sprite manifest gate 应记录是否存在大面积矩形背景块或 halo block；发现后必须重生成 raw 或修清底流程。
+  - 通过该 gate 仍只表示 proof-only candidate，不表示 animation-ready、runtime-ready 或 final approved。
+- **验证依据：** `godot --headless --path . --script tests/capture_round174_character_place_weather_preview.gd` 重新导出 Round174 proof；`python3 scripts/tools/audit_visual_candidate_manifests.py assets/art/visual_rebuild/round169 assets/art/visual_rebuild/round170 assets/art/visual_rebuild/round171 assets/art/visual_rebuild/round172 assets/art/visual_rebuild/round173 assets/art/visual_rebuild/round174` 返回 `28` 个 manifest、`failed_count: 0`；Godot headless 启动通过。
+
+## LESSON-022：不要信任生成参数，必须验证真实 alpha
+
+- **日期：** 2026-06-08
+- **关联任务：** `V02-VISUALREBUILD-002`、Round175 motion / interior / interaction UI proof generation
+- **现象：** Round175 motion sheets、home interior shells 和 interaction UI feedback 三个 agent pack 均调用 `/home/xionglei/GameProject/tools/image_generator.js` 并带 `--transparent`，但多组 raw 输出仍为 RGB / opaque，不能直接作为透明 sprite、glass UI 或 region asset 使用。
+- **影响：** 如果把生成参数当成事实，后续 manifest、proof 或 runtime mapping 可能误收 opaque 背景图，造成白底 / 暗底贴片、glass UI 破洞、角色 motion sheet 背景块等问题。
+- **根因：** fallback image generator 的透明输出并不稳定；不同 prompt / asset type 下可能忽略 `--transparent` 或返回带背景的 RGB 图。仅看命令行参数无法证明文件具备 alpha。
+- **解决方式：** Round175 三包都保留 raw generation evidence，并通过本地 normalization / alpha-safe synthesis 输出 proof-only RGBA candidates；manifest gate 记录实际 alpha、transparent corners、edge residue、background block 或 glass cleanup 风险。
+- **预防规则：**
+  - 所有 bitmap 资产必须以实际文件属性和 pixel audit 为准；`--transparent`、prompt 文案或工具模式不能作为透明证据。
+  - UI glass / sprite / cutout prop / motion sheet 进入任何候选 gate 前必须检查 RGBA、nonzero alpha、透明角、边缘残留和背景块。
+  - 如果 raw generation 不可靠，可以保留 raw 作 provenance，但 final candidate 必须经本地 normalize / synthesis 并标明 proof-only，不得直接映射 runtime。
+- **验证依据：** Round175 三个 pack manifest 均记录 raw opaque 风险与 final RGBA gate；`python3 scripts/tools/audit_visual_candidate_manifests.py assets/art/visual_rebuild/round169 assets/art/visual_rebuild/round170 assets/art/visual_rebuild/round171 assets/art/visual_rebuild/round172 assets/art/visual_rebuild/round173 assets/art/visual_rebuild/round174 assets/art/visual_rebuild/round175` 返回 `31` 个 manifest、`failed_count: 0`；`godot --headless --path . --script tests/capture_round175_motion_interior_ui_preview.gd` 通过。
+
+## LESSON-023：Image 白盒绘制必须裁切像素边界
+
+- **日期：** 2026-06-08
+- **关联任务：** `V02-VISUALREBUILD-002`、Round180 mainline visual layout target
+- **现象：** `tests/capture_round180_v0239_visual_layout_target.gd` 首次 headless 导出时能保存 1280x720 PNG 并以 exit code 0 结束，但 Godot 输出大量 `Image.set_pixel` x/y 越界错误；随后读取 JSON contract 时又触发 Godot 4.6 Variant 类型推断错误，属于 `LESSON-003` 既有规则。
+- **影响：** 如果只看退出码或 PNG 是否存在，会把带错误输出的 target frame 导出误判为干净通过；后续微调白盒构图时可能继续在画布边缘刷隐藏错误，污染主线验收日志。
+- **根因：** 白盒绘制 helper 直接按椭圆 / 圆角 rect 的原始矩形循环写像素，没有对 `canvas.get_width()` / `get_height()` 做裁切；JSON.parse_string 返回 Variant，未显式声明类型。
+- **解决方式：** 已在 `_draw_ellipse()`、`_draw_rounded_rect()` 和 outline helper 中增加边界裁切 / `_set_pixel_safe()`；合同读取改为显式 `Variant`、`Dictionary`、`FileAccess` 和 `Error` 类型；新增 `tests/test_v0239_visual_layout_target.gd` 验证合同、PNG 尺寸、核心 layer / bind / constraints，并注册进 `tests/headless_runner.gd`。
+- **预防规则：**
+  - 所有直接调用 `Image.set_pixel()` 的生成脚本必须在 helper 内统一裁切坐标，不能依赖调用方保证 shape 不出界。
+  - 生成 proof PNG 的验收必须看 stderr / Godot error 输出、focused test 和 `file` 尺寸，不得只看 exit code 或文件存在。
+  - 读取 JSON / 动态 Variant 的 GDScript 必须沿用 `LESSON-003` 显式类型标注规则。
+- **验证依据：** `godot --headless --path . --script tests/capture_round180_v0239_visual_layout_target.gd` 无越界错误并导出 PNG；`godot --headless --path . --script tests/test_v0239_visual_layout_target.gd`、`godot --headless --path . --script tests/test_v0239_visual_rebuild_blockout.gd`、`timeout 180 godot --headless --path . --script tests/headless_runner.gd` 和 `godot --headless --path . --quit` 均通过。

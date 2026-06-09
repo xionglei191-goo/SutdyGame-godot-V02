@@ -1,0 +1,311 @@
+{
+  "round": "Round172",
+  "pack_id": "home_yard_props",
+  "status": "normalized_candidate",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "source": "docs/collaboration/round172_visual_rebuild_asset_generation/home_yard_props/home_yard_props_raw_chroma_ff00ff_flat_v3.png",
+  "alpha_source": "assets/art/visual_rebuild/round172/home_yard_props/home_yard_props_raw_chroma_ff00ff_flat_v3_chroma_alpha.png",
+  "atlas": "assets/art/visual_rebuild/round172/home_yard_props/home_yard_props_128x128_atlas.png",
+  "proof": "assets/art/visual_rebuild/round172/home_yard_props/home_yard_props_128x128_proof.png",
+  "source_grid": {
+    "columns": 4,
+    "rows": 2
+  },
+  "cell_size": [
+    128,
+    128
+  ],
+  "atlas_size": [
+    512,
+    256
+  ],
+  "key_color": "#ff00ff",
+  "gate_checks": {
+    "fixed_cell": true,
+    "alpha": true,
+    "bbox": true,
+    "visible_key_pixels": 0,
+    "visible_key_pixels_zero": true
+  },
+  "overall_gate": "pass",
+  "items": [
+    {
+      "index": 1,
+      "id": "home_yard_prop.watering_can",
+      "display_name": "watering can",
+      "normalized_png": "assets/art/visual_rebuild/round172/home_yard_props/normalized_128x128/home_yard_prop_01_128x128.png",
+      "atlas_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        24,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 1,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "id": "home_yard_prop.flower_pot_cluster",
+      "display_name": "flower pot cluster",
+      "normalized_png": "assets/art/visual_rebuild/round172/home_yard_props/normalized_128x128/home_yard_prop_02_128x128.png",
+      "atlas_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        23,
+        14,
+        106,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 4,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "id": "home_yard_prop.tiny_birdhouse",
+      "display_name": "tiny birdhouse",
+      "normalized_png": "assets/art/visual_rebuild/round172/home_yard_props/normalized_128x128/home_yard_prop_03_128x128.png",
+      "atlas_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        18,
+        14,
+        96,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 1,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "id": "home_yard_prop.garden_bed",
+      "display_name": "garden bed",
+      "normalized_png": "assets/art/visual_rebuild/round172/home_yard_props/normalized_128x128/home_yard_prop_04_128x128.png",
+      "atlas_cell": {
+        "row": 0,
+        "column": 3
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        20,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 1,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "id": "home_yard_prop.folded_picnic_cloth",
+      "display_name": "folded picnic cloth",
+      "normalized_png": "assets/art/visual_rebuild/round172/home_yard_props/normalized_128x128/home_yard_prop_05_128x128.png",
+      "atlas_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        30,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 1,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "id": "home_yard_prop.pet_bowl",
+      "display_name": "pet bowl",
+      "normalized_png": "assets/art/visual_rebuild/round172/home_yard_props/normalized_128x128/home_yard_prop_06_128x128.png",
+      "atlas_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        25,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 1,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 7,
+      "id": "home_yard_prop.laundry_line_post",
+      "display_name": "laundry line post",
+      "normalized_png": "assets/art/visual_rebuild/round172/home_yard_props/normalized_128x128/home_yard_prop_07_128x128.png",
+      "atlas_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        12,
+        14,
+        112,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 1,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    },
+    {
+      "index": 8,
+      "id": "home_yard_prop.stepping_stones",
+      "display_name": "small stepping stones",
+      "normalized_png": "assets/art/visual_rebuild/round172/home_yard_props/normalized_128x128/home_yard_prop_08_128x128.png",
+      "atlas_cell": {
+        "row": 1,
+        "column": 3
+      },
+      "cell_size": [
+        128,
+        128
+      ],
+      "pivot_px": [
+        64,
+        118
+      ],
+      "bbox": [
+        8,
+        41,
+        120,
+        118
+      ],
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "component_count": 7,
+      "visible_key_pixel_count": 0,
+      "has_alpha": true,
+      "status": "pass"
+    }
+  ],
+  "notes": [
+    "Proof-only asset pack; not wired to runtime mappings.",
+    "Generated with local image_generator.js and normalized through chroma-key alpha removal.",
+    "Right-edge cross-cell spill was cleared on birdhouse and laundry-line cells before final atlas build."
+  ],
+  "category": "home_yard_prop"
+}

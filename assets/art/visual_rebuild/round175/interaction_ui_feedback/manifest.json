@@ -1,0 +1,581 @@
+{
+  "pack_id": "round175.interaction_ui_feedback",
+  "round": "Round175",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "interaction_feedback_and_glass_ui",
+  "scope": "Apple-like translucent glass-compatible proof-only UI feedback candidates for Sunshine Town mobile RPG UI.",
+  "generation_method": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text-to-image with --transparent",
+    "postprocess": "assets/art/visual_rebuild/round175/interaction_ui_feedback/normalize_validate_manifest.py",
+    "notes": "The local generator was invoked for each raw source with --transparent. Raw files that returned RGB/opaque are preserved under raw/ and converted to alpha-safe local RGBA proof candidates; no readable text or letters are requested in prompts or final PNGs."
+  },
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round175/interaction_ui_feedback/proof/round175_interaction_ui_feedback_contact_sheet.png",
+    "raw_dir": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw"
+  },
+  "validation_summary": {
+    "checks": [
+      "RGBA alpha channel",
+      "non-empty alpha content",
+      "transparent corners",
+      "edge alpha/touch scan",
+      "transparent alpha holes inside alpha bbox",
+      "white/glass cleanup damage scan",
+      "chroma-key residue scan",
+      "dark pinhole residue scan"
+    ],
+    "pass_count": 10,
+    "fail_count": 0,
+    "raw_rgb_or_opaque_source_count": 10
+  },
+  "items": [
+    {
+      "id": "interaction_ui.tap_ripple_ring",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/tap_ripple_ring.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/tap_ripple_ring_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "touch feedback overlay above interactable world/UI element; below modal/dialogue text layers",
+      "intended_use": "brief tap confirmation ripple centered on pressed target",
+      "opacity_recommendation": "45-70% peak alpha, animate scale up and fade over 0.18-0.28 seconds",
+      "nine_slice_recommendation": "not recommended; radial sprite should be uniformly scaled",
+      "prompt": "Use case: ui-mockup. Asset type: transparent Godot UI feedback sprite. Primary request: one centered tap ripple ring only, Apple-like translucent glass glow, soft cyan-white outer bloom, thin rounded circular ring, hollow transparent center, generous padding, no readable text, no letters, no numbers, no symbols, no icon, no button label, no background, no sheet, not marketing UI.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          16,
+          16,
+          177,
+          177
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": true,
+        "alpha_holes_inside_bbox": 11957,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.23003
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.look_prompt_glow",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/look_prompt_glow.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/look_prompt_glow_raw.png",
+      "dimensions": [
+        256,
+        144
+      ],
+      "intended_ui_layer": "world-space prompt aura behind inspect/look prompt icon or object highlight",
+      "intended_use": "soft glow plate behind a look/inspect prompt with no embedded text",
+      "opacity_recommendation": "25-45%, pulse subtly; keep below any icon/text",
+      "nine_slice_recommendation": "not recommended; preserve feathered oval falloff",
+      "prompt": "Use case: ui-mockup. Asset type: transparent Godot UI glow sprite. Primary request: one horizontal oval glow for a look prompt, Apple-like translucent frosted light, pale sky and mint edge bloom, empty transparent center area, no icon, no readable text, no letters, no numbers, no symbols, no white background, no rectangular sheet, generous padding.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          10,
+          7,
+          247,
+          138
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 6116,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.40362
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.interact_button_glass_96",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/interact_button_glass_96.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/interact_button_glass_96_raw.png",
+      "dimensions": [
+        96,
+        96
+      ],
+      "intended_ui_layer": "HUD action button base behind an interaction icon",
+      "intended_use": "round glass action button base; icon added separately in runtime proof",
+      "opacity_recommendation": "70-90% base alpha with 1px soft rim; hover/press can tint slightly warmer",
+      "nine_slice_recommendation": "not recommended; circular sprite",
+      "prompt": "Use case: ui-mockup. Asset type: transparent PNG button base. Primary request: one 96x96-style circular Apple-like glass button with frosted translucent material, soft rim highlight, subtle inner blur, no icon, no text, no letters, no numbers, no symbols, no white background, no rectangular plate, centered with clean padding.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          0,
+          3,
+          96,
+          96
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 1671,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.50228
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.inventory_slot_glass_112",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/inventory_slot_glass_112.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/inventory_slot_glass_112_raw.png",
+      "dimensions": [
+        112,
+        112
+      ],
+      "intended_ui_layer": "inventory grid slot background behind item icon",
+      "intended_use": "square-ish glass inventory slot base for proof inventory UI",
+      "opacity_recommendation": "65-85%; selected state can add separate glow instead of brightening whole tile",
+      "nine_slice_recommendation": "optional only if upscaled; recommended margins [24, 24, 24, 24]",
+      "prompt": "Use case: ui-mockup. Asset type: transparent PNG inventory slot base. Primary request: one rounded-square Apple-like translucent glass inventory slot, quiet frosted panel, soft bevel, small specular highlight, empty center, no object, no icon, no text, no letters, no numbers, no symbols, no white background, clean transparent corners.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          4,
+          8,
+          109,
+          112
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 962,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.6191
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.dialogue_bubble_glass",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/dialogue_bubble_glass.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/dialogue_bubble_glass_raw.png",
+      "dimensions": [
+        512,
+        192
+      ],
+      "intended_ui_layer": "dialogue container background below dialogue text and portrait/status overlays",
+      "intended_use": "wide child-friendly glass dialogue bubble with text rendered separately",
+      "opacity_recommendation": "80-92% panel alpha; text area should receive a runtime contrast scrim if needed",
+      "nine_slice_recommendation": "recommended margins [54, 54, 46, 42], tail should not be stretched if used",
+      "prompt": "Use case: ui-mockup. Asset type: transparent PNG dialogue bubble background. Primary request: one wide rounded Apple-like translucent glass dialogue bubble, soft frosted white-blue material, gentle rim, subtle lower tail nub without direction arrow, empty clean center, no text, no letters, no numbers, no symbols, no character, no marketing sheet, transparent outside corners.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          19,
+          21,
+          498,
+          173
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 3301,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.62949
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.selection_shadow_soft",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/selection_shadow_soft.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/selection_shadow_soft_raw.png",
+      "dimensions": [
+        256,
+        128
+      ],
+      "intended_ui_layer": "world-space shadow/highlight below selected character, prop, or UI card",
+      "intended_use": "soft grounding/selection oval shadow",
+      "opacity_recommendation": "22-38%; multiply/tint in runtime if used over bright terrain",
+      "nine_slice_recommendation": "not recommended; oval falloff should scale uniformly or non-uniformly as a sprite",
+      "prompt": "Use case: ui-mockup. Asset type: transparent PNG soft shadow. Primary request: one soft horizontal oval selection shadow, translucent cool gray with slight blue rim, very feathered edges, no hard outline, no text, no letters, no numbers, no icon, no object, no background, lots of transparent padding.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          22,
+          21,
+          235,
+          122
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 4232,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.33414
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.coin_gain_spark",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/coin_gain_spark.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/coin_gain_spark_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "reward feedback overlay near currency counter or pickup location",
+      "intended_use": "coin gain sparkle burst without coin symbol/text",
+      "opacity_recommendation": "60-90% for first frame; animate upward drift and fade",
+      "nine_slice_recommendation": "not recommended; particle burst sprite",
+      "prompt": "Use case: ui-mockup. Asset type: transparent PNG reward feedback sprite. Primary request: small warm golden sparkle burst for coin gain feedback, Apple-like glossy translucent glints, several tiny star flecks and soft halos, no coin drawing, no currency symbol, no readable text, no letters, no numbers, no background, centered with padding.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          23,
+          24,
+          170,
+          169
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 4740,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.22548
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.friendship_heart_glow",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/friendship_heart_glow.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/friendship_heart_glow_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "intended_ui_layer": "relationship feedback overlay above NPC or friendship meter",
+      "intended_use": "friendship affection glow cue with no numeric value",
+      "opacity_recommendation": "55-85%; pulse once, then fade",
+      "nine_slice_recommendation": "not recommended; heart/glow sprite",
+      "prompt": "Use case: ui-mockup. Asset type: transparent PNG friendship feedback sprite. Primary request: one soft heart-shaped glow, Apple-like translucent pink glass, gentle warm rim, subtle inner bloom, no face, no icon details, no readable text, no letters, no numbers, no background, centered with generous transparent padding.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          8,
+          5,
+          185,
+          192
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 6908,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.39261
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.mini_badge_anchor_soft",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/mini_badge_anchor_soft.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/mini_badge_anchor_soft_raw.png",
+      "dimensions": [
+        128,
+        128
+      ],
+      "intended_ui_layer": "small badge base for A-Z anchor state indicator; letter/content rendered separately",
+      "intended_use": "soft badge backing for memory-palace anchor indicator, without embedded letter",
+      "opacity_recommendation": "70-88%; add separate runtime glyph/icon only after accessibility contrast pass",
+      "nine_slice_recommendation": "not recommended; badge shape",
+      "prompt": "Use case: ui-mockup. Asset type: transparent PNG badge base. Primary request: one small rounded badge base for an anchor indicator, Apple-like translucent glass, pale aqua and warm highlight, empty center, no anchor symbol, no readable text, no letters, no numbers, no icon, no background, clean transparent corners.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          12,
+          14,
+          117,
+          121
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 1388,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.48413
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    },
+    {
+      "id": "interaction_ui.footer_button_glass_wide",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/footer_button_glass_wide.png",
+      "source_ref": "assets/art/visual_rebuild/round175/interaction_ui_feedback/raw/footer_button_glass_wide_raw.png",
+      "dimensions": [
+        320,
+        96
+      ],
+      "intended_ui_layer": "footer command button background below separate icon/text",
+      "intended_use": "wide glass footer button base for proof navigation/action UI",
+      "opacity_recommendation": "75-90%; keep text/icon separate and add runtime contrast layer if needed",
+      "nine_slice_recommendation": "recommended margins [48, 48, 30, 30]",
+      "prompt": "Use case: ui-mockup. Asset type: transparent PNG wide button base. Primary request: one wide rounded pill Apple-like translucent glass footer button, frosted panel, subtle rim highlight and soft shadow, empty center, no readable text, no letters, no numbers, no icon, no logo, no white background, no marketing UI sheet, transparent outside corners.",
+      "validation": {
+        "normalization_mode": "generator_rgb_or_opaque_source_alpha_safe_local_rgba",
+        "rgba_alpha": true,
+        "alpha_bbox": [
+          7,
+          11,
+          314,
+          96
+        ],
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "intended_hollow_shape": false,
+        "alpha_holes_inside_bbox": 1622,
+        "white_glass_cleanup_damage": {
+          "edge_opaque_white_ratio": 0.0,
+          "large_white_rect_risk": false,
+          "visible_alpha_coverage": 0.6891
+        },
+        "residue_scan": {
+          "opaque_white_residue_pixels": 0,
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        }
+      },
+      "risks": [
+        "Proof-only asset; requires visual review in actual UI contrast/background before runtime mapping."
+      ]
+    }
+  ],
+  "pack_risks": [
+    "Generated glass may need contrast scrims over busy town backgrounds.",
+    "No runtime mapping is included; all paths remain proof-only asset-tree references.",
+    "Prompts forbid readable text/letters, but visual review should still check accidental glyph-like marks before promotion."
+  ]
+}

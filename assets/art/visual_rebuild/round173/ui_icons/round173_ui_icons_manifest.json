@@ -1,0 +1,606 @@
+{
+  "round": "Round173",
+  "pack_id": "round173_proof_only_ui_icons_status_icons",
+  "category": "ui_icon",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/ui_icons/round173_ui_icons_raw_sheet_chromakey_magenta.png",
+  "source_alpha_debug": "docs/collaboration/round173_visual_rebuild_asset_generation/ui_icons/round173_ui_icons_alpha_sheet_debug.png",
+  "atlas": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icons_atlas_5x2_128.png",
+  "proof": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icons_proof_1280x720.png",
+  "cell_px": [
+    128,
+    128
+  ],
+  "atlas_grid": [
+    5,
+    2
+  ],
+  "icons": [
+    {
+      "icon_id": "coin",
+      "logical_asset_id_candidate": "ui_icon.coin",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_coin_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        19,
+        292,
+        198,
+        478
+      ],
+      "normalized_bbox_px": [
+        14,
+        12,
+        114,
+        116
+      ],
+      "alpha_pixels": 8426,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "bag",
+      "logical_asset_id_candidate": "ui_icon.bag",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_bag_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        217,
+        285,
+        400,
+        489
+      ],
+      "normalized_bbox_px": [
+        17,
+        12,
+        110,
+        116
+      ],
+      "alpha_pixels": 7701,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "album",
+      "logical_asset_id_candidate": "ui_icon.album",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_album_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        425,
+        294,
+        594,
+        488
+      ],
+      "normalized_bbox_px": [
+        18,
+        12,
+        109,
+        116
+      ],
+      "alpha_pixels": 8998,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "shop",
+      "logical_asset_id_candidate": "ui_icon.shop",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_shop_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        615,
+        294,
+        796,
+        487
+      ],
+      "normalized_bbox_px": [
+        15,
+        12,
+        113,
+        116
+      ],
+      "alpha_pixels": 9455,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "home",
+      "logical_asset_id_candidate": "ui_icon.home",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_home_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        813,
+        299,
+        1002,
+        483
+      ],
+      "normalized_bbox_px": [
+        12,
+        13,
+        116,
+        114
+      ],
+      "alpha_pixels": 8148,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "settings",
+      "logical_asset_id_candidate": "ui_icon.settings",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_settings_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        23,
+        553,
+        194,
+        734
+      ],
+      "normalized_bbox_px": [
+        15,
+        12,
+        113,
+        116
+      ],
+      "alpha_pixels": 7783,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "pet_status_heart",
+      "logical_asset_id_candidate": "ui_icon.pet_happy",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_pet_status_heart_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        218,
+        560,
+        402,
+        731
+      ],
+      "normalized_bbox_px": [
+        12,
+        15,
+        116,
+        112
+      ],
+      "alpha_pixels": 7875,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "close_x",
+      "logical_asset_id_candidate": "ui_icon.close",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_close_x_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        420,
+        551,
+        601,
+        736
+      ],
+      "normalized_bbox_px": [
+        13,
+        12,
+        115,
+        116
+      ],
+      "alpha_pixels": 8671,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "check_confirm",
+      "logical_asset_id_candidate": "ui_icon.confirm",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_check_confirm_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        620,
+        551,
+        802,
+        736
+      ],
+      "normalized_bbox_px": [
+        13,
+        12,
+        115,
+        116
+      ],
+      "alpha_pixels": 8652,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    },
+    {
+      "icon_id": "map_pin",
+      "logical_asset_id_candidate": "ui_icon.map_pin",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_map_pin_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        821,
+        551,
+        995,
+        735
+      ],
+      "normalized_bbox_px": [
+        15,
+        12,
+        113,
+        116
+      ],
+      "alpha_pixels": 7519,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass"
+    }
+  ],
+  "validation": {
+    "fixed_cell_atlas": true,
+    "atlas_has_alpha": true,
+    "all_icons_have_bbox": true,
+    "visible_key_pixels": 0,
+    "overall_gate": "pass"
+  },
+  "risks": {
+    "glass_ui_alpha_risk": "medium: chroma-key removal preserves opaque icon candidates, but glossy translucent highlights still need review on real Apple-like glass buttons before runtime mapping.",
+    "candidate_semantics_risk": "confirm and map_pin are not yet listed as docs/10 P0/P1 runtime IDs; keep as proof-only candidates until UI contract decides stable logical IDs."
+  },
+  "status": "normalized_candidate",
+  "overall_gate": "pass",
+  "items": [
+    {
+      "icon_id": "coin",
+      "logical_asset_id_candidate": "ui_icon.coin",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_coin_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        19,
+        292,
+        198,
+        478
+      ],
+      "normalized_bbox_px": [
+        14,
+        12,
+        114,
+        116
+      ],
+      "alpha_pixels": 8426,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 1,
+      "id": "coin",
+      "status": "pass"
+    },
+    {
+      "icon_id": "bag",
+      "logical_asset_id_candidate": "ui_icon.bag",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_bag_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        217,
+        285,
+        400,
+        489
+      ],
+      "normalized_bbox_px": [
+        17,
+        12,
+        110,
+        116
+      ],
+      "alpha_pixels": 7701,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 2,
+      "id": "bag",
+      "status": "pass"
+    },
+    {
+      "icon_id": "album",
+      "logical_asset_id_candidate": "ui_icon.album",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_album_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        425,
+        294,
+        594,
+        488
+      ],
+      "normalized_bbox_px": [
+        18,
+        12,
+        109,
+        116
+      ],
+      "alpha_pixels": 8998,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 3,
+      "id": "album",
+      "status": "pass"
+    },
+    {
+      "icon_id": "shop",
+      "logical_asset_id_candidate": "ui_icon.shop",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_shop_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        615,
+        294,
+        796,
+        487
+      ],
+      "normalized_bbox_px": [
+        15,
+        12,
+        113,
+        116
+      ],
+      "alpha_pixels": 9455,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 4,
+      "id": "shop",
+      "status": "pass"
+    },
+    {
+      "icon_id": "home",
+      "logical_asset_id_candidate": "ui_icon.home",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_home_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        813,
+        299,
+        1002,
+        483
+      ],
+      "normalized_bbox_px": [
+        12,
+        13,
+        116,
+        114
+      ],
+      "alpha_pixels": 8148,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 5,
+      "id": "home",
+      "status": "pass"
+    },
+    {
+      "icon_id": "settings",
+      "logical_asset_id_candidate": "ui_icon.settings",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_settings_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        23,
+        553,
+        194,
+        734
+      ],
+      "normalized_bbox_px": [
+        15,
+        12,
+        113,
+        116
+      ],
+      "alpha_pixels": 7783,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 6,
+      "id": "settings",
+      "status": "pass"
+    },
+    {
+      "icon_id": "pet_status_heart",
+      "logical_asset_id_candidate": "ui_icon.pet_happy",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_pet_status_heart_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        218,
+        560,
+        402,
+        731
+      ],
+      "normalized_bbox_px": [
+        12,
+        15,
+        116,
+        112
+      ],
+      "alpha_pixels": 7875,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 7,
+      "id": "pet_status_heart",
+      "status": "pass"
+    },
+    {
+      "icon_id": "close_x",
+      "logical_asset_id_candidate": "ui_icon.close",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_close_x_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        420,
+        551,
+        601,
+        736
+      ],
+      "normalized_bbox_px": [
+        13,
+        12,
+        115,
+        116
+      ],
+      "alpha_pixels": 8671,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 8,
+      "id": "close_x",
+      "status": "pass"
+    },
+    {
+      "icon_id": "check_confirm",
+      "logical_asset_id_candidate": "ui_icon.confirm",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_check_confirm_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        620,
+        551,
+        802,
+        736
+      ],
+      "normalized_bbox_px": [
+        13,
+        12,
+        115,
+        116
+      ],
+      "alpha_pixels": 8652,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 9,
+      "id": "check_confirm",
+      "status": "pass"
+    },
+    {
+      "icon_id": "map_pin",
+      "logical_asset_id_candidate": "ui_icon.map_pin",
+      "category": "ui_icon",
+      "normalized_png": "assets/art/visual_rebuild/round173/ui_icons/round173_ui_icon_map_pin_128.png",
+      "cell_px": [
+        128,
+        128
+      ],
+      "raw_bbox_px": [
+        821,
+        551,
+        995,
+        735
+      ],
+      "normalized_bbox_px": [
+        15,
+        12,
+        113,
+        116
+      ],
+      "alpha_pixels": 7519,
+      "visible_key_pixels": 0,
+      "has_alpha": true,
+      "has_bbox": true,
+      "gate": "pass",
+      "index": 10,
+      "id": "map_pin",
+      "status": "pass"
+    }
+  ],
+  "glass_ui_alpha_risk": "medium_chroma_key_passes_numeric_gate_but_needs_real_glass_hud_review"
+}

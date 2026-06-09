@@ -1,0 +1,56 @@
+{
+  "pack_id": "round176.album_card_ui",
+  "round": "Round176",
+  "items": [
+    {
+      "id": "album_card_glass_empty",
+      "dimensions": [320, 448],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG album card base. Primary request: one empty rounded vertical card made of Apple-like translucent frosted glass, soft white rim, subtle warm mint and sky reflections, empty center for future artwork, no readable text, no letters, no numbers, no symbols, no icon, no character, no object, no background, clean transparent corners."
+    },
+    {
+      "id": "album_card_collected_glow",
+      "dimensions": [320, 448],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG collected card highlight. Primary request: one rounded vertical collected-state glass card with gentle golden mint glow, soft inner bloom, celebratory but calm child-friendly polish, empty center for artwork, no readable text, no letters, no numbers, no symbols, no icon, no character, no object, no background, clean transparent corners."
+    },
+    {
+      "id": "album_page_tab_glass",
+      "dimensions": [256, 96],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG page tab. Primary request: one pill-shaped frosted glass album page tab with subtle top highlight and warm underside shadow, empty with no label, no readable text, no letters, no numbers, no symbols, no icon, no background, clean transparent corners."
+    },
+    {
+      "id": "sticker_slot_round",
+      "dimensions": [128, 128],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG sticker slot. Primary request: one round translucent sticker slot ring, soft glass rim, quiet dotted inner glow made from simple dots only, empty transparent center, no readable text, no letters, no numbers, no symbols, no icon, no background, clean transparent corners."
+    },
+    {
+      "id": "memory_anchor_badge_backplate",
+      "dimensions": [160, 160],
+      "prompt": "Use case: mobile cozy game memory album UI. Asset type: transparent PNG badge backplate. Primary request: one rounded scalloped badge backplate in frosted glass, child-friendly soft rim, small radial shine, empty center for separate memory anchor icon, no readable text, no letters, no numbers, no symbols, no icon, no background, clean transparent corners."
+    },
+    {
+      "id": "photo_corner_tape_pair",
+      "dimensions": [192, 192],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG decorative photo tape pair. Primary request: two small translucent washi tape corner pieces, one top-left and one bottom-right, pale peach and milky glass, no paper/photo background, no readable text, no letters, no numbers, no symbols, no icon, clean transparent corners."
+    },
+    {
+      "id": "collection_stamp_soft",
+      "dimensions": [160, 160],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG soft stamp mark. Primary request: one circular soft stamp halo made from simple rounded ring and tiny dots, warm coral and mint translucent ink, no readable text, no letters, no numbers, no symbols, no icon, no badge label, no background, clean transparent corners."
+    },
+    {
+      "id": "tiny_progress_pip_set",
+      "dimensions": [192, 64],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG tiny progress pips. Primary request: a horizontal set of five tiny glass progress pips, mixed filled and empty states using simple circles only, Apple-like translucent polish, no readable text, no letters, no numbers, no symbols, no icon, no background, clean transparent corners."
+    },
+    {
+      "id": "card_shadow_soft",
+      "dimensions": [320, 448],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG soft card shadow. Primary request: one very soft rounded-rectangle shadow for an album card, feathered edges, light cool gray with a hint of blue, no card face, no readable text, no letters, no numbers, no symbols, no background, clean transparent corners."
+    },
+    {
+      "id": "album_panel_backdrop",
+      "dimensions": [768, 512],
+      "prompt": "Use case: mobile cozy game collection album UI. Asset type: transparent PNG album panel backdrop. Primary request: one wide rounded translucent frosted glass panel backdrop, subtle warm cozy town UI color reflections, soft rim, clean interior for placing cards, no readable text, no letters, no numbers, no symbols, no icon, no character, no object, no background, clean transparent corners."
+    }
+  ]
+}

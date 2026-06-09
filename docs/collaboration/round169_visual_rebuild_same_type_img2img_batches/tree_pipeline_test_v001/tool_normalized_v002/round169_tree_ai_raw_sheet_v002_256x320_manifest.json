@@ -1,0 +1,291 @@
+{
+  "source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/round169_tree_ai_raw_sheet_v002.png",
+  "alpha_source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/round169_tree_ai_raw_sheet_v002_chroma_alpha.png",
+  "atlas": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/round169_tree_ai_raw_sheet_v002_256x320_atlas.png",
+  "pivot_proof": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/round169_tree_ai_raw_sheet_v002_256x320_pivot_proof.png",
+  "source_grid": {
+    "columns": 3,
+    "rows": 2
+  },
+  "cell_size": [
+    256,
+    320
+  ],
+  "fit_box": [
+    224,
+    272
+  ],
+  "pivot_px": [
+    128,
+    300
+  ],
+  "key_color": "#ff00ff",
+  "key_family": "magenta",
+  "items": [
+    {
+      "index": 1,
+      "id": "tree_round.01",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        38,
+        137,
+        314,
+        461
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/normalized_256x320/tree_round_01_256x320.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        37,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 37,
+        "right": 16,
+        "bottom": 20
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "scale_from_source_crop": 0.8115942028985508,
+      "status": "pass"
+    },
+    {
+      "index": 2,
+      "id": "tree_round.02",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        34,
+        137,
+        317,
+        463
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/normalized_256x320/tree_round_02_256x320.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        42,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 42,
+        "right": 16,
+        "bottom": 20
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "scale_from_source_crop": 0.7915194346289752,
+      "status": "pass"
+    },
+    {
+      "index": 3,
+      "id": "tree_round.03",
+      "source_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        27,
+        137,
+        304,
+        461
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/normalized_256x320/tree_round_03_256x320.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        38,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 38,
+        "right": 16,
+        "bottom": 20
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "scale_from_source_crop": 0.8086642599277978,
+      "status": "pass"
+    },
+    {
+      "index": 4,
+      "id": "tree_round.04",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        38,
+        64,
+        308,
+        381
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/normalized_256x320/tree_round_04_256x320.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        37,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 37,
+        "right": 16,
+        "bottom": 20
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "scale_from_source_crop": 0.8296296296296296,
+      "status": "pass"
+    },
+    {
+      "index": 5,
+      "id": "tree_round.05",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        32,
+        68,
+        312,
+        380
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/normalized_256x320/tree_round_05_256x320.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        50,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 50,
+        "right": 16,
+        "bottom": 20
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "scale_from_source_crop": 0.8,
+      "status": "pass"
+    },
+    {
+      "index": 6,
+      "id": "tree_round.06",
+      "source_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        25,
+        73,
+        305,
+        380
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/tool_normalized_v002/normalized_256x320/tree_round_06_256x320.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        54,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 54,
+        "right": 16,
+        "bottom": 20
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "components": 1,
+      "scale_from_source_crop": 0.8,
+      "status": "pass"
+    }
+  ],
+  "overall_gate": "pass"
+}

@@ -19,13 +19,12 @@ func configure(main_renderer: Object) -> void:
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 8)
 
-	_configure_footer_button(row.get_node("InteractButton") as Button, "看看", true, "_on_interact_pressed")
-	_configure_footer_button(row.get_node("TownNavButton") as Button, "小镇", true, "_on_town_pressed")
-	_configure_footer_button(row.get_node("HomeNavButton") as Button, "小屋", false, "_on_home_pressed")
+	_configure_footer_button(row.get_node("InteractButton") as Button, "看看", true, "_on_interact_pressed", "v0239_icon_look")
+	_configure_footer_button(row.get_node("TownNavButton") as Button, "小镇", true, "_on_town_pressed", "v0239_icon_map")
+	_configure_footer_button(row.get_node("HomeNavButton") as Button, "小屋", false, "_on_home_pressed", "v0239_icon_home")
 	var backpack_button := row.get_node("BackpackNavButton") as Button
-	_configure_footer_button(backpack_button, "背包", false, "_on_backpack_pressed")
-	backpack_button.icon = renderer.call("_get_texture", "ui_icon_bag") as Texture2D
-	backpack_button.expand_icon = true
+	_configure_footer_button(backpack_button, "背包", false, "_on_backpack_pressed", "ui_icon_bag")
+	_configure_footer_button(row.get_node("AlbumNavButton") as Button, "相册", false, "_on_memory_album_pressed", "v0239_icon_album")
 
 	var contract_buttons := get_node("FooterContractButtons") as Control
 	contract_buttons.visible = false
@@ -37,11 +36,14 @@ func configure(main_renderer: Object) -> void:
 	_configure_action_button(contract_buttons.get_node("LetterSnakeButton") as Button, "Letter Snake", "_on_optional_letter_snake_pressed")
 
 
-func _configure_footer_button(button: Button, label: String, selected: bool, method_name: String) -> void:
+func _configure_footer_button(button: Button, label: String, selected: bool, method_name: String, icon_key: String = "") -> void:
 	button.text = label
-	button.custom_minimum_size = Vector2(84, 40)
+	button.custom_minimum_size = Vector2(62, 42)
+	if not icon_key.is_empty():
+		button.icon = renderer.call("_get_texture", icon_key) as Texture2D
+		button.expand_icon = true
 	button.focus_mode = Control.FOCUS_NONE
-	button.add_theme_font_size_override("font_size", 15)
+	button.add_theme_font_size_override("font_size", 13)
 	button.add_theme_color_override("font_color", Color("#27443b") if selected else Color("#46584f"))
 	var normal_color := Color("#f7fbffee") if selected else Color("#ffffffdc")
 	var hover_color := Color("#ffffffee") if selected else Color("#f7fbffee")

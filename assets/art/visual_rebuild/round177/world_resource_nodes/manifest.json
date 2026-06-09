@@ -1,0 +1,550 @@
+{
+  "round": 177,
+  "pack": "world_resource_nodes",
+  "category": "proof_only_world_resource_node_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": {
+    "proof_only": true,
+    "runtime_mapping": "none",
+    "asset_resolver_mapping": "none",
+    "theme_profile_mapping": "none",
+    "data_mapping": "none"
+  },
+  "style_compatibility_notes": [
+    "Animal Crossing-like soft 3/4 prop/resource-node candidates.",
+    "Designed to sit near Round172 props and Round173 item icons without UI card framing.",
+    "No readable text, letters, numbers, pressure/reward symbols, full scenes, or characters requested."
+  ],
+  "normalization": {
+    "canvas_px": [
+      192,
+      192
+    ],
+    "format": "PNG RGBA",
+    "lesson_022_alpha_policy": "Generator output was treated as untrusted; actual alpha was checked and local chroma normalization was used when needed."
+  },
+  "checks_required": [
+    "dimensions",
+    "RGBA alpha channel",
+    "transparent corners",
+    "visible edge residue",
+    "suspicious chroma/key residue",
+    "background block"
+  ],
+  "counts": {
+    "items_total": 10,
+    "items_pass": 10,
+    "items_fail": 0
+  },
+  "atlas_ref": "round177_world_resource_nodes_atlas_5x2_192.png",
+  "proof_ref": "proof/round177_world_resource_nodes_checker_proof_1120x448.png",
+  "items": [
+    {
+      "id": "world_resource_nodes.branch_pile_node",
+      "slug": "branch_pile_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/branch_pile_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/branch_pile_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        166
+      ],
+      "footprint_recommendation": "1x1 tile, low blocking/collectible footprint centered around base",
+      "layer_recommendation": "ground resource prop above terrain/path, below actors when actor y is in front",
+      "prompt": "single transparent cozy town resource node prop: a small rounded pile of friendly fallen branches and twigs tied by soft leaves, Animal Crossing-like soft 3/4 game prop style, child-friendly, warm handmade shapes, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #00ff00 chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        112,
+        240,
+        72
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 7598,
+        "visible_coverage_ratio": 0.2061,
+        "semi_transparent_pixel_count": 1776,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 398,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Brown branches need contrast check on warm dirt paths.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.pebble_cluster_node",
+      "slug": "pebble_cluster_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/pebble_cluster_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/pebble_cluster_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        168
+      ],
+      "footprint_recommendation": "1x1 tile, low mostly non-blocking collectible marker",
+      "layer_recommendation": "ground resource prop above terrain/path, below actors and taller decor",
+      "prompt": "single transparent cozy town resource node prop: a compact cluster of smooth rounded pebbles with tiny moss accents, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        248,
+        72,
+        176
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 11580,
+        "visible_coverage_ratio": 0.3141,
+        "semi_transparent_pixel_count": 2092,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 2,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Low gray silhouette may need edge contrast on stone paths.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.wildflower_collect_patch",
+      "slug": "wildflower_collect_patch",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/wildflower_collect_patch_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/wildflower_collect_patch_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        168
+      ],
+      "footprint_recommendation": "1x1 tile, non-blocking low collect patch",
+      "layer_recommendation": "ground flora resource above grass terrain, below actors and furniture",
+      "prompt": "single transparent cozy town resource node prop: a small collectable patch of wildflowers and soft grass, rounded pastel petals, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        243,
+        25,
+        211
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 11054,
+        "visible_coverage_ratio": 0.2999,
+        "semi_transparent_pixel_count": 1102,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 54,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Flower colors must stay readable over Round170 flower/grass props.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.orange_tree_small_node",
+      "slug": "orange_tree_small_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/orange_tree_small_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/orange_tree_small_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        172
+      ],
+      "footprint_recommendation": "1x1 tile trunk collision, canopy may visually overhang neighboring cells",
+      "layer_recommendation": "small tree resource above ground props, depth-sort by trunk/base pivot",
+      "prompt": "single transparent cozy town resource node prop: a small rounded orange fruit tree, squat trunk, soft leafy crown, a few oranges visible, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        252,
+        4,
+        252
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 13772,
+        "visible_coverage_ratio": 0.3736,
+        "semi_transparent_pixel_count": 305,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 25,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Canopy overhang needs collision kept to trunk only.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.seed_sprout_node",
+      "slug": "seed_sprout_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/seed_sprout_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/seed_sprout_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        168
+      ],
+      "footprint_recommendation": "1x1 tile, very low non-blocking gather/care marker",
+      "layer_recommendation": "ground resource prop above terrain/path, below actors",
+      "prompt": "single transparent cozy town resource node prop: a tiny seed sprout emerging from a soft mound of soil with two rounded leaves, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        248,
+        56,
+        168
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 12186,
+        "visible_coverage_ratio": 0.3306,
+        "semi_transparent_pixel_count": 903,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 2,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Very small leaf shape may need scale-up in runtime proof.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.fabric_scrap_basket_node",
+      "slug": "fabric_scrap_basket_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/fabric_scrap_basket_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/fabric_scrap_basket_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        168
+      ],
+      "footprint_recommendation": "1x1 tile, small low basket collision",
+      "layer_recommendation": "small resource prop above ground, below actors when actor y is in front",
+      "prompt": "single transparent cozy town resource node prop: a tiny woven basket holding soft folded fabric scraps, rounded simple cloth shapes, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no patterns that look like letters, no UI card, no full scene, no characters, no reward symbol, flat solid #00ff00 chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        2,
+        251,
+        5
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 15677,
+        "visible_coverage_ratio": 0.4253,
+        "semi_transparent_pixel_count": 219,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 1,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Fabric folds must be checked for accidental text-like marks.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.tiny_book_stack_node",
+      "slug": "tiny_book_stack_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/tiny_book_stack_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/tiny_book_stack_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        168
+      ],
+      "footprint_recommendation": "1x1 tile, low collectible stack",
+      "layer_recommendation": "ground resource prop above terrain/interior floor, below actors",
+      "prompt": "single transparent cozy town resource node prop: a tiny stack of blank picture books with rounded covers and no markings, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, absolutely no readable text, no letters, no numbers, no symbols, no UI card, no full scene, no characters, no reward symbol, flat solid #00ff00 chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        2,
+        252,
+        3
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 17013,
+        "visible_coverage_ratio": 0.4615,
+        "semi_transparent_pixel_count": 247,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 0,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Book covers must remain blank before any runtime use.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.snack_basket_node",
+      "slug": "snack_basket_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/snack_basket_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/snack_basket_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        168
+      ],
+      "footprint_recommendation": "1x1 tile, small basket collision",
+      "layer_recommendation": "small resource prop above ground, below actors when actor y is in front",
+      "prompt": "single transparent cozy town resource node prop: a small picnic snack basket with simple round buns and fruit shapes, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no brand labels, no UI card, no full scene, no characters, no reward symbol, flat solid #00ff00 chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        144,
+        216,
+        72
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 9724,
+        "visible_coverage_ratio": 0.2638,
+        "semi_transparent_pixel_count": 4083,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 121,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Food shapes should stay generic and not read as branded snacks.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.coin_sparkle_node",
+      "slug": "coin_sparkle_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/coin_sparkle_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/coin_sparkle_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        168
+      ],
+      "footprint_recommendation": "1x1 tile, non-blocking tiny collect marker",
+      "layer_recommendation": "ground resource sparkle above terrain/path and below UI feedback",
+      "prompt": "single transparent cozy town resource node prop: a tiny gentle coin glint resource marker, two or three soft round coins with very subtle small sparkles, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no currency marks, no pressure or reward symbols beyond gentle sparkles, no UI card, no full scene, no characters, flat solid #00ff00 chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        128,
+        232,
+        72
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 8875,
+        "visible_coverage_ratio": 0.2407,
+        "semi_transparent_pixel_count": 2729,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 33,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Sparkles must remain gentle, not reward-pressure effects.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    },
+    {
+      "id": "world_resource_nodes.watering_can_pickup_node",
+      "slug": "watering_can_pickup_node",
+      "status": "pass",
+      "category": "world_resource_node",
+      "main_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/normalized_192x192/watering_can_pickup_node_192x192.png",
+      "source_ref": "assets/art/visual_rebuild/round177/world_resource_nodes/raw/watering_can_pickup_node_raw.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        168
+      ],
+      "footprint_recommendation": "1x1 tile, small tool pickup collision",
+      "layer_recommendation": "small resource/tool prop above ground, below actors when actor y is in front",
+      "prompt": "single transparent cozy town resource node prop: a small rounded watering can pickup, pastel metal body with simple handle and spout, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no symbols, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background",
+      "normalization_method": "generator_rgb_or_opaque_source_chroma_key_local_rgba",
+      "detected_key_color": [
+        252,
+        3,
+        250
+      ],
+      "checks": {
+        "dimensions": [
+          192,
+          192
+        ],
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          255
+        ],
+        "visible_pixel_count": 13238,
+        "visible_coverage_ratio": 0.3591,
+        "semi_transparent_pixel_count": 293,
+        "transparent_corner_alpha_max": 0,
+        "visible_edge_residue_pixel_count": 0,
+        "suspicious_key_residue_pixel_count": 0,
+        "low_alpha_chroma_shadow_pixel_count": 5,
+        "background_block_check": "pass",
+        "pass": true
+      },
+      "risks": [
+        "Spout silhouette is thin; check at mobile scale.",
+        "Proof-only candidate; no runtime, data, ThemeProfile, or AssetResolver mapping."
+      ]
+    }
+  ],
+  "commands": [
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a small rounded pile of friendly fallen branches and twigs tied by soft leaves, Animal Crossing-like soft 3/4 game prop style, child-friendly, warm handmade shapes, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #00ff00 chroma key background only, no cast shadow on background\" \"raw/branch_pile_node_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a compact cluster of smooth rounded pebbles with tiny moss accents, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background\" \"raw/pebble_cluster_node_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a small collectable patch of wildflowers and soft grass, rounded pastel petals, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background\" \"raw/wildflower_collect_patch_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a small rounded orange fruit tree, squat trunk, soft leafy crown, a few oranges visible, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background\" \"raw/orange_tree_small_node_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a tiny seed sprout emerging from a soft mound of soil with two rounded leaves, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background\" \"raw/seed_sprout_node_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a tiny woven basket holding soft folded fabric scraps, rounded simple cloth shapes, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no patterns that look like letters, no UI card, no full scene, no characters, no reward symbol, flat solid #00ff00 chroma key background only, no cast shadow on background\" \"raw/fabric_scrap_basket_node_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a tiny stack of blank picture books with rounded covers and no markings, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, absolutely no readable text, no letters, no numbers, no symbols, no UI card, no full scene, no characters, no reward symbol, flat solid #00ff00 chroma key background only, no cast shadow on background\" \"raw/tiny_book_stack_node_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a small picnic snack basket with simple round buns and fruit shapes, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no brand labels, no UI card, no full scene, no characters, no reward symbol, flat solid #00ff00 chroma key background only, no cast shadow on background\" \"raw/snack_basket_node_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a tiny gentle coin glint resource marker, two or three soft round coins with very subtle small sparkles, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no currency marks, no pressure or reward symbols beyond gentle sparkles, no UI card, no full scene, no characters, flat solid #00ff00 chroma key background only, no cast shadow on background\" \"raw/coin_sparkle_node_raw.png\" 1024x1024",
+    "node /home/xionglei/GameProject/tools/image_generator.js text \"single transparent cozy town resource node prop: a small rounded watering can pickup, pastel metal body with simple handle and spout, Animal Crossing-like soft 3/4 game prop style, child-friendly, centered with generous padding, no readable text, no letters, no numbers, no symbols, no UI card, no full scene, no characters, no reward symbol, flat solid #ff00ff chroma key background only, no cast shadow on background\" \"raw/watering_can_pickup_node_raw.png\" 1024x1024"
+  ],
+  "risks": [
+    "All files are proof-only and still require art-direction review before any runtime mapping.",
+    "Small silhouettes should be checked in the 1280 gameplay target context for contrast and scale.",
+    "Coin sparkles are intentionally gentle but should be reviewed against reward-pressure UX rules."
+  ]
+}

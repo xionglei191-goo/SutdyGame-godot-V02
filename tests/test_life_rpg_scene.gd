@@ -21,7 +21,7 @@ func _init() -> void:
 	var footer := main.find_child("TownFooter", true, false) as Control
 	_expect(footer != null and footer.anchor_left >= 0.2 and footer.anchor_right <= 0.8, "bottom action bar should be compact and centered")
 	var visible_actions := main.find_child("FooterVisibleActions", true, false) as HBoxContainer
-	_expect(visible_actions != null and visible_actions.get_child_count() == 4, "bottom bar should expose only Interact and three navigation buttons")
+	_expect(visible_actions != null and visible_actions.get_child_count() == 5, "bottom bar should expose Interact, Town, Home, Backpack, and Album dock buttons")
 	var backpack_button := main.find_child("BackpackNavButton", true, false) as Button
 	var backpack_bubble := main.find_child("BackpackBubble", true, false) as Control
 	_expect(backpack_button != null and backpack_bubble != null and not backpack_bubble.visible, "Backpack button should start with a hidden content bubble")

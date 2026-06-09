@@ -1,0 +1,966 @@
+{
+  "pack_id": "round179.az_story_vignettes_a_m",
+  "round": "Round179",
+  "worker": "Worker C",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "az_memory_story_vignette_overlay_candidates_a_m",
+  "scope": "Proof-only transparent A-Z memory-story vignette overlay candidates for anchors A-M; no runtime, ThemeProfile, AssetResolver, data, shared-test, todo, or lesson changes.",
+  "generation_method": {
+    "tool": "local PIL synthesis in asset pack script",
+    "mode": "transparent RGBA normalized PNG plus raw #00ff00 chroma evidence",
+    "postprocess": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/generate_validate_manifest.py",
+    "alpha_source": "Actual normalized PNG RGBA channels validated after synthesis; raw chroma files retained as provenance.",
+    "notes": "Per LESSON-021 and LESSON-022, validation checks real alpha, transparent corners, edge contact, residue, and large background block risk."
+  },
+  "proof": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/proof/round179_az_story_vignettes_a_m_contact_sheet.png",
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/proof/round179_az_story_vignettes_a_m_contact_sheet.png",
+    "raw_dir": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw",
+    "normalized_dir": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192"
+  },
+  "validation_summary": {
+    "checks": [
+      "A-M anchor/core-word coverage against data/maps/world_map.json",
+      "RGBA alpha channel",
+      "expected 256x192 dimensions",
+      "non-empty alpha content",
+      "transparent corners",
+      "edge alpha/touch scan",
+      "green/magenta residue scan",
+      "opaque white and dark pinhole scan",
+      "large opaque background block risk scan"
+    ],
+    "pass_count": 13,
+    "fail_count": 0,
+    "coverage_failures": [],
+    "raw_chroma_source_count": 13,
+    "raw_chroma_color": "#00ff00"
+  },
+  "items": [
+    {
+      "id": "az_story_vignette.anchor_a_apple",
+      "letter": "A",
+      "anchor_id": "anchor_a_apple",
+      "core_word": "Apple",
+      "place_id": "place_home",
+      "route_order": 1.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_a_apple.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_a_apple.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_a_apple_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A red apple waits on the home picnic cloth with a tiny trail of sparkles, so returning home recalls Apple before snack time.",
+      "revisit_path_note": "From Home door, look beside the cozy picnic corner before visiting Sunny.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          222,
+          167
+        ],
+        "nonzero_alpha_pixels": 15318,
+        "visible_alpha_coverage": 0.31165,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.30233,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_b_bear",
+      "letter": "B",
+      "anchor_id": "anchor_b_bear",
+      "core_word": "Bear",
+      "place_id": "place_town_start",
+      "route_order": 2.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_b_bear.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_b_bear.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_b_bear_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A friendly bear story cushion peeks from the Town Start bench, inviting a calm first hello.",
+      "revisit_path_note": "Walk from Home toward Town Start and pause at the story bench.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          220,
+          167
+        ],
+        "nonzero_alpha_pixels": 16182,
+        "visible_alpha_coverage": 0.32922,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.32076,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_c_clock",
+      "letter": "C",
+      "anchor_id": "anchor_c_clock",
+      "core_word": "Clock",
+      "place_id": "place_home",
+      "route_order": 3.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_c_clock.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_c_clock.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_c_clock_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A little clock on the home shelf points to cozy reading time, with a ribbon marking the next visit.",
+      "revisit_path_note": "Inside the Home area, revisit the shelf before the daily routine.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          220,
+          167
+        ],
+        "nonzero_alpha_pixels": 15495,
+        "visible_alpha_coverage": 0.31525,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.30703,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_d_dog",
+      "letter": "D",
+      "anchor_id": "anchor_d_dog",
+      "core_word": "Dog",
+      "place_id": "place_home",
+      "route_order": 4.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_d_dog.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_d_dog.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_d_dog_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A small dog bowl and paw path near Home hint that a gentle dog friend has just trotted by.",
+      "revisit_path_note": "Return to Home yard and follow the tiny paw prints near the pet corner.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          222,
+          167
+        ],
+        "nonzero_alpha_pixels": 15260,
+        "visible_alpha_coverage": 0.31047,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.30282,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_e_elephant",
+      "letter": "E",
+      "anchor_id": "anchor_e_elephant",
+      "core_word": "Elephant",
+      "place_id": "place_animal_park",
+      "route_order": 5.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_e_elephant.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_e_elephant.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_e_elephant_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A soft elephant watering can sprinkles park flowers, making Elephant feel like a helpful garden memory.",
+      "revisit_path_note": "Visit Animal Park and check the flower patch by the watering can.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          219,
+          167
+        ],
+        "nonzero_alpha_pixels": 14509,
+        "visible_alpha_coverage": 0.29519,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.29008,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_f_fox",
+      "letter": "F",
+      "anchor_id": "anchor_f_fox",
+      "core_word": "Fox",
+      "place_id": "place_animal_park",
+      "route_order": 6.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_f_fox.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_f_fox.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_f_fox_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A fox-shaped kite tail curls around a park stump, leaving a playful clue for Fox.",
+      "revisit_path_note": "In Animal Park, circle the stump on the quiet play path.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          218,
+          167
+        ],
+        "nonzero_alpha_pixels": 13795,
+        "visible_alpha_coverage": 0.28066,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.27128,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_g_gate",
+      "letter": "G",
+      "anchor_id": "anchor_g_gate",
+      "core_word": "Gate",
+      "place_id": "place_school_gate",
+      "route_order": 7.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_g_gate.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_g_gate.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_g_gate_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "The school gate has a welcoming ribbon and two warm lantern dots, turning Gate into a morning arrival memory.",
+      "revisit_path_note": "Walk to School Gate and stop at the ribboned entrance.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          221,
+          167
+        ],
+        "nonzero_alpha_pixels": 15520,
+        "visible_alpha_coverage": 0.31576,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.30849,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_h_hat",
+      "letter": "H",
+      "anchor_id": "anchor_h_hat",
+      "core_word": "Hat",
+      "place_id": "place_supermarket",
+      "route_order": 8.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_h_hat.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_h_hat.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_h_hat_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A cheerful hat rests on the supermarket display basket, ready for a pretend shopkeeper greeting.",
+      "revisit_path_note": "At Supermarket, revisit the front basket before browsing.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          221,
+          167
+        ],
+        "nonzero_alpha_pixels": 14200,
+        "visible_alpha_coverage": 0.2889,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.27966,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_i_ice_cream",
+      "letter": "I",
+      "anchor_id": "anchor_i_ice_cream",
+      "core_word": "Ice cream",
+      "place_id": "place_supermarket",
+      "route_order": 9.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_i_ice_cream.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_i_ice_cream.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_i_ice_cream_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A tiny ice cream sign melts into three sweet drops near the shop counter, making Ice cream easy to spot.",
+      "revisit_path_note": "Return to Supermarket and look beside the snack counter.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          214,
+          167
+        ],
+        "nonzero_alpha_pixels": 15125,
+        "visible_alpha_coverage": 0.30772,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.30084,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_j_jacket",
+      "letter": "J",
+      "anchor_id": "anchor_j_jacket",
+      "core_word": "Jacket",
+      "place_id": "place_supermarket",
+      "route_order": 10.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_j_jacket.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_j_jacket.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_j_jacket_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A small jacket hangs from a warm shop peg with a stitched pocket star, waiting for a windy day.",
+      "revisit_path_note": "At Supermarket, check the little clothing peg near the display wall.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          214,
+          167
+        ],
+        "nonzero_alpha_pixels": 14763,
+        "visible_alpha_coverage": 0.30035,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.29258,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_k_kite",
+      "letter": "K",
+      "anchor_id": "anchor_k_kite",
+      "core_word": "Kite",
+      "place_id": "place_school_yard",
+      "route_order": 11.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_k_kite.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_k_kite.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_k_kite_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A bright kite loops over the school yard line, turning Kite into a breezy recess memory.",
+      "revisit_path_note": "Walk into School Yard and look up along the open play path.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          222,
+          167
+        ],
+        "nonzero_alpha_pixels": 14233,
+        "visible_alpha_coverage": 0.28957,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.28094,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_l_lion",
+      "letter": "L",
+      "anchor_id": "anchor_l_lion",
+      "core_word": "Lion",
+      "place_id": "place_animal_park",
+      "route_order": 12.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_l_lion.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_l_lion.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_l_lion_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A lion mane flower wreath sits by the park path, friendly and round like a sunny hello.",
+      "revisit_path_note": "Visit Animal Park and find the mane-shaped flower wreath.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          219,
+          167
+        ],
+        "nonzero_alpha_pixels": 15792,
+        "visible_alpha_coverage": 0.32129,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.31586,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    },
+    {
+      "id": "az_story_vignette.anchor_m_monkey",
+      "letter": "M",
+      "anchor_id": "anchor_m_monkey",
+      "core_word": "Monkey",
+      "place_id": "place_animal_park",
+      "route_order": 13.0,
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_m_monkey.png",
+      "normalized_png": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/normalized_256x192/anchor_m_monkey.png",
+      "source_ref": "assets/art/visual_rebuild/round179/az_story_vignettes_a_m/raw/anchor_m_monkey_raw_chroma.png",
+      "dimensions": [
+        256,
+        192
+      ],
+      "intended_layer": "small world-space memory-story vignette overlay near its stable A-Z anchor prop/place; optional subtle letter only",
+      "story_hook": "A monkey snack pouch swings from a low branch, leaving a banana-shaped clue in the park.",
+      "revisit_path_note": "In Animal Park, revisit the low branch near the gentle climb path.",
+      "prompt_design_notes": [
+        "not a bare letter badge",
+        "child-safe cozy town memory hook",
+        "prop/place/revisit relationship visible",
+        "no lesson panel, quiz, score, homework, or drill motif",
+        "transparent RGBA overlay candidate; no runtime mapping"
+      ],
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          256,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          24,
+          225,
+          167
+        ],
+        "nonzero_alpha_pixels": 14300,
+        "visible_alpha_coverage": 0.29093,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "green_chroma_residue_pixels": 0,
+          "magenta_residue_pixels": 0,
+          "opaque_white_residue_pixels": 0,
+          "dark_pinhole_pixels": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.2807,
+          "large_background_block_risk": false
+        },
+        "pass": true,
+        "normalization_mode": "local_rgba_alpha_safe_synthesis_with_raw_chroma_evidence"
+      },
+      "risks": [
+        "Proof-only synthesis candidate; needs future art-direction review beside the approved 1280 gameplay target before runtime use.",
+        "Letter mark is intentionally tiny and secondary; keep prop/story hook primary."
+      ]
+    }
+  ]
+}

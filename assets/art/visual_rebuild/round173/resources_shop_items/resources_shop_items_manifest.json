@@ -1,0 +1,343 @@
+{
+  "round": "Round173",
+  "category": "resource_shop_item",
+  "runtime_boundary": "candidate_only_no_asset_resolver_or_themeprofile_mapping",
+  "overall_gate": "pass",
+  "cell_size": [
+    128,
+    128
+  ],
+  "atlas_grid": {
+    "columns": 5,
+    "rows": 2
+  },
+  "chroma_key": "#ff00ff",
+  "atlas": "assets/art/visual_rebuild/round173/resources_shop_items/resources_shop_items_atlas_128.png",
+  "proof": "assets/art/visual_rebuild/round173/resources_shop_items/resources_shop_items_proof_128.png",
+  "source_raw": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+  "items": [
+    {
+      "id": "branch_bundle",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/branch_bundle.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 9884,
+      "opaqueish_pixels": 6500,
+      "bbox": [
+        11,
+        14,
+        117,
+        113
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "resource_exchange",
+      "source_ref": "shop_branch_bundle_001",
+      "atlas_cell": {
+        "col": 0,
+        "row": 0,
+        "x": 0,
+        "y": 0
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "pebble_pair",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/pebble_pair.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 10548,
+      "opaqueish_pixels": 5836,
+      "bbox": [
+        11,
+        25,
+        117,
+        103
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "resource_exchange",
+      "source_ref": "shop_pebble_pair_001",
+      "atlas_cell": {
+        "col": 1,
+        "row": 0,
+        "x": 128,
+        "y": 0
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "wildflower_small",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/wildflower_small.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 11402,
+      "opaqueish_pixels": 4982,
+      "bbox": [
+        22,
+        11,
+        106,
+        117
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "resource_exchange",
+      "source_ref": "shop_wildflower_small_001",
+      "atlas_cell": {
+        "col": 2,
+        "row": 0,
+        "x": 256,
+        "y": 0
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "orange_bowl_or_orange_tag",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/orange_bowl_or_orange_tag.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 8174,
+      "opaqueish_pixels": 8210,
+      "bbox": [
+        11,
+        14,
+        117,
+        114
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "decor_small_or_shop_anchor",
+      "source_ref": "daily_shopkeeper_orange_sign_001",
+      "atlas_cell": {
+        "col": 3,
+        "row": 0,
+        "x": 384,
+        "y": 0
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "pet_food",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/pet_food.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 7753,
+      "opaqueish_pixels": 8631,
+      "bbox": [
+        11,
+        15,
+        117,
+        112
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "pet_care",
+      "source_ref": "shop_pet_bowl_sunny_001",
+      "atlas_cell": {
+        "col": 4,
+        "row": 0,
+        "x": 512,
+        "y": 0
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "sunny_snack_basket",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/sunny_snack_basket.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 11070,
+      "opaqueish_pixels": 5314,
+      "bbox": [
+        11,
+        18,
+        117,
+        110
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "pet_care",
+      "source_ref": "shop_sunny_snack_basket_001",
+      "atlas_cell": {
+        "col": 0,
+        "row": 1,
+        "x": 0,
+        "y": 128
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "fabric_scrap",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/fabric_scrap.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 11023,
+      "opaqueish_pixels": 5361,
+      "bbox": [
+        11,
+        24,
+        117,
+        104
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "resource_exchange",
+      "source_ref": "future_fabric_scrap_material",
+      "atlas_cell": {
+        "col": 1,
+        "row": 1,
+        "x": 128,
+        "y": 128
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "book_stack_or_story_book",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/book_stack_or_story_book.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 8209,
+      "opaqueish_pixels": 8175,
+      "bbox": [
+        12,
+        11,
+        116,
+        117
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "decor_small",
+      "source_ref": "shop_tiny_book_stack_001",
+      "atlas_cell": {
+        "col": 2,
+        "row": 1,
+        "x": 256,
+        "y": 128
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "coin_stack",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/coin_stack.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 8632,
+      "opaqueish_pixels": 7752,
+      "bbox": [
+        11,
+        17,
+        117,
+        110
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "currency_icon",
+      "source_ref": "ui_icon.coin",
+      "atlas_cell": {
+        "col": 3,
+        "row": 1,
+        "x": 384,
+        "y": 128
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    },
+    {
+      "id": "tiny_seed_packet",
+      "normalized_png": "assets/art/visual_rebuild/round173/resources_shop_items/tiny_seed_packet.png",
+      "cell_size": [
+        128,
+        128
+      ],
+      "fixed_cell": true,
+      "has_alpha": true,
+      "transparent_pixels": 11401,
+      "opaqueish_pixels": 4983,
+      "bbox": [
+        11,
+        11,
+        116,
+        117
+      ],
+      "has_bbox": true,
+      "visible_key_pixels": 0,
+      "category": "resource_shop_item",
+      "subcategory": "resource_exchange",
+      "source_ref": "future_tiny_seed_packet_material",
+      "atlas_cell": {
+        "col": 4,
+        "row": 1,
+        "x": 512,
+        "y": 128
+      },
+      "source_raw_crop": "docs/collaboration/round173_visual_rebuild_asset_generation/resources_shop_items/resources_shop_items_raw_sheet_magenta.png",
+      "status": "pass"
+    }
+  ],
+  "atlas_validation": {
+    "fixed_cell": true,
+    "has_alpha": true,
+    "visible_key_pixels": 0,
+    "bbox": [
+      11,
+      11,
+      629,
+      245
+    ]
+  },
+  "validation_rule": "overall_gate pass only when fixed cell, alpha, bbox, and visible key pixels=0",
+  "status": "normalized_candidate"
+}

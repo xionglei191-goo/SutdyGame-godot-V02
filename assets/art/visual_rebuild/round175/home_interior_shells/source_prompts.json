@@ -1,0 +1,74 @@
+{
+  "round": "Round175",
+  "pack_id": "home_interior_shells",
+  "generator": "/home/xionglei/GameProject/tools/image_generator.js",
+  "negative_constraints": [
+    "no readable text",
+    "no letters",
+    "no numbers",
+    "no watermark",
+    "no characters",
+    "no full room screenshot",
+    "no complete map background",
+    "no UI",
+    "no hard rectangular sprite border except deliberate wall/floor region bands"
+  ],
+  "items": [
+    {
+      "id": "floor_wood_region",
+      "size": [768, 512],
+      "raw_size": "1024x1024",
+      "kind": "region_band_not_sprite",
+      "prompt": "Cozy child-friendly game interior modular floor material patch only: warm honey wood planks in soft hand-painted Animal Crossing-like style, top-down slightly angled floor texture, gentle grain, no furniture, no walls, no room, no border, no readable text, transparent or clean isolated asset, composition building block."
+    },
+    {
+      "id": "floor_soft_rug_region",
+      "size": [512, 320],
+      "raw_size": "1024x1024",
+      "kind": "region_band_not_sprite",
+      "prompt": "Soft oval rug region for cozy child-friendly home interior composition, muted coral mint cream woven texture, hand-painted game asset, no furniture, no room, no wall, no letters, no readable text, isolated modular building block with transparent edge."
+    },
+    {
+      "id": "wall_warm_plaster_band",
+      "size": [768, 320],
+      "raw_size": "1024x1024",
+      "kind": "region_band_not_sprite",
+      "prompt": "Warm plaster wall band material for cozy child-friendly game home interior, pale peach plaster with subtle brush texture and soft base trim hint, no window, no furniture, no full room scene, no readable text, no letters, modular background band asset."
+    },
+    {
+      "id": "wall_window_nook",
+      "size": [512, 384],
+      "raw_size": "1024x1024",
+      "kind": "prefab_shell",
+      "prompt": "Small cozy window nook shell piece for child-friendly game home interior: rounded wooden window frame with warm sunlight patch and simple curtain shapes, no readable text, no letters, no furniture, not a full room, isolated modular wall prefab with soft transparent edges."
+    },
+    {
+      "id": "interior_corner_shadow",
+      "size": [512, 512],
+      "raw_size": "1024x1024",
+      "kind": "overlay_shadow",
+      "prompt": "Very soft L-shaped interior room corner shadow overlay, translucent warm gray, feathered edges, cozy child-friendly home composition aid, no objects, no text, no room screenshot, no hard border, transparent PNG style."
+    },
+    {
+      "id": "doorway_threshold",
+      "size": [384, 256],
+      "raw_size": "1024x1024",
+      "kind": "prefab_shell",
+      "prompt": "Small doorway threshold shell piece for cozy child-friendly game home interior, rounded wooden threshold strip and soft floor transition, no door sign, no readable text, no letters, no full room, isolated modular game asset with transparent edges."
+    },
+    {
+      "id": "small_room_back_wall_prefab",
+      "size": [768, 512],
+      "raw_size": "1024x1024",
+      "kind": "prefab_shell",
+      "prompt": "Small back wall prefab shell for cozy child-friendly game home interior, warm plaster wall with simple baseboard and gentle wall-to-floor corner curve, no furniture, no window text, no full scene illustration, no readable text, modular composition background piece."
+    },
+    {
+      "id": "sunny_bed_corner_shell",
+      "size": [640, 512],
+      "raw_size": "1024x1024",
+      "kind": "prefab_shell",
+      "prompt": "Cozy empty bedroom corner shell designed to compose behind an existing Sunny pet bed furniture sprite, warm wall corner, soft floor patch, tiny non-readable decorative shapes only, no actual bed, no character, no readable text, no full room screenshot, transparent soft edges, child-friendly game art."
+    }
+  ]
+}

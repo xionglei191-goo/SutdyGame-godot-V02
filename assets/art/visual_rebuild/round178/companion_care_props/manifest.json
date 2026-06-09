@@ -1,0 +1,732 @@
+{
+  "pack_id": "round178.companion_care_props",
+  "round": "Round178",
+  "worker": "Worker A",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "companion_care_props",
+  "scope": "Ten child-safe cozy companion-care prop candidates only; no runtime mapping or production approval.",
+  "compatibility_notes": [
+    "Normalized to 192x192 transparent PNGs for small prop, inventory, and home companion-corner proof review.",
+    "Designed with rounded warm proportions intended to sit near Sunny companion and home-interior candidate scale, pending composition review."
+  ],
+  "generation_method": {
+    "tool": "assets/art/visual_rebuild/round178/companion_care_props/generate_validate_manifest.py",
+    "mode": "local transparent RGBA synthesis",
+    "postprocess": "same script validates alpha/residue and writes manifest/contact sheet",
+    "notes": "Per LESSON-022, final gate is based on actual RGBA alpha audit, not generator flags."
+  },
+  "proof": "assets/art/visual_rebuild/round178/companion_care_props/proof/round178_companion_care_props_contact_sheet.png",
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round178/companion_care_props/proof/round178_companion_care_props_contact_sheet.png",
+    "normalized_dir": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192"
+  },
+  "validation_summary": {
+    "checks": [
+      "RGBA alpha channel",
+      "expected normalized 192x192 dimensions",
+      "non-empty alpha content",
+      "transparent corner alpha",
+      "edge residue / edge-touch scan",
+      "green/magenta chroma-key residue scan",
+      "dark pinhole residue scan",
+      "large opaque background block risk scan"
+    ],
+    "pass_count": 10,
+    "fail_count": 0,
+    "raw_rgb_or_opaque_source_count": 0
+  },
+  "items": [
+    {
+      "id": "companion_care_props.sunny_cushion_round",
+      "logical_asset_id": "companion_care_props.sunny_cushion_round",
+      "slug": "sunny_cushion_round",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/sunny_cushion_round.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/sunny_cushion_round.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        158
+      ],
+      "footprint_recommendation": "1x1 low soft furniture prop; non-blocking or low pet-only rest marker",
+      "layer_recommendation": "above home floor / yard mat, below companion and actor feet",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          35,
+          62,
+          157,
+          166
+        ],
+        "nonzero_alpha_pixels": 10543,
+        "visible_alpha_coverage": 0.286,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.19968,
+          "largest_opaque_component_ratio": 0.19968,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Round cushion could read as generic home furniture unless reviewed beside companion-care UI.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.tiny_food_bowl",
+      "logical_asset_id": "companion_care_props.tiny_food_bowl",
+      "slug": "tiny_food_bowl",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/tiny_food_bowl.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/tiny_food_bowl.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        154
+      ],
+      "footprint_recommendation": "1x1 low bowl prop; tiny interaction hotspot only",
+      "layer_recommendation": "above floor/path, below actors",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          42,
+          82,
+          151,
+          158
+        ],
+        "nonzero_alpha_pixels": 6782,
+        "visible_alpha_coverage": 0.18397,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.1445,
+          "largest_opaque_component_ratio": 0.13262,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Food pieces must stay abstract and child-safe, not realistic choking-size detail.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.water_bowl_flower",
+      "logical_asset_id": "companion_care_props.water_bowl_flower",
+      "slug": "water_bowl_flower",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/water_bowl_flower.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/water_bowl_flower.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        154
+      ],
+      "footprint_recommendation": "1x1 low bowl prop; tiny interaction hotspot only",
+      "layer_recommendation": "above floor/path, below actors",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          42,
+          67,
+          151,
+          158
+        ],
+        "nonzero_alpha_pixels": 7080,
+        "visible_alpha_coverage": 0.19206,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.1097,
+          "largest_opaque_component_ratio": 0.10832,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Flower motif should remain decorative and not read as readable iconography.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.grooming_brush_soft",
+      "logical_asset_id": "companion_care_props.grooming_brush_soft",
+      "slug": "grooming_brush_soft",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/grooming_brush_soft.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/grooming_brush_soft.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        154
+      ],
+      "footprint_recommendation": "1x1 handheld care prop; inventory or placed-table scale",
+      "layer_recommendation": "above surface/floor, below tall props",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          48,
+          72,
+          154,
+          157
+        ],
+        "nonzero_alpha_pixels": 6153,
+        "visible_alpha_coverage": 0.16691,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.1055,
+          "largest_opaque_component_ratio": 0.1055,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Bristles are small; needs mobile-scale readability before runtime use.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.ribbon_collar_charm",
+      "logical_asset_id": "companion_care_props.ribbon_collar_charm",
+      "slug": "ribbon_collar_charm",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/ribbon_collar_charm.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/ribbon_collar_charm.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        150
+      ],
+      "footprint_recommendation": "1x1 small accessory prop; inventory scale",
+      "layer_recommendation": "UI/inventory candidate or above floor as small prop",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          42,
+          73,
+          150,
+          151
+        ],
+        "nonzero_alpha_pixels": 4791,
+        "visible_alpha_coverage": 0.12996,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.06155,
+          "largest_opaque_component_ratio": 0.05504,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Charm must stay abstract; no letters, numbers, symbols, or logo shapes.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.plush_ball_toy",
+      "logical_asset_id": "companion_care_props.plush_ball_toy",
+      "slug": "plush_ball_toy",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/plush_ball_toy.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/plush_ball_toy.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        154
+      ],
+      "footprint_recommendation": "1x1 low toy prop; non-blocking companion play marker",
+      "layer_recommendation": "above floor/path, below actors",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          43,
+          58,
+          149,
+          158
+        ],
+        "nonzero_alpha_pixels": 8061,
+        "visible_alpha_coverage": 0.21867,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.16208,
+          "largest_opaque_component_ratio": 0.15978,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Patch marks should not be mistaken for text or sports branding.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.folded_pet_blanket",
+      "logical_asset_id": "companion_care_props.folded_pet_blanket",
+      "slug": "folded_pet_blanket",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/folded_pet_blanket.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/folded_pet_blanket.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        154
+      ],
+      "footprint_recommendation": "1x1 low textile stack; non-blocking or low decor",
+      "layer_recommendation": "above home floor / companion corner floor, below actors",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          37,
+          77,
+          157,
+          158
+        ],
+        "nonzero_alpha_pixels": 8110,
+        "visible_alpha_coverage": 0.22,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.15237,
+          "largest_opaque_component_ratio": 0.15237,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Low textile silhouette needs check against home floor colors.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.bath_towel_stack",
+      "logical_asset_id": "companion_care_props.bath_towel_stack",
+      "slug": "bath_towel_stack",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/bath_towel_stack.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/bath_towel_stack.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        154
+      ],
+      "footprint_recommendation": "1x1 low textile stack; bath/care corner prop",
+      "layer_recommendation": "above surface/floor, below actors",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          46,
+          67,
+          148,
+          158
+        ],
+        "nonzero_alpha_pixels": 7115,
+        "visible_alpha_coverage": 0.19301,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.13154,
+          "largest_opaque_component_ratio": 0.13154,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Stack height and highlights need scale check beside companion bed.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.paw_print_moment_marker",
+      "logical_asset_id": "companion_care_props.paw_print_moment_marker",
+      "slug": "paw_print_moment_marker",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/paw_print_moment_marker.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/paw_print_moment_marker.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        154
+      ],
+      "footprint_recommendation": "1x1 tiny moment marker; optional non-blocking feedback prop",
+      "layer_recommendation": "above floor/path as temporary care feedback marker",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          55,
+          65,
+          138,
+          154
+        ],
+        "nonzero_alpha_pixels": 4189,
+        "visible_alpha_coverage": 0.11363,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.0635,
+          "largest_opaque_component_ratio": 0.04007,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Paw motif is symbolic; keep proof-only until UI/feedback semantics are reviewed.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    },
+    {
+      "id": "companion_care_props.small_companion_bed",
+      "logical_asset_id": "companion_care_props.small_companion_bed",
+      "slug": "small_companion_bed",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "main_ref": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/small_companion_bed.png",
+      "normalized_png": "assets/art/visual_rebuild/round178/companion_care_props/normalized_192x192/small_companion_bed.png",
+      "dimensions": [
+        192,
+        192
+      ],
+      "pivot_recommendation_px": [
+        96,
+        162
+      ],
+      "footprint_recommendation": "2x1 low companion rest furniture; soft blocking boundary around cushion",
+      "layer_recommendation": "above home floor / yard floor, below companion when sleeping inside",
+      "visual_style_notes": "child-safe cozy town companion-care prop, rounded proportions, warm Animal Crossing-like home/town scale, no text or brand marks",
+      "generation_provenance": {
+        "method": "local transparent RGBA vector/raster synthesis using Pillow",
+        "raw_alpha_note": "No external RGB/opaque raw was used; real alpha is verified directly on the emitted PNG per LESSON-022."
+      },
+      "validation": {
+        "normalization_mode": "local_vector_rgba_synthesis_real_alpha",
+        "rgba_alpha": true,
+        "dimensions": [
+          192,
+          192
+        ],
+        "alpha_bbox": [
+          23,
+          78,
+          169,
+          166
+        ],
+        "nonzero_alpha_pixels": 10839,
+        "visible_alpha_coverage": 0.29403,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "dark_pinhole_pixels": 0,
+          "edge_touch_sides_over_1pct": 0
+        },
+        "background_block_check": {
+          "opaque_pixel_ratio": 0.18612,
+          "largest_opaque_component_ratio": 0.18612,
+          "large_background_block_risk": false
+        },
+        "pass": true
+      },
+      "risks": [
+        "Needs composition proof with Round174 Sunny companion scale before runtime mapping.",
+        "Proof-only candidate; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping.",
+        "Final art direction review is required before any production/runtime use."
+      ]
+    }
+  ]
+}

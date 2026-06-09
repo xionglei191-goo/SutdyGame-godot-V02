@@ -1,0 +1,671 @@
+{
+  "pack_id": "round178.map_edge_nature_transitions",
+  "round": "Round178",
+  "status": "proof_only_transparent_candidates",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "category": "map_edge_nature_transitions",
+  "scope": "Proof-only cozy map-edge / nature transition candidates for softening boundaries between meadow, path, home, school, shop, water, and plaza; no full-map background, no hard grid, no text.",
+  "generation_method": {
+    "tool": "local deterministic Pillow synthesis",
+    "mode": "RGBA transparent proof candidates; no fallback generator dependency",
+    "postprocess": "/home/xionglei/GameProject/SutdyGame-godot-V02/assets/art/visual_rebuild/round178/map_edge_nature_transitions/generate_validate_pack.py",
+    "notes": "Per LESSON-022, gate is based on actual file alpha. Per LESSON-020, visible key pixels, magenta/green fringe, and suspicious alpha-edge residue are recorded."
+  },
+  "proof": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/proof/round178_map_edge_nature_transitions_contact_sheet.png",
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/proof/round178_map_edge_nature_transitions_contact_sheet.png",
+    "normalized_dir": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192"
+  },
+  "validation_summary": {
+    "checks": [
+      "RGBA alpha channel",
+      "expected 384x192 dimensions",
+      "non-empty alpha content",
+      "transparent corners",
+      "visible green/magenta chroma-key residue scan",
+      "magenta/green fringe scan",
+      "suspicious low-alpha edge residue scan"
+    ],
+    "pass_count": 10,
+    "fail_count": 0,
+    "item_count": 10
+  },
+  "items": [
+    {
+      "id": "map_edge_nature_transitions.meadow_to_path_corner_soft",
+      "slug": "meadow_to_path_corner_soft",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/meadow_to_path_corner_soft.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/meadow_to_path_corner_soft.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.meadow_to_path_corner_soft",
+      "intended_transition_role": "Soft curved meadow/path corner overlay, useful for breaking square path bends near home and plaza routes.",
+      "place_compatibility": [
+        "meadow",
+        "path"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          0,
+          0,
+          383,
+          191
+        ],
+        "nonzero_alpha_pixels": 68409,
+        "visible_alpha_coverage": 0.92786,
+        "opaque_pixel_ratio": 0.0,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.36979,
+          "bottom": 0.90625,
+          "left": 0.64583,
+          "right": 0.69271
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.grass_to_plaza_pebble_edge",
+      "slug": "grass_to_plaza_pebble_edge",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/grass_to_plaza_pebble_edge.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/grass_to_plaza_pebble_edge.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.grass_to_plaza_pebble_edge",
+      "intended_transition_role": "Low grass into pebble plaza edge, intended as a gentle plaza boundary softener.",
+      "place_compatibility": [
+        "grass",
+        "plaza"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          0,
+          51,
+          383,
+          191
+        ],
+        "nonzero_alpha_pixels": 50199,
+        "visible_alpha_coverage": 0.68087,
+        "opaque_pixel_ratio": 0.0,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.90625,
+          "left": 0.55208,
+          "right": 0.63542
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.garden_bush_depth_cluster",
+      "slug": "garden_bush_depth_cluster",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/garden_bush_depth_cluster.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/garden_bush_depth_cluster.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.garden_bush_depth_cluster",
+      "intended_transition_role": "Layerable bush-depth cluster for meadow, shop, and home yard edges.",
+      "place_compatibility": [
+        "garden",
+        "home",
+        "shop"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          8,
+          52,
+          365,
+          191
+        ],
+        "nonzero_alpha_pixels": 37435,
+        "visible_alpha_coverage": 0.50774,
+        "opaque_pixel_ratio": 0.0017,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.60677,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.tiny_flower_depth_strip",
+      "slug": "tiny_flower_depth_strip",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/tiny_flower_depth_strip.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/tiny_flower_depth_strip.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.tiny_flower_depth_strip",
+      "intended_transition_role": "Tiny flower strip that adds depth along meadow/path boundaries without becoming a full flowerbed tile.",
+      "place_compatibility": [
+        "meadow",
+        "path",
+        "plaza"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          0,
+          91,
+          383,
+          181
+        ],
+        "nonzero_alpha_pixels": 31386,
+        "visible_alpha_coverage": 0.4257,
+        "opaque_pixel_ratio": 0.0,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.35417,
+          "right": 0.35417
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.pond_grass_reed_corner",
+      "slug": "pond_grass_reed_corner",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/pond_grass_reed_corner.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/pond_grass_reed_corner.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.pond_grass_reed_corner",
+      "intended_transition_role": "Rounded pond bank corner with reeds and soft grass for water-to-meadow transitions.",
+      "place_compatibility": [
+        "water",
+        "meadow"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          0,
+          14,
+          374,
+          191
+        ],
+        "nonzero_alpha_pixels": 48004,
+        "visible_alpha_coverage": 0.6511,
+        "opaque_pixel_ratio": 0.0,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.90625,
+          "left": 0.69792,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.home_yard_shadow_patch",
+      "slug": "home_yard_shadow_patch",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/home_yard_shadow_patch.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/home_yard_shadow_patch.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.home_yard_shadow_patch",
+      "intended_transition_role": "Warm translucent yard shadow patch for the base of home prefabs, fences, or porch edges.",
+      "place_compatibility": [
+        "home",
+        "yard"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          11,
+          49,
+          374,
+          187
+        ],
+        "nonzero_alpha_pixels": 41136,
+        "visible_alpha_coverage": 0.55794,
+        "opaque_pixel_ratio": 0.0,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.school_yard_chalkless_edge",
+      "slug": "school_yard_chalkless_edge",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/school_yard_chalkless_edge.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/school_yard_chalkless_edge.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.school_yard_chalkless_edge",
+      "intended_transition_role": "Soft school-yard edge with grass, pebbles, and clean playfield color; no chalk marks or text.",
+      "place_compatibility": [
+        "school",
+        "yard",
+        "grass"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          0,
+          63,
+          383,
+          191
+        ],
+        "nonzero_alpha_pixels": 46501,
+        "visible_alpha_coverage": 0.63071,
+        "opaque_pixel_ratio": 0.0,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.90625,
+          "left": 0.54688,
+          "right": 0.52083
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.shop_front_planter_edge",
+      "slug": "shop_front_planter_edge",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/shop_front_planter_edge.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/shop_front_planter_edge.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.shop_front_planter_edge",
+      "intended_transition_role": "Low planter-front transition for shop thresholds and plaza approach edges.",
+      "place_compatibility": [
+        "shop",
+        "plaza",
+        "grass"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          13,
+          59,
+          373,
+          191
+        ],
+        "nonzero_alpha_pixels": 38806,
+        "visible_alpha_coverage": 0.52634,
+        "opaque_pixel_ratio": 0.00043,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.24479,
+          "left": 0.0,
+          "right": 0.0
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.tree_shadow_ground_soft",
+      "slug": "tree_shadow_ground_soft",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/tree_shadow_ground_soft.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/tree_shadow_ground_soft.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.tree_shadow_ground_soft",
+      "intended_transition_role": "Soft tree-canopy ground shadow with scattered leaf hints for depth under tree clusters.",
+      "place_compatibility": [
+        "meadow",
+        "tree"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          0,
+          5,
+          383,
+          191
+        ],
+        "nonzero_alpha_pixels": 59897,
+        "visible_alpha_coverage": 0.81241,
+        "opaque_pixel_ratio": 0.0,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.34375,
+          "left": 0.33333,
+          "right": 0.30208
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    },
+    {
+      "id": "map_edge_nature_transitions.coast_sand_grass_curve",
+      "slug": "coast_sand_grass_curve",
+      "status": "pass",
+      "asset_status": "proof_only_transparent_candidate",
+      "normalized_png": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/coast_sand_grass_curve.png",
+      "main_ref": "assets/art/visual_rebuild/round178/map_edge_nature_transitions/normalized_384x192/coast_sand_grass_curve.png",
+      "dimensions": [
+        384,
+        192
+      ],
+      "logical_id": "map_edge_nature_transitions.coast_sand_grass_curve",
+      "intended_transition_role": "Curved sand-to-grass edge for cozy water/coast boundaries or beach-like town corners.",
+      "place_compatibility": [
+        "coast",
+        "sand",
+        "grass"
+      ],
+      "pivot_recommendation_px": [
+        192,
+        170
+      ],
+      "layer_recommendation": "overlay above terrain/path/water base regions, below actors and tall prefabs unless used as a shadow",
+      "validation": {
+        "rgba_alpha": true,
+        "dimensions": [
+          384,
+          192
+        ],
+        "alpha_bbox": [
+          0,
+          32,
+          383,
+          191
+        ],
+        "nonzero_alpha_pixels": 54925,
+        "visible_alpha_coverage": 0.74497,
+        "opaque_pixel_ratio": 0.0,
+        "transparent_corners": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "edge_alpha_ratios": {
+          "top": 0.0,
+          "bottom": 0.90625,
+          "left": 0.52604,
+          "right": 0.54688
+        },
+        "residue_scan": {
+          "chroma_key_residue_pixels": 0,
+          "magenta_fringe_pixel_count": 0,
+          "green_fringe_pixel_count": 0,
+          "suspicious_alpha_edge_residue_pixels": 0
+        },
+        "pass": true
+      },
+      "risks": [
+        "Proof-only visual candidate; final art direction review is required before runtime use.",
+        "Not tile-certified or collision-certified; no runtime, ThemeProfile, AssetResolver, data, or shared-test mapping."
+      ]
+    }
+  ]
+}

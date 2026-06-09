@@ -1,0 +1,244 @@
+{
+  "raw_source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/round169_tree_ai_raw_sheet_v001.png",
+  "alpha_source": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/round169_tree_ai_raw_sheet_v001_chroma_alpha.png",
+  "normalized_sheet": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/round169_tree_round_objects_256x320_sheet_v001.png",
+  "cell_size": [
+    256,
+    320
+  ],
+  "grid": {
+    "columns": 3,
+    "rows": 2
+  },
+  "pivot_px": [
+    128,
+    300
+  ],
+  "items": [
+    {
+      "id": "tree.round.01.v001",
+      "source_cell": {
+        "row": 0,
+        "col": 0
+      },
+      "source_bbox_in_cell": [
+        29,
+        106,
+        321,
+        444
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/normalized_256x320/tree_round_01_256x320_v001.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        41,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 41,
+        "right": 16,
+        "bottom": 20
+      },
+      "scale_from_source_crop": 0.7671232876712328,
+      "category": "round_broadleaf_tree",
+      "status": "normalized_candidate"
+    },
+    {
+      "id": "tree.round.02.v001",
+      "source_cell": {
+        "row": 0,
+        "col": 1
+      },
+      "source_bbox_in_cell": [
+        28,
+        106,
+        317,
+        444
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/normalized_256x320/tree_round_02_256x320_v001.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        38,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 38,
+        "right": 16,
+        "bottom": 20
+      },
+      "scale_from_source_crop": 0.7750865051903114,
+      "category": "round_broadleaf_tree",
+      "status": "normalized_candidate"
+    },
+    {
+      "id": "tree.round.03.v001",
+      "source_cell": {
+        "row": 0,
+        "col": 2
+      },
+      "source_bbox_in_cell": [
+        19,
+        106,
+        310,
+        444
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/normalized_256x320/tree_round_03_256x320_v001.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        40,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 40,
+        "right": 16,
+        "bottom": 20
+      },
+      "scale_from_source_crop": 0.7697594501718213,
+      "category": "round_broadleaf_tree",
+      "status": "normalized_candidate"
+    },
+    {
+      "id": "tree.round.04.v001",
+      "source_cell": {
+        "row": 1,
+        "col": 0
+      },
+      "source_bbox_in_cell": [
+        28,
+        59,
+        318,
+        400
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/normalized_256x320/tree_round_04_256x320_v001.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        37,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 37,
+        "right": 16,
+        "bottom": 20
+      },
+      "scale_from_source_crop": 0.7724137931034483,
+      "category": "round_broadleaf_tree",
+      "status": "normalized_candidate"
+    },
+    {
+      "id": "tree.round.05.v001",
+      "source_cell": {
+        "row": 1,
+        "col": 1
+      },
+      "source_bbox_in_cell": [
+        26,
+        58,
+        317,
+        401
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/normalized_256x320/tree_round_05_256x320_v001.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        36,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 36,
+        "right": 16,
+        "bottom": 20
+      },
+      "scale_from_source_crop": 0.7697594501718213,
+      "category": "round_broadleaf_tree",
+      "status": "normalized_candidate"
+    },
+    {
+      "id": "tree.round.06.v001",
+      "source_cell": {
+        "row": 1,
+        "col": 2
+      },
+      "source_bbox_in_cell": [
+        21,
+        60,
+        312,
+        400
+      ],
+      "normalized_png": "docs/collaboration/round169_visual_rebuild_same_type_img2img_batches/tree_pipeline_test_v001/normalized_256x320/tree_round_06_256x320_v001.png",
+      "cell_size": [
+        256,
+        320
+      ],
+      "pivot_px": [
+        128,
+        300
+      ],
+      "placed_bbox": [
+        16,
+        38,
+        240,
+        300
+      ],
+      "margins_px": {
+        "left": 16,
+        "top": 38,
+        "right": 16,
+        "bottom": 20
+      },
+      "scale_from_source_crop": 0.7697594501718213,
+      "category": "round_broadleaf_tree",
+      "status": "normalized_candidate"
+    }
+  ],
+  "notes": [
+    "Background was not perfectly flat in raw AI output; per-cell border flood-fill was used for chroma cleanup."
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "report_id": "sunshine_town_p0_runtime_visual_match_round181_v001",
+  "task_id": "V02-VISUALREBUILD-005",
+  "round": "Round181",
+  "status": "runtime_visual_match_whitebox_pass",
+  "target_frame": "docs/collaboration/round180_v0239_mainline_visual_layout_target/round180_v0239_visual_layout_target_1280x720_v001.png",
+  "side_by_side_evidence": "docs/collaboration/round181_v0239_mainline_closeout/round181_v0239_runtime_match_side_by_side_1280x720_v001.png",
+  "runtime_entry": "scenes/main.tscn -> Main.configure_for_test -> TownStage.get_visual_rebuild_blockout_snapshot",
+  "snapshot_thresholds": {
+    "blockout_tile_path_count_min": 30,
+    "blockout_grass_base_count_min": 6,
+    "blockout_open_space_count_min": 2,
+    "blockout_house_count_exact": 1,
+    "blockout_house_detail_count_min": 6,
+    "blockout_tree_count_exact": 4,
+    "blockout_flower_count_exact": 4,
+    "blockout_fence_count_min": 3,
+    "blockout_garden_count_min": 3,
+    "blockout_water_count_min": 3,
+    "blockout_detail_count_min": 16,
+    "blockout_companion_detail_count_min": 4,
+    "assetized_texture_count_min": 74,
+    "resolver_mapped_v0239_count_exact": 0,
+    "camera_scale_max": 1.6,
+    "bottom_dock_button_target_count_exact": 5
+  },
+  "runtime_match_claims": {
+    "home_centered_first_screen": true,
+    "player_layer_above_blockout": true,
+    "legacy_visual_layers_hidden": true,
+    "walkable_center_exists": true,
+    "full_map_background_absent": true,
+    "visible_grid_absent": true,
+    "five_button_glass_footer": true,
+    "real_home_interaction_reachable": true
+  },
+  "limitations": {
+    "visual_scope": "whitebox_runtime_match_only",
+    "not_claimed": [
+      "final bitmap art approval",
+      "new ThemeProfile production mapping",
+      "new AssetResolver live mapping",
+      "960x540 adaptation",
+      "StoryBatch runtime content integration"
+    ]
+  },
+  "validation_commands": [
+    "godot --headless --path . --script tests/capture_round181_v0239_runtime_match_gate.gd",
+    "godot --headless --path . --script tests/test_v0239_visual_rebuild_mainline_gate.gd",
+    "godot --headless --path . --script tests/test_v0239_visual_layout_target.gd",
+    "godot --headless --path . --script tests/test_v0239_visual_rebuild_blockout.gd",
+    "timeout 180 godot --headless --path . --script tests/headless_runner.gd",
+    "godot --headless --path . --quit",
+    "git diff --check"
+  ]
+}

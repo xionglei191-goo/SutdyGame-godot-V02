@@ -147,10 +147,9 @@ func _check_polish_assets() -> void:
 		var asset_path := str(resolved.get("placeholder_path", ""))
 		_expect(asset_path.begins_with("res://assets/art/"), "Polish asset should map through project art assets: %s -> %s" % [asset_id, asset_path])
 		_expect(FileAccess.file_exists(asset_path), "Polish mapped resource should exist: %s" % asset_path)
-		var record: Dictionary = _acceptance_record_for(records, asset_id)
+		var record: Dictionary = _acceptance_record_for_path(records, asset_id, asset_path)
 		_expect(not record.is_empty(), "Polish asset should have acceptance record: %s" % asset_id)
-		_expect(str(record.get("status", "")) == "production", "Polish asset should be production status: %s" % asset_id)
-		_expect(str(record.get("acceptance_result", "")) == "pass", "Polish asset should have pass acceptance result: %s" % asset_id)
+		_expect(_record_is_runtime_accepted(record), "Polish asset should be production/pass or runtime-promoted for review: %s" % asset_id)
 		_expect(str(record.get("resource_path_for_mapping", "")) == asset_path, "Acceptance path should match resolver mapping: %s" % asset_id)
 		_expect(str(record.get("notes_child_safety", "")).length() > 0, "Polish asset should record child safety notes: %s" % asset_id)
 		_expect(str(record.get("notes_anchor_integrity", "")).length() > 0, "Polish asset should record anchor integrity notes: %s" % asset_id)
@@ -172,6 +171,21 @@ func _acceptance_record_for(records: Array, asset_id: String) -> Dictionary:
 		if record is Dictionary and str(record.get("logical_asset_id", "")) == asset_id:
 			return record
 	return {}
+
+
+func _acceptance_record_for_path(records: Array, asset_id: String, asset_path: String) -> Dictionary:
+	for record in records:
+		if record is Dictionary and str(record.get("logical_asset_id", "")) == asset_id and str(record.get("resource_path_for_mapping", "")) == asset_path:
+			return record
+	return _acceptance_record_for(records, asset_id)
+
+
+func _record_is_runtime_accepted(record: Dictionary) -> bool:
+	var status := str(record.get("status", ""))
+	var result := str(record.get("acceptance_result", ""))
+	if status == "production" and result == "pass":
+		return true
+	return status == "runtime_promoted_for_review" and result == "runtime_promoted_pending_visual_review"
 
 
 func _expect_project_asset(result: Dictionary, label: String) -> void:

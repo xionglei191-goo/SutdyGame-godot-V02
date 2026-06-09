@@ -1,0 +1,353 @@
+{
+  "round": "Round175",
+  "pack_id": "home_interior_shells",
+  "status": "proof_only_normalized_candidate",
+  "overall_gate": "pass",
+  "category": "home_interior_shell",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_themeprofile_no_assetresolver_no_data_changes",
+  "scope": "Cozy home interior shell building-block candidates only; not a full-map background and not runtime-bound.",
+  "generation_method": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text-to-image raw candidates, local normalization and alpha masks",
+    "normalizer": "assets/art/visual_rebuild/round175/home_interior_shells/normalize_and_manifest.py",
+    "source_prompts": "assets/art/visual_rebuild/round175/home_interior_shells/source_prompts.json"
+  },
+  "proofs": {
+    "contact_sheet": "assets/art/visual_rebuild/round175/home_interior_shells/proof/round175_home_interior_shells_contact_sheet.png",
+    "raw_dir": "assets/art/visual_rebuild/round175/home_interior_shells/raw"
+  },
+  "validation_summary": {
+    "basic_alpha_dimension_edge_residue_pass": 8,
+    "basic_alpha_dimension_edge_residue_fail": 0,
+    "checks": [
+      "expected dimensions",
+      "RGBA output with nonzero alpha",
+      "alpha bbox exists",
+      "edge alpha within allowed threshold",
+      "visible chroma-key residue count is zero",
+      "region/band assets explicitly marked not sprites"
+    ]
+  },
+  "items": [
+    {
+      "id": "home_interior_shell.floor_wood_region",
+      "file_id": "floor_wood_region",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "region_band_not_sprite",
+      "region_or_band_not_sprite": true,
+      "main_ref": "assets/art/visual_rebuild/round175/home_interior_shells/floor_wood_region.png",
+      "source_ref": "assets/art/visual_rebuild/round175/home_interior_shells/raw/floor_wood_region_raw.png",
+      "dimensions": [
+        768,
+        512
+      ],
+      "intended_layer_depth": "floor_region_below_furniture_and_actors; deliberate broad opaque band, not a standalone sprite",
+      "pivot_px": [
+        384,
+        256
+      ],
+      "anchor_recommendation": "center_floor",
+      "scale_recommendation": "1.0 at 1280x720 composition, crop/overlap under walls as needed",
+      "bbox_alpha": [
+        0,
+        0,
+        768,
+        512
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 10,
+        "bottom_max_alpha": 23,
+        "left_max_alpha": 238,
+        "right_max_alpha": 238
+      },
+      "visible_key_residue_pixels": 0,
+      "prompt": "Cozy child-friendly game interior modular floor material patch only: warm honey wood planks in soft hand-painted Animal Crossing-like style, top-down slightly angled floor texture, gentle grain, no furniture, no walls, no room, no border, no readable text, transparent or clean isolated asset, composition building block.",
+      "risks": [
+        "Generated source was normalized into a proof candidate; visual approval still required before runtime mapping.",
+        "Do not use as a full-map or full-room screenshot.",
+        "Broad opaque area is intentional for a wall/floor composition region and must stay behind sprites."
+      ]
+    },
+    {
+      "id": "home_interior_shell.floor_soft_rug_region",
+      "file_id": "floor_soft_rug_region",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "region_band_not_sprite",
+      "region_or_band_not_sprite": true,
+      "main_ref": "assets/art/visual_rebuild/round175/home_interior_shells/floor_soft_rug_region.png",
+      "source_ref": "assets/art/visual_rebuild/round175/home_interior_shells/raw/floor_soft_rug_region_raw.png",
+      "dimensions": [
+        512,
+        320
+      ],
+      "intended_layer_depth": "floor_accent_region_above_floor_wood_below_furniture; region asset, not pickup sprite",
+      "pivot_px": [
+        256,
+        160
+      ],
+      "anchor_recommendation": "center_floor",
+      "scale_recommendation": "0.75-1.0 under bed/table clusters",
+      "bbox_alpha": [
+        0,
+        0,
+        512,
+        320
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 1,
+        "bottom_max_alpha": 1,
+        "left_max_alpha": 5,
+        "right_max_alpha": 5
+      },
+      "visible_key_residue_pixels": 0,
+      "prompt": "Soft oval rug region for cozy child-friendly home interior composition, muted coral mint cream woven texture, hand-painted game asset, no furniture, no room, no wall, no letters, no readable text, isolated modular building block with transparent edge.",
+      "risks": [
+        "Generated source was normalized into a proof candidate; visual approval still required before runtime mapping.",
+        "Do not use as a full-map or full-room screenshot.",
+        "Broad opaque area is intentional for a wall/floor composition region and must stay behind sprites."
+      ]
+    },
+    {
+      "id": "home_interior_shell.wall_warm_plaster_band",
+      "file_id": "wall_warm_plaster_band",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "region_band_not_sprite",
+      "region_or_band_not_sprite": true,
+      "main_ref": "assets/art/visual_rebuild/round175/home_interior_shells/wall_warm_plaster_band.png",
+      "source_ref": "assets/art/visual_rebuild/round175/home_interior_shells/raw/wall_warm_plaster_band_raw.png",
+      "dimensions": [
+        768,
+        320
+      ],
+      "intended_layer_depth": "back_wall_region_behind_props; deliberate wall band, not a standalone sprite",
+      "pivot_px": [
+        384,
+        320
+      ],
+      "anchor_recommendation": "back_wall_or_room_corner",
+      "scale_recommendation": "1.0-1.25 horizontally, keep behind all furniture",
+      "bbox_alpha": [
+        0,
+        0,
+        768,
+        320
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 12,
+        "bottom_max_alpha": 27,
+        "left_max_alpha": 246,
+        "right_max_alpha": 246
+      },
+      "visible_key_residue_pixels": 0,
+      "prompt": "Warm plaster wall band material for cozy child-friendly game home interior, pale peach plaster with subtle brush texture and soft base trim hint, no window, no furniture, no full room scene, no readable text, no letters, modular background band asset.",
+      "risks": [
+        "Generated source was normalized into a proof candidate; visual approval still required before runtime mapping.",
+        "Do not use as a full-map or full-room screenshot.",
+        "Broad opaque area is intentional for a wall/floor composition region and must stay behind sprites."
+      ]
+    },
+    {
+      "id": "home_interior_shell.wall_window_nook",
+      "file_id": "wall_window_nook",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "prefab_shell",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round175/home_interior_shells/wall_window_nook.png",
+      "source_ref": "assets/art/visual_rebuild/round175/home_interior_shells/raw/wall_window_nook_raw.png",
+      "dimensions": [
+        512,
+        384
+      ],
+      "intended_layer_depth": "wall_prefab_above_wall_band_below_hanging_props",
+      "pivot_px": [
+        256,
+        384
+      ],
+      "anchor_recommendation": "back_wall_or_room_corner",
+      "scale_recommendation": "0.65-0.9, anchor to back wall",
+      "bbox_alpha": [
+        0,
+        0,
+        512,
+        384
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 24,
+        "bottom_max_alpha": 24,
+        "left_max_alpha": 24,
+        "right_max_alpha": 24
+      },
+      "visible_key_residue_pixels": 0,
+      "prompt": "Small cozy window nook shell piece for child-friendly game home interior: rounded wooden window frame with warm sunlight patch and simple curtain shapes, no readable text, no letters, no furniture, not a full room, isolated modular wall prefab with soft transparent edges.",
+      "risks": [
+        "Generated source was normalized into a proof candidate; visual approval still required before runtime mapping.",
+        "Do not use as a full-map or full-room screenshot."
+      ]
+    },
+    {
+      "id": "home_interior_shell.interior_corner_shadow",
+      "file_id": "interior_corner_shadow",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "overlay_shadow",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round175/home_interior_shells/interior_corner_shadow.png",
+      "source_ref": "assets/art/visual_rebuild/round175/home_interior_shells/raw/interior_corner_shadow_raw.png",
+      "dimensions": [
+        512,
+        512
+      ],
+      "intended_layer_depth": "shadow_overlay_above_wall_floor_regions_below_props",
+      "pivot_px": [
+        0,
+        0
+      ],
+      "anchor_recommendation": "back_wall_or_room_corner",
+      "scale_recommendation": "1.0; multiply/modulate in proof composition",
+      "bbox_alpha": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 109,
+        "bottom_max_alpha": 105,
+        "left_max_alpha": 109,
+        "right_max_alpha": 105
+      },
+      "visible_key_residue_pixels": 0,
+      "prompt": "Very soft L-shaped interior room corner shadow overlay, translucent warm gray, feathered edges, cozy child-friendly home composition aid, no objects, no text, no room screenshot, no hard border, transparent PNG style.",
+      "risks": [
+        "Generated source was normalized into a proof candidate; visual approval still required before runtime mapping.",
+        "Do not use as a full-map or full-room screenshot."
+      ]
+    },
+    {
+      "id": "home_interior_shell.doorway_threshold",
+      "file_id": "doorway_threshold",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "prefab_shell",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round175/home_interior_shells/doorway_threshold.png",
+      "source_ref": "assets/art/visual_rebuild/round175/home_interior_shells/raw/doorway_threshold_raw.png",
+      "dimensions": [
+        384,
+        256
+      ],
+      "intended_layer_depth": "floor_transition_prefab_above_floor_region_below_actors",
+      "pivot_px": [
+        192,
+        236
+      ],
+      "anchor_recommendation": "back_wall_or_room_corner",
+      "scale_recommendation": "0.75-1.0 at room entrance edge",
+      "bbox_alpha": [
+        0,
+        0,
+        384,
+        256
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 34,
+        "bottom_max_alpha": 34,
+        "left_max_alpha": 34,
+        "right_max_alpha": 34
+      },
+      "visible_key_residue_pixels": 0,
+      "prompt": "Small doorway threshold shell piece for cozy child-friendly game home interior, rounded wooden threshold strip and soft floor transition, no door sign, no readable text, no letters, no full room, isolated modular game asset with transparent edges.",
+      "risks": [
+        "Generated source was normalized into a proof candidate; visual approval still required before runtime mapping.",
+        "Do not use as a full-map or full-room screenshot."
+      ]
+    },
+    {
+      "id": "home_interior_shell.small_room_back_wall_prefab",
+      "file_id": "small_room_back_wall_prefab",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "prefab_shell",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round175/home_interior_shells/small_room_back_wall_prefab.png",
+      "source_ref": "assets/art/visual_rebuild/round175/home_interior_shells/raw/small_room_back_wall_prefab_raw.png",
+      "dimensions": [
+        768,
+        512
+      ],
+      "intended_layer_depth": "room_shell_prefab_behind_furniture_and_actors; broad prefab background with faded edge",
+      "pivot_px": [
+        384,
+        512
+      ],
+      "anchor_recommendation": "back_wall_or_room_corner",
+      "scale_recommendation": "0.9-1.1, align bottom with floor seam",
+      "bbox_alpha": [
+        0,
+        0,
+        768,
+        512
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 28,
+        "bottom_max_alpha": 28,
+        "left_max_alpha": 6,
+        "right_max_alpha": 6
+      },
+      "visible_key_residue_pixels": 0,
+      "prompt": "Small back wall prefab shell for cozy child-friendly game home interior, warm plaster wall with simple baseboard and gentle wall-to-floor corner curve, no furniture, no window text, no full scene illustration, no readable text, modular composition background piece.",
+      "risks": [
+        "Generated source was normalized into a proof candidate; visual approval still required before runtime mapping.",
+        "Do not use as a full-map or full-room screenshot."
+      ]
+    },
+    {
+      "id": "home_interior_shell.sunny_bed_corner_shell",
+      "file_id": "sunny_bed_corner_shell",
+      "status": "pass",
+      "asset_status": "proof_only_normalized_candidate",
+      "kind": "prefab_shell",
+      "region_or_band_not_sprite": false,
+      "main_ref": "assets/art/visual_rebuild/round175/home_interior_shells/sunny_bed_corner_shell.png",
+      "source_ref": "assets/art/visual_rebuild/round175/home_interior_shells/raw/sunny_bed_corner_shell_raw.png",
+      "dimensions": [
+        640,
+        512
+      ],
+      "intended_layer_depth": "pet_bed_corner_shell_behind_round173_sunny_bed_sprite",
+      "pivot_px": [
+        320,
+        512
+      ],
+      "anchor_recommendation": "back_wall_or_room_corner",
+      "scale_recommendation": "0.85-1.0, place Round173 sunny_bed in front at 128x128 or 1.15x",
+      "bbox_alpha": [
+        0,
+        0,
+        640,
+        512
+      ],
+      "edge_alpha": {
+        "top_max_alpha": 25,
+        "bottom_max_alpha": 25,
+        "left_max_alpha": 6,
+        "right_max_alpha": 38
+      },
+      "visible_key_residue_pixels": 0,
+      "prompt": "Cozy empty bedroom corner shell designed to compose behind an existing Sunny pet bed furniture sprite, warm wall corner, soft floor patch, tiny non-readable decorative shapes only, no actual bed, no character, no readable text, no full room screenshot, transparent soft edges, child-friendly game art.",
+      "risks": [
+        "Generated source was normalized into a proof candidate; visual approval still required before runtime mapping.",
+        "Do not use as a full-map or full-room screenshot."
+      ]
+    }
+  ],
+  "risks": [
+    "Proof-only shell pieces need manual art-direction review against Round173 furniture before any composition kit or runtime mapping.",
+    "Window nook and room-shell prefabs may need painterly cleanup if future target frame requires stricter perspective.",
+    "Opaque wall/floor bands are documented composition regions, not standalone sprites."
+  ]
+}

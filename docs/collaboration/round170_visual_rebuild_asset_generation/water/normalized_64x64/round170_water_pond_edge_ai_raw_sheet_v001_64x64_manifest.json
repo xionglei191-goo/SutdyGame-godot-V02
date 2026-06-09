@@ -1,0 +1,459 @@
+{
+  "status": "normalized_candidate",
+  "round": "Round170",
+  "worker": "E",
+  "runtime_boundary": "proof_only_no_runtime_mapping_no_asset_resolver_no_theme_profile",
+  "source": "docs/collaboration/round170_visual_rebuild_asset_generation/water/raw/round170_water_pond_edge_ai_raw_sheet_v001.png",
+  "alpha_source": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/round170_water_pond_edge_ai_raw_sheet_v001_chroma_alpha.png",
+  "atlas": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/round170_water_pond_edge_ai_raw_sheet_v001_64x64_atlas.png",
+  "asset_tree_atlas": "assets/art/visual_rebuild/round170/water/water_pond_edge_tiles_64x64_sheet_v001.png",
+  "tile_proof": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/round170_water_pond_edge_ai_raw_sheet_v001_64x64_tile_proof.png",
+  "asset_tree_tile_proof": "assets/art/visual_rebuild/round170/water/water_pond_edge_tiles_64x64_tile_proof_v001.png",
+  "source_grid": {
+    "columns": 4,
+    "rows": 2
+  },
+  "cell_size": [
+    64,
+    64
+  ],
+  "fit_box": [
+    60,
+    60
+  ],
+  "pivot_px": [
+    32,
+    32
+  ],
+  "key_color": "#ff00ff",
+  "output_mode": "RGBA_transparent",
+  "overall_gate": "pass",
+  "visible_key_pixel_count_atlas": 0,
+  "raw_size_px": [
+    1024,
+    1024
+  ],
+  "atlas_size_px": [
+    256,
+    128
+  ],
+  "tile_edge_note": "Edge alpha touch is recorded but allowed for water/shoreline tiles because tileable fills and edges may intentionally reach cell borders.",
+  "items": [
+    {
+      "index": 1,
+      "id": "water_pond_tile.01_center_water",
+      "source_cell": {
+        "row": 0,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        21,
+        256,
+        244,
+        481
+      ],
+      "normalized_png": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/water_pond_tile_01_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        60,
+        60
+      ],
+      "pivot_px": [
+        32,
+        32
+      ],
+      "placed_bbox": [
+        2,
+        2,
+        61,
+        62
+      ],
+      "margins_px": {
+        "left": 2,
+        "top": 2,
+        "right": 3,
+        "bottom": 2
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_touch_allowed": true,
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26666666666666666,
+      "status": "pass",
+      "reasons": []
+    },
+    {
+      "index": 2,
+      "id": "water_pond_tile.02_north_shoreline",
+      "source_cell": {
+        "row": 0,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        18,
+        256,
+        242,
+        481
+      ],
+      "normalized_png": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/water_pond_tile_02_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        60,
+        60
+      ],
+      "pivot_px": [
+        32,
+        32
+      ],
+      "placed_bbox": [
+        2,
+        2,
+        62,
+        62
+      ],
+      "margins_px": {
+        "left": 2,
+        "top": 2,
+        "right": 2,
+        "bottom": 2
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_touch_allowed": true,
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26666666666666666,
+      "status": "pass",
+      "reasons": []
+    },
+    {
+      "index": 3,
+      "id": "water_pond_tile.03_south_shoreline",
+      "source_cell": {
+        "row": 0,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        15,
+        256,
+        239,
+        481
+      ],
+      "normalized_png": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/water_pond_tile_03_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        60,
+        60
+      ],
+      "pivot_px": [
+        32,
+        32
+      ],
+      "placed_bbox": [
+        2,
+        2,
+        62,
+        62
+      ],
+      "margins_px": {
+        "left": 2,
+        "top": 2,
+        "right": 2,
+        "bottom": 2
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_touch_allowed": true,
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26666666666666666,
+      "status": "pass",
+      "reasons": []
+    },
+    {
+      "index": 4,
+      "id": "water_pond_tile.04_west_shoreline",
+      "source_cell": {
+        "row": 0,
+        "column": 3
+      },
+      "source_bbox_in_cell": [
+        12,
+        256,
+        235,
+        481
+      ],
+      "normalized_png": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/water_pond_tile_04_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        60,
+        60
+      ],
+      "pivot_px": [
+        32,
+        32
+      ],
+      "placed_bbox": [
+        2,
+        2,
+        61,
+        62
+      ],
+      "margins_px": {
+        "left": 2,
+        "top": 2,
+        "right": 3,
+        "bottom": 2
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_touch_allowed": true,
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26666666666666666,
+      "status": "pass",
+      "reasons": []
+    },
+    {
+      "index": 5,
+      "id": "water_pond_tile.05_east_shoreline",
+      "source_cell": {
+        "row": 1,
+        "column": 0
+      },
+      "source_bbox_in_cell": [
+        21,
+        28,
+        244,
+        254
+      ],
+      "normalized_png": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/water_pond_tile_05_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        60,
+        60
+      ],
+      "pivot_px": [
+        32,
+        32
+      ],
+      "placed_bbox": [
+        2,
+        2,
+        61,
+        62
+      ],
+      "margins_px": {
+        "left": 2,
+        "top": 2,
+        "right": 3,
+        "bottom": 2
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_touch_allowed": true,
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26548672566371684,
+      "status": "pass",
+      "reasons": []
+    },
+    {
+      "index": 6,
+      "id": "water_pond_tile.06_outer_corner",
+      "source_cell": {
+        "row": 1,
+        "column": 1
+      },
+      "source_bbox_in_cell": [
+        18,
+        28,
+        241,
+        254
+      ],
+      "normalized_png": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/water_pond_tile_06_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        60,
+        60
+      ],
+      "pivot_px": [
+        32,
+        32
+      ],
+      "placed_bbox": [
+        2,
+        2,
+        61,
+        62
+      ],
+      "margins_px": {
+        "left": 2,
+        "top": 2,
+        "right": 3,
+        "bottom": 2
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_touch_allowed": true,
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26548672566371684,
+      "status": "pass",
+      "reasons": []
+    },
+    {
+      "index": 7,
+      "id": "water_pond_tile.07_inner_corner",
+      "source_cell": {
+        "row": 1,
+        "column": 2
+      },
+      "source_bbox_in_cell": [
+        15,
+        28,
+        239,
+        254
+      ],
+      "normalized_png": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/water_pond_tile_07_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        60,
+        60
+      ],
+      "pivot_px": [
+        32,
+        32
+      ],
+      "placed_bbox": [
+        2,
+        2,
+        61,
+        62
+      ],
+      "margins_px": {
+        "left": 2,
+        "top": 2,
+        "right": 3,
+        "bottom": 2
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_touch_allowed": true,
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26548672566371684,
+      "status": "pass",
+      "reasons": []
+    },
+    {
+      "index": 8,
+      "id": "water_pond_tile.08_reed_accent",
+      "source_cell": {
+        "row": 1,
+        "column": 3
+      },
+      "source_bbox_in_cell": [
+        12,
+        28,
+        235,
+        254
+      ],
+      "normalized_png": "docs/collaboration/round170_visual_rebuild_asset_generation/water/normalized_64x64/water_pond_tile_08_64x64.png",
+      "cell_size": [
+        64,
+        64
+      ],
+      "fit_box": [
+        60,
+        60
+      ],
+      "pivot_px": [
+        32,
+        32
+      ],
+      "placed_bbox": [
+        2,
+        2,
+        61,
+        62
+      ],
+      "margins_px": {
+        "left": 2,
+        "top": 2,
+        "right": 3,
+        "bottom": 2
+      },
+      "edge_touch_count": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "edge_touch_allowed": true,
+      "components": 1,
+      "max_components": 4,
+      "visible_key_pixel_count": 0,
+      "scale_from_source_crop": 0.26548672566371684,
+      "status": "pass",
+      "reasons": []
+    }
+  ]
+}

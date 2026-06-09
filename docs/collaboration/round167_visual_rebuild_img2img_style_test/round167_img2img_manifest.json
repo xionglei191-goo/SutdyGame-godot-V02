@@ -1,0 +1,44 @@
+{
+  "round": "Round167",
+  "task_id": "V02-VISUALREBUILD-002",
+  "status": "style_reference_img2img_test_only",
+  "source_style_reference": "/home/xionglei/.codex/generated_images/019ea1f9-af6a-74a1-95f8-8ba7a1f4db32/ig_0d7553c9c33ca64f016a257d184bb8819dbd188a1d01cc3df4.png",
+  "script": "/home/xionglei/GameProject/tools/image_generator.js",
+  "runtime_mapping": "none",
+  "art_target_locked": false,
+  "outputs": [
+    {
+      "id": "terrain_tile_sheet_v001",
+      "path_rgb": "docs/collaboration/round167_visual_rebuild_img2img_style_test/round167_img2img_terrain_tile_sheet_v001.png",
+      "path_rgba_candidate": "docs/collaboration/round167_visual_rebuild_img2img_style_test/round167_img2img_terrain_tile_sheet_v001_rgba_candidate.png",
+      "dimensions": "1024x1024",
+      "alpha_source": "RGB, no alpha",
+      "assessment": "promising_style_test_needs_tileability_review",
+      "notes": "Independent grass, path, edge, water-bank, and detail tiles were generated. They are not yet seamless or runtime-approved."
+    },
+    {
+      "id": "environment_prop_sheet_v001",
+      "path_rgb": "docs/collaboration/round167_visual_rebuild_img2img_style_test/round167_img2img_environment_prop_sheet_v001.png",
+      "path_rgba_candidate": "docs/collaboration/round167_visual_rebuild_img2img_style_test/round167_img2img_environment_prop_sheet_v001_rgba_candidate.png",
+      "dimensions": "1024x1024",
+      "alpha_source": "RGB, no alpha",
+      "assessment": "best_candidate_for_manual_crop_and_scale_review",
+      "notes": "Home, tree, fence, mailbox, garden, pond, apple basket, clock, and companion props are separated well enough for manual crop trials."
+    },
+    {
+      "id": "ui_icon_sheet_v001",
+      "path_rgb": "docs/collaboration/round167_visual_rebuild_img2img_style_test/round167_img2img_ui_icon_sheet_v001.png",
+      "path_rgba_candidate": "docs/collaboration/round167_visual_rebuild_img2img_style_test/round167_img2img_ui_icon_sheet_v001_rgba_candidate.png",
+      "dimensions": "1024x1024",
+      "alpha_source": "RGB, no alpha",
+      "assessment": "rgb_style_ok_rgba_candidate_failed_for_glass",
+      "notes": "White-key background removal damaged pale glass interiors and icon highlights. Future UI generation needs chroma-key or native transparency."
+    }
+  ],
+  "next_steps": [
+    "Do not map any Round167 output into ThemeProfile or AssetResolver.",
+    "Select 10-20 candidate crops manually only after Art Direction review.",
+    "Regenerate UI icons with chroma-key background or true alpha before runtime use.",
+    "Run tileability, alpha, scale, and first-screen screenshot checks before any asset acceptance."
+  ]
+}

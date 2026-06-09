@@ -1,0 +1,198 @@
+{
+  "status": "proof_only/normalized_candidate",
+  "overall_gate": "pass",
+  "runtime_boundary": "proof_only_not_mapped_to_asset_resolver_theme_profile_data_or_runtime",
+  "category": "place_prefab",
+  "generator": {
+    "tool": "/home/xionglei/GameProject/tools/image_generator.js",
+    "mode": "text",
+    "raw_size": [1024, 1024],
+    "background_strategy": "flat #ff00ff or close pink chroma-key requested; local ImageMagick key removal and normalization applied",
+    "notes": [
+      "The fallback generator returned RGB PNGs even when transparent output was requested.",
+      "Final normalized PNGs are RGBA transparent proof candidates."
+    ]
+  },
+  "normalization": {
+    "cell_size": [320, 320],
+    "fit_box": [286, 282],
+    "pivot_px": [160, 302],
+    "baseline_y": 302,
+    "method": "per-image corner color chroma-key removal, alpha trim, resize into fit box, bottom-align to y=302, transparent 320x320 extent",
+    "asset_status": "proof_only/normalized_candidate"
+  },
+  "asset_tree_refs": {
+    "raw_dir": "assets/art/visual_rebuild/round174/place_prefabs/raw",
+    "normalized_dir": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320",
+    "raw_contact": "assets/art/visual_rebuild/round174/place_prefabs/proof/round174_place_prefabs_raw_contact.png",
+    "normalized_contact": "assets/art/visual_rebuild/round174/place_prefabs/proof/round174_place_prefabs_normalized_contact.png",
+    "pivot_proof": "assets/art/visual_rebuild/round174/place_prefabs/proof/round174_place_prefabs_320x320_pivot_proof.png"
+  },
+  "compatibility_targets": [
+    "assets/art/visual_rebuild/round170/buildings/building_prefabs_320x320_atlas_v001.png",
+    "assets/art/visual_rebuild/round171/ground_regions/ground_meadow_chunks_256x256_atlas_v002.png",
+    "assets/art/visual_rebuild/round171/ground_regions/ground_soft_path_bands_512x256_atlas_v002.png"
+  ],
+  "items": [
+    {
+      "index": 1,
+      "id": "place_prefab.home_cottage_front",
+      "raw_png": "assets/art/visual_rebuild/round174/place_prefabs/raw/home_cottage_front_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320/home_cottage_front_320x320.png",
+      "status": "proof_only/normalized_candidate",
+      "prompt": "Cozy town mobile game prefab, home_cottage_front, full front-facing 3/4 orthographic view, warm original cozy town mobile game asset, rounded cream plaster cottage, red clay roof, small chimney, arched wooden door, two windows, tiny porch step, soft hand-painted shapes, child-friendly, no readable text, isolated object, perfectly flat solid #ff00ff background for chroma key removal, no shadows, no gradients, no floor plane, generous padding, compatible with 320x320 normalized building prefab cell",
+      "dimensions_px": [320, 320],
+      "placed_bbox": [22, 64, 299, 298],
+      "pivot_px": [160, 302],
+      "footprint_recommendation": {
+        "tile_size_px": 64,
+        "tiles": [4, 3],
+        "anchor": "bottom_center",
+        "notes": "Use as a small resident home/front facade; keep door area connected to a soft path band."
+      },
+      "risks": ["minor chroma-edge risk around red roof highlights", "style is proof-only and not final runtime scale locked"]
+    },
+    {
+      "index": 2,
+      "id": "place_prefab.school_gate_prefab",
+      "raw_png": "assets/art/visual_rebuild/round174/place_prefabs/raw/school_gate_prefab_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320/school_gate_prefab_320x320.png",
+      "status": "proof_only/normalized_candidate",
+      "prompt": "Cozy town mobile game prefab, school_gate_prefab, 3/4 orthographic front view, friendly low school entrance gate with two rounded stone posts, small pitched roof arch, colorful bunting, tiny unreadable plaque marks only, no readable text, warm child-safe town simulation style, isolated object, perfectly flat solid #ff00ff background for chroma key removal, no shadows, no gradients, no floor plane, generous padding, compatible with 320x320 normalized prefab cell",
+      "dimensions_px": [320, 320],
+      "placed_bbox": [21, 111, 299, 298],
+      "pivot_px": [160, 302],
+      "footprint_recommendation": {
+        "tile_size_px": 64,
+        "tiles": [3, 2],
+        "anchor": "bottom_center",
+        "notes": "Place at a school approach path; reserve a pass-through lane under the arch."
+      },
+      "risks": ["multiple alpha components from bunting/details", "small pennants may need manual cleanup for final art"]
+    },
+    {
+      "index": 3,
+      "id": "place_prefab.bookshop_front",
+      "raw_png": "assets/art/visual_rebuild/round174/place_prefabs/raw/bookshop_front_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320/bookshop_front_320x320.png",
+      "status": "proof_only/normalized_candidate",
+      "prompt": "Cozy town mobile game prefab, bookshop_front, full storefront front-facing 3/4 orthographic view, compact timber and cream bookshop facade, teal roof, striped awning, large display window with book shapes, tiny unreadable sign marks only, no readable text, warm cozy town style, isolated object, perfectly flat solid #ff00ff background for chroma key removal, no shadows, no gradients, no floor plane, generous padding, compatible with Round170 320x320 building prefabs",
+      "dimensions_px": [320, 320],
+      "placed_bbox": [21, 24, 298, 298],
+      "pivot_px": [160, 302],
+      "footprint_recommendation": {
+        "tile_size_px": 64,
+        "tiles": [4, 3],
+        "anchor": "bottom_center",
+        "notes": "Best along a town street edge with the awning facing a walkable plaza/path tile."
+      },
+      "risks": ["tiny signage-like shapes must remain unreadable", "3 visible magenta-ish pixels detected after cleanup"]
+    },
+    {
+      "index": 4,
+      "id": "place_prefab.cozy_shop_front",
+      "raw_png": "assets/art/visual_rebuild/round174/place_prefabs/raw/cozy_shop_front_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320/cozy_shop_front_320x320.png",
+      "status": "proof_only/normalized_candidate",
+      "prompt": "Cozy town mobile game prefab, cozy_shop_front, full shopfront front-facing 3/4 orthographic view, small village general shop facade, green awning, wooden shelves hinted in window, flower pots attached, tiny unreadable signage-like marks only, no readable text, soft hand-painted child-friendly mobile game asset, isolated object, perfectly flat solid #ff00ff background for chroma key removal, no shadows, no gradients, no floor plane, generous padding, compatible with 320x320 normalized prefab cell",
+      "dimensions_px": [320, 320],
+      "placed_bbox": [22, 51, 292, 298],
+      "pivot_px": [160, 302],
+      "footprint_recommendation": {
+        "tile_size_px": 64,
+        "tiles": [4, 3],
+        "anchor": "bottom_center",
+        "notes": "Use as a main-street shop front; leave one tile of clear approach in front of the door."
+      },
+      "risks": ["decorative side sign may need silhouette simplification", "proof-only scale relative to Round170 shop should be reviewed in-scene"]
+    },
+    {
+      "index": 5,
+      "id": "place_prefab.bus_stop_shelter",
+      "raw_png": "assets/art/visual_rebuild/round174/place_prefabs/raw/bus_stop_shelter_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320/bus_stop_shelter_320x320.png",
+      "status": "proof_only/normalized_candidate",
+      "prompt": "Cozy town mobile game prefab, bus_stop_shelter, 3/4 orthographic front view, small wooden bus stop shelter with curved roof, bench, tiny route board with unreadable marks only, no readable text, warm cozy town mobile game asset, isolated object, perfectly flat solid #ff00ff background for chroma key removal, no shadows, no gradients, no floor plane, generous padding, compatible with 320x320 normalized prefab cell and meadow ground regions",
+      "dimensions_px": [320, 320],
+      "placed_bbox": [21, 70, 299, 298],
+      "pivot_px": [160, 302],
+      "footprint_recommendation": {
+        "tile_size_px": 64,
+        "tiles": [3, 2],
+        "anchor": "bottom_center",
+        "notes": "Place beside a path band or road edge; keep bench frontage readable from the player route."
+      },
+      "risks": ["two alpha components from small detached detail", "route board contains tiny unreadable marks only"]
+    },
+    {
+      "index": 6,
+      "id": "place_prefab.town_plaza_kiosk",
+      "raw_png": "assets/art/visual_rebuild/round174/place_prefabs/raw/town_plaza_kiosk_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320/town_plaza_kiosk_320x320.png",
+      "status": "proof_only/normalized_candidate",
+      "prompt": "Cozy town mobile game prefab, town_plaza_kiosk, 3/4 orthographic front view, small round plaza kiosk booth with scalloped canopy, counter window, hanging pennants, tiny unreadable menu marks only, no readable text, cheerful cozy town style, isolated object, perfectly flat solid #ff00ff background for chroma key removal, no shadows, no gradients, no floor plane, generous padding, compatible with 320x320 normalized prefab cell",
+      "dimensions_px": [320, 320],
+      "placed_bbox": [44, 24, 275, 298],
+      "pivot_px": [160, 302],
+      "footprint_recommendation": {
+        "tile_size_px": 64,
+        "tiles": [3, 3],
+        "anchor": "bottom_center",
+        "notes": "Use as a plaza center/edge object; reserve circular approach space around the counter."
+      },
+      "risks": ["9 magenta-ish visible pixels detected after cleanup", "hanging mini signs should be checked for no readable text before finalization"]
+    },
+    {
+      "index": 7,
+      "id": "place_prefab.garden_bridge",
+      "raw_png": "assets/art/visual_rebuild/round174/place_prefabs/raw/garden_bridge_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320/garden_bridge_320x320.png",
+      "status": "proof_only/normalized_candidate",
+      "prompt": "Cozy town mobile game prefab, garden_bridge, 3/4 orthographic view, small arched wooden garden bridge for pond or meadow path, warm rounded planks, railings, moss accents, no text, no characters, soft cozy town hand-painted mobile game prop, isolated object, perfectly flat solid #ff00ff background for chroma key removal, no shadows, no gradients, no floor plane, generous padding, compatible with Round171 ground regions",
+      "dimensions_px": [320, 320],
+      "placed_bbox": [21, 117, 299, 298],
+      "pivot_px": [160, 302],
+      "footprint_recommendation": {
+        "tile_size_px": 64,
+        "tiles": [4, 2],
+        "anchor": "bottom_center",
+        "notes": "Align over a narrow pond/path crossing; use collision only on rail/posts if the bridge becomes walkable."
+      },
+      "risks": ["bridge perspective may need variant for exact north/south and east/west crossings", "proof-only collision footprint needs manual tuning"]
+    },
+    {
+      "index": 8,
+      "id": "place_prefab.postbox_notice_corner",
+      "raw_png": "assets/art/visual_rebuild/round174/place_prefabs/raw/postbox_notice_corner_raw.png",
+      "normalized_png": "assets/art/visual_rebuild/round174/place_prefabs/normalized_320x320/postbox_notice_corner_320x320.png",
+      "status": "proof_only/normalized_candidate",
+      "prompt": "Cozy town mobile game prefab, postbox_notice_corner, 3/4 orthographic front view, red rounded postbox beside a wooden notice board and small flower patch, notices with tiny unreadable marks only, no readable text, cozy child-friendly town sim prop, isolated object, perfectly flat solid #ff00ff background for chroma key removal, no shadows, no gradients, no floor plane, generous padding, compatible with 320x320 normalized prefab cell",
+      "dimensions_px": [320, 320],
+      "placed_bbox": [21, 28, 299, 298],
+      "pivot_px": [160, 302],
+      "footprint_recommendation": {
+        "tile_size_px": 64,
+        "tiles": [3, 2],
+        "anchor": "bottom_center",
+        "notes": "Use as a notice-corner landmark near plaza/shop paths; keep interactable spot in front of board/postbox."
+      },
+      "risks": ["notice papers include unreadable mark clusters only", "3 magenta-ish pixels detected after cleanup"]
+    }
+  ],
+  "validation": {
+    "manifest_parse": "pass",
+    "image_checks": {
+      "expected_count": 8,
+      "dimensions_320x320": 8,
+      "rgba_alpha_present": 8,
+      "transparent_corners": 8,
+      "edge_alpha_touch_failures": 0
+    },
+    "overall_gate": "pass_with_proof_only_risks"
+  },
+  "shared_risks": [
+    "Generated raws are RGB and depend on local chroma-key cleanup rather than native transparency.",
+    "Fine-detail edges may retain tiny pink/magenta residue and should be manually polished before runtime approval.",
+    "These files are not art_target_locked, not runtime_visual_match, and not mapped into runtime systems."
+  ]
+}
